@@ -1,14 +1,19 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList;
+
 import org.apache.logging.log4j.Logger; 
+
 import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
 import com.lothrazar.event.*; 
 import com.lothrazar.item.*;   
+import com.lothrazar.samscontent.proxy.ClientProxy;
+import com.lothrazar.samscontent.proxy.CommonProxy;
 import com.lothrazar.samskeyslider.MessageKeyPressed;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
@@ -70,7 +75,7 @@ public class ModSamsContent
 	
 	
   	
-	@SidedProxy(clientSide="com.lothrazar.samscontent.ClientProxy", serverSide="com.lothrazar.samscontent.CommonProxy")
+	@SidedProxy(clientSide="com.lothrazar.samscontent.proxy.ClientProxy", serverSide="com.lothrazar.samscontent.proxy.CommonProxy")
 	public static CommonProxy proxy;  
 	public static final String keyUpName = "key.columnshiftup";
 	public static final String keyDownName = "key.columnshiftdown";
@@ -118,13 +123,14 @@ public class ModSamsContent
      		 new HandlerBonemealUse()
      		 //	,new HandlerBountifulUpdate()
      		,new HandlerEnderChestHit()
+      		,new HandlerFoodEaten()
       		,new HandlerMasterWand()
+      		,new HandlerRichAnimals()
       		,new HandlerScreenText()
      		,new HandlerSkullSignNames()
       		,new HandlerSurvivalFlying()
       		,new HandlerSwiftDeposit()
      		,new HandlerPlayerDeath()
-     		,new HandlerFoodEaten()
      		,instance
      	};
      		

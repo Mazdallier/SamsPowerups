@@ -1,9 +1,11 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.samscontent.proxy;
 
 import java.util.ArrayList;
-import org.lwjgl.input.Keyboard;   
-import com.lothrazar.util.SamsRegistry;
 
+import org.lwjgl.input.Keyboard;   
+
+import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraft.client.Minecraft;

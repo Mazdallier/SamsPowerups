@@ -27,6 +27,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static enum MagicType
 	{
 		Potion, Flying, Hearts
+		//, Horse//TODO : lock players stepheight to 1.0 instead of 0.5
 	}
 	private static ItemFoodAppleMagic apple_emerald;
 	private static ItemFoodAppleMagic apple_emerald_rich;
@@ -178,7 +179,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static void initEmerald()
 	{  
 		apple_emerald = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
-		apple_emerald.addEffect(Reference.potion_absorption, timeShort, IV); 
+		apple_emerald.addEffect(Reference.potion_absorption, timeShort, V); 
 		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
 		GameRegistry.addRecipe(new ItemStack(apple_emerald)
 				, "lll","lal","lll"  
@@ -187,7 +188,7 @@ public class ItemFoodAppleMagic extends ItemFood
 		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),	0);
 		 
 		apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
-		apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, IV); 
+		apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, V); 
 		SamsRegistry.registerItem(apple_emerald_rich, "apple_emerald_rich", "apple_emerald");
 		GameRegistry.addRecipe(new ItemStack(apple_emerald_rich)
 				, "lll","lal","lll"  
