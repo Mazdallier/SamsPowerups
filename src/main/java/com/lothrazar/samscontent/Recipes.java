@@ -721,7 +721,7 @@ public class Recipes
 		//do we remove the single recipe....!! YES!
 		//wait, does clay and stuff let you dye any number 1-8 or is it only 8
 		
-		///do teh same thing as that
+		///do the same thing as that
 		GameRegistry.addRecipe(new ItemStack(Items.dye,8,Reference.dye_bonemeal), 
 				"www","wdw", "www", 
 				'w', Blocks.wool, //color not specified, could be anything
@@ -729,25 +729,92 @@ public class Recipes
 	}
 
 	public static void smoothstoneRequired()
-	{
-		// TODO Auto-generated method stub
-//		http://www.minecraftforge.net/forum/index.php/topic,7146.0.html
-			//http://stackoverflow.com/questions/27459815/minecraft-forge-1-7-10-removing-recipes-from-id
-	
+	{ 
+		removeRecipe(Blocks.furnace);
+
+		GameRegistry.addRecipe(new ItemStack(Items.stone_pickaxe), 
+				"bbb",
+				"bcb", 
+				"bbb", 
+				'b', Blocks.cobblestone,  
+				'c', Items.coal );
 		
-		removeRecipe(new ItemStack(Items.stone_pickaxe));
+		
+		
+		
+		removeRecipe(Items.stone_pickaxe);
+		removeRecipe(Items.stone_sword);
+		removeRecipe(Items.stone_axe);
+		removeRecipe(Items.stone_hoe);
+		removeRecipe(Items.stone_shovel);
+
+		GameRegistry.addRecipe(new ItemStack(Items.stone_pickaxe), 
+				"sss",
+				" t ", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
+		GameRegistry.addRecipe(new ItemStack(Items.stone_sword), 
+				" s ",
+				" s ", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
+
+		GameRegistry.addRecipe(new ItemStack(Items.stone_axe), 
+				"ss ",
+				"st ", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
+		GameRegistry.addRecipe(new ItemStack(Items.stone_axe), 
+				" ss",//i dont think forge does the horizonal mirrored version so adding
+				" ts", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
+		GameRegistry.addRecipe(new ItemStack(Items.stone_hoe), 
+				"ss ",
+				" t ", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
+		GameRegistry.addRecipe(new ItemStack(Items.stone_hoe), 
+				" ss",//i dont think forge does the horizonal mirrored version so adding
+				" t ", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
+		GameRegistry.addRecipe(new ItemStack(Items.stone_shovel), 
+				" s ",
+				" t ", 
+				" t ", 
+				's', Blocks.stone,  
+				't', Items.stick );
 	} 
-	
+
+	private static void removeRecipe(Item resultItem)
+	{     
+		removeRecipe(new ItemStack(resultItem));
+	}
+	private static void removeRecipe(Block resultItem)
+	{     
+		removeRecipe(new ItemStack(resultItem));
+	}
 	private static void removeRecipe(ItemStack resultItem)
 	{     
-		//test out code from stackoverflow
+		//REFERENCES
+		//http://www.minecraftforge.net/forum/index.php/topic,7146.0.html
+		//http://stackoverflow.com/questions/27459815/minecraft-forge-1-7-10-removing-recipes-from-id
+	
 	    List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
-
+	    IRecipe tmpRecipe;
+	    ItemStack recipeResult;
 	    for (int i = 0; i < recipes.size(); i++)
 	    {
-	        IRecipe tmpRecipe = recipes.get(i);
+	        tmpRecipe = recipes.get(i);
 
-	        ItemStack recipeResult = tmpRecipe.getRecipeOutput();
+	        recipeResult = tmpRecipe.getRecipeOutput();
 	        if(recipeResult != null) 
 	        {
 	            recipeResult.stackSize = 1;
