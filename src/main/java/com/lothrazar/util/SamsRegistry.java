@@ -10,8 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class SamsRegistry
 {
- 
-	 public static String TEXTURE_LOCATION = ModSamsContent.MODID + ":";
+  
 	 public static void registerBlock(Block s, String name)
 	 {   
 		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0

@@ -60,37 +60,24 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
  
 //TODO: fix // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION	, canBeDeactivated = false, name = ModSamsContent.NAME, useMetadata = true) 
+@Mod(modid = Reference.MODID, version = Reference.VERSION	, canBeDeactivated = false, name = Reference.NAME, useMetadata = true) 
 public class ModSamsContent
 {
-	@Instance(value = ModSamsContent.MODID)
+	@Instance(value = Reference.MODID)
 	public static ModSamsContent instance;
-	public static Logger logger;
-	public final static String MODID = "samscontent";
-	public static final String VERSION = "1.8.1_1.0-dev";
-	public static final String NAME = "Sam's Content";
-
-	public static Configuration config;
-	public static ConfigFile settings;
-	
-	
-  	
 	@SidedProxy(clientSide="com.lothrazar.samscontent.proxy.ClientProxy", serverSide="com.lothrazar.samscontent.proxy.CommonProxy")
 	public static CommonProxy proxy;  
-	public static final String keyUpName = "key.columnshiftup";
-	public static final String keyDownName = "key.columnshiftdown";
-	//TODO: ??left and right swaps
-	//public static final String keyLeftName = "key.columnshiftleft";
-	//public static final String keyRightName = "key.columnshiftright";
-	public static final String keyCategory = "key.categories.inventory";
+	
+	public static Logger logger;
+	public static Configuration config;
+	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
- 
-	  
+	
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
-		mcinfo.modId = MODID;
-		mcinfo.name = NAME;
-		mcinfo.version = VERSION;
+		mcinfo.modId = Reference.MODID;
+		mcinfo.name = Reference.NAME;
+		mcinfo.version = Reference.VERSION;
 		mcinfo.description = "Sam's content.";
 		ArrayList<String> authorList = new ArrayList<String>();
 		authorList.add("Lothrazar");
@@ -111,7 +98,7 @@ public class ModSamsContent
 		
 		initModInfo(event.getModMetadata());
 		
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID );     	
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel( Reference.MODID );     	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
      
 		

@@ -11,6 +11,16 @@ import net.minecraft.entity.passive.EntitySheep;
 
 public class Reference 
 { 
+
+	public static final String MODID = "samscontent";
+	public static final String TEXTURE_LOCATION = Reference.MODID + ":";
+	public static final String VERSION = "1.8.1_1.0-dev";
+	public static final String NAME = "Sam's Content";
+
+	public static final String keyUpName = "key.columnshiftup";
+	public static final String keyDownName = "key.columnshiftdown"; 
+	public static final String keyCategory = "key.categories.inventory";
+	
 	public static final int TICKS_PER_SEC = 20;
 	
 
