@@ -84,100 +84,25 @@ public class ModSamsContent
 		mcinfo.authorList = authorList;
 	}
  
-	
-	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
-
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		logger = event.getModLog();
+
+		initModInfo(event.getModMetadata());
 		
 		config = new Configuration(event.getSuggestedConfigurationFile());
- 
 		settings = new ConfigFile();
-		
-		initModInfo(event.getModMetadata());
 		
     	network = NetworkRegistry.INSTANCE.newSimpleChannel( Reference.MODID );     	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
      
-		
-		//TODO: version checker
-		//FMLInterModComms.sendRuntimeMessage(MODID, "VersionChecker", "addVersionCheck", "http://www.lothrazar.net/api/mc/samscontent/version.json");
-
-     	Object[] handlers = new Object[]
-     	{
-     		 new HandlerBonemealUse()
-     		 //	,new HandlerBountifulUpdate()
-     		,new HandlerEnderChestHit()
-      		,new HandlerFoodEaten()
-      		,new HandlerMasterWand()
-      		,new HandlerRichAnimals()
-      		,new HandlerScreenText()
-     		,new HandlerSkullSignNames()
-      		,new HandlerSurvivalFlying()
-      		,new HandlerSwiftDeposit()
-     		,new HandlerPlayerDeath()
-     		,instance
-     	};
-     		
-     	//TODO: we could use an interface, and flag each one according to what BUS it goes to
-     	 
-     	for(Object o : handlers)
-     	{
-    		MinecraftForge.EVENT_BUS.register(o);
-    		FMLCommonHandler.instance().bus().register(o);
-     	} 
+		registerEventHandlers(); 
  
-		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
-		
-		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
-		
-		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
-		
-		if(ModSamsContent.settings.appleEmerald) {ItemFoodAppleMagic.initEmerald();}
-
-		if(ModSamsContent.settings.appleDiamond) {ItemFoodAppleMagic.initDiamond();}
-
-		if(ModSamsContent.settings.appleLapis) {ItemFoodAppleMagic.initLapis();}
-
-		if(ModSamsContent.settings.appleChocolate) {ItemFoodAppleMagic.initChocolate();}
-  
-		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
-		
-		if(ModSamsContent.settings.gameruleBlockRegen){ BlockCommandBlockCraftable.initRegen();} 
-		
-		if(ModSamsContent.settings.gameruleBlockDaylight){ BlockCommandBlockCraftable.initDaylight();}
-		
-		if(ModSamsContent.settings.gameruleBlockFiretick){ BlockCommandBlockCraftable.initFiretick();}
-		
-		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
- 
-		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+		registerItemsBlocks();
 		 
 	}
-
-	@EventHandler
-	public void onServerLoad(FMLServerStartingEvent event)
-	{
-		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
-		
-		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
-		
-		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
-		
-		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
-		
-		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
-		 
-		if(ModSamsContent.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
-  
-		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
-		
-		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
-		
-	}
- 
+	
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{      
@@ -237,6 +162,27 @@ public class ModSamsContent
 		//etc for other minecarts too
    		
 	}
+
+	@EventHandler
+	public void onServerLoad(FMLServerStartingEvent event)
+	{
+		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
+		
+		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
+		
+		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
+		
+		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
+		
+		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
+		 
+		if(ModSamsContent.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
+  
+		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
+		
+		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
+		
+	}
 	
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
@@ -273,4 +219,70 @@ public class ModSamsContent
 			}
 		}
 	} 
+	
+	
+	
+	
+	private void registerItemsBlocks() 
+	{
+		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
+		
+		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
+		
+		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
+		
+		if(ModSamsContent.settings.appleEmerald) {ItemFoodAppleMagic.initEmerald();}
+
+		if(ModSamsContent.settings.appleDiamond) {ItemFoodAppleMagic.initDiamond();}
+
+		if(ModSamsContent.settings.appleLapis) {ItemFoodAppleMagic.initLapis();}
+
+		if(ModSamsContent.settings.appleChocolate) {ItemFoodAppleMagic.initChocolate();}
+  
+		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
+		
+		if(ModSamsContent.settings.gameruleBlockRegen){ BlockCommandBlockCraftable.initRegen();} 
+		
+		if(ModSamsContent.settings.gameruleBlockDaylight){ BlockCommandBlockCraftable.initDaylight();}
+		
+		if(ModSamsContent.settings.gameruleBlockFiretick){ BlockCommandBlockCraftable.initFiretick();}
+		
+		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
+ 
+		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+	}
+
+	private void registerEventHandlers() 
+	{
+		//TODO: version checker
+		//FMLInterModComms.sendRuntimeMessage(MODID, "VersionChecker", "addVersionCheck", "http://www.lothrazar.net/api/mc/samscontent/version.json");
+    	
+    	//they are just Objects, because i have not yet found a reason to add an interface/superclass 
+     	Object[] handlers = new Object[]
+     	{
+     		 new HandlerBonemealUse()
+     		 //	,new HandlerBountifulUpdate()
+     		,new HandlerEnderChestHit()
+      		,new HandlerFoodEaten()
+      		,new HandlerMasterWand()
+      		,new HandlerRichAnimals()
+      		,new HandlerScreenText()
+     		,new HandlerSkullSignNames()
+      		,new HandlerSurvivalFlying()
+      		,new HandlerSwiftDeposit()
+     		,new HandlerPlayerDeath()
+     		,instance
+     	};
+     	
+     	for(Object o : handlers)
+     	{
+    		MinecraftForge.EVENT_BUS.register(o);
+    		FMLCommonHandler.instance().bus().register(o);
+     	}
+	}
+
+
+	
+	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
+	//my old ideas such as altering explosions, pumpkins, fence gates, 3x3 inventory, would need this
 }

@@ -26,16 +26,17 @@ public class ClientProxy extends CommonProxy
 		keyShiftDown = new KeyBinding(Reference.keyDownName, Keyboard.KEY_V, Reference.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
 
-        //More info on proxy rendering
-        //http://www.minecraftforge.net/forum/index.php?topic=27684.0
-       //http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2272349-lessons-from-my-first-mc-1-8-mod
-   
-         String str;
+         String item;
          ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
    		 for(int i = 0; i < SamsRegistry.delay.size(); i++)
    		 {
-   			 str = Reference.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i); 
-   			mesher.register(SamsRegistry.delay.get(i), 0, new ModelResourceLocation( str , "inventory"));					
+   			item = Reference.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i); 
+   			mesher.register(SamsRegistry.delay.get(i), 0, new ModelResourceLocation( item , "inventory"));					
    		 } 
+
+         //More info on proxy rendering
+         //http://www.minecraftforge.net/forum/index.php?topic=27684.0
+        //http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2272349-lessons-from-my-first-mc-1-8-mod
+    
     } 
 }
