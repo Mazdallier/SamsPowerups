@@ -11,6 +11,7 @@ item.rune_horse.name=Horse Rune
 tile.block_xray.name=Cave Finder
 item.book_ender.name=Ender Book
 item.chest_sack.name=Sack of Holding
+tile.block_fishing.name=Fishing Net
 item.wand_master.name=Master Wand
 tile.weatherCommandBlock.name=Weather Command Block
 tile.grRegenBlock.name=Natural Regen Command Block

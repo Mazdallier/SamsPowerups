@@ -94,9 +94,11 @@ public class ModCore
 		ItemEnderBook.Init();
 		ItemFoodAppleMagic.Init();
 		
-
-BlockCommandBlockCraftable.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
-BlockCommandBlockCraftable.Init();
+		
+		
+		
+		BlockCommandBlockCraftable.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+		BlockCommandBlockCraftable.Init();
     }
   
     private void loadConfig(Configuration config) 

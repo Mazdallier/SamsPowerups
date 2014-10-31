@@ -3,6 +3,7 @@ package com.lothrazar.samspowerups.modules;
  
 import java.util.HashMap;
 
+import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.command.CommandFlyHelp;
  
 import net.minecraft.potion.PotionEffect;
@@ -19,14 +20,14 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
  
-@Mod(modid = ModExpensiveFlying.MODID, version = ModExpensiveFlying.VERSION, name = ModExpensiveFlying.MODNAME) 
+//@Mod(modid = ModExpensiveFlying.MODID, version = ModExpensiveFlying.VERSION, name = ModExpensiveFlying.MODNAME) 
 public class ModExpensiveFlying
 {
-	public static final String MODID = "expensiveflying";
-	public static final String MODNAME = "Lothrazar: Builder's Dream";
-	public static final String VERSION = "1.7.2";
+	//public static final String MODID = "expensiveflying";
+	//public static final String MODNAME = "Lothrazar: Builder's Dream";
+	//public static final String VERSION = "1.7.2";
 
-	@Instance(value = ModExpensiveFlying.MODID)
+	//@Instance(value = ModExpensiveFlying.MODID)
 	public static ModExpensiveFlying instance;
 	
 	 
@@ -58,7 +59,7 @@ public class ModExpensiveFlying
 	{ 
 		config.load();
 		 
-		String CATEGORY_FLY = MODID;  
+		String CATEGORY_FLY = ModCore.MODID;  
 
 		Property _cannotFlyWhileBurning = config.get(CATEGORY_FLY,"cannotFlyWhileBurning", true);
 		_cannotFlyWhileBurning.comment = "When true, this disables flying while you are burning.";
