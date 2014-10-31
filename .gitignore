@@ -1,0 +1,8 @@
+bin/assets/
+bin/
+build/
+eclipse/
+.gradle/
+.settings/
+.classpath
+.project
