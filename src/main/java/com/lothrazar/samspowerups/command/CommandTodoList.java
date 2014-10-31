@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.debug;
+package com.lothrazar.samspowerups.command;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

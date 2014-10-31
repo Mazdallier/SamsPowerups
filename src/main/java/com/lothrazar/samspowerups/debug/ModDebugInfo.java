@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.lothrazar.samspowerups.Reference;
+import com.lothrazar.samspowerups.command.CommandTodoList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
