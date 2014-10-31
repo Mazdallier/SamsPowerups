@@ -13,15 +13,15 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class KeyBlockStep
 {
  
-		@SubscribeEvent
-		public void onPlayerTick(PlayerTickEvent event)
-		{  
-			//TODO: ONLY DO this if new keybinding is held down. maybe caps lock:?
-			if (event.player instanceof EntityPlayerSP)
-			{
-				EntityPlayerSP sp = (EntityPlayerSP) event.player;
-	 
-					//enable whenever sprinting 
+	@SubscribeEvent
+	public void onPlayerTick(PlayerTickEvent event)
+	{  
+		//TODO: ONLY DO this if new keybinding is held down. maybe caps lock:?
+		if (event.player instanceof EntityPlayerSP)
+		{
+			EntityPlayerSP sp = (EntityPlayerSP) event.player;
+ 
+				//enable whenever sprinting 
 			if (sp.isSprinting())
 				sp.stepHeight = 1.0F;
 			else

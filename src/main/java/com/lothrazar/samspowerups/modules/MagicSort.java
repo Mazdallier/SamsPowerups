@@ -14,13 +14,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
  
 public class MagicSort
 { 
-	private static boolean isEnabled= true;
- 
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
-	 
+ /*
 	public static void loadConfig(Configuration config)
 	{ 
 		String category = ModCore.MODID ; 
@@ -32,7 +26,7 @@ public class MagicSort
 		  
  
 	}
-   
+   */
   	@SuppressWarnings("unused")
 	public static void onPlayerLeftClick(PlayerInteractEvent event)
   	{     

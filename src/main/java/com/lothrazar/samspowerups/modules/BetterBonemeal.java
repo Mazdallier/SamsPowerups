@@ -12,9 +12,8 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class BetterBonemeal 
-{ 
-	private static boolean isEnabled = false;
-	
+{  
+	/*
 	public static void loadConfig(Configuration config)
 	{  
 		String category = ModCore.MODID; 
@@ -23,11 +22,9 @@ public class BetterBonemeal
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
 		).getBoolean(true); 
 	}
-	
+	*/
 	public static void onPlayerRightClick(PlayerInteractEvent event)
   	{
-		if(BetterBonemeal.isEnabled() ==  false){return;}
-
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
 		Item heldItem = (held == null) ? null : held.getItem();
 		
@@ -81,12 +78,7 @@ public class BetterBonemeal
 	 	}
  
   	}
-
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
+ 
 
  
-	
 }

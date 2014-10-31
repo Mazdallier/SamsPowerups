@@ -72,6 +72,8 @@ public class ModCore
     	event.registerServerCommand(new CommandEnderChest()); 
 		event.registerServerCommand(new CommandTodoList());
 		event.registerServerCommand(new CommandSimpleWaypoints());
+		event.registerServerCommand(new CommandItemLocator());
+		event.registerServerCommand(new CommandFlyHelp());
     }
     
     @EventHandler

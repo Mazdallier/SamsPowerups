@@ -23,13 +23,8 @@ import com.lothrazar.samspowerups.util.Chat;
 
 public class DeathItemSaver 
 {
-	private static boolean isEnabled = true;
-
-	public static boolean isEnabled()
-	{
-		return isEnabled;
-	}
-	
+ 
+	/*
 	public static void loadConfig(Configuration config) 
 	{
 		String category = ModCore.MODID ; 
@@ -41,7 +36,7 @@ public class DeathItemSaver
 						"that you do not need to carry an Ender Chest in your inventory to make this work.  Tries to prioritize " +
 						"diamond stuff first."	).getBoolean(isEnabled);
 	}
- 
+ */
 	public static void onPlayerDrops(PlayerDropsEvent event)
 	{  
 		if(AchievementFinder.hasAchievementUnlocked(event.entityPlayer, AchievementList.theEnd2) == false)

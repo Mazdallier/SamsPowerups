@@ -13,18 +13,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class EasyEnderChest
 {
-    private static boolean isEnabled;
-    public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
-	
+  
 	public static void onPlayerLeftClick(PlayerInteractEvent event)
 	{
 		event.entityPlayer.displayGUIChest(event.entityPlayer.getInventoryEnderChest());
 		
 	}
-
+/*
 	public static void loadConfig(Configuration config) 
 	{
 		String category = ModCore.MODID ; 
@@ -33,6 +28,6 @@ public class EasyEnderChest
 			"When true, this enables you to Left click with an ender chest in your hand to open it without placing it down."
 			).getBoolean(true);
 	}
-	
+	*/
 	
 }

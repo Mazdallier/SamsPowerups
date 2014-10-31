@@ -1,5 +1,4 @@
 package com.lothrazar.samspowerups.modules;
-
  
 import java.util.HashMap;
 
