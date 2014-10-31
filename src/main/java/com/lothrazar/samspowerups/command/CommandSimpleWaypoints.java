@@ -2,10 +2,8 @@ package com.lothrazar.samspowerups.command;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import com.lothrazar.simplewp.Location;
-
+import java.util.List; 
+import com.lothrazar.samspowerups.util.Location; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;

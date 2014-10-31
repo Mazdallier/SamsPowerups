@@ -1,5 +1,6 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samspowerups.util;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
  
 public class Location
@@ -21,7 +22,16 @@ public class Location
 		name = pname;
 		if(name == null) name = "";
 	}
- 
+	public Location(int idx,EntityPlayer p, String pname)
+	{
+		X = p.posX;
+		Y = p.posY;
+		Z = p.posZ;
+		index = idx;
+		dimension = p.dimension;
+		name = pname;
+		if(name == null) { name = ""; }
+	}
 	public Location(String csv)
 	{
 		String[] pts = csv.split(",");

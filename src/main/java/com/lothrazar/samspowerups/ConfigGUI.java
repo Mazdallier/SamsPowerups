@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups;
 
-import com.lothrazar.samspowerups.debug.ModDebugInfo;
+import com.lothrazar.samspowerups.modules.ScreenDebugInfo;
 
 import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;
@@ -15,7 +15,7 @@ public class ConfigGUI extends GuiConfig
     public ConfigGUI(GuiScreen parent) 
     {
         super(parent,
-                new ConfigElement(ModDebugInfo.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-                "Debug Extras", false, false, GuiConfig.getAbridgedConfigPath(ModDebugInfo.config.toString()));
+                new ConfigElement(ScreenDebugInfo.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+                "Debug Extras", false, false, GuiConfig.getAbridgedConfigPath(ScreenDebugInfo.config.toString()));
     }
 }

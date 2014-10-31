@@ -3,10 +3,10 @@ package com.lothrazar.samspowerups;
 import java.util.ArrayList;
 
 import com.lothrazar.samspowerups.block.*;
-import com.lothrazar.samspowerups.command.*;
-import com.lothrazar.samspowerups.debug.ModDebugInfo;
+import com.lothrazar.samspowerups.command.*; 
+import com.lothrazar.samspowerups.modules.*;
 import com.lothrazar.samspowerups.item.*;
-import com.lothrazar.simplewp.Location;
+import com.lothrazar.samspowerups.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -247,23 +247,23 @@ BlockCommandBlockCraftable.Init();
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{
 		//is F3 toggled on?
-		if(ModDebugInfo.showDebugInfo() == false)
+		if(ScreenDebugInfo.showDebugInfo() == false)
 		{
 			//if we ever wanted to add text to non-debug screen, do it here
 			return;
 		}
 		//config file can disable all this, which keeps the original screen un-cleared
-		if(ModDebugInfo.showDefaultDebug == false)
+		if(ScreenDebugInfo.showDefaultDebug == false)
 		{
 			event.left.clear();
 			event.right.clear();
 		}
-		ModDebugInfo.AddLeftInfo(event.left);
-		ModDebugInfo.AddRightInfo(event.right);
+		ScreenDebugInfo.AddLeftInfo(event.left);
+		ScreenDebugInfo.AddRightInfo(event.right);
 		
 		
 		//simplewp
-		if(ModDebugInfo.showDebugInfo() == false)
+		if(ScreenDebugInfo.showDebugInfo() == false)
 	    {
  
 	    	EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
@@ -332,7 +332,7 @@ BlockCommandBlockCraftable.Init();
 	{ 
 		if(eventArgs.modID.equals(ModCore.MODID))
 		{
-			ModDebugInfo.syncConfig();
+			ScreenDebugInfo.syncConfig();
 		}
 		
     }

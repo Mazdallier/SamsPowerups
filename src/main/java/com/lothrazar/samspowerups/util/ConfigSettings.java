@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samspowerups.util;
 
 public class ConfigSettings 
 {

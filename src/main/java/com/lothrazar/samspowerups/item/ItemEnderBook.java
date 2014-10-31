@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.common.collect.Sets;
 
-import com.lothrazar.samspowerups.Location;
 import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.util.Location;
  
 
 import cpw.mods.fml.common.registry.GameRegistry;
