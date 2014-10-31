@@ -79,6 +79,7 @@ public class ModCore
 		ItemWandMaster.Init();
 		ItemChestSack.Init();
 		ItemEnderBook.Init();
+		ItemFoodAppleMagic.Init();
 		
 
 BlockCommandBlockCraftable.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));

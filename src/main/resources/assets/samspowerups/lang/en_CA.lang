@@ -8,3 +8,7 @@ item.rune_fly.name=Flying Rune
 item.rune_regen.name=Regeneration Rune
 item.rune_fire.name=Flame Rune
 item.rune_horse.name=Horse Rune
+tile.block_xray.name=Cave Finder
+item.book_ender.name=Ender Book
+item.chest_sack.name=Sack of Holding
+item.wand_master.name=Master Wand
