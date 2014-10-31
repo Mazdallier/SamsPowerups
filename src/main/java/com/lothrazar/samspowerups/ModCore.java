@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups;
 
-import com.lothrazar.command.*;
 import com.lothrazar.samspowerups.block.*;
+import com.lothrazar.samspowerups.command.*;
 import com.lothrazar.samspowerups.item.*;
 
 import net.minecraft.block.Block;
@@ -69,17 +69,16 @@ public class ModCore
 		//the 0 is priority (i think)
 		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
 		  
-		
-	
-	MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
-		ItemWandMaster.Init();
-		ItemChestSack.Init();
-    
-	loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
-    //	MinecraftForge.EVENT_BUS.register(instance); 
-    	
+		MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
+	    
+		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+  
     	ItemRunestone.Init();
         BlockXRay.Init();
+        BlockFishing.Init();
+		ItemWandMaster.Init();
+		ItemChestSack.Init();
+		ItemEnderBook.Init();
     }
   
     private void loadConfig(Configuration config) 
@@ -135,8 +134,6 @@ public class ModCore
         }
     //TODO; detect if this is the current key.pick block event   
     }
-	 
-	
 
 	@SubscribeEvent  
 	public void onEntityInteractEvent(EntityInteractEvent event)
@@ -169,6 +166,22 @@ public class ModCore
 		{  
 			onPlayerRightClick(event,held);
 		} 
+		
+		
+	   
+		    
+	    if(heldItem == ItemEnderBook.item)
+	    { 
+		    if(LEFT_CLICK_BLOCK)
+		    { 
+		    	ItemEnderBook.onPlayerLeftClick(event);
+		    }
+		    else //right click //boolean RIGHT_CLICK_BLOCK = ( event.action.equals( PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) );
+		    { 
+		    	ItemEnderBook.onPlayerRightClick(event);
+		    }
+	    }
+	   
   	} 
 	
 	private void onPlayerRightClick(PlayerInteractEvent event,ItemStack held)

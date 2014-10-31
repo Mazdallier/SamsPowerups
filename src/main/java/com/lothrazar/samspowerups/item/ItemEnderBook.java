@@ -1,8 +1,11 @@
-package com.lothrazar.enderbook;
+package com.lothrazar.samspowerups.item;
 
 import java.util.List;
 
 import com.google.common.collect.Sets;
+
+import com.lothrazar.samspowerups.Location;
+import com.lothrazar.samspowerups.ModCore;
  
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -47,7 +50,7 @@ public class ItemEnderBook extends ItemTool
 	 
 		 
 		item = new ItemEnderBook();
-		item.setTextureName(ModEnderBook.MODID+":book_ender").setUnlocalizedName("book_ender");
+		item.setTextureName(ModCore.MODID+":book_ender").setUnlocalizedName("book_ender");
 		GameRegistry.registerItem(item,  "book_ender");   
 		GameRegistry.addRecipe(new ItemStack(item)
 			,"eee"

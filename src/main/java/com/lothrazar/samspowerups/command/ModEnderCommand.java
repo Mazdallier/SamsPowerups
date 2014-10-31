@@ -1,4 +1,4 @@
-package com.lothrazar.command;
+package com.lothrazar.samspowerups.command;
 
 import net.minecraft.init.Blocks;
 import cpw.mods.fml.common.Mod;

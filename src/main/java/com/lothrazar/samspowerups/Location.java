@@ -1,4 +1,4 @@
-package com.lothrazar.enderbook;
+package com.lothrazar.samspowerups;
 
 import net.minecraft.util.MathHelper;
  

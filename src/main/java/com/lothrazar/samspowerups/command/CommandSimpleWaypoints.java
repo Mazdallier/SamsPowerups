@@ -1,4 +1,4 @@
-package com.lothrazar.command;
+package com.lothrazar.samspowerups.command;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package com.lothrazar.simplewp;
 
 import java.util.ArrayList;
 
-import com.lothrazar.command.CommandSimpleWaypoints;
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;

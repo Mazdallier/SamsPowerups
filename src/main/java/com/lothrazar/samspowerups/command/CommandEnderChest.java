@@ -1,4 +1,4 @@
-package com.lothrazar.command;
+package com.lothrazar.samspowerups.command;
 /*
  * 
  * imported from my 
