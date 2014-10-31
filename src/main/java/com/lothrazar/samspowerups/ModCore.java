@@ -43,6 +43,8 @@ public class ModCore
 	@SidedProxy(clientSide="com.lothrazar.samspowerups.ClientProxy", serverSide="com.lothrazar.samspowerups.CommonProxy")
 	public static CommonProxy proxy;
 
+	// https://github.com/PrinceOfAmber/BuildersUnity_Minecraft/blob/master/src/main/java/com/lothrazar/buildersunity/core/EventListener.java
+	
 	public static SimpleNetworkWrapper network; 
 	
 	public static ConfigSettings ConfigSettings;
