@@ -1,4 +1,6 @@
-package com.lothrazar.debugextras;
+package com.lothrazar.samspowerups;
+
+import com.lothrazar.samspowerups.debug.ModDebugInfo;
 
 import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;

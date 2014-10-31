@@ -1,8 +1,10 @@
-package com.lothrazar.debugextras;
+package com.lothrazar.samspowerups.debug;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.lothrazar.samspowerups.Reference;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;

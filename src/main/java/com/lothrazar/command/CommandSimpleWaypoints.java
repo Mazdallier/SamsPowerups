@@ -1,8 +1,10 @@
-package com.lothrazar.simplewp;
+package com.lothrazar.command;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.lothrazar.simplewp.Location;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

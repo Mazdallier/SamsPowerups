@@ -1,7 +1,9 @@
-package com.lothrazar.cavefinder;
+package com.lothrazar.samspowerups.block;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.lothrazar.samspowerups.ModCore;
 
  
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -34,7 +36,7 @@ public class BlockXRay extends Block
 	   
 	public static void Init()
 	{  
-		String MODID = ModCaveFinder.MODID;
+		String MODID = ModCore.MODID;
 		BlockXRay block = new BlockXRay();
 		block.setBlockName("block_xray")
 			 .setBlockTextureName(MODID + ":block_xray");

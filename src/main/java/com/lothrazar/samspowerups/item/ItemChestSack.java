@@ -1,7 +1,9 @@
-package com.lothrazar.masterwand;
+package com.lothrazar.samspowerups.item;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.lothrazar.samspowerups.ModCore;
 
  
 
@@ -36,7 +38,7 @@ public class ItemChestSack extends Item
 	public static void Init()
 	{ 
 		item = new ItemChestSack();
-		item.setTextureName(ModMasterWand.MODID+":chest_sack").setUnlocalizedName("chest_sack");
+		item.setTextureName(ModCore.MODID+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(item,  "chest_sack" );   
 	}
  
@@ -74,6 +76,7 @@ public class ItemChestSack extends Item
          */ 
 	 } 
 	
+	@SuppressWarnings("unused")
 	public static void onPlayerLeftClick(PlayerInteractEvent event)
 	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 

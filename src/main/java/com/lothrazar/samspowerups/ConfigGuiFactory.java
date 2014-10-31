@@ -1,4 +1,4 @@
-package com.lothrazar.debugextras;
+package com.lothrazar.samspowerups;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

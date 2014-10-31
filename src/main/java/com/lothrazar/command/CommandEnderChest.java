@@ -1,4 +1,4 @@
-package com.lothrazar.endercommand;
+package com.lothrazar.command;
 /*
  * 
  * imported from my 

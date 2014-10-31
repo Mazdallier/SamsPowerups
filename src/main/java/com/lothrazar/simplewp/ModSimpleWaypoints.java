@@ -2,6 +2,8 @@ package com.lothrazar.simplewp;
 
 import java.util.ArrayList;
 
+import com.lothrazar.command.CommandSimpleWaypoints;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.init.Blocks;

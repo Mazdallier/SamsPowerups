@@ -8,7 +8,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
-
+/*
 public class Reference 
 { 
 	public static final int TICKS_PER_SEC = 20;
@@ -38,27 +38,7 @@ public class Reference
 	public static final int skull_zombie = 2;
 	public static final int skull_player = 3;
 	public static final int skull_creeper = 4;
-	/*s:
-
-    MHF_Blaze
-    MHF_CaveSpider
-    MHF_Chicken
-    MHF_Cow
-    MHF_Enderman
-    MHF_Ghast
-    MHF_Golem
-    MHF_Herobrine
-    MHF_LavaSlime
-    MHF_MushroomCow
-    MHF_Ocelot
-    MHF_Pig
-    MHF_PigZombie
-    MHF_Sheep
-    MHF_Slime
-    MHF_Spider
-    MHF_Squid
-    MHF_Villager
-*/
+ 
 	//TODO:
 	//	player inv slots
 	//zero o 8 is the hotbar
@@ -183,4 +163,4 @@ public class Reference
 	public static final int entity_mooshroom = 96;
 	public static final int entity_bat = 65;
  
-}
+}*/

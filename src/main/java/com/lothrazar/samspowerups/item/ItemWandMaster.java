@@ -1,6 +1,8 @@
-package com.lothrazar.masterwand;
+package com.lothrazar.samspowerups.item;
 
 import com.google.common.collect.Sets;
+import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.Reference;
  
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -48,7 +50,7 @@ public class ItemWandMaster extends ItemTool
 	public static void Init() 
 	{  
 		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName(ModMasterWand.MODID+":wand_master");
+		itemWand.setUnlocalizedName("wand_master").setTextureName(ModCore.MODID+":wand_master");
 		GameRegistry.registerItem(itemWand,  "wand_master");   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
