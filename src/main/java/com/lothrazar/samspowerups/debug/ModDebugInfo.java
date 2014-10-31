@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.Reference;
 import com.lothrazar.samspowerups.command.CommandTodoList;
 
@@ -32,65 +33,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = ModDebugInfo.MODID, version = ModDebugInfo.VERSION, name = ModDebugInfo.MODNAME,guiFactory = "com.lothrazar.debugextras.ConfigGuiFactory")
 public class ModDebugInfo 
-{ 
-	public static final String MODID = "debugextras";
-	public static final String MODNAME = "debugextras";
-	public static final String VERSION = "1.7.10-1.0";
-	
-	@Instance(value = ModDebugInfo.MODID)
-	public static ModDebugInfo instance;
-	public static ModDebugInfo getInstance()
-	{
-		return instance;
-	}
-
+{  
 	public static Configuration config;
 	
-	@EventHandler
-  	public void preInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
-  	{ 
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		syncConfig();//read write config file
-	
-		
-		
-		//FMLCommonHandler.instance().bus().register(instance); //so that the player events hits here
-		MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
-			 
  
-	
-  	}
-		
-	
-	
-	@SubscribeEvent
-	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
-	{
-		//is F3 toggled on?
-		if(showDebugInfo() == false)
-		{
-			//if we ever wanted to add text to non-debug screen, do it here
-			return;
-		}
-		//config file can disable all this, which keeps the original screen un-cleared
-		if(showDefaultDebug == false)
-		{
-			event.left.clear();
-			event.right.clear();
-		}
-		AddLeftInfo(event.left);
-		AddRightInfo(event.right);
-	} 
-
-	@EventHandler
-	public void serverLoad(FMLServerStartingEvent event)
-	{  
-		event.registerServerCommand(new CommandTodoList());
-	}
-  	
-  	
   	public static boolean showDefaultDebug = true ; 
 	private static boolean showGameRules = true;
 	private static boolean showSlimeChunk = true;
@@ -365,12 +312,7 @@ public class ModDebugInfo
 		 
 	}
 	
-	@SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID))
-            syncConfig();
-    }
+	
  
 	public static void syncConfig() 
 	{
@@ -400,7 +342,9 @@ public class ModDebugInfo
 		
 		
 		if(config.hasChanged())
+		{
 			config.save();
+		}
 	}
 	
 }
