@@ -79,6 +79,10 @@ public class ModCore
 		ItemWandMaster.Init();
 		ItemChestSack.Init();
 		ItemEnderBook.Init();
+		
+
+BlockCommandBlockCraftable.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+BlockCommandBlockCraftable.Init();
     }
   
     private void loadConfig(Configuration config) 
