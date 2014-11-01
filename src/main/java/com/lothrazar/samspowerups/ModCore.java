@@ -1,6 +1,7 @@
 package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.lothrazar.samspowerups.block.*;
 import com.lothrazar.samspowerups.command.*; 
@@ -10,21 +11,28 @@ import com.lothrazar.samspowerups.net.CommonProxy;
 import com.lothrazar.samspowerups.net.MessageKeyPressed;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
-
+import net.minecraftforge.event.entity.player.PlayerEvent.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -36,11 +44,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-
+import net.minecraft.block.BlockLilyPad;
 @Mod(modid = ModCore.MODID, version = ModCore.VERSION)
 public class ModCore
 {
@@ -110,6 +119,127 @@ public class ModCore
 			config.save();
 		}
 	}
+    
+    @SubscribeEvent
+	   public void onItemCrafted(PlayerEvent.ItemCraftedEvent event)
+	  {
+	    	//TODO: detect recipe and maybe save the bucket/sword/whatever to not get used up??
+    	//event.craftMatrix.setInventorySlotContents(4, null);
+    	//event.craftMatrix.getStackInSlot(i)
+	  
+	  }
+
+    @SubscribeEvent
+    public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event)
+    {
+    	
+    }
+    
+
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event)
+    {
+    	
+    }
+
+
+    @SubscribeEvent
+    public void onPlayerItemPickup(PlayerEvent.ItemPickupEvent event)
+    {
+    	
+    }
+    
+    @SubscribeEvent
+     public void onEntityLivingUpdate(LivingEvent.LivingUpdateEvent event)
+    {
+    	//give weapons to mobs? 
+    	
+    	
+    	//event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(Items.sword_something));
+    	
+    	
+    	
+    	
+    	//make sheep just drop/shed wood naturally
+    	
+    	
+    	
+    	//todo:??something weird like
+    	//set player on fire if its a full moon
+    	//event.entityLiving.setFire(8);
+    	
+    }
+
+	@SubscribeEvent
+	public void onEntityJoinWorld(EntityJoinWorldEvent event)
+	{
+
+    	//give weapons to mobs?
+    	//event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(Items.sword_something));
+		
+		
+	    //todo: make mobs stronger/weaker/enchantments?
+		
+		// mob.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 72000));
+		
+		//set damange and other attributes without potion effects
+		//if (event.entity instanceof EntityZombie)
+		// EntityZombie zombie = (EntityZombie)event.entity;
+		//zombie.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
+		
+		//free breeding?
+		 //entityCow.tasks.addTask(4, new EntityAITempt(pig, 1.2D, Items.wheat, false));
+		
+	}
+    
+    
+    @SubscribeEvent
+    public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
+    {
+    	
+   	 //damage player extra times for vines and other stuff?
+		 
+		 boolean isCactus=(event.block == Blocks.cactus);
+		// boolean isEmptyHand= (event.entityPlayer.getHeldItem() == null) ;
+		 
+
+		 boolean isReeds=(event.block == Blocks.reeds);
+//    event.entityPlayer.attackEntityFrom(DamageSource.cactus, 1.0F);
+		 
+		 
+    	
+    	
+    	if(event.block == Blocks.deadbush)
+    	{
+    		/*
+    		 //TODO: if not silk touch then sticks or something?
+    		  if (!event.world.isClient)
+    		  {
+    		    drop.delayBeforeCanPickup = 10;
+    		    event.world.spawnEntityInWorld(drop);
+    		  }
+    		  */
+    	}
+    	 //try to unbreak boat
+    	//i wish this worked for all blocks
+    	if ( event.block instanceof BlockLilyPad)
+    	 {
+    		
+    	   List nearbyBoats = event.world.getEntitiesWithinAABB(EntityBoat.class, AxisAlignedBB.getBoundingBox(event.x - 1, event.y - 1, event.z - 1, event.x + 1, event.y + 1, event.z + 1));
+    	  
+    	   EntityBoat boat;
+    	   for (int i = 0; i < nearbyBoats.size(); i++)
+    	   {
+    	   boat=(EntityBoat)nearbyBoats.get(i);
+    	   
+    	     boat.motionX = 0.0D;
+    	     boat.motionZ = 0.0D;
+
+//and Z too
+    	   }
+    	 }
+    	  
+    }
     
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
@@ -204,6 +334,20 @@ public class ModCore
 		}  
 	}
 	
+	@SubscribeEvent
+	public void onEntityLivingHurt(LivingHurtEvent event)
+	{
+		
+	//was it damaged by a player
+		boolean byPlayer = event.source.getEntity() instanceof EntityPlayer;
+		
+		//was it from something like this
+		boolean byArrow = (event.source.getSourceOfDamage() instanceof EntityArrow);
+		
+		//  player.heal(halfHearts);
+		
+	}
+	
 	@SubscribeEvent 
   	public void onPlayerInteract(PlayerInteractEvent event)
   	{      		
@@ -220,6 +364,18 @@ public class ModCore
 		else //right click //boolean RIGHT_CLICK_BLOCK = ( event.action.equals( PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) );
 		{  
 			onPlayerRightClick(event,held);
+			
+			//entity living handler
+			
+			//cauldrons with lava or something?
+			//(event.entity.worldObj.getBlock(event.x, event.y, event.z) == Blocks.cauldron)
+			//BlockCauldron block = (BlockCauldron)event.entity.worldObj.getBlock(event.x, event.y, event.z);
+			//int cauldronFill = event.entity.worldObj.getBlockMetadata(event.x, event.y, event.z);
+		// int cauldronFillSet = BlockCauldron.func_150027_b(cauldronFill);
+			
+			//or cancel the event
+			//event.useBlock = Event.Result.DENY;
+			
 		} 
 		
 		
@@ -289,6 +445,8 @@ public class ModCore
 			ItemChestSack.onPlayerLeftClick(event);
 		} 
 	}
+	
+ 
 
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
