@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ScreenDebugInfo 
+public class ScreenInfoHandler 
 {  
 	
   	public static boolean showDefaultDebug = true ; 

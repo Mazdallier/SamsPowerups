@@ -11,7 +11,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class Uncrafting 
+public class Uncrafting extends BaseModule
 { 
 	private static boolean stairs;
 	private static boolean misc;
@@ -26,7 +26,7 @@ public class Uncrafting
 	private static boolean natureblocks;
 	private static boolean glass;
  
-	public static void loadConfig(Configuration config)
+	public void loadConfig(Configuration config)
 	{ 
 		String category = ConfigCurrentSettings.UNCRAFTING ;
 		
@@ -85,7 +85,7 @@ public class Uncrafting
 		
 	}
 
-	public static void Init()
+	public void Init()
 	{     
 		int EXP = 0;// same for all recipes - default
  

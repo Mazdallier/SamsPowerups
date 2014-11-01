@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.config;
 
 import com.lothrazar.samspowerups.ModCore;
-import com.lothrazar.samspowerups.modules.ScreenDebugInfo;
+import com.lothrazar.samspowerups.handler.ScreenInfoHandler;
 
 import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;

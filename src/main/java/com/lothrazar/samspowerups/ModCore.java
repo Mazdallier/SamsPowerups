@@ -10,6 +10,7 @@ import com.lothrazar.samspowerups.net.ClientProxy;
 import com.lothrazar.samspowerups.net.CommonProxy;
 import com.lothrazar.samspowerups.net.MessageKeyPressed;
 import com.lothrazar.samspowerups.handler.BonemealUseHandler;
+import com.lothrazar.samspowerups.handler.ScreenInfoHandler;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
@@ -66,6 +67,9 @@ public class ModCore
     {
     	return instance;
     }
+   
+    
+    
     
     private void loadConfig(Configuration c) 
     {
@@ -120,6 +124,67 @@ public class ModCore
 			config.save();
 		}
 	}
+    
+    
+    @EventHandler
+    public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
+    {
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+		
+		//the 0 is priority (i think)
+		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
+		  
+		
+		/*
+		@SubscribeEvent
+	    public void onPlayerTick(PlayerTickEvent event)
+	    {  
+	         ItemRunestone.onPlayerTick(event);
+	         
+	         ExpensiveFlying.onPlayerTick(event);
+	    }
+		*/
+		
+		MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
+	    
+		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+  
+		
+		
+		ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
+		
+		modules.add(new StackSizes());
+		modules.add(new Uncrafting());
+		
+		for(int i = 0; i < modules.size(); i++)
+		{
+			if(modules.get(i).isEnabled())
+			{
+				modules.get(i).Init();
+			}
+		}
+	
+		
+		//todo: add module interfce, make non static, then go through list and init all of them.!!!
+		//do similar in config as well eh
+
+		BlockCommandBlockCraftable.Init();
+        BlockFishing.Init();
+        BlockXRay.Init();
+        
+		ItemChestSack.Init();
+		ItemEnderBook.Init();
+		ItemFoodAppleMagic.Init();
+    	ItemRunestone.Init();
+		ItemWandMaster.Init();
+	//	StackSizes.Init();
+		
+		 
+		
+		//BlockCommandBlockCraftable.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
+    }
+
+    
     
     @SubscribeEvent
 	   public void onItemCrafted(PlayerEvent.ItemCraftedEvent event)
@@ -241,54 +306,7 @@ public class ModCore
     	 }
     	  
     }
-    
-    @EventHandler
-    public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
-    {
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-		
-		//the 0 is priority (i think)
-		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
-		  
-		MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
-	    
-		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
-  
-		
-		
-		ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
-		
-		modules.add(new StackSizes());
-		
-		for(int i = 0; i < modules.size(); i++)
-		{
-			if(modules.get(i).isEnabled())
-			{
-				modules.get(i).Init();
-			}
-		}
-	
-		
-		//todo: add module interfce, make non static, then go through list and init all of them.!!!
-		//do similar in config as well eh
-        BlockFishing.Init();
-        BlockXRay.Init();
-        
-		ItemChestSack.Init();
-		ItemEnderBook.Init();
-		ItemFoodAppleMagic.Init();
-    	ItemRunestone.Init();
-		ItemWandMaster.Init();
-	//	StackSizes.Init();
-		Uncrafting.Init();
-		
-		
-		
-		
-		BlockCommandBlockCraftable.loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
-		BlockCommandBlockCraftable.Init();
-    }
-  
+     
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{ 
@@ -299,17 +317,26 @@ public class ModCore
     public void onServerLoad(FMLServerStartingEvent event)
     {
     //and thats all! just have to register the command with the server!
+		
+		
+		
+		
     	event.registerServerCommand(new CommandEnderChest()); 
 		event.registerServerCommand(new CommandTodoList());
 		event.registerServerCommand(new CommandSimpleWaypoints());
 		event.registerServerCommand(new CommandItemLocator());
 		event.registerServerCommand(new CommandFlyHelp());
+		
+		
+		
+		
     }
     
 
 	@SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event)
     {  
+		
          ItemRunestone.onPlayerTick(event);
          
          ExpensiveFlying.onPlayerTick(event);
@@ -468,23 +495,23 @@ public class ModCore
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{
 		//is F3 toggled on?
-		if(ScreenDebugInfo.showDebugInfo() == false)
+		if(ScreenInfoHandler.showDebugInfo() == false)
 		{
 			//if we ever wanted to add text to non-debug screen, do it here
 			return;
 		}
 		//config file can disable all this, which keeps the original screen un-cleared
-		if(ScreenDebugInfo.showDefaultDebug == false)
+		if(ScreenInfoHandler.showDefaultDebug == false)
 		{
 			event.left.clear();
 			event.right.clear();
 		}
-		ScreenDebugInfo.AddLeftInfo(event.left);
-		ScreenDebugInfo.AddRightInfo(event.right);
+		ScreenInfoHandler.AddLeftInfo(event.left);
+		ScreenInfoHandler.AddRightInfo(event.right);
 		
 		
 		//simplewp
-		if(ScreenDebugInfo.showDebugInfo() == false)
+		if(ScreenInfoHandler.showDebugInfo() == false)
 	    {
  
 	    	EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
