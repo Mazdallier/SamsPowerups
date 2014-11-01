@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.AchievementFinder;
 import com.lothrazar.samspowerups.util.Chat;
 
-public class DeathItemSaver 
+public class DeathDropsHandler 
 {
  
 	/*

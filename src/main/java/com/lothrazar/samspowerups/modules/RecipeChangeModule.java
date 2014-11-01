@@ -30,44 +30,26 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
-public class DifficultyTweaks
+public class RecipeChangeModule extends BaseModule
 {
 
-	
-
-	private static int HUNGER_SECONDS = 20;
-	private static int HUNGER_LEVEL = 0;// III
-	private static int FOOD_COST = 10;//full bar is 20
-	
 	 
-	private static ArrayList<Block> blocksRequireAxe = new ArrayList<Block>();
-	private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	
 	
 	
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
+	//@EventHandler
+	//public void preInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
+	public void Init()
 	{
-	 
-		blocksRequireShovel.add(Blocks.dirt);
-		blocksRequireShovel.add(Blocks.grass);
-		blocksRequireShovel.add(Blocks.sand);
-		blocksRequireShovel.add(Blocks.clay);
-		blocksRequireShovel.add(Blocks.gravel);
-		
-		
-		blocksRequireAxe.add(Blocks.log);
-		blocksRequireAxe.add(Blocks.log2);
-		blocksRequireAxe.add(Blocks.planks);
-		
+
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_sword));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_hoe));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_pickaxe));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_shovel));
 		stoneToolsFurnaces.add(new ItemStack(Blocks.furnace));
 		
-		
+	 	
 		//since we cant get logs by hand: player will break leaves to make damaged axe
 		int STICKS_PER_SAPLING = 1;
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
@@ -185,59 +167,16 @@ public class DifficultyTweaks
 		, 's', Blocks.stone
 		, 't', Items.stick);
 	}
-	
+	/*
 	private void syncConfig() 
 	{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@SubscribeEvent
-	public  void onBlockBreak(HarvestDropsEvent event)
-	{ 
-		if (event.world.isRemote) { return;}
-		//now we are server side
+*/
+	//	@Override
+	public void loadConfig(Configuration config) {
+		// TODO Auto-generated method stub
 		
-		//thanks to https://pay.reddit.com/r/ModdingMC/comments/2dceup/setharvestlevel_for_vanilla_blocks_not_working/
-		//if(event.isCancelable() ) event.setCanceled(true);//not allowed to cancel
-		if (  blocksRequireAxe.contains(event.block))
-		{ 
-			if(event.harvester.getCurrentEquippedItem() == null
-			|| !(event.harvester.getCurrentEquippedItem().getItem() instanceof ItemAxe) )
-			{ 
-				event.drops.clear();
-			}
-		}
-		if (  blocksRequireShovel.contains(event.block))
-		{
-			System.out.println("blocksRequireShovel"); 
-			if(event.harvester.getCurrentEquippedItem() == null
-			|| !(event.harvester.getCurrentEquippedItem().getItem() instanceof ItemSpade) )
-			{ 
-				event.drops.clear();
-			}
-		}
-	}
-	 
-
-	@SubscribeEvent
-	public  void onPlayerSleepInBedAtNight(PlayerSleepInBedEvent event)
-	{
-		if(event.entityPlayer.worldObj.isRemote ){return;} 
-		
-		if(event.entityPlayer.worldObj.isDaytime()) { return;}
-		 
-		//this event is not cancellable
-		//the 0 at the end is the Level
-		//so if we put '1' we would get Hunger II
-		event.entityPlayer.addPotionEffect(new PotionEffect(Reference.potion_HUNGER, Reference.TICKS_PER_SEC * HUNGER_SECONDS,HUNGER_LEVEL));
-
-		 
-		//reduce by FOOD_COST, but if this would make us negative
-		//the max makes it zero instead
-		 
-		event.entityPlayer.getFoodStats().setFoodLevel(Math.max(event.entityPlayer.getFoodStats().getFoodLevel() - FOOD_COST, 0));
- 
-	 
 	}
 }
