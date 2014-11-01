@@ -46,6 +46,19 @@ public class Reference
 	public static final int dye_magenta = 13;
 	public static final int dye_orange = 14;
 	public static final int dye_bonemeal = 15;
+	
+	//import net.minecraftforge.common.ChestGenHooks;
+	public static String chest_mineshaftCorridor = "mineshaftCorridor"; 
+	public static String chest_pyramidJungleChest= "pyramidJungleChest"; 
+	public static String chest_pyramidDesertyChest= "pyramidDesertyChest"; 
+	public static String chest_pyramidJungleDispenser= "pyramidJungleDispenser"; 
+	public static String chest_strongholdCorridor= "strongholdCorridor"; 
+	public static String chest_strongholdLibrary= "strongholdLibrary"; 
+	public static String chest_strongholdCrossing= "strongholdCrossing";  
+	public static String chest_villageBlacksmith= "villageBlacksmith"; 
+	public static String chest_bonusChest= "bonusChest"; 
+	public static String chest_dungeonChest= "dungeonChest"; 
+ 
 	/*s:
 
     MHF_Blaze

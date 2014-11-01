@@ -84,6 +84,7 @@ public class ItemWandMaster extends ItemTool
 		{ 
 			replantField(event);
 		} 
+	
   	}
 	
 	private static void replantField(PlayerInteractEvent event)
@@ -267,6 +268,8 @@ public class ItemWandMaster extends ItemTool
 			 
 		//	 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
 			onSuccess(event.entityPlayer);
+			
+			
 		}
 		
   	}
@@ -431,6 +434,8 @@ public class ItemWandMaster extends ItemTool
 		{
 			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
+
+		player.swingItem();
 	}
 	
 	@Override
