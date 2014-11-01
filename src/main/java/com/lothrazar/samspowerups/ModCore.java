@@ -9,6 +9,7 @@ import com.lothrazar.samspowerups.modules.*;
 import com.lothrazar.samspowerups.net.ClientProxy;
 import com.lothrazar.samspowerups.net.CommonProxy;
 import com.lothrazar.samspowerups.net.MessageKeyPressed;
+import com.lothrazar.samspowerups.handler.BonemealUseHandler;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
@@ -199,11 +200,11 @@ public class ModCore
     	
    	 //damage player extra times for vines and other stuff?
 		 
-		 boolean isCactus=(event.block == Blocks.cactus);
+		 boolean isCactus = (event.block == Blocks.cactus);
 		// boolean isEmptyHand= (event.entityPlayer.getHeldItem() == null) ;
 		 
 
-		 boolean isReeds=(event.block == Blocks.reeds);
+		 boolean isReeds = (event.block == Blocks.reeds);
 //    event.entityPlayer.attackEntityFrom(DamageSource.cactus, 1.0F);
 		 
 		 
@@ -423,7 +424,7 @@ public class ModCore
 		else if( heldItem == Items.dye && 
 				held.getItemDamage() == Reference.dye_bonemeal ) //&& ItemChestSack.isEnabled()
 		{
-			BetterBonemeal.onPlayerRightClick(event); 
+			BonemealUseHandler.onPlayerRightClick(event); 
 		} 
 	}
 	

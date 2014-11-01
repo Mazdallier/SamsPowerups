@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
 
 import java.util.ArrayList; 
 
@@ -11,7 +11,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class EasyEnderChest
+public class EnderChestHandler
 {
   
 	public static void onPlayerLeftClick(PlayerInteractEvent event)
