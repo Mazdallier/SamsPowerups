@@ -1,6 +1,8 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samspowerups.net;
 
 import org.lwjgl.input.Keyboard;
+
+import com.lothrazar.samspowerups.ModCore;
 
 
 
@@ -18,8 +20,8 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerRenderers() 
     {
-    	if(ModCore.ConfigSettings.enableInventorySliders)
-    	{ 
+    	//if(ModCore.ConfigSettings.enableInventorySliders)
+    	//{ 
     		keyShiftUp = new KeyBinding(ModCore.keyMenuUpName, Keyboard.KEY_V, ModCore.keyCategory);
             ClientRegistry.registerKeyBinding(ClientProxy.keyShiftUp);
              
@@ -27,6 +29,6 @@ public class ClientProxy extends CommonProxy
             ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown);
             
             //TODO: do we want left and right sliders too?
-    	}
+    	//}
     }
 }

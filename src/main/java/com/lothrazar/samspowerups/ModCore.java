@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import com.lothrazar.samspowerups.block.*;
 import com.lothrazar.samspowerups.command.*; 
 import com.lothrazar.samspowerups.modules.*;
+import com.lothrazar.samspowerups.net.ClientProxy;
+import com.lothrazar.samspowerups.net.CommonProxy;
+import com.lothrazar.samspowerups.net.MessageKeyPressed;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 
@@ -47,7 +50,7 @@ public class ModCore
 	
 	public static SimpleNetworkWrapper network; 
 	
-	public static ConfigSettings ConfigSettings;
+//	public static ConfigSettings ConfigSettings;
 	
     public static final String MODID = "samspowerups";
     public static final String VERSION = "1.7.10-1.0";
@@ -105,6 +108,7 @@ public class ModCore
   
     private void loadConfig(Configuration config) 
     {
+    	/*
 		ConfigSettings = new ConfigSettings();
 		
     	String category = MODID;
@@ -128,6 +132,7 @@ public class ModCore
     	
 		
     	config.save();
+    	*/
 	}
 
 	@SubscribeEvent

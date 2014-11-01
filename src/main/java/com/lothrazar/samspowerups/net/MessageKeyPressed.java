@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samspowerups.net;
  
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

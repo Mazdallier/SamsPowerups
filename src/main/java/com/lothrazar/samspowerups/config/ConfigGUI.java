@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samspowerups.config;
 
 import com.lothrazar.samspowerups.modules.ScreenDebugInfo;
 

@@ -1,11 +1,11 @@
-package com.lothrazar.samspowerups.util;
+package com.lothrazar.samspowerups.config;
 
 import net.minecraftforge.common.config.Configuration;
 
  
 import com.lothrazar.samspowerups.ModCore;
 
-public class Config 
+public class ConfigCurrentSettings 
 {
 	//categories
 	public static final String DEFAULT = ModCore.MODID;
@@ -28,7 +28,7 @@ public class Config
 		config.setCategoryComment(COMMANDS, "All commands added by this mod");
  
 		
-		config.setCategoryComment(Config.UNCRAFTING, "Adds a ton of crafting and smelting recipes that let you get " +
+		config.setCategoryComment(ConfigCurrentSettings.UNCRAFTING, "Adds a ton of crafting and smelting recipes that let you get " +
 				"(some or all) of your resources back from an item.");
 		
  
