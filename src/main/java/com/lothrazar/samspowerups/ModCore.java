@@ -338,7 +338,7 @@ public class ModCore
     public void onPlayerTick(PlayerTickEvent event)
     {  
 		
-         ItemRunestone.onPlayerTick(event);
+         ItemRunestone.Handler.onPlayerTick(event);
          
          SurvivalFlyingHandler.onPlayerTick(event);
     }
