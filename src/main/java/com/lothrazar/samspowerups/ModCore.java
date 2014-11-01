@@ -44,17 +44,11 @@ import cpw.mods.fml.relauncher.Side;
 public class ModCore
 {
 	@SidedProxy(clientSide="com.lothrazar.samspowerups.ClientProxy", serverSide="com.lothrazar.samspowerups.CommonProxy")
-	public static CommonProxy proxy;
-
-	// https://github.com/PrinceOfAmber/BuildersUnity_Minecraft/blob/master/src/main/java/com/lothrazar/buildersunity/core/EventListener.java
-	
+	public static CommonProxy proxy; 
 	public static SimpleNetworkWrapper network; 
-	
-//	public static ConfigSettings ConfigSettings;
-	
+	public static Configuration config; 
     public static final String MODID = "samspowerups";
-    public static final String VERSION = "1.7.10-1.0";
-     
+    public static final String VERSION = "1.7.10-1.0"; 
     @Instance(value = ModCore.MODID)
     public static ModCore instance;
     public static ModCore getInstance()
@@ -62,22 +56,59 @@ public class ModCore
     	return instance;
     }
     
-	@EventHandler
-	public void load(FMLInitializationEvent event)
-	{ 
-		 proxy.registerRenderers();
-	}
-	
-	@EventHandler
-    public void onServerLoad(FMLServerStartingEvent event)
+    private void loadConfig(Configuration c) 
     {
-    //and thats all! just have to register the command with the server!
-    	event.registerServerCommand(new CommandEnderChest()); 
-		event.registerServerCommand(new CommandTodoList());
-		event.registerServerCommand(new CommandSimpleWaypoints());
-		event.registerServerCommand(new CommandItemLocator());
-		event.registerServerCommand(new CommandFlyHelp());
-    }
+    	config = c;
+	}
+    
+    public static void syncConfig() 
+	{
+		String category = Configuration.CATEGORY_GENERAL ; 
+	  
+    	/* 
+    	String category = MODID;
+    	
+    	ConfigSettings.enableFlyingRune = config.get(category, "flyingRuneEnabled",true,
+    			"Lets you make a rune that enables flying in survival."
+    	).getBoolean(true); 
+    	
+
+    	//todo?
+    	//ConfigSettings.enableInventorySliders.id
+    	//ConfigSettings.enableInventorySliders.value
+    	//ConfigSettings.enableInventorySliders.name
+    	//ConfigSettings.enableInventorySliders.default
+    	// ?? maybe??
+    	ConfigSettings.enableInventorySliders = config.get(category, "enableInventorySliders",true,
+    			"Lets you make a rune that enables flying in survival."
+    	).getBoolean(true); 
+    	
+  
+		showDefaultDebug = config.getBoolean("showDefaultDebug",category, showDefaultDebug,
+				 "Set to false if you want to remove everything on the default debug screen (F3).  " +
+				 "This lets you play without knowing your XYZ coordinates, an extra challenge."
+				);
+	 
+		showGameRules = config.getBoolean("showGameRules",category, showGameRules,
+			"Shows all the game rules that are turned on.  These go on the right side."); 
+		 
+		showSlimeChunk = config.getBoolean("showSlimeChunk",category, showSlimeChunk, 
+			"Show a message if the current chunk is a slime chunk."); 
+		  
+		showVillageInfo = config.getBoolean("showVillageInfo", category,showVillageInfo,
+			"Show data about the current village (if any)."); 
+   
+		showHorseInfo = config.getBoolean("showHorseInfo",category, showHorseInfo,
+			"Show information on the horse you are riding such as speed and jump height."); 
+	
+		
+		*/
+		
+		if(config.hasChanged())
+		{
+			config.save();
+		}
+	}
     
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
@@ -106,34 +137,23 @@ public class ModCore
 		BlockCommandBlockCraftable.Init();
     }
   
-    private void loadConfig(Configuration config) 
-    {
-    	/*
-		ConfigSettings = new ConfigSettings();
-		
-    	String category = MODID;
-    	
-    	ConfigSettings.enableFlyingRune = config.get(category, "flyingRuneEnabled",true,
-    			"Lets you make a rune that enables flying in survival."
-    	).getBoolean(true); 
-    	
-
-    	//todo?
-    	//ConfigSettings.enableInventorySliders.id
-    	//ConfigSettings.enableInventorySliders.value
-    	//ConfigSettings.enableInventorySliders.name
-    	//ConfigSettings.enableInventorySliders.default
-    	// ?? maybe??
-    	ConfigSettings.enableInventorySliders = config.get(category, "enableInventorySliders",true,
-    			"Lets you make a rune that enables flying in survival."
-    	).getBoolean(true); 
-    	
-    	
-    	
-		
-    	config.save();
-    	*/
+	@EventHandler
+	public void load(FMLInitializationEvent event)
+	{ 
+		 proxy.registerRenderers();
 	}
+	
+	@EventHandler
+    public void onServerLoad(FMLServerStartingEvent event)
+    {
+    //and thats all! just have to register the command with the server!
+    	event.registerServerCommand(new CommandEnderChest()); 
+		event.registerServerCommand(new CommandTodoList());
+		event.registerServerCommand(new CommandSimpleWaypoints());
+		event.registerServerCommand(new CommandItemLocator());
+		event.registerServerCommand(new CommandFlyHelp());
+    }
+    
 
 	@SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event)
@@ -145,8 +165,6 @@ public class ModCore
 	public static final String keyMenuUpName = "key.columnshiftup";
 	public static final String keyMenuDownName = "key.columnshiftdown";
 	public static final String keyCategory = "key.categories.inventory";
-	
-	
 	
 	
 	@SubscribeEvent
@@ -345,7 +363,7 @@ public class ModCore
 	{ 
 		if(eventArgs.modID.equals(ModCore.MODID))
 		{
-			ScreenDebugInfo.syncConfig();
+			syncConfig();
 		}
 		
     }

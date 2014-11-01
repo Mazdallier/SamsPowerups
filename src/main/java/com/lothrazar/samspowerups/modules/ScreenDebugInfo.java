@@ -35,9 +35,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ScreenDebugInfo 
 {  
-	public static Configuration config;
 	
- 
   	public static boolean showDefaultDebug = true ; 
 	private static boolean showGameRules = true;
 	private static boolean showSlimeChunk = true;
@@ -314,37 +312,6 @@ public class ScreenDebugInfo
 	
 	
  
-	public static void syncConfig() 
-	{
-		String category = Configuration.CATEGORY_GENERAL ; 
-	 	 
-		
-		//    myConfigBool = configFile.getBoolean("My Config Bool", Configuration.CATEGORY_GENERAL, myConfigBool, "A Boolean!");
-		
-		showDefaultDebug = config.getBoolean("showDefaultDebug",category, showDefaultDebug,
-				 "Set to false if you want to remove everything on the default debug screen (F3).  " +
-				 "This lets you play without knowing your XYZ coordinates, an extra challenge."
-				);
-	 
-		showGameRules = config.getBoolean("showGameRules",category, showGameRules,
-			"Shows all the game rules that are turned on.  These go on the right side."); 
-		 
-		showSlimeChunk = config.getBoolean("showSlimeChunk",category, showSlimeChunk, 
-			"Show a message if the current chunk is a slime chunk."); 
-		  
-		showVillageInfo = config.getBoolean("showVillageInfo", category,showVillageInfo,
-			"Show data about the current village (if any)."); 
-   
-		showHorseInfo = config.getBoolean("showHorseInfo",category, showHorseInfo,
-			"Show information on the horse you are riding such as speed and jump height."); 
 	
-		
-		
-		
-		if(config.hasChanged())
-		{
-			config.save();
-		}
-	}
 	
 }
