@@ -16,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -241,6 +242,7 @@ public class ModCore
 		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		if(blockClicked == null || blockClicked == Blocks.air ){return;}
  
+ 
 		if(heldItem == ItemWandMaster.itemWand )
 		{
 			ItemWandMaster.onPlayerRightClick(event);
@@ -252,6 +254,13 @@ public class ModCore
 		else if( heldItem == ItemChestSack.item ) //&& ItemChestSack.isEnabled()
 		{
 			ItemChestSack.onPlayerRightClick(event);
+		} 
+		//if bonemeal
+
+		else if( heldItem == Items.dye && 
+				held.getItemDamage() == Reference.dye_bonemeal ) //&& ItemChestSack.isEnabled()
+		{
+			BetterBonemeal.onPlayerRightClick(event); 
 		} 
 	}
 	
