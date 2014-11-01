@@ -13,17 +13,7 @@ public class Reference
 { 
 	public static final int TICKS_PER_SEC = 20;
 	
-	
-	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
-	public static final String gamerule_doDaylightCycle = "doDaylightCycle";
-	public static final String gamerule_doFireTick = "doFireTick";
-	public static final String gamerule_doMobLoot = "doMobLoot";
-	public static final String gamerule_doMobSpawning = "doMobSpawning";
-	public static final String gamerule_doTileDrops = "doTileDrops";
-	public static final String gamerule_keepInventory = "keepInventory";
-	public static final String gamerule_mobGriefing = "mobGriefing";
-	public static final String gamerule_naturalRegeneration = "naturalRegeneration";
-	 
+ 
 	public static final int face_bottom = 0;	
 	public static final int face_top = 1;
 	public static final int face_north = 2;
@@ -38,6 +28,24 @@ public class Reference
 	public static final int skull_zombie = 2;
 	public static final int skull_player = 3;
 	public static final int skull_creeper = 4;
+	
+
+	public static final int dye_incsac = 0;
+	public static final int dye_red = 1;
+	public static final int dye_cactus = 2;
+	public static final int dye_cocoa = 3;
+	public static final int dye_lapis = 4;
+	public static final int dye_purple = 5;
+	public static final int dye_cyan = 6;
+	public static final int dye_lightgray = 7;
+	public static final int dye_gray = 8;
+	public static final int dye_pink = 9;
+	public static final int dye_lime = 10;
+	public static final int dye_dandelion = 11;
+	public static final int dye_lightblue = 12;
+	public static final int dye_magenta = 13;
+	public static final int dye_orange = 14;
+	public static final int dye_bonemeal = 15;
 	/*s:
 
     MHF_Blaze
@@ -65,50 +73,7 @@ public class Reference
 	//9 to 35 is the main inventory
 	
 	//100 to 103 is the armor
-	
-	public static final int redflower_poppy = 0;
-	public static final int redflower_blueorchid = 1;
-	public static final int redflower_allium = 2;
-	public static final int redflower_azbluet = 3;
-	public static final int redflower_redtulip = 4;
-	public static final int redflower_orangetulip = 5;
-	public static final int redflower_whitetulip = 6;
-	public static final int redflower_pinktulip = 5;
-	 
-	public static final int dye_black = 0;
-	public static final int dye_red = 1;
-	public static final int dye_green = 2;
-	public static final int dye_chocolate = 3;
-	public static final int dye_lapis = 4;
-	public static final int dye_purple = 5;
-	public static final int dye_cyan = 6;
-	public static final int dye_ltgrey = 7;
-	public static final int dye_grey = 8;
-	public static final int dye_pink = 9;
-	public static final int dye_lime = 10;
-	public static final int dye_yellow = 11;
-	public static final int dye_ltblue = 12;
-	public static final int dye_magenta = 13;
-	public static final int dye_orange = 14;
-	public static final int dye_bonemeal = 15;
-	 
-	//http://minecraft.gamepedia.com/Wool
-	public static final int wool_black = 15;
-	public static final int wool_red = 14;
-	public static final int wool_green = 13;
-	public static final int wool_brown = 12;
-	public static final int wool_blue = 11;
-	public static final int wool_purple = 10;
-	public static final int wool_cyan = 9;
-	public static final int wool_ltgrey = 8;
-	public static final int wool_grey = 7;
-	public static final int wool_pink = 6;
-	public static final int wool_lime = 5;
-	public static final int wool_yellow = 4;
-	public static final int wool_ltblue = 3;
-	public static final int wool_magenta = 2;
-	public static final int wool_orange = 1;
-	public static final int wool_white = 0;
+ 
  
 	public static final int stone_slab_stone = 0;
 	public static final int stone_slab_sandstone = 1;
@@ -183,4 +148,13 @@ public class Reference
 	public static final int entity_mooshroom = 96;
 	public static final int entity_bat = 65;
  
+	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
+	public static final String gamerule_doDaylightCycle = "doDaylightCycle";
+	public static final String gamerule_doFireTick = "doFireTick";
+	public static final String gamerule_doMobLoot = "doMobLoot";
+	public static final String gamerule_doMobSpawning = "doMobSpawning";
+	public static final String gamerule_doTileDrops = "doTileDrops";
+	public static final String gamerule_keepInventory = "keepInventory";
+	public static final String gamerule_mobGriefing = "mobGriefing";
+	public static final String gamerule_naturalRegeneration = "naturalRegeneration";
 }

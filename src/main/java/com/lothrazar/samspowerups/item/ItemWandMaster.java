@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.item;
 
 import com.google.common.collect.Sets;
 import com.lothrazar.samspowerups.ModCore;
-import com.lothrazar.samspowerups.Reference;
+import com.lothrazar.samspowerups.util.Reference;
  
 
 import cpw.mods.fml.common.registry.GameRegistry;
