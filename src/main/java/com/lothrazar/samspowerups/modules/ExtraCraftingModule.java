@@ -13,11 +13,11 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class ExtraCrafting 
+public class ExtraCraftingModule extends BaseModule
 { 
 	public static boolean skullSignNames;
 
-	public static void loadConfig(Configuration config)
+	public void loadConfig(Configuration config)
 	{  
 		String category = ModCore.MODID ; 
   
@@ -57,7 +57,7 @@ public class ExtraCrafting
 	
 	private static boolean craftableMobHeads;
 
-	public static void Init()
+	public void Init()
 	{ 
 		int EXP = 0; 
 		

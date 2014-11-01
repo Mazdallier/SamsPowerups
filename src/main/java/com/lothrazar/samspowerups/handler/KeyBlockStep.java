@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
 
 import net.minecraft.client.entity.EntityPlayerSP;
 import cpw.mods.fml.common.FMLCommonHandler;

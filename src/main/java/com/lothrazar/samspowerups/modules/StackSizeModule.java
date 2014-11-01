@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-public class StackSizes extends BaseModule //implements ISamModule
+public class StackSizeModule extends BaseModule //implements ISamModule
 {
  
 	

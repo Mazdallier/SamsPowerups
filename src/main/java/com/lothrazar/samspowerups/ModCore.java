@@ -11,6 +11,7 @@ import com.lothrazar.samspowerups.net.CommonProxy;
 import com.lothrazar.samspowerups.net.MessageKeyPressed;
 import com.lothrazar.samspowerups.handler.BonemealUseHandler;
 import com.lothrazar.samspowerups.handler.ScreenInfoHandler;
+import com.lothrazar.samspowerups.handler.SurvivalFlyingHandler;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
@@ -153,8 +154,11 @@ public class ModCore
 		
 		ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
 		
-		modules.add(new StackSizes());
-		modules.add(new Uncrafting());
+		modules.add(new StackSizeModule());
+		modules.add(new UncraftingModule());
+		modules.add(new ExtraCraftingModule());
+		modules.add(new RecipeChangeModule());
+		
 		
 		for(int i = 0; i < modules.size(); i++)
 		{
@@ -339,7 +343,7 @@ public class ModCore
 		
          ItemRunestone.onPlayerTick(event);
          
-         ExpensiveFlying.onPlayerTick(event);
+         SurvivalFlyingHandler.onPlayerTick(event);
     }
 	
 	//todo move these over

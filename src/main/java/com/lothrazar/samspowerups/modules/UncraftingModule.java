@@ -11,7 +11,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class Uncrafting extends BaseModule
+public class UncraftingModule extends BaseModule
 { 
 	private static boolean stairs;
 	private static boolean misc;

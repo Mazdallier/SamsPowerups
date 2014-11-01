@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
  
 import java.util.HashMap;
 
@@ -20,14 +20,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
  
 //@Mod(modid = ModExpensiveFlying.MODID, version = ModExpensiveFlying.VERSION, name = ModExpensiveFlying.MODNAME) 
-public class ExpensiveFlying
+public class SurvivalFlyingHandler
 {
 	//public static final String MODID = "expensiveflying";
 	//public static final String MODNAME = "Lothrazar: Builder's Dream";
 	//public static final String VERSION = "1.7.2";
 
 	//@Instance(value = ModExpensiveFlying.MODID)
-	public static ExpensiveFlying instance;
+	public static SurvivalFlyingHandler instance;
 	
 	 
 	public static int StartFlyingLevel = 2;
@@ -44,7 +44,7 @@ public class ExpensiveFlying
 	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
  
 	 
-	
+	/*
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{ 
@@ -53,6 +53,7 @@ public class ExpensiveFlying
 		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
   	
 	}
+	*/
 	
 	//load config file.  Or create it and set defaults if not found
 	private void loadConfig(Configuration config)

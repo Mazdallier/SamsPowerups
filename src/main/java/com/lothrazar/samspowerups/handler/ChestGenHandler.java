@@ -1,6 +1,6 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
 
-public class LootSpawn {
+public class ChestGenHandler {
 
 	public static void Init()
 	{
