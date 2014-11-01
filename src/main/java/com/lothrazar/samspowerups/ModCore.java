@@ -147,6 +147,8 @@ public class ModCore
 	public static final String keyCategory = "key.categories.inventory";
 	
 	
+	
+	
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
     { 

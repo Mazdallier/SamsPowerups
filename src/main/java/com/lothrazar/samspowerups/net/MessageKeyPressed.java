@@ -12,11 +12,11 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 {
 	private byte keyPressed;
 	  
-	public MessageKeyPressed( )
+	public MessageKeyPressed()
 	{ 
 	}
 	
-	public MessageKeyPressed(int keyCode )
+	public MessageKeyPressed(int keyCode)
 	{ 
 		this.keyPressed = (byte)keyCode;
 	}
