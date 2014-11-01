@@ -1,17 +1,12 @@
 package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.List; 
 import com.lothrazar.samspowerups.block.*;
 import com.lothrazar.samspowerups.command.*; 
 import com.lothrazar.samspowerups.modules.*;
-import com.lothrazar.samspowerups.net.ClientProxy;
-import com.lothrazar.samspowerups.net.CommonProxy;
-import com.lothrazar.samspowerups.net.MessageKeyPressed;
-import com.lothrazar.samspowerups.handler.BonemealUseHandler;
-import com.lothrazar.samspowerups.handler.ScreenInfoHandler;
-import com.lothrazar.samspowerups.handler.SurvivalFlyingHandler;
+import com.lothrazar.samspowerups.net.*; 
+import com.lothrazar.samspowerups.handler.*;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
@@ -53,6 +48,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.BlockLilyPad;
+
 @Mod(modid = ModCore.MODID, version = ModCore.VERSION)
 public class ModCore
 {
@@ -69,9 +65,6 @@ public class ModCore
     	return instance;
     }
    
-    
-    
-    
     private void loadConfig(Configuration c) 
     {
     	config = c;
@@ -146,7 +139,11 @@ public class ModCore
 	    }
 		*/
 		
+		
+		
 		MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
+		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
+		
 	    
 		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
   

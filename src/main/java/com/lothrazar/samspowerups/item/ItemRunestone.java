@@ -37,7 +37,7 @@ public class ItemRunestone extends ItemTool
 	private static ItemRunestone rune_speed;
     private static ItemRunestone rune_fire; 
     private static ItemRunestone rune_fly;
-    private static ItemRunestone rune_horse;
+   // private static ItemRunestone rune_horse;
 
 	private static int SLOT_RUNESTONE = 8;//when they press keyboard //TODO: config to change this
 	
@@ -46,7 +46,7 @@ public class ItemRunestone extends ItemTool
 
 	
  	private static int DURABILITY = 90000;//90 thousand ticks is 4500 seconds which is 75 minutes
-	public static boolean flyingRuneEnabled;
+	//public static boolean flyingRuneEnabled = true;
 
 	private boolean shimmerEffect = true; 
 	private int[] effects; 
@@ -117,7 +117,7 @@ public class ItemRunestone extends ItemTool
 				, 'e', Blocks.lapis_block // new ItemStack(Items.dye,1,Reference.dye_lapis)//LAPIS
 				, 'a', Items.nether_star  );   
 		GameRegistry.addSmelting(rune_water, new ItemStack(Items.nether_star,1),0);	
-		  
+		  /*
 		rune_horse = new ItemRunestone(new int[]{Reference.potion_HUNGER,HORSE},new int[]{I,I},shiny);   
 		rune_horse.setUnlocalizedName("rune_horse" ).setTextureName(MODID+":rune_horse" ); 
 		GameRegistry.registerItem(rune_horse,  "rune_horse" ); 
@@ -125,7 +125,7 @@ public class ItemRunestone extends ItemTool
 				, 'e', Items.saddle  
 				, 'a', Items.nether_star  );    
 		GameRegistry.addSmelting(rune_horse, new ItemStack(Items.nether_star,1),0);	
-		  
+		  */
 		rune_speed = new ItemRunestone(new int[]{Reference.potion_SPEED,Reference.potion_FATIGUE},new int[]{II,II},not_shiny);  
 		rune_speed.setUnlocalizedName("rune_speed").setTextureName(MODID+":rune_speed"); 
 		GameRegistry.registerItem(rune_speed,  "rune_speed"); 
@@ -141,7 +141,7 @@ public class ItemRunestone extends ItemTool
 				, 'e', Items.blaze_rod
 				, 'a', Items.nether_star  );    
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
-		 
+		 /*
 		if(flyingRuneEnabled)
 		{
 			
@@ -154,6 +154,7 @@ public class ItemRunestone extends ItemTool
 					, 'a', Items.nether_star  ); 
 			GameRegistry.addSmelting(rune_fly, new ItemStack(Items.nether_star,1),0);	
 		}
+		*/
 	} 
    
 	public static void onPlayerTick(PlayerTickEvent event)
@@ -165,7 +166,7 @@ public class ItemRunestone extends ItemTool
 		applyRunestoneToPlayer(event, SLOT_RUNESTONE);
 		//applyRunestoneToPlayer(event, MIDDLE_LEFT);
 		//applyRunestoneToPlayer(event, LOWER_LEFT);
-		 
+		 /*
 		if(flyingRuneEnabled)
 		{ 
 			if(event.player.capabilities.isFlying == false 
@@ -186,14 +187,18 @@ public class ItemRunestone extends ItemTool
 				event.player.capabilities.isFlying = false;
 			}
 		}
+		*/
 		
+		/*
 		if(isWearingHorseRune(event) == false)
 		{
 			event.player.stepHeight = 0.5F;
 		}
 		
+		*/
+		
 	}// end player tick event 
-	
+	/*
 	private static boolean isWearingFlyingRune(PlayerTickEvent event)
 	{ 
 		ItemStack t =  event.player.inventory.getStackInSlot(SLOT_RUNESTONE); 
@@ -212,7 +217,9 @@ public class ItemRunestone extends ItemTool
  
 		return false;
 	}
+	*/
 	
+	/*
 	private static boolean isWearingHorseRune(PlayerTickEvent event)
 	{ 
 		ItemStack t =  event.player.inventory.getStackInSlot(SLOT_RUNESTONE); 
@@ -231,7 +238,8 @@ public class ItemRunestone extends ItemTool
  
 		return false;
 	}
-	 
+	 */
+	
 	private static void applyRunestoneToPlayer(PlayerTickEvent event,int slotNumber)
 	{   
 		ItemStack runestone = event.player.inventory.getStackInSlot(slotNumber);
