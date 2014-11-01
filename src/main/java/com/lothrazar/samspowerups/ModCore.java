@@ -44,7 +44,7 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = ModCore.MODID, version = ModCore.VERSION)
 public class ModCore
 {
-	@SidedProxy(clientSide="com.lothrazar.samspowerups.ClientProxy", serverSide="com.lothrazar.samspowerups.CommonProxy")
+	@SidedProxy(clientSide="com.lothrazar.samspowerups.net.ClientProxy", serverSide="com.lothrazar.samspowerups.net.CommonProxy")
 	public static CommonProxy proxy; 
 	public static SimpleNetworkWrapper network; 
 	public static Configuration config; 
