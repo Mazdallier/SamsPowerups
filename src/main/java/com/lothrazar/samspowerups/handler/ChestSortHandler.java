@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
   
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.Chat; 
@@ -12,7 +12,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
  
-public class MagicSort
+public class ChestSortHandler
 { 
  /*
 	public static void loadConfig(Configuration config)

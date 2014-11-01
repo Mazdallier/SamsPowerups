@@ -9,24 +9,25 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-public class StackSizes 
+public class StackSizes extends BaseModule //implements ISamModule
 {
-	//private static int potionStackSize;
-	private static boolean isEnabled;
+ 
 	
-	public static void loadConfig(Configuration config)
-	{ 
+	public void loadConfig(Configuration config)
+	{  
 		String category = ModCore.MODID; 
 		 
-		isEnabled = config.get(category,"increasedStackSizes", true,
+		setEnabled( 
+				config.get(category,"increasedStackSizes", true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
 			"horse armor, empty bucket, bed, all records."
-		).getBoolean(true);
+		).getBoolean(true)
+		);
 	 
 	}
 	 
-	public static void Init()
+	public void Init()
 	{   
 		//default config keeps this at 1
 		//Items.potionitem.setMaxStackSize(potionStackSize); 
@@ -73,6 +74,8 @@ public class StackSizes
 			item.setMaxStackSize(64);
 		}
 	}
+
+	
  
 	 
 	

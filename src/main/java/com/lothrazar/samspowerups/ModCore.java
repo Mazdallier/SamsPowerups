@@ -254,6 +254,21 @@ public class ModCore
 	    
 		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
   
+		
+		
+		ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
+		
+		modules.add(new StackSizes());
+		
+		for(int i = 0; i < modules.size(); i++)
+		{
+			if(modules.get(i).isEnabled())
+			{
+				modules.get(i).Init();
+			}
+		}
+	
+		
 		//todo: add module interfce, make non static, then go through list and init all of them.!!!
 		//do similar in config as well eh
         BlockFishing.Init();
@@ -264,7 +279,7 @@ public class ModCore
 		ItemFoodAppleMagic.Init();
     	ItemRunestone.Init();
 		ItemWandMaster.Init();
-		StackSizes.Init();
+	//	StackSizes.Init();
 		Uncrafting.Init();
 		
 		

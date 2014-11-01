@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups.handler;
 
 import com.lothrazar.samspowerups.ModCore;
 
@@ -15,11 +15,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class LockGamemode 
+public class LockGamemodeHandler 
 {
 	private GameType lockedGameType = GameType.SURVIVAL;//TODO: load from config file
  
-
+/*
 	private void loadConfig(Configuration config) 
 	{ 
 		Property _gamemode = config.get(ModCore.MODID, "gamemode",0);
@@ -42,7 +42,7 @@ public class LockGamemode
 		}
 		
 		config.save();
-	}
+	}*/
 		
 	 
 	public void onPlayerTick(PlayerTickEvent event)
