@@ -41,7 +41,7 @@ public class ExpensiveFlying
 	public static boolean doesDrainLevels = true;
 	 
 	//was 70 in old mod, farily fast
-	public int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
+	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
  
 	 
 	
@@ -133,28 +133,14 @@ public class ExpensiveFlying
 		
 		config.save(); 
 	}
+	 
 	
-	@EventHandler
-	public void serverLoad(FMLServerStartingEvent event)
-	{  
-		//register the help event
-		 event.registerServerCommand(new CommandFlyHelp());  
-	}
+	private static HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
 	
-	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
-	
-	World world = null;
-	@SubscribeEvent
-	public void onEntityJoinWorldEvent(EntityJoinWorldEvent e)
-	{ 
-		//only exists to save a pointer to world
-		if (world == null)	{ world = e.world; }
-	}
  
-	
 	//all the heavy lifting happens here
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event)
+ 
+	public static void onPlayerTick(PlayerTickEvent event)
 	{   
 		//use the players display name as the hashmap key for the flyCountdown
 		String pname = event.player.getDisplayName();
@@ -166,9 +152,12 @@ public class ExpensiveFlying
 		boolean disabledFromRain = false;
 		boolean disabledFromNight = false;
 		
-		if(this.world != null)
+		World world = event.player.worldObj;
+		
+		if(world != null)
 		{ 
-			int difficultyCurrent = this.world.difficultySetting.ordinal();
+			
+			int difficultyCurrent = event.player.worldObj.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
 			
 			//ex: if current is peaceful, required is easy, then disabled is true
 			//but, if current and required and both peaceful (equal) or if current > required then disabled false
@@ -176,10 +165,10 @@ public class ExpensiveFlying
 			if(difficultyCurrent < difficultyRequiredToFly ) { disabledFromDifficulty = true; } 
 			 
 			//if not allowed, and is raining, then disable
-			if(cannotFlyInRain && this.world.getWorldInfo().isRaining()) { disabledFromRain = true; }
+			if(cannotFlyInRain && world.getWorldInfo().isRaining()) { disabledFromRain = true; }
 			
 			//if we are not allowed, and its night, then disable
-			if(cannotFlyAtNight && !this.world.isDaytime()) { disabledFromNight = true; } 
+			if(cannotFlyAtNight && !world.isDaytime()) { disabledFromNight = true; } 
 		}
 		  
 		boolean isNaked = (

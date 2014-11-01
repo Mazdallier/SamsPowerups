@@ -125,15 +125,16 @@ public class ModCore
   
 		//todo: add module interfce, make non static, then go through list and init all of them.!!!
 		//do similar in config as well eh
-    	ItemRunestone.Init();
-        BlockXRay.Init();
         BlockFishing.Init();
-		ItemWandMaster.Init();
+        BlockXRay.Init();
+        
 		ItemChestSack.Init();
 		ItemEnderBook.Init();
 		ItemFoodAppleMagic.Init();
-		Uncrafting.Init();
+    	ItemRunestone.Init();
+		ItemWandMaster.Init();
 		StackSizes.Init();
+		Uncrafting.Init();
 		
 		
 		
@@ -164,6 +165,8 @@ public class ModCore
     public void onPlayerTick(PlayerTickEvent event)
     {  
          ItemRunestone.onPlayerTick(event);
+         
+         ExpensiveFlying.onPlayerTick(event);
     }
 	
 	//todo move these over
