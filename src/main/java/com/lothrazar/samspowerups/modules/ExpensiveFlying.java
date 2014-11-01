@@ -20,14 +20,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
  
 //@Mod(modid = ModExpensiveFlying.MODID, version = ModExpensiveFlying.VERSION, name = ModExpensiveFlying.MODNAME) 
-public class ModExpensiveFlying
+public class ExpensiveFlying
 {
 	//public static final String MODID = "expensiveflying";
 	//public static final String MODNAME = "Lothrazar: Builder's Dream";
 	//public static final String VERSION = "1.7.2";
 
 	//@Instance(value = ModExpensiveFlying.MODID)
-	public static ModExpensiveFlying instance;
+	public static ExpensiveFlying instance;
 	
 	 
 	public static int StartFlyingLevel = 2;

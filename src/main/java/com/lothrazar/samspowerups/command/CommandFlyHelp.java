@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.command;
  
 import java.util.ArrayList; 
 
-import com.lothrazar.samspowerups.modules.ModExpensiveFlying;
+import com.lothrazar.samspowerups.modules.ExpensiveFlying;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -46,7 +46,7 @@ public class CommandFlyHelp implements ICommand
 		  addChatMessage(p,"Expensive flying is enabled if:");
 		  
 		  String strdiff = "";
-		  switch(ModExpensiveFlying.difficultyRequiredToFly)//iknow i know, there is a better way maybe with EnumDifficulty ....
+		  switch(ExpensiveFlying.difficultyRequiredToFly)//iknow i know, there is a better way maybe with EnumDifficulty ....
 		  {
 		  	case 0: strdiff = "Peaceful";break;
 		  	case 1: strdiff = "Easy"; break;
@@ -54,20 +54,20 @@ public class CommandFlyHelp implements ICommand
 		  	case 3: strdiff = "Hard"; break;
 		  }
 		  
-		  addChatMessage(p, "- Your world difficulty is "+strdiff+" ("+ModExpensiveFlying.difficultyRequiredToFly+") or greater"); 
+		  addChatMessage(p, "- Your world difficulty is "+strdiff+" ("+ExpensiveFlying.difficultyRequiredToFly+") or greater"); 
 		   
-		  if(ModExpensiveFlying.NoArmorOnly) addChatMessage(p, "- You are not wearing armor");
-		  if(ModExpensiveFlying.cannotFlyWhileBurning) addChatMessage(p, "- You are not on fire");
+		  if(ExpensiveFlying.NoArmorOnly) addChatMessage(p, "- You are not wearing armor");
+		  if(ExpensiveFlying.cannotFlyWhileBurning) addChatMessage(p, "- You are not on fire");
 		    
-		  if(ModExpensiveFlying.cannotFlyAtNight) addChatMessage(p, "- It is not night");
-		  if(ModExpensiveFlying.cannotFlyInRain) addChatMessage(p, "- It is not raining");
+		  if(ExpensiveFlying.cannotFlyAtNight) addChatMessage(p, "- It is not night");
+		  if(ExpensiveFlying.cannotFlyInRain) addChatMessage(p, "- It is not raining");
 		  
-		  double hearts = ModExpensiveFlying.StartFlyingHealth / 2;
-		  double hunger = ModExpensiveFlying.StartFlyingHunger / 2;
+		  double hearts = ExpensiveFlying.StartFlyingHealth / 2;
+		  double hunger = ExpensiveFlying.StartFlyingHunger / 2;
 		  
 		  addChatMessage(p, "- You have at least "+hearts+" hearts , and at least "+hunger+" hunger");
   
-		  addChatMessage(p, "- You have at least "+ModExpensiveFlying.StartFlyingLevel+" levels");  
+		  addChatMessage(p, "- You have at least "+ExpensiveFlying.StartFlyingLevel+" levels");  
 		  
 		  //no message needed for xp drain
 	 
