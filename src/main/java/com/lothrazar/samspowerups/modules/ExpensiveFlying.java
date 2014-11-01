@@ -40,7 +40,8 @@ public class ExpensiveFlying
 	public static boolean cannotFlyInRain = true;
 	public static boolean doesDrainLevels = true;
 	 
-	public int flyDamageCounterLimit = 70;// speed of countdown. changed by cfg file. one for all players
+	//was 70 in old mod, farily fast
+	public int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
  
 	 
 	
