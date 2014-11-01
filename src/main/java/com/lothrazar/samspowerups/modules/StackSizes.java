@@ -26,7 +26,7 @@ public class StackSizes
 	 
 	}
 	 
-	public static void InitStackMax()
+	public static void Init()
 	{   
 		//default config keeps this at 1
 		//Items.potionitem.setMaxStackSize(potionStackSize); 
@@ -74,14 +74,6 @@ public class StackSizes
 		}
 	}
  
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
- 
-	private static void setEnabled(boolean isEnabled) 
-	{
-		StackSizes.isEnabled = isEnabled;
-	}
+	 
 	
 }

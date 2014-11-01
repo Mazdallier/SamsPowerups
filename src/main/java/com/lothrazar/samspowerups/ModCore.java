@@ -123,6 +123,8 @@ public class ModCore
 	    
 		loadConfig(new Configuration(event.getSuggestedConfigurationFile()));
   
+		//todo: add module interfce, make non static, then go through list and init all of them.!!!
+		//do similar in config as well eh
     	ItemRunestone.Init();
         BlockXRay.Init();
         BlockFishing.Init();
@@ -130,6 +132,8 @@ public class ModCore
 		ItemChestSack.Init();
 		ItemEnderBook.Init();
 		ItemFoodAppleMagic.Init();
+		Uncrafting.Init();
+		StackSizes.Init();
 		
 		
 		

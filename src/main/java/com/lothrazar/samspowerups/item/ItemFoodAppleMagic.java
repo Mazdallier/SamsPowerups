@@ -107,7 +107,8 @@ public class ItemFoodAppleMagic extends ItemFood
 	//all times are in seconds. internally, the AppleMagic class does the * 20	
 		//int TWO_MINUTES = 120;
 		//int FOUR_MINUTES = 240;//because its in seconds
-		int FIVE_MINUTES = 300;
+		int potionTimeSeconds = 300 * 4;//300 is five minutes.  
+		
 		//for the record, the gold BLOCKS apple is 2min absorp, 5minute resistance, 5 minute fire resist. and 30 seconds of REGENH
 		//so if any of these get something like 5 minute of resist or fire resist, it is not OP  
 		
@@ -125,9 +126,9 @@ public class ItemFoodAppleMagic extends ItemFood
 		
 		
 		ItemFoodAppleMagic appleEmerald = new ItemFoodAppleMagic(1,false);  
-		appleEmerald.addEffect(HASTE,FIVE_MINUTES,II) 
-				.addEffect(SPEED,FIVE_MINUTES,I) 
-				.addEffect(ABSORP,FIVE_MINUTES,II) 
+		appleEmerald.addEffect(HASTE,potionTimeSeconds,II) 
+				.addEffect(SPEED,potionTimeSeconds,I) 
+				.addEffect(ABSORP,potionTimeSeconds,II) 
 				.setUnlocalizedName("apple_emerald")
 				.setTextureName(MODID+":apple_emerald");  
 		GameRegistry.registerItem(appleEmerald,  "apple_emerald" );   
@@ -139,9 +140,9 @@ public class ItemFoodAppleMagic extends ItemFood
 		
 		//only diamond is getting the shiny effect
 		ItemFoodAppleMagic appleDiamond = new ItemFoodAppleMagic(1,true); //JUMP,SECONDS,1 //(int potionID, int duration, int level ) 
-		appleDiamond.addEffect(HEALTH_BOOST,FIVE_MINUTES,V) //ten extra hearts
-				.addEffect(FIRE_RESIST,FIVE_MINUTES,II) //resist and fire so it is same as the NOTCH apple
-				.addEffect(RESISTANCE,FIVE_MINUTES,II)
+		appleDiamond.addEffect(HEALTH_BOOST,potionTimeSeconds,V) //ten extra hearts
+				.addEffect(FIRE_RESIST,potionTimeSeconds,II) //resist and fire so it is same as the NOTCH apple
+				.addEffect(RESISTANCE,potionTimeSeconds,II)
 				.addEffect(REGEN,20,II)//just enough to fill those extras
 				.setUnlocalizedName("apple_diamond")
 				.setTextureName(MODID+":apple_diamond"); 
@@ -151,9 +152,9 @@ public class ItemFoodAppleMagic extends ItemFood
 		
 		//woo night vision
 		ItemFoodAppleMagic appleLapis = new ItemFoodAppleMagic(1,false);  
-		appleLapis.addEffect(NIGHT_VISION,FIVE_MINUTES,II) // night vision potion uses gold carrots maybe cheaper?
-				.addEffect(WATER_BREATHING,FIVE_MINUTES,II) //puffer fish are way too rare
-				.addEffect(ABSORP,FIVE_MINUTES,II) 
+		appleLapis.addEffect(NIGHT_VISION,potionTimeSeconds,II) // night vision potion uses gold carrots maybe cheaper?
+				.addEffect(WATER_BREATHING,potionTimeSeconds,II) //puffer fish are way too rare
+				.addEffect(ABSORP,potionTimeSeconds,II) 
 				.setUnlocalizedName("apple_lapis")
 				.setTextureName(MODID+":apple_lapis");  
 		GameRegistry.registerItem(appleLapis,  "apple_lapis"); 
