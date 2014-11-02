@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 
 public class ContainerPlayer extends Container
 {
-	public static int craftSize = 2;//did not exist before, was magic'd as 2 everywhere
+	public static int craftSize = 3;//did not exist before, was magic'd as 2 everywhere
 	public static boolean canStoreInCraftGrid = true;
     /** The crafting matrix inventory. */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, craftSize, craftSize);
@@ -27,6 +27,8 @@ public class ContainerPlayer extends Container
     public ContainerPlayer(final InventoryPlayer p_i1819_1_, boolean p_i1819_2_, EntityPlayer p_i1819_3_)
     {
     	//how much we need to shift the boxes over based on the .png of my new 3x3 graphic
+     
+    	if(craftSize < 2 || craftSize > 3){craftSize = 2;}
        
         int shiftxOut = 9;//9 and 6 are perfect
         int shiftyOut = 6;
@@ -49,7 +51,7 @@ public class ContainerPlayer extends Container
         this.thePlayer = p_i1819_3_;
         //index,x,y
         int slotNumber = 0;
-        this.addSlotToContainer(new SlotCrafting(p_i1819_1_.player, this.craftMatrix, this.craftResult, slotNumber, 144, 36));
+        this.addSlotToContainer(new SlotCrafting(p_i1819_1_.player, this.craftMatrix, this.craftResult, slotNumber,  144 + shiftxOut, 36 + shiftyOut));
         int i;
         int j;
         
@@ -88,7 +90,7 @@ public class ContainerPlayer extends Container
             	else
             	{
             		//add only the initial 2x2 grid now (numbers 1-4 inclusive, 0 is the output slot id)
-	            	System.out.println("("+slotNumber+","+cx+","+cy+");");
+	            	//System.out.println("("+slotNumber+","+cx+","+cy+");");
 	                this.addSlotToContainer(new Slot(this.craftMatrix, slotNumber, cx , cy ));
             	}   
             }
@@ -106,7 +108,7 @@ public class ContainerPlayer extends Container
         {
 
         	slotNumber =  p_i1819_1_.getSizeInventory() - 1 - i;
-            System.out.println("("+slotNumber+", armor);");
+         //   System.out.println("("+slotNumber+", armor);");
             final int k = i;
             this.addSlotToContainer(new Slot(p_i1819_1_, slotNumber, 8, 8 + i * 18)
             {
@@ -143,7 +145,7 @@ public class ContainerPlayer extends Container
             for (j = 0; j < 9; ++j)
             {
             	slotNumber = j + (i + 1) * 9;
-                System.out.println("("+slotNumber+", maingrid);");
+            //    System.out.println("("+slotNumber+", maingrid);");
                 this.addSlotToContainer(new Slot(p_i1819_1_, slotNumber, 8 + j * 18, 84 + i * 18));
             }
         }
@@ -151,7 +153,7 @@ public class ContainerPlayer extends Container
         for (i = 0; i < 9; ++i)
         {
         	slotNumber = i;
-            System.out.println("("+slotNumber+", hotbar);");
+          //  System.out.println("("+slotNumber+", hotbar);");
             this.addSlotToContainer(new Slot(p_i1819_1_, slotNumber, 8 + i * 18, 142));
         }
 
@@ -162,7 +164,7 @@ public class ContainerPlayer extends Container
         	slotNumber = holdSlot[h];
     		cx = holdX[h];
     		cy = holdY[h];
-          System.out.println("("+slotNumber+","+cx+","+cy+");");
+         // System.out.println("("+slotNumber+","+cx+","+cy+");");
         	this.addSlotToContainer(new Slot(this.craftMatrix, slotNumber, cx , cy ));
         }
         
@@ -184,10 +186,14 @@ public class ContainerPlayer extends Container
     {
         super.onContainerClosed(p_75134_1_);
 
+        //this kind of works BUT!!... when you log OUT, they are not saved. simply vanish. so maybe a nono
+        
         if(canStoreInCraftGrid)
         {
         	return;
         }
+        
+        
         //else, empty it
         for (int i = 0; i < craftSize*craftSize; ++i)
         {
