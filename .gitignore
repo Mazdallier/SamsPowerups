@@ -2,7 +2,6 @@ bin/assets/
 bin/
 build/
 eclipse/
-src/main/java/net/
 .gradle/
 .settings/
 .classpath
