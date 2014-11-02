@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
 import com.lothrazar.samspowerups.item.ItemRunestone;
+import com.lothrazar.samspowerups.modules.RunestoneModule;
 import com.lothrazar.samspowerups.util.Reference;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -16,7 +17,7 @@ public class RunestoneTickHandler
 	public static void onPlayerTick(PlayerTickEvent event)
 	{       
 		//no need to check for null here, it is done in the method
-		applyRunestoneToPlayer(event, ItemRunestone.SLOT_RUNESTONE);
+		applyRunestoneToPlayer(event, RunestoneModule.SLOT_RUNESTONE);
 		//applyRunestoneToPlayer(event, MIDDLE_LEFT);
 		//applyRunestoneToPlayer(event, LOWER_LEFT);
 		 
@@ -82,7 +83,7 @@ public class RunestoneTickHandler
 		
 		runestone.damageItem(1,event.player);
 		 
-		if(runestone.getItemDamage() == ItemRunestone.DURABILITY - 1)
+		if(runestone.getItemDamage() == RunestoneModule.DURABILITY - 1)
 		{
 			event.player.inventory.setInventorySlotContents(slotNumber, new ItemStack(Items.nether_star));
 		} 
