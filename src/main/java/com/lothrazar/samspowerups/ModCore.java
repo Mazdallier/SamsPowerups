@@ -75,9 +75,13 @@ public class ModCore
     private void logBaseChanges()
     {
     	//just list out any changes made to base classses, that are intended to be packaged with this mod
-    	logger.info("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
-    	logger.info("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
-
+    	//this list must be managed by hand
+    	//unles we find a way to somehow detect
+    	ArrayList<String> baseEditClasses = new ArrayList<String>();
+    	baseEditClasses.add("net.minecraft.client.gui.inventory.GuiInventory.java");
+    	baseEditClasses.add("net.minecraft.inventory.ContainerPlayer.java");
+    	
+   
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
     	//silk touch on farm and mushroom and snow
@@ -88,7 +92,8 @@ public class ModCore
     	//BlockPumpkin p;
     //	BlockPumpkin.class.canPlaceBlockAt = 
     	//door, what did i change there?
-    	
+
+    	for(int i = 0; i < baseEditClasses.size(); i++) logger.info("Base Edit: "+baseEditClasses.get(i));
     }
     
     @EventHandler
@@ -105,11 +110,13 @@ public class ModCore
 		modules.add(new RecipeChangeModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
+		modules.add(new MagicApplesModule());
 		
 		for(int i = 0; i < modules.size(); i++)
 		{
 			modules.get(i).loadConfig(); 
 		} 
+		
 		configHandler.syncConfigIfChanged();
 		MinecraftForge.EVENT_BUS.register(configHandler);  
 	
