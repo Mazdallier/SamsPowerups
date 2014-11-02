@@ -105,7 +105,7 @@ public class ContainerPlayer extends Container
         for (i = 0; i < 4; ++i)
         {
 
-        	slotNumber =  p_i1819_1_.getSizeInventory() - 1 - var4;
+        	slotNumber =  p_i1819_1_.getSizeInventory() - 1 - i;
             System.out.println("("+slotNumber+", armor);");
             final int k = i;
             this.addSlotToContainer(new Slot(p_i1819_1_, slotNumber, 8, 8 + i * 18)
