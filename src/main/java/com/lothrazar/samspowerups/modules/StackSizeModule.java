@@ -61,7 +61,7 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		 
 		for(Item item : to64)
 		{
-			item.setMaxStackSize(64*2);//lol
+			item.setMaxStackSize(64);
 		}
 	}
 

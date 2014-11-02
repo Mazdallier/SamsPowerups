@@ -67,15 +67,17 @@ public class ModCore
 	@SidedProxy(clientSide="com.lothrazar.samspowerups.net.ClientProxy", serverSide="com.lothrazar.samspowerups.net.CommonProxy")
 	public static CommonProxy proxy; 
 	public static SimpleNetworkWrapper network;  
-	public static ConfigHandler configHandler = new ConfigHandler();
-    public static Logger logger;
+	public static ConfigHandler configHandler;
+    public static Logger logger; 
+    private ArrayList<BaseModule> modules;
+    //private boolean inDebugMode = true; 
     
-    private ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
-    private boolean inDebugMode = true; 
-    
-    @EventHandler
-    public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
+    private void logBaseChanges()
     {
+    	//just list out any changes made to base classses, that are intended to be packaged with this mod
+    	logger.info("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
+    	logger.info("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
+
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
     	//silk touch on farm and mushroom and snow
@@ -87,53 +89,46 @@ public class ModCore
     //	BlockPumpkin.class.canPlaceBlockAt = 
     	//door, what did i change there?
     	
+    }
+    
+    @EventHandler
+    public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
+    {
     	logger = event.getModLog();
-
-    	//IHasConfig onBonemeal = new BonemealUseHandler();
-    	
-    	//configHandler.addConfigSection(onBonemeal);
-    	configHandler.onPreInit(event);//now that sections are all ready
-	
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
-
-		//yep, it works. this adds to the default fml logs, such as fml-client-latest.log
-    	logger.info("Sams Powerups pre init lothrazar111");
-    	
-    	
-    	//TODO: all handlers should be inside of a module!?!?
-    	
-    	
-		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
-		MinecraftForge.EVENT_BUS.register(configHandler); 
-	//	MinecraftForge.EVENT_BUS.register(new BedHandler()); 
-		//MinecraftForge.EVENT_BUS.register(onBonemeal); 
-	//	//MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
-		//MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
-	//	MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 
-		////MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
-		//MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
-		//MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
-		
-		GameRegistry.registerFuelHandler(new FuelHandler());
-
-		if(this.inDebugMode) //experimenting with new unfinished features
-		{ 
-			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
-		}
-		
+    	logBaseChanges();
+    	configHandler = new ConfigHandler();
+    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
+    	modules = new ArrayList<BaseModule>();
 		modules.add(new StackSizeModule());
 		modules.add(new UncraftingModule());
 		modules.add(new ExtraCraftingModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new CreativeInventoryModule());
-		BaseModule current;
+		modules.add(new EnderBookModule());
+		
 		for(int i = 0; i < modules.size(); i++)
 		{
-			current = modules.get(i);
-			 
-			current.loadConfig();
-			
+			modules.get(i).loadConfig(); 
+		} 
+		configHandler.syncConfigIfChanged();
+		MinecraftForge.EVENT_BUS.register(configHandler);  
+	
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
+		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
+  
+		GameRegistry.registerFuelHandler(new FuelHandler());//TODO: should this be in a module
+    	
+		/*
+		if(this.inDebugMode) //experimenting with new unfinished features
+		{ 
+			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
+		}
+		*/
+		
+		BaseModule current; 
+		for(int i = 0; i < modules.size(); i++)
+		{
+			current = modules.get(i); 
 			if(current.isEnabled())
 			{	
 				current.init();
@@ -143,31 +138,16 @@ public class ModCore
 					MinecraftForge.EVENT_BUS.register(current.Handler); 
 				}
 			}
-		}
-		 
-	
+		} 
     }
     
     @EventHandler
     public void init (FMLInitializationEvent evt)
-    {
-    	/*
-    	BlockCommandBlockCraftable.Init();
-        BlockFishing.Init();
-        BlockXRay.Init();
-        
-		ItemChestSack.Init();
-		ItemEnderBook.Init();
-		ItemFoodAppleMagic.Init();
-    	ItemRunestone.Init();
-		ItemWandMaster.Init();
-		*/
-
+    { 
+    	//TODO: research, should init - block recipes shoud go here?
      	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
     }
-
-     
-    
+ 
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{ 

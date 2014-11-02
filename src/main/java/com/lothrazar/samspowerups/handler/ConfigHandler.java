@@ -9,31 +9,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ConfigHandler 
-{
+{ 
 	public static Configuration config; 
-	//categories
-	public static final String DEFAULT = ModCore.MODID;
-	public static final String COMMANDS = DEFAULT+"."+"commands";
-	public static final String BLOCKS = DEFAULT +"."+"blocks";
-	public static final String UNCRAFTING = DEFAULT +"."+"uncrafting"; 
-	//public static final String MODID_RECIPES = ModBuildersUnity.MODID+"."+"recipes"; 
-	public static final String ITEMS = DEFAULT +"."+"items"; 
-	//public static final String WANDS = ModBuildersUnity.MODID+"."+"wands"; 
-	public static final String F3 = DEFAULT +"."+"betterDebugScreen"; 
-	public static final String DIFFICULTY = DEFAULT +"."+"extraDifficulty"; 
-	
-	/*
-	private ArrayList<IHasConfig> hasConfig = new ArrayList<IHasConfig>();
-	
-	public void addConfigSection(IHasConfig cs)
-	{
-		hasConfig.add(cs);
-	}
-	*/
+
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{
-		config = new Configuration(event.getSuggestedConfigurationFile()); 
-		syncConfig();
+		config = new Configuration(event.getSuggestedConfigurationFile());  
 	}
 	
 	@SubscribeEvent
@@ -41,23 +22,12 @@ public class ConfigHandler
 	{ 
 		if(eventArgs.modID.equals(ModCore.MODID))
 		{
-			syncConfig();
+			syncConfigIfChanged();
 		} 
     }
-	
-	
-	public  void syncConfig() 
-	{
-		//TODO: does this have to be in some sort of confighandler/eventhandler
-		String category = Configuration.CATEGORY_GENERAL ; 
-	  /*
-		for(int i = 0; i < hasConfig.size(); i++)
-		{
-			hasConfig.get(i).loadConfig(config);
-		}
-		*/
-		//TODO: remember/lookup how it works
-		
+	 
+	public void syncConfigIfChanged() 
+	{ 
 		if(config.hasChanged())
 		{
 			config.save();
@@ -133,27 +103,7 @@ public class ConfigHandler
    
 		showHorseInfo = config.getBoolean("showHorseInfo",category, showHorseInfo,
 			"Show information on the horse you are riding such as speed and jump height."); 
-	
-		
-		*/
-		
-	//	BlockGameRulePowered.loadConfig(config);
- 
-		/*
-		BetterBonemeal.loadConfig(config);
-		 
-		CommandItemLocator.loadConfig(config);
- 
-		CommandItemLocator.loadConfig(config);
- 
- 
-		EasyEnderChest.loadConfig(config); 
-		ExtraCrafting.loadConfig(config);  
- 
-  
-		MagicSort.loadConfig(config);
-		StackSizes.loadConfig(config);	
-	
+	 
 		*/
 
 	 
