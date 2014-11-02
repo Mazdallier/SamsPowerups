@@ -14,36 +14,19 @@ public class GUIHandler implements IGuiHandler
 //package net.minecraft..inventory.ContainerPlayer
 	//  .............client.gui
 
-
-	//existing ones
-	public static final int craftingGui = 1;
-	public static final int furnaceGui = 2;
  
+	//this isnt needed any more, i was forced to do base edits
+	//this doenst fire on existing GUIs only on my new ones,sadface
 	
 	 @Override
 	 public Object getClientGuiElement (int id, EntityPlayer p, World world, int x, int y, int z)
-	 {
-		 System.out.println(id);
-		 ModCore.logger.info("loth1111 "+id);
-
-		 GuiInventory g;
-		// return new MyGuiInventory(p.inventory,world);
-		 /*
-		 if (id == craftingGui)
-		 {
-			 //can we overwrite the existing ui and use my own!?!?!
-		 }*/
-		 
+	 { 
 		 return null;
 		 
 	 }
 	 @Override
 	 public Object getServerGuiElement (int id, EntityPlayer p, World world, int x, int y, int z)
-	 {
-		 System.out.println(id);
-
-		// return new MyContainerPlayer(p.inventory,world.isRemote,p);
-		 
+	 { 
 		  return null;
 	 }
 	

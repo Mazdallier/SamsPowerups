@@ -11,6 +11,7 @@ import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPumpkin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.item.EntityBoat;
@@ -75,6 +76,17 @@ public class ModCore
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
     {
+    	//TODO baseedits:
+    	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
+    	//silk touch on farm and mushroom and snow
+    	// pumkin and fence gate placing rules
+    	//also carpet?
+    	//DOORS: creative iron doors
+    	
+    	//BlockPumpkin p;
+    //	BlockPumpkin.class.canPlaceBlockAt = 
+    	//door, what did i change there?
+    	
     	logger = event.getModLog();
  
     	configHandler.onPreInit(event);
@@ -88,10 +100,11 @@ public class ModCore
 		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
 		MinecraftForge.EVENT_BUS.register(configHandler); 
 		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
+		MinecraftForge.EVENT_BUS.register(new BonemealUseHandler()); 
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
 		MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 
-		//MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
+		MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
 		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
 		MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
 		

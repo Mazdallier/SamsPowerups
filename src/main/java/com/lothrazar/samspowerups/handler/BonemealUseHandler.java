@@ -2,6 +2,10 @@ package com.lothrazar.samspowerups.handler;
  
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.Chat; 
+import com.lothrazar.samspowerups.util.Reference;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,7 +17,9 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class BonemealUseHandler 
 {  
-	/*
+	//TODO: make all non static!!??!?
+	private static boolean isEnabled = true;
+	
 	public static void loadConfig(Configuration config)
 	{  
 		String category = ModCore.MODID; 
@@ -22,14 +28,26 @@ public class BonemealUseHandler
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
 		).getBoolean(true); 
 	}
-	*/
-	public static void onPlayerRightClick(PlayerInteractEvent event)
-  	{
-		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
+	
+	private boolean isUsingBonemeal(ItemStack held )
+	{ 
 		Item heldItem = (held == null) ? null : held.getItem();
 		
-		if(heldItem == null){return;}
-		
+		if(heldItem == null){return false;}
+	 
+		if(heldItem.equals(Items.dye)  && held.getItemDamage() == Reference.dye_bonemeal)
+			return true;
+		else
+			return false;
+	}
+	
+	@SubscribeEvent
+	public void onPlayerRightClick(PlayerInteractEvent event)
+  	{
+		if(isEnabled == false){return;}
+		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
+		if(isUsingBonemeal(held) == false) {return; }
+		 
 		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		if(blockClicked == null || blockClicked == Blocks.air ){return;}
 		
@@ -47,20 +65,9 @@ public class BonemealUseHandler
 	 	}
 
 	 	if ( blockClicked.equals(Blocks.red_flower))
-	 	{ 
-	 		/*
-	 		
+	 	{  
 	 		//the red flower is ALL the flowers
-	 		int poppy = 0;
-	 		int blueorchid = 1;
-	 		int allium = 2;
-	 		int azbluet = 3;
-	 		int redtulip = 4;
-	 		int orangetulip = 5;
-	 		int whitetulip = 6;
-	 		int pinktulip = 5;
-	 		int oxeyedaisy = 8;
- */
+ 
 	 		held.stackSize--;
 	 		
 	 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
