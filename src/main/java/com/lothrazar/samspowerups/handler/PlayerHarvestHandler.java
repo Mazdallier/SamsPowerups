@@ -1,10 +1,7 @@
 package com.lothrazar.samspowerups.handler;
- 
-
-import java.util.ArrayList; 
-
-import com.lothrazar.samspowerups.util.Reference;
-
+  
+import java.util.ArrayList;   
+import com.lothrazar.samspowerups.util.Reference; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,7 +27,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
-public class PlayerHarvestHandler
+public class PlayerHarvestHandler  
 {
 
 	
@@ -82,7 +79,8 @@ public class PlayerHarvestHandler
 			}
 		}
 	}
-	 
+
+ 
 
 
 	 

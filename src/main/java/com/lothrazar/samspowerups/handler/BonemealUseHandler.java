@@ -1,12 +1,9 @@
 package com.lothrazar.samspowerups.handler;
- 
-import com.lothrazar.samspowerups.IHasConfig;
+  
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.Chat; 
-import com.lothrazar.samspowerups.util.Reference;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
+import com.lothrazar.samspowerups.util.Reference; 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,7 +13,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BonemealUseHandler implements IHasConfig
+public class BonemealUseHandler  
 {   
 	private boolean isEnabled = true;
 	

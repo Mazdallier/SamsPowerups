@@ -89,8 +89,9 @@ public class ModCore
     	
     	logger = event.getModLog();
 
-    	IHasConfig onBonemeal = new BonemealUseHandler();
-    	configHandler.addConfigSection(onBonemeal);
+    	//IHasConfig onBonemeal = new BonemealUseHandler();
+    	
+    	//configHandler.addConfigSection(onBonemeal);
     	configHandler.onPreInit(event);//now that sections are all ready
 	
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
@@ -104,7 +105,7 @@ public class ModCore
 		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
 		MinecraftForge.EVENT_BUS.register(configHandler); 
 		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
-		MinecraftForge.EVENT_BUS.register(onBonemeal); 
+		//MinecraftForge.EVENT_BUS.register(onBonemeal); 
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
 		MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 

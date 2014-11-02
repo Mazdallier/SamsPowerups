@@ -1,26 +1,23 @@
 package com.lothrazar.samspowerups.handler;
-
-import com.lothrazar.samspowerups.ModCore;
-
+ 
+import com.lothrazar.samspowerups.ModCore; 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-//import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraftforge.common.config.Property; 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler; 
-//import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
+import cpw.mods.fml.common.Mod.EventHandler;  
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class LockGamemodeHandler 
+public class LockGamemodeHandler  
 {
 	private GameType lockedGameType = GameType.SURVIVAL;//TODO: load from config file
  
-/*
-	private void loadConfig(Configuration config) 
+
+	public void loadConfig(Configuration config) 
 	{ 
 		Property _gamemode = config.get(ModCore.MODID, "gamemode",0);
 			
@@ -41,8 +38,8 @@ public class LockGamemodeHandler
 		//	case 3: lockedGameType = GameType.; break;//spectator not in yet
 		}
 		
-		config.save();
-	}*/
+	
+	}
 		
 	 
 	public void onPlayerTick(PlayerTickEvent event)

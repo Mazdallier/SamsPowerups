@@ -1,10 +1,7 @@
 package com.lothrazar.samspowerups.handler;
 
-import java.util.ArrayList;
-
-import net.minecraftforge.common.config.Configuration; 
-
-import com.lothrazar.samspowerups.IHasConfig;
+import java.util.ArrayList; 
+import net.minecraftforge.common.config.Configuration;  
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.modules.UncraftingModule; 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -25,14 +22,14 @@ public class ConfigHandler
 	public static final String F3 = DEFAULT +"."+"betterDebugScreen"; 
 	public static final String DIFFICULTY = DEFAULT +"."+"extraDifficulty"; 
 	
-	
+	/*
 	private ArrayList<IHasConfig> hasConfig = new ArrayList<IHasConfig>();
 	
 	public void addConfigSection(IHasConfig cs)
 	{
 		hasConfig.add(cs);
 	}
-	
+	*/
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{
 		config = new Configuration(event.getSuggestedConfigurationFile()); 
@@ -53,11 +50,12 @@ public class ConfigHandler
 	{
 		//TODO: does this have to be in some sort of confighandler/eventhandler
 		String category = Configuration.CATEGORY_GENERAL ; 
-	  
+	  /*
 		for(int i = 0; i < hasConfig.size(); i++)
 		{
 			hasConfig.get(i).loadConfig(config);
 		}
+		*/
 		//TODO: remember/lookup how it works
 		
 		if(config.hasChanged())

@@ -2,14 +2,12 @@ package com.lothrazar.samspowerups.handler;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Random;
-
+import java.util.Random;  
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.samspowerups.command.CommandTodoList;
 import com.lothrazar.samspowerups.util.Location;
-import com.lothrazar.samspowerups.util.Reference;
-
+import com.lothrazar.samspowerups.util.Reference; 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -35,7 +33,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ScreenInfoHandler 
+public class ScreenInfoHandler  
 {  
 	
   	private static boolean showDefaultDebug = true ; //TODO: split to left and right
@@ -402,12 +400,7 @@ public class ScreenInfoHandler
 	}
 
 
-	public static void loadConfig(Configuration config, String default1) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+ 
  
 	
 	

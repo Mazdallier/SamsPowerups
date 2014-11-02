@@ -1,10 +1,8 @@
 package com.lothrazar.samspowerups.handler;
  
-import java.util.HashMap;
-
+import java.util.HashMap; 
 import com.lothrazar.samspowerups.ModCore;
-import com.lothrazar.samspowerups.command.CommandFlyHelp;
- 
+import com.lothrazar.samspowerups.command.CommandFlyHelp; 
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
@@ -20,7 +18,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
  
 //@Mod(modid = ModExpensiveFlying.MODID, version = ModExpensiveFlying.VERSION, name = ModExpensiveFlying.MODNAME) 
-public class SurvivalFlyingHandler
+public class SurvivalFlyingHandler// implements IHasConfig
 {
 	//public static final String MODID = "expensiveflying";
 	//public static final String MODNAME = "Lothrazar: Builder's Dream";
@@ -56,7 +54,7 @@ public class SurvivalFlyingHandler
 	*/
 	
 	//load config file.  Or create it and set defaults if not found
-	private void loadConfig(Configuration config)
+	public void loadConfig(Configuration config)
 	{ 
 		config.load();
 		 

@@ -1,13 +1,12 @@
 package com.lothrazar.samspowerups.handler;
 
 import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
-
-import com.lothrazar.samspowerups.util.Reference;
-
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent; 
+import com.lothrazar.samspowerups.util.Reference; 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class BedHandler 
+public class BedHandler //implements IHasConfig
 {
 	
 
@@ -39,5 +38,6 @@ public class BedHandler
 	 
 	}
 
+ 
 
 }
