@@ -20,21 +20,17 @@ public class ChestSackHandler
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
 		if(event.entity.worldObj.isRemote || event.world.isRemote){ return ;}
 		Item heldItem = (held == null) ? null : held.getItem();
-		 
-	 
-		
-		//Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
-		
-		
+		   
 		TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z); 
 		
 		if(container == null){return;}
+		 
+		if((container instanceof TileEntityChest) == false){return;}
 		
 		TileEntityChest chest = (TileEntityChest)container ;
 
 		if(chest == null){return;}
-		
-		
+		 
 		TileEntityChest teAdjacent = null; 
   	  	if(chest.adjacentChestXNeg != null)
   	  	{
