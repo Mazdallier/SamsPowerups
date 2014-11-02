@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups.modules;
  
-import com.lothrazar.samspowerups.config.ConfigCurrentSettings;
+import com.lothrazar.samspowerups.ConfigSettings;
 import com.lothrazar.samspowerups.util.Reference;
 
 import net.minecraft.block.Block;
@@ -28,7 +28,7 @@ public class UncraftingModule extends BaseModule
  
 	public void loadConfig(Configuration config)
 	{ 
-		String category = ConfigCurrentSettings.UNCRAFTING ;
+		String category = ConfigSettings.UNCRAFTING ;
 		
 	 
 		 

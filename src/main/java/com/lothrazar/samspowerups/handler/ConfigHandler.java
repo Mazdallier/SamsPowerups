@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.config;
+package com.lothrazar.samspowerups.handler;
 
 import net.minecraftforge.common.config.Configuration;
 
@@ -26,7 +26,7 @@ public class ConfigHandler
     }
 	
 	
-	 public  void syncConfig() 
+	public  void syncConfig() 
 	{
 		//TODO: does this have to be in some sort of confighandler/eventhandler
 		String category = Configuration.CATEGORY_GENERAL ; 

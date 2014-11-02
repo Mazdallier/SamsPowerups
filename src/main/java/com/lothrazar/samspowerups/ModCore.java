@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List; 
 import com.lothrazar.samspowerups.block.*;
 import com.lothrazar.samspowerups.command.*; 
-import com.lothrazar.samspowerups.config.ConfigCurrentSettings;
 import com.lothrazar.samspowerups.modules.*;
 import com.lothrazar.samspowerups.net.*; 
 import com.lothrazar.samspowerups.handler.*;
@@ -78,7 +77,7 @@ public class ModCore
     {
     	logger = event.getModLog();
 
-    	ConfigCurrentSettings.Handler.onPreInit(event);
+    	ConfigSettings.Handler.onPreInit(event);
 	
 		 
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
@@ -89,7 +88,7 @@ public class ModCore
     	logger.info("Sams Powerups pre init lothrazar111");
     	
 		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
-		MinecraftForge.EVENT_BUS.register(ConfigCurrentSettings.Handler); 
+		MinecraftForge.EVENT_BUS.register(ConfigSettings.Handler); 
 		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 

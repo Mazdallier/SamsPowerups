@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.config;
+package com.lothrazar.samspowerups.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
