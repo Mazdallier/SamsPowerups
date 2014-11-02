@@ -19,8 +19,9 @@ public class ChestSackHandler
 	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
 		if(event.entity.worldObj.isRemote || event.world.isRemote){ return ;}
-		//Item heldItem = (held == null) ? null : held.getItem();
+		Item heldItem = (held == null) ? null : held.getItem();
 		 
+	 
 		
 		//Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		
@@ -66,6 +67,7 @@ public class ChestSackHandler
 	@SuppressWarnings("unused")
 	private void sortFromSackToChestEntity(TileEntityChest chest, ItemStack held, PlayerInteractEvent event)
   	{
+		if(held.stackTagCompound==null){return;}
 	  
 		int[] itemids = held.stackTagCompound.getIntArray("itemids");
 		int[] itemdmg = held.stackTagCompound.getIntArray("itemdmg");
@@ -219,6 +221,8 @@ public class ChestSackHandler
 		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
 		  
+		if( held.stackTagCompound==null){return;}
+		
 		int[] itemids = held.stackTagCompound.getIntArray("itemids");
 		int[] itemdmg = held.stackTagCompound.getIntArray("itemdmg");
 		int[] itemqty = held.stackTagCompound.getIntArray("itemqty");

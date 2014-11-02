@@ -16,6 +16,7 @@ public class KeyInputHandler
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
     { 
+		
         if(ClientProxy.keyShiftUp.isPressed() )
         { 	    
         	 ModCore.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  

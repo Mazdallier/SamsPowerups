@@ -67,7 +67,7 @@ public class ModCore
 	public static CommonProxy proxy; 
 	public static SimpleNetworkWrapper network;  
 	public static ConfigHandler configHandler = new ConfigHandler();
-    private static Logger logger;
+    public static Logger logger;
     
     private ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
     private boolean inDebugMode = true; 
@@ -79,8 +79,7 @@ public class ModCore
  
     	configHandler.onPreInit(event);
 	
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-		 
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
 		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
 
 		//yep, it works. this adds to the default fml logs, such as fml-client-latest.log
@@ -92,7 +91,7 @@ public class ModCore
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
 		MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 
-		MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
+		//MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
 		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
 		MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
 		
@@ -116,7 +115,13 @@ public class ModCore
 			}
 		}
 		 
-		BlockCommandBlockCraftable.Init();
+	
+    }
+    
+    @EventHandler
+    public void init (FMLInitializationEvent evt)
+    {
+    	BlockCommandBlockCraftable.Init();
         BlockFishing.Init();
         BlockXRay.Init();
         
@@ -125,12 +130,9 @@ public class ModCore
 		ItemFoodAppleMagic.Init();
     	ItemRunestone.Init();
 		ItemWandMaster.Init();
-    }
-    
-    @EventHandler
-    public void init (FMLInitializationEvent evt)
-    {
-    	 NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
+		
+
+     	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
     }
 
      
