@@ -57,4 +57,9 @@ public class CreativeInventoryModule extends BaseModule
 		return true;
 	}
 
+	@Override
+	public String getName() { 
+		return "Creative Inventory more items";
+	}
+
 }

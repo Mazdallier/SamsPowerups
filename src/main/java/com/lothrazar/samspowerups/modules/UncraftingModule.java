@@ -597,4 +597,9 @@ public class UncraftingModule extends BaseModule
 	{
 		return true;
 	}
+
+	@Override
+	public String getName() { 
+		return "Uncrafting";
+	}
 }

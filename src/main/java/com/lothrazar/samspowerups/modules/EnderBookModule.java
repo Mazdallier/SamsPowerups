@@ -20,9 +20,7 @@ public class EnderBookModule extends BaseModule
 	public EnderBookHandler Handler = new EnderBookHandler();
 	
 	public void init()
-	{
-	 
-		 
+	{ 
 		item = new ItemEnderBook();
 		item.setTextureName(ModCore.MODID+":book_ender").setUnlocalizedName("book_ender");
 		GameRegistry.registerItem(item,  "book_ender");   
@@ -33,17 +31,13 @@ public class EnderBookModule extends BaseModule
 			, 'e', Items.ender_pearl
 			, 'b', Items.book);
 		
-		GameRegistry.addSmelting(item, new ItemStack(Items.ender_pearl,8),0);
-		
-		
-		
+		GameRegistry.addSmelting(item, new ItemStack(Items.ender_pearl,8),0); 
 	}
  
 	private boolean enabled;
 	
 	public void loadConfig()
-	{
-		
+	{ 
 		String category = ModCore.MODID;//Config.ITEMS; 
 	 
 		enabled = ConfigHandler.config.getBoolean(category, "enderBook",true,
@@ -56,6 +50,11 @@ public class EnderBookModule extends BaseModule
 	@Override
 	public boolean isEnabled() {
 		return enabled;
+	}
+
+	@Override
+	public String getName() { 
+		return "Ender Book Teleportation";
 	}
 
 

@@ -241,5 +241,10 @@ public class ExtraCraftingModule extends BaseModule
 	{ 
 		return true;
 	}
+
+	@Override
+	public String getName() { 
+		return "Extra Craftables";
+	}
    
 }

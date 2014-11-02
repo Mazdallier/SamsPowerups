@@ -168,4 +168,10 @@ public class RecipeChangeModule extends BaseModule
 	{
 		return true;
 	}
+
+
+	@Override
+	public String getName() { 
+		return "Recipe changer: smooth stone tools and more";
+	}
 }

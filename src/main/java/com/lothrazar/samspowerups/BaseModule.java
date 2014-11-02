@@ -8,6 +8,8 @@ public abstract class BaseModule
 	
 	public abstract void loadConfig();
 	
+	public abstract String getName();
+	
 	public abstract void init();
 	 
 	public abstract boolean isEnabled() ;

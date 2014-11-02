@@ -70,7 +70,7 @@ public class ModCore
 	public static ConfigHandler configHandler;
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
-    //private boolean inDebugMode = true; 
+    private boolean inSandboxMode = false; 
     
     private void logBaseChanges()
     {
@@ -118,12 +118,11 @@ public class ModCore
   
 		GameRegistry.registerFuelHandler(new FuelHandler());//TODO: should this be in a module
     	
-		/*
-		if(this.inDebugMode) //experimenting with new unfinished features
+		if(inSandboxMode) //experimenting with new unfinished features
 		{ 
+	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
 		}
-		*/
 		
 		BaseModule current; 
 		for(int i = 0; i < modules.size(); i++)
@@ -137,6 +136,8 @@ public class ModCore
 				{
 					MinecraftForge.EVENT_BUS.register(current.Handler); 
 				}
+				
+				logger.info("Init Module : " + current.getName()); 
 			}
 		} 
     }
