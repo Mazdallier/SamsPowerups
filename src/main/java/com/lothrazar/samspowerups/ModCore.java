@@ -155,20 +155,7 @@ public class ModCore
 	public static final String keyMenuUpName = "key.columnshiftup";
 	public static final String keyMenuDownName = "key.columnshiftdown";
 	public static final String keyCategory = "key.categories.inventory";
-	
-	@SubscribeEvent  
-	public void onEntityInteractEvent(EntityInteractEvent event)
-	{ 
-		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-	 
-		if(held != null 
-				 
-				&& held.getItem() == ItemWandMaster.itemWand )
-		{
-			ItemWandMaster.onEntityInteractEvent(event); 
-		}  
-	}
-	
+
 	
 
 	@SubscribeEvent
