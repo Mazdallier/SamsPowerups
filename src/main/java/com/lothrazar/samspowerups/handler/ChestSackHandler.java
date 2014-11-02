@@ -211,7 +211,7 @@ public class ChestSackHandler
 	
 
 	@SubscribeEvent
-	public static void onPlayerRightClick(PlayerInteractEvent event)
+	public void onPlayerRightClick(PlayerInteractEvent event)
   	{  
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
 	 
