@@ -14,18 +14,7 @@ import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class BonemealUseHandler  
-{   
-	private boolean isEnabled = true;
-	
-	public void loadConfig(Configuration config)
-	{  
-		String category = ModCore.MODID; 
-
-		isEnabled = config.get(category, "bonemealAllFlowers",true,
-				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
-		).getBoolean(true); 
-	}
-	
+{    
 	private boolean isUsingBonemeal(ItemStack held )
 	{ 
 		Item heldItem = (held == null) ? null : held.getItem();
@@ -40,8 +29,7 @@ public class BonemealUseHandler
 	
 	@SubscribeEvent
 	public void onPlayerRightClick(PlayerInteractEvent event)
-  	{
-		if(isEnabled == false){return;}
+  	{ 
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
 		if(isUsingBonemeal(held) == false) {return; }
 		 

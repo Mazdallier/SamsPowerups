@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samspowerups.handler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -21,7 +21,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-import com.lothrazar.samspowerups.handler.ItemWandMaster;
+import com.lothrazar.samspowerups.item.ItemChestSack;
 import com.lothrazar.samspowerups.util.Chat;
 import com.lothrazar.samspowerups.util.Reference;
 

@@ -104,13 +104,16 @@ public class ModCore
     	configHandler = new ConfigHandler();
     	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
     	modules = new ArrayList<BaseModule>();
-		modules.add(new StackSizeModule());
-		modules.add(new UncraftingModule());
+
+		modules.add(new BetterBonemealModule());
 		modules.add(new ExtraCraftingModule());
-		modules.add(new RecipeChangeModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new MagicApplesModule());
+		modules.add(new RecipeChangeModule());
+		modules.add(new RunestoneModule());
+		modules.add(new StackSizeModule());
+		modules.add(new UncraftingModule());
 		
 		for(int i = 0; i < modules.size(); i++)
 		{

@@ -3,7 +3,6 @@ package com.lothrazar.samspowerups.handler;
 import com.google.common.collect.Sets;
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.item.ItemChestSack;
-import com.lothrazar.samspowerups.item.WandHandler;
 import com.lothrazar.samspowerups.util.Reference;
  
 
