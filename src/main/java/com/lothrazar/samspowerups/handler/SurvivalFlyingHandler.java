@@ -27,7 +27,7 @@ public class SurvivalFlyingHandler
 	//public static final String VERSION = "1.7.2";
 
 	//@Instance(value = ModExpensiveFlying.MODID)
-	public static SurvivalFlyingHandler instance;
+	//public static SurvivalFlyingHandler instance;
 	
 	 
 	public static int StartFlyingLevel = 2;
@@ -141,6 +141,7 @@ public class SurvivalFlyingHandler
  
 	//all the heavy lifting happens here
  
+	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event)
 	{   
 		//use the players display name as the hashmap key for the flyCountdown

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.samspowerups.command.CommandTodoList;
+import com.lothrazar.samspowerups.util.Location;
 import com.lothrazar.samspowerups.util.Reference;
 
 import net.minecraft.client.Minecraft;
@@ -36,7 +38,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class ScreenInfoHandler 
 {  
 	
-  	public static boolean showDefaultDebug = true ; 
+  	private static boolean showDefaultDebug = true ; //TODO: split to left and right
 	private static boolean showGameRules = true;
 	private static boolean showSlimeChunk = true;
 	private static boolean showVillageInfo = true; 
@@ -47,7 +49,96 @@ public class ScreenInfoHandler
 		return Minecraft.getMinecraft().gameSettings.showDebugInfo;
 	}
 	
-	public static void AddLeftInfo(ArrayList<String> side)
+	
+	@SubscribeEvent
+	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
+	{
+		//is F3 toggled on?
+		if(ScreenInfoHandler.showDebugInfo() == false)
+		{
+			//if we ever wanted to add text to non-debug screen, do it here
+			return;
+		}
+		//config file can disable all this, which keeps the original screen un-cleared
+		if(ScreenInfoHandler.showDefaultDebug == false)
+		{
+			event.left.clear();
+			event.right.clear();
+		}
+		
+		AddLeftInfo(event.left);
+		AddRightInfo(event.right);
+		
+		
+		//simplewp
+		if(ScreenInfoHandler.showDebugInfo() == false)
+	    {
+ 
+	    	EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
+				    	
+		//	event.right.add("");
+ 
+			//NBTTagCompound c = Minecraft.getMinecraft().thePlayer.getEntityData();
+			
+			//if(c == null) c = new NBTTagCompound();
+			 
+	    	ArrayList<String> saved = CommandSimpleWaypoints.GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
+
+			//int saved = c.getInteger(CommandSimpleWaypoints.KEY_CURRENT);
+	    	
+	    	if(saved.size() > 0 && saved.get(0) != null)
+	    	{
+	    	//	event.right.add(saved.get(0));
+	    		int index = 0;
+	    		try
+	    		{
+		    		index = Integer.parseInt( saved.get(0) );
+	    		}
+	    		catch(NumberFormatException e) 
+	    		{
+	    			System.out.println("NAN"  );
+	    			return;
+	    		}// do nothing, its allowed to be a string
+	    		
+	    		if(index <= 0){return;}
+	    		
+	    		Location loc = null;
+
+	    		if(saved.size() <= index) {return;}
+	    		
+	    		String sloc = saved.get(index);
+	    		
+	    		if(sloc == null || sloc.isEmpty()) {return;}
+	    	 
+	    		if( index < saved.size() && saved.get(index) != null) loc = new Location(sloc);
+	    		
+	    		if(loc != null)
+	    		{ 
+	    			//return  showName +Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + dim;	
+	    			
+	    			if(p.dimension != loc.dimension){return;}
+	    			
+	    			double dX = p.posX - loc.X;
+	    			double dZ = p.posZ - loc.Z;
+	    			
+	    			int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
+	    			 
+	    			String showName = "Distance "+dist+ " from waypoint ["+index+"] " + loc.name;	
+	    			
+	    			boolean sideRight=true;
+	    			if(sideRight)
+	    				event.right.add(showName);
+	    			else 
+	    				event.left.add(showName);
+	    		} 
+	    	}
+	    } 
+	} 
+	
+	
+	
+	
+	private void AddLeftInfo(ArrayList<String> side)
 	{ 
   
 		//the current client side player, not SMP
@@ -266,7 +357,7 @@ public class ScreenInfoHandler
 	 	} 
 	}
 
-	public static void AddRightInfo(ArrayList<String> side)
+	private void AddRightInfo(ArrayList<String> side)
 	{ 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 

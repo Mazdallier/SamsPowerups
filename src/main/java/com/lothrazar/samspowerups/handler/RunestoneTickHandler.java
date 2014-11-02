@@ -7,11 +7,12 @@ import net.minecraft.potion.PotionEffect;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.samspowerups.util.Reference;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class RunestoneTickHandler 
 {
-
+	@SubscribeEvent
 	public static void onPlayerTick(PlayerTickEvent event)
 	{       
 		//no need to check for null here, it is done in the method
@@ -21,47 +22,7 @@ public class RunestoneTickHandler
 		 
 		
 	}// end player tick event 
-	/*
-	private static boolean isWearingFlyingRune(PlayerTickEvent event)
-	{ 
-		ItemStack t =  event.player.inventory.getStackInSlot(SLOT_RUNESTONE); 
-		ItemRunestone itemRunestone ;
-		Item rune ;
-	 
-		 rune = (t==null)?null : t.getItem(); 
-		if(rune != null && rune instanceof ItemRunestone)
-		{
-			itemRunestone = (ItemRunestone)rune;
-			for(int i = 0; i < itemRunestone.effects.length; i++)
-			{
-				if(itemRunestone.effects[i] == FLYING){return true;}
-			} 
-		}
- 
-		return false;
-	}
-	*/
 	
-	/*
-	private static boolean isWearingHorseRune(PlayerTickEvent event)
-	{ 
-		ItemStack t =  event.player.inventory.getStackInSlot(SLOT_RUNESTONE); 
-		ItemRunestone itemRunestone ;
-		Item rune ;
-	 
-		 rune = (t==null)?null : t.getItem(); 
-		if(rune != null && rune instanceof ItemRunestone)
-		{
-			itemRunestone = (ItemRunestone)rune;
-			for(int i = 0; i < itemRunestone.effects.length; i++)
-			{
-				if(itemRunestone.effects[i] == HORSE){return true;}
-			} 
-		}
- 
-		return false;
-	}
-	 */
 	
 	private static void applyRunestoneToPlayer(PlayerTickEvent event,int slotNumber)
 	{   
@@ -126,5 +87,56 @@ public class RunestoneTickHandler
 			event.player.inventory.setInventorySlotContents(slotNumber, new ItemStack(Items.nether_star));
 		} 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	private static boolean isWearingFlyingRune(PlayerTickEvent event)
+	{ 
+		ItemStack t =  event.player.inventory.getStackInSlot(SLOT_RUNESTONE); 
+		ItemRunestone itemRunestone ;
+		Item rune ;
+	 
+		 rune = (t==null)?null : t.getItem(); 
+		if(rune != null && rune instanceof ItemRunestone)
+		{
+			itemRunestone = (ItemRunestone)rune;
+			for(int i = 0; i < itemRunestone.effects.length; i++)
+			{
+				if(itemRunestone.effects[i] == FLYING){return true;}
+			} 
+		}
+ 
+		return false;
+	}
+	*/
+	
+	/*
+	private static boolean isWearingHorseRune(PlayerTickEvent event)
+	{ 
+		ItemStack t =  event.player.inventory.getStackInSlot(SLOT_RUNESTONE); 
+		ItemRunestone itemRunestone ;
+		Item rune ;
+	 
+		 rune = (t==null)?null : t.getItem(); 
+		if(rune != null && rune instanceof ItemRunestone)
+		{
+			itemRunestone = (ItemRunestone)rune;
+			for(int i = 0; i < itemRunestone.effects.length; i++)
+			{
+				if(itemRunestone.effects[i] == HORSE){return true;}
+			} 
+		}
+ 
+		return false;
+	}
+	 */
 	
 }
