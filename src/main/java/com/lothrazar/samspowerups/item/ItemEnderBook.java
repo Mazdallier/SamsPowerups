@@ -32,8 +32,9 @@ public class ItemEnderBook extends ItemTool
 {
 	public static ItemEnderBook item;
 
+	public static EnderBookHandler Handler = new EnderBookHandler();
  
-	private static String KEY_LOC = "location";
+	public static String KEY_LOC = "location";
 	
 	private static int DURABILITY = 50;
 	
@@ -102,74 +103,6 @@ public class ItemEnderBook extends ItemTool
 	     } 
 	 } 
 	
-	public static void onPlayerRightClick(PlayerInteractEvent event)
-  	{
-		//if(event.entityPlayer.isSneaking() == false){ return;}
-	 
-		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem(); 
-		
-		if (itemStack.stackTagCompound == null) itemStack.stackTagCompound = new NBTTagCompound();
-
-		BiomeGenBase biome = event.world.getBiomeGenForCoords((int)event.entityPlayer.posX, (int)event.entityPlayer.posZ);
-
-		
-		int slot = event.entityPlayer.inventory.currentItem+1;
-    	Location loc = new Location(slot
-    			,event.entityPlayer.posX
-    			,event.entityPlayer.posY
-    			,event.entityPlayer.posZ
-    			,event.entityPlayer.dimension 
-    			,biome.biomeName
-    			);
-    	
-    	String KEY = KEY_LOC + "_" + slot;
-    	
-    	itemStack.stackTagCompound.setString(KEY, loc.toCSV());
-    	 
-  	}
-	
-	public static void onPlayerLeftClick(PlayerInteractEvent event)
-  	{ 
-		ItemStack enderBookInstance = event.entityPlayer.getCurrentEquippedItem(); 
-		 
-		if (enderBookInstance.stackTagCompound == null) {return;}
-
-		int slot = event.entityPlayer.inventory.currentItem+1;
-    	String KEY = KEY_LOC + "_" + slot;
-    	
-		String csv = enderBookInstance.stackTagCompound.getString(KEY);
-		
-		if(csv == null || csv.isEmpty()) 
-		{
-			//Relay.addChatMessage(event.entityPlayer, "No location saved at "+KEY);
-			return;
-			}
-		
-		Location loc = new Location(csv);
-		
-        //int d = enderBookInstance.stackTagCompound.getInteger("d"); 
-        
-		if(event.entityPlayer.dimension != 0)
-		{
-			//Chat.addMessage(event.entityPlayer, "Only useable in the overworld");
-			return;
-		}
-	
-		if(loc.dimension == 1)
-		{
-			event.entityPlayer.setFire(4);
-		} 
-		else if(loc.dimension == -1)
-		{
-			event.entityPlayer.heal(-15);
-		}
-		 
-  
-  
-	    event.entityPlayer.setPositionAndUpdate(loc.X,loc.Y,loc.Z); 
-
-		 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
-  	}
 	/*
 	public static void loadConfig(Configuration config)
 	{

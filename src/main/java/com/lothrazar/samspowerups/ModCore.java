@@ -403,40 +403,13 @@ public class ModCore
 		 
 		if(LEFT_CLICK_BLOCK) 
 		{ 
-			onPlayerLeftClick(event,held); 
+			onPlayerLeftClick(event,held);  
 		}
 		else //right click //boolean RIGHT_CLICK_BLOCK = ( event.action.equals( PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) );
 		{  
-			onPlayerRightClick(event,held);
-			
-			//entity living handler
-			
-			//cauldrons with lava or something?
-			//(event.entity.worldObj.getBlock(event.x, event.y, event.z) == Blocks.cauldron)
-			//BlockCauldron block = (BlockCauldron)event.entity.worldObj.getBlock(event.x, event.y, event.z);
-			//int cauldronFill = event.entity.worldObj.getBlockMetadata(event.x, event.y, event.z);
-		// int cauldronFillSet = BlockCauldron.func_150027_b(cauldronFill);
-			
-			//or cancel the event
-			//event.useBlock = Event.Result.DENY;
-			
+			onPlayerRightClick(event,held); 
 		} 
-		
-		
-	   
-		    
-	    if(heldItem == ItemEnderBook.item)
-	    { 
-		    if(LEFT_CLICK_BLOCK)
-		    { 
-		    	ItemEnderBook.onPlayerLeftClick(event);
-		    }
-		    else //right click //boolean RIGHT_CLICK_BLOCK = ( event.action.equals( PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) );
-		    { 
-		    	ItemEnderBook.onPlayerRightClick(event);
-		    }
-	    }
-	   
+		 
   	} 
 	
 	private void onPlayerRightClick(PlayerInteractEvent event,ItemStack held)
@@ -456,12 +429,16 @@ public class ModCore
 		} 
 		else if( heldItem == ItemChestSack.item && blockClicked == Blocks.chest) //&& ItemChestSack.isEnabled()
 		{
-			ItemChestSack.onPlayerRightClick(event);
+			ItemChestSack.Handler.onPlayerRightClick(event);
 		} 
 		else if( heldItem == ItemChestSack.item ) //&& ItemChestSack.isEnabled()
 		{
-			ItemChestSack.onPlayerRightClick(event);
+			ItemChestSack.Handler.onPlayerRightClick(event);
 		} 
+		else if(heldItem == ItemEnderBook.item)
+	    {  
+	    	ItemEnderBook.Handler.onPlayerRightClick(event); 
+	    }
 		//if bonemeal
 
 		else if( heldItem == Items.dye && 
@@ -469,6 +446,19 @@ public class ModCore
 		{
 			BonemealUseHandler.onPlayerRightClick(event); 
 		} 
+		
+		
+		
+		//entity living handler
+		
+		//cauldrons with lava or something?
+		//(event.entity.worldObj.getBlock(event.x, event.y, event.z) == Blocks.cauldron)
+		//BlockCauldron block = (BlockCauldron)event.entity.worldObj.getBlock(event.x, event.y, event.z);
+		//int cauldronFill = event.entity.worldObj.getBlockMetadata(event.x, event.y, event.z);
+	// int cauldronFillSet = BlockCauldron.func_150027_b(cauldronFill);
+		
+		//or cancel the event
+		//event.useBlock = Event.Result.DENY;
 	}
 	
 	private void onPlayerLeftClick(PlayerInteractEvent event,ItemStack held)
@@ -486,8 +476,12 @@ public class ModCore
 		}  
 		else if( heldItem == ItemChestSack.item ) //&& ItemChestSack.isEnabled()
 		{
-			ItemChestSack.onPlayerLeftClick(event);
+			ItemChestSack.Handler.onPlayerLeftClick(event);
 		} 
+		else if(heldItem == ItemEnderBook.item)
+	    {  
+	    	ItemEnderBook.Handler.onPlayerLeftClick(event);
+	    }
 	}
 	
  

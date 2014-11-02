@@ -1,7 +1,9 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samspowerups.handler;
 
 import com.google.common.collect.Sets;
 import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.item.ItemChestSack;
+import com.lothrazar.samspowerups.item.WandHandler;
 import com.lothrazar.samspowerups.util.Reference;
  
 
@@ -33,6 +35,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ItemWandMaster extends ItemTool
 {
+	public static WandHandler Handler = new WandHandler();
+	
 	public static ItemWandMaster itemWand;
 	private static int RADIUS = 128;
 	private static int DURABILITY = 50;

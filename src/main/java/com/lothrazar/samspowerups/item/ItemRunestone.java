@@ -120,15 +120,7 @@ public class ItemRunestone extends ItemTool
 				, 'e', Blocks.lapis_block // new ItemStack(Items.dye,1,Reference.dye_lapis)//LAPIS
 				, 'a', Items.nether_star  );   
 		GameRegistry.addSmelting(rune_water, new ItemStack(Items.nether_star,1),0);	
-		  /*
-		rune_horse = new ItemRunestone(new int[]{Reference.potion_HUNGER,HORSE},new int[]{I,I},shiny);   
-		rune_horse.setUnlocalizedName("rune_horse" ).setTextureName(MODID+":rune_horse" ); 
-		GameRegistry.registerItem(rune_horse,  "rune_horse" ); 
-		GameRegistry.addRecipe(new ItemStack(rune_horse), "eee", "eae","eee"
-				, 'e', Items.saddle  
-				, 'a', Items.nether_star  );    
-		GameRegistry.addSmelting(rune_horse, new ItemStack(Items.nether_star,1),0);	
-		  */
+		 
 		rune_speed = new ItemRunestone(new int[]{Reference.potion_SPEED,Reference.potion_FATIGUE},new int[]{II,II},not_shiny);  
 		rune_speed.setUnlocalizedName("rune_speed").setTextureName(MODID+":rune_speed"); 
 		GameRegistry.registerItem(rune_speed,  "rune_speed"); 
@@ -144,20 +136,7 @@ public class ItemRunestone extends ItemTool
 				, 'e', Items.blaze_rod
 				, 'a', Items.nether_star  );    
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
-		 /*
-		if(flyingRuneEnabled)
-		{
-			
-		
-			rune_fly = new ItemRunestone(new int[]{FLYING,Reference.potion_WEAKNESS,Reference.potion_FATIGUE},new int[]{FLYING,V,V},shiny);  
-			rune_fly.setUnlocalizedName("rune_fly" ).setTextureName(MODID+":rune_fly"); 
-			GameRegistry.registerItem(rune_fly,  "rune_fly" ); 
-			GameRegistry.addRecipe(new ItemStack(rune_fly), "eee", "eae","eee"
-					, 'e', Blocks.emerald_block
-					, 'a', Items.nether_star  ); 
-			GameRegistry.addSmelting(rune_fly, new ItemStack(Items.nether_star,1),0);	
-		}
-		*/
+		 
 	} 
    
 	

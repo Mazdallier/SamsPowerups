@@ -20,6 +20,7 @@ import net.minecraftforge.common.config.Property;
 public class BlockFishing extends Block
 {
 	private static boolean isEnabled = true;
+	 
  
 	public BlockFishing()
 	{
@@ -58,7 +59,7 @@ public class BlockFishing extends Block
 	}*/
 	
 	@Override
-	 public void updateTick(World worldObj, int xCoord, int yCoord, int zCoord, Random rand)
+	public void updateTick(World worldObj, int xCoord, int yCoord, int zCoord, Random rand)
     {  
 		// Relay.addChatMessage(worldObj, "update tick on fisher");
 		 if(worldObj.getBlock(xCoord+1, yCoord, zCoord).equals(Blocks.water) == false
