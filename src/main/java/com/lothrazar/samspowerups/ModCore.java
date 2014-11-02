@@ -47,6 +47,7 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.BlockLilyPad;
 import org.apache.logging.log4j.Logger;
@@ -94,6 +95,8 @@ public class ModCore
 		MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
 		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
 		MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
+		
+		GameRegistry.registerFuelHandler(new FuelHandler());
 
 		if(this.inDebugMode) //experimenting with new unfinished features
 		{ 
@@ -123,7 +126,15 @@ public class ModCore
     	ItemRunestone.Init();
 		ItemWandMaster.Init();
     }
- 
+    
+    @EventHandler
+    public void init (FMLInitializationEvent evt)
+    {
+    	 NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
+    }
+
+     
+    
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{ 

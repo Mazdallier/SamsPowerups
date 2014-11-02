@@ -1,0 +1,33 @@
+package com.lothrazar.samspowerups.handler;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import cpw.mods.fml.common.network.IGuiHandler;
+
+public class GUIHandler implements IGuiHandler
+{
+
+	//existing ones
+	public static final int craftingGui = 1;
+	public static final int furnaceGui = 2;
+	
+	 @Override
+	 public Object getClientGuiElement (int id, EntityPlayer p, World world, int x, int y, int z)
+	 {
+		 System.out.println(id);
+		 if (id == craftingGui)
+		 {
+			 //can we overwrite the existing ui and use my own!?!?!
+		 }
+		 
+		 return null;
+	 }
+	 @Override
+	 public Object getServerGuiElement (int id, EntityPlayer p, World world, int x, int y, int z)
+	 {
+		 System.out.println(id);
+		 
+		 return null;
+	 }
+	
+}
