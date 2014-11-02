@@ -110,6 +110,7 @@ public class ModCore
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new MagicApplesModule());
+		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new RunestoneModule());
 		modules.add(new StackSizeModule());

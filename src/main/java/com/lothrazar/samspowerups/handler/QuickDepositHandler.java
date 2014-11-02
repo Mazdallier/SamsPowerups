@@ -14,28 +14,12 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
  
-public class ChestSortHandler
-{ 
-	private boolean isEnabled;
-	public void loadConfig(Configuration config)
-	{ 
-		String category = ModCore.MODID ; 
-		  
-		isEnabled = config.get(category,"magicSort", isEnabled,
-			"Shift right click any chest with an empty hand, and it tries to safely deposit and sort any items that belong.  " +
-			"Will not deposit items from your hotbar, and will not deposit into empty slots in the chest, it matches what is already there."
-		).getBoolean(isEnabled);
-		  
- 
-	}
-   
+public class QuickDepositHandler
+{   
   	@SuppressWarnings("unused")
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)
-  	{     
-
-  	 
- 
+  	{      
   	  	TileEntity te =	event.entity.worldObj.getTileEntity(event.x, event.y, event.z);
  
 	  	//no tile entity found for this chest?
@@ -79,7 +63,7 @@ public class ChestSortHandler
 		 
    	}//end player interact event  
  
-  	private static void sortFromPlayerToChestEntity(TileEntityChest chest, EntityPlayer entityPlayer)
+  	private void sortFromPlayerToChestEntity(TileEntityChest chest, EntityPlayer entityPlayer)
   	{
   		int totalItemsMoved = 0;
   		//int totalTypesMoved = 0;
