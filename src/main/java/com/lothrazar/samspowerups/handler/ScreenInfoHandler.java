@@ -400,6 +400,12 @@ public class ScreenInfoHandler
 		} 
 		 
 	}
+
+
+	public static void loadConfig(Configuration config, String default1) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
  

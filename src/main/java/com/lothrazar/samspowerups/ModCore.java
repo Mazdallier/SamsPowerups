@@ -54,32 +54,30 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = ModCore.MODID, version = ModCore.VERSION)
 public class ModCore
 {
-	@SidedProxy(clientSide="com.lothrazar.samspowerups.net.ClientProxy", serverSide="com.lothrazar.samspowerups.net.CommonProxy")
-	public static CommonProxy proxy; 
+    public static final String MODID = "samspowerups"; 
+    public static final String VERSION = "1.7.10-1.0"; 
     @Instance(value = ModCore.MODID)
     public static ModCore instance;
     public static ModCore getInstance()
     {
     	return instance;
-    }
-    public static final String MODID = "samspowerups"; 
-    public static final String VERSION = "1.7.10-1.0";  
-	public static SimpleNetworkWrapper network; 
-
+    } 
+	@SidedProxy(clientSide="com.lothrazar.samspowerups.net.ClientProxy", serverSide="com.lothrazar.samspowerups.net.CommonProxy")
+	public static CommonProxy proxy; 
+	public static SimpleNetworkWrapper network;  
+	public static ConfigHandler configHandler = new ConfigHandler();
     private static Logger logger;
+    
     private ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
     private boolean inDebugMode = true; 
     
-   
- 
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
     {
     	logger = event.getModLog();
-
-    	ConfigSettings.Handler.onPreInit(event);
+ 
+    	configHandler.onPreInit(event);
 	
-		 
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		 
 		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
@@ -88,7 +86,7 @@ public class ModCore
     	logger.info("Sams Powerups pre init lothrazar111");
     	
 		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
-		MinecraftForge.EVENT_BUS.register(ConfigSettings.Handler); 
+		MinecraftForge.EVENT_BUS.register(configHandler); 
 		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 

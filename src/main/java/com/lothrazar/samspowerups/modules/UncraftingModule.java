@@ -1,8 +1,7 @@
 package com.lothrazar.samspowerups.modules;
- 
-import com.lothrazar.samspowerups.ConfigSettings;
-import com.lothrazar.samspowerups.util.Reference;
-
+  
+import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.util.Reference; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -26,62 +25,63 @@ public class UncraftingModule extends BaseModule
 	private static boolean natureblocks;
 	private static boolean glass;
  
-	public void loadConfig(Configuration config)
-	{ 
-		String category = ConfigSettings.UNCRAFTING ;
-		
-	 
-		 
-		stairs = config.get(category, "stairs",true,
+	public static void loadConfig(Configuration config, String category)
+	{  
+		/*	ModCore.settings.showDefaultDebug = config.getBoolean("showDefaultDebug",DEFAULT, true,
+				"Set to false if you want to remove everything on the default debug screen (F3). " +
+				"This lets you play without knowing your XYZ coordinates, an extra challenge."
+				);
+		*/
+		stairs = config.getBoolean(category, "stairs",true,
 			"Craft stairs back into blocks using a 4x4 pattern."
-		).getBoolean(true); 
+		); 
 		 
-		slabs = config.get(category, "slabs",true,
+		slabs = config.getBoolean(category, "slabs",true,
 			"Uncraft slabs back into blocks using the trapdoor recipe."
-		).getBoolean(true); 
+		); 
 
-		woodstuffs = config.get(category, "woodstuffs",true,
+		woodstuffs = config.getBoolean(category, "woodstuffs",true,
 			"Surround a plank with sticks to get planks back.  Also deconstruct: ladder, sign, crafting table, " +
 			"painting, item frame, bookshelf, book, fence, fence gate, door."
-		).getBoolean(true); 
+		); 
 
-		logs = config.get(category, "logs",true,
+		logs = config.getBoolean(category, "logs",true,
 			"Craft planks into logs with an L shape."
-		).getBoolean(true); 
+		);; 
 
-		redstone = config.get(category, "redstone",true,
+		redstone = config.getBoolean(category, "redstone",true,
 			"Uncraft and smelt redstone related items into parts (repeaters, lamps, hoppers, pistons, and so on)."
-		).getBoolean(true); 
+		); 
 
-		plants = config.get(category, "plants",true,
+		plants = config.getBoolean(category, "plants",true,
 			"Uncraft pumkin lanterns, melon blocks into slices, smelt golden carrots and apples back into gold."
-		).getBoolean(true); 
+		); 
 
-		wool = config.get(category, "wool",true,
+		wool = config.getBoolean(category, "wool",true,
 			"Uncraft carpet into wool."
-		).getBoolean(true); 
+		); 
 
-		weapontools = config.get(category, "weapontools",true,
+		weapontools = config.getBoolean(category, "weapontools",true,
 			"Smelt non-wooden weapons and tools back into materials, if fully repaired."
-		).getBoolean(true); 
+		); 
 
-		armor = config.get(category, "armor",true,
+		armor = config.getBoolean(category, "armor",true,
 			 "Smelt non-wooden armor back into ingots/diamonds if fully repaired."
-		).getBoolean(true); 
+		); 
  
-		natureblocks  = config.get(category, "natureblocks",true,
+		natureblocks  = config.getBoolean(category, "natureblocks",true,
 			 "Uncraft all quarts blocks, glowstone into 4 dust, clay blocks into 4 balls, snow, " +
 			 "smelt stone brick and smoothstone back to what they were, " +
 			 "turn mycelium and dirt back into grass, smelt stained clay to remove dye, turn sandstone into sand."
-		).getBoolean(true); 
+		); 
  
-		glass = config.get(category, "glass",true,
+		glass = config.getBoolean(category, "glass",true,
 			 "Smelt glass bottles, smelt stained glass and panes to remove dye, craft panes into blocks, and smelt plain glass blocks into sand."
-		).getBoolean(true); 
+		); 
 		 
-		misc = config.get(category, "misc",true,
+		misc = config.getBoolean(category, "misc",true,
 			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
-		).getBoolean(true); 
+		); 
 		
 	}
 
