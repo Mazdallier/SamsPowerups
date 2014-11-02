@@ -2,6 +2,7 @@ package com.lothrazar.samspowerups.modules;
 
 import com.lothrazar.samspowerups.BaseModule;
 
+import net.minecraft.block.BlockMushroom;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -15,10 +16,10 @@ public class CreativeInventoryModule extends BaseModule
 
 	@Override
 	public void init() 
-	{
-		Item.getItemFromBlock(Blocks.red_mushroom_block).setHasSubtypes(true);
-		Item.getItemFromBlock(Blocks.brown_mushroom_block).setHasSubtypes(true);
-		 
+	{ 
+	//	Item.getItemFromBlock(Blocks.red_mushroom_block).setHasSubtypes(true);//doesnt seem to work
+		//Item.getItemFromBlock(Blocks.brown_mushroom_block).setHasSubtypes(true);//it should get the variations all in there
+		 //requires base edit
 		Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabBlock);
 		Blocks.brown_mushroom_block.setCreativeTab(  CreativeTabs.tabBlock);
 		Blocks.farmland.setCreativeTab(CreativeTabs.tabBlock);
