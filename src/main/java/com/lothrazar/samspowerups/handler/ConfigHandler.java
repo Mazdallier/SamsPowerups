@@ -54,7 +54,10 @@ public class ConfigHandler
 		//TODO: does this have to be in some sort of confighandler/eventhandler
 		String category = Configuration.CATEGORY_GENERAL ; 
 	  
-		loadConfig();
+		for(int i = 0; i < hasConfig.size(); i++)
+		{
+			hasConfig.get(i).loadConfig(config);
+		}
 		//TODO: remember/lookup how it works
 		
 		if(config.hasChanged())
@@ -62,7 +65,7 @@ public class ConfigHandler
 			config.save();
 		}
 	}
-	
+	/*
 	private void loadConfig()
 	{
 		
@@ -92,9 +95,9 @@ public class ConfigHandler
 		
 	//	BonemealHandler.loadConfig(config);
 		
-		ScreenInfoHandler.loadConfig(config,DEFAULT);
+		//ScreenInfoHandler.loadConfig(config,DEFAULT);
 		
-		UncraftingModule.loadConfig(config, DEFAULT);
+		//UncraftingModule.loadConfig(config, DEFAULT);
 		
 
     	/* 
@@ -156,9 +159,7 @@ public class ConfigHandler
 		*/
 
 	 
-		
-		config.save();
-	}
+
 
 
 }

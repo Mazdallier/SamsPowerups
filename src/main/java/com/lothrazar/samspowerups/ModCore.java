@@ -88,10 +88,10 @@ public class ModCore
     	//door, what did i change there?
     	
     	logger = event.getModLog();
- 
-    	configHandler.onPreInit(event);
+
     	IHasConfig onBonemeal = new BonemealUseHandler();
     	configHandler.addConfigSection(onBonemeal);
+    	configHandler.onPreInit(event);//now that sections are all ready
 	
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
 		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
