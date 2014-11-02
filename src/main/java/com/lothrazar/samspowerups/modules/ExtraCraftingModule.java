@@ -231,9 +231,15 @@ public class ExtraCraftingModule extends BaseModule
 	}
 
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
+	public void loadConfig() 
+	{
 		
+	}
+
+	@Override
+	public boolean isEnabled() 
+	{ 
+		return true;
 	}
    
 }

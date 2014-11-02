@@ -30,9 +30,6 @@ import net.minecraft.util.MathHelper;
 
 public class ItemEnderBook extends ItemTool
 {
-	public static ItemEnderBook item;
-
-	public static EnderBookHandler Handler = new EnderBookHandler();
  
 	public static String KEY_LOC = "location";
 	
@@ -46,26 +43,7 @@ public class ItemEnderBook extends ItemTool
     	setCreativeTab(CreativeTabs.tabTransport) ; 
 	}
 
-	public static void Init()
-	{
-	 
-		 
-		item = new ItemEnderBook();
-		item.setTextureName(ModCore.MODID+":book_ender").setUnlocalizedName("book_ender");
-		GameRegistry.registerItem(item,  "book_ender");   
-		GameRegistry.addRecipe(new ItemStack(item)
-			,"eee"
-			,"ebe"
-			,"eee"
-			, 'e', Items.ender_pearl
-			, 'b', Items.book);
-		
-		GameRegistry.addSmelting(item, new ItemStack(Items.ender_pearl,8),0);
-		
-		
-		
-	}
- 
+
 	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) 
 	{ 
@@ -103,18 +81,7 @@ public class ItemEnderBook extends ItemTool
 	     } 
 	 } 
 	
-	/*
-	public static void loadConfig(Configuration config)
-	{
-		String category = Config.ITEMS; 
-	 
-		 isEnabled = config.get(category, "enderBook",true,
-		 	"This allows you to craft an ender book using 8 ender pearls and a book.  Right click while sneaking to save a location in the book.  " +
-		 	"Attack with the book to teleport.  Only works in the overworld."
-		 ).getBoolean(true);
-	}
-*/
- 
+
 
 	 
 }

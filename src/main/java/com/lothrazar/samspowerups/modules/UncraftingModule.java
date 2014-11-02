@@ -26,13 +26,10 @@ public class UncraftingModule extends BaseModule
 	private static boolean natureblocks;
 	private static boolean glass;
  
-	public static void loadConfig(Configuration config, String category)
+	public void loadConfig()
 	{  
-		/*	ModCore.settings.showDefaultDebug = config.getBoolean("showDefaultDebug",DEFAULT, true,
-				"Set to false if you want to remove everything on the default debug screen (F3). " +
-				"This lets you play without knowing your XYZ coordinates, an extra challenge."
-				);
-		*/
+		String category = ModCore.MODID;
+		Configuration config = ModCore.configHandler.config;
 		stairs = config.getBoolean(category, "stairs",true,
 			"Craft stairs back into blocks using a 4x4 pattern."
 		); 
@@ -83,7 +80,6 @@ public class UncraftingModule extends BaseModule
 		misc = config.getBoolean(category, "misc",true,
 			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
 		); 
-		
 	}
 
 	public void init()
@@ -92,7 +88,6 @@ public class UncraftingModule extends BaseModule
  
 		if(stairs)
 		{
-		 
 			GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), "xx", "xx",
 					'x', Blocks.sandstone_stairs);
 	
@@ -111,8 +106,6 @@ public class UncraftingModule extends BaseModule
 			GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 6), "xx", "xx",
 					'x', Blocks.nether_brick_stairs);
 	
-			
-		
 			GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, Reference.planks_oak), "xx", "xx",
 					'x', Blocks.oak_stairs);
 			GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, Reference.planks_spruce), "xx",
@@ -149,7 +142,6 @@ public class UncraftingModule extends BaseModule
 			GameRegistry.addRecipe(new ItemStack(Blocks.quartz_block, 3), "   ","xxx", "xxx", 
 					'x', new ItemStack(Blocks.stone_slab, 1,	Reference.stone_slab_quartz));
 			
-
 			//get blanks back from wooden slabs
 			GameRegistry.addRecipe(new ItemStack(Blocks.planks, 3, Reference.planks_oak), "   ","xxx", "xxx", 
 					'x', new ItemStack(Blocks.wooden_slab, 1, Reference.planks_oak));
@@ -166,11 +158,8 @@ public class UncraftingModule extends BaseModule
 			
 		}
 
-	 
 		if(logs)
 		{
-			
-			
 			// L shape for logs
 			GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_oak),     "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_oak));
 			GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_spruce),  "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_spruce));
@@ -183,7 +172,6 @@ public class UncraftingModule extends BaseModule
 		
 		if(woodstuffs)
 		{
-
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),
 					new ItemStack(Blocks.fence));
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8),
@@ -192,7 +180,6 @@ public class UncraftingModule extends BaseModule
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 12),
 					new ItemStack(Blocks.wooden_door));
 
-			
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),	new ItemStack(Items.bowl), new ItemStack(Items.bowl));
 		
 			// every two sticks is one plank. so 8 sticks plus one in the middle
@@ -216,7 +203,6 @@ public class UncraftingModule extends BaseModule
 					"xxx","xpx", "xxx", 
 					'x', Items.stick, 'p', new ItemStack(Blocks.planks, 1,	Reference.planks_darkoak));
 			
-			
 			// seven sticks make three ladders, therefore three ladders revert
 			// back into
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 7),
@@ -238,7 +224,6 @@ public class UncraftingModule extends BaseModule
 			// break down bookshelves
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.book, 3),		new ItemStack(Blocks.bookshelf));
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.paper, 3),		new ItemStack(Items.book));
-			
 			
 		}
 		 
@@ -343,7 +328,6 @@ public class UncraftingModule extends BaseModule
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.redstone),
 					new ItemStack(Blocks.piston));
 			
-
 			GameRegistry.addSmelting(Items.iron_door, new ItemStack(Items.iron_ingot, 6),				EXP);
 			
 			GameRegistry.addSmelting(Blocks.daylight_detector, new ItemStack(Items.quartz, 3), EXP);
@@ -358,9 +342,6 @@ public class UncraftingModule extends BaseModule
 			// crafting makes you lose the ball and keep piston, so this is
 			// reverse
 			GameRegistry.addSmelting(Blocks.sticky_piston, new ItemStack(Items.slime_ball),	EXP);// the block
-			
-			
-			
 			
 			GameRegistry.addSmelting(Items.repeater, new ItemStack(Items.redstone, 3), EXP);
 			GameRegistry.addSmelting(Items.comparator, new ItemStack(Items.redstone, 3),EXP);
@@ -383,16 +364,12 @@ public class UncraftingModule extends BaseModule
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.iron_ingot),
 					new ItemStack(Blocks.tripwire_hook), new ItemStack(Blocks.tripwire_hook));
 
-			
-			
 			// 6 planks = craft sticks three times = 12 sticks = 2 trapdoors
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 12),
 					new ItemStack(Blocks.trapdoor), new ItemStack(Blocks.trapdoor));
 			// 6 sticks = 2 fence , therefore 1 fence becomes 3 sticks
 			// 8 sticks is one fence gate .
 
-		
-			
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 4),
 					new ItemStack(Blocks.wooden_button), 
 					new ItemStack(Blocks.wooden_button));
@@ -404,12 +381,10 @@ public class UncraftingModule extends BaseModule
 	
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz),		new ItemStack(Items.comparator));
 			
-			
 			// SMELTING IS (input , output)
 
 			GameRegistry.addSmelting(Blocks.trapped_chest,			new ItemStack(Blocks.tripwire_hook), EXP);
 			
-
 			GameRegistry.addSmelting(Blocks.stone_pressure_plate, new ItemStack(		Blocks.stone, 1), EXP);
 			GameRegistry.addSmelting(Blocks.wooden_pressure_plate, new ItemStack(		Items.stick, 2), EXP);
 	 
@@ -442,8 +417,6 @@ public class UncraftingModule extends BaseModule
 					, new ItemStack(Blocks.rail)
 					, new ItemStack(Blocks.rail));
 
-
-
 			GameRegistry.addSmelting(Blocks.dropper, new ItemStack(Blocks.cobblestone, 8),EXP);
 			
 			GameRegistry.addSmelting(Blocks.dispenser, new ItemStack(Blocks.cobblestone, 8),EXP);
@@ -471,14 +444,12 @@ public class UncraftingModule extends BaseModule
 		// bonemeal to clean out wool. have to do one for each color
 		
 		if(wool)
-		{
-
+		{ 
 			// get 4 string back from wool (white only, that's okay)
-			//GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 4),			new ItemStack(Blocks.wool));
+			GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 4),			new ItemStack(Blocks.wool));
 			
-			//GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 3),
-			//		new ItemStack(Items.bed));
-			
+			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 3),
+				new ItemStack(Items.bed));
 			 
 			for (int color = 0; color < 16; color++)
 			{
@@ -488,14 +459,11 @@ public class UncraftingModule extends BaseModule
 						new ItemStack(Blocks.carpet, 1, color)
 					  , new ItemStack(Blocks.carpet, 1, color)
 					  , new ItemStack(Blocks.carpet, 1, color));
-			}
- 
+			} 
 		}//end wool
-		
-
+		 
 		if(natureblocks)
-		{ 
-
+		{  
 			GameRegistry.addSmelting(Blocks.sandstone, new ItemStack(Blocks.sand, 4), EXP); 
 			
 			// all damage values into empty//1 for chiseled 2 for pillar
@@ -525,8 +493,7 @@ public class UncraftingModule extends BaseModule
 	
 			// smelt smoothstone to uncraft it into cobblestone
 			GameRegistry.addSmelting(Blocks.stone, new ItemStack(Blocks.cobblestone), 0);
-
-
+ 
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.snowball, 4),		new ItemStack(Blocks.snow));
 	
 			// three blocks give us six layers, so this is reverse
@@ -535,7 +502,6 @@ public class UncraftingModule extends BaseModule
 	
 			// craft clay block into four balls, avoid using shovel
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.clay_ball, 4),		new ItemStack(Blocks.clay));
-	
 	 
 			// remember, craft is output , input, OPPOSITE OF SMELT
 			GameRegistry.addRecipe(new ItemStack(Blocks.stone, 4), "xx", "xx",	'x', Blocks.stonebrick);
@@ -543,12 +509,10 @@ public class UncraftingModule extends BaseModule
 		}//end natureblocks
 		
 		if(glass)
-		{
-			
+		{ 
 			//three glass blocks makes three bottles, so this reverses it
 			GameRegistry.addSmelting(Items.glass_bottle, new ItemStack(Blocks.glass), EXP);
-			
-
+			 
 			// also, since 6 blocks is 16 panes, we cut that in half and get 8
 			// panes into three blocks
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.glass, 3),
@@ -556,19 +520,15 @@ public class UncraftingModule extends BaseModule
 					new ItemStack(Blocks.glass_pane), new ItemStack(Blocks.glass_pane),
 					new ItemStack(Blocks.glass_pane), new ItemStack(Blocks.glass_pane),
 					new ItemStack(Blocks.glass_pane), new ItemStack(Blocks.glass_pane));
-			
-		 
+			 
 			GameRegistry.addSmelting(Blocks.glass, new ItemStack(Blocks.sand), EXP);
-
-			
+ 
 			GameRegistry.addSmelting(Blocks.stained_glass, new ItemStack(Blocks.glass, 1, 0),EXP);
 			
 			GameRegistry.addSmelting(Blocks.stained_glass_pane, new ItemStack(Blocks.glass_pane, 1, 0), EXP);
-			
-			
+			 
 		}
-		
- 
+		 
 		if(misc)
 		{ 
 
@@ -585,8 +545,7 @@ public class UncraftingModule extends BaseModule
 					new ItemStack(Blocks.anvil, 1, 1));
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.iron_ingot, 9),
 					new ItemStack(Blocks.anvil, 1, 2));
-			
-			
+			 
 			GameRegistry.addRecipe(new ItemStack(Blocks.nether_brick, 6), "   ",
 					"xxx", "xxx", 'x', Blocks.nether_brick_fence);
 			 
@@ -608,11 +567,9 @@ public class UncraftingModule extends BaseModule
 			//2 diamonds from the table
 			GameRegistry.addSmelting(Blocks.enchanting_table, new ItemStack(Items.diamond,2),				EXP);
 	
-			// remove dye from hardened clay
-	 
+			// remove dye from hardened clay 
 			GameRegistry.addSmelting(Items.book, new ItemStack(Items.leather, 1), EXP);
-			
-
+			 
 			GameRegistry.addSmelting(Items.filled_map, new ItemStack(Items.compass), EXP);
 			GameRegistry.addSmelting(Items.map, new ItemStack(Items.compass), EXP);
 			
@@ -631,14 +588,13 @@ public class UncraftingModule extends BaseModule
 			// / lead to slime, since its one slime that gives 2 leads anyway
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.slime_ball, 2),
 					new ItemStack(Items.lead), new ItemStack(Items.lead));
-
-			 
+ 
 		} 
 	}
-
+  
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
-		
-	} 
+	public boolean isEnabled() 
+	{
+		return true;
+	}
 }

@@ -151,6 +151,7 @@ public class ModCore
     @EventHandler
     public void init (FMLInitializationEvent evt)
     {
+    	/*
     	BlockCommandBlockCraftable.Init();
         BlockFishing.Init();
         BlockXRay.Init();
@@ -160,7 +161,7 @@ public class ModCore
 		ItemFoodAppleMagic.Init();
     	ItemRunestone.Init();
 		ItemWandMaster.Init();
-		
+		*/
 
      	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
     }

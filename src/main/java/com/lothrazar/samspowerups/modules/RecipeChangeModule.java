@@ -1,5 +1,4 @@
 package com.lothrazar.samspowerups.modules;
- 
 
 import java.util.ArrayList; 
 
@@ -30,27 +29,18 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-
 public class RecipeChangeModule extends BaseModule
-{
-
-	 
+{ 
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	
-	
-	
-	//@EventHandler
-	//public void preInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
 	public void init()
 	{
-
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_sword));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_hoe));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_pickaxe));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_shovel));
 		stoneToolsFurnaces.add(new ItemStack(Blocks.furnace));
 		
-	 	
 		//since we cant get logs by hand: player will break leaves to make damaged axe
 		int STICKS_PER_SAPLING = 1;
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
@@ -74,7 +64,6 @@ public class RecipeChangeModule extends BaseModule
 		,"t "
 		, 't', Items.stick);
 		
- 
 		ArrayList recipes = (ArrayList)CraftingManager.getInstance().getRecipeList();
 		IRecipe current;
 		ItemStack currentOutput;
@@ -168,21 +157,15 @@ public class RecipeChangeModule extends BaseModule
 		, 's', Blocks.stone
 		, 't', Items.stick);
 	}
-	/*
-	private void syncConfig() 
-	{
-		// TODO Auto-generated method stub
-		
+
+
+	public void loadConfig() 
+	{ 
 	}
-*/
-	//	@Override
-	public void loadConfig(Configuration config) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
-		
+	public boolean isEnabled() 
+	{
+		return true;
 	}
 }

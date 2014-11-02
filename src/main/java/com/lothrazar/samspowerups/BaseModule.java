@@ -9,16 +9,9 @@ public abstract class BaseModule
 	public abstract void loadConfig();
 	
 	public abstract void init();
-	
-	private boolean _isEnabled = true;
-	
-	public final boolean isEnabled() 
-	{
-		return _isEnabled;
-	}
+	 
+	public abstract boolean isEnabled() ;
  
-	public final void setEnabled(boolean is) 
-	{
-		_isEnabled = is;
-	} 
+	//public abstract void setEnabled(boolean is) ;
+ 
 }

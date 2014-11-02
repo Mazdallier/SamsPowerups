@@ -10,8 +10,7 @@ import net.minecraft.item.Item;
 public class CreativeInventoryModule extends BaseModule
 {
 	public CreativeInventoryModule()
-	{
-		
+	{ 
 	}
 
 	@Override
@@ -48,9 +47,14 @@ public class CreativeInventoryModule extends BaseModule
 	}
 
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
-		
+	public void loadConfig() 
+	{  
+	}
+
+	
+	@Override
+	public boolean isEnabled() { 
+		return true;
 	}
 
 }

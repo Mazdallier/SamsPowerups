@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.handler.ConfigHandler;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -11,23 +12,11 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class StackSizeModule extends BaseModule //implements ISamModule
-{
- 
-	
-	public void loadConfig(Configuration config)
-	{  
-		String category = ModCore.MODID; 
-		 
-		setEnabled( 
-				config.get(category,"increasedStackSizes", true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		).getBoolean(true)
-		);
-	 
-	}
-	 
+{ 
+	private boolean enabled;
+
+
+
 	public void init()
 	{   
 		//default config keeps this at 1
@@ -72,17 +61,33 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		 
 		for(Item item : to64)
 		{
-			item.setMaxStackSize(64);
+			item.setMaxStackSize(64*2);//lol
 		}
 	}
 
-	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
+
+ 
+	public void loadConfig()
+	{  
+		String category = ModCore.MODID; 
+		 
+		enabled = 
+				ConfigHandler.config.getBoolean(category,"increasedStackSizes", true,
+			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
+			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
+			"horse armor, empty bucket, bed, all records."
 		
+		);
+	 
 	}
 
-	
+
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return enabled;
+	}
  
 	 
 	
