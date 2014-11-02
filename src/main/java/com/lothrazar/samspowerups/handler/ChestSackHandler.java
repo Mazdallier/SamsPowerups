@@ -203,21 +203,19 @@ public class ChestSackHandler
  
 
   	}
-	
-	
-	
-	
+	 
 
 	@SubscribeEvent
 	public void onPlayerRightClick(PlayerInteractEvent event)
   	{  
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-	 
+ //TOOD: WHere is the item
+		if( held==null||
+				held.getItem().equals(ItemWandMaster.itemWand) == false || held.stackTagCompound==null){return;}
    
 		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
 		  
-		if( held.stackTagCompound==null){return;}
 		
 		int[] itemids = held.stackTagCompound.getIntArray("itemids");
 		int[] itemdmg = held.stackTagCompound.getIntArray("itemdmg");
@@ -237,7 +235,7 @@ public class ChestSackHandler
 			//can only be placed on valid air location
 			return;
 		}
-		
+
 		event.entityPlayer.worldObj.setBlock(event.x, event.y+1, event.z, Blocks.chest, 0,2); 
 		TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y+1, event.z); 
 		TileEntityChest chest = (TileEntityChest)container ;

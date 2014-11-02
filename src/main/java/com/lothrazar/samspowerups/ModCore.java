@@ -101,17 +101,19 @@ public class ModCore
     	logger.info("Sams Powerups pre init lothrazar111");
     	
     	
+    	//TODO: all handlers should be inside of a module!?!?
+    	
     	
 		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
 		MinecraftForge.EVENT_BUS.register(configHandler); 
-		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
+	//	MinecraftForge.EVENT_BUS.register(new BedHandler()); 
 		//MinecraftForge.EVENT_BUS.register(onBonemeal); 
-		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
-		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
-		MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 
-		MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
-		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
-		MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
+	//	//MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
+		//MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
+	//	MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 
+		////MinecraftForge.EVENT_BUS.register(ItemChestSack.Handler); 
+		//MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
+		//MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
 		
 		GameRegistry.registerFuelHandler(new FuelHandler());
 
@@ -125,12 +127,21 @@ public class ModCore
 		modules.add(new ExtraCraftingModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new CreativeInventoryModule());
-		
+		BaseModule current;
 		for(int i = 0; i < modules.size(); i++)
 		{
-			if(modules.get(i).isEnabled())
-			{
-				modules.get(i).init();
+			current = modules.get(i);
+			 
+			current.loadConfig();
+			
+			if(current.isEnabled())
+			{	
+				current.init();
+				
+				if(current.Handler != null)
+				{
+					MinecraftForge.EVENT_BUS.register(current.Handler); 
+				}
 			}
 		}
 		 
