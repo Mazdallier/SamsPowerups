@@ -1,5 +1,6 @@
 package com.lothrazar.samspowerups.handler;
  
+import com.lothrazar.samspowerups.IHasConfig;
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.Chat; 
 import com.lothrazar.samspowerups.util.Reference;
@@ -15,12 +16,11 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class BonemealUseHandler 
-{  
-	//TODO: make all non static!!??!?
-	private static boolean isEnabled = true;
+public class BonemealUseHandler implements IHasConfig
+{   
+	private boolean isEnabled = true;
 	
-	public static void loadConfig(Configuration config)
+	public void loadConfig(Configuration config)
 	{  
 		String category = ModCore.MODID; 
 

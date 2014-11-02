@@ -90,6 +90,8 @@ public class ModCore
     	logger = event.getModLog();
  
     	configHandler.onPreInit(event);
+    	IHasConfig onBonemeal = new BonemealUseHandler();
+    	configHandler.addConfigSection(onBonemeal);
 	
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
 		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
@@ -97,10 +99,12 @@ public class ModCore
 		//yep, it works. this adds to the default fml logs, such as fml-client-latest.log
     	logger.info("Sams Powerups pre init lothrazar111");
     	
+    	
+    	
 		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
 		MinecraftForge.EVENT_BUS.register(configHandler); 
 		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
-		MinecraftForge.EVENT_BUS.register(new BonemealUseHandler()); 
+		MinecraftForge.EVENT_BUS.register(onBonemeal); 
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
 		MinecraftForge.EVENT_BUS.register(ItemRunestone.Handler); 

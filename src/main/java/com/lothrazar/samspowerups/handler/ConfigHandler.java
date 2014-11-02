@@ -1,6 +1,10 @@
 package com.lothrazar.samspowerups.handler;
 
+import java.util.ArrayList;
+
 import net.minecraftforge.common.config.Configuration; 
+
+import com.lothrazar.samspowerups.IHasConfig;
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.modules.UncraftingModule; 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -20,6 +24,14 @@ public class ConfigHandler
 	//public static final String WANDS = ModBuildersUnity.MODID+"."+"wands"; 
 	public static final String F3 = DEFAULT +"."+"betterDebugScreen"; 
 	public static final String DIFFICULTY = DEFAULT +"."+"extraDifficulty"; 
+	
+	
+	private ArrayList<IHasConfig> hasConfig = new ArrayList<IHasConfig>();
+	
+	public void addConfigSection(IHasConfig cs)
+	{
+		hasConfig.add(cs);
+	}
 	
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{
@@ -53,6 +65,11 @@ public class ConfigHandler
 	
 	private void loadConfig()
 	{
+		
+		for(int i = 0; i < hasConfig.size(); i++)
+		{
+			hasConfig.get(i).loadConfig(config);
+		}
 		// https://docs.larry1123.net/forge/1179/net/minecraftforge/common/config/Configuration.html
 		//  https://github.com/pahimar/Equivalent-Exchange-3/blob/master/src/main/java/com/pahimar/ee3/util/ConfigurationHelper.java
 		//config.load();		
@@ -70,6 +87,10 @@ public class ConfigHandler
 		
 	
 		*/
+		
+		//TODO: these handlers are nonstiatic, so whats the deeal?
+		
+	//	BonemealHandler.loadConfig(config);
 		
 		ScreenInfoHandler.loadConfig(config,DEFAULT);
 		

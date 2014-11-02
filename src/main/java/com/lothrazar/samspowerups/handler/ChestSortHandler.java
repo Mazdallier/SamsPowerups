@@ -2,6 +2,8 @@ package com.lothrazar.samspowerups.handler;
   
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.Chat; 
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks; 
@@ -14,8 +16,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
  
 public class ChestSortHandler
 { 
- /*
-	public static void loadConfig(Configuration config)
+	private boolean isEnabled;
+	public void loadConfig(Configuration config)
 	{ 
 		String category = ModCore.MODID ; 
 		  
@@ -26,9 +28,10 @@ public class ChestSortHandler
 		  
  
 	}
-   */
+   
   	@SuppressWarnings("unused")
-	public static void onPlayerLeftClick(PlayerInteractEvent event)
+  	@SubscribeEvent
+	public void onPlayerLeftClick(PlayerInteractEvent event)
   	{     
 
   	 
