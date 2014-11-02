@@ -2,6 +2,7 @@ package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
 import com.lothrazar.samspowerups.util.Reference; 
+import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModCore; 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -57,7 +58,7 @@ public class ExtraCraftingModule extends BaseModule
 	
 	private static boolean craftableMobHeads;
 
-	public void Init()
+	public void init()
 	{ 
 		int EXP = 0; 
 		
@@ -227,6 +228,12 @@ public class ExtraCraftingModule extends BaseModule
 					"xx ", "xx ", "xx ",
 					'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_sandstone));
 		} 
+	}
+
+	@Override
+	public void loadConfig() {
+		// TODO Auto-generated method stub
+		
 	}
    
 }

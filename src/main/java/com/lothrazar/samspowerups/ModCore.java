@@ -124,12 +124,13 @@ public class ModCore
 		modules.add(new UncraftingModule());
 		modules.add(new ExtraCraftingModule());
 		modules.add(new RecipeChangeModule());
+		modules.add(new CreativeInventoryModule());
 		
 		for(int i = 0; i < modules.size(); i++)
 		{
 			if(modules.get(i).isEnabled())
 			{
-				modules.get(i).Init();
+				modules.get(i).init();
 			}
 		}
 		 

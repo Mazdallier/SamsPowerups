@@ -2,6 +2,7 @@ package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
 
+import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModCore;
 
 import net.minecraft.init.Items;
@@ -27,7 +28,7 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 	 
 	}
 	 
-	public void Init()
+	public void init()
 	{   
 		//default config keeps this at 1
 		//Items.potionitem.setMaxStackSize(potionStackSize); 
@@ -73,6 +74,12 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		{
 			item.setMaxStackSize(64);
 		}
+	}
+
+	@Override
+	public void loadConfig() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

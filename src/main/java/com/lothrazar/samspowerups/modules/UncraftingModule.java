@@ -1,5 +1,6 @@
 package com.lothrazar.samspowerups.modules;
   
+import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModCore;
 import com.lothrazar.samspowerups.util.Reference; 
 import net.minecraft.block.Block;
@@ -85,7 +86,7 @@ public class UncraftingModule extends BaseModule
 		
 	}
 
-	public void Init()
+	public void init()
 	{     
 		int EXP = 0;// same for all recipes - default
  
@@ -633,5 +634,11 @@ public class UncraftingModule extends BaseModule
 
 			 
 		} 
+	}
+
+	@Override
+	public void loadConfig() {
+		// TODO Auto-generated method stub
+		
 	} 
 }

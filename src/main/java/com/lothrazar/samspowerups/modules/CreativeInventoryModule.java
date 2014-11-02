@@ -1,7 +1,10 @@
 package com.lothrazar.samspowerups.modules;
 
+import com.lothrazar.samspowerups.BaseModule;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 public class CreativeInventoryModule extends BaseModule
 {
@@ -11,23 +14,25 @@ public class CreativeInventoryModule extends BaseModule
 	}
 
 	@Override
-	public void Init() 
+	public void init() 
 	{
-		 /*
-		Blocks.mushroomCapBrown.setCreativeTab(CreativeTabs.tabBlock);
-		Blocks.mushroomCapRed.setCreativeTab(  CreativeTabs.tabBlock);
-		Blocks.tilledField.setCreativeTab(CreativeTabs.tabBlock);
-		Blocks.dragonEgg.setCreativeTab(CreativeTabs.tabMisc); //122
-		Blocks.waterStill.setCreativeTab(CreativeTabs.tabMisc);
-		Blocks.lavaStill.setCreativeTab(CreativeTabs.tabMisc);
-		Blocks.mobSpawner.setCreativeTab(CreativeTabs.tabMisc);
+		Item.getItemFromBlock(Blocks.red_mushroom_block).setHasSubtypes(true);
+		Item.getItemFromBlock(Blocks.brown_mushroom_block).setHasSubtypes(true);
+		 
+		Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabBlock);
+		Blocks.brown_mushroom_block.setCreativeTab(  CreativeTabs.tabBlock);
+		Blocks.farmland.setCreativeTab(CreativeTabs.tabBlock);
+		Blocks.dragon_egg.setCreativeTab(CreativeTabs.tabMisc); //122
+		Blocks.water.setCreativeTab(CreativeTabs.tabMisc);
+		Blocks.lava.setCreativeTab(CreativeTabs.tabMisc);
+		Blocks.mob_spawner.setCreativeTab(CreativeTabs.tabMisc);
 		Blocks.fire.setCreativeTab(CreativeTabs.tabMisc);
-		Blocks.lockedChest.setCreativeTab(CreativeTabs.tabMisc);
+		//Blocks.lockedChest.setCreativeTab(CreativeTabs.tabMisc);//removed from game
 		//Block.stoneDoubleSlab.setCreativeTab(CreativeTabs.tabBlock);//NOTWORKING
-		Blocks.woodDoubleSlab.setCreativeTab(CreativeTabs.tabBlock);
-		Blocks.blocksList[137].setCreativeTab(CreativeTabs.tabRedstonef/CommandBlock
-		*/
- 
+		
+		
+		//Blocks.woodDoubleSlab.setCreativeTab(CreativeTabs.tabBlock);
+	 
 		
 		/*
 		 * //this is the magic that forces silk touch on mushroom blocks to work and also include damagevalue
@@ -39,6 +44,12 @@ public class CreativeInventoryModule extends BaseModule
 		Item.itemsList[Block.stoneDoubleSlab.blockID].setHasSubtypes(true); //?
 	 
 	 */
+	}
+
+	@Override
+	public void loadConfig() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -3,6 +3,7 @@ package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
 
+import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.util.Reference;
 
 import net.minecraft.block.Block;
@@ -40,7 +41,7 @@ public class RecipeChangeModule extends BaseModule
 	
 	//@EventHandler
 	//public void preInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
-	public void Init()
+	public void init()
 	{
 
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_sword));
@@ -176,6 +177,11 @@ public class RecipeChangeModule extends BaseModule
 */
 	//	@Override
 	public void loadConfig(Configuration config) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void loadConfig() {
 		// TODO Auto-generated method stub
 		
 	}
