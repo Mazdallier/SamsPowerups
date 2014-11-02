@@ -7,6 +7,8 @@ import com.lothrazar.samspowerups.ModCore;
 
 public class ConfigCurrentSettings 
 {
+	public static ConfigHandler Handler = new ConfigHandler();
+	
 	//categories
 	public static final String DEFAULT = ModCore.MODID;
 	public static final String COMMANDS = DEFAULT+"."+"commands";

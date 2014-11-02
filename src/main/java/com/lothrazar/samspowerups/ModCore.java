@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List; 
 import com.lothrazar.samspowerups.block.*;
 import com.lothrazar.samspowerups.command.*; 
+import com.lothrazar.samspowerups.config.ConfigCurrentSettings;
 import com.lothrazar.samspowerups.modules.*;
 import com.lothrazar.samspowerups.net.*; 
 import com.lothrazar.samspowerups.handler.*;
@@ -65,29 +66,20 @@ public class ModCore
     public static final String MODID = "samspowerups"; 
     public static final String VERSION = "1.7.10-1.0";  
 	public static SimpleNetworkWrapper network; 
-	public static Configuration config; 
+
     private static Logger logger;
     private ArrayList<BaseModule> modules = new ArrayList<BaseModule>();
     private boolean inDebugMode = true; 
     
-    public static void syncConfig() 
-	{
-		String category = Configuration.CATEGORY_GENERAL ; 
-	  
-		//TODO: remember/lookup how it works
-		
-		if(config.hasChanged())
-		{
-			config.save();
-		}
-	}
+   
  
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
     {
     	logger = event.getModLog();
 
-		config = new Configuration(event.getSuggestedConfigurationFile());
+    	ConfigCurrentSettings.Handler.onPreInit(event);
+	
 		 
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 		 
@@ -96,7 +88,8 @@ public class ModCore
 		//yep, it works. this adds to the default fml logs, such as fml-client-latest.log
     	logger.info("Sams Powerups pre init lothrazar111");
     	
-		MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
+		//MinecraftForge.EVENT_BUS.register(instance); //standard Forge events 
+		MinecraftForge.EVENT_BUS.register(ConfigCurrentSettings.Handler); 
 		MinecraftForge.EVENT_BUS.register(new BedHandler()); 
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 
 		MinecraftForge.EVENT_BUS.register(ItemEnderBook.Handler); 
@@ -148,16 +141,5 @@ public class ModCore
 		event.registerServerCommand(new CommandSimpleWaypoints());
 		event.registerServerCommand(new CommandItemLocator());
 		event.registerServerCommand(new CommandFlyHelp());
-    }
-      
-	//TODO: does this have to be in some sort of confighandler/eventhandler
-	@SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(ModCore.MODID))
-		{
-			syncConfig();
-		} 
-    }
-
+    } 
 }

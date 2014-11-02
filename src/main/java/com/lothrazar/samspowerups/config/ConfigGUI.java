@@ -15,7 +15,8 @@ public class ConfigGUI extends GuiConfig
     public ConfigGUI(GuiScreen parent) 
     {
         super(parent,
-                new ConfigElement(ModCore.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-                "Debug Extras", false, false, GuiConfig.getAbridgedConfigPath(ModCore.config.toString()));
+                new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+                "Debug Extras", false, false, 
+                GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString()));
     }
 }
