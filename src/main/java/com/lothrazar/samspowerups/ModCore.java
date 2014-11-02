@@ -90,9 +90,8 @@ public class ModCore
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		 
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-		
-		//the 0 is priority (i think)
-		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
+		 
+		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
 
 		//yep, it works. this adds to the default fml logs, such as fml-client-latest.log
     	logger.info("Sams Powerups pre init lothrazar111");
@@ -106,7 +105,7 @@ public class ModCore
 		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
 		MinecraftForge.EVENT_BUS.register(new KeyInputHandler()); 
 
-		if(this.inDebugMode)
+		if(this.inDebugMode) //experimenting with new unfinished features
 		{ 
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
 		}
@@ -150,14 +149,8 @@ public class ModCore
 		event.registerServerCommand(new CommandItemLocator());
 		event.registerServerCommand(new CommandFlyHelp());
     }
-     
-	//todo move these over
-	public static final String keyMenuUpName = "key.columnshiftup";
-	public static final String keyMenuDownName = "key.columnshiftdown";
-	public static final String keyCategory = "key.categories.inventory";
-
-	
-
+      
+	//TODO: does this have to be in some sort of confighandler/eventhandler
 	@SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{ 
