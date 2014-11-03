@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.modules;
 import java.util.ArrayList; 
 import com.lothrazar.samspowerups.util.Reference; 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore; 
+import com.lothrazar.samspowerups.ModSamsPowerups; 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
@@ -20,7 +20,7 @@ public class ExtraCraftingModule extends BaseModule
 
 	public void loadConfig(Configuration config)
 	{  
-		String category = ModCore.MODID ; 
+		String category = ModSamsPowerups.MODID ; 
   
 		craftableTransmuteRecords = config.get(category, "transmuteRecords",true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."

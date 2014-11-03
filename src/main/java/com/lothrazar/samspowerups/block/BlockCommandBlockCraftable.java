@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.block;
 
 import java.util.Random;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -163,7 +163,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	 
 	public static void Init()
 	{   
-		String MODID = ModCore.MODID;
+		String MODID = ModSamsPowerups.MODID;
 
 		if(gameRuleNatRegen)
 		{
@@ -239,7 +239,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
  
 	public static void loadConfig(Configuration config) 
 	{
-		String category = ModCore.MODID ; 
+		String category = ModSamsPowerups.MODID ; 
 		
 		weatherCommandBlock = config.get(category, "weatherCommandBlock",true
 				,"Build a weather command block." 

@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.block;
 
 import java.util.Random; 
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -20,8 +20,7 @@ import net.minecraftforge.common.config.Property;
 public class BlockFishing extends Block
 {
 	private static boolean isEnabled = true;
-	 
- 
+	  
 	public BlockFishing()
 	{
 		super(Material.wood); 
@@ -31,33 +30,7 @@ public class BlockFishing extends Block
 		this.setResistance(5F); 
 		this.setTickRandomly(true);
     }
-	   
-	public static void Init()
-	{  
-		String MODID = ModCore.MODID;
-		BlockFishing block = new BlockFishing();
-		block.setBlockName("block_fishing")
-			 .setBlockTextureName(MODID + ":block_fishing");
-		GameRegistry.registerBlock(block, "block_fishing");
-		
-		GameRegistry.addRecipe(new ItemStack(block), "pwp",	"wfw", "pwp" 
-				, 'w',Blocks.web 
-				, 'f', new ItemStack(Items.fishing_rod,1,0)
-				, 'p', Blocks.planks );
-		
-	  	GameRegistry.addSmelting(new ItemStack(block),new ItemStack(Blocks.web,4),0);
-	 
-	}
-	     /*
-	public static void loadConfig(Configuration config)
-	{  
-		isEnabled = config.get(Config.BLOCKS, "fishingBlock",true,
-			"Build a fishing net block with four planks in the corners, a (fully repaired) fishing pole in the middle, and four cobwebs.  " +
-			"If you place this in water (touching on 4 sides and 2 deep below), it will randomly spawn fish " +
-			"(but no treasure or junk like real fishing would)."
-		).getBoolean(true);
-	}*/
-	
+	    
 	@Override
 	public void updateTick(World worldObj, int xCoord, int yCoord, int zCoord, Random rand)
     {  

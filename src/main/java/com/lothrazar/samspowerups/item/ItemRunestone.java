@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.item;
 import java.util.ArrayList;
 
 import com.google.common.collect.Sets;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 import com.lothrazar.samspowerups.modules.RunestoneModule;
 import com.lothrazar.samspowerups.util.Reference;

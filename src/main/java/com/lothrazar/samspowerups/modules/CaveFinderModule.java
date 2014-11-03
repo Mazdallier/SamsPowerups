@@ -4,7 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
 
@@ -18,9 +18,9 @@ public class CaveFinderModule extends BaseModule
 	@Override
 	public void loadConfig() 
 	{
-		String category = ModCore.MODID;//.BLOCKS; 
+		String category = ModSamsPowerups.MODID;//.BLOCKS; 
 		
-		enabled = ConfigHandler.config.getBoolean(category, "blockCaveFinder",true
+		enabled = ModSamsPowerups.config.getBoolean(category, "blockCaveFinder",true
 				, "Build a Cave finder block (lets you see like XRay throught the world) with four obsidian "+
 						"in the corners , glass in the middle, and four cobwebs.  " +
 						"This lets you see through the world."
@@ -36,7 +36,7 @@ public class CaveFinderModule extends BaseModule
 	@Override
 	public void init() 
 	{
-		String MODID = ModCore.MODID;
+		String MODID = ModSamsPowerups.MODID;
 		block_xray = new BlockXRay();
 		block_xray.setBlockName("block_xray")
 			 .setBlockTextureName(MODID + ":block_xray");

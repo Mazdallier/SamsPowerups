@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.net;
 
 import org.lwjgl.input.Keyboard;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.KeyInputHandler;
 
 

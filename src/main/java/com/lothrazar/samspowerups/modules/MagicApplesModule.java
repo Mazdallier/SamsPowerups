@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.modules;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack; 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 
@@ -22,7 +22,7 @@ public class MagicApplesModule extends BaseModule
 	
 	public void init()
 	{   
-		 String MODID = ModCore.MODID;
+		 String MODID = ModSamsPowerups.MODID;
 		//the potion effect ids listed at http://minecraft.gamepedia.com/Potion_Effects
 		int SPEED = 1;
 		int HASTE = 3;
@@ -114,7 +114,7 @@ public class MagicApplesModule extends BaseModule
  private boolean enabled;
 	public void loadConfig()
 	{ 
-		enabled = ConfigHandler.config.get( ModCore.MODID, "magicApples",true,
+		enabled = ModSamsPowerups.config.get( ModSamsPowerups.MODID, "magicApples",true,
 		 	 "This allows you to craft golden apples into one of four powerful items: chocolate, lapis, emerald, diamond.  " +
 		 	 "Combine the gem with a golden apple.  Or surround a regular apple with cocoa.  "
 				 ).getBoolean(true) ;

@@ -17,7 +17,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent; 
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.util.AchievementFinder;
 import com.lothrazar.samspowerups.util.Chat;
 

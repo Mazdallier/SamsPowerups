@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.item;
 
 import com.google.common.collect.Sets;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.util.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;

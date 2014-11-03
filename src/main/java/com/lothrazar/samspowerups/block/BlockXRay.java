@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 
  
 import cpw.mods.fml.common.registry.GameRegistry;

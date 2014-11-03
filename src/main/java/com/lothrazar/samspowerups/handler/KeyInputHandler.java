@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups.handler;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.net.ClientProxy;
 import com.lothrazar.samspowerups.net.MessageKeyPressed;
 
@@ -19,12 +19,12 @@ public class KeyInputHandler
 		
         if(ClientProxy.keyShiftUp.isPressed() )
         { 	    
-        	 ModCore.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
+        	 ModSamsPowerups.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
         }
         
         if(ClientProxy.keyShiftDown.isPressed()   )
         { 	    
-        	ModCore.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
+        	ModSamsPowerups.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
         }
     //TODO; detect if this is the current key.pick block event   
     }

@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.handler;
 
 import java.util.ArrayList; 
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

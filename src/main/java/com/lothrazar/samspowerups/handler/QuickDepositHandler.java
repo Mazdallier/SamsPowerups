@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups.handler;
   
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.util.Chat; 
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

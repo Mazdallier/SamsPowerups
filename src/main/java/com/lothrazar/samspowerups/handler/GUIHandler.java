@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups.handler;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
  
 
 import net.minecraft.client.gui.inventory.GuiInventory;

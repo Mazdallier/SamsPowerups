@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Sets;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.util.Location;
  
 

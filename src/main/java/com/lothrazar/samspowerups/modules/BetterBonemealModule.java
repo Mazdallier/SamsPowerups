@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.modules;
 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.BonemealUseHandler;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
  
@@ -16,9 +16,9 @@ public class BetterBonemealModule extends BaseModule
 	@Override
 	public void loadConfig() 
 	{ 
-		String category = ModCore.MODID; 
+		String category = ModSamsPowerups.MODID; 
 
-		enabled = ConfigHandler.config.getBoolean(category, "bonemealAllFlowers",true,
+		enabled = ModSamsPowerups.config.getBoolean(category, "bonemealAllFlowers",true,
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
 		); 
 	}

@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.handler;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;  
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.samspowerups.command.CommandTodoList;
 import com.lothrazar.samspowerups.util.Location;

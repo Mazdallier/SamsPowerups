@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.modules;
   
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.util.Reference; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -28,8 +28,8 @@ public class UncraftingModule extends BaseModule
  
 	public void loadConfig()
 	{  
-		String category = ModCore.MODID;
-		Configuration config = ModCore.configHandler.config;
+		String category = ModSamsPowerups.MODID;
+		Configuration config = ModSamsPowerups.config;
 		stairs = config.getBoolean(category, "stairs",true,
 			"Craft stairs back into blocks using a 4x4 pattern."
 		); 

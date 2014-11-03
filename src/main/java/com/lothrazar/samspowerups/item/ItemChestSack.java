@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.ChestSackHandler;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 
@@ -46,7 +46,7 @@ public class ItemChestSack extends Item
 	public static void Init()
 	{ 
 		item = new ItemChestSack();
-		item.setTextureName(ModCore.MODID+":chest_sack").setUnlocalizedName("chest_sack");
+		item.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(item,  "chest_sack" );   
 	}
  

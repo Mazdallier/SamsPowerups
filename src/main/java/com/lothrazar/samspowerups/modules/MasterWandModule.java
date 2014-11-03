@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.WandHandler;
 import com.lothrazar.samspowerups.item.ItemWandMaster;
 
@@ -32,7 +32,7 @@ public class MasterWandModule extends BaseModule
 	public void init() 
 	{  
 		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName(ModCore.MODID+":wand_master");
+		itemWand.setUnlocalizedName("wand_master").setTextureName(ModSamsPowerups.MODID+":wand_master");
 		GameRegistry.registerItem(itemWand,  "wand_master");   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"

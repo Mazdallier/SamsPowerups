@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.handler;
  
 import java.util.HashMap; 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.command.CommandFlyHelp; 
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -58,7 +58,7 @@ public class SurvivalFlyingHandler// implements IHasConfig
 	{ 
 		config.load();
 		 
-		String CATEGORY_FLY = ModCore.MODID;  
+		String CATEGORY_FLY = ModSamsPowerups.MODID;  
 
 		Property _cannotFlyWhileBurning = config.get(CATEGORY_FLY,"cannotFlyWhileBurning", true);
 		_cannotFlyWhileBurning.comment = "When true, this disables flying while you are burning.";

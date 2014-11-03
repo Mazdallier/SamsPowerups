@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.command;
 import java.util.ArrayList;
 import java.util.List; 
 import com.lothrazar.samspowerups.util.Chat;
-import com.lothrazar.samspowerups.ModCore; 
+import com.lothrazar.samspowerups.ModSamsPowerups; 
 import cpw.mods.fml.common.FMLCommonHandler; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -70,7 +70,7 @@ public class CommandItemLocator  implements ICommand
   
 	public static void loadConfig(Configuration config)
 	{ 
-		String category = ModCore.MODID  ;  
+		String category = ModSamsPowerups.MODID  ;  
 		
 		isEnabled = config.get(category,"itemsearch", true,
 				"When true, this enables /itemsearch command, which searches chests and other containers near you for an item within 32 blocks.")

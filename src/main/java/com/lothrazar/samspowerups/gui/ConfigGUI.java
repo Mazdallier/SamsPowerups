@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups.gui;
 
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
 import com.lothrazar.samspowerups.handler.ScreenInfoHandler;
 
@@ -14,8 +14,8 @@ public class ConfigGUI extends GuiConfig
     public ConfigGUI(GuiScreen parent) 
     {
         super(parent,
-                new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+                new ConfigElement(ModSamsPowerups.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
                 "Debug Extras", false, false, 
-                GuiConfig.getAbridgedConfigPath(ConfigHandler.config.toString()));
+                GuiConfig.getAbridgedConfigPath(ModSamsPowerups.config.toString()));
     }
 }

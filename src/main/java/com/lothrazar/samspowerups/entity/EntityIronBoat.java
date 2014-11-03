@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.entity;
 
 import java.util.List;
-import com.lothrazar.samspowerups.ModCore; 
+import com.lothrazar.samspowerups.ModSamsPowerups; 
 import com.lothrazar.samspowerups.modules.IronBoatModule;
 
 import net.minecraft.block.Block;

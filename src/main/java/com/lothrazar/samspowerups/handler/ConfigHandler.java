@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.handler;
 
 import java.util.ArrayList; 
 import net.minecraftforge.common.config.Configuration;  
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.modules.UncraftingModule; 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -10,17 +10,15 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ConfigHandler 
 { 
-	public static Configuration config; 
-
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{
-		config = new Configuration(event.getSuggestedConfigurationFile());  
+		ModSamsPowerups.config = new Configuration(event.getSuggestedConfigurationFile());  
 	}
 	
 	@SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{ 
-		if(eventArgs.modID.equals(ModCore.MODID))
+		if(eventArgs.modID.equals(ModSamsPowerups.MODID))
 		{
 			syncConfigIfChanged();
 		} 
@@ -28,9 +26,9 @@ public class ConfigHandler
 	 
 	public void syncConfigIfChanged() 
 	{ 
-		if(config.hasChanged())
+		if(ModSamsPowerups.config.hasChanged())
 		{
-			config.save();
+			ModSamsPowerups.config.save();
 		}
 	}
 	/*

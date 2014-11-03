@@ -1,7 +1,7 @@
 package com.lothrazar.samspowerups.modules;
 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.entity.EntityIronBoat;
 import com.lothrazar.samspowerups.item.ItemIronBoat; 
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -28,7 +28,7 @@ public class IronBoatModule extends BaseModule
 
 		iron_boat = new ItemIronBoat();
 		GameRegistry.registerItem(iron_boat, "iron_boat");
-		EntityRegistry.registerModEntity(EntityIronBoat.class, "Iron Boat", 1, ModCore.instance, 64, 10, true);
+		EntityRegistry.registerModEntity(EntityIronBoat.class, "Iron Boat", 1, ModSamsPowerups.instance, 64, 10, true);
 		
 		
 	}

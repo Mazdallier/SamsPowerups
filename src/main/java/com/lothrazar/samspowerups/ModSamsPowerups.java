@@ -54,14 +54,14 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.BlockLilyPad;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModCore.MODID, version = ModCore.VERSION)
-public class ModCore
+@Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION)
+public class ModSamsPowerups
 {
     public static final String MODID = "samspowerups"; 
     public static final String VERSION = "1.7.10-1.0"; 
-    @Instance(value = ModCore.MODID)
-    public static ModCore instance;
-    public static ModCore getInstance()
+    @Instance(value = ModSamsPowerups.MODID)
+    public static ModSamsPowerups instance;
+    public static ModSamsPowerups getInstance()
     {
     	return instance;
     } 
@@ -69,6 +69,7 @@ public class ModCore
 	public static CommonProxy proxy; 
 	public static SimpleNetworkWrapper network;  
 	public static ConfigHandler configHandler;
+	public static Configuration config;  
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
     private boolean inSandboxMode = false; 

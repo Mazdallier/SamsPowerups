@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModCore;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.samspowerups.util.Reference;
@@ -46,7 +46,7 @@ public class RunestoneModule extends BaseModule
 	@Override
     public void init()
 	{ 
-		String MODID = ModCore.MODID; 
+		String MODID = ModSamsPowerups.MODID; 
 		boolean shiny = true;
 		boolean not_shiny = false;
 		  

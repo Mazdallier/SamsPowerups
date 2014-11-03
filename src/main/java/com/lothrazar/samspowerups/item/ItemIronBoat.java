@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.item;
  
 import java.util.List;
 import com.lothrazar.samspowerups.entity.EntityIronBoat;
-import com.lothrazar.samspowerups.ModCore; 
+import com.lothrazar.samspowerups.ModSamsPowerups; 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
@@ -23,7 +23,7 @@ public class ItemIronBoat   extends Item
 {
   public ItemIronBoat()
   {
-	    setUnlocalizedName("iron_boat").setTextureName(ModCore.MODID+":iron_boat").setCreativeTab(CreativeTabs.tabTransport); 
+	    setUnlocalizedName("iron_boat").setTextureName(ModSamsPowerups.MODID+":iron_boat").setCreativeTab(CreativeTabs.tabTransport); 
   }
   
   /**

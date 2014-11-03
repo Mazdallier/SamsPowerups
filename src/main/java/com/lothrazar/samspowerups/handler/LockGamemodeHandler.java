@@ -1,6 +1,6 @@
 package com.lothrazar.samspowerups.handler;
  
-import com.lothrazar.samspowerups.ModCore; 
+import com.lothrazar.samspowerups.ModSamsPowerups; 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraftforge.common.config.Configuration;
@@ -19,7 +19,7 @@ public class LockGamemodeHandler
 
 	public void loadConfig(Configuration config) 
 	{ 
-		Property _gamemode = config.get(ModCore.MODID, "gamemode",0);
+		Property _gamemode = config.get(ModSamsPowerups.MODID, "gamemode",0);
 			
 		_gamemode.comment = "Define which game mode you are locked to.  0 = Survival, 1 = Creative, 2 = Adventure.";
 		int imode = _gamemode.getInt(0);
