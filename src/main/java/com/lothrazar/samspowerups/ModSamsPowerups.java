@@ -107,8 +107,9 @@ public class ModSamsPowerups
     	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
     	modules = new ArrayList<BaseModule>();
 
-		modules.add(new BetterBonemealModule());
+		modules.add(new BetterBonemealModule()); 
 		modules.add(new CaveFinderModule());
+		modules.add(new ColouredCommandBlockModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new ExtraCraftingModule());
