@@ -79,7 +79,7 @@ public class CommandSearchTrades  implements ICommand
 			 
 			 for(int r = 0; r < list.size(); r++)
 			 {
-				 rec = (MerchantRecipe)list.get(i);
+				 rec = (MerchantRecipe)list.get(r);
 				 //rec.isRecipeDisabled();
 				 
 				 disabled = (rec.isRecipeDisabled()) ? "[disabled]" : "";

@@ -72,7 +72,7 @@ public class ModSamsPowerups
 	public static Configuration config;  
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
-    private boolean inSandboxMode = false; 
+    private boolean inSandboxMode = true; 
     
     private void logBaseChanges()
     {
