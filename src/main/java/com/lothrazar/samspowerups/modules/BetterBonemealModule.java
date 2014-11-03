@@ -8,8 +8,11 @@ import com.lothrazar.samspowerups.handler.ConfigHandler;
 public class BetterBonemealModule extends BaseModule 
 { 
 	private boolean enabled;
-
-	public BonemealUseHandler Handler = new BonemealUseHandler();
+	public BetterBonemealModule()
+	{
+		Handler = new BonemealUseHandler();
+	}
+ 
 	@Override
 	public void loadConfig() 
 	{ 

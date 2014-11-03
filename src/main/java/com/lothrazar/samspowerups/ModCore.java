@@ -70,7 +70,7 @@ public class ModCore
 	public static ConfigHandler configHandler;
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
-    private boolean inSandboxMode = false; 
+    private boolean inSandboxMode = true; 
     
     private void logBaseChanges()
     {
@@ -116,6 +116,7 @@ public class ModCore
 		modules.add(new StackSizeModule());
 		modules.add(new UncraftingModule());
 		
+		 
 		for(int i = 0; i < modules.size(); i++)
 		{
 			modules.get(i).loadConfig(); 
@@ -133,6 +134,11 @@ public class ModCore
 		{ 
 	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
+
+ItemIronBoat iron_boat = new ItemIronBoat();
+     GameRegistry.registerItem(iron_boat, "iron_boat");
+			
+			
 		}
 		
 		BaseModule current; 

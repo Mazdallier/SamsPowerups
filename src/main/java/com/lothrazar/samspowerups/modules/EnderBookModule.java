@@ -13,12 +13,13 @@ import com.lothrazar.samspowerups.item.ItemEnderBook;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class EnderBookModule extends BaseModule
-{
-
+{ 
 	public ItemEnderBook item;
-
-	public EnderBookHandler Handler = new EnderBookHandler();
-	
+	public EnderBookModule()
+	{
+		Handler = new EnderBookHandler();
+	}
+  
 	public void init()
 	{ 
 		item = new ItemEnderBook();

@@ -11,6 +11,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MagicApplesModule extends BaseModule
 { 
+	public MagicApplesModule()
+	{
+		
+	}
 	private ItemFoodAppleMagic appleEmerald;
 	private ItemFoodAppleMagic appleDiamond;
 	private ItemFoodAppleMagic appleLapis;
