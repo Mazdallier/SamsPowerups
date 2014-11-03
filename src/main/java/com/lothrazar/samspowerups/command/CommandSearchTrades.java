@@ -8,6 +8,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.village.MerchantRecipeList;
 
 public class CommandSearchTrades  implements ICommand
 {
@@ -59,6 +60,14 @@ public class CommandSearchTrades  implements ICommand
 		     {
 		    	 villagers.add((IMerchant)m);
 		     }
+		 }
+		 MerchantRecipeList list;
+		 for(int i = 0; i < villagers.size(); i++)
+		 {
+			 //TODOget player
+			 list = villagers.get(i).getRecipes(null);//.getRecipiesAsTags();
+			 
+			 
 		 }
 		
 		//step 2 for each one: extract and list traders (that match)
