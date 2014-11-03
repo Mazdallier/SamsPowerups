@@ -48,6 +48,7 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.BlockLilyPad;
@@ -137,7 +138,8 @@ public class ModCore
 
 ItemIronBoat iron_boat = new ItemIronBoat();
      GameRegistry.registerItem(iron_boat, "iron_boat");
-			
+
+   EntityRegistry.registerModEntity(EntityIronBoat.class, "Iron Boat", 1, instance, 64, 10, true);
 			
 		}
 		
