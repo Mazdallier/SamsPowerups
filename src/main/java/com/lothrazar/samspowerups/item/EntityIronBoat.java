@@ -1,8 +1,9 @@
 package com.lothrazar.samspowerups.item;
 
 import java.util.List;
-
 import com.lothrazar.samspowerups.ModCore; 
+import com.lothrazar.samspowerups.modules.IronBoatModule;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -416,7 +417,7 @@ public class EntityIronBoat  extends Entity
                 {
                     this.setDead();
 
-                    this.func_145778_a(ModCore.iron_boat, 1, 0.0F);
+                    this.func_145778_a(IronBoatModule.iron_boat, 1, 0.0F);
                     
                     //lothrazar
                     //below is what wood boat does : sticks/planks random mix
@@ -557,7 +558,7 @@ public class EntityIronBoat  extends Entity
                     this.setDead();
                     int l;
 
-                    this.func_145778_a(ModCore.iron_boat, 1, 0.0F);//not sticks anymore
+                    this.func_145778_a(IronBoatModule.iron_boat, 1, 0.0F);//not sticks anymore
 
                     //lothrazar
                     /*
