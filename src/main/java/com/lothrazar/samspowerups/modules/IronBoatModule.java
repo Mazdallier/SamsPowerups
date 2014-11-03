@@ -2,9 +2,8 @@ package com.lothrazar.samspowerups.modules;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModCore;
-import com.lothrazar.samspowerups.item.EntityIronBoat;
-import com.lothrazar.samspowerups.item.ItemIronBoat;
-
+import com.lothrazar.samspowerups.entity.EntityIronBoat;
+import com.lothrazar.samspowerups.item.ItemIronBoat; 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 

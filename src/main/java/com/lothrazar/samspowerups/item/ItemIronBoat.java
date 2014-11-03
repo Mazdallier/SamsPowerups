@@ -2,9 +2,8 @@ package com.lothrazar.samspowerups.item;
  
  
 import java.util.List;
-
-import com.lothrazar.samspowerups.ModCore;
-
+import com.lothrazar.samspowerups.entity.EntityIronBoat;
+import com.lothrazar.samspowerups.ModCore; 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;

@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samspowerups.entity;
 
 import java.util.List;
 import com.lothrazar.samspowerups.ModCore; 
