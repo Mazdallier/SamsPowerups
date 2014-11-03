@@ -3,11 +3,16 @@ package com.lothrazar.samspowerups.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lothrazar.samspowerups.util.Chat;
+
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IMerchant;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 
 public class CommandSearchTrades  implements ICommand
@@ -40,6 +45,7 @@ public class CommandSearchTrades  implements ICommand
 	@Override
 	public void processCommand(ICommandSender ic, String[] args) 
 	{
+		EntityPlayer p = (EntityPlayer)ic;
 		//step 1: get list of nearby villagers, seearch entities nearby in world
 		double X = ic.getPlayerCoordinates().posX;
 		double Z = ic.getPlayerCoordinates().posZ;
@@ -62,19 +68,37 @@ public class CommandSearchTrades  implements ICommand
 		     }
 		 }
 		 MerchantRecipeList list;
+		 MerchantRecipe rec;
+		 ItemStack buy;
+		 ItemStack buySecond;
+		 ItemStack sell;
+		 String disabled;
 		 for(int i = 0; i < villagers.size(); i++)
-		 {
-			 //TODOget player
-			 list = villagers.get(i).getRecipes(null);//.getRecipiesAsTags();
+		 { 
+			 list = villagers.get(i).getRecipes(p); 
 			 
-			 
+			 for(int r = 0; r < list.size(); r++)
+			 {
+				 rec = (MerchantRecipe)list.get(i);
+				 //rec.isRecipeDisabled();
+				 
+				 disabled = (rec.isRecipeDisabled()) ? "[disabled]" : "";
+				 
+				 buy = rec.getItemToBuy();
+				 buySecond = rec.getSecondItemToBuy();
+				 
+				 sell = rec.getItemToSell();
+				  //for now list everything
+				 //TODO: get command arguments and filter this list
+				 
+				 Chat.addMessage(p, disabled 
+						 + sell.stackSize +" "+sell.getDisplayName()
+						 );
+			 } 
 		 }
 		
 		//step 2 for each one: extract and list traders (that match)
-
-		
-		
-		
+  
 	}
 
 	@Override
