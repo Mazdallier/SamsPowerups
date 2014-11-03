@@ -72,17 +72,19 @@ public class CommandSearchTrades  implements ICommand
 		 ItemStack buy;
 		 ItemStack buySecond;
 		 ItemStack sell;
-		 String disabled;
+		 String disabled, m;
+		 
+		 ArrayList<String> messages = new ArrayList<String>();
+		 
+		 
 		 for(int i = 0; i < villagers.size(); i++)
 		 { 
 			 list = villagers.get(i).getRecipes(p); 
 			 
 			 for(int r = 0; r < list.size(); r++)
 			 {
-				 rec = (MerchantRecipe)list.get(r);
-				 //rec.isRecipeDisabled();
-				 
-				 disabled = (rec.isRecipeDisabled()) ? "[disabled]" : "";
+				 rec = (MerchantRecipe)list.get(r); 
+				 disabled = (rec.isRecipeDisabled()) ? "[x]" : "";
 				 
 				 buy = rec.getItemToBuy();
 				 buySecond = rec.getSecondItemToBuy();
@@ -90,14 +92,31 @@ public class CommandSearchTrades  implements ICommand
 				 sell = rec.getItemToSell();
 				  //for now list everything
 				 //TODO: get command arguments and filter this list
+				 m =  disabled  +
+						 sell.stackSize +" "+sell.getDisplayName()+
+						 "::"+
+						 buy.stackSize+" "+buy.getDisplayName();
 				 
-				 Chat.addMessage(p, disabled 
-						 + sell.stackSize +" "+sell.getDisplayName()
-						 );
+				 if(buySecond != null && buySecond.stackSize != 0)
+				 {
+					 m += " & " + buySecond.stackSize +" " + buySecond.getDisplayName();
+				 }
+				 
+				 messages.add(m); 
 			 } 
 		 }
-		
-		//step 2 for each one: extract and list traders (that match)
+
+
+
+		 for(int j = 0; j < messages.size();j++)
+		 {
+			 Chat.addMessage(p,messages.get(j)); 
+		 }
+		 
+		 if(messages.size() == 0)
+		 {
+			 Chat.addMessage(p,"No matching trades found in nearby villagers ("+range+"m).");
+		 }
   
 	}
 
