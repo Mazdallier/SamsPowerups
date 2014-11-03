@@ -2,8 +2,7 @@ package com.lothrazar.samspowerups.item;
 
 import java.util.List;
 
-import com.lothrazar.samspowerups.ModCore;
-
+import com.lothrazar.samspowerups.ModCore; 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -40,11 +39,14 @@ public class EntityIronBoat  extends Entity
     private double velocityZ;
     private static final String __OBFID = "CL_00001667";
 
-    public EntityIronBoat(World p_i1704_1_)
+    private final double speedMultiplierMax = 0.35D;
+    private final double speedMultiplierMin = 0.07D;
+    
+    public EntityIronBoat(World w)
     {
-        super(p_i1704_1_);
+        super(w);
         this.isBoatEmpty = true;
-        this.speedMultiplier = 0.07D;
+        this.speedMultiplier = speedMultiplierMin; 
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
         this.yOffset = this.height / 2.0F;
@@ -70,9 +72,9 @@ public class EntityIronBoat  extends Entity
      * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be
      * pushable on contact, like boats or minecarts.
      */
-    public AxisAlignedBB getCollisionBox(Entity p_70114_1_)
+    public AxisAlignedBB getCollisionBox(Entity e)
     {
-        return p_70114_1_.boundingBox;
+        return e.boundingBox;
     }
 
     /**
@@ -91,9 +93,9 @@ public class EntityIronBoat  extends Entity
         return true;
     }
 
-    public EntityIronBoat(World p_i1705_1_, double p_i1705_2_, double p_i1705_4_, double p_i1705_6_)
+    public EntityIronBoat(World w, double p_i1705_2_, double p_i1705_4_, double p_i1705_6_)
     {
-        this(p_i1705_1_);
+        this(w);
         this.setPosition(p_i1705_2_, p_i1705_4_ + (double)this.yOffset, p_i1705_6_);
         this.motionX = 0.0D;
         this.motionY = 0.0D;
@@ -347,30 +349,30 @@ public class EntityIronBoat  extends Entity
 
             d2 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-            if (d2 > 0.35D)
+            if (d2 > speedMultiplierMax)
             {
-                d4 = 0.35D / d2;
+                d4 = speedMultiplierMax / d2;
                 this.motionX *= d4;
                 this.motionZ *= d4;
-                d2 = 0.35D;
+                d2 = speedMultiplierMax;
             }
 
-            if (d2 > d10 && this.speedMultiplier < 0.35D)
+            if (d2 > d10 && this.speedMultiplier < speedMultiplierMax)
             {
-                this.speedMultiplier += (0.35D - this.speedMultiplier) / 35.0D;
+                this.speedMultiplier += (speedMultiplierMax - this.speedMultiplier) / speedMultiplierMax;
 
-                if (this.speedMultiplier > 0.35D)
+                if (this.speedMultiplier > speedMultiplierMax)
                 {
-                    this.speedMultiplier = 0.35D;
+                    this.speedMultiplier = speedMultiplierMax;
                 }
             }
             else
             {
-                this.speedMultiplier -= (this.speedMultiplier - 0.07D) / 35.0D;
+                this.speedMultiplier -= (this.speedMultiplier - speedMultiplierMin) / speedMultiplierMax;
 
-                if (this.speedMultiplier < 0.07D)
+                if (this.speedMultiplier < speedMultiplierMin)
                 {
-                    this.speedMultiplier = 0.07D;
+                    this.speedMultiplier = speedMultiplierMin;
                 }
             }
 
@@ -416,6 +418,7 @@ public class EntityIronBoat  extends Entity
 
                     this.func_145778_a(ModCore.iron_boat, 1, 0.0F);
                     
+                    //lothrazar
                     //below is what wood boat does : sticks/planks random mix
                     /*
                     for (l = 0; l < 3; ++l)
@@ -555,6 +558,8 @@ public class EntityIronBoat  extends Entity
                     int l;
 
                     this.func_145778_a(ModCore.iron_boat, 1, 0.0F);//not sticks anymore
+
+                    //lothrazar
                     /*
                     for (l = 0; l < 3; ++l)
                     {
