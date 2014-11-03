@@ -113,8 +113,7 @@ public class ModSamsPowerups
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new ExtraCraftingModule());
-		modules.add(new IronBoatModule());
-		modules.add(new EnderBookModule());
+		modules.add(new IronBoatModule()); 
 		modules.add(new MagicApplesModule());
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
@@ -182,5 +181,6 @@ public class ModSamsPowerups
 		event.registerServerCommand(new CommandSimpleWaypoints());
 		event.registerServerCommand(new CommandItemLocator());
 		event.registerServerCommand(new CommandFlyHelp());
+		if(inSandboxMode) 	event.registerServerCommand(new CommandSearchTrades());
     } 
 }
