@@ -39,7 +39,7 @@ public class EntityIronBoat  extends Entity
     private double velocityZ;
     private static final String __OBFID = "CL_00001667";
 
-    private final double speedMultiplierMax = 0.35D;
+    private final double speedMultiplierMax =  0.45D;// 0.35D;
     private final double speedMultiplierMin = 0.07D;
     
     public EntityIronBoat(World w)
@@ -49,7 +49,7 @@ public class EntityIronBoat  extends Entity
         this.speedMultiplier = speedMultiplierMin; 
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
-        this.yOffset = this.height / 2.0F;
+        this.yOffset = this.height / 2.0F; 
     }
 
     /**
