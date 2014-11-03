@@ -107,8 +107,11 @@ public class ModCore
     	modules = new ArrayList<BaseModule>();
 
 		modules.add(new BetterBonemealModule());
-		modules.add(new ExtraCraftingModule());
+		modules.add(new CaveFinderModule());
 		modules.add(new CreativeInventoryModule());
+		modules.add(new EnderBookModule());
+		modules.add(new ExtraCraftingModule());
+		modules.add(new IronBoatModule());
 		modules.add(new EnderBookModule());
 		modules.add(new MagicApplesModule());
 		modules.add(new QuickDepositModule());
@@ -116,7 +119,6 @@ public class ModCore
 		modules.add(new RunestoneModule());
 		modules.add(new StackSizeModule());
 		modules.add(new UncraftingModule());
-		modules.add(new IronBoatModule());
 		
 		 
 		for(int i = 0; i < modules.size(); i++)
