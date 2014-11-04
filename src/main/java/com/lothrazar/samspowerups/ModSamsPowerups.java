@@ -130,6 +130,14 @@ public class ModSamsPowerups
 		modules.add(new WaypointModule());
 		
 		 
+		
+		//todo: try catching chat messages? log for certian players/
+		//@SubscribeEvent
+		//public void onChatMessageReceived(ClientChatReceivedEvent event) {
+		
+			
+			
+		
 		for(int i = 0; i < modules.size(); i++)
 		{
 			modules.get(i).loadConfig(); 
@@ -195,11 +203,12 @@ public class ModSamsPowerups
 	@EventHandler
     public void onServerLoad(FMLServerStartingEvent event)
     {
+		//todo: command module?
     	event.registerServerCommand(new CommandEnderChest()); 
 		event.registerServerCommand(new CommandTodoList());
 		event.registerServerCommand(new CommandSimpleWaypoints());
 		event.registerServerCommand(new CommandItemLocator());
 		event.registerServerCommand(new CommandFlyHelp());
-		if(inSandboxMode) 	event.registerServerCommand(new CommandSearchTrades());
+		event.registerServerCommand(new CommandSearchTrades());
     } 
 }
