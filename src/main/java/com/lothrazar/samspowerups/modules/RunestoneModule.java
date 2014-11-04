@@ -36,12 +36,25 @@ public class RunestoneModule extends BaseModule
 	@Override
 	public void loadConfig() 
 	{
-		
-		
+		enabled = ModSamsPowerups.config.get(ModSamsPowerups.MODID, "runestoneEnabled",true,
+				"Lets you make a rune that enables flying in survival."
+				).getBoolean(true);
+	  
 	}
 
+	private boolean enabled;
+
+
 	@Override
-	public String getName() { 
+	public boolean isEnabled() 
+	{ 
+		return enabled;
+	}
+
+
+	@Override
+	public String getName() 
+	{ 
 		return "Diablo style Runestones";
 	}
 
@@ -117,10 +130,5 @@ public class RunestoneModule extends BaseModule
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
 		 
 	} 
-
-	@Override
-	public boolean isEnabled() { 
-		return true;
-	}
 
 }

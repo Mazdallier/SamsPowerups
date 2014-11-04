@@ -72,8 +72,9 @@ public class ModSamsPowerups
 	public static Configuration config;  
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
-    private boolean inSandboxMode = true; 
+    private boolean inSandboxMode = true;  
     
+
     private void logBaseChanges()
     {
     	//just list out any changes made to base classses, that are intended to be packaged with this mod
