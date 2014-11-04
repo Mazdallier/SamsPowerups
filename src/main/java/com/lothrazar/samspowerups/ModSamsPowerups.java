@@ -113,8 +113,10 @@ public class ModSamsPowerups
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new ExtraCraftingModule());
+		modules.add(new FishingBlockModule());
 		modules.add(new IronBoatModule()); 
 		modules.add(new MagicApplesModule());
+		modules.add(new MasterWandModule());
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new RunestoneModule());
