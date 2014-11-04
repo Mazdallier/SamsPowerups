@@ -3,6 +3,9 @@ package com.lothrazar.samspowerups.command;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List; 
+
+import com.lothrazar.samspowerups.modules.WaypointModule;
+import com.lothrazar.samspowerups.util.Chat;
 import com.lothrazar.samspowerups.util.Location; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -22,6 +25,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		this.aliases.add("wp");
 		this.aliases.add("simplewp");
 	}
+	
 	@Override
 	public int compareTo(Object arg0) 
 	{ 
@@ -54,26 +58,20 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	public static String KEY_CURRENT = "simplewp_current";
 	
-	
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] args) 
 	{  
-		
 		EntityPlayer p = (EntityPlayer)icommandsender;
-		
 		
 		if(args == null || args.length == 0 || args[0] == null || args[0].length() == 0)
 		{ 
-		    addChatMessage(p,getCommandUsage(icommandsender));
+		    Chat.addMessage(p,getCommandUsage(icommandsender));
 			return;//not enough args
 		}
 		
-		
 		 //so length at args is at least 1, so [0] exists
-		try
-		{
-			//System.out.println(args[0]);
-		
+		//try
+		//{
 		if(args[0].equals(MODE_LIST))
 		{
 			executeList(p);
@@ -109,7 +107,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		if(index <= 0 ) //invalid number, or int parse failed
 		{
 			// ZERO NOT ALLOWED
-			addChatMessage(p,getCommandUsage(icommandsender));
+			Chat.addMessage(p,getCommandUsage(icommandsender));
 			return;
 		}
 		
@@ -121,21 +119,20 @@ public class CommandSimpleWaypoints  implements ICommand
 			return;
 		} 
 		
-		
-		}
-		catch(Exception e) //NumberFormat not anymore, could be IOOB
-		{ 
-		    addChatMessage(p,getCommandUsage(icommandsender));
-			return;//not enough args
-		} 
+		//}
+		//catch(Exception e) //NumberFormat not anymore, could be IOOB
+		//{ 
+		//    addChatMessage(p,getCommandUsage(icommandsender));
+		//	return;//not enough args
+		//} 
 		
 //if nothing else
-	    addChatMessage(p,getCommandUsage(icommandsender));
-		
+	    Chat.addMessage(p,getCommandUsage(icommandsender));
 	}
+	
 	private void executeSave(EntityPlayer p, String name) 
 	{ 
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = WaypointModule.GetForPlayerName(p.getDisplayName());
 		
 		if(name == null) name = "";
 		
@@ -152,7 +149,7 @@ public class CommandSimpleWaypoints  implements ICommand
 
 	private void executeHide(EntityPlayer p) 
 	{
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = WaypointModule.GetForPlayerName(p.getDisplayName());
 		
 		if(lines.size() < 1){return;}
 		lines.set(0,"0");
@@ -161,7 +158,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeClear(EntityPlayer p) 
 	{
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = WaypointModule.GetForPlayerName(p.getDisplayName());
 		
 		if(lines.size() <= 1){return;}
 		
@@ -198,7 +195,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeList(EntityPlayer p) 
 	{ 
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = WaypointModule.GetForPlayerName(p.getDisplayName());
 		
 		int i = 0;
 		String d;
@@ -209,7 +206,7 @@ public class CommandSimpleWaypoints  implements ICommand
 			if(line == null || line.isEmpty()) {continue;}
 			
 			d = ""+i +" : " +(new Location(line).toDisplay());
-			addChatMessage(p,d);
+			Chat.addMessage(p,d);
 			
 			i++;
 		}
@@ -232,52 +229,18 @@ public class CommandSimpleWaypoints  implements ICommand
 	{ 
 		return false;
 	} 
-	
-	private static void addChatMessage(EntityPlayer p, String msg)
-	{
-		p.addChatMessage(new ChatComponentTranslation(msg));
-	}
-	
-	public static ArrayList<String> GetForPlayerName(String playerName)
-	{ 
-		String fileName = "swp_"+playerName +".dat";
-		ArrayList<String> lines = new ArrayList<String>();
 	 
-		try
-		{
-			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName);
-			if(!myFile.exists()) myFile.createNewFile();
-			FileInputStream fis = new FileInputStream(myFile);
-			DataInputStream instream = new DataInputStream(fis);
-			String val;
-			
-			while((val = instream.readLine()) != null) lines.add(val);
-			
-			instream.close();
-			fis.close();
-		} catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		} //this makes it per-world
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		return lines;
-	}
 	
-	public static void SetCurrentForPlayerName(String playerName, int current)
+	private void SetCurrentForPlayerName(String playerName, int current)
 	{
-		ArrayList<String> lines = GetForPlayerName(playerName);
+		ArrayList<String> lines = WaypointModule.GetForPlayerName(playerName);
 		
 		lines.set(0, current+"");//overwrite the current index
-
-		
+ 
 		OverwriteForPlayerName(playerName, lines);
 	}
 	
-	
-	public static void OverwriteForPlayerName(String playerName, ArrayList<String> lines)
+	private void OverwriteForPlayerName(String playerName, ArrayList<String> lines)
 	{
 		String fileName = "swp_"+playerName +".dat";
 		try{
@@ -303,8 +266,5 @@ public class CommandSimpleWaypoints  implements ICommand
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 	
 }

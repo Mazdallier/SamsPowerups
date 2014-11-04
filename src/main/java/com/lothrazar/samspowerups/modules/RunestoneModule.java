@@ -18,6 +18,7 @@ public class RunestoneModule extends BaseModule
 	{
 		Handler = new RunestoneTickHandler();
 	}
+	
 	public static  int SLOT_RUNESTONE = 8; 
  
  	public static int DURABILITY = 90000;//90 thousand ticks is 4500 seconds which is 75 minutes
@@ -44,13 +45,11 @@ public class RunestoneModule extends BaseModule
 
 	private boolean enabled;
 
-
 	@Override
 	public boolean isEnabled() 
 	{ 
 		return enabled;
 	}
-
 
 	@Override
 	public String getName() 
@@ -129,6 +128,5 @@ public class RunestoneModule extends BaseModule
 				, 'a', Items.nether_star  );    
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
 		 
-	} 
-
+	}  
 }

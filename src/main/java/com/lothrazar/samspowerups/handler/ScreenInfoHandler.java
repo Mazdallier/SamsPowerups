@@ -68,69 +68,7 @@ public class ScreenInfoHandler
 		AddRightInfo(event.right);
 		
 		
-		//simplewp
-		if(ScreenInfoHandler.showDebugInfo() == false)
-	    {
- 
-	    	EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
-				    	
-		//	event.right.add("");
- 
-			//NBTTagCompound c = Minecraft.getMinecraft().thePlayer.getEntityData();
-			
-			//if(c == null) c = new NBTTagCompound();
-			 
-	    	ArrayList<String> saved = CommandSimpleWaypoints.GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
-
-			//int saved = c.getInteger(CommandSimpleWaypoints.KEY_CURRENT);
-	    	
-	    	if(saved.size() > 0 && saved.get(0) != null)
-	    	{
-	    	//	event.right.add(saved.get(0));
-	    		int index = 0;
-	    		try
-	    		{
-		    		index = Integer.parseInt( saved.get(0) );
-	    		}
-	    		catch(NumberFormatException e) 
-	    		{
-	    			System.out.println("NAN"  );
-	    			return;
-	    		}// do nothing, its allowed to be a string
-	    		
-	    		if(index <= 0){return;}
-	    		
-	    		Location loc = null;
-
-	    		if(saved.size() <= index) {return;}
-	    		
-	    		String sloc = saved.get(index);
-	    		
-	    		if(sloc == null || sloc.isEmpty()) {return;}
-	    	 
-	    		if( index < saved.size() && saved.get(index) != null) loc = new Location(sloc);
-	    		
-	    		if(loc != null)
-	    		{ 
-	    			//return  showName +Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + dim;	
-	    			
-	    			if(p.dimension != loc.dimension){return;}
-	    			
-	    			double dX = p.posX - loc.X;
-	    			double dZ = p.posZ - loc.Z;
-	    			
-	    			int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
-	    			 
-	    			String showName = "Distance "+dist+ " from waypoint ["+index+"] " + loc.name;	
-	    			
-	    			boolean sideRight=true;
-	    			if(sideRight)
-	    				event.right.add(showName);
-	    			else 
-	    				event.left.add(showName);
-	    		} 
-	    	}
-	    } 
+		//simplewp was here
 	} 
 	
 	

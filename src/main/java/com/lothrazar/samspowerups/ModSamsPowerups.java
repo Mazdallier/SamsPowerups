@@ -123,6 +123,7 @@ public class ModSamsPowerups
 		modules.add(new RunestoneModule());
 		modules.add(new StackSizeModule());
 		modules.add(new UncraftingModule());
+		modules.add(new WaypointModule());
 		
 		 
 		for(int i = 0; i < modules.size(); i++)
