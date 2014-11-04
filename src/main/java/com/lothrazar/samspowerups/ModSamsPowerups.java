@@ -14,7 +14,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockPumpkin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
@@ -23,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -121,6 +124,7 @@ public class ModSamsPowerups
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new RunestoneModule());
+		//seasrch trade module
 		modules.add(new StackSizeModule());
 		modules.add(new UncraftingModule());
 		modules.add(new WaypointModule());
@@ -143,6 +147,17 @@ public class ModSamsPowerups
 		{ 
 	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
+			
+			//sandbox text: magma cubes in 
+			 EntityRegistry.addSpawn(EntityMagmaCube.class, 1, 2, 4, 
+					 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
+
+			 //TODO mob spawner module
+			 //maybe based on difficulty?
+			 //cave spiders in some forests?
+			 //ghasts in oceans?
+			// EntityRegistry.addSpawn(EntityBlaze.class, 1, 2, 4, 
+			//		 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
 
 		}
 		
