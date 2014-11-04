@@ -14,12 +14,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
  
 public class RunestoneModule extends BaseModule 
 {
-	public static  int SLOT_RUNESTONE = 8;//when they press keyboard //TODO: config to change this
+	public RunestoneModule()
+	{
+		Handler = new RunestoneTickHandler();
+	}
+	public static  int SLOT_RUNESTONE = 8; 
  
  	public static int DURABILITY = 90000;//90 thousand ticks is 4500 seconds which is 75 minutes
-  
-	public static RunestoneTickHandler Handler = new RunestoneTickHandler();
- 
+   
 	private static ItemRunestone rune_resistance;
 	private static ItemRunestone rune_jump;
 	private static ItemRunestone rune_goldheart;

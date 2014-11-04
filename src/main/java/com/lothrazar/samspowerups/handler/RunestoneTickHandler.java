@@ -6,6 +6,7 @@ import net.minecraft.potion.PotionEffect;
 
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.samspowerups.modules.RunestoneModule;
+import com.lothrazar.samspowerups.util.Chat;
 import com.lothrazar.samspowerups.util.Reference;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -30,10 +31,8 @@ public class RunestoneTickHandler
 		ItemStack runestone = event.player.inventory.getStackInSlot(slotNumber);
 		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}
  
- 
-		
 		ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
-		
+		Chat.addMessage(event.player, "Runestone tick?:");
 		int runestoneEffect,amp; 
 		
 		for(int i = 0; i < itemRunestone.effects.length; i++)
