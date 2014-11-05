@@ -26,12 +26,7 @@ public class CaveFinderModule extends BaseModule
 						"This lets you see through the world."
 		); 
 	}
-
-	@Override
-	public String getName()
-	{
-		return "Cave Finder: An XRay Block";
-	}
+ 
 
 	@Override
 	public void init() 
@@ -54,23 +49,5 @@ public class CaveFinderModule extends BaseModule
 	public boolean isEnabled() 
 	{
 		return enabled;
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
 	} 
 }

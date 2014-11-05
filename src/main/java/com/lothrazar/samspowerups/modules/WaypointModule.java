@@ -6,29 +6,27 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import net.minecraftforge.common.DimensionManager;
-
+import java.util.Collection; 
+import net.minecraft.command.ICommand;
+import net.minecraftforge.common.DimensionManager; 
 import com.lothrazar.samspowerups.BaseModule;
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.samspowerups.handler.WaypointHandler;
 
 public class WaypointModule extends BaseModule
 {
 	public WaypointModule()
 	{
+		super();
 		Handler = new WaypointHandler();
+		Commands.add(new CommandSimpleWaypoints());
 	}
 
 	@Override
 	public void loadConfig() { 
 		
 	}
-
-	@Override
-	public String getName() { 
-		return "Waypoint command /swp";
-	}
-
+ 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -41,8 +39,7 @@ public class WaypointModule extends BaseModule
 	public boolean isEnabled() { 
 		return enabled;
 	}
-
-
+ 
 	public static ArrayList<String> GetForPlayerName(String playerName)
 	{ 
 		String fileName = "swp_"+playerName +".dat";
@@ -70,22 +67,5 @@ public class WaypointModule extends BaseModule
 		}
 		return lines;
 	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		event.registerServerCommand(new CommandSimpleWaypoints());
-	}
+ 
 }

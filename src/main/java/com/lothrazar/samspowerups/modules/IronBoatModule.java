@@ -16,10 +16,9 @@ public class IronBoatModule extends BaseModule
 	{  
 		//TODO
 	}
-
-	@Override
-	public String getName() { 
-		return "Iron Boats: faster and stronger";
+ 
+	public IronBoatModule() { 
+		Name= "Iron Boats: faster and stronger";
 	}
 
 	@Override
@@ -36,23 +35,6 @@ public class IronBoatModule extends BaseModule
 	public boolean isEnabled() { 
 		return true;
 	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 
 }

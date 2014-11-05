@@ -16,6 +16,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ExtraCraftingModule extends BaseModule
 { 
+	public ExtraCraftingModule(){
+		 Name="Extra Craftables";
+	}
+	
+	
 	public static boolean skullSignNames;
 
 	public void loadConfig(Configuration config)
@@ -241,28 +246,6 @@ public class ExtraCraftingModule extends BaseModule
 	{ 
 		return true;
 	}
-
-	@Override
-	public String getName() { 
-		return "Extra Craftables";
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
    
 }

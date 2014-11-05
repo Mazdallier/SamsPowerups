@@ -1,5 +1,9 @@
 package com.lothrazar.samspowerups.modules;
 
+import java.util.Collection;
+
+import net.minecraft.command.ICommand;
+
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.BonemealUseHandler;
@@ -7,10 +11,11 @@ import com.lothrazar.samspowerups.handler.ConfigHandler;
  
 public class BetterBonemealModule extends BaseModule 
 { 
-	private boolean enabled;
+	private boolean enabled = true;
 	public BetterBonemealModule()
 	{
 		Handler = new BonemealUseHandler();
+		Name = "Better Bonemeal";
 	}
  
 	@Override
@@ -22,13 +27,7 @@ public class BetterBonemealModule extends BaseModule
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
 		); 
 	}
-
-	@Override
-	public String getName()
-	{ 
-		return "Better Bonemeal";
-	}
-
+  
 	@Override
 	public void init() {  	}
 
@@ -36,24 +35,5 @@ public class BetterBonemealModule extends BaseModule
 	public boolean isEnabled() 
 	{ 
 		return enabled;
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	} 
 }

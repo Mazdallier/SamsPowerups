@@ -18,6 +18,7 @@ public class EnderBookModule extends BaseModule
 	public EnderBookModule()
 	{
 		Handler = new EnderBookHandler();
+		Name="Ender Book Teleportation";
 	}
   
 	public void init()
@@ -52,29 +53,7 @@ public class EnderBookModule extends BaseModule
 	public boolean isEnabled() {
 		return enabled;
 	}
-
-	@Override
-	public String getName() { 
-		return "Ender Book Teleportation";
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 
 
  

@@ -24,11 +24,10 @@ public class FishingBlockModule extends BaseModule
 				"(but no treasure or junk like real fishing would)."
 			);
 	}
-
-	@Override
-	public String getName() 
+ 
+	public FishingBlockModule() 
 	{ 
-		return "Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions";
+		Name= "Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions";
 	}
 
 	@Override
@@ -53,23 +52,6 @@ public class FishingBlockModule extends BaseModule
 	{
 		return enabled;
 	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 
 }

@@ -18,7 +18,9 @@ public class ColouredCommandBlockModule extends BaseModule
 	private static boolean gameRuleMobGrief;
 	private static boolean gameRuleFireTick;
 	private static boolean gameRuleDaylightCycle ;
-	 
+public ColouredCommandBlockModule(){
+	Name= "Coloured Command Blocks";
+}
 	public static enum CommandType 
 	{
 	    Teleport,Gamerule,Weather
@@ -51,13 +53,7 @@ public class ColouredCommandBlockModule extends BaseModule
 				,"Build a command block that toggles the game rule doDaylightCycle." 
 				).getBoolean(true);  
 	}
-
-	@Override
-	public String getName() 
-	{
-		return "Coloured Command Blocks";
-	}
-
+ 
 	@Override
 	public void init() 
 	{
@@ -144,22 +140,5 @@ public class ColouredCommandBlockModule extends BaseModule
 				gameRuleFireTick ||
 			gameRuleDaylightCycle ;
 	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 }

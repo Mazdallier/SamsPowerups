@@ -1,27 +1,24 @@
 package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;
+import java.util.Collection;
+
 import net.minecraft.command.ICommand;
 import net.minecraftforge.common.config.Configuration;
 
 public abstract class BaseModule  
 {  
+	public BaseModule()
+	{
+		Commands = new ArrayList<ICommand>();
+	}
 	public Object Handler = null;
+	public String Name = "";
+	public Collection<ICommand> Commands = null;
 	
 	public abstract void loadConfig();
 	
-	public abstract String getName();
-
-	public abstract void preInit();
+	public abstract void init(); 
 	
-	public abstract void init();
-
-	public abstract void load();
-
-	public abstract void serverLoad();
-	
-	public abstract boolean isEnabled();
- 
-	//public abstract void setEnabled(boolean is) ;
- 
+	public abstract boolean isEnabled(); 
 }

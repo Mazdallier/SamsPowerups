@@ -13,6 +13,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class UncraftingModule extends BaseModule
 { 
+	public UncraftingModule()
+	{
+		Name="Uncrafting";
+	}
 	private static boolean stairs;
 	private static boolean misc;
 	private static boolean slabs; 
@@ -597,27 +601,6 @@ public class UncraftingModule extends BaseModule
 	{
 		return true;
 	}
-
-	@Override
-	public String getName() { 
-		return "Uncrafting";
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
+	 
 }

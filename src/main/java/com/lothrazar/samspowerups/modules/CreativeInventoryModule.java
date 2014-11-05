@@ -56,28 +56,6 @@ public class CreativeInventoryModule extends BaseModule
 	public boolean isEnabled() { 
 		return true;
 	}
-
-	@Override
-	public String getName() { 
-		return "Creative Inventory more items";
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 
 }

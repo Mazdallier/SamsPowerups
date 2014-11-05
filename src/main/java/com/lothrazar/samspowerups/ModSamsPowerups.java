@@ -183,9 +183,10 @@ public class ModSamsPowerups
 				{
 					MinecraftForge.EVENT_BUS.register(current.Handler); 
 				}
+				 
 				
 				//add all my commands here to a list
-				logger.info("Init Module : " + current.getName()); 
+				logger.info("Init Module : " + current.Name); 
 			}
 		} 
     }
@@ -200,31 +201,15 @@ public class ModSamsPowerups
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{ 
-		 proxy.registerRenderers();
-		 /*
-		BaseModule current; 
-		for(int i = 0; i < modules.size(); i++)
-		{
-			current = modules.get(i); 
-			if(current.isEnabled())
-			{	
-				current.load();
-			}
-		} 
-		*/
+		 proxy.registerRenderers(); 
 	}
 	
 	@EventHandler
     public void onServerLoad(FMLServerStartingEvent event)
-    {
-		BaseModule current; 
-		for(int i = 0; i < modules.size(); i++)
-		{
-			current = modules.get(i); 
-			if(current.isEnabled())
-			{	
-				current.serverLoad();
-			}
+    { 
+		for(int i = 0; i < Commands.size(); i++)
+		{ 
+			event.registerServerCommand(Commands.get(i));
 		} 
 		/*
 		//todo: command module?

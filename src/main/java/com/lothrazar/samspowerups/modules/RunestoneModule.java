@@ -17,6 +17,7 @@ public class RunestoneModule extends BaseModule
 	public RunestoneModule()
 	{
 		Handler = new RunestoneTickHandler();
+		Name="Diablo style Runestones";
 	}
 	
 	public static  int SLOT_RUNESTONE = 8; 
@@ -50,13 +51,7 @@ public class RunestoneModule extends BaseModule
 	{ 
 		return enabled;
 	}
-
-	@Override
-	public String getName() 
-	{ 
-		return "Diablo style Runestones";
-	}
-
+ 
 	@Override
     public void init()
 	{ 
@@ -129,22 +124,5 @@ public class RunestoneModule extends BaseModule
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
 		 
 	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}  
+ 
 }

@@ -13,6 +13,10 @@ import net.minecraftforge.common.config.Property;
 
 public class StackSizeModule extends BaseModule //implements ISamModule
 { 
+	public StackSizeModule()
+	{
+		Name="Stack Size to 64";
+	}
 	private boolean enabled;
  
 	public void init()
@@ -85,38 +89,5 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		// TODO Auto-generated method stub
 		return enabled;
 	}
-
-
-
-	@Override
-	public String getName() { 
-		return "Stack Size to 64";
-	}
-
-
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
  
-	 
-	
 }

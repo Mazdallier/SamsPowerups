@@ -6,6 +6,10 @@ import com.lothrazar.samspowerups.handler.ConfigHandler;
 
 public class QuickDepositModule extends BaseModule
 { 
+	public QuickDepositModule()
+	{
+		Name= "Quick Deposit : hit a chest to sort it in"; 	
+	}
 	private boolean enabled;
 
 	@Override
@@ -18,13 +22,7 @@ public class QuickDepositModule extends BaseModule
 			"Will not deposit items from your hotbar, and will not deposit into empty slots in the chest, it matches what is already there."
 		); 
 	}
-
-	@Override
-	public String getName() 
-	{ 
-		return "Quick Deposit : hit a chest to sort it in";
-	}
-
+ 
 	@Override
 	public void init() { }
 	
@@ -32,24 +30,5 @@ public class QuickDepositModule extends BaseModule
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return enabled;
-	}
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	} 
 }

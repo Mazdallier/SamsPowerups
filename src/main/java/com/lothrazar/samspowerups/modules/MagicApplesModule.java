@@ -13,7 +13,9 @@ public class MagicApplesModule extends BaseModule
 { 
 	public MagicApplesModule()
 	{
-		
+ 
+		Name= "Magic Apples: More than just gold";
+ 
 	}
 	private ItemFoodAppleMagic appleEmerald;
 	private ItemFoodAppleMagic appleDiamond;
@@ -120,32 +122,12 @@ public class MagicApplesModule extends BaseModule
 				 ).getBoolean(true) ;
 	}
 
-	@Override
-	public String getName() { 
-		return "Magic Apples: More than just gold";
-	}
   
 	@Override
 	public boolean isEnabled() { 
 		return enabled;
 	}
 
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 	 
 }

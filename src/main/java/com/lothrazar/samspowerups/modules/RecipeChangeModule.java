@@ -31,6 +31,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipeChangeModule extends BaseModule
 { 
+	public RecipeChangeModule ()
+	{
+		Name="Recipe changer: smooth stone tools and more";
+		
+	}
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	
 	public void init()
@@ -168,31 +173,6 @@ public class RecipeChangeModule extends BaseModule
 	{
 		return true;
 	}
-
-
-	@Override
-	public String getName() { 
-		return "Recipe changer: smooth stone tools and more";
-	}
-
-
-	@Override
-	public void preInit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void serverLoad() {
-		// TODO Auto-generated method stub
-		
-	}
+ 
+ 
 }
