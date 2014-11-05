@@ -170,6 +170,13 @@ public class ModSamsPowerups
 			// EntityRegistry.addSpawn(EntityBlaze.class, 1, 2, 4, 
 			//		 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
 
+			 
+			 /*ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(xyz), 1, 1, 5));
+ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).ad 
+ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addIt 
+ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).a 
+*/
+			 
 		}
 		
 		BaseModule current; 
