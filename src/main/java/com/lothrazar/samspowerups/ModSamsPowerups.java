@@ -6,6 +6,7 @@ import com.lothrazar.samspowerups.block.*;
 import com.lothrazar.samspowerups.command.*; 
 import com.lothrazar.samspowerups.modules.*;
 import com.lothrazar.samspowerups.net.*; 
+import com.lothrazar.samspowerups.gui.GUIHandler;
 import com.lothrazar.samspowerups.handler.*;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
@@ -109,6 +110,7 @@ public class ModSamsPowerups
     {
     	logger = event.getModLog();
     	logBaseChanges();
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
     	configHandler = new ConfigHandler();
     	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
     	modules = new ArrayList<BaseModule>();
@@ -121,6 +123,7 @@ public class ModSamsPowerups
 		modules.add(new ExtraCraftingModule());
 		modules.add(new FishingBlockModule());
 		modules.add(new IronBoatModule()); 
+		modules.add(new KeySliderModule()); 
 		modules.add(new MagicApplesModule());
 		modules.add(new MasterWandModule());
 		modules.add(new QuickDepositModule());
@@ -132,27 +135,17 @@ public class ModSamsPowerups
 		modules.add(new UncraftingModule());
 		modules.add(new WaypointModule());
 		
-		 
-		
 		//todo: try catching chat messages? log for certian players/
 		//@SubscribeEvent
 		//public void onChatMessageReceived(ClientChatReceivedEvent event) {
-		
-			
-			
-		
+		 
 		for(int i = 0; i < modules.size(); i++)
 		{
 			modules.get(i).loadConfig(); 
 		} 
 		
 		configHandler.syncConfigIfChanged();
-		MinecraftForge.EVENT_BUS.register(configHandler);  
-	
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-		network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER); //the 0 is priority (i think)
-  
-		GameRegistry.registerFuelHandler(new FuelHandler());//TODO: should this be in a module
+		MinecraftForge.EVENT_BUS.register(configHandler);   
     	
 		if(inSandboxMode) //experimenting with new unfinished features
 		{ 
@@ -170,6 +163,10 @@ public class ModSamsPowerups
 			// EntityRegistry.addSpawn(EntityBlaze.class, 1, 2, 4, 
 			//		 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
 
+			 
+			 //TODO :: KeyInputHandler
+			 
+			 
 			 
 			 /*ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(xyz), 1, 1, 5));
 ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).ad 
@@ -191,8 +188,10 @@ ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).a
 				{
 					MinecraftForge.EVENT_BUS.register(current.Handler); 
 				}
-				 
-				
+				if(current.FuelHandler != null)
+				{ 
+					GameRegistry.registerFuelHandler(current.FuelHandler);
+				}
 				//add all my commands here to a list
 				logger.info("Init Module : " + current.Name); 
 			}

@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.handler;
+package com.lothrazar.samspowerups.gui;
 
 import com.lothrazar.samspowerups.ModSamsPowerups;
  
