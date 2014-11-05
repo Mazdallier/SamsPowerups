@@ -14,12 +14,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-public class CommandItemLocator  implements ICommand
+public class CommandItemSearch  implements ICommand
 {
 	private static int RADIUS = 32;
 	private static boolean isEnabled;
 
-	public CommandItemLocator()
+	public CommandItemSearch()
 	{
 		aliases.add("is");
 	}
@@ -140,6 +140,7 @@ public class CommandItemLocator  implements ICommand
 								|| search.contains(invItemName)
 								|| invItemName.contains(search))
 						{ 
+							System.out.println("SLOT " +slot);//TODO: can we say like.., chest column 4 row 3?
 							foundStacks++;
 							foundQty += invItem.stackSize; 
 						} 

@@ -207,7 +207,7 @@ public class ModSamsPowerups
     	event.registerServerCommand(new CommandEnderChest()); 
 		event.registerServerCommand(new CommandTodoList());
 		event.registerServerCommand(new CommandSimpleWaypoints());
-		event.registerServerCommand(new CommandItemLocator());
+		event.registerServerCommand(new CommandItemSearch());
 		event.registerServerCommand(new CommandFlyHelp());
 		event.registerServerCommand(new CommandSearchTrades());
     } 
