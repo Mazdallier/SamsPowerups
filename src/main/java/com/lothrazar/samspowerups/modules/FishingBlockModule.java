@@ -12,8 +12,7 @@ import com.lothrazar.samspowerups.handler.ConfigHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class FishingBlockModule extends BaseModule
-{
-
+{ 
 	private boolean enabled;
 
 	@Override
@@ -53,6 +52,24 @@ public class FishingBlockModule extends BaseModule
 	public boolean isEnabled() 
 	{
 		return enabled;
+	}
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

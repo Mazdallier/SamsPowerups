@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockPumpkin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.command.ICommand;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.monster.EntityMagmaCube;
@@ -75,7 +76,8 @@ public class ModSamsPowerups
 	public static Configuration config;  
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
-    private boolean inSandboxMode = true;  
+    private boolean inSandboxMode = true;   
+	public ArrayList<ICommand> Commands = new  ArrayList<ICommand>(); 
     
 
     private void logBaseChanges()
@@ -182,6 +184,7 @@ public class ModSamsPowerups
 					MinecraftForge.EVENT_BUS.register(current.Handler); 
 				}
 				
+				//add all my commands here to a list
 				logger.info("Init Module : " + current.getName()); 
 			}
 		} 
@@ -198,17 +201,39 @@ public class ModSamsPowerups
 	public void load(FMLInitializationEvent event)
 	{ 
 		 proxy.registerRenderers();
+		 /*
+		BaseModule current; 
+		for(int i = 0; i < modules.size(); i++)
+		{
+			current = modules.get(i); 
+			if(current.isEnabled())
+			{	
+				current.load();
+			}
+		} 
+		*/
 	}
 	
 	@EventHandler
     public void onServerLoad(FMLServerStartingEvent event)
     {
+		BaseModule current; 
+		for(int i = 0; i < modules.size(); i++)
+		{
+			current = modules.get(i); 
+			if(current.isEnabled())
+			{	
+				current.serverLoad();
+			}
+		} 
+		/*
 		//todo: command module?
     	event.registerServerCommand(new CommandEnderChest()); 
 		event.registerServerCommand(new CommandTodoList());
-		event.registerServerCommand(new CommandSimpleWaypoints());
+		//moved to waypoint module
 		event.registerServerCommand(new CommandItemSearch());
 		event.registerServerCommand(new CommandFlyHelp());
 		event.registerServerCommand(new CommandSearchTrades());
+		*/
     } 
 }

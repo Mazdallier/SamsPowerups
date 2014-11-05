@@ -246,5 +246,23 @@ public class ExtraCraftingModule extends BaseModule
 	public String getName() { 
 		return "Extra Craftables";
 	}
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
+	}
    
 }

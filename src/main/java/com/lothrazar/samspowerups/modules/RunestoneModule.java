@@ -128,5 +128,23 @@ public class RunestoneModule extends BaseModule
 				, 'a', Items.nether_star  );    
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
 		 
+	}
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
 	}  
 }

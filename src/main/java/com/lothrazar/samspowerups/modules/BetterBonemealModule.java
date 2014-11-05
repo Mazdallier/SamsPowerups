@@ -38,4 +38,22 @@ public class BetterBonemealModule extends BaseModule
 		return enabled;
 	}
 
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

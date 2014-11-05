@@ -8,14 +8,13 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class IronBoatModule extends BaseModule
-{
-
+{ 
 	public static ItemIronBoat iron_boat;
 
 	@Override
 	public void loadConfig() 
-	{ 
-		
+	{  
+		//TODO
 	}
 
 	@Override
@@ -36,6 +35,24 @@ public class IronBoatModule extends BaseModule
 	@Override
 	public boolean isEnabled() { 
 		return true;
+	}
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

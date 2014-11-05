@@ -5,8 +5,7 @@ import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
 
 public class QuickDepositModule extends BaseModule
-{
-
+{ 
 	private boolean enabled;
 
 	@Override
@@ -33,6 +32,24 @@ public class QuickDepositModule extends BaseModule
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return enabled;
+	}
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

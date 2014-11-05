@@ -174,4 +174,25 @@ public class RecipeChangeModule extends BaseModule
 	public String getName() { 
 		return "Recipe changer: smooth stone tools and more";
 	}
+
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -70,4 +70,22 @@ public class WaypointModule extends BaseModule
 		}
 		return lines;
 	}
+
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		event.registerServerCommand(new CommandSimpleWaypoints());
+	}
 }

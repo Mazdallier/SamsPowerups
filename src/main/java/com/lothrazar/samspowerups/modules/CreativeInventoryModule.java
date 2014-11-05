@@ -62,4 +62,22 @@ public class CreativeInventoryModule extends BaseModule
 		return "Creative Inventory more items";
 	}
 
+	@Override
+	public void preInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serverLoad() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
