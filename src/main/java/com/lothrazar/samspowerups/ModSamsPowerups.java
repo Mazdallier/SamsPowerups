@@ -126,7 +126,7 @@ public class ModSamsPowerups
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new RunestoneModule());
-		//seasrch trade module
+		modules.add(new ScreenInfoModule());
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());

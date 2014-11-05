@@ -14,12 +14,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-public class CommandItemSearch  implements ICommand
+public class CommandSearchItem  implements ICommand
 {
 	private static int RADIUS = 32;
 	private static boolean isEnabled;
 
-	public CommandItemSearch()
+	public CommandSearchItem()
 	{
 		aliases.add("is");
 	}
@@ -53,13 +53,13 @@ public class CommandItemSearch  implements ICommand
 	@Override
 	public String getCommandName() 
 	{ 
-		return "itemsearch";
+		return "searchitem";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender arg0) 
 	{ 
-		return "/itemsearch <itemname>";
+		return "/searchitem <itemname>";
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class CommandItemSearch  implements ICommand
 		String category = ModSamsPowerups.MODID  ;  
 		
 		isEnabled = config.get(category,"itemsearch", true,
-				"When true, this enables /itemsearch command, which searches chests and other containers near you for an item within 32 blocks.")
+				"When true, this enables /searchitem command, which searches chests and other containers near you for an item within 32 blocks.")
 		.getBoolean(true); 
 	 
 	}
