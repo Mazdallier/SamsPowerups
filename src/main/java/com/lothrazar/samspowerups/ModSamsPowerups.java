@@ -129,6 +129,7 @@ public class ModSamsPowerups
 		modules.add(new MoreFuelModule());
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
+		modules.add(new RichLootModule());
 		modules.add(new RunestoneModule());
 		modules.add(new ScreenInfoModule());
 		modules.add(new StackSizeModule());

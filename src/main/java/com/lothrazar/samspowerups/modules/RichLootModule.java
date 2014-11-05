@@ -7,9 +7,12 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 
 import com.lothrazar.samspowerups.BaseModule;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 
 public class RichLootModule extends BaseModule
 { 
+	private boolean enabled;
+
 	public RichLootModule()
 	{
 		super();
@@ -18,10 +21,15 @@ public class RichLootModule extends BaseModule
 	@Override
 	public void loadConfig() 
 	{ 
+		String category = ModSamsPowerups.MODID; 
+
+		enabled = ModSamsPowerups.config.getBoolean(category, "richLoot",true,
+				"More goodies in dungeon chests: all records, glowstone, emeralds, quartz..."
+		);
 	}
 
 	@Override
-	public void init() 
+	public void init() //a test seed   1660196624
 	{ 
 		addToAllExceptBonus(new ItemStack(Blocks.emerald_block),1,5,RARITY_RECORD);
 
@@ -91,7 +99,7 @@ public class RichLootModule extends BaseModule
 	@Override
 	public boolean isEnabled() 
 	{ 
-		return true;
+		return enabled;
 	}
 
 }
