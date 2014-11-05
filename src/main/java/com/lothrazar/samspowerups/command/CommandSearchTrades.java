@@ -31,9 +31,9 @@ public class CommandSearchTrades  implements ICommand
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender p_71518_1_) {
+	public String getCommandUsage(ICommandSender ic) {
 		// TODO Auto-generated method stub
-		return  "searchtrade";
+		return  "searchtrade itemname <qty>";
 	}
 
 	@Override
@@ -46,6 +46,20 @@ public class CommandSearchTrades  implements ICommand
 	public void processCommand(ICommandSender ic, String[] args) 
 	{
 		EntityPlayer p = (EntityPlayer)ic;
+		if(args.length == 0)
+		{ 
+			Chat.addMessage(p,  getCommandUsage(ic));
+			return;
+		}
+		
+		String searching = args[0];
+		int searchingQty = -1;
+		if(args.length > 1)
+		{
+			searchingQty = Integer.parseInt(args[1]);
+			
+			if(searchingQty < 0) {searchingQty  = 0;}
+		}
 		//step 1: get list of nearby villagers, seearch entities nearby in world
 		double X = ic.getPlayerCoordinates().posX;
 		double Z = ic.getPlayerCoordinates().posZ;
@@ -75,8 +89,7 @@ public class CommandSearchTrades  implements ICommand
 		 String disabled, m;
 		 
 		 ArrayList<String> messages = new ArrayList<String>();
-		 
-		 
+		 boolean match = false;
 		 for(int i = 0; i < villagers.size(); i++)
 		 { 
 			 list = villagers.get(i).getRecipes(p); 
@@ -90,19 +103,37 @@ public class CommandSearchTrades  implements ICommand
 				 buySecond = rec.getSecondItemToBuy();
 				 
 				 sell = rec.getItemToSell();
-				  //for now list everything
-				 //TODO: get command arguments and filter this list
-				 m =  disabled  +
-						 sell.stackSize +" "+sell.getDisplayName()+
-						 "::"+
-						 buy.stackSize+" "+buy.getDisplayName();
+
+				 //match to any of the three possible items
+				 //only match quantity if they enter one
 				 
-				 if(buySecond != null && buySecond.stackSize != 0)
+				 if(buy.getDisplayName().contains(searching))
 				 {
-					 m += " & " + buySecond.stackSize +" " + buySecond.getDisplayName();
+					 if(searchingQty < 0 || searchingQty == buy.stackSize)
+						 match = true;
 				 }
 				 
-				 messages.add(m); 
+				 if(buySecond != null && buySecond.getDisplayName().contains(searching))
+				 {
+					 if(searchingQty < 0 || searchingQty == buySecond.stackSize)
+						 match = true;
+				 }
+				 
+				 if(sell.getDisplayName().contains(searching))
+				 {
+					 if(searchingQty < 0 || searchingQty == sell.stackSize)
+						 match = true;
+				 }
+				 
+
+				 if(match)
+				 {
+					 m =  disabled  +
+							 sell.stackSize +" "+sell.getDisplayName()+
+							 "::"+
+							 buy.stackSize+" "+buy.getDisplayName();
+					 messages.add(m); 
+				 }
 			 } 
 		 }
 
