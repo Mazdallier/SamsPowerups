@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.WandHandler;
+import com.lothrazar.samspowerups.item.ItemChestSack;
 import com.lothrazar.samspowerups.item.ItemWandMaster;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -23,7 +24,8 @@ public class MasterWandModule extends BaseModule
 	@Override
 	public void loadConfig() { 
 	}
- 
+
+	public static ItemChestSack item;
 	@Override
 	public void init() 
 	{  
@@ -37,6 +39,11 @@ public class MasterWandModule extends BaseModule
 			, 'd', Blocks.emerald_block 
 			, 'b', Items.blaze_rod  );
 		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
+		
+		
+		item = new ItemChestSack();
+		item.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
+		GameRegistry.registerItem(item,  "chest_sack" );   
 	}
 	@Override
 	public boolean isEnabled() {

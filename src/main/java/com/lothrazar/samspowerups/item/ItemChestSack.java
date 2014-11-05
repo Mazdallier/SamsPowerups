@@ -39,30 +39,15 @@ public class ItemChestSack extends Item
 	{  
 		super( );  
 	}
-
-	public static ItemChestSack item;
-	
-	
-	public static void Init()
-	{ 
-		item = new ItemChestSack();
-		item.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
-		GameRegistry.registerItem(item,  "chest_sack" );   
-	}
  
-	
 	public static ChestSackHandler Handler = new ChestSackHandler();
- 
-	
-	
-
+  
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) 
 	{
 		//http://www.minecraftforge.net/wiki/Creating_NBT_for_items
 	    if(itemStack.stackTagCompound==null) itemStack.stackTagCompound = new NBTTagCompound();
-	    
-	    
+	     
 	}
 	
 	@Override
@@ -72,20 +57,16 @@ public class ItemChestSack extends Item
 		{
 			itemStack.setTagCompound(new NBTTagCompound());
 		}
-	 
-       
-         String count = itemStack.getTagCompound().getString("count"); 
-         if(count == null ) {count =   "0";}
+	  
+		String count = itemStack.getTagCompound().getString("count"); 
+		if(count == null ) {count =   "0";}
         		 
         	 
-         list.add("Items: " + EnumChatFormatting.GREEN +count);
+        list.add("Items: " + EnumChatFormatting.GREEN +count);
  
-         String stacks = itemStack.getTagCompound().getString("stacks"); 
-         if(stacks == null) {stacks=  "0";}
-        	 
-         
-         list.add("Stacks: " + EnumChatFormatting.GREEN +stacks); 
-         
-	 } 
-  
+        String stacks = itemStack.getTagCompound().getString("stacks"); 
+        if(stacks == null) {stacks=  "0";}
+        	          
+        list.add("Stacks: " + EnumChatFormatting.GREEN +stacks);          
+	 }   
 }
