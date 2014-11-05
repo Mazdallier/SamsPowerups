@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
-public class FuelHandler  implements IFuelHandler
+public class MoreFuelHandler  implements IFuelHandler
 {
 	
 	/*    Wooden Slabs - 150

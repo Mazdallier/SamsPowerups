@@ -126,6 +126,7 @@ public class ModSamsPowerups
 		modules.add(new KeySliderModule()); 
 		modules.add(new MagicApplesModule());
 		modules.add(new MasterWandModule());
+		modules.add(new MoreFuelModule());
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new RunestoneModule());
@@ -134,6 +135,10 @@ public class ModSamsPowerups
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());
 		modules.add(new WaypointModule());
+		
+		//TODO: player harvest handler
+		//mob drop handler
+		// fuelhandler
 		
 		//todo: try catching chat messages? log for certian players/
 		//@SubscribeEvent
@@ -154,20 +159,18 @@ public class ModSamsPowerups
 			
 			//sandbox text: magma cubes in 
 			 EntityRegistry.addSpawn(EntityMagmaCube.class, 1, 2, 4, 
-					 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
+					EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
 
+			 
+			 
+			 
 			 //TODO mob spawner module
 			 //maybe based on difficulty?
 			 //cave spiders in some forests?
 			 //ghasts in oceans?
 			// EntityRegistry.addSpawn(EntityBlaze.class, 1, 2, 4, 
 			//		 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
-
-			 
-			 //TODO :: KeyInputHandler
-			 
-			 
-			 
+ 
 			 /*ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(xyz), 1, 1, 5));
 ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).ad 
 ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addIt 
@@ -193,7 +196,7 @@ ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).a
 					GameRegistry.registerFuelHandler(current.FuelHandler);
 				}
 				//add all my commands here to a list
-				logger.info("Init Module : " + current.Name); 
+				logger.info("Module Activated : " + current.Name); 
 			}
 		} 
     }
@@ -208,7 +211,7 @@ ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).a
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{ 
-		 proxy.registerRenderers(); 
+		proxy.registerRenderers(); 
 	}
 	
 	@EventHandler
@@ -218,14 +221,5 @@ ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).a
 		{ 
 			event.registerServerCommand(Commands.get(i));
 		} 
-		/*
-		//todo: command module?
-    	event.registerServerCommand(new CommandEnderChest()); 
-		event.registerServerCommand(new CommandTodoList());
-		//moved to waypoint module
-		event.registerServerCommand(new CommandItemSearch());
-		event.registerServerCommand(new CommandFlyHelp());
-		event.registerServerCommand(new CommandSearchTrades());
-		*/
     } 
 }
