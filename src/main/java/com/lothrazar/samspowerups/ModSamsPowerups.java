@@ -128,6 +128,7 @@ public class ModSamsPowerups
 		modules.add(new RunestoneModule());
 		//seasrch trade module
 		modules.add(new StackSizeModule());
+		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());
 		modules.add(new WaypointModule());
 		
