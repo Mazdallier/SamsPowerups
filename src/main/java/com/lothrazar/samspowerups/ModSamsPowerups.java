@@ -160,7 +160,14 @@ public class ModSamsPowerups
 	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
 			
-		 
+		 //TODO: try out villager trading handler
+			/*
+			add all
+			
+			missing trades
+			
+			that were removed from the game
+			*/
 		}
 		
 		BaseModule current; 
@@ -190,14 +197,10 @@ public class ModSamsPowerups
     { 
     	//TODO: research, should init - block recipes shoud go here?
      	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
-    }
- 
-	@EventHandler
-	public void load(FMLInitializationEvent event)
-	{ 
+     	
 		proxy.registerRenderers(); 
-	}
-	
+    }
+  
 	@EventHandler
     public void onServerLoad(FMLServerStartingEvent event)
     { 

@@ -187,27 +187,7 @@ public class SandboxHandler
     	
     }
 
-	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent event)
-	{
 
-    	//give weapons to mobs?
-    	//event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(Items.sword_something));
-		
-		
-	    //todo: make mobs stronger/weaker/enchantments?
-		
-		// mob.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 72000));
-		
-		//set damange and other attributes without potion effects
-		//if (event.entity instanceof EntityZombie)
-		// EntityZombie zombie = (EntityZombie)event.entity;
-		//zombie.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
-		
-		//free breeding?
-		 //entityCow.tasks.addTask(4, new EntityAITempt(pig, 1.2D, Items.wheat, false));
-		
-	}
     
     
     @SubscribeEvent

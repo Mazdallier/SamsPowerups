@@ -3,12 +3,12 @@ package com.lothrazar.samspowerups.modules;
 import java.util.ArrayList; 
 
 import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.handler.BedHandler;
+import com.lothrazar.samspowerups.handler.DifficultyHandler;
 import com.lothrazar.samspowerups.util.Reference;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemAxe;
@@ -38,8 +38,8 @@ public class DifficultyTweaksModule extends BaseModule
 { 
 	public DifficultyTweaksModule ()
 	{
-		Name="Recipe changer: smooth stone tools and more";
-		Handler = new BedHandler();
+		Name="Difficulty tweaks module";
+		Handler = new DifficultyHandler();
 		
 	}
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
@@ -56,11 +56,50 @@ public class DifficultyTweaksModule extends BaseModule
 
 	private void MobSpawnExtras() 
 	{
-		 EntityRegistry.addSpawn(EntityMagmaCube.class, 1, 2, 4, 
-					EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
+		//first a note on what can alreadyh spawn without mods
+		/*
+		 In the Overworld, this depends on the biome:
 
-			 
+    Most biomes can spawn sheep, pigs, chickens, cows, spiders, zombies, skeletons, creepers, 
+    Endermen, Slimes (only in certain chunks if not in a swamp), witches, and Squid.
+    Forest, Taiga, and Mega Taiga biomes and their variants can also spawn Wolves.
+    
+    Plains and Savanna biomes can also spawn Horses.
+    
+    Jungle biomes can also spawn Ocelots.
+    
+    Desert, beach, river, and ocean biomes cannot spawn animals; only hostile mobs and Squid.
+    
+    Mushroom biomes can spawn only Mooshrooms.
 
+		 * */
+		
+		int wProb = 1;
+		int minGroup=1;
+		int maxGroup=4;
+		
+		 EntityRegistry.addSpawn(EntityMagmaCube.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		 {
+			 	BiomeGenBase.desert
+			 	,BiomeGenBase.desertHills
+		 });
+
+		
+		EntityRegistry.addSpawn(EntityCaveSpider.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		{
+			 	BiomeGenBase.roofedForest
+			 	,BiomeGenBase.birchForest
+			 	,BiomeGenBase.birchForestHills
+		});
+
+
+		EntityRegistry.addSpawn(EntityZombie.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		{
+			 	BiomeGenBase.hell 
+		});
+		
+		
+		//todo: blazes?
 		
 	}
 
