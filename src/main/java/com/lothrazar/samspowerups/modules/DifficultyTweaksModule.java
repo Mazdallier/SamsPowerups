@@ -3,9 +3,12 @@ package com.lothrazar.samspowerups.modules;
 import java.util.ArrayList; 
 
 import com.lothrazar.samspowerups.BaseModule;
+import com.lothrazar.samspowerups.handler.BedHandler;
 import com.lothrazar.samspowerups.util.Reference;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemAxe;
@@ -14,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
@@ -27,51 +31,51 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class RecipeChangeModule extends BaseModule
+public class DifficultyTweaksModule extends BaseModule
 { 
-	public RecipeChangeModule ()
+	public DifficultyTweaksModule ()
 	{
 		Name="Recipe changer: smooth stone tools and more";
+		Handler = new BedHandler();
 		
 	}
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	
 	public void init()
+	{ 
+		SaplingStickAxe();
+		
+		SmoothstoneRequired();
+		
+		MobSpawnExtras();
+	}
+
+
+	private void MobSpawnExtras() 
 	{
+		 EntityRegistry.addSpawn(EntityMagmaCube.class, 1, 2, 4, 
+					EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
+
+			 
+
+		
+	}
+
+
+	private void SmoothstoneRequired() 
+	{
+		ArrayList recipes = (ArrayList)CraftingManager.getInstance().getRecipeList();
+		IRecipe current;
+		ItemStack currentOutput;
+
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_sword));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_hoe));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_pickaxe));
 		stoneToolsFurnaces.add(new ItemStack(Items.stone_shovel));
 		stoneToolsFurnaces.add(new ItemStack(Blocks.furnace));
-		
-		//since we cant get logs by hand: player will break leaves to make damaged axe
-		int STICKS_PER_SAPLING = 1;
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
-			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_oak));
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
-			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_spruce));
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
-			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_birch));
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
-			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_jungle));
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
-			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_acacia));
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
-			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_darkoak));
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe,1,55)
-		,"t "
-		," t"
-		, 't', Items.stick);
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe,1,55)
-		," t"
-		,"t "
-		, 't', Items.stick);
-		
-		ArrayList recipes = (ArrayList)CraftingManager.getInstance().getRecipeList();
-		IRecipe current;
-		ItemStack currentOutput;
 		
 		for(int i = 0; i < stoneToolsFurnaces.size(); i++)
 		{
@@ -80,11 +84,11 @@ public class RecipeChangeModule extends BaseModule
 				current = (IRecipe)recipes.get(r);
 				currentOutput = current.getRecipeOutput();
 				if (currentOutput != null &&
-				currentOutput.getItem() == stoneToolsFurnaces.get(i).getItem() &&
-				currentOutput.getItemDamage() == stoneToolsFurnaces.get(i).getItemDamage() )
+						currentOutput.getItem() == stoneToolsFurnaces.get(i).getItem() &&
+						currentOutput.getItemDamage() == stoneToolsFurnaces.get(i).getItemDamage() )
 				{
-				recipes.remove(r);
-				r--;//to keep it in sync, since we are altering the collection that we are looping over
+					recipes.remove(r);
+					r--;//to keep it in sync, since we are altering the collection that we are looping over
 				}
 			}
 		}
@@ -160,6 +164,33 @@ public class RecipeChangeModule extends BaseModule
 		," t "
 		," t "
 		, 's', Blocks.stone
+		, 't', Items.stick);
+	}
+
+
+	private void SaplingStickAxe() 
+	{
+		//since we cant get logs by hand: player will break leaves to make damaged axe
+		int STICKS_PER_SAPLING = 1;
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
+			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_oak));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
+			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_spruce));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
+			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_birch));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
+			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_jungle));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
+			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_acacia));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick)
+			,new ItemStack(Blocks.sapling,STICKS_PER_SAPLING,Reference.sapling_darkoak));
+		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe,1,55)
+		,"t "
+		," t"
+		, 't', Items.stick);
+		GameRegistry.addRecipe(new ItemStack(Items.wooden_axe,1,55)
+		," t"
+		,"t "
 		, 't', Items.stick);
 	}
 

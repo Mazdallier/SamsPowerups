@@ -129,7 +129,7 @@ public class ModSamsPowerups
 		modules.add(new MagicApplesModule());
 		modules.add(new MasterWandModule());
 		modules.add(new QuickDepositModule());
-		modules.add(new RecipeChangeModule());
+		modules.add(new DifficultyTweaksModule());
 		modules.add(new RichLootModule());
 		modules.add(new RunestoneModule());
 		modules.add(new ScreenInfoModule());
@@ -160,26 +160,7 @@ public class ModSamsPowerups
 	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
 			
-			//sandbox text: magma cubes in 
-			 EntityRegistry.addSpawn(EntityMagmaCube.class, 1, 2, 4, 
-					EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
-
-			 
-			 
-			 
-			 //TODO mob spawner module
-			 //maybe based on difficulty?
-			 //cave spiders in some forests?
-			 //ghasts in oceans?
-			// EntityRegistry.addSpawn(EntityBlaze.class, 1, 2, 4, 
-			//		 EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell , BiomeGenBase.desert,BiomeGenBase.desertHills});
- 
-			 /*ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(xyz), 1, 1, 5));
-ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).ad 
-ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addIt 
-ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).a 
-*/
-			 
+		 
 		}
 		
 		BaseModule current; 
