@@ -121,6 +121,7 @@ public class ModSamsPowerups
 		modules.add(new ColouredCommandBlockModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
+		modules.add(new EnderChestModule());
 		modules.add(new ExtraCraftingModule());
 		modules.add(new FishingBlockModule());
 		modules.add(new IronBoatModule()); 

@@ -15,6 +15,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class MasterWandModule extends BaseModule
 { 
 	public static ItemWandMaster itemWand;
+	public static ItemChestSack itemChestSack;
 	public MasterWandModule()
 	{
 		Handler = new WandHandler();
@@ -22,10 +23,10 @@ public class MasterWandModule extends BaseModule
 	}
 	
 	@Override
-	public void loadConfig() { 
+	public void loadConfig() 
+	{ 
 	}
 
-	public static ItemChestSack item;
 	@Override
 	public void init() 
 	{  
@@ -41,16 +42,13 @@ public class MasterWandModule extends BaseModule
 		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
 		
 		
-		item = new ItemChestSack();
-		item.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
-		GameRegistry.registerItem(item,  "chest_sack" );   
+		itemChestSack = new ItemChestSack();
+		itemChestSack.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
+		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
 	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEnabled() 
+	{
+		return true;
 	}
-
- 
-
 }

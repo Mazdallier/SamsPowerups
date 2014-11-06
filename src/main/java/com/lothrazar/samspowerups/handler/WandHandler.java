@@ -134,7 +134,7 @@ public class WandHandler
 		int END_CHEST =  START_CHEST + ROWS * COLS;
 		int END_INV = START_INV + ROWS * COLS;
 
-		ItemStack drop = new ItemStack(MasterWandModule.item ,1,0); 
+		ItemStack drop = new ItemStack(MasterWandModule.itemChestSack ,1,0); 
 		
 		if(drop.stackTagCompound == null)  drop.stackTagCompound = new NBTTagCompound();
  
