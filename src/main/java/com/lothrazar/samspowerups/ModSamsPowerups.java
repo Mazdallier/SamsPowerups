@@ -116,6 +116,7 @@ public class ModSamsPowerups
     	modules = new ArrayList<BaseModule>();
 
 		modules.add(new BetterBonemealModule()); 
+	 	modules.add(new BurnNatureFuelModule());
 		modules.add(new CaveFinderModule());
 		modules.add(new ColouredCommandBlockModule());
 		modules.add(new CreativeInventoryModule());
@@ -126,7 +127,6 @@ public class ModSamsPowerups
 		modules.add(new KeySliderModule()); 
 		modules.add(new MagicApplesModule());
 		modules.add(new MasterWandModule());
-		modules.add(new MoreFuelModule());
 		modules.add(new QuickDepositModule());
 		modules.add(new RecipeChangeModule());
 		modules.add(new RichLootModule());

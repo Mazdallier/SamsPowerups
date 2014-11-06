@@ -2,6 +2,7 @@ package com.lothrazar.samspowerups.handler;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
@@ -20,21 +21,27 @@ public class MoreFuelHandler  implements IFuelHandler
 
 	@Override
 	public int getBurnTime(ItemStack fuel) 
-	{
-
-
-		//smeltable grass. why not!!
-		
-		if(fuel.getItem().equals(Blocks.grass))
+	{ 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.deadbush)))
 		{
-			return SameAs.WoodenSlabs;//same as wooden slabs
-		}
-		
+			return SameAs.Sticks;
+		} 
 		if(fuel.getItem().equals(Items.wheat_seeds))
 		{
-			return SameAs.Sticks;//same as wooden slabs
+			return SameAs.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.leaves)))
+		{
+			return SameAs.Sticks;
 		}
-		
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.leaves2)))
+		{
+			return SameAs.Sticks;
+		} 
+		if(fuel.getItem().equals(Items.paper))
+		{
+			return SameAs.Sticks;
+		} 
 		return 0;
 	}
 

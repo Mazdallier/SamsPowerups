@@ -3,9 +3,9 @@ package com.lothrazar.samspowerups.modules;
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.handler.MoreFuelHandler;
 
-public class MoreFuelModule extends BaseModule
+public class BurnNatureFuelModule extends BaseModule
 {
-	public MoreFuelModule()
+	public BurnNatureFuelModule()
 	{
 		FuelHandler = new MoreFuelHandler();
 	}
