@@ -132,6 +132,7 @@ public class ModSamsPowerups
 		modules.add(new RichLootModule());
 		modules.add(new RunestoneModule());
 		modules.add(new ScreenInfoModule());
+		modules.add(new SearchModule());
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());

@@ -13,26 +13,26 @@ public class SearchModule extends BaseModule
 	public SearchModule ()
 	{
 		super();
-		Name="EnderChestModule ";
+		Name="Search commands: /searchitem and /searchtrade ";
 		Commands.add(new CommandSearchTrades()); 
 		Commands.add(new CommandSearchItem()); 
 	}
 
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
+	public void loadConfig() 
+	{ 
 		
 	}
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
+	public void init() 
+	{ 
 		
 	}
 
 	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+	public boolean isEnabled() 
+	{ 
 		return enabled ;
 	}
 
