@@ -60,28 +60,24 @@ public class CommandKillAll implements ICommand
 		int killed = 0;
 		 
 		//todo: generic way so we dont have to copy,paste for each one>?
-		if(args[0].equals(CREEPER))
+		if(CREEPER.contains(args[0]))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityCreeper.class, rangeBox)); 
 		}
-		else if(args[0].equals(SLIME))
-		{ 
-			List<EntityLivingBase> list = p.worldObj.getEntitiesWithinAABB(
-						EntitySlime.class, rangeBox);
-			
+		else if(SLIME.contains(args[0]))
+		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntitySlime.class, rangeBox)); 
 		}
-		else if(args[0].equals(ENDERMAN))
-		{ 
-			List<EntityLivingBase> list = p.worldObj.getEntitiesWithinAABB(
-						EntitySlime.class, rangeBox);
-			
+		else if(ENDERMAN.contains(args[0]))
+		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
-					EntitySlime.class, rangeBox)); 
+					EntityEnderman.class, rangeBox)); 
 		}
-		Chat.addMessage(p,getCommandUsage(ic));
+		else{
+			Chat.addMessage(p,getCommandUsage(ic));
+		}
 	}
 	 
 	private void killAll(List<EntityLivingBase> list)
