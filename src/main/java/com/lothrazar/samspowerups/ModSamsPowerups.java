@@ -209,5 +209,7 @@ public class ModSamsPowerups
 		{ 
 			event.registerServerCommand(Commands.get(i));
 		} 
+		if(this.inSandboxMode)
+			event.registerServerCommand(new CommandKillAll());
     } 
 }
