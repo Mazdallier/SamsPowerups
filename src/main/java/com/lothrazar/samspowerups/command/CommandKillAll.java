@@ -57,36 +57,17 @@ public class CommandKillAll implements ICommand
 		 
 		//todo: generic way so we dont have to copy,paste for each one>?
 		if(args[0].equals("creeper"))
-		{ 
-			List<EntityCreeper> list = p.worldObj.getEntitiesWithinAABB(
-						EntityCreeper.class, rangeBox);
-						
-	
-			for(EntityLivingBase e : list)
-			{
-			  if(e.isDead) {continue;}
-		  
-			  e.attackEntityFrom(DamageSource.magic, 33);
-			  killed++;
-			} 
-			return;
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityCreeper.class, rangeBox)); 
 		}
 		if(args[0].equals("slime"))
 		{ 
 			List<EntityLivingBase> list = p.worldObj.getEntitiesWithinAABB(
-						EntitySlime.class, 
-						AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
-													 px + range, py + range, pz + range));
-			this.killAll(list);
-	/*
-			for(EntityLivingBase e : list)
-			{
-			  if(e.isDead) {continue;}
-		  
-			  e.attackEntityFrom(DamageSource.magic, 33);
-			  killed++;
-			} */
-			return;
+						EntitySlime.class, rangeBox);
+			
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntitySlime.class, rangeBox)); 
 		}
 		Chat.addMessage(p,getCommandUsage(ic));
 	}
