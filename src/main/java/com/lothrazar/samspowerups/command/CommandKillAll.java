@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.lothrazar.samspowerups.util.Chat;
 import com.sun.xml.internal.stream.Entity;
-
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
@@ -39,32 +39,66 @@ public class CommandKillAll implements ICommand
 	public void processCommand(ICommandSender ic, String[] args) 
 	{ 
 
-		  EntityPlayer p = (EntityPlayer)ic;
-		  int range = 50;
-		  double px = p.posX;
-			double py = p.posY;
-			double pz = p.posZ;
-			
-		  Chat.addMessage(p,"killall");
-		  
-		//  List c =   p.worldObj.loadedEntityList; 
-		  
-		  
-		  List<EntityCreeper> list = p.worldObj.getEntitiesWithinAABB(
-					EntityCreeper.class, 
-					AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
-												 px + range, py + range, pz + range));
-
-		  
-		  int killed = 0;
-		   
-		  for(EntityCreeper e : list)
-		  {
+		EntityPlayer p = (EntityPlayer)ic;
+		int range = 50;
+		double px = p.posX;
+		double py = p.posY;
+		double pz = p.posZ;
+		
+		AxisAlignedBB rangeBox = AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
+				 px + range, py + range, pz + range);
+				 
+		if(args.length == 0)
+		{
+			Chat.addMessage(p,getCommandUsage(ic));
+			return;
+		}
+		int killed = 0;
+		 
+		//todo: generic way so we dont have to copy,paste for each one>?
+		if(args[0].equals("creeper"))
+		{ 
+			List<EntityCreeper> list = p.worldObj.getEntitiesWithinAABB(
+						EntityCreeper.class, rangeBox);
+						
+	
+			for(EntityLivingBase e : list)
+			{
 			  if(e.isDead) {continue;}
-	  
+		  
 			  e.attackEntityFrom(DamageSource.magic, 33);
 			  killed++;
-		  }
+			} 
+			return;
+		}
+		if(args[0].equals("slime"))
+		{ 
+			List<EntityLivingBase> list = p.worldObj.getEntitiesWithinAABB(
+						EntitySlime.class, 
+						AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
+													 px + range, py + range, pz + range));
+			this.killAll(list);
+	/*
+			for(EntityLivingBase e : list)
+			{
+			  if(e.isDead) {continue;}
+		  
+			  e.attackEntityFrom(DamageSource.magic, 33);
+			  killed++;
+			} */
+			return;
+		}
+		Chat.addMessage(p,getCommandUsage(ic));
+	}
+	 
+	private void killAll(List<EntityLivingBase> list)
+	{
+		for(EntityLivingBase e : list)
+		{
+		  if(e.isDead) {continue;}
+	  
+		  e.attackEntityFrom(DamageSource.magic, 33); 
+		} 
 	}
 
 	@Override
