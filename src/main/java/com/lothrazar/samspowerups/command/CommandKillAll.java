@@ -9,12 +9,14 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 
 public class CommandKillAll implements ICommand
 {
+	private static final String ZOMBIE = "zombie";
 	private static final String ENDERMAN = "enderman";
 	private static final String SLIME = "slime";
 	private static final String CREEPER = "creeper";
@@ -44,20 +46,38 @@ public class CommandKillAll implements ICommand
 	{ 
 
 		EntityPlayer p = (EntityPlayer)ic;
-		int range = 50;
 		double px = p.posX;
 		double py = p.posY;
 		double pz = p.posZ;
 		
-		AxisAlignedBB rangeBox = AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
-				 px + range, py + range, pz + range);
 				 
 		if(args.length == 0)
 		{
 			Chat.addMessage(p,getCommandUsage(ic));
 			return;
 		}
-		int killed = 0;
+		int range = 50;
+		
+		
+		if(args.length > 1 && args[1] != null && args[1] != "")
+		{
+			try
+			{
+				range = Integer.parseInt(args[1])
+			}
+			catch(Exception ex){
+				
+			}
+		}
+		if(range < 1 || range > 64)
+		{
+			Chat.addMessage(p,getCommandUsage(ic)+ " ; Maximum range of 64");
+			return;
+		}
+
+		AxisAlignedBB rangeBox = AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
+				 px + range, py + range, pz + range);
+		//int killed = 0;
 		 
 		//todo: generic way so we dont have to copy,paste for each one>?
 		if(CREEPER.contains(args[0]))
@@ -71,6 +91,36 @@ public class CommandKillAll implements ICommand
 					EntitySlime.class, rangeBox)); 
 		}
 		else if(ENDERMAN.contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityEnderman.class, rangeBox)); 
+		}
+		else if(ZOMBIE.contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityZombie.class, rangeBox)); 
+		}
+		else if("skeleton".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntitySkeleton.class, rangeBox)); 
+		}
+		else if("bat".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityBat.class, rangeBox)); 
+		}
+		else if("squid".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntitySquid.class, rangeBox)); 
+		}
+		else if("silverfish".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityEnderman.class, rangeBox)); 
+		}
+		else if("silverfish".contains(args[0]))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityEnderman.class, rangeBox)); 
