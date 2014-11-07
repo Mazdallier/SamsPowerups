@@ -15,6 +15,10 @@ import net.minecraft.util.DamageSource;
 
 public class CommandKillAll implements ICommand
 {
+	private static final String ENDERMAN = "enderman";
+	private static final String SLIME = "slime";
+	private static final String CREEPER = "creeper";
+
 	@Override
 	public int compareTo(Object arg0) {
 		return 0;
@@ -56,12 +60,20 @@ public class CommandKillAll implements ICommand
 		int killed = 0;
 		 
 		//todo: generic way so we dont have to copy,paste for each one>?
-		if(args[0].equals("creeper"))
+		if(args[0].equals(CREEPER))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityCreeper.class, rangeBox)); 
 		}
-		if(args[0].equals("slime"))
+		else if(args[0].equals(SLIME))
+		{ 
+			List<EntityLivingBase> list = p.worldObj.getEntitiesWithinAABB(
+						EntitySlime.class, rangeBox);
+			
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntitySlime.class, rangeBox)); 
+		}
+		else if(args[0].equals(ENDERMAN))
 		{ 
 			List<EntityLivingBase> list = p.worldObj.getEntitiesWithinAABB(
 						EntitySlime.class, rangeBox);
