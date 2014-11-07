@@ -63,7 +63,7 @@ public class CommandKillAll implements ICommand
 		{
 			try
 			{
-				range = Integer.parseInt(args[1])
+				range = Integer.parseInt(args[1]);
 			}
 			catch(Exception ex){
 				
@@ -77,9 +77,8 @@ public class CommandKillAll implements ICommand
 
 		AxisAlignedBB rangeBox = AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
 				 px + range, py + range, pz + range);
-		//int killed = 0;
 		 
-		//todo: generic way so we dont have to copy,paste for each one>?
+		// generic way so we dont have to copy,paste for each one
 		if(CREEPER.contains(args[0]))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
@@ -95,10 +94,55 @@ public class CommandKillAll implements ICommand
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityEnderman.class, rangeBox)); 
 		}
+		else if("zombie pigman".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityPigZombie.class, rangeBox)); 
+		}
 		else if(ZOMBIE.contains(args[0]))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityZombie.class, rangeBox)); 
+		}
+		else if("cave spider".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityCaveSpider.class, rangeBox)); 
+		}
+		else if("blaze".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityBlaze.class, rangeBox)); 
+		}
+		else if("ghast".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityGhast.class, rangeBox)); 
+		}
+		else if("magma cube".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityMagmaCube.class, rangeBox)); 
+		}
+		else if("spider".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntitySpider.class, rangeBox)); 
+		}
+		else if("golem".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityIronGolem.class, rangeBox)); 
+		}
+		else if("witch".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityWitch.class, rangeBox)); 
+		}
+		else if("wolf".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityWolf.class, rangeBox)); 
 		}
 		else if("skeleton".contains(args[0]))
 		{  
@@ -125,6 +169,51 @@ public class CommandKillAll implements ICommand
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityEnderman.class, rangeBox)); 
 		}
+		else if("sheep".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntitySheep.class, rangeBox)); 
+		}
+		else if("pig".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityPig.class, rangeBox)); 
+		}
+		else if("cow".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityCow.class, rangeBox)); 
+		}
+		else if("chicken".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityChicken.class, rangeBox)); 
+		}
+		else if("ocelot".contains(args[0]) || "cat".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityOcelot.class, rangeBox)); 
+		}
+		else if("mooshroom".contains(args[0]) )
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityMooshroom.class, rangeBox)); 
+		}
+		else if("villager".contains(args[0]) )
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityVillager.class, rangeBox)); 
+		}/*//no endermite yet either or guardian
+		else if("rabbit".contains(args[0]) || "bunny".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityRabbit.class, rangeBox)); 
+		}*/
+		else if("horse".contains(args[0])  )
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityHorse.class, rangeBox)); 
+		} 
 		else{
 			Chat.addMessage(p,getCommandUsage(ic));
 		}
