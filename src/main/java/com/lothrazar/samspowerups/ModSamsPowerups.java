@@ -128,6 +128,7 @@ public class ModSamsPowerups
 		modules.add(new KeySliderModule()); 
 		modules.add(new MagicApplesModule());
 		modules.add(new MasterWandModule());
+		modules.add(new MissingTradeModule());
 		modules.add(new QuickDepositModule());
 		modules.add(new DifficultyTweaksModule());
 		modules.add(new RichLootModule());

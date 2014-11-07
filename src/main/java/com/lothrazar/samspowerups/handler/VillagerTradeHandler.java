@@ -24,6 +24,7 @@ public class VillagerTradeHandler  implements IVillageTradeHandler
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
 	{ 
+		System.out.println("manipulateTradesForVillager");
 		// TODO Auto-generated method stub
  
 		// this is all the minecrtaft 1.7.10 stuff
@@ -33,7 +34,6 @@ public class VillagerTradeHandler  implements IVillageTradeHandler
 		
 		//in this version : http://minecraft.gamepedia.com/Trading/Before_1.8
 		
-
 		//http://www.minecraftforge.net/forum/index.php?topic=16355.0
 
 		// so, we add everything that is added anyway in 1.8 
@@ -58,12 +58,13 @@ public class VillagerTradeHandler  implements IVillageTradeHandler
 			break;
 		case PURPLE:
 			
-			
 			//zombie flesh 36-40
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.rotten_flesh, 36), new ItemStack(Items.emerald,1)));
 			
 			//ender pearls 2
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.ender_pearl, 36), new ItemStack(Items.emerald,1)));
+			recipeList.add(new MerchantRecipe(new ItemStack(Items.ender_pearl, 16)
+			,new ItemStack(Items.ender_pearl, 16)
+			, new ItemStack(Items.emerald,1)));
 			break;
 		case BLACK:
 			
