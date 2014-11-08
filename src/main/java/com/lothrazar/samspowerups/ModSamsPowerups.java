@@ -89,7 +89,7 @@ public class ModSamsPowerups
     	ArrayList<String> baseEditClasses = new ArrayList<String>();
     	baseEditClasses.add("net.minecraft.client.gui.inventory.GuiInventory.java");
     	baseEditClasses.add("net.minecraft.inventory.ContainerPlayer.java");
-    	
+     
    
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src

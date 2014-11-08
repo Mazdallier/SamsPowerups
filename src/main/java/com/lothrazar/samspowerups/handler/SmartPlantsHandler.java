@@ -84,25 +84,29 @@ public class SmartPlantsHandler
 	@SubscribeEvent
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
     { 
-    	boolean isHodlingShears = false; 
+		if(event.harvester == null){return;}//no player
+		
     	
-    	if(event.harvester.getCurrentEquippedItem() != null )
-    	{
-    		if(event.harvester.getCurrentEquippedItem().getItem() == Items.shears)
-    		{
-    			isHodlingShears = true;
-    		}
-    	}
     
     	if( event.block == Blocks.deadbush ||
-    		event.block == Blocks.cactus ||
-    		(event.block == Blocks.tallgrass && event.blockMetadata == Reference.tallgrass.rosebush)
-    		//TODO: maybve tall rose
-    			) 
+    		event.block == Blocks.cactus // ||
+    		//(event.block == Blocks.tallgrass && event.blockMetadata == Reference.tallgrass.rosebush) 
+    	  ) 
     	{
-    		//anything but shears means damage
-    		if(isHodlingShears == false)
+    		//so this is one of the blocks i care about
+    		boolean handIsEmpty = event.harvester.getCurrentEquippedItem() == null;
+    	
+    		if(handIsEmpty)
+    		{
     			event.harvester.attackEntityFrom(DamageSource.cactus, 1F); 
+    		}
+    		else
+    		{
+    			if(event.harvester.getCurrentEquippedItem().getItem() != Items.shears)
+    			{
+        			event.harvester.attackEntityFrom(DamageSource.cactus, 1F); 
+    			}
+    		}
     	}
     }
 }
