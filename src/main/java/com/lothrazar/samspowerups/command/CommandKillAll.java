@@ -2,8 +2,7 @@ package com.lothrazar.samspowerups.command;
 
 import java.util.List;
 
-import com.lothrazar.samspowerups.util.Chat;
-import com.sun.xml.internal.stream.Entity;
+import com.lothrazar.samspowerups.util.Chat; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
