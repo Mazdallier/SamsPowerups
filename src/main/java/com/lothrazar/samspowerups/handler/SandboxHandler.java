@@ -5,9 +5,12 @@ import java.util.List;
 import net.minecraft.block.BlockLilyPad;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -29,10 +32,25 @@ public class SandboxHandler
 	  
 	  }
 
+	@SubscribeEvent
+	public void onDeath(LivingDeathEvent event)
+	{ 
+		//why is this error:?
+		/*
+		if(event.entity instanceof EntityOcelot)
+		{
+			
+		}
+		*/
+	}
+
     @SubscribeEvent
     public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event)
     {
-    	
+    	if(event.toDim == 1 && event.fromDim == 0)
+    	{
+    		//we went to hell from overworld
+    	}
     }
     
 
@@ -192,30 +210,28 @@ public class SandboxHandler
     
     @SubscribeEvent
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
-    {
-    	
-   	 //damage player extra times for vines and other stuff?
-		 
-		 boolean isCactus = (event.block == Blocks.cactus);
-		// boolean isEmptyHand= (event.entityPlayer.getHeldItem() == null) ;
-		 
+    { 
+    	boolean isHodlingShears = event.harvester.getHeldItem() != null 
+    			&& event.harvester.getHeldItem().equals(Items.shears);
 
-		 boolean isReeds = (event.block == Blocks.reeds);
-//    event.entityPlayer.attackEntityFrom(DamageSource.cactus, 1.0F);
-		 
-		 
+ 		/*
+ 		 //TODO: if not silk touch then sticks or something?
+ 		  if (!event.world.isClient)
+ 		  {
+ 		    drop.delayBeforeCanPickup = 10;
+ 		    event.world.spawnEntityInWorld(drop);
+ 		  }
+ 		  */
     	
+    	//TOOD: list of 'damage on harvest' blocks
     	
     	if(event.block == Blocks.deadbush)
     	{
-    		/*
-    		 //TODO: if not silk touch then sticks or something?
-    		  if (!event.world.isClient)
-    		  {
-    		    drop.delayBeforeCanPickup = 10;
-    		    event.world.spawnEntityInWorld(drop);
-    		  }
-    		  */
+    		//anything but shears means damage
+    		//either empty hand, OR not empty, but its something thats not shears
+    		
+    		if(isHodlingShears == false)
+    			event.harvester.attackEntityFrom(DamageSource.cactus, 1F); 
     	}
     	 //try to unbreak boat
     	//i wish this worked for all blocks

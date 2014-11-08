@@ -134,7 +134,7 @@ public class ModSamsPowerups
 		modules.add(new RichLootModule());
 		modules.add(new RunestoneModule());
 		modules.add(new ScreenInfoModule());
-		modules.add(new SearchModule());
+		modules.add(new CommandPowersModule());
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());
@@ -160,15 +160,6 @@ public class ModSamsPowerups
 		{ 
 	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
 			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
-			
-		 //TODO: try out villager trading handler
-			/*
-			add all
-			
-			missing trades
-			
-			that were removed from the game
-			*/
 		}
 		
 		BaseModule current; 
@@ -208,8 +199,6 @@ public class ModSamsPowerups
 		for(int i = 0; i < Commands.size(); i++)
 		{ 
 			event.registerServerCommand(Commands.get(i));
-		} 
-		if(this.inSandboxMode)
-			event.registerServerCommand(new CommandKillAll());
+		}  	
     } 
 }

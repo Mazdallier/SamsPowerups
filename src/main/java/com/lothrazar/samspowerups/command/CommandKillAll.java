@@ -217,6 +217,7 @@ public class CommandKillAll implements ICommand
 		else{
 			Chat.addMessage(p,getCommandUsage(ic));
 		}
+		 
 	}
 	 
 	private void killAll(List<EntityLivingBase> list)
