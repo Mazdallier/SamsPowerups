@@ -53,14 +53,11 @@ public class WandHandler
 		else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
 		{ 
 			replantField(event);
-		} 
-	
+		}
   	}
 	
 	private void replantField(PlayerInteractEvent event)
 	{
-		
-		
 		int isFullyGrown = 7; //certain this is full for wheat. applies to other plants as well
 		 
 		//http://www.minecraftforge.net/wiki/Plants
@@ -110,7 +107,6 @@ public class WandHandler
 			}  
 		} //end of the outer loop
 		
-		 
 		onSuccess(event.entityPlayer);
 	}
 	
@@ -183,8 +179,6 @@ public class WandHandler
 	 	 
 	  	event.entity.entityDropItem(drop, 1);//quantity = 1
 			 
-
-
 		 //the 2 here is just a magic flag it passes to the world to propogate the event
 	
 		event.entityPlayer.worldObj.setBlock(event.x, event.y, event.z, Blocks.air, 0,2);	 
@@ -255,15 +249,12 @@ public class WandHandler
 		if(   blockClicked.equals(Blocks.diamond_block))
 		{
 			searchSpawner(event); 
-			
 		}
 		
 		if(   blockClicked.equals(Blocks.stone))
 		{
 			searchProspect(event);  
 		}
-		
-		
 	}
 	
 	private void searchProspect(PlayerInteractEvent event) 
@@ -321,7 +312,6 @@ public class WandHandler
 		
 		Chat.addMessage(event.entityPlayer, foundMessage);
 	 
-		
 		//take damage no matter what
 		onSuccess(event.entityPlayer);
 	}
@@ -404,7 +394,4 @@ public class WandHandler
 
 		player.swingItem();
 	}
-	
-
-	
 }

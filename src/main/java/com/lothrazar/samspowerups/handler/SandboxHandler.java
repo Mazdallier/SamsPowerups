@@ -207,15 +207,10 @@ public class SandboxHandler
     	
     }
 
-
-    
-    
     @SubscribeEvent
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
     { 
-    	boolean isHodlingShears = event.harvester.getHeldItem() != null 
-    			&& event.harvester.getHeldItem().equals(Items.shears);
-
+     
  		/*
  		 //TODO: if not silk touch then sticks or something?
  		  if (!event.world.isClient)
@@ -225,16 +220,7 @@ public class SandboxHandler
  		  }
  		  */
     	
-    	//TOOD: list of 'damage on harvest' blocks
-    	
-    	if(event.block == Blocks.deadbush)
-    	{
-    		//anything but shears means damage
-    		//either empty hand, OR not empty, but its something thats not shears
-    		Chat.addMessage(event.harvester, "shears?"+isHodlingShears);
-    		if(isHodlingShears == false)
-    			event.harvester.attackEntityFrom(DamageSource.cactus, 1F); 
-    	}
+    	 
     	 //try to unbreak boat
     	//i wish this worked for all blocks
     	if ( event.block instanceof BlockLilyPad)

@@ -6,15 +6,15 @@ import net.minecraft.command.ICommand;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.handler.BonemealUseHandler;
+import com.lothrazar.samspowerups.handler.SmartPlantsHandler;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
  
-public class BetterBonemealModule extends BaseModule 
+public class SmartPlantsModule extends BaseModule 
 { 
 	private boolean enabled = true;
-	public BetterBonemealModule()
+	public SmartPlantsModule()
 	{
-		Handler = new BonemealUseHandler();
+		Handler = new SmartPlantsHandler();
 		Name = "Better Bonemeal";
 	}
  
