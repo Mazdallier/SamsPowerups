@@ -78,7 +78,7 @@ public class ModSamsPowerups
     public static Logger logger; 
     private ArrayList<BaseModule> modules;
     private boolean inSandboxMode = true;   
-	public ArrayList<ICommand> Commands = new  ArrayList<ICommand>(); 
+	public ArrayList<ICommand> ModuleCommands = new  ArrayList<ICommand>(); 
     
 
     private void logBaseChanges()
@@ -119,6 +119,7 @@ public class ModSamsPowerups
 	 	modules.add(new BurnNatureFuelModule());
 		modules.add(new CaveFinderModule());
 		modules.add(new ColouredCommandBlockModule());
+		modules.add(new CommandPowersModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new EnderChestModule());
@@ -134,7 +135,6 @@ public class ModSamsPowerups
 		modules.add(new RichLootModule());
 		modules.add(new RunestoneModule());
 		modules.add(new ScreenInfoModule());
-		modules.add(new CommandPowersModule());
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());
@@ -178,6 +178,13 @@ public class ModSamsPowerups
 				{ 
 					GameRegistry.registerFuelHandler(current.FuelHandler);
 				}
+				
+				//commands get loaded in a different event, but we prepare them here
+				//we expect that the module sets up its own command it its own "init"
+				for(ICommand c : current.Commands)
+				{
+					ModuleCommands.add(c);
+				}
 				//add all my commands here to a list
 				logger.info("Module Activated : " + current.Name); 
 			}
@@ -195,10 +202,10 @@ public class ModSamsPowerups
   
 	@EventHandler
     public void onServerLoad(FMLServerStartingEvent event)
-    { 
-		for(int i = 0; i < Commands.size(); i++)
-		{ 
-			event.registerServerCommand(Commands.get(i));
-		}  	
+    {
+		for(ICommand c : ModuleCommands)
+		{
+			event.registerServerCommand(c);
+		}
     } 
 }

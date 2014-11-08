@@ -2,6 +2,8 @@ package com.lothrazar.samspowerups.handler;
 
 import java.util.List;
 
+import com.lothrazar.samspowerups.util.Chat;
+
 import net.minecraft.block.BlockLilyPad;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.init.Blocks;
@@ -229,7 +231,7 @@ public class SandboxHandler
     	{
     		//anything but shears means damage
     		//either empty hand, OR not empty, but its something thats not shears
-    		
+    		Chat.addMessage(event.harvester, "shears?"+isHodlingShears);
     		if(isHodlingShears == false)
     			event.harvester.attackEntityFrom(DamageSource.cactus, 1F); 
     	}
