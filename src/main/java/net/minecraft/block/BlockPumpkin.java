@@ -20,10 +20,10 @@ public class BlockPumpkin extends BlockDirectional
     {
         super(Material.gourd);
         this.setTickRandomly(true);
-        this.flg = f;
+        this.isLightSource = f;
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
-    private boolean flg;
+    private boolean isLightSource;
     @SideOnly(Side.CLIENT)
     private IIcon icon;
     @SideOnly(Side.CLIENT)
@@ -37,6 +37,9 @@ public class BlockPumpkin extends BlockDirectional
         return side == 1 ? this.icon : (side == 0 ? this.icon : (r == 2 && side == 2 ? this.icon_M : (r == 3 && side == 5 ? this.icon_M : (r == 0 && side == 3 ? this.icon_M : (r == 1 && side == 4 ? this.icon_M : this.blockIcon)))));
     }
 
+    /**
+     * checks for golems
+     */
     public void onBlockAdded(World world, int x, int y, int z)
     {
         super.onBlockAdded(world, x, y, z);
@@ -130,7 +133,7 @@ public class BlockPumpkin extends BlockDirectional
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon)
     {
-        this.icon_M = icon.registerIcon(this.getTextureName() + "_face_" + (this.flg ? "on" : "off"));
+        this.icon_M = icon.registerIcon(this.getTextureName() + "_face_" + (this.isLightSource ? "on" : "off"));
         this.icon = icon.registerIcon(this.getTextureName() + "_top");
         this.blockIcon = icon.registerIcon(this.getTextureName() + "_side");
     }
