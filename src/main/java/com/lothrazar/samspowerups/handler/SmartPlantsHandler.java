@@ -93,9 +93,11 @@ public class SmartPlantsHandler
     			isHodlingShears = true;
     		}
     	}
-    	
+    
     	if( event.block == Blocks.deadbush ||
-    		event.block == Blocks.cactus //TODO: maybve tall rose
+    		event.block == Blocks.cactus ||
+    		(event.block == Blocks.tallgrass && event.blockMetadata == Reference.tallgrass.rosebush)
+    		//TODO: maybve tall rose
     			) 
     	{
     		//anything but shears means damage

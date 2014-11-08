@@ -305,15 +305,15 @@ public class ScreenInfoHandler
 			GameRules rules = world.getWorldInfo().getGameRulesInstance();
 			
 			ArrayList<String> ruleNames = new ArrayList<String>();
-			ruleNames.add(Reference.gamerule_commandBlockOutput);
-			ruleNames.add(Reference.gamerule_doDaylightCycle);
-			ruleNames.add(Reference.gamerule_doFireTick);
-			ruleNames.add(Reference.gamerule_doMobLoot);
-			ruleNames.add(Reference.gamerule_doMobSpawning);
-			ruleNames.add(Reference.gamerule_doTileDrops);
-			ruleNames.add(Reference.gamerule_keepInventory);
-			ruleNames.add(Reference.gamerule_mobGriefing);
-			ruleNames.add(Reference.gamerule_naturalRegeneration);
+			ruleNames.add(Reference.gamerule.commandBlockOutput);
+			ruleNames.add(Reference.gamerule.doDaylightCycle);
+			ruleNames.add(Reference.gamerule.doFireTick);
+			ruleNames.add(Reference.gamerule.doMobLoot);
+			ruleNames.add(Reference.gamerule.doMobSpawning);
+			ruleNames.add(Reference.gamerule.doTileDrops);
+			ruleNames.add(Reference.gamerule.keepInventory);
+			ruleNames.add(Reference.gamerule.mobGriefing);
+			ruleNames.add(Reference.gamerule.naturalRegeneration);
 
 			String name;
 			for(int i = 0; i < ruleNames.size(); i++)

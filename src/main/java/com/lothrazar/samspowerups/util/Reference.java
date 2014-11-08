@@ -161,26 +161,39 @@ public class Reference
 	public static final int entity_mooshroom = 96;
 	public static final int entity_bat = 65;
  
-	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
-	public static final String gamerule_doDaylightCycle = "doDaylightCycle";
-	public static final String gamerule_doFireTick = "doFireTick";
-	public static final String gamerule_doMobLoot = "doMobLoot";
-	public static final String gamerule_doMobSpawning = "doMobSpawning";
-	public static final String gamerule_doTileDrops = "doTileDrops";
-	public static final String gamerule_keepInventory = "keepInventory";
-	public static final String gamerule_mobGriefing = "mobGriefing";
-	public static final String gamerule_naturalRegeneration = "naturalRegeneration";
-	
-	
-	public static final int  tallgrass_sunflower=1;
-	public static final int  tallgrass_lilac=2;
+//	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
+	 
+	public static class gamerule
+	{
+		public final static String commandBlockOutput  = "commandBlockOutput";
+		public static final String doDaylightCycle = "doDaylightCycle";
+		public static final String doFireTick = "doFireTick";
+		public static final String doMobLoot = "doMobLoot";
+		public static final String doMobSpawning = "doMobSpawning";
+		public static final String doTileDrops = "doTileDrops";
+		public static final String keepInventory = "keepInventory";
+		public static final String mobGriefing = "mobGriefing";
+		public static final String naturalRegeneration = "naturalRegeneration";
+	}
 	//public static struct tallgrass{
-	//	sunflower=1,
-		
+ 
+	public static class grassplant
+	{
+		public final static int deadbush=0;
+		public final static int grass=1;
+		public final static int fern=2;
+	} 
+ 
 
 	//is struct
-	static class tallgrass
+	public static class tallgrass
 	{
-		final int sunflower = 1;
-	}
+		public final static int sunflower = 0;
+		public final static int lilac=1;
+		public final static int grass=2;
+		public final static int fern=3;
+		public final static int rosebush=4;
+		public final static int peony=5;
+		
+	}  
 }//ends class reference
