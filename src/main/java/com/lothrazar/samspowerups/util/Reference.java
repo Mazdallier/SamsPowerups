@@ -170,4 +170,17 @@ public class Reference
 	public static final String gamerule_keepInventory = "keepInventory";
 	public static final String gamerule_mobGriefing = "mobGriefing";
 	public static final String gamerule_naturalRegeneration = "naturalRegeneration";
-}
+	
+	
+	public static final int  tallgrass_sunflower=1;
+	public static final int  tallgrass_lilac=2;
+	//public static struct tallgrass{
+	//	sunflower=1,
+		
+
+	//is struct
+	static class tallgrass
+	{
+		final int sunflower = 1;
+	}
+}//ends class reference

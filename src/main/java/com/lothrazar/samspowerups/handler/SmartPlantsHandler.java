@@ -80,8 +80,6 @@ public class SmartPlantsHandler
 		  	event.entity.entityDropItem( new ItemStack(Blocks.waterlily ,1), 1);
 	 	}
   	}
-
-	ArrayList<Block> damageWithoutShears = new ArrayList<Block>();
 	
 	@SubscribeEvent
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
@@ -96,15 +94,11 @@ public class SmartPlantsHandler
     		}
     	}
     	
-//TOOD: list of 'damage on harvest' blocks
-    	
     	if( event.block == Blocks.deadbush ||
     		event.block == Blocks.cactus //TODO: maybve tall rose
     			) 
     	{
     		//anything but shears means damage
-    		//either empty hand, OR not empty, but its something thats not shears
-    		//Chat.addMessage(event.harvester, "shears?"+isHodlingShears);
     		if(isHodlingShears == false)
     			event.harvester.attackEntityFrom(DamageSource.cactus, 1F); 
     	}
