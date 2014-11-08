@@ -94,6 +94,11 @@ public class CommandKillAll implements ICommand
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityEnderman.class, rangeBox)); 
 		}
+		else if("pig".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityPig.class, rangeBox)); 
+		}
 		else if("zombie pigman".contains(args[0]))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
@@ -173,11 +178,6 @@ public class CommandKillAll implements ICommand
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntitySheep.class, rangeBox)); 
-		}
-		else if("pig".contains(args[0]))
-		{  
-			this.killAll( p.worldObj.getEntitiesWithinAABB(
-					EntityPig.class, rangeBox)); 
 		}
 		else if("cow".contains(args[0]))
 		{  
