@@ -12,6 +12,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CaveFinderModule extends BaseModule
 { 
+	public CaveFinderModule(){
+		Name = "Cave Finder xray block";
+	}
 	private boolean enabled;
 	BlockXRay block_xray;
 	 

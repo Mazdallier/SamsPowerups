@@ -18,9 +18,11 @@ public class ColouredCommandBlockModule extends BaseModule
 	private static boolean gameRuleMobGrief;
 	private static boolean gameRuleFireTick;
 	private static boolean gameRuleDaylightCycle ;
-public ColouredCommandBlockModule(){
-	Name= "Coloured Command Blocks";
-}
+	
+	public ColouredCommandBlockModule()
+	{
+		Name= "Coloured Command Blocks";
+	}
 	public static enum CommandType 
 	{
 	    Teleport,Gamerule,Weather

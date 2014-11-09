@@ -16,7 +16,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ExtraCraftingModule extends BaseModule
 { 
-	public ExtraCraftingModule(){
+	public ExtraCraftingModule()
+	{
 		 Name="Extra Craftables";
 	}
 	

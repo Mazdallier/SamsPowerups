@@ -11,6 +11,7 @@ public class CreativeInventoryModule extends BaseModule
 {
 	public CreativeInventoryModule()
 	{ 
+		Name="Creative Inventory improvements";
 	}
 
 	@Override

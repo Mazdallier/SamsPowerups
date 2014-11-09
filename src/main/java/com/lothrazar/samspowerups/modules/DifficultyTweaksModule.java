@@ -38,12 +38,13 @@ public class DifficultyTweaksModule extends BaseModule
 { 
 	public DifficultyTweaksModule ()
 	{
-		Name="Difficulty tweaks module";
+		Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
 		Handler = new DifficultyHandler();
 		
 	}
 	public void loadConfig() 
 	{ 
+		//TODO 
 	}
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	

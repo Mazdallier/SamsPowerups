@@ -6,16 +6,16 @@ import com.lothrazar.samspowerups.handler.VillagerTradeHandler;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class MissingTradeModule extends BaseModule 
-{
-
+{ 
 	public MissingTradeModule()
 	{
 		//Handler =new VillagerTradeHandler() ;
 		Name="Missing Trades added";
 	}
 	@Override
-	public void loadConfig() { 
-		
+	public void loadConfig() 
+	{
+		//TODO
 	}
 
 	@Override
@@ -27,7 +27,8 @@ public class MissingTradeModule extends BaseModule
 	}
 
 	@Override
-	public boolean isEnabled() { 
+	public boolean isEnabled() 
+	{ 
 		return true;
 	}
 	

@@ -14,13 +14,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MasterWandModule extends BaseModule
 { 
-	public static ItemWandMaster itemWand;
-	public static ItemChestSack itemChestSack;
 	public MasterWandModule()
 	{
 		Handler = new WandHandler();
 		Name = "Master Wand";
 	}
+	public static ItemWandMaster itemWand;
+	public static ItemChestSack itemChestSack;
 	
 	@Override
 	public void loadConfig() 

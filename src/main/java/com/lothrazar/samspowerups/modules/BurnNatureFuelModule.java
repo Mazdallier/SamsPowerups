@@ -7,6 +7,7 @@ public class BurnNatureFuelModule extends BaseModule
 {
 	public BurnNatureFuelModule()
 	{
+		Name = "Burn Nature";
 		FuelHandler = new MoreFuelHandler();
 	}
 

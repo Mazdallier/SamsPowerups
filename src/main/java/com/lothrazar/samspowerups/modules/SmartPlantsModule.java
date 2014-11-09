@@ -15,7 +15,7 @@ public class SmartPlantsModule extends BaseModule
 	public SmartPlantsModule()
 	{
 		Handler = new SmartPlantsHandler();
-		Name = "Better Bonemeal";
+		Name = "Smart plants ";
 	}
  
 	@Override
@@ -24,7 +24,8 @@ public class SmartPlantsModule extends BaseModule
 		String category = ModSamsPowerups.MODID; 
 
 		enabled = ModSamsPowerups.config.getBoolean( "bonemealAllFlowers",category,true,
-				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
+				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, " +
+				"snot just the double height ones as normal."
 		); 
 	}
   

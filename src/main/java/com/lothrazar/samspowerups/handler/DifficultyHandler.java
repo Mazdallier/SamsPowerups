@@ -49,9 +49,10 @@ public class DifficultyHandler
 		if(event.entity instanceof EntityZombie)
 		{
 
-			event.entity.setCurrentItemOrArmor(0, new ItemStack(Items.wooden_sword));
+		//	event.entity.setCurrentItemOrArmor(0, new ItemStack(Items.wooden_sword));
 		//	event.entity.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 72000));
 			
+			//TODO: randmized. and more stuff
 			//EntityZombie zombie = (EntityZombie)event.entity;
 			//zombie.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
 			EntityZombie zombie = (EntityZombie)event.entity;

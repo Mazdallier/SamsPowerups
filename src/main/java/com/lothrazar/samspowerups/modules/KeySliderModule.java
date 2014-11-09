@@ -8,6 +8,10 @@ import cpw.mods.fml.relauncher.Side;
 
 public class KeySliderModule extends BaseModule
 {
+	public KeySliderModule()
+	{
+		Name="KeySlider";
+	}
 
 	@Override
 	public void loadConfig() {

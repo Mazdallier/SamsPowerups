@@ -1,11 +1,22 @@
 package com.lothrazar.samspowerups.modules;
 
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import net.minecraftforge.common.DimensionManager;
+
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.samspowerups.handler.EnderChestHandler;
+import com.lothrazar.samspowerups.handler.WaypointHandler;
 
 public class CommandPowersModule extends BaseModule 
 {
@@ -14,7 +25,8 @@ public class CommandPowersModule extends BaseModule
 	public CommandPowersModule ()
 	{
 		super();
-		Name = "Search commands: /searchitem and /searchtrade ";
+		Name = "New commands: /searchitem /searchtrade /killall /swp";
+		Handler = new WaypointHandler();
 	}
 
 	@Override
@@ -25,11 +37,11 @@ public class CommandPowersModule extends BaseModule
 
 	@Override
 	public void init() 
-	{ 
-//TODO: would listen to config settings here
+	{  
 		Commands.add(new CommandSearchTrades()); 
 		Commands.add(new CommandSearchItem()); 
 		Commands.add(new CommandKillAll());
+		Commands.add(new CommandSimpleWaypoints());
 	}
 
 	@Override
@@ -38,4 +50,32 @@ public class CommandPowersModule extends BaseModule
 		return enabled ;
 	}
 
+	public static ArrayList<String> GetForPlayerName(String playerName)
+	{ 
+		String fileName = "swp_"+playerName +".dat";
+		ArrayList<String> lines = new ArrayList<String>();
+	 
+		try
+		{
+			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName);
+			if(!myFile.exists()) myFile.createNewFile();
+			FileInputStream fis = new FileInputStream(myFile);
+			DataInputStream instream = new DataInputStream(fis);
+			String val;
+			
+			while((val = instream.readLine()) != null) lines.add(val);
+			
+			instream.close();
+			fis.close();
+		} catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+		} //this makes it per-world
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return lines;
+	} 
 }

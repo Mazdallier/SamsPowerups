@@ -9,6 +9,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class IronBoatModule extends BaseModule
 { 
+	public IronBoatModule() { 
+		Name= "Iron Boats: faster and stronger";
+	}
 	public static ItemIronBoat iron_boat;
 
 	@Override
@@ -17,9 +20,6 @@ public class IronBoatModule extends BaseModule
 		//TODO
 	}
  
-	public IronBoatModule() { 
-		Name= "Iron Boats: faster and stronger";
-	}
 
 	@Override
 	public void init() {

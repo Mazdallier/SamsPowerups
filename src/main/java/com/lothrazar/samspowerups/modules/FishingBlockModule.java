@@ -13,6 +13,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class FishingBlockModule extends BaseModule
 { 
+	public FishingBlockModule() 
+	{ 
+		Name= "Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions";
+	}
 	private boolean enabled;
 
 	@Override
@@ -25,10 +29,6 @@ public class FishingBlockModule extends BaseModule
 			);
 	}
  
-	public FishingBlockModule() 
-	{ 
-		Name= "Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions";
-	}
 
 	@Override
 	public void init() 

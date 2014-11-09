@@ -90,8 +90,7 @@ public class ModSamsPowerups
     	LogInfo("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
     	LogInfo("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
     	LogInfo("Base Edit: net.minecraft.block.BlockFenceGate.java");  
-     
-   
+      
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
     	//silk touch on farm and mushroom and snow
@@ -135,7 +134,7 @@ public class ModSamsPowerups
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule());
-		modules.add(new WaypointModule());
+		//modules.add(new WaypointModule());
 		
 		//TODO: player harvest handler
 		//mob drop handler
@@ -168,23 +167,29 @@ public class ModSamsPowerups
 				{
 					MinecraftForge.EVENT_BUS.register(current.Handler); 
 				}
+				
 				if(current.FuelHandler != null)
 				{ 
 					GameRegistry.registerFuelHandler(current.FuelHandler);
 				}
 				
 				//commands get loaded in a different event, but we prepare them here
-				//we expect that the module sets up its own command it its own "init"
 				for(ICommand c : current.Commands)
 				{
 					ModuleCommands.add(c);
 				}
-				//add all my commands here to a list
+				
 				logger.info("Module Activated : " + current.Name); 
+			}
+			else
+			{
+				logger.info("Module DISABLED : " + current.Name); 
 			}
 		} 
     }
-	public void syncConfig() {
+    
+	public void syncConfig() 
+	{
 		for(int i = 0; i < modules.size(); i++)
 		{
 			modules.get(i).loadConfig(); 
