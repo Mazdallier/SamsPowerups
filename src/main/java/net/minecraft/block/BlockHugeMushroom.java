@@ -31,9 +31,22 @@ public class BlockHugeMushroom extends Block
     public BlockHugeMushroom(Material m, int t)
     {
         super(m);
-        this.type = t;  
+        this.type = t;   
+     //   this.getDamageValue(p_149643_1_, p_149643_2_, p_149643_3_, p_149643_4_)
+    }
+
+    @Override
+    public int getDamageValue(World par1World, int x, int y, int z)
+    { 
+        return par1World.getBlockMetadata(x, y, z);//TODO: does this work?
     }
     
+    @Override 
+    protected boolean canSilkHarvest()
+    {
+        return true;
+    }
+
     @Override 
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving,ItemStack is) 
     {  
