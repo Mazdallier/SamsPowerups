@@ -20,17 +20,11 @@ public class ConfigHandler
 	{ 
 		if(eventArgs.modID.equals(ModSamsPowerups.MODID))
 		{
-			syncConfigIfChanged();
+			ModSamsPowerups.instance.syncConfig();
 		} 
     }
 	 
-	public void syncConfigIfChanged() 
-	{ 
-		if(ModSamsPowerups.config.hasChanged())
-		{
-			ModSamsPowerups.config.save();
-		}
-	}
+ 
 	/*
 	private void loadConfig()
 	{

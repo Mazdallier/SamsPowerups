@@ -59,7 +59,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.BlockLilyPad;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION)
+@Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory")
 public class ModSamsPowerups
 {
     public static final String MODID = "samspowerups"; 
@@ -75,20 +75,21 @@ public class ModSamsPowerups
 	public static SimpleNetworkWrapper network;  
 	public static ConfigHandler configHandler;
 	public static Configuration config;  
-    public static Logger logger; 
+    private static Logger logger; 
     private ArrayList<BaseModule> modules;
     private boolean inSandboxMode = true;   
 	public ArrayList<ICommand> ModuleCommands = new  ArrayList<ICommand>(); 
     
-
+	public static void LogInfo(String s)
+	{
+		//TODO: also add to my own documentation and/or log file
+		logger.info(s);
+	} 
     private void logBaseChanges()
-    {
-    	//just list out any changes made to base classses, that are intended to be packaged with this mod
-    	//this list must be managed by hand
-    	//unles we find a way to somehow detect
-    	ArrayList<String> baseEditClasses = new ArrayList<String>();
-    	baseEditClasses.add("net.minecraft.client.gui.inventory.GuiInventory.java");
-    	baseEditClasses.add("net.minecraft.inventory.ContainerPlayer.java");
+    { 
+    	LogInfo("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
+    	LogInfo("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
+    	LogInfo("Base Edit: net.minecraft.block.BlockFenceGate.java");  
      
    
     	//TODO baseedits:
@@ -100,9 +101,7 @@ public class ModSamsPowerups
     	
     	//BlockPumpkin p;
     //	BlockPumpkin.class.canPlaceBlockAt = 
-    	//door, what did i change there?
-
-    	for(int i = 0; i < baseEditClasses.size(); i++) logger.info("Base Edit: "+baseEditClasses.get(i));
+    	//door, what did i change there? 
     }
     
     @EventHandler
@@ -111,8 +110,6 @@ public class ModSamsPowerups
     	logger = event.getModLog();
     	logBaseChanges();
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-    	configHandler = new ConfigHandler();
-    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
     	modules = new ArrayList<BaseModule>();
 
 		modules.add(new SmartPlantsModule()); 
@@ -147,13 +144,10 @@ public class ModSamsPowerups
 		//todo: try catching chat messages? log for certian players/
 		//@SubscribeEvent
 		//public void onChatMessageReceived(ClientChatReceivedEvent event) {
-		 
-		for(int i = 0; i < modules.size(); i++)
-		{
-			modules.get(i).loadConfig(); 
-		} 
-		
-		configHandler.syncConfigIfChanged();
+
+    	configHandler = new ConfigHandler();
+    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
+		syncConfig();  
 		MinecraftForge.EVENT_BUS.register(configHandler);   
     	
 		if(inSandboxMode) //experimenting with new unfinished features
@@ -190,7 +184,17 @@ public class ModSamsPowerups
 			}
 		} 
     }
-    
+	public void syncConfig() {
+		for(int i = 0; i < modules.size(); i++)
+		{
+			modules.get(i).loadConfig(); 
+		}
+		if(config.hasChanged())
+		{
+			config.save();
+		}
+	} 
+	
     @EventHandler
     public void init (FMLInitializationEvent evt)
     { 
