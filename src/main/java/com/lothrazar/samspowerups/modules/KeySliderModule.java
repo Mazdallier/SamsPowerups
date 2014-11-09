@@ -31,7 +31,7 @@ public class KeySliderModule extends BaseModule
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }
