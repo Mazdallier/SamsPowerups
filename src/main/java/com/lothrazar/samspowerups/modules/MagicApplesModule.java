@@ -12,11 +12,18 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class MagicApplesModule extends BaseModule
 { 
 	public MagicApplesModule()
-	{
- 
-		Name= "Magic Apples: More than just gold";
- 
+	{ 
+		Name = "Magic Apples: More than just gold";
 	}
+	
+	public void loadConfig()
+	{ 
+		enabled = ModSamsPowerups.config.getBoolean( "magicApples", ModSamsPowerups.MODID,true,
+		 	 "This allows you to craft golden apples into one of four powerful items: chocolate, lapis, emerald, diamond.  " +
+		 	 "Combine the gem with a golden apple.  Or surround a regular apple with cocoa.  "
+				 ) ;
+	}
+ 
 	private ItemFoodAppleMagic appleEmerald;
 	private ItemFoodAppleMagic appleDiamond;
 	private ItemFoodAppleMagic appleLapis;
@@ -113,16 +120,10 @@ public class MagicApplesModule extends BaseModule
 				, 'a', Items.apple );
 		 
 	} 
- private boolean enabled;
-	public void loadConfig()
-	{ 
-		enabled = ModSamsPowerups.config.get( ModSamsPowerups.MODID, "magicApples",true,
-		 	 "This allows you to craft golden apples into one of four powerful items: chocolate, lapis, emerald, diamond.  " +
-		 	 "Combine the gem with a golden apple.  Or surround a regular apple with cocoa.  "
-				 ).getBoolean(true) ;
-	}
-
-  
+	
+	private boolean enabled;
+	
+	  
 	@Override
 	public boolean isEnabled() { 
 		return enabled;

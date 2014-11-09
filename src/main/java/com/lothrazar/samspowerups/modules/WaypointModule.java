@@ -24,12 +24,11 @@ public class WaypointModule extends BaseModule
 
 	@Override
 	public void loadConfig() { 
-		
+		//TODO
 	}
  
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		
 	}
 	

@@ -16,14 +16,14 @@ public class RichLootModule extends BaseModule
 	public RichLootModule()
 	{
 		super();
-		Name="Rich Loot";
+		Name = "Rich Loot";
 	}
 	@Override
 	public void loadConfig() 
 	{ 
 		String category = ModSamsPowerups.MODID; 
 
-		enabled = ModSamsPowerups.config.getBoolean(category, "richLoot",true,
+		enabled = ModSamsPowerups.config.getBoolean( "richLoot",category,true,
 				"More goodies in dungeon chests: all records, glowstone, emeralds, quartz..."
 		);
 	}

@@ -18,7 +18,7 @@ public class FishingBlockModule extends BaseModule
 	@Override
 	public void loadConfig() 
 	{ 
-		enabled = ModSamsPowerups.config.getBoolean(ModSamsPowerups.MODID, "fishingBlock",true,
+		enabled = ModSamsPowerups.config.getBoolean( "fishingBlock",ModSamsPowerups.MODID,true,
 				"Build a fishing net block with four planks in the corners, a (fully repaired) fishing pole in the middle, and four cobwebs.  " +
 				"If you place this in water (touching on 4 sides and 2 deep below), it will randomly spawn fish " +
 				"(but no treasure or junk like real fishing would)."

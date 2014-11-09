@@ -20,7 +20,7 @@ public class CaveFinderModule extends BaseModule
 	{
 		String category = ModSamsPowerups.MODID;//.BLOCKS; 
 		
-		enabled = ModSamsPowerups.config.getBoolean(category, "blockCaveFinder",true
+		enabled = ModSamsPowerups.config.getBoolean( "blockCaveFinder",category,true
 				, "Build a Cave finder block (lets you see like XRay throught the world) with four obsidian "+
 						"in the corners , glass in the middle, and four cobwebs.  " +
 						"This lets you see through the world."

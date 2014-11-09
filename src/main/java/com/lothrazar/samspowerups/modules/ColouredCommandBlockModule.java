@@ -31,27 +31,27 @@ public ColouredCommandBlockModule(){
 	{
 		String category = ModSamsPowerups.MODID ; 
 		Configuration config = ModSamsPowerups.config;
-		weatherCommandBlock = config.get(category, "weatherCommandBlock",true
+		weatherCommandBlock = config.getBoolean( "weatherCommandBlock",category,true
 				,"Build a weather command block." 
-				).getBoolean(true); 
+				); 
 	 
-		gameRuleNatRegen = config.get(category, "gameRuleNatRegen",true
+		gameRuleNatRegen = config.getBoolean( "gameRuleNatRegen",category,true
 				,"Build a command block that toggles the game rule naturalRegeneration." 
-				).getBoolean(true); 
+				); 
 		
 
-		gameRuleMobGrief = config.get(category, "gameRuleMobGrief",true
+		gameRuleMobGrief = config.getBoolean( "gameRuleMobGrief",category,true
 				,"Build a command block that toggles the game rule mobGriefing." 
-				).getBoolean(true); 
+				); 
 
-		gameRuleFireTick = config.get(category, "gameRuleFireTick",true
+		gameRuleFireTick = config.getBoolean( "gameRuleFireTick",category,true
 				,"Build a command block that toggles the game rule doFireTick." 
-				).getBoolean(true); 
+				); 
 		
  
-		gameRuleDaylightCycle = config.get(category, "gameRuleDaylightCycle",true
+		gameRuleDaylightCycle = config.getBoolean( "gameRuleDaylightCycle",category,true
 				,"Build a command block that toggles the game rule doDaylightCycle." 
-				).getBoolean(true);  
+				);  
 	}
  
 	@Override

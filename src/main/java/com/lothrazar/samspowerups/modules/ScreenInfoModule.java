@@ -6,7 +6,7 @@ import com.lothrazar.samspowerups.handler.ScreenInfoHandler;
 
 public class ScreenInfoModule extends BaseModule
 {
-	private boolean enabled=true;
+	private boolean enabled = true;
 
 	public ScreenInfoModule ()
 	{
@@ -17,14 +17,14 @@ public class ScreenInfoModule extends BaseModule
 	}
 	
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
+	public void loadConfig() 
+	{
 		
 	}
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
+	public void init() 
+	{
 		
 	}
 

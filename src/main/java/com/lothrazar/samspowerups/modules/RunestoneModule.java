@@ -38,9 +38,10 @@ public class RunestoneModule extends BaseModule
 	@Override
 	public void loadConfig() 
 	{
-		enabled = ModSamsPowerups.config.get(ModSamsPowerups.MODID, "runestoneEnabled",true,
+		String category=ModSamsPowerups.MODID;
+		enabled = ModSamsPowerups.config.getBoolean( "runestoneEnabled",category,true,
 				"Lets you make a rune that enables flying in survival."
-				).getBoolean(true);
+				);
 	  
 	}
 

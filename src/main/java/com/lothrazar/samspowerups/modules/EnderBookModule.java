@@ -20,7 +20,17 @@ public class EnderBookModule extends BaseModule
 		Handler = new EnderBookHandler();
 		Name="Ender Book Teleportation";
 	}
-  
+
+	public void loadConfig()
+	{ 
+		String category = ModSamsPowerups.MODID;//Config.ITEMS; 
+	 
+		enabled = ModSamsPowerups.config.getBoolean( "enderBook",category,true,
+		 	"This allows you to craft an ender book using 8 ender pearls and a book.  "+
+		    "Right click while sneaking to save a location in the book.  " +
+		 	"Attack with the book to teleport.  Only works in the overworld."
+		 );
+	}
 	public void init()
 	{ 
 		item = new ItemEnderBook();
@@ -38,16 +48,6 @@ public class EnderBookModule extends BaseModule
  
 	private boolean enabled;
 	
-	public void loadConfig()
-	{ 
-		String category = ModSamsPowerups.MODID;//Config.ITEMS; 
-	 
-		enabled = ModSamsPowerups.config.getBoolean(category, "enderBook",true,
-		 	"This allows you to craft an ender book using 8 ender pearls and a book.  "+
-		    "Right click while sneaking to save a location in the book.  " +
-		 	"Attack with the book to teleport.  Only works in the overworld."
-		 );
-	}
 
 	@Override
 	public boolean isEnabled() {

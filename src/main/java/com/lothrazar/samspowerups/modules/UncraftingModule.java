@@ -34,7 +34,8 @@ public class UncraftingModule extends BaseModule
 	{  
 		String category = ModSamsPowerups.MODID;
 		Configuration config = ModSamsPowerups.config;
-		stairs = config.getBoolean(category, "stairs",true,
+		
+		stairs = config.getBoolean( "stairs",category,true,
 			"Craft stairs back into blocks using a 4x4 pattern."
 		); 
 		 
@@ -42,46 +43,46 @@ public class UncraftingModule extends BaseModule
 			"Uncraft slabs back into blocks using the trapdoor recipe."
 		); 
 
-		woodstuffs = config.getBoolean(category, "woodstuffs",true,
+		woodstuffs = config.getBoolean( "woodstuffs",category,true,
 			"Surround a plank with sticks to get planks back.  Also deconstruct: ladder, sign, crafting table, " +
 			"painting, item frame, bookshelf, book, fence, fence gate, door."
 		); 
 
-		logs = config.getBoolean(category, "logs",true,
+		logs = config.getBoolean( "logs",category,true,
 			"Craft planks into logs with an L shape."
 		);; 
 
-		redstone = config.getBoolean(category, "redstone",true,
+		redstone = config.getBoolean( "redstone",category,true,
 			"Uncraft and smelt redstone related items into parts (repeaters, lamps, hoppers, pistons, and so on)."
 		); 
 
-		plants = config.getBoolean(category, "plants",true,
+		plants = config.getBoolean( "plants",category,true,
 			"Uncraft pumkin lanterns, melon blocks into slices, smelt golden carrots and apples back into gold."
 		); 
 
-		wool = config.getBoolean(category, "wool",true,
+		wool = config.getBoolean( "wool",category,true,
 			"Uncraft carpet into wool."
 		); 
 
-		weapontools = config.getBoolean(category, "weapontools",true,
+		weapontools = config.getBoolean( "weapontools",category,true,
 			"Smelt non-wooden weapons and tools back into materials, if fully repaired."
 		); 
 
-		armor = config.getBoolean(category, "armor",true,
+		armor = config.getBoolean( "armor",category,true,
 			 "Smelt non-wooden armor back into ingots/diamonds if fully repaired."
 		); 
  
-		natureblocks  = config.getBoolean(category, "natureblocks",true,
+		natureblocks  = config.getBoolean( "natureblocks",category,true,
 			 "Uncraft all quarts blocks, glowstone into 4 dust, clay blocks into 4 balls, snow, " +
 			 "smelt stone brick and smoothstone back to what they were, " +
 			 "turn mycelium and dirt back into grass, smelt stained clay to remove dye, turn sandstone into sand."
 		); 
  
-		glass = config.getBoolean(category, "glass",true,
+		glass = config.getBoolean( "glass",category,true,
 			 "Smelt glass bottles, smelt stained glass and panes to remove dye, craft panes into blocks, and smelt plain glass blocks into sand."
 		); 
 		 
-		misc = config.getBoolean(category, "misc",true,
+		misc = config.getBoolean( "misc",category,true,
 			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
 		); 
 	}

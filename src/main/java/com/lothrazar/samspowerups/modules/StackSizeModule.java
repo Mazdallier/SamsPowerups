@@ -17,8 +17,21 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 	{
 		Name="Stack Size to 64";
 	}
+	
 	private boolean enabled;
  
+	public void loadConfig()
+	{  
+		String category = ModSamsPowerups.MODID; 
+		 
+		enabled = ModSamsPowerups.config.getBoolean("increasedStackSizes",category, true,
+			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
+			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
+			"horse armor, empty bucket, bed, all records."
+		
+		); 
+	}
+
 	public void init()
 	{   
 		//default config keeps this at 1
@@ -67,27 +80,9 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		}
 	}
 
-
- 
-	public void loadConfig()
-	{  
-		String category = ModSamsPowerups.MODID; 
-		 
-		enabled = ModSamsPowerups.config.getBoolean(category,"increasedStackSizes", true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		
-		);
-	 
-	}
-
-
-
 	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+	public boolean isEnabled() 
+	{
 		return enabled;
 	}
- 
 }

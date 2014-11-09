@@ -17,7 +17,7 @@ public class QuickDepositModule extends BaseModule
 	{
 		String category = ModSamsPowerups.MODID ; 
 		  
-		enabled = ModSamsPowerups.config.getBoolean(category,"magicSort", true,
+		enabled = ModSamsPowerups.config.getBoolean("magicSort",category, true,
 			"Shift right click any chest with an empty hand, and it tries to safely deposit and sort any items that belong.  " +
 			"Will not deposit items from your hotbar, and will not deposit into empty slots in the chest, it matches what is already there."
 		); 

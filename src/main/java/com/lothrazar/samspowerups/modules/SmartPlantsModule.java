@@ -23,7 +23,7 @@ public class SmartPlantsModule extends BaseModule
 	{ 
 		String category = ModSamsPowerups.MODID; 
 
-		enabled = ModSamsPowerups.config.getBoolean(category, "bonemealAllFlowers",true,
+		enabled = ModSamsPowerups.config.getBoolean( "bonemealAllFlowers",category,true,
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, not just the double height ones as normal."
 		); 
 	}

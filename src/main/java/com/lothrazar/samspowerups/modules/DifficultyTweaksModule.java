@@ -42,6 +42,9 @@ public class DifficultyTweaksModule extends BaseModule
 		Handler = new DifficultyHandler();
 		
 	}
+	public void loadConfig() 
+	{ 
+	}
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	
 	public void init()
@@ -234,9 +237,6 @@ public class DifficultyTweaksModule extends BaseModule
 	}
 
 
-	public void loadConfig() 
-	{ 
-	}
 	
 	@Override
 	public boolean isEnabled() 

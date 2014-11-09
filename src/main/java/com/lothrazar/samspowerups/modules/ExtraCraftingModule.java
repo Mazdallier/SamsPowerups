@@ -27,28 +27,28 @@ public class ExtraCraftingModule extends BaseModule
 	{  
 		String category = ModSamsPowerups.MODID ; 
   
-		craftableTransmuteRecords = config.get(category, "transmuteRecords",true,
+		craftableTransmuteRecords = config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
-				).getBoolean(true);
+				);
    
-		craftableFlatDoubleSlab = config.get(category, "craftableFlatDoubleSlab",true,
+		craftableFlatDoubleSlab = config.getBoolean( "craftableFlatDoubleSlab",category,true,
 			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."
-				).getBoolean(true);
+				);
 
-		craftableBonemealColouredWool =  config.get(category, "craftableBonemealColouredWool",true
-				,"Allows you to dye coloured wool back to white using bonemeal").getBoolean(true); 
+		craftableBonemealColouredWool =  config.getBoolean( "craftableBonemealColouredWool",category,true
+				,"Allows you to dye coloured wool back to white using bonemeal"); 
  
  
-		craftableMobHeads =  config.get(category, "craftableMobHeads",true
+		craftableMobHeads =  config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
-				"TNT, flesh, cake, or bones. ").getBoolean(true);  
+				"TNT, flesh, cake, or bones. ");  
  
  
  
 			
-		skullSignNames  =  config.get(category, "skullSignNames",true
+		skullSignNames  =  config.getBoolean( "skullSignNames",category,true
 				,"Hitting a player head on a sign will set the SkullOwner to the first word on the sign, which displays that " +
-						"head on the skull ").getBoolean(true); 
+						"head on the skull "); 
  
  
  
