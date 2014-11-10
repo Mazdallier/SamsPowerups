@@ -90,6 +90,9 @@ public class ModSamsPowerups
     	LogInfo("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
     	LogInfo("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
     	LogInfo("Base Edit: net.minecraft.block.BlockFenceGate.java");  
+    	LogInfo("Base Edit: net.minecraft.block.BlockHugeMushroom.java");  
+    	LogInfo("Base Edit: net.minecraft.block.BlockPumpkin.java");  
+    	LogInfo("Base Edit: net.minecraft.block.BlockSnow.java");  
       
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src

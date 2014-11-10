@@ -80,7 +80,7 @@ public class DifficultyTweaksModule extends BaseModule
 		
 		int wProb = 1;
 		int minGroup=1;
-		int maxGroup=4;
+		int maxGroup=2;
 		
 		 EntityRegistry.addSpawn(EntityMagmaCube.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		 {
@@ -101,7 +101,11 @@ public class DifficultyTweaksModule extends BaseModule
 		{
 			 	BiomeGenBase.hell 
 		});
-		
+
+		EntityRegistry.addSpawn(EntityCreeper.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		{
+			 	BiomeGenBase.hell 
+		});
 		
 		//todo: blazes?
 		
