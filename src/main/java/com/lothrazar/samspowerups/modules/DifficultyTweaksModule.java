@@ -102,7 +102,7 @@ public class DifficultyTweaksModule extends BaseModule
 			 	BiomeGenBase.hell 
 		});
 
-		EntityRegistry.addSpawn(EntityCreeper.class, wProb*3, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		EntityRegistry.addSpawn(EntityCreeper.class, wProb, minGroup, 1, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
 			 	BiomeGenBase.hell 
 		});
