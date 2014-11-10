@@ -17,8 +17,10 @@ public class EnderBookModule extends BaseModule
 	public ItemEnderBook item;
 	public EnderBookModule()
 	{
+		super();
 		Handler = new EnderBookHandler();
 		Name="Ender Book Teleportation";
+		FeatureList.add("New ender book to teleport known locations");
 	}
 
 	public void loadConfig()

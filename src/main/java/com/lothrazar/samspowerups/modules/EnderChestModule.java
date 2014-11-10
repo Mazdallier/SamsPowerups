@@ -12,6 +12,8 @@ public class EnderChestModule extends BaseModule
 		Name="EnderChestModule ";
 		Commands.add(new CommandEnderChest());
 		Handler = new EnderChestHandler();
+		FeatureList.add("Easily open ender chest without placing it");
+		FeatureList.add("New /ec command opens ender inventory");
 	}
 
 	@Override

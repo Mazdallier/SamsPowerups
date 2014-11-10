@@ -182,7 +182,7 @@ public class ModSamsPowerups
 					ModuleCommands.add(c);
 				}
 				
-				logger.info("Module Activated : " + current.Name); 
+				logLoadedModule(current); 
 			}
 			else
 			{
@@ -190,6 +190,14 @@ public class ModSamsPowerups
 			}
 		} 
     }
+	private void logLoadedModule(BaseModule current) 
+	{
+		logger.info("Module Activated : " + current.Name);
+		for(String c : current.FeatureList)
+		{
+			logger.info("     " + c);
+		}
+	}
     
 	public void syncConfig() 
 	{

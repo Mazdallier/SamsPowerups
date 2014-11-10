@@ -18,7 +18,9 @@ public class ExtraCraftingModule extends BaseModule
 { 
 	public ExtraCraftingModule()
 	{
-		 Name="Extra Craftables";
+		super();
+		FeatureList.add("Extra recipes: see config file");
+		Name="Extra Craftables";
 	}
 	
 	

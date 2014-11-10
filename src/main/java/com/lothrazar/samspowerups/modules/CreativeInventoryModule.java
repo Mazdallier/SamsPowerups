@@ -11,7 +11,9 @@ public class CreativeInventoryModule extends BaseModule
 {
 	public CreativeInventoryModule()
 	{ 
-		Name="Creative Inventory improvements";
+		super();
+		Name = "Creative Inventory improvements";
+		FeatureList.add("Missing items added to creative inventory: Mushroom blocks, dragon egg, water, lava, fire, mob spawner, farmland.");
 	}
 
 	@Override

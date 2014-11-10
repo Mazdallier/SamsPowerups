@@ -25,8 +25,12 @@ public class CommandPowersModule extends BaseModule
 	public CommandPowersModule ()
 	{
 		super();
-		Name = "New commands: /searchitem /searchtrade /killall /swp";
 		Handler = new WaypointHandler();
+		Name = "New commands";
+		FeatureList.add("New command: /searchitem");
+		FeatureList.add("New command: /searchtrade");
+		FeatureList.add("New command: /killall");
+		FeatureList.add("New command: /swp");
 	}
 
 	@Override

@@ -12,8 +12,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CaveFinderModule extends BaseModule
 { 
-	public CaveFinderModule(){
+	public CaveFinderModule()
+	{
 		Name = "Cave Finder xray block";
+		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
 	}
 	private boolean enabled;
 	BlockXRay block_xray;

@@ -21,7 +21,9 @@ public class ColouredCommandBlockModule extends BaseModule
 	
 	public ColouredCommandBlockModule()
 	{
-		Name= "Coloured Command Blocks";
+		Name= "Coloured Command Blocks";		
+		FeatureList.add("Survival command blocks to affect the weather and a handful of game rules.");
+
 	}
 	public static enum CommandType 
 	{

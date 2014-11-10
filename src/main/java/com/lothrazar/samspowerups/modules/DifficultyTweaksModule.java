@@ -38,8 +38,14 @@ public class DifficultyTweaksModule extends BaseModule
 { 
 	public DifficultyTweaksModule ()
 	{
+		super();
 		Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
 		Handler = new DifficultyHandler();
+		FeatureList.add("Stone tools and furnaces need smoothstone");
+		FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
+		FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
+		FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
+		FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
 		
 	}
 	public void loadConfig() 
@@ -88,14 +94,12 @@ public class DifficultyTweaksModule extends BaseModule
 			 	,BiomeGenBase.desertHills
 		 });
 
-		
 		EntityRegistry.addSpawn(EntityCaveSpider.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
 			 	BiomeGenBase.roofedForest
 			 	,BiomeGenBase.birchForest
 			 	,BiomeGenBase.birchForestHills
 		});
-
 
 		EntityRegistry.addSpawn(EntityZombie.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
@@ -106,9 +110,6 @@ public class DifficultyTweaksModule extends BaseModule
 		{
 			 	BiomeGenBase.hell 
 		});
-		
-		//todo: blazes?
-		
 	}
 
 

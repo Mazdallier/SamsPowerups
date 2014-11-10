@@ -9,23 +9,24 @@ public class BurnNatureFuelModule extends BaseModule
 	{
 		Name = "Burn Nature";
 		FuelHandler = new MoreFuelHandler();
+		FeatureList.add("Use seeds, leaves, paper, and dead bushes as furnace fuel.");
 	}
 
 	@Override
-	public void loadConfig() {
-		// TODO Auto-generated method stub
+	public void loadConfig() 
+	{
 		
 	}
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
+	public void init() 
+	{
 		
 	}
 
 	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+	public boolean isEnabled() 
+	{
 		return true;
 	}
 
