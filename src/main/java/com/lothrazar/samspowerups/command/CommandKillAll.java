@@ -39,7 +39,7 @@ public class CommandKillAll implements ICommand
 	public List getCommandAliases() { 
 		return null;
 	}
-
+	private int killed = 0;
 	@Override
 	public void processCommand(ICommandSender ic, String[] args) 
 	{ 
@@ -55,6 +55,7 @@ public class CommandKillAll implements ICommand
 			Chat.addMessage(p,getCommandUsage(ic));
 			return;
 		}
+		
 		int range = 50;
 		
 		
@@ -76,7 +77,9 @@ public class CommandKillAll implements ICommand
 
 		AxisAlignedBB rangeBox = AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
 				 px + range, py + range, pz + range);
-		 
+
+		this.killed = 0;
+		
 		// generic way so we dont have to copy,paste for each one
 		if(CREEPER.contains(args[0]))
 		{  
@@ -98,15 +101,15 @@ public class CommandKillAll implements ICommand
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityPig.class, rangeBox)); 
 		}
-		else if("zombie pigman".contains(args[0]))
-		{  
-			this.killAll( p.worldObj.getEntitiesWithinAABB(
-					EntityPigZombie.class, rangeBox)); 
-		}
 		else if(ZOMBIE.contains(args[0]))
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityZombie.class, rangeBox)); 
+		}
+		else if("zombie pigman".contains(args[0]))
+		{  
+			this.killAll( p.worldObj.getEntitiesWithinAABB(
+					EntityPigZombie.class, rangeBox)); 
 		}
 		else if("cave spider".contains(args[0]))
 		{  
@@ -213,10 +216,16 @@ public class CommandKillAll implements ICommand
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityHorse.class, rangeBox)); 
 		} 
-		else{
+		else
+		{
 			Chat.addMessage(p,getCommandUsage(ic));
+			return;
 		}
-		 
+		if(this.killed > 0)
+		{
+			Chat.addMessage(p,"Killed "+this.killed);
+			this.killed = 0;
+		}
 	}
 	 
 	private void killAll(List<EntityLivingBase> list)
@@ -226,6 +235,7 @@ public class CommandKillAll implements ICommand
 		  if(e.isDead) {continue;}
 	  
 		  e.attackEntityFrom(DamageSource.magic, 33); 
+		  killed++;
 		} 
 	}
 
