@@ -137,7 +137,7 @@ public class ModSamsPowerups
 
 	private void loadModules() 
 	{ 
-		modules.add(new ColouredCommandBlockModule());
+		//modules.add(new ColouredCommandBlockModule());
 		modules.add(new CommandPowersModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());

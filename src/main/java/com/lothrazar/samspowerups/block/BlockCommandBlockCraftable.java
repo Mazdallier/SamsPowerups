@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.modules.ColouredCommandBlockModule; 
-import com.lothrazar.samspowerups.modules.ColouredCommandBlockModule.CommandType;
+import com.lothrazar.samspowerups.modules.ItemBlockModule.CommandType;
 
 import cpw.mods.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
