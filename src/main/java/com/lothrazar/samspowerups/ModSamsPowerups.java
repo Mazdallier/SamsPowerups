@@ -113,31 +113,9 @@ public class ModSamsPowerups
     
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
-    {
-    	logger = event.getModLog();
-    	logBaseChanges();
-    	
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-    	
-    	configHandler = new ConfigHandler();
-    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
-		syncConfig();  
-		MinecraftForge.EVENT_BUS.register(configHandler);   
-    	
+    {  
 		modules = new ArrayList<BaseModule>();
-
-		loadModules(); 
 		
-		if(inSandboxMode) //experimenting with new unfinished features
-		{ 
-	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
-			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
-		}
-    }
-
-	private void loadModules() 
-	{ 
-		//modules.add(new ColouredCommandBlockModule());
 		modules.add(new CommandPowersModule());
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
@@ -158,6 +136,27 @@ public class ModSamsPowerups
 		modules.add(new SurvivalFlyingModule());
 		modules.add(new UncraftingModule()); 
 		
+    	logger = event.getModLog();
+    	logBaseChanges();
+    	
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
+    	
+    	configHandler = new ConfigHandler();
+    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
+		syncConfig();  
+		MinecraftForge.EVENT_BUS.register(configHandler);   
+
+		loadModules(); 
+		
+		if(inSandboxMode) //experimenting with new unfinished features
+		{ 
+	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
+			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
+		}
+    }
+
+	private void loadModules() 
+	{  
 		BaseModule current; 
 		for(int i = 0; i < modules.size(); i++)
 		{
