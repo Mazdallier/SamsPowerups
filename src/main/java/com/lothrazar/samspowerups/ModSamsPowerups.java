@@ -80,12 +80,19 @@ public class ModSamsPowerups
     private boolean inSandboxMode = true;   
 	public ArrayList<ICommand> ModuleCommands = new  ArrayList<ICommand>(); 
     
+	//TODO: merge smartPlants with burnNature mod
+	
+	//TODO: merge fishing block, command blocks, and cave finder into blocks module
+	//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
+	//TODO: fix iron boat texture OR make it a base edit
+	
 	public static void LogInfo(String s)
 	{
 		//TODO: also add to my own documentation and/or log file
 		logger.info(s);
 	} 
-    private void logBaseChanges()
+    
+	private void logBaseChanges()
     { 
     	LogInfo("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
     	LogInfo("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
@@ -115,7 +122,7 @@ public class ModSamsPowerups
     	modules = new ArrayList<BaseModule>();
 
 		modules.add(new SmartPlantsModule()); 
-	 	modules.add(new BurnNatureFuelModule());
+	 	//modules.add(new BurnNatureFuelModule());
 		modules.add(new CaveFinderModule());
 		modules.add(new ColouredCommandBlockModule());
 		modules.add(new CommandPowersModule());

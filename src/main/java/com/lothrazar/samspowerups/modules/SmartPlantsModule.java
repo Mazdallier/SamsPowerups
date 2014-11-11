@@ -6,6 +6,7 @@ import net.minecraft.command.ICommand;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
+import com.lothrazar.samspowerups.handler.MoreFuelHandler;
 import com.lothrazar.samspowerups.handler.SmartPlantsHandler;
 import com.lothrazar.samspowerups.handler.ConfigHandler;
  
@@ -14,8 +15,12 @@ public class SmartPlantsModule extends BaseModule
 	private boolean enabled = true;
 	public SmartPlantsModule()
 	{
+		super();
 		Handler = new SmartPlantsHandler();
 		Name = "Smart plants ";
+		FuelHandler = new MoreFuelHandler();
+		FeatureList.add("Bonemeal lilypads and all flowers to spawn new ones.  Works just like the tall flowers.");
+		FeatureList.add("Use seeds, leaves, paper, and dead bushes as furnace fuel.");
 	}
  
 	@Override

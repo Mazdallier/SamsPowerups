@@ -17,6 +17,7 @@ public class RichLootModule extends BaseModule
 	{
 		super();
 		Name = "Rich Loot";
+		FeatureList.add("Treasure chests can contain emeralds, quartz, glowstone, pistons, and gold blocks.");
 	}
 	@Override
 	public void loadConfig() 

@@ -19,7 +19,7 @@ public class ExtraCraftingModule extends BaseModule
 	public ExtraCraftingModule()
 	{
 		super();
-		FeatureList.add("Extra recipes: see config file");
+		FeatureList.add("Extra recipes: unobtainable items, whitewashing wool, ");
 		Name="Extra Craftables";
 	}
 	

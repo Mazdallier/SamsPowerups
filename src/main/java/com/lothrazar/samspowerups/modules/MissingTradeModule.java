@@ -9,8 +9,9 @@ public class MissingTradeModule extends BaseModule
 { 
 	public MissingTradeModule()
 	{
-		//Handler =new VillagerTradeHandler() ;
-		Name="Missing Trades added";
+		super();
+		Name="Missing Trades";
+		FeatureList.add("Villagers get trades returned that were removed in some versions. Also some trades added by future versions ");
 	}
 	@Override
 	public void loadConfig() 

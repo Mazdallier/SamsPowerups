@@ -1,7 +1,5 @@
 package com.lothrazar.samspowerups.handler;
-
-import com.lothrazar.samspowerups.modules.BurnNatureFuelModule;
-
+ 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -9,10 +7,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
 public class MoreFuelHandler  implements IFuelHandler
-{
-	public MoreFuelHandler()
-	{ 
-	}
+{ 
 	/*    Wooden Slabs - 150
     Anything made out of wood - 300
     Wooden Tools - 200

@@ -8,7 +8,9 @@ public class QuickDepositModule extends BaseModule
 { 
 	public QuickDepositModule()
 	{
+		super();
 		Name= "Quick Deposit : hit a chest to sort it in"; 	
+		FeatureList.add("WHat module should this merge with");
 	}
 	private boolean enabled;
 

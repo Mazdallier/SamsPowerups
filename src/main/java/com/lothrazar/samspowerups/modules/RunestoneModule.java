@@ -16,6 +16,7 @@ public class RunestoneModule extends BaseModule
 {
 	public RunestoneModule()
 	{
+		super();
 		Handler = new RunestoneTickHandler();
 		Name="Diablo style Runestones";
 	}
