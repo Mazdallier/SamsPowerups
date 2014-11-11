@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.google.common.collect.Sets;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
-import com.lothrazar.samspowerups.modules.RunestoneModule;
+import com.lothrazar.samspowerups.modules.ItemBlockModule;
 import com.lothrazar.samspowerups.util.Reference;
  
 
@@ -39,7 +39,7 @@ public class ItemRunestone extends ItemTool
     public ItemRunestone(  int[] _effects, int[] _amplifiers,boolean shimmer)
     {
 		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 
-    	this.setMaxDamage(RunestoneModule.DURABILITY);
+    	this.setMaxDamage(ItemBlockModule.DURABILITY);
     	setMaxStackSize(1);
     	setCreativeTab(CreativeTabs.tabCombat) ; 
   

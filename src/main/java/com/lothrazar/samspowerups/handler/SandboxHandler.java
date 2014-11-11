@@ -20,7 +20,16 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class SandboxHandler 
 {
+
 	
+	//TODO: player harvest handler
+	//mob drop handler
+	// fuelhandler
+	
+	//todo: try catching chat messages? log for certian players/
+	//@SubscribeEvent
+	//public void onChatMessageReceived(ClientChatReceivedEvent event) {
+
 	//tersting and ranodm stuff to see what happens. not for production
 
 	//sandbox stuff??

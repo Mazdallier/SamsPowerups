@@ -6,19 +6,22 @@ import net.minecraft.item.ItemStack;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
+import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.samspowerups.util.Reference;
 
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class RunestoneModule extends BaseModule 
+public class ItemBlockModule extends BaseModule 
 {
-	public RunestoneModule()
+	public ItemBlockModule()
 	{
 		super();
 		Handler = new RunestoneTickHandler();
-		Name="Diablo style Runestones";
+		Name="Diablo style Runestones";		
+		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
+		FeatureList.add("Diablo style Runestones."); 
 	}
 	
 	public static  int SLOT_RUNESTONE = 8; 
@@ -35,28 +38,55 @@ public class RunestoneModule extends BaseModule
     private static ItemRunestone rune_fire; 
     //private static ItemRunestone rune_fly;
    // private static ItemRunestone rune_horse;
+	private BlockXRay block_xray;
+
+	private boolean blockCaveFinderEnabled;
+	private boolean runestoneEnabled;
     
 	@Override
 	public void loadConfig() 
 	{
-		String category=ModSamsPowerups.MODID;
-		enabled = ModSamsPowerups.config.getBoolean( "runestoneEnabled",category,true,
+		String category = ModSamsPowerups.MODID;
+		
+		runestoneEnabled = ModSamsPowerups.config.getBoolean( "runestoneEnabled",category,true,
 				"Lets you make a rune that enables flying in survival."
 				);
-	  
+		 
+		blockCaveFinderEnabled = ModSamsPowerups.config.getBoolean( "blockCaveFinder",category,true
+				, "Build a Cave finder block (lets you see like XRay throught the world) with four obsidian "+
+						"in the corners , glass in the middle, and four cobwebs.  " +
+						"This lets you see through the world."
+		);  
 	}
 
-	private boolean enabled;
 
 	@Override
 	public boolean isEnabled() 
 	{ 
-		return enabled;
+		return runestoneEnabled || blockCaveFinderEnabled;
 	}
- 
+	
+	public void initXray() 
+	{
+		String MODID = ModSamsPowerups.MODID;
+		block_xray = new BlockXRay();
+		block_xray.setBlockName("block_xray")
+			 .setBlockTextureName(MODID + ":block_xray");
+		GameRegistry.registerBlock(block_xray, "block_xray");
+		 
+		GameRegistry.addRecipe(new ItemStack(block_xray), "owo",	"wgw", "owo" 
+				, 'w',Blocks.web  
+				, 'g',Blocks.glass  
+				, 'o',Blocks.obsidian );
+		
+	  	GameRegistry.addSmelting(new ItemStack(block_xray),new ItemStack(Blocks.web,4),0);  
+	}
+	
 	@Override
     public void init()
 	{ 
+		initXray();
+		
 		String MODID = ModSamsPowerups.MODID; 
 		boolean shiny = true;
 		boolean not_shiny = false;

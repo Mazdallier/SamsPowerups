@@ -79,9 +79,7 @@ public class ModSamsPowerups
     private ArrayList<BaseModule> modules;
     private boolean inSandboxMode = true;   
 	public ArrayList<ICommand> ModuleCommands = new  ArrayList<ICommand>(); 
-    
-	//TODO: merge smartPlants with burnNature mod
-	
+   
 	//TODO: merge fishing block, command blocks, and cave finder into blocks module
 	//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
 	//TODO: fix iron boat texture OR make it a base edit
@@ -118,12 +116,27 @@ public class ModSamsPowerups
     {
     	logger = event.getModLog();
     	logBaseChanges();
+    	
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-    	modules = new ArrayList<BaseModule>();
+    	
+    	configHandler = new ConfigHandler();
+    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
+		syncConfig();  
+		MinecraftForge.EVENT_BUS.register(configHandler);   
+    	
+		modules = new ArrayList<BaseModule>();
 
-		modules.add(new SmartPlantsModule()); 
-	 	//modules.add(new BurnNatureFuelModule());
-		modules.add(new CaveFinderModule());
+		loadModules(); 
+		
+		if(inSandboxMode) //experimenting with new unfinished features
+		{ 
+	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
+			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
+		}
+    }
+
+	private void loadModules() 
+	{ 
 		modules.add(new ColouredCommandBlockModule());
 		modules.add(new CommandPowersModule());
 		modules.add(new CreativeInventoryModule());
@@ -132,6 +145,7 @@ public class ModSamsPowerups
 		modules.add(new ExtraCraftingModule());
 		modules.add(new FishingBlockModule());
 		modules.add(new IronBoatModule()); 
+		modules.add(new ItemBlockModule());
 		modules.add(new KeySliderModule()); 
 		modules.add(new MagicApplesModule());
 		modules.add(new MasterWandModule());
@@ -139,31 +153,11 @@ public class ModSamsPowerups
 		modules.add(new QuickDepositModule());
 		modules.add(new DifficultyTweaksModule());
 		modules.add(new RichLootModule());
-		modules.add(new RunestoneModule());
 		modules.add(new ScreenInfoModule());
+		modules.add(new SmartPlantsModule());  
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());
-		modules.add(new UncraftingModule());
-		//modules.add(new WaypointModule());
-		
-		//TODO: player harvest handler
-		//mob drop handler
-		// fuelhandler
-		
-		//todo: try catching chat messages? log for certian players/
-		//@SubscribeEvent
-		//public void onChatMessageReceived(ClientChatReceivedEvent event) {
-
-    	configHandler = new ConfigHandler();
-    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
-		syncConfig();  
-		MinecraftForge.EVENT_BUS.register(configHandler);   
-    	
-		if(inSandboxMode) //experimenting with new unfinished features
-		{ 
-	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
-			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
-		}
+		modules.add(new UncraftingModule()); 
 		
 		BaseModule current; 
 		for(int i = 0; i < modules.size(); i++)
@@ -182,9 +176,8 @@ public class ModSamsPowerups
 				{ 
 					GameRegistry.registerFuelHandler(current.FuelHandler);
 				}
-				
-				//commands get loaded in a different event, but we prepare them here
-				for(ICommand c : current.Commands)
+				 
+				for(ICommand c : current.Commands)//commands get loaded in a different event, but we prepare them here
 				{
 					ModuleCommands.add(c);
 				}
@@ -195,8 +188,9 @@ public class ModSamsPowerups
 			{
 				logger.info("Module DISABLED : " + current.Name); 
 			}
-		} 
-    }
+		}
+	}
+	
 	private void logLoadedModule(BaseModule current) 
 	{
 		logger.info("Module Activated : " + current.Name);
