@@ -11,6 +11,8 @@ import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
 import com.lothrazar.samspowerups.block.BlockFishing;
 import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
+import com.lothrazar.samspowerups.item.EnderBookHandler;
+import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.samspowerups.util.Reference;
@@ -19,16 +21,19 @@ import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ItemBlockModule extends BaseModule 
 {
-	public ItemBlockModule()
+	public ItemBlockModule() throws Exception
 	{
 		super();
 		Handler = new RunestoneTickHandler();
+		Handler = new EnderBookHandler();
 		Name="Items and Blocks";		
 		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
 		FeatureList.add("Diablo style Runestones."); 
 		FeatureList.add("Survival command blocks to affect the weather and a handful of game rules.");
 		FeatureList.add("Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions");
+		FeatureList.add("New ender book to teleport known locations");
 		//
+		throw new Exception("duplicate handlers in ItemBlockModule");
 	//	Name = "Magic Apples: More than just gold";
 	}
 	
@@ -49,6 +54,7 @@ public class ItemBlockModule extends BaseModule
 	private BlockXRay block_xray; 
 	private boolean blockCaveFinderEnabled;
 	private boolean runestoneEnabled; 
+	public ItemEnderBook itemEnderBook;
 	private boolean fishingBlockEnabled; 
 	private boolean magicApplesEnabled;
 	private static boolean weatherCommandBlock;
@@ -60,6 +66,8 @@ public class ItemBlockModule extends BaseModule
 	private ItemFoodAppleMagic appleDiamond;
 	private ItemFoodAppleMagic appleLapis;
 	private ItemFoodAppleMagic appleChocolate;
+
+	private boolean enderBookEnabled;
 	
 	public static enum CommandType 
 	{
@@ -69,6 +77,12 @@ public class ItemBlockModule extends BaseModule
 	public void loadConfig() 
 	{
 		String category = ModSamsPowerups.MODID;
+		
+		enderBookEnabled = ModSamsPowerups.config.getBoolean( "enderBook",category,true,
+			 	"This allows you to craft an ender book using 8 ender pearls and a book.  "+
+			    "Right click while sneaking to save a location in the book.  " +
+			 	"Attack with the book to teleport.  Only works in the overworld."
+			 );
 		
 		magicApplesEnabled = ModSamsPowerups.config.getBoolean( "magicApples", ModSamsPowerups.MODID,true,
 			 	 "This allows you to craft golden apples into one of four powerful items: chocolate, lapis, emerald, diamond.  " +
@@ -220,11 +234,7 @@ public class ItemBlockModule extends BaseModule
 		 
 	} 
 	
-	@Override
-	public boolean isEnabled() 
-	{ 
-		return true;//runestoneEnabled || blockCaveFinderEnabled;
-	}
+
 	
 	private void initXray() 
 	{
@@ -318,6 +328,19 @@ public class ItemBlockModule extends BaseModule
 		}  
 	}
 	
+	private void initEnderbook()
+	{ 
+		itemEnderBook = new ItemEnderBook();
+		itemEnderBook.setTextureName(ModSamsPowerups.MODID+":book_ender").setUnlocalizedName("book_ender");
+		GameRegistry.registerItem(itemEnderBook,  "book_ender");   
+		GameRegistry.addRecipe(new ItemStack(itemEnderBook)
+			,"eee"
+			,"ebe"
+			,"eee"
+			, 'e', Items.ender_pearl
+			, 'b', Items.book); 
+		GameRegistry.addSmelting(itemEnderBook, new ItemStack(Items.ender_pearl,8),0); 
+	}	
 	@Override
     public void init()
 	{ 

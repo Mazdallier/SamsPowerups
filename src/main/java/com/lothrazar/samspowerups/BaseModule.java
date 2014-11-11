@@ -25,5 +25,8 @@ public abstract class BaseModule
 	
 	public abstract void init(); 
 	
-	public abstract boolean isEnabled(); 
+	public boolean isEnabled() 
+	{ 
+		return true; //modules default to enabled and can just not redefine this. otherwise they can customize 
+	}
 }

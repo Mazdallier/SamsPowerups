@@ -117,8 +117,7 @@ public class ModSamsPowerups
 		modules = new ArrayList<BaseModule>();
 		
 		modules.add(new CommandPowersModule());       //!
-		modules.add(new CreativeInventoryModule());
-		modules.add(new EnderBookModule());//itemblock
+		modules.add(new CreativeInventoryModule()); 
 		modules.add(new EnderChestModule());//time saving
 		modules.add(new ExtraCraftingModule());         //!
 		modules.add(new IronBoatModule()); //base edit? or txyure
