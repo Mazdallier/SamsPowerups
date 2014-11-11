@@ -142,8 +142,7 @@ public class ModSamsPowerups
 		modules.add(new CreativeInventoryModule());
 		modules.add(new EnderBookModule());
 		modules.add(new EnderChestModule());
-		modules.add(new ExtraCraftingModule());
-		modules.add(new FishingBlockModule());
+		modules.add(new ExtraCraftingModule()); 
 		modules.add(new IronBoatModule()); 
 		modules.add(new ItemBlockModule());
 		modules.add(new KeySliderModule()); 

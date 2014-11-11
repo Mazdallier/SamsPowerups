@@ -8,6 +8,7 @@ import net.minecraftforge.common.config.Configuration;
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
+import com.lothrazar.samspowerups.block.BlockFishing;
 import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 import com.lothrazar.samspowerups.item.ItemRunestone;
@@ -25,6 +26,7 @@ public class ItemBlockModule extends BaseModule
 		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
 		FeatureList.add("Diablo style Runestones."); 
 		FeatureList.add("Survival command blocks to affect the weather and a handful of game rules.");
+		FeatureList.add("Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions");
 	}
 	
 	public static  int SLOT_RUNESTONE = 8; 
@@ -45,11 +47,14 @@ public class ItemBlockModule extends BaseModule
 
 	private boolean blockCaveFinderEnabled;
 	private boolean runestoneEnabled;
+
+	private boolean fishingBlockEnabled;
 	private static boolean weatherCommandBlock;
 	private static boolean gameRuleNatRegen;
 	private static boolean gameRuleMobGrief;
 	private static boolean gameRuleFireTick;
 	private static boolean gameRuleDaylightCycle ;
+	
 	public static enum CommandType 
 	{
 	    Teleport,Gamerule,Weather
@@ -58,6 +63,12 @@ public class ItemBlockModule extends BaseModule
 	public void loadConfig() 
 	{
 		String category = ModSamsPowerups.MODID;
+		
+		fishingBlockEnabled = ModSamsPowerups.config.getBoolean( "fishingBlock",ModSamsPowerups.MODID,true,
+				"Build a fishing net block with four planks in the corners, a (fully repaired) fishing pole in the middle, and four cobwebs.  " +
+				"If you place this in water (touching on 4 sides and 2 deep below), it will randomly spawn fish " +
+				"(but no treasure or junk like real fishing would)."
+			);
 		
 		runestoneEnabled = ModSamsPowerups.config.getBoolean( "runestoneEnabled",category,true,
 				"Lets you make a rune that enables flying in survival."
@@ -91,6 +102,22 @@ public class ItemBlockModule extends BaseModule
 				,"Build a command block that toggles the game rule doDaylightCycle." 
 				);  
 	}
+	
+	public void initFishing() 
+	{
+		String MODID = ModSamsPowerups.MODID;
+		BlockFishing block = new BlockFishing();
+		block.setBlockName("block_fishing")
+			 .setBlockTextureName(MODID + ":block_fishing");
+		GameRegistry.registerBlock(block, "block_fishing");
+		
+		GameRegistry.addRecipe(new ItemStack(block), "pwp",	"wfw", "pwp" 
+				, 'w',Blocks.web 
+				, 'f', new ItemStack(Items.fishing_rod,1,0)
+				, 'p', Blocks.planks );
+		
+	  	GameRegistry.addSmelting(new ItemStack(block),new ItemStack(Blocks.web,4),0); 
+	}
 
 	@Override
 	public boolean isEnabled() 
@@ -98,7 +125,7 @@ public class ItemBlockModule extends BaseModule
 		return runestoneEnabled || blockCaveFinderEnabled;
 	}
 	
-	public void initXray() 
+	private void initXray() 
 	{
 		String MODID = ModSamsPowerups.MODID;
 		block_xray = new BlockXRay();
@@ -114,7 +141,7 @@ public class ItemBlockModule extends BaseModule
 	  	GameRegistry.addSmelting(new ItemStack(block_xray),new ItemStack(Blocks.web,4),0);  
 	}
 	
-	public void initCommand() 
+	private void initCommand() 
 	{
 		String MODID = ModSamsPowerups.MODID;
 
@@ -189,11 +216,14 @@ public class ItemBlockModule extends BaseModule
 					, 't', Items.ghast_tear);
 		}  
 	}
+	
 	@Override
     public void init()
 	{ 
-		initXray();
+		if(blockCaveFinderEnabled) initXray();
+		if(fishingBlockEnabled) initFishing();
 		initCommand();
+		
 		String MODID = ModSamsPowerups.MODID; 
 		boolean shiny = true;
 		boolean not_shiny = false;
