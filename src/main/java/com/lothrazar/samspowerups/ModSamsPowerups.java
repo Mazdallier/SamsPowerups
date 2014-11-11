@@ -116,25 +116,24 @@ public class ModSamsPowerups
     {  
 		modules = new ArrayList<BaseModule>();
 		
-		modules.add(new CommandPowersModule());
+		modules.add(new CommandPowersModule());       //!
 		modules.add(new CreativeInventoryModule());
-		modules.add(new EnderBookModule());
-		modules.add(new EnderChestModule());
-		modules.add(new ExtraCraftingModule()); 
-		modules.add(new IronBoatModule()); 
-		modules.add(new ItemBlockModule());
-		modules.add(new KeySliderModule()); 
-		modules.add(new MagicApplesModule());
-		modules.add(new MasterWandModule());
-		modules.add(new MissingTradeModule());
-		modules.add(new QuickDepositModule());
-		modules.add(new DifficultyTweaksModule());
+		modules.add(new EnderBookModule());//itemblock
+		modules.add(new EnderChestModule());//time saving
+		modules.add(new ExtraCraftingModule());         //!
+		modules.add(new IronBoatModule()); //base edit? or txyure
+		modules.add(new ItemBlockModule());         //!
+		modules.add(new KeySliderModule()); //better gameplay 
+		modules.add(new MasterWandModule());///itmblock
+		modules.add(new MissingTradeModule());//better gameplay
+		modules.add(new QuickDepositModule());//better gameplay
+		modules.add(new DifficultyTweaksModule());        //!
 		modules.add(new RichLootModule());
-		modules.add(new ScreenInfoModule());
-		modules.add(new SmartPlantsModule());  
+		modules.add(new ScreenInfoModule());////better gameplay
+		modules.add(new SmartPlantsModule());        //!
 		modules.add(new StackSizeModule());
-		modules.add(new SurvivalFlyingModule());
-		modules.add(new UncraftingModule()); 
+		modules.add(new SurvivalFlyingModule());      //!
+		modules.add(new UncraftingModule());       //!
 		
     	logger = event.getModLog();
     	logBaseChanges();
