@@ -105,7 +105,7 @@ public class ModSamsPowerups
 		modules.add(new CreativeInventoryModule()); 
 		modules.add(new EnderChestModule());//time saving
 		modules.add(new ExtraCraftingModule());         //!
-		modules.add(new IronBoatModule()); //base edit? or txyure
+		//modules.add(new IronBoatModule()); //base edit? or txyure
 		modules.add(new ItemBlockModule());         //!
 		modules.add(new KeySliderModule()); //better gameplay 
 		modules.add(new MasterWandModule());///itmblock

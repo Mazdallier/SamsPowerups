@@ -9,6 +9,10 @@ import net.minecraftforge.common.ChestGenHooks;
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+
 public class RichLootModule extends BaseModule
 { 
 	private boolean enabled;
@@ -19,8 +23,8 @@ public class RichLootModule extends BaseModule
 		Name = "Rich Loot";
 		FeatureList.add("Treasure chests can contain emeralds, quartz, glowstone, pistons, and gold blocks.");
 	}
-	@Override
-	public void loadConfig() 
+	
+	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		String category = ModSamsPowerups.MODID; 
 
@@ -29,8 +33,7 @@ public class RichLootModule extends BaseModule
 		);
 	}
 
-	@Override
-	public void init() //a test seed   1660196624
+	public void onInit(FMLInitializationEvent event)  //a test seed   1660196624
 	{ 
 		addToAllExceptBonus(new ItemStack(Blocks.emerald_block),1,5,RARITY_RECORD);
 
@@ -95,12 +98,5 @@ public class RichLootModule extends BaseModule
 
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(
 				new WeightedRandomChestContent(loot,  min,  max,  rarity)); 
-	}
-	 
-	@Override
-	public boolean isEnabled() 
-	{ 
-		return enabled;
-	}
-
+	} 
 }

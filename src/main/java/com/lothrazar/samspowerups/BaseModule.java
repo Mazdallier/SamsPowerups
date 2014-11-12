@@ -18,7 +18,7 @@ public abstract class BaseModule
 		Name = "";
 	}
  
-	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
+	//for loadConfig &  MinecraftForge.EVENT_BUS.register(instance); 
 	public void onPreInit(FMLPreInitializationEvent event)   {}
 
 	//for creating blocks/ items etc

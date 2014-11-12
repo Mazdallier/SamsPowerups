@@ -1,14 +1,16 @@
 package com.lothrazar.samspowerups.modules;
 
-import java.util.Collection;
-
+import java.util.Collection; 
 import net.minecraft.command.ICommand;
-
+import net.minecraftforge.common.MinecraftForge; 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.handler.MoreFuelHandler;
-import com.lothrazar.samspowerups.handler.SmartPlantsHandler;
-import com.lothrazar.samspowerups.handler.ConfigHandler;
+import com.lothrazar.samspowerups.handler.SmartPlantsHandler; 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
  
 public class SmartPlantsModule extends BaseModule 
 { 
@@ -16,15 +18,15 @@ public class SmartPlantsModule extends BaseModule
 	public SmartPlantsModule()
 	{
 		super();
-		Handler = new SmartPlantsHandler();
-		Name = "Smart plants ";
-		FuelHandler = new MoreFuelHandler();
+ 
+		Name = "Smart plants "; 
 		FeatureList.add("Bonemeal lilypads and all flowers to spawn new ones.  Works just like the tall flowers.");
 		FeatureList.add("Use seeds, leaves, paper, and dead bushes as furnace fuel.");
-	}
- 
-	@Override
-	public void loadConfig() 
+	} 
+	
+	public void onServerLoad(FMLServerStartingEvent event) {}
+	
+	public void onPreInit(FMLPreInitializationEvent event) 
 	{ 
 		String category = ModSamsPowerups.MODID; 
 
@@ -32,14 +34,12 @@ public class SmartPlantsModule extends BaseModule
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, " +
 				"snot just the double height ones as normal."
 		); 
-	}
-  
-	@Override
-	public void init() {  	}
-
-	@Override
-	public boolean isEnabled() 
-	{ 
-		return enabled;
+		
+		MinecraftForge.EVENT_BUS.register(new SmartPlantsHandler()); 
 	} 
+	
+	public void onInit(FMLInitializationEvent event)   
+	{
+		GameRegistry.registerFuelHandler(new MoreFuelHandler());
+	}
 }

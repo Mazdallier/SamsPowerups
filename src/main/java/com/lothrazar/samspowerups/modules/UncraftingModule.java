@@ -9,13 +9,15 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class UncraftingModule extends BaseModule
 { 
 	public UncraftingModule()
 	{
-		Name="Uncrafting";
+		Name = "Uncrafting";
 	}
 	private static boolean stairs;
 	private static boolean misc;
@@ -30,7 +32,7 @@ public class UncraftingModule extends BaseModule
 	private static boolean natureblocks;
 	private static boolean glass;
  
-	public void loadConfig()
+	public void onPreInit(FMLPreInitializationEvent event)  
 	{  
 		String category = ModSamsPowerups.MODID;
 		Configuration config = ModSamsPowerups.config;
@@ -87,7 +89,7 @@ public class UncraftingModule extends BaseModule
 		); 
 	}
 
-	public void init()
+	public void onInit(FMLInitializationEvent event) 
 	{     
 		int EXP = 0;// same for all recipes - default
  
@@ -596,12 +598,4 @@ public class UncraftingModule extends BaseModule
  
 		} 
 	}
-  
-	@Override
-	public boolean isEnabled() 
-	{
-		return true;
-	}
- 
-	 
 }

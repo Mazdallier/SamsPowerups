@@ -18,14 +18,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MasterWandModule extends BaseModule
 { 
+	public static ItemWandMaster itemWand;
+	public static ItemChestSack itemChestSack;
 	public MasterWandModule()
 	{ 
 		Name = "Master Wand";
 	}
-	public static ItemWandMaster itemWand;
-	public static ItemChestSack itemChestSack;
  
-
 	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
@@ -50,5 +49,4 @@ public class MasterWandModule extends BaseModule
 		itemChestSack.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
-
 }

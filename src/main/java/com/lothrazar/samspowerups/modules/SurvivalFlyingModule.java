@@ -1,5 +1,6 @@
 package com.lothrazar.samspowerups.modules;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
@@ -8,20 +9,22 @@ import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.command.CommandFlyHelp;
 import com.lothrazar.samspowerups.handler.SurvivalFlyingHandler;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+
 public class SurvivalFlyingModule extends BaseModule
 {
 	public SurvivalFlyingModule()
 	{
 		super();
-		Name="Survival Flying";
-		Commands.add(new CommandFlyHelp());
-		Handler = new SurvivalFlyingHandler();
+		Name="Survival Flying"; 
 	}
-
-	//load config file.  Or create it and set defaults if not found
-	@Override
-	public void loadConfig()
+ 
+	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
+		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 
+		
 		Configuration config = ModSamsPowerups.config;
 		 
 		String CATEGORY_FLY = ModSamsPowerups.MODID+":flying";  
@@ -56,18 +59,12 @@ public class SurvivalFlyingModule extends BaseModule
 		 
 		SurvivalFlyingHandler.flyDamageCounterLimit = config.getInt(CATEGORY_FLY, "flycountdown", 70,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
-  
-	}
-	 
-	@Override
-	public void init() 
-	{
+		
 		
 	}
-
-	@Override
-	public boolean isEnabled() 
+	    
+	public void onServerLoad(FMLServerStartingEvent event) 
 	{
-		return true;//TODOs
+		event.registerServerCommand(new CommandFlyHelp());
 	} 
 }

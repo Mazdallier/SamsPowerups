@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.handler.ConfigHandler;
-
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+import net.minecraft.item.Item; 
 
 public class StackSizeModule extends BaseModule //implements ISamModule
 { 
 	public StackSizeModule()
 	{
 		Name="Stack Size to 64";
+		FeatureList.add("Boats, minecarts, eggs, ender pearls, and so on");
 	}
 	
 	private boolean enabled;
@@ -32,7 +32,10 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		); 
 	}
 
-	public void init()
+	//for loadConfig &  MinecraftForge.EVENT_BUS.register(instance); 
+	public void onPreInit(FMLPreInitializationEvent event)   {}
+ 
+	public void onInit(FMLInitializationEvent event)  
 	{   
 		//default config keeps this at 1
 		//Items.potionitem.setMaxStackSize(potionStackSize); 
@@ -78,11 +81,5 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 		{
 			item.setMaxStackSize(64);
 		}
-	}
-
-	@Override
-	public boolean isEnabled() 
-	{
-		return enabled;
-	}
+	} 
 }
