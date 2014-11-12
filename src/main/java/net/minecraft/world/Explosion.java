@@ -133,11 +133,12 @@ public class Explosion
                 eZ = entity.posZ - this.explosionZ;
                 distance = (double)MathHelper.sqrt_double(eX * eX + eY * eY + eZ * eZ);
 
-                if (distance != 0.0D)
+                if (distance != 0.0D)//TODO: we could combine the two if statemenmts to add my item immunity
                 {
                 	if(entity instanceof EntityItem)
                 	{
-                		System.out.println("explosion affecting entity item");
+                		System.out.println("continue;   // explosion affecting entity item");
+                		continue;
                 		//TODO: continue; should make the entity item take no damage..?	 or change attackEntityFrom below
                 	}
                 	
@@ -146,6 +147,7 @@ public class Explosion
                     eZ /= distance;
                     double blockDensity = (double)this.worldObj.getBlockDensity(vec3, entity.boundingBox);
                     double scale = (1.0D - entityDistance) * blockDensity;
+                    //TODO ?  we could also somehow change EntityItems to be immune to explosions in general?
                     entity.attackEntityFrom(DamageSource.setExplosionSource(this), (float)((int)((scale * scale + scale) / 2.0D * 8.0D * (double)this.explosionSize + 1.0D)));
                     double d8 = EnchantmentProtection.func_92092_a(entity, scale);
                     entity.motionX += eX * d8;
