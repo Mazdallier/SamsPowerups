@@ -19,6 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityBoat  extends Entity
 {   
+	public static boolean breakable = false;
     private boolean isBoatEmpty;
     private double speedMultiplier;
     private int boatPosRotationIncrements;
@@ -376,21 +377,23 @@ public class EntityBoat  extends Entity
                 {
                     this.setDead();
 
-                    this.func_145778_a(Items.boat, 1, 0.0F);
-                    System.out.println("!! boat damage??");
-                    //lothrazar
-                    //below is what wood boat does : sticks/planks random mix
-                    /*
-                    for (l = 0; l < 3; ++l)
+ 
+                    if(breakable) //then match vanilla behaviour
                     {
-                        this.func_145778_a(Item.getItemFromBlock(Blocks.planks), 1, 0.0F);
-                    }
+                    	for (l = 0; l < 3; ++l)
+                        {
+                            this.func_145778_a(Item.getItemFromBlock(Blocks.planks), 1, 0.0F);
+                        }
 
-                    for (l = 0; l < 2; ++l)
-                    {
-                        this.func_145778_a(Items.stick, 1, 0.0F);
+                        for (l = 0; l < 2; ++l)
+                        {
+                            this.func_145778_a(Items.stick, 1, 0.0F);
+                        }
                     }
-                    */
+                    else
+                    {
+                        this.func_145778_a(Items.boat, 1, 0.0F); //lothrazar
+                    } 
                 }
             }
             else
@@ -517,21 +520,22 @@ public class EntityBoat  extends Entity
                     this.setDead();
                     int l;
 
-                    this.func_145778_a(Items.boat, 1, 0.0F);//not sticks anymore
-
-                    System.out.println("xxx boat damage??");
-                    //lothrazar
-                    /*
-                    for (l = 0; l < 3; ++l)
+                    if(breakable) //then match vanilla behaviour
                     {
-                        this.func_145778_a(Item.getItemFromBlock(Blocks.planks), 1, 0.0F);
-                    }
+                    	for (l = 0; l < 3; ++l)
+                        {
+                            this.func_145778_a(Item.getItemFromBlock(Blocks.planks), 1, 0.0F);
+                        }
 
-                    for (l = 0; l < 2; ++l)
-                    {
-                        this.func_145778_a(Items.stick, 1, 0.0F);
+                        for (l = 0; l < 2; ++l)
+                        {
+                            this.func_145778_a(Items.stick, 1, 0.0F);
+                        }
                     }
-                    */
+                    else
+                    {
+                        this.func_145778_a(Items.boat, 1, 0.0F);//drop instead of break
+                    }  
                 }
 
                 this.fallDistance = 0.0F;
