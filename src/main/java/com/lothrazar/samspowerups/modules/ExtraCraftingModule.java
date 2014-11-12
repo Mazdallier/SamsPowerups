@@ -12,10 +12,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ExtraCraftingModule extends BaseModule
-{ 
+{ 	
+	private static boolean craftableTransmuteRecords = true;  
+	private static boolean craftableFlatDoubleSlab = true; 
+	private static boolean craftableBonemealColouredWool;   
+	private static boolean craftableMobHeads;
+	
 	public ExtraCraftingModule()
 	{
 		super();
@@ -23,13 +31,12 @@ public class ExtraCraftingModule extends BaseModule
 		Name="Extra Craftables";
 	}
 	
-	
 	public static boolean skullSignNames;
-
-	public void loadConfig(Configuration config)
+	
+	public void onPreInit(FMLPreInitializationEvent event) 
 	{  
 		String category = ModSamsPowerups.MODID ; 
-  
+		Configuration config = ModSamsPowerups.config;
 		craftableTransmuteRecords = config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
 				);
@@ -46,27 +53,14 @@ public class ExtraCraftingModule extends BaseModule
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. ");  
  
- 
- 
-			
+  
 		skullSignNames  =  config.getBoolean( "skullSignNames",category,true
 				,"Hitting a player head on a sign will set the SkullOwner to the first word on the sign, which displays that " +
 						"head on the skull "); 
- 
- 
- 
-
-	} 
-   
-	private static boolean craftableTransmuteRecords = true; 
   
-	private static boolean craftableFlatDoubleSlab = true;
-
-	private static boolean craftableBonemealColouredWool;  
-	
-	private static boolean craftableMobHeads;
-
-	public void init()
+	} 
+    
+	public void onInit(FMLInitializationEvent event) 
 	{ 
 		int EXP = 0; 
 		
@@ -259,18 +253,4 @@ public class ExtraCraftingModule extends BaseModule
 					'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_sandstone));
 		} 
 	}
-
-	@Override
-	public void loadConfig() 
-	{
-		
-	}
-
-	@Override
-	public boolean isEnabled() 
-	{ 
-		return true;
-	}
- 
-   
 }

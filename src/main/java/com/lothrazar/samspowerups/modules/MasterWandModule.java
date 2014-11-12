@@ -3,6 +3,7 @@ package com.lothrazar.samspowerups.modules;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
@@ -10,25 +11,28 @@ import com.lothrazar.samspowerups.handler.WandHandler;
 import com.lothrazar.samspowerups.item.ItemChestSack;
 import com.lothrazar.samspowerups.item.ItemWandMaster;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MasterWandModule extends BaseModule
 { 
 	public MasterWandModule()
-	{
-		Handler = new WandHandler();
+	{ 
 		Name = "Master Wand";
 	}
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
-	
-	@Override
-	public void loadConfig() 
-	{ 
-	}
+ 
 
-	@Override
-	public void init() 
+	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
+	public void onPreInit(FMLPreInitializationEvent event)   
+	{
+		MinecraftForge.EVENT_BUS.register(new WandHandler()); 
+	}
+ 
+	public void onInit(FMLInitializationEvent event) 
 	{  
 		itemWand = new ItemWandMaster();
 		itemWand.setUnlocalizedName("wand_master").setTextureName(ModSamsPowerups.MODID+":wand_master");
@@ -46,9 +50,5 @@ public class MasterWandModule extends BaseModule
 		itemChestSack.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
-	@Override
-	public boolean isEnabled() 
-	{
-		return true;
-	}
+
 }

@@ -3,8 +3,8 @@ package com.lothrazar.samspowerups.modules;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
@@ -16,7 +16,9 @@ import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.samspowerups.util.Reference;
-
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ItemBlockModule extends BaseModule 
@@ -24,8 +26,6 @@ public class ItemBlockModule extends BaseModule
 	public ItemBlockModule()
 	{
 		super();
-		//Handler = new RunestoneTickHandler();
-	//	Handler = new EnderBookHandler();
 		Name="Items and Blocks";		
 		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
 		FeatureList.add("Diablo style Runestones."); 
@@ -73,8 +73,8 @@ public class ItemBlockModule extends BaseModule
 	{
 	    Teleport,Gamerule,Weather
 	}
-	@Override
-	public void loadConfig() 
+
+	public void onPreInit(FMLPreInitializationEvent event)   
 	{
 		String category = ModSamsPowerups.MODID;
 		
@@ -234,8 +234,6 @@ public class ItemBlockModule extends BaseModule
 		 
 	} 
 	
-
-	
 	private void initXray() 
 	{
 		String MODID = ModSamsPowerups.MODID;
@@ -341,14 +339,23 @@ public class ItemBlockModule extends BaseModule
 			, 'b', Items.book); 
 		GameRegistry.addSmelting(itemEnderBook, new ItemStack(Items.ender_pearl,8),0); 
 	}	
-	@Override
-    public void init()
-	{ 
-		if(blockCaveFinderEnabled) initXray();
-		if(fishingBlockEnabled) initFishing();
-		if(magicApplesEnabled) initApples();
+
+	public void onServerLoad(FMLServerStartingEvent event) 
+	{
+    	MinecraftForge.EVENT_BUS.register(new RunestoneTickHandler());
+	}
+
+	public void onInit(FMLInitializationEvent event)   
+	{
+		initXray();
+		initFishing();
+		initApples();
 		initCommand();
-		
+		initRunestones();	 
+	}
+
+	private void initRunestones() 
+	{
 		String MODID = ModSamsPowerups.MODID; 
 		boolean shiny = true;
 		boolean not_shiny = false;
@@ -415,7 +422,6 @@ public class ItemBlockModule extends BaseModule
 		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae","eee"
 				, 'e', Items.blaze_rod
 				, 'a', Items.nether_star  );    
-		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);	
-		 
+		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);
 	}
 }

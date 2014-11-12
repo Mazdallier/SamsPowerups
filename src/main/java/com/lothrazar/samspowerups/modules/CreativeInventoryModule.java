@@ -2,6 +2,10 @@ package com.lothrazar.samspowerups.modules;
 
 import com.lothrazar.samspowerups.BaseModule;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+
 import net.minecraft.block.BlockMushroom;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -16,8 +20,7 @@ public class CreativeInventoryModule extends BaseModule
 		FeatureList.add("Missing items added to creative inventory: Mushroom blocks, dragon egg, water, lava, fire, mob spawner, farmland.");
 	}
 
-	@Override
-	public void init() 
+	public void onPreInit(FMLPreInitializationEvent event)   
 	{ 
 	//	Item.getItemFromBlock(Blocks.red_mushroom_block).setHasSubtypes(true);//doesnt seem to work
 		//Item.getItemFromBlock(Blocks.brown_mushroom_block).setHasSubtypes(true);//it should get the variations all in there
@@ -49,16 +52,9 @@ public class CreativeInventoryModule extends BaseModule
 	 */
 	}
 
-	@Override
-	public void loadConfig() 
-	{  
-	}
 
-	
-	@Override
-	public boolean isEnabled() { 
-		return true;
-	}
- 
 
+	public void onInit(FMLInitializationEvent event)   {}
+	 
+	public void onServerLoad(FMLServerStartingEvent event) {}
 }

@@ -29,6 +29,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -40,21 +41,23 @@ public class DifficultyTweaksModule extends BaseModule
 	{
 		super();
 		Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
-		Handler = new DifficultyHandler();
+		
 		FeatureList.add("Stone tools and furnaces need smoothstone");
 		FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
 		FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
 		FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
 		FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
-		
 	}
-	public void loadConfig() 
-	{ 
-		//TODO 
-	}
+ 
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
+
+	public void onPreInit(FMLPreInitializationEvent event)   
+	{
+    	MinecraftForge.EVENT_BUS.register( new DifficultyHandler()); 
+		//TODO: config file
+	}
 	
-	public void init()
+	public void onInit(FMLInitializationEvent event)
 	{ 
 		SaplingStickAxe();
 		
@@ -63,6 +66,7 @@ public class DifficultyTweaksModule extends BaseModule
 		MobSpawnExtras();
 	}
 
+	public void onServerLoad(FMLServerStartingEvent event) {}
 
 	private void MobSpawnExtras() 
 	{
@@ -111,7 +115,6 @@ public class DifficultyTweaksModule extends BaseModule
 			 	BiomeGenBase.hell 
 		});
 	}
-
 
 	private void SmoothstoneRequired() 
 	{
@@ -215,7 +218,6 @@ public class DifficultyTweaksModule extends BaseModule
 		, 't', Items.stick);
 	}
 
-
 	private void SaplingStickAxe() 
 	{
 		//since we cant get logs by hand: player will break leaves to make damaged axe
@@ -241,14 +243,4 @@ public class DifficultyTweaksModule extends BaseModule
 		,"t "
 		, 't', Items.stick);
 	}
-
-
-	
-	@Override
-	public boolean isEnabled() 
-	{
-		return true;
-	}
- 
- 
 }
