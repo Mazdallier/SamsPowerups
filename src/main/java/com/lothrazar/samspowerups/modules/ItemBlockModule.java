@@ -21,11 +21,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ItemBlockModule extends BaseModule 
 {
-	public ItemBlockModule() throws Exception
+	public ItemBlockModule()
 	{
 		super();
-		Handler = new RunestoneTickHandler();
-		Handler = new EnderBookHandler();
+		//Handler = new RunestoneTickHandler();
+	//	Handler = new EnderBookHandler();
 		Name="Items and Blocks";		
 		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
 		FeatureList.add("Diablo style Runestones."); 
@@ -33,7 +33,7 @@ public class ItemBlockModule extends BaseModule
 		FeatureList.add("Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions");
 		FeatureList.add("New ender book to teleport known locations");
 		//
-		throw new Exception("duplicate handlers in ItemBlockModule");
+	//	throw new Exception("duplicate handlers in ItemBlockModule");
 	//	Name = "Magic Apples: More than just gold";
 	}
 	

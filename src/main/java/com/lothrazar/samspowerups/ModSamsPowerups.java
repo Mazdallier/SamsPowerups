@@ -62,33 +62,118 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory")
 public class ModSamsPowerups
 {
-    public static final String MODID = "samspowerups"; 
-    public static final String VERSION = "1.7.10-1.0"; 
+	@SidedProxy(clientSide="com.lothrazar.samspowerups.net.ClientProxy", serverSide="com.lothrazar.samspowerups.net.CommonProxy")
+	public static CommonProxy proxy;  
     @Instance(value = ModSamsPowerups.MODID)
     public static ModSamsPowerups instance;
     public static ModSamsPowerups getInstance()
     {
     	return instance;
     } 
-	@SidedProxy(clientSide="com.lothrazar.samspowerups.net.ClientProxy", serverSide="com.lothrazar.samspowerups.net.CommonProxy")
-	public static CommonProxy proxy; 
-	public static SimpleNetworkWrapper network;  
-	public static ConfigHandler configHandler;
+	public static SimpleNetworkWrapper network;   
 	public static Configuration config;  
     private static Logger logger; 
     private ArrayList<BaseModule> modules;
-    private boolean inSandboxMode = true;   
-	public ArrayList<ICommand> ModuleCommands = new  ArrayList<ICommand>(); 
-   
-	//TODO: merge fishing block, command blocks, and cave finder into blocks module
-	//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
-	//TODO: fix iron boat texture OR make it a base edit
+    public static final String MODID = "samspowerups"; 
+    public static final String VERSION = "1.7.10-1.0";
+ 
+    @EventHandler
+    public void onPreInit(FMLPreInitializationEvent event)   //fired on startup when my mod gets loaded
+    {  
+    	logger = event.getModLog();	//logBaseChanges();
+    	
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
+    	
+    	config = new Configuration(event.getSuggestedConfigurationFile());  
+		
+		createModules();
+
+		for(BaseModule m : modules)
+		{
+			m.onPreInit(event); 
+		}
+		
+		syncConfig();  
+		
+    	MinecraftForge.EVENT_BUS.register(instance);  //for onConfigChanged
+    }
+
+	private void createModules() 	
+	{
+		modules = new ArrayList<BaseModule>();
+		modules.add(new CommandPowersModule());       //!
+		modules.add(new CreativeInventoryModule()); 
+		modules.add(new EnderChestModule());//time saving
+		modules.add(new ExtraCraftingModule());         //!
+		modules.add(new IronBoatModule()); //base edit? or txyure
+		modules.add(new ItemBlockModule());         //!
+		modules.add(new KeySliderModule()); //better gameplay 
+		modules.add(new MasterWandModule());///itmblock
+		modules.add(new MissingTradeModule());//better gameplay
+		modules.add(new QuickDepositModule());//better gameplay
+		modules.add(new DifficultyTweaksModule());        //!
+		modules.add(new RichLootModule());
+		modules.add(new ScreenInfoModule());////better gameplay
+		modules.add(new SmartPlantsModule());        //!
+		modules.add(new StackSizeModule());
+		modules.add(new SurvivalFlyingModule());      //!
+		modules.add(new UncraftingModule());       //!
+	}
+    
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(ModSamsPowerups.MODID))
+		{
+			ModSamsPowerups.instance.syncConfig();
+		} 
+    }
+    
+	public void syncConfig() 
+	{
+		if(config.hasChanged())
+		{
+			config.save();
+		}
+	} 
+	
+    @EventHandler
+    public void init (FMLInitializationEvent event)
+    { 
+		for(BaseModule m : modules)
+		{
+			m.onInit(event); 
+		}
+    	//TODO: research, should init - block recipes shoud go here?
+     	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
+     	
+		proxy.registerRenderers(); 
+    }
+  
+	@EventHandler
+    public void onServerLoad(FMLServerStartingEvent event)
+    {
+		for(BaseModule m : modules)
+		{
+			m.onServerLoad(event);
+		}
+    } 
 	
 	public static void LogInfo(String s)
 	{
 		//TODO: also add to my own documentation and/or log file
 		logger.info(s);
 	} 
+	
+    /*
+	private void logLoadedModule(BaseModule current) 
+	{
+		logger.info("Module Activated : " + current.Name);
+		for(String c : current.FeatureList)
+		{
+			logger.info("     " + c);
+		}
+	}
     
 	private void logBaseChanges()
     { 
@@ -110,119 +195,10 @@ public class ModSamsPowerups
     //	BlockPumpkin.class.canPlaceBlockAt = 
     	//door, what did i change there? 
     }
-    
-    @EventHandler
-    public void onPreInit(FMLPreInitializationEvent event) //fired on startup when my mod gets loaded
-    {  
-		modules = new ArrayList<BaseModule>();
-		
-		modules.add(new CommandPowersModule());       //!
-		modules.add(new CreativeInventoryModule()); 
-		modules.add(new EnderChestModule());//time saving
-		modules.add(new ExtraCraftingModule());         //!
-		modules.add(new IronBoatModule()); //base edit? or txyure
-		modules.add(new ItemBlockModule());         //!
-		modules.add(new KeySliderModule()); //better gameplay 
-		modules.add(new MasterWandModule());///itmblock
-		modules.add(new MissingTradeModule());//better gameplay
-		modules.add(new QuickDepositModule());//better gameplay
-		modules.add(new DifficultyTweaksModule());        //!
-		modules.add(new RichLootModule());
-		modules.add(new ScreenInfoModule());////better gameplay
-		modules.add(new SmartPlantsModule());        //!
-		modules.add(new StackSizeModule());
-		modules.add(new SurvivalFlyingModule());      //!
-		modules.add(new UncraftingModule());       //!
-		
-    	logger = event.getModLog();
-    	logBaseChanges();
-    	
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-    	
-    	configHandler = new ConfigHandler();
-    	configHandler.onPreInit(event);//this fires syncConfig. comes BEFORE the modules loadConfig
-		syncConfig();  
-		MinecraftForge.EVENT_BUS.register(configHandler);   
-
-		loadModules(); 
-		
-		if(inSandboxMode) //experimenting with new unfinished features
-		{ 
-	    	logger.warn("SANDBOX MODE ENGAGING: Experimental Features may crash the game!");
-			MinecraftForge.EVENT_BUS.register(new SandboxHandler()); 
-		}
-    }
-
-	private void loadModules() 
-	{  
-		BaseModule current; 
-		for(int i = 0; i < modules.size(); i++)
-		{
-			current = modules.get(i); 
-			if(current.isEnabled())
-			{	
-				current.init();
-				
-				if(current.Handler != null)
-				{
-					MinecraftForge.EVENT_BUS.register(current.Handler); 
-				}
-				
-				if(current.FuelHandler != null)
-				{ 
-					GameRegistry.registerFuelHandler(current.FuelHandler);
-				}
-				 
-				for(ICommand c : current.Commands)//commands get loaded in a different event, but we prepare them here
-				{
-					ModuleCommands.add(c);
-				}
-				
-				logLoadedModule(current); 
-			}
-			else
-			{
-				logger.info("Module DISABLED : " + current.Name); 
-			}
-		}
-	}
 	
-	private void logLoadedModule(BaseModule current) 
-	{
-		logger.info("Module Activated : " + current.Name);
-		for(String c : current.FeatureList)
-		{
-			logger.info("     " + c);
-		}
-	}
-    
-	public void syncConfig() 
-	{
-		for(int i = 0; i < modules.size(); i++)
-		{
-			modules.get(i).loadConfig(); 
-		}
-		if(config.hasChanged())
-		{
-			config.save();
-		}
-	} 
+	    * */
+	//TODO: merge fishing block, command blocks, and cave finder into blocks module
+	//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
+	//TODO: fix iron boat texture OR make it a base edit
 	
-    @EventHandler
-    public void init (FMLInitializationEvent evt)
-    { 
-    	//TODO: research, should init - block recipes shoud go here?
-     	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
-     	
-		proxy.registerRenderers(); 
-    }
-  
-	@EventHandler
-    public void onServerLoad(FMLServerStartingEvent event)
-    {
-		for(ICommand c : ModuleCommands)
-		{
-			event.registerServerCommand(c);
-		}
-    } 
 }

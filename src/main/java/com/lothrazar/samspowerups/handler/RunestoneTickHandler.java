@@ -15,7 +15,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class RunestoneTickHandler 
 {
 	@SubscribeEvent
-	public static void onPlayerTick(PlayerTickEvent event)
+	public void onPlayerTick(PlayerTickEvent event)
 	{       
 		//no need to check for null here, it is done in the method
 		applyRunestoneToPlayer(event, ItemBlockModule.SLOT_RUNESTONE);
@@ -26,7 +26,7 @@ public class RunestoneTickHandler
 	}// end player tick event 
 	
 	
-	private static void applyRunestoneToPlayer(PlayerTickEvent event,int slotNumber)
+	private void applyRunestoneToPlayer(PlayerTickEvent event,int slotNumber)
 	{   
 		ItemStack runestone = event.player.inventory.getStackInSlot(slotNumber);
 		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}

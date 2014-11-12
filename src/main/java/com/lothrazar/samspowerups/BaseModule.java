@@ -1,32 +1,27 @@
 package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
-import cpw.mods.fml.common.IFuelHandler;
-
-import net.minecraft.command.ICommand;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.common.config.Configuration;
 
 public abstract class BaseModule  
 {  
-	public BaseModule()
-	{
-		Commands = new ArrayList<ICommand>();
-		FeatureList = new ArrayList<String>();
-	}
-	public Object Handler = null;
-	public IFuelHandler FuelHandler = null;
-	public String Name = "";
-	public Collection<ICommand> Commands = null;
+	public String Name;
 	public ArrayList<String> FeatureList;
 	
-	public abstract void loadConfig();
-	
-	public abstract void init(); 
-	
-	public boolean isEnabled() 
+	public BaseModule()
 	{ 
-		return true; //modules default to enabled and can just not redefine this. otherwise they can customize 
+		FeatureList = new ArrayList<String>();
+		Name = "";
 	}
+
+	//public void loadConfig() {}//config is loaded DURING pre init
+	
+	public void onPreInit(FMLPreInitializationEvent event)   {}
+
+	public void onInit(FMLInitializationEvent event)   {}
+	 
+	public void onServerLoad(FMLServerStartingEvent event) {}
 }

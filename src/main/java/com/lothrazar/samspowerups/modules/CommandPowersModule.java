@@ -18,6 +18,10 @@ import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.samspowerups.handler.EnderChestHandler;
 import com.lothrazar.samspowerups.handler.WaypointHandler;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+
 public class CommandPowersModule extends BaseModule 
 {
 	private boolean enabled = true;
@@ -25,35 +29,30 @@ public class CommandPowersModule extends BaseModule
 	public CommandPowersModule ()
 	{
 		super();
-		Handler = new WaypointHandler();
+	//	Handlers.add(new WaypointHandler());
 		Name = "New commands";
 		FeatureList.add("New command: /searchitem");
 		FeatureList.add("New command: /searchtrade");
 		FeatureList.add("New command: /killall");
 		FeatureList.add("New command: /swp");
 	}
-
-	@Override
-	public void loadConfig() 
-	{ 
-		//TODO: add a config entry to each one
+	
+	public void onPreInit(FMLPreInitializationEvent event) 
+	{
+		//TODO : config settings here
 	}
 
-	@Override
-	public void init() 
-	{  
-		Commands.add(new CommandSearchTrades()); 
-		Commands.add(new CommandSearchItem()); 
-		Commands.add(new CommandKillAll());
-		Commands.add(new CommandSimpleWaypoints());
+	public void onInit(FMLInitializationEvent event)   {}
+	
+	public void onServerLoad(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandSearchTrades());
+		event.registerServerCommand(new CommandSearchTrades());
+		event.registerServerCommand(new CommandSearchItem());
+		event.registerServerCommand(new CommandKillAll());
+		event.registerServerCommand(new CommandSimpleWaypoints());
 	}
-
-	@Override
-	public boolean isEnabled() 
-	{ 
-		return enabled ;
-	}
-
+	
 	public static ArrayList<String> GetForPlayerName(String playerName)
 	{ 
 		String fileName = "swp_"+playerName +".dat";

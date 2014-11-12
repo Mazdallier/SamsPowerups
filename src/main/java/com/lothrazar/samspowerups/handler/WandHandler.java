@@ -41,6 +41,7 @@ public class WandHandler
 		Item heldItem = (held == null) ? null : held.getItem();
 		
 		if(heldItem == null){return;}
+		if(heldItem != MasterWandModule.itemWand){return;}
 		
 		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		if(blockClicked == null || blockClicked == Blocks.air ){return;}

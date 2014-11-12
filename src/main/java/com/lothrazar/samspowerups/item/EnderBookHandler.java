@@ -8,9 +8,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import com.lothrazar.samspowerups.util.Location;
 
 public class EnderBookHandler 
-{
- 
-
+{ 
 	public void onPlayerRightClick(PlayerInteractEvent event)
   	{
 		//if(event.entityPlayer.isSneaking() == false){ return;}
@@ -21,7 +19,6 @@ public class EnderBookHandler
 
 		BiomeGenBase biome = event.world.getBiomeGenForCoords((int)event.entityPlayer.posX, (int)event.entityPlayer.posZ);
 
-		
 		int slot = event.entityPlayer.inventory.currentItem+1;
     	Location loc = new Location(slot
     			,event.entityPlayer.posX
