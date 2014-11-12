@@ -1,4 +1,4 @@
-package net.minecraft.entity;
+package net.minecraft.entity.item;
 
 import java.util.List;
 import net.minecraft.block.Block;
@@ -377,7 +377,7 @@ public class EntityBoat  extends Entity
                     this.setDead();
 
                     this.func_145778_a(Items.boat, 1, 0.0F);
-                    
+                    System.out.println("!! boat damage??");
                     //lothrazar
                     //below is what wood boat does : sticks/planks random mix
                     /*
@@ -519,6 +519,7 @@ public class EntityBoat  extends Entity
 
                     this.func_145778_a(Items.boat, 1, 0.0F);//not sticks anymore
 
+                    System.out.println("xxx boat damage??");
                     //lothrazar
                     /*
                     for (l = 0; l < 3; ++l)
