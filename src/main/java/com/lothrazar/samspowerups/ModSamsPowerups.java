@@ -118,6 +118,10 @@ public class ModSamsPowerups
 		modules.add(new StackSizeModule());
 		modules.add(new SurvivalFlyingModule());      //!
 		modules.add(new UncraftingModule());       //!
+		
+		//WISHLIST:
+		 
+		//remove the 39 max magic levle from anvil repairs
 	}
     
     @SubscribeEvent
