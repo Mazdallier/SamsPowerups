@@ -1,11 +1,10 @@
-package com.lothrazar.samspowerups.handler;
+package com.lothrazar.samspowerups.modules;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
 import com.lothrazar.samspowerups.item.ItemRunestone;
-import com.lothrazar.samspowerups.modules.ItemBlockModule;
 import com.lothrazar.samspowerups.util.Chat;
 import com.lothrazar.samspowerups.util.Reference;
 

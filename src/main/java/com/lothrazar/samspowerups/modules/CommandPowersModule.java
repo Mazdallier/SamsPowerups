@@ -13,7 +13,6 @@ import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints; 
-import com.lothrazar.samspowerups.handler.WaypointHandler; 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;

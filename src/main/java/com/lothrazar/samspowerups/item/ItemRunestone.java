@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Sets;
 import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 import com.lothrazar.samspowerups.modules.ItemBlockModule;
+import com.lothrazar.samspowerups.modules.RunestoneTickHandler;
 import com.lothrazar.samspowerups.util.Reference;
  
 

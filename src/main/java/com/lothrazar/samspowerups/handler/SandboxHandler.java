@@ -1,26 +1,210 @@
 package com.lothrazar.samspowerups.handler;
 
 import java.util.List;
+import java.util.Random;
 
+import com.lothrazar.samspowerups.util.AchievementFinder;
 import com.lothrazar.samspowerups.util.Chat;
 
 import net.minecraft.block.BlockLilyPad;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryEnderChest;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.AchievementList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.village.MerchantRecipe;
+import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
 public class SandboxHandler 
 {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*public class KeyBlockStep
+{
+ 
+	@SubscribeEvent
+	public void onPlayerTick(PlayerTickEvent event)
+	{  
+		//TODO: ONLY DO this if new keybinding is held down. maybe caps lock:?
+		if (event.player instanceof EntityPlayerSP)
+		{
+			EntityPlayerSP sp = (EntityPlayerSP) event.player;
+ 
+				//enable whenever sprinting 
+			if (sp.isSprinting())
+				sp.stepHeight = 1.0F;
+			else
+				sp.stepHeight = 0.5F; //this is the default : walking up half blocks aka slabs
+			 
+		}
+ 
+	}// end player tick event
 
+}
+*/
+	
+	
+	
+	
+	
+	/*
+	public static void loadConfig(Configuration config) 
+	{
+		String category = ModCore.MODID ; 
+	
+ 
+		isEnabled =  config.get(category, "dragonSlayerEnderChest",isEnabled
+				,"If you have the final dragon kill achievement 'The End', then every time you die this attempts " +
+						"to put all your items into your ender chest, saving them from possible destruction.  Note " +
+						"that you do not need to carry an Ender Chest in your inventory to make this work.  Tries to prioritize " +
+						"diamond stuff first."	).getBoolean(isEnabled);
+	}
+ */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	public static void onPlayerDrops(PlayerDropsEvent event)
+	{  
+		if(AchievementFinder.hasAchievementUnlocked(event.entityPlayer, AchievementList.theEnd2) == false)
+		{
+			//Chat.addMessage(event.entityPlayer, "not a dragon slayer");
+			return;
+		}
+  	 
+	 	int stacksSaved = 0;
+		int enderSlot = 0;
+		ItemStack aboutToDrop;
+		
+		InventoryEnderChest enderChest = event.entityPlayer.getInventoryEnderChest();
+		
+		
+		//do this twice. the first time, only do things that are diamond related, such as 
+		//ore , armor, weapons, and so on.  this is since we have lost the information
+		//on what slot it came from
+		for(EntityItem entityItemDropped : event.drops) 
+		{ 
+			if(entityItemDropped.getEntityItem().getItem().getUnlocalizedName().toLowerCase().contains("diamond") == false)
+			{
+				//Chat.addMessage(event.entityPlayer, "NOT DIAMOND SKIP :: "+entityItemDropped.getEntityItem().getItem().getUnlocalizedName());
+				continue;
+			}
+			//loop through the ender chest and find an empty spot
+			for(int i = enderSlot; i < enderChest.getSizeInventory(); i++)
+			{
+				if(enderChest.getStackInSlot(i) == null)
+				{ 
+					aboutToDrop = entityItemDropped.getEntityItem();
+				
+					enderChest.setInventorySlotContents(i,  entityItemDropped.getEntityItem());
+
+//TODO: can we merge item stacks?
+					//Chat.addMessage(event.entityPlayer, "save "+entityItemDropped.getEntityItem().getItem().getUnlocalizedName());
+					entityItemDropped.setDead();
+					enderSlot = i + 1;//save start location for next loop;
+					stacksSaved++;
+					break;//breaks the ender loop, NOT the entithyItem loop
+				} 
+			}
+		}
+		
+
+		//Chat.addMessage(event.entityPlayer, "PHASE2");
+		for(EntityItem entityItemDropped : event.drops) 
+		{  
+			if(entityItemDropped.isDead){continue;}//we did it last time
+			//loop through the ender chest and find an empty spot
+			for(int i = enderSlot; i < enderChest.getSizeInventory(); i++)
+			{
+				if(enderChest.getStackInSlot(i) == null)
+				{ 
+					aboutToDrop = entityItemDropped.getEntityItem();
+				
+					enderChest.setInventorySlotContents(i,  entityItemDropped.getEntityItem());
+
+					//Chat.addMessage(event.entityPlayer, "save "+entityItemDropped.getEntityItem().getItem().getUnlocalizedName());
+					entityItemDropped.setDead();
+					enderSlot = i + 1;//save start location for next loop;
+					stacksSaved++;
+					break;//breaks the ender loop, NOT the entithyItem loop
+				} 
+			}
+		}
+		
+		//entityItemDropped.isDead
+		
+		if(stacksSaved > 0)
+		{
+			Chat.addMessage(event.entityPlayer, "Some items from your death have been saved to your Ender Chest");
+		}
+		 
+	}*/
+	
+	
+	
+	
+	
+
+	@SubscribeEvent
+	public void onLivingDrops(LivingDropsEvent event)
+	{
+	 if (event.entityLiving.worldObj.isRemote) {return; }
+	
+	
+		
+		if(event.entityLiving instanceof EntityWolf)
+		{
+		
+		}
+		
+			 // event.entityLiving.entityDropItem(itemStack, 0.0F);
+			
+			
+			
+	}
 	
 	//TODO: player harvest handler
 	//mob drop handler
@@ -250,6 +434,45 @@ System.out.println("boat trigger");
     	 }
     	  
     }
-    
+    /*public class WorldGenHandlerx implements IWorldGenerator
+{
+
+	@Override
+	public void generate(Random random, int chunkX, int chunkZ, 
+			World world,
+			IChunkProvider chunkGenerator, 
+			IChunkProvider chunkProvider) 
+	{
+	 
+		int nearbyX = chunkX + random.nextInt(16)+8;
+		int nearbyZ = chunkZ + random.nextInt(16)+8;
+		//TODO: switch on biome as well opr instead of the dimension?
+		//world.getBiomeGenForCoords(k, l) == BiomeGenBase.swampland
+		
+		//case statements must be constants
+ 
+		switch(world.getBiomeGenForCoords(nearbyX,nearbyZ).biomeID )
+		{
+			case BiomeGenBase.swampland.biomeID:
+			break;
+		}
+ 
+		
+		switch(world.provider.dimensionId )
+		{
+			case 0: //then we are on the overworld
+			
+			
+			break;
+			case 1:
+				
+			break;
+			case -1:
+				
+			break;
+		}
+		
+		
+	}*/
     
 }

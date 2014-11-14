@@ -7,7 +7,6 @@ import net.minecraftforge.common.config.Property;
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.command.CommandFlyHelp;
-import com.lothrazar.samspowerups.handler.SurvivalFlyingHandler;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

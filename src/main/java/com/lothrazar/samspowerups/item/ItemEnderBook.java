@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.Sets;
 
 import com.lothrazar.samspowerups.ModSamsPowerups;
+import com.lothrazar.samspowerups.modules.ItemBlockModule;
 import com.lothrazar.samspowerups.util.Location;
  
 
@@ -43,7 +44,6 @@ public class ItemEnderBook extends ItemTool
     	setCreativeTab(CreativeTabs.tabTransport) ; 
 	}
 
-
 	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) 
 	{ 
@@ -55,8 +55,7 @@ public class ItemEnderBook extends ItemTool
 	     
 	     ItemStack held = player.getCurrentEquippedItem();
 
-
-		int slot = player.inventory.currentItem + 1;
+		 int slot = player.inventory.currentItem + 1;
 			
 	     String KEY;
 	     Location loc;
@@ -79,10 +78,70 @@ public class ItemEnderBook extends ItemTool
 				 
 	    	 list.add(display+EnumChatFormatting.DARK_GREEN + loc.toDisplayNoCoords());
 	     } 
-	 } 
+	 }
+
+	public void saveCurrentLocation(EntityPlayer entityPlayer, ItemStack itemStack) 
+	{
+		
+		int slot = entityPlayer.inventory.currentItem + 1;
+    	Location loc = new Location(slot
+    			,entityPlayer.posX
+    			,entityPlayer.posY
+    			,entityPlayer.posZ
+    			,entityPlayer.dimension 
+    			,""//,biome.biomeName
+    			);
+    	
+    	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
+
+		if (itemStack.stackTagCompound == null) itemStack.stackTagCompound = new NBTTagCompound();
+    	itemStack.stackTagCompound.setString(KEY, loc.toCSV());
+		
+	} 
+	
+	
 	
 
+	public void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
+	{
 
-	 
+
+		int slot = entityPlayer.inventory.currentItem+1;
+    	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
+    	
+		String csv = enderBookInstance.stackTagCompound.getString(KEY);
+		
+		if(csv == null || csv.isEmpty()) 
+		{
+			//Relay.addChatMessage(event.entityPlayer, "No location saved at "+KEY);
+			return;
+		}
+		
+		Location loc = new Location(csv);
+		
+        //int d = enderBookInstance.stackTagCompound.getInteger("d"); 
+        
+		if(entityPlayer.dimension != 0)
+		{
+			//Chat.addMessage(event.entityPlayer, "Only useable in the overworld");
+			return;
+		}
+	
+		if(loc.dimension == 1)
+		{
+			entityPlayer.setFire(4);
+		} 
+		else if(loc.dimension == -1)
+		{
+			entityPlayer.heal(-15);
+		}
+		 
+  
+  
+	    entityPlayer.setPositionAndUpdate(loc.X,loc.Y,loc.Z); 
+
+		entityPlayer.getCurrentEquippedItem().damageItem(1, entityPlayer);
+		
+	}
 }
  

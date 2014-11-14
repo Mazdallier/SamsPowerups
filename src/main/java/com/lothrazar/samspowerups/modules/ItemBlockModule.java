@@ -5,13 +5,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
 import com.lothrazar.samspowerups.block.BlockFishing;
 import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.handler.EnderBookHandler;
-import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
 import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
@@ -51,7 +52,7 @@ public class ItemBlockModule extends BaseModule
 	private BlockXRay block_xray; 
 	private boolean blockCaveFinderEnabled;
 	private boolean runestoneEnabled; 
-	public ItemEnderBook itemEnderBook;
+	public static ItemEnderBook itemEnderBook;
 	private boolean fishingBlockEnabled; 
 	private boolean magicApplesEnabled;
 	private static boolean weatherCommandBlock;
@@ -421,4 +422,40 @@ public class ItemBlockModule extends BaseModule
 				, 'a', Items.nether_star  );    
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);
 	}
+	
+	
+	
+	
+	public void onPlayerInteract(PlayerInteractEvent event)
+  	{
+		//if(event.entityPlayer.isSneaking() == false){ return;}
+		//BiomeGenBase biome = event.world.getBiomeGenForCoords((int)event.entityPlayer.posX, (int)event.entityPlayer.posZ);
+		 
+
+		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem(); 
+		
+		if(itemStack == null) { return; }
+		
+		if(event.action.LEFT_CLICK_BLOCK == event.action)
+		{ 
+			//public void onPlayerLeftClick(PlayerInteractEvent event)
+		 // 	{ 
+			ItemStack enderBookInstance = event.entityPlayer.getCurrentEquippedItem(); 
+			 
+			if (enderBookInstance.stackTagCompound == null) {return;}
+			
+			ItemBlockModule.itemEnderBook.teleport(event.entityPlayer, itemStack);
+			
+	  	 
+		}
+		else
+		{ 			
+			if(itemStack.getItem() == ItemBlockModule.itemEnderBook)
+			{
+				ItemBlockModule.itemEnderBook.saveCurrentLocation(event.entityPlayer, itemStack);
+			}
+		}		 
+  	}
+	
+	
 }

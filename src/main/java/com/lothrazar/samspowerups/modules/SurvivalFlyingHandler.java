@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.handler;
+package com.lothrazar.samspowerups.modules;
  
 import java.util.HashMap; 
 import com.lothrazar.samspowerups.ModSamsPowerups;
