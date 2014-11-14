@@ -21,7 +21,7 @@ import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.util.AchievementFinder;
 import com.lothrazar.samspowerups.util.Chat;
 
-public class DeathDropsHandler 
+public class DeathDropsHandler
 {
  
 	/*

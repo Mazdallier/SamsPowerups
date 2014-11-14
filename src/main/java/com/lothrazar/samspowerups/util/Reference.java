@@ -162,7 +162,18 @@ public class Reference
 	public static final int entity_bat = 65;
  
 //	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
-	 
+	public class FurnaceBurnTime // inner class
+	{
+		public static final int Sticks = 100;
+		public static final int WoodenSlabs = 150;
+		public static final int WoodenTools = 200;
+		public static final int WoodStuff = 300;
+		public static final int Coal = 1600; 
+		public static final int LavaBucket = 20000;
+		public static final int Sapling = 100;
+		public static final int BlazeRod = 2400;
+				
+	}
 	public static class gamerule
 	{
 		public final static String commandBlockOutput  = "commandBlockOutput";

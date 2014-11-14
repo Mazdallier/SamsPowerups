@@ -2,10 +2,8 @@ package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
 
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.handler.DifficultyHandler;
-import com.lothrazar.samspowerups.util.Reference;
-
+import com.lothrazar.samspowerups.BaseModule; 
+import com.lothrazar.samspowerups.util.Reference; 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
@@ -16,10 +14,12 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent; 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -37,20 +37,39 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class DifficultyTweaksModule extends BaseModule
 {  
-		//Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
-		//
-		//FeatureList.add("Stone tools and furnaces need smoothstone");
-		//FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
-		//FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
-		//FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
-		//FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
- 
- 
+	//Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
+	//
+	//FeatureList.add("Stone tools and furnaces need smoothstone");
+	//FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
+	//FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
+	//FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
+	//FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
+	private static int HUNGER_SECONDS = 30;
+	private static int HUNGER_LEVEL = 0;// III
+	private static int FOOD_COST = 2;//full bar is 20
+	private static ArrayList<Block> blocksRequireAxe = new ArrayList<Block>();
+	private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
+	
+	public DifficultyTweaksModule()
+	{
+		blocksRequireShovel.add(Blocks.dirt);
+		blocksRequireShovel.add(Blocks.grass);
+		blocksRequireShovel.add(Blocks.sand);
+		blocksRequireShovel.add(Blocks.clay);
+		blocksRequireShovel.add(Blocks.gravel);
+		
+		blocksRequireAxe.add(Blocks.log);
+		blocksRequireAxe.add(Blocks.log2);
+		blocksRequireAxe.add(Blocks.planks);
+	}
+	
+	
+ 
 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
-    	MinecraftForge.EVENT_BUS.register( new DifficultyHandler()); 
+    	MinecraftForge.EVENT_BUS.register(this);// new DifficultyHandler()); 
 		//TODO: config file
 	}
 	
@@ -239,5 +258,89 @@ public class DifficultyTweaksModule extends BaseModule
 		," t"
 		,"t "
 		, 't', Items.stick);
+	}
+	
+	
+	 
+
+	@SubscribeEvent
+	public  void onBlockBreak(HarvestDropsEvent event)
+	{ 
+		if (event.world.isRemote) { return;}
+		//now we are server side
+		
+		//thanks to https://pay.reddit.com/r/ModdingMC/comments/2dceup/setharvestlevel_for_vanilla_blocks_not_working/
+		//if(event.isCancelable() ) event.setCanceled(true);//not allowed to cancel
+		if (  blocksRequireAxe.contains(event.block))
+		{ 
+			if(event.harvester.getCurrentEquippedItem() == null
+			|| !(event.harvester.getCurrentEquippedItem().getItem() instanceof ItemAxe) )
+			{ 
+				event.drops.clear();
+			}
+		}
+		if (  blocksRequireShovel.contains(event.block))
+		{
+			System.out.println("blocksRequireShovel"); 
+			if(event.harvester.getCurrentEquippedItem() == null
+			|| !(event.harvester.getCurrentEquippedItem().getItem() instanceof ItemSpade) )
+			{ 
+				event.drops.clear();
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public  void onPlayerSleepInBedAtNight(PlayerSleepInBedEvent event)
+	{
+		if(event.entityPlayer.worldObj.isRemote ){ return; } 
+		
+		if(event.entityPlayer.worldObj.isDaytime()) { return; }
+		 
+		//this event is not cancellable
+		//the 0 at the end is the Level
+		//so if we put '1' we would get Hunger II
+		//event.entityPlayer.addPotionEffect(new PotionEffect(Reference.potion_HUNGER, Reference.TICKS_PER_SEC * HUNGER_SECONDS,HUNGER_LEVEL));
+
+		//reduce by FOOD_COST, but if this would make us negative
+		//the max makes it zero instead
+		 
+		event.entityPlayer.getFoodStats().setFoodLevel(Math.max(event.entityPlayer.getFoodStats().getFoodLevel() - FOOD_COST, 0));
+ 
+	}
+	
+	@SubscribeEvent
+	public void onEntityJoinWorld(EntityJoinWorldEvent event)
+	{
+
+    	//give weapons to mobs?
+    	//event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(Items.sword_something));
+		
+		
+	    //todo: make mobs stronger/weaker/enchantments?
+		
+		if(event.entity instanceof EntityZombie)
+		{
+
+		//	event.entity.setCurrentItemOrArmor(0, new ItemStack(Items.wooden_sword));
+		//	event.entity.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 72000));
+			
+			//TODO: randmized. and more stuff
+			//EntityZombie zombie = (EntityZombie)event.entity;
+			//zombie.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
+			EntityZombie zombie = (EntityZombie)event.entity;
+			zombie.addPotionEffect(new PotionEffect(Potion.jump.getId(), 72000,0));
+			
+		}
+		//
+		
+		//set damange and other attributes without potion effects
+		//if (event.entity instanceof EntityZombie)
+		// EntityZombie zombie = (EntityZombie)event.entity;
+		//zombie.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
+		
+		//free breeding?
+		 //entityCow.tasks.addTask(4, new EntityAITempt(pig, 1.2D, Items.wheat, false));
+		
 	}
 }

@@ -1,12 +1,8 @@
 package com.lothrazar.samspowerups.net;
 
-import org.lwjgl.input.Keyboard;
-
-import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.handler.KeyInputHandler;
-
-
-
+import org.lwjgl.input.Keyboard; 
+import com.lothrazar.samspowerups.ModSamsPowerups; 
+import com.lothrazar.samspowerups.modules.KeySliderModule; 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.client.settings.KeyBinding;
 
@@ -18,10 +14,10 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerRenderers() 
     {  
-		keyShiftUp = new KeyBinding(KeyInputHandler.keyMenuUpName, Keyboard.KEY_V, KeyInputHandler.keyCategory);
+		keyShiftUp = new KeyBinding(KeySliderModule.keyMenuUpName, Keyboard.KEY_V, KeySliderModule.keyCategory);
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftUp);
          
-		keyShiftDown = new KeyBinding(KeyInputHandler.keyMenuDownName, Keyboard.KEY_C, KeyInputHandler.keyCategory); 
+		keyShiftDown = new KeyBinding(KeySliderModule.keyMenuDownName, Keyboard.KEY_C, KeySliderModule.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
     }
 }

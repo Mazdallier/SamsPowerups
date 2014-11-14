@@ -5,19 +5,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import net.minecraftforge.common.DimensionManager;
-
+import java.util.ArrayList; 
+import net.minecraftforge.common.DimensionManager; 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
-import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
-import com.lothrazar.samspowerups.handler.EnderChestHandler;
-import com.lothrazar.samspowerups.handler.WaypointHandler;
-
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints; 
+import com.lothrazar.samspowerups.handler.WaypointHandler; 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;

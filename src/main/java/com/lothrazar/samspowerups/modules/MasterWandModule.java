@@ -31,12 +31,10 @@ public class MasterWandModule extends BaseModule
 { 
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
- 
-	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
+  
 	public void onPreInit(FMLPreInitializationEvent event)   
-	{
-		//MinecraftForge.EVENT_BUS.register(new WandHandler()); 
-		MinecraftForge.EVENT_BUS.register(this); 
+	{ 
+		MinecraftForge.EVENT_BUS.register(this);  //new WandHandler()); 
 	}
  
 	public void onInit(FMLInitializationEvent event) 
@@ -58,6 +56,7 @@ public class MasterWandModule extends BaseModule
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
 	
+	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
