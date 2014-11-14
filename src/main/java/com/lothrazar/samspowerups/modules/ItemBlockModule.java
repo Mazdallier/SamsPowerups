@@ -472,6 +472,4 @@ public class ItemBlockModule extends BaseModule
 	}// end player tick event 
 	
 	
-
-	
 }
