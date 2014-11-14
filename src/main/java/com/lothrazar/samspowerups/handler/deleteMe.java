@@ -32,8 +32,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class ItemWandMaster extends ItemTool
+public class deleteMe
 {
+	/*
 	public static WandHandler Handler = new WandHandler();
 	
 	public static ItemWandMaster itemWand;
@@ -69,4 +70,7 @@ public class ItemWandMaster extends ItemTool
     {
     	return true; //give it shimmer
     }
+*/
+
+ 
 }

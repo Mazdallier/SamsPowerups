@@ -2,6 +2,16 @@ bin/assets/
 bin/
 build/
 eclipse/
+world/
+logs/
+mods/
+config/
+gradlew
+gradlew.bat
+README.txt
+server.properties
+*.txt
+*.json
 .gradle/
 .settings/
 .classpath
