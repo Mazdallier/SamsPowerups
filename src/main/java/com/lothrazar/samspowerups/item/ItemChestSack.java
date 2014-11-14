@@ -3,17 +3,11 @@ package com.lothrazar.samspowerups.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.handler.ChestSackHandler;
-import com.lothrazar.samspowerups.handler.RunestoneTickHandler;
-
- 
-
+import com.lothrazar.samspowerups.ModSamsPowerups; 
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import cpw.mods.fml.relauncher.SideOnly; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,8 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
+import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemChestSack extends Item
@@ -43,15 +36,12 @@ public class ItemChestSack extends Item
 	{  
 		super( );  
 	}
- 
-	public static ChestSackHandler Handler = new ChestSackHandler();
-  
+   
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) 
 	{
 		//http://www.minecraftforge.net/wiki/Creating_NBT_for_items
-	    if(itemStack.stackTagCompound==null) itemStack.stackTagCompound = new NBTTagCompound();
-	     
+	    if(itemStack.stackTagCompound==null) {itemStack.stackTagCompound = new NBTTagCompound();}	     
 	}
 	
 	@Override
@@ -73,14 +63,7 @@ public class ItemChestSack extends Item
         	          
         list.add("Stacks: " + EnumChatFormatting.GREEN +stacks);          
 	 }   
-	
-	
-	
-	
-	
-	
-	
-
+	 
 	@SuppressWarnings("unused")
 	public void sortFromSackToChestEntity(TileEntityChest chest, ItemStack held, PlayerInteractEvent event)
   	{
@@ -96,9 +79,7 @@ public class ItemChestSack extends Item
 			//Chat.addMessage(event.entityPlayer, "null nbt problem in itemchestsack");
 			return;
 		}
-
-		
-		
+ 
   		int totalItemsMoved = 0;
   		//int totalTypesMoved = 0;
   		int totalSlotsFreed = 0;
@@ -128,11 +109,10 @@ public class ItemChestSack extends Item
 		{
 			chestItem = chest.getStackInSlot(islotChest);
 		
-			if(chestItem == null)
+			if(chestItem == null) 
 			{ 
 				continue;
 			}//not an error; empty chest slot
-			 
 			 
 			for(int i = 0; i < itemids.length ; i++)
 			{
@@ -214,7 +194,6 @@ public class ItemChestSack extends Item
 			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
 		
-
 		//event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray("itemids",null);
  
 
@@ -222,10 +201,8 @@ public class ItemChestSack extends Item
 		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMDMG,itemdmg);
 		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMQTY,itemqty);
  
-
   	}
 	 
-
 	public void createAndFillChest(EntityPlayer entityPlayer, ItemStack heldChestSack, int x, int y, int z)
 	{
 		int[] itemids = heldChestSack.stackTagCompound.getIntArray("itemids");
