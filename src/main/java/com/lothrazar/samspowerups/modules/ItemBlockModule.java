@@ -6,13 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
 import com.lothrazar.samspowerups.block.BlockFishing;
 import com.lothrazar.samspowerups.block.BlockXRay;
-import com.lothrazar.samspowerups.handler.EnderBookHandler;
 import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;

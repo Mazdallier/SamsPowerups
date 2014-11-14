@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.handler;
+package com.lothrazar.samspowerups;
 
 import java.util.List;
 import java.util.Random;

@@ -1,6 +1,5 @@
-package com.lothrazar.samspowerups.handler;
+package com.lothrazar.samspowerups;
  
-import com.lothrazar.samspowerups.ModSamsPowerups; 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraftforge.common.config.Configuration;
