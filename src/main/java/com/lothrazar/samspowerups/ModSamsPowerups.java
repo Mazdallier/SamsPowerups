@@ -7,7 +7,6 @@ import com.lothrazar.samspowerups.command.*;
 import com.lothrazar.samspowerups.modules.*;
 import com.lothrazar.samspowerups.net.*; 
 import com.lothrazar.samspowerups.gui.GUIHandler;
-import com.lothrazar.samspowerups.handler.*;
 import com.lothrazar.samspowerups.item.*;
 import com.lothrazar.samspowerups.util.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
