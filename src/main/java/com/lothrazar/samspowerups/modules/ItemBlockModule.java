@@ -342,7 +342,7 @@ public class ItemBlockModule extends BaseModule
 
 	public void onServerLoad(FMLServerStartingEvent event) 
 	{
-    	MinecraftForge.EVENT_BUS.register(new RunestoneTickHandler());
+    	MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public void onInit(FMLInitializationEvent event)   

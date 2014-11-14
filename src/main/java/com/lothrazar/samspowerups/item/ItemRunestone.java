@@ -4,17 +4,13 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Sets;
 import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.modules.ItemBlockModule;
-import com.lothrazar.samspowerups.modules.RunestoneTickHandler;
+import com.lothrazar.samspowerups.modules.ItemBlockModule; 
 import com.lothrazar.samspowerups.util.Chat;
-import com.lothrazar.samspowerups.util.Reference;
- 
-
+import com.lothrazar.samspowerups.util.Reference; 
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import cpw.mods.fml.relauncher.SideOnly; 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
