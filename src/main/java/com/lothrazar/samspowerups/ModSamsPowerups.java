@@ -72,7 +72,7 @@ public class ModSamsPowerups
     } 
 	public static SimpleNetworkWrapper network;   
 	public static Configuration config;  
-    private static Logger logger; 
+    public static Logger logger; 
     private ArrayList<BaseModule> modules;
     public static final String MODID = "samspowerups"; 
     public static final String VERSION = "1.7.10-1.0";
@@ -81,6 +81,7 @@ public class ModSamsPowerups
     public void onPreInit(FMLPreInitializationEvent event)   //fired on startup when my mod gets loaded
     {  
     	logger = event.getModLog();	//logBaseChanges();
+    	logBaseChanges();
     	
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
     	
@@ -100,6 +101,17 @@ public class ModSamsPowerups
 
 	private void createModules() 	
 	{
+
+		//a module that alters existing CONTENT
+		//         this    includes my "base edits", becuase in theory i would have a way to do them in forge
+		
+		//module that alters gameplay
+		
+		//modile that adds my custom content
+		   
+		//TODO: merge fishing block, command blocks, and cave finder into blocks module
+		//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
+		//TODO: fix iron boat texture OR make it a base edit
 		modules = new ArrayList<BaseModule>();
 		modules.add(new CommandPowersModule());       //!
 		modules.add(new CreativeInventoryModule()); 
@@ -148,7 +160,7 @@ public class ModSamsPowerups
 		{
 			m.onInit(event); 
 		}
-    	//TODO: research, should init - block recipes shoud go here?
+
      	NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
      	
 		proxy.registerRenderers(); 
@@ -162,31 +174,17 @@ public class ModSamsPowerups
 			m.onServerLoad(event);
 		}
     } 
-	
-	public static void LogInfo(String s)
-	{
-		//TODO: also add to my own documentation and/or log file
-		logger.info(s);
-	} 
-	
-    /*
-	private void logLoadedModule(BaseModule current) 
-	{
-		logger.info("Module Activated : " + current.Name);
-		for(String c : current.FeatureList)
-		{
-			logger.info("     " + c);
-		}
-	}
-    
+	 
 	private void logBaseChanges()
     { 
-    	LogInfo("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
-    	LogInfo("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
-    	LogInfo("Base Edit: net.minecraft.block.BlockFenceGate.java");  
-    	LogInfo("Base Edit: net.minecraft.block.BlockHugeMushroom.java");  
-    	LogInfo("Base Edit: net.minecraft.block.BlockPumpkin.java");  
-    	LogInfo("Base Edit: net.minecraft.block.BlockSnow.java");  
+    	logger.info("Base Class Editited (not ASM or forge)");
+    	logger.info(": net.minecraft.client.gui.inventory.GuiInventory.java");
+    	logger.info("Base Edit: net.minecraft.client.gui.inventory.GuiInventory.java");
+    	logger.info("Base Edit: net.minecraft.inventory.ContainerPlayer.java");
+    	logger.info("Base Edit: net.minecraft.block.BlockFenceGate.java");  
+    	logger.info("Base Edit: net.minecraft.block.BlockHugeMushroom.java");  
+    	logger.info("Base Edit: net.minecraft.block.BlockPumpkin.java");  
+    	logger.info("Base Edit: net.minecraft.block.BlockSnow.java");  
       
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
@@ -200,9 +198,5 @@ public class ModSamsPowerups
     	//door, what did i change there? 
     }
 	
-	    * */
-	//TODO: merge fishing block, command blocks, and cave finder into blocks module
-	//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
-	//TODO: fix iron boat texture OR make it a base edit
 	
 }

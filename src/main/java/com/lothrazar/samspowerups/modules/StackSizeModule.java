@@ -11,13 +11,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item; 
 
 public class StackSizeModule extends BaseModule //implements ISamModule
-{ 
-	public StackSizeModule()
-	{
-		Name="Stack Size to 64";
-		FeatureList.add("Boats, minecarts, eggs, ender pearls, and so on");
-	}
-	
+{  
 	private boolean enabled;
  
 	public void loadConfig()

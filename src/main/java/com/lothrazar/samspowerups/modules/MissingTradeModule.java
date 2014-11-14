@@ -10,12 +10,12 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class MissingTradeModule extends BaseModule 
 { 
-	public MissingTradeModule()
-	{
-		super();
-		Name="Missing Trades";
-		FeatureList.add("Villagers get trades returned that were removed in some versions. Also some trades added by future versions ");
-	} 
+ 
+ 
+ 
+ 
+		//FeatureList.add("Villagers get trades returned that were removed in some versions. Also some trades added by future versions ");
+ 
  
 	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
 	public void onPreInit(FMLPreInitializationEvent event)   {}

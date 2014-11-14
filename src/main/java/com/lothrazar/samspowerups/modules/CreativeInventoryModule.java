@@ -12,14 +12,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
 public class CreativeInventoryModule extends BaseModule
-{
-	public CreativeInventoryModule()
-	{ 
-		super();
-		Name = "Creative Inventory improvements";
-		FeatureList.add("Missing items added to creative inventory: Mushroom blocks, dragon egg, water, lava, fire, mob spawner, farmland.");
-	}
-
+{ 
+		//FeatureList.add("Missing items added to creative inventory: Mushroom blocks, dragon egg, water, lava, fire, mob spawner, farmland.");
+ 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{ 
 	//	Item.getItemFromBlock(Blocks.red_mushroom_block).setHasSubtypes(true);//doesnt seem to work

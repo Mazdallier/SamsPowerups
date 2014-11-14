@@ -10,15 +10,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class EnderChestModule extends BaseModule
 {
-	public EnderChestModule ()
-	{
-		super();
-		Name="EnderChestModule ";
+ 
 		//Commands.add(new CommandEnderChest());
 		//Handler = new EnderChestHandler();
-		FeatureList.add("Easily open ender chest without placing it");
-		FeatureList.add("New /ec command opens ender inventory");
-	}
+	//	FeatureList.add("Easily open ender chest without placing it");
+		//FeatureList.add("New /ec command opens ender inventory");
+ 
 
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{

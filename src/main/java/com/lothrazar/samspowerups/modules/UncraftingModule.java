@@ -14,11 +14,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class UncraftingModule extends BaseModule
-{ 
-	public UncraftingModule()
-	{
-		Name = "Uncrafting";
-	}
+{  
 	private static boolean stairs;
 	private static boolean misc;
 	private static boolean slabs; 

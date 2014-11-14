@@ -16,14 +16,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 public class RichLootModule extends BaseModule
 { 
 	private boolean enabled;
-
-	public RichLootModule()
-	{
-		super();
-		Name = "Rich Loot";
-		FeatureList.add("Treasure chests can contain emeralds, quartz, glowstone, pistons, and gold blocks.");
-	}
-	
+ 
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		String category = ModSamsPowerups.MODID; 

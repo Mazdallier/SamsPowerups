@@ -23,20 +23,17 @@ import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ItemBlockModule extends BaseModule 
 {
-	public ItemBlockModule()
-	{
-		super();
-		Name="Items and Blocks";		
-		FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
-		FeatureList.add("Diablo style Runestones."); 
-		FeatureList.add("Survival command blocks to affect the weather and a handful of game rules.");
-		FeatureList.add("Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions");
-		FeatureList.add("New ender book to teleport known locations");
-		//
+ 
+	//Name="Items and Blocks";		
+	//FeatureList.add("Xray block to find hidden caves without forcing yourself inside glowstone or resdstone blocks.");
+	//FeatureList.add("Diablo style Runestones."); 
+	//FeatureList.add("Survival command blocks to affect the weather and a handful of game rules.");
+	//FeatureList.add("Fishing Block Module.  Automatic fishing without AFKing at weird door based contraptions");
+	//FeatureList.add("New ender book to teleport known locations");
+	////
 	//	throw new Exception("duplicate handlers in ItemBlockModule");
 	//	Name = "Magic Apples: More than just gold";
-	}
-	
+ 
 	public static  int SLOT_RUNESTONE = 8; 
  
  	public static int DURABILITY = 90000;//90 thousand ticks is 4500 seconds which is 75 minutes

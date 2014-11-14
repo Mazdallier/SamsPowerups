@@ -8,11 +8,11 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 
 public class KeySliderModule extends BaseModule
-{
-	public KeySliderModule()
-	{
-		Name="KeySlider";
-	}
+{   
+ 
+ 
+ 
+ 
  
 	public void onInit(FMLInitializationEvent event)  
 	{

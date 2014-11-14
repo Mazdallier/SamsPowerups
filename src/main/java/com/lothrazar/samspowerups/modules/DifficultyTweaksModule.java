@@ -36,18 +36,15 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class DifficultyTweaksModule extends BaseModule
-{ 
-	public DifficultyTweaksModule ()
-	{
-		super();
-		Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
-		
-		FeatureList.add("Stone tools and furnaces need smoothstone");
-		FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
-		FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
-		FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
-		FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
-	}
+{  
+		//Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
+		//
+		//FeatureList.add("Stone tools and furnaces need smoothstone");
+		//FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
+		//FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
+		//FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
+		//FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
+ 
  
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 

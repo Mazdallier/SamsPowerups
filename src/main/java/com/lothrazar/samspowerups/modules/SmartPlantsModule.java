@@ -15,14 +15,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class SmartPlantsModule extends BaseModule 
 { 
 	private boolean enabled = true;
-	public SmartPlantsModule()
-	{
-		super();
  
-		Name = "Smart plants "; 
-		FeatureList.add("Bonemeal lilypads and all flowers to spawn new ones.  Works just like the tall flowers.");
-		FeatureList.add("Use seeds, leaves, paper, and dead bushes as furnace fuel.");
-	} 
 	
 	public void onServerLoad(FMLServerStartingEvent event) {}
 	

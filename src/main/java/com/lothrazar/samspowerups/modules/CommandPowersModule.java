@@ -30,11 +30,11 @@ public class CommandPowersModule extends BaseModule
 	{
 		super();
 	//	Handlers.add(new WaypointHandler());
-		Name = "New commands";
-		FeatureList.add("New command: /searchitem");
-		FeatureList.add("New command: /searchtrade");
-		FeatureList.add("New command: /killall");
-		FeatureList.add("New command: /swp");
+		//Name = "New commands";
+		//FeatureList.add("New command: /searchitem");
+		//FeatureList.add("New command: /searchtrade");
+		//FeatureList.add("New command: /killall");
+		//FeatureList.add("New command: /swp");
 	}
 	
 	public void onPreInit(FMLPreInitializationEvent event) 
@@ -51,6 +51,7 @@ public class CommandPowersModule extends BaseModule
 		event.registerServerCommand(new CommandSearchItem());
 		event.registerServerCommand(new CommandKillAll());
 		event.registerServerCommand(new CommandSimpleWaypoints());
+		
 	}
 	
 	public static ArrayList<String> GetForPlayerName(String playerName)

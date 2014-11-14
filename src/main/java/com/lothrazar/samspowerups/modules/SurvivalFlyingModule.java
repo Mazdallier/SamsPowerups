@@ -14,13 +14,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class SurvivalFlyingModule extends BaseModule
-{
-	public SurvivalFlyingModule()
-	{
-		super();
-		Name="Survival Flying"; 
-	}
- 
+{ 
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		MinecraftForge.EVENT_BUS.register(new SurvivalFlyingHandler()); 

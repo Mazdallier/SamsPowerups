@@ -11,15 +11,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class ScreenInfoModule extends BaseModule
-{
-	private boolean enabled = true;
-
-	public ScreenInfoModule ()
-	{
-		super();
-		Name = "ScreenInfo"; 
-	}
- 
+{ 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
 		MinecraftForge.EVENT_BUS.register(new ScreenInfoHandler()); 

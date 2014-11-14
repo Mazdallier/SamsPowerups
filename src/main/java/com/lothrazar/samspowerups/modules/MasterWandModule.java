@@ -20,10 +20,10 @@ public class MasterWandModule extends BaseModule
 { 
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
-	public MasterWandModule()
-	{ 
-		Name = "Master Wand";
-	}
+ 
+ 
+ 
+ 
  
 	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
 	public void onPreInit(FMLPreInitializationEvent event)   

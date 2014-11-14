@@ -8,12 +8,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class QuickDepositModule extends BaseModule
 { 
-	public QuickDepositModule()
-	{
-		super();
-		Name= "Quick Deposit : hit a chest to sort it in"; 	
-		FeatureList.add("WHat module should this merge with");
-	}
+ 
+ 
+ 
+ 
+		//FeatureList.add("WHat module should this merge with");
+ 
  
 	public boolean quickSortEnabled;
 	//for creating blocks/ items etc

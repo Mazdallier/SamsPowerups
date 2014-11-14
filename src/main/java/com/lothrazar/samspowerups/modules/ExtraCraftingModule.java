@@ -23,13 +23,9 @@ public class ExtraCraftingModule extends BaseModule
 	private static boolean craftableFlatDoubleSlab = true; 
 	private static boolean craftableBonemealColouredWool;   
 	private static boolean craftableMobHeads;
-	
-	public ExtraCraftingModule()
-	{
-		super();
-		FeatureList.add("Extra recipes: unobtainable items, whitewashing wool, ");
-		Name="Extra Craftables";
-	}
+ 
+	//	FeatureList.add("Extra recipes: unobtainable items, whitewashing wool, ");
+ 
 	
 	public static boolean skullSignNames;
 	
