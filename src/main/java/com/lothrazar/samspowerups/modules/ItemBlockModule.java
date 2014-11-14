@@ -3,6 +3,7 @@ package com.lothrazar.samspowerups.modules;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -14,10 +15,13 @@ import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
+import com.lothrazar.samspowerups.util.Chat;
 import com.lothrazar.samspowerups.util.Reference;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
 public class ItemBlockModule extends BaseModule 
@@ -421,15 +425,12 @@ public class ItemBlockModule extends BaseModule
 		GameRegistry.addSmelting(rune_fire, new ItemStack(Items.nether_star,1),0);
 	}
 	
-	
-	
-	
+	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{
 		//if(event.entityPlayer.isSneaking() == false){ return;}
 		//BiomeGenBase biome = event.world.getBiomeGenForCoords((int)event.entityPlayer.posX, (int)event.entityPlayer.posZ);
-		 
-
+		  
 		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem(); 
 		
 		if(itemStack == null) { return; }
@@ -437,14 +438,13 @@ public class ItemBlockModule extends BaseModule
 		if(event.action.LEFT_CLICK_BLOCK == event.action)
 		{ 
 			//public void onPlayerLeftClick(PlayerInteractEvent event)
-		 // 	{ 
+ 
 			ItemStack enderBookInstance = event.entityPlayer.getCurrentEquippedItem(); 
 			 
 			if (enderBookInstance.stackTagCompound == null) {return;}
 			
 			ItemBlockModule.itemEnderBook.teleport(event.entityPlayer, itemStack);
-			
-	  	 
+			 
 		}
 		else
 		{ 			
@@ -455,5 +455,23 @@ public class ItemBlockModule extends BaseModule
 		}		 
   	}
 	
+	@SubscribeEvent
+	public void onPlayerTick(PlayerTickEvent event)
+	{       
+		ItemStack runestone = event.player.inventory.getStackInSlot(ItemBlockModule.SLOT_RUNESTONE);
+		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}
+ 
+		ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
+		
+		//no need to check for null here, it is done in the method
+		ItemRunestone.applyRunestoneToPlayer(event.player ,runestone);
+		//applyRunestoneToPlayer(event, MIDDLE_LEFT);
+		//applyRunestoneToPlayer(event, LOWER_LEFT);
+		 
+		
+	}// end player tick event 
+	
+	
+
 	
 }

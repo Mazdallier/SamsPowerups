@@ -15,7 +15,6 @@ public class LockGamemodeHandler
 {
 	private GameType lockedGameType = GameType.SURVIVAL;//TODO: load from config file
  
-
 	public void loadConfig(Configuration config) 
 	{ 
 		Property _gamemode = config.get(ModSamsPowerups.MODID, "gamemode",0);
@@ -36,11 +35,8 @@ public class LockGamemodeHandler
 			case 2: lockedGameType = GameType.ADVENTURE; break;
 		//	case 3: lockedGameType = GameType.; break;//spectator not in yet
 		}
-		
-	
 	}
 		
-	 
 	public void onPlayerTick(PlayerTickEvent event)
 	{       
 		//this fires twice for each player, because of client and server

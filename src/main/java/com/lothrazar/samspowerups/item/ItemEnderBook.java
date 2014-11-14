@@ -95,17 +95,11 @@ public class ItemEnderBook extends ItemTool
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
 
 		if (itemStack.stackTagCompound == null) itemStack.stackTagCompound = new NBTTagCompound();
-    	itemStack.stackTagCompound.setString(KEY, loc.toCSV());
-		
+    	itemStack.stackTagCompound.setString(KEY, loc.toCSV());		
 	} 
 	
-	
-	
-
 	public void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
 	{
-
-
 		int slot = entityPlayer.inventory.currentItem+1;
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
     	
@@ -119,8 +113,6 @@ public class ItemEnderBook extends ItemTool
 		
 		Location loc = new Location(csv);
 		
-        //int d = enderBookInstance.stackTagCompound.getInteger("d"); 
-        
 		if(entityPlayer.dimension != 0)
 		{
 			//Chat.addMessage(event.entityPlayer, "Only useable in the overworld");
@@ -135,13 +127,10 @@ public class ItemEnderBook extends ItemTool
 		{
 			entityPlayer.heal(-15);
 		}
-		 
-  
   
 	    entityPlayer.setPositionAndUpdate(loc.X,loc.Y,loc.Z); 
 
 		entityPlayer.getCurrentEquippedItem().damageItem(1, entityPlayer);
-		
 	}
 }
  
