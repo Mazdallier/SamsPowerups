@@ -1,5 +1,7 @@
 package com.lothrazar.samspowerups.modules;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
 import com.lothrazar.samspowerups.BaseModule;
@@ -43,9 +45,16 @@ public class EnderChestModule extends BaseModule
 	}
 	
 	@SubscribeEvent
-	public static void onPlayerLeftClick(PlayerInteractEvent event)
+	public void onPlayerLeftClick(PlayerInteractEvent event)
 	{
-		event.entityPlayer.displayGUIChest(event.entityPlayer.getInventoryEnderChest());
+		if(event.action == event.action.LEFT_CLICK_BLOCK)
+		{
+			if(event.entityPlayer.getCurrentEquippedItem() != null && 
+					event.entityPlayer.getCurrentEquippedItem().getItem() == Item.getItemFromBlock(Blocks.ender_chest) )
+			{
+				event.entityPlayer.displayGUIChest(event.entityPlayer.getInventoryEnderChest());
+			}
+		}
 		
 	}
 }
