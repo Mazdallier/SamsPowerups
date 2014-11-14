@@ -112,17 +112,17 @@ public class ModSamsPowerups
 		//TODO: merge ender chest, quick sort, rich loot, villager trades, into some sort of "tweaks" module
 		//TODO: fix iron boat texture OR make it a base edit
 		modules = new ArrayList<BaseModule>();
+		
 		modules.add(new CommandPowersModule());       //!
 		modules.add(new CreativeInventoryModule()); 
+		modules.add(new DifficultyTweaksModule());        //!
 		modules.add(new EnderChestModule());//time saving
-		modules.add(new ExtraCraftingModule());         //!
-		//modules.add(new IronBoatModule()); //base edit? or txyure
+		modules.add(new ExtraCraftingModule());         //! 
 		modules.add(new ItemBlockModule());         //!
 		modules.add(new KeySliderModule()); //better gameplay 
 		modules.add(new MasterWandModule());///itmblock
 		modules.add(new MissingTradeModule());//better gameplay
 		modules.add(new QuickDepositModule());//better gameplay
-		modules.add(new DifficultyTweaksModule());        //!
 		modules.add(new RichLootModule());
 		modules.add(new ScreenInfoModule());////better gameplay
 		modules.add(new SmartPlantsModule());        //!

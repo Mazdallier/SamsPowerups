@@ -12,6 +12,7 @@ import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryEnderChest;
@@ -22,7 +23,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -40,7 +44,50 @@ public class SandboxHandler
 {
 	
 	
-	
+	/*
+public class LockGamemodeHandler  
+{
+	private GameType lockedGameType = GameType.SURVIVAL;//TODO: load from config file
+ 
+	public void loadConfig(Configuration config) 
+	{ 
+		Property _gamemode = config.get(ModSamsPowerups.MODID, "gamemode",0);
+			
+		_gamemode.comment = "Define which game mode you are locked to.  0 = Survival, 1 = Creative, 2 = Adventure.";
+		int imode = _gamemode.getInt(0);
+		
+		if(imode < 0 || imode > 3) 
+		{
+			imode = 0;
+			_gamemode.set(imode);//fix config file to non invalid value
+		}
+		
+		switch(imode)
+		{
+			case 0: lockedGameType = GameType.SURVIVAL; break;
+			case 1: lockedGameType = GameType.CREATIVE; break;
+			case 2: lockedGameType = GameType.ADVENTURE; break;
+		//	case 3: lockedGameType = GameType.; break;//spectator not in yet
+		}
+	}
+		
+	public void onPlayerTick(PlayerTickEvent event)
+	{       
+		//this fires twice for each player, because of client and server
+		//so only do it server side, it will proxy down
+		if (event.player instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP mp = (EntityPlayerMP) event.player;
+ 
+			// lock them in
+			if (mp.theItemInWorldManager.getGameType() != lockedGameType)
+			{
+				mp.setGameType(lockedGameType);
+			}
+		} 
+	}// end player tick event
+}
+*/
 	
 	
 	

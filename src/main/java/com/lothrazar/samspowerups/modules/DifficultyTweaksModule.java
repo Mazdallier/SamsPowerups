@@ -63,10 +63,7 @@ public class DifficultyTweaksModule extends BaseModule
 		blocksRequireAxe.add(Blocks.log2);
 		blocksRequireAxe.add(Blocks.planks);
 	}
-	
-	
- 
-
+	 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
     	MinecraftForge.EVENT_BUS.register(this);// new DifficultyHandler()); 

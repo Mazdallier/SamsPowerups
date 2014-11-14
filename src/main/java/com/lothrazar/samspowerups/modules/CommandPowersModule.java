@@ -18,20 +18,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class CommandPowersModule extends BaseModule 
-{
-	private boolean enabled = true;
-
-	public CommandPowersModule ()
-	{
-		super();
-	//	Handlers.add(new WaypointHandler());
-		//Name = "New commands";
-		//FeatureList.add("New command: /searchitem");
-		//FeatureList.add("New command: /searchtrade");
-		//FeatureList.add("New command: /killall");
-		//FeatureList.add("New command: /swp");
-	}
-	
+{ 
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{
 		//TODO : config settings here
