@@ -15,19 +15,7 @@ public class EnderChestModule extends BaseModule
 {  
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{
-    	MinecraftForge.EVENT_BUS.register(this);
-		//TODOconfig
-    	/*
-    	public static void loadConfig(Configuration config) 
-    	{
-    		String category = ModCore.MODID ; 
-    	 
-    		isEnabled = config.get(category, "smartEnderChest",true,
-    			"When true, this enables you to Left click with an ender chest in your hand to open it without placing it down."
-    			).getBoolean(true);
-    	}
-    	*/
-    	
+    	MinecraftForge.EVENT_BUS.register(this); 
 	}
   
 	public void onServerLoad(FMLServerStartingEvent event) 
@@ -45,7 +33,6 @@ public class EnderChestModule extends BaseModule
 			{
 				event.entityPlayer.displayGUIChest(event.entityPlayer.getInventoryEnderChest());
 			}
-		}
-		
+		} 
 	}
 }

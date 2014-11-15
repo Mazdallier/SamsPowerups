@@ -24,18 +24,10 @@ public class StackSizeModule extends BaseModule //implements ISamModule
 			"horse armor, empty bucket, bed, all records."
 		
 		); 
-	}
-
-	//for loadConfig &  MinecraftForge.EVENT_BUS.register(instance); 
-	public void onPreInit(FMLPreInitializationEvent event)   {}
- 
+	} 
+	
 	public void onInit(FMLInitializationEvent event)  
-	{   
-		//default config keeps this at 1
-		//Items.potionitem.setMaxStackSize(potionStackSize); 
-		
-		//nothing else needs a config, can all be max
-		
+	{    
 		ArrayList<Item> to64 = new ArrayList<Item>();
  
 		to64.add(Items.ender_pearl);

@@ -21,7 +21,7 @@ public class CommandPowersModule extends BaseModule
 { 
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{
-		//TODO : config settings here
+		// : config settings here
 	}
 
 	public void onInit(FMLInitializationEvent event)   {}
@@ -33,7 +33,6 @@ public class CommandPowersModule extends BaseModule
 		event.registerServerCommand(new CommandSearchItem());
 		event.registerServerCommand(new CommandKillAll());
 		event.registerServerCommand(new CommandSimpleWaypoints());
-		
 	}
 	
 	public static ArrayList<String> GetForPlayerName(String playerName)
@@ -53,7 +52,8 @@ public class CommandPowersModule extends BaseModule
 			
 			instream.close();
 			fis.close();
-		} catch (FileNotFoundException e) 
+		} 
+		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
 		} //this makes it per-world

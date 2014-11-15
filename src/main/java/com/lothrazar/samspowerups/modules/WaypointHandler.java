@@ -14,16 +14,12 @@ public class WaypointHandler
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{
-		//is F3 toggled on?
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
-		
 		
 		EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
 	 
     	ArrayList<String> saved = CommandPowersModule.GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
 
-		//int saved = c.getInteger(CommandSimpleWaypoints.KEY_CURRENT);
-    	
     	if(saved.size() > 0 && saved.get(0) != null)
     	{ 
     		int index = 0;

@@ -16,30 +16,14 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
 public class MissingTradeModule extends BaseModule  implements IVillageTradeHandler
-{ 
- 
- 
- 
- 
-		//FeatureList.add("Villagers get trades returned that were removed in some versions. Also some trades added by future versions ");
- 
- 
-	//for all the stuff like MinecraftForge.EVENT_BUS.register(instance); 
-	public void onPreInit(FMLPreInitializationEvent event)   {}
-  
-	//to register commands
-	public void onServerLoad(FMLServerStartingEvent event) {}
-	
+{  
 	@Override
 	public void onInit(FMLInitializationEvent event) 
 	{  
 		VillagerRegistry.instance().registerVillageTradeHandler(1, this);
 		VillagerRegistry.instance().registerVillageTradeHandler(2, this);
 	} 
-	
-	
-	
-
+	 
 	final int BROWN = 0;
 	final int WHITE = 1;
 	final int PURPLE = 2;
@@ -48,15 +32,13 @@ public class MissingTradeModule extends BaseModule  implements IVillageTradeHand
 	 
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
-	{ 
-		System.out.println("manipulateTradesForVillager");
+	{  
 		// TODO Auto-generated method stub
  
 		// this is all the minecrtaft 1.7.10 stuff
 		
 		//see the 1.8 here http://minecraft.gamepedia.com/Trading#Functionality
-
-		
+ 
 		//in this version : http://minecraft.gamepedia.com/Trading/Before_1.8
 		
 		//http://www.minecraftforge.net/forum/index.php?topic=16355.0

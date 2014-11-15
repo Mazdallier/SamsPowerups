@@ -24,10 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class SmartPlantsModule extends BaseModule  implements IFuelHandler
 {  
 	private boolean enabled = true;
- 
-	
-	public void onServerLoad(FMLServerStartingEvent event) {}
-	
+  
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{ 
 		String category = ModSamsPowerups.MODID; 
@@ -44,8 +41,7 @@ public class SmartPlantsModule extends BaseModule  implements IFuelHandler
 	{
 		GameRegistry.registerFuelHandler(this);
 	}
-	
-	
+	 
 	@Override
 	public int getBurnTime(ItemStack fuel) 
 	{ 
@@ -71,9 +67,7 @@ public class SmartPlantsModule extends BaseModule  implements IFuelHandler
 		} 
 		return 0;
 	}
-
-
-	//these are the fuel burn values of existing minecraft items
+  
 	private boolean isUsingBonemeal(ItemStack held )
 	{ 
 		Item heldItem = (held == null) ? null : held.getItem();
@@ -97,26 +91,21 @@ public class SmartPlantsModule extends BaseModule  implements IFuelHandler
 		
 		int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
 		
-	 	if ( blockClicked.equals(Blocks.yellow_flower))
-	 	{ 
-	 		//yellow flowers have no damage variations
-	 		
+	 	if ( blockClicked.equals(Blocks.yellow_flower))//yellow flowers have no damage variations
+	 	{  
 	 		held.stackSize--;
 	 		
 	 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 	 		 
 		  	event.entity.entityDropItem( new ItemStack(Blocks.yellow_flower ,1), 1); 
 	 	}
-	 	if ( blockClicked.equals(Blocks.red_flower))
-	 	{  
-	 		//the red flower is ALL the flowers
- 
+	 	if ( blockClicked.equals(Blocks.red_flower)) 	//the red flower is ALL the flowers
+	 	{   
 	 		held.stackSize--;
 	 		
 	 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 	 		 
 		  	event.entity.entityDropItem( new ItemStack(Blocks.red_flower ,1,blockClickedDamage), 1);//quantity = 1
-	 		
 	 	}
 	 	if ( blockClicked.equals(Blocks.waterlily))
 	 	{
@@ -132,9 +121,7 @@ public class SmartPlantsModule extends BaseModule  implements IFuelHandler
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
     { 
 		if(event.harvester == null){return;}//no player
-		
-    	
-    
+		 
     	if( event.block == Blocks.deadbush ||
     		event.block == Blocks.cactus // ||
     		//(event.block == Blocks.tallgrass && event.blockMetadata == Reference.tallgrass.rosebush) 

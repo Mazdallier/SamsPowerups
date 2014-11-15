@@ -1,10 +1,9 @@
 package com.lothrazar.samspowerups.modules;
 
 import java.util.HashMap;
-
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World; 
 import net.minecraftforge.common.config.Configuration; 
+import net.minecraft.world.World; 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.samspowerups.command.CommandFlyHelp; 
@@ -16,7 +15,22 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
 public class SurvivalFlyingModule extends BaseModule
-{ 
+{
+	public static int StartFlyingLevel = 2;
+	public static int StartFlyingHealth = 20;
+	public static int StartFlyingHunger = 14;
+	public static boolean NoArmorOnly = false;
+	public static boolean cannotFlyWhileBurning = false;
+	public static int difficultyRequiredToFly = 3; 
+	public static boolean cannotFlyAtNight = true;
+	public static boolean cannotFlyInRain = true;
+	public static boolean doesDrainLevels = true;
+	 
+	//was 70 in old mod, farily fast
+	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
+  
+	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
+	
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		//MinecraftForge.EVENT_BUS.register(this); //nope this is only for forge events
@@ -64,33 +78,12 @@ public class SurvivalFlyingModule extends BaseModule
 		event.registerServerCommand(new CommandFlyHelp());
 	} 
 	
-	 
-	 
-	public static int StartFlyingLevel = 2;
-	public static int StartFlyingHealth = 20;
-	public static int StartFlyingHunger = 14;
-	public static boolean NoArmorOnly = false;
-	public static boolean cannotFlyWhileBurning = false;
-	public static int difficultyRequiredToFly = 3; 
-	public static boolean cannotFlyAtNight = true;
-	public static boolean cannotFlyInRain = true;
-	public static boolean doesDrainLevels = true;
-	 
-	//was 70 in old mod, farily fast
-	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
-   
-	
-	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
-	
- 
-	//all the heavy lifting happens here
- 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{   
 		//use the players display name as the hashmap key for the flyCountdown
 		String pname = event.player.getDisplayName();
-		 System.out.println("tstfly");
+		// System.out.println("tstfly");
 		//start at zero, of course. it counts up to the limit (from config)
 		if(playerFlyDamageCounters.containsKey(pname) == false) { playerFlyDamageCounters.put(pname, 0); }
 		 
@@ -99,22 +92,20 @@ public class SurvivalFlyingModule extends BaseModule
 		boolean disabledFromNight = false;
 		
 		World world = event.player.worldObj;
+	
+		int difficultyCurrent = event.player.worldObj.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
 		
+		//ex: if current is peaceful, required is easy, then disabled is true
+		//but, if current and required and both peaceful (equal) or if current > required then disabled false
+		
+		if(difficultyCurrent < difficultyRequiredToFly ) { disabledFromDifficulty = true; } 
 		 
-			
-			int difficultyCurrent = event.player.worldObj.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
-			
-			//ex: if current is peaceful, required is easy, then disabled is true
-			//but, if current and required and both peaceful (equal) or if current > required then disabled false
-			
-			if(difficultyCurrent < difficultyRequiredToFly ) { disabledFromDifficulty = true; } 
-			 
-			//if not allowed, and is raining, then disable
-			if(cannotFlyInRain && world.getWorldInfo().isRaining()) { disabledFromRain = true; }
-			
-			//if we are not allowed, and its night, then disable
-			if(cannotFlyAtNight && !world.isDaytime()) { disabledFromNight = true; } 
-		 
+		//if not allowed, and is raining, then disable
+		if(cannotFlyInRain && world.getWorldInfo().isRaining()) { disabledFromRain = true; }
+		
+		//if we are not allowed, and its night, then disable
+		if(cannotFlyAtNight && !world.isDaytime()) { disabledFromNight = true; } 
+	 
 		  
 		boolean isNaked = (
 				   event.player.getEquipmentInSlot(1) == null
@@ -146,13 +137,11 @@ public class SurvivalFlyingModule extends BaseModule
 					&& disabledFromNight == false
 			)
 			{
-
-				 System.out.println("true");
-				event.player.capabilities.allowFlying = true; // can fly
-
-			} else
+				//okay, you have passed all the tests
+				event.player.capabilities.allowFlying = true; 
+			} 
+			else
 			{
-				 System.out.println("f");
 				// disable flying in future
 				event.player.capabilities.allowFlying = false; 
 				// turn off current flying ability
@@ -160,7 +149,6 @@ public class SurvivalFlyingModule extends BaseModule
 				//reset the timer for this player
 				playerFlyDamageCounters.put(pname, 0); 
 			}
-
 			if (event.player.capabilities.isFlying)
 			{ 
 				//if the config is set to drain your xp, then up this counter
@@ -198,7 +186,6 @@ public class SurvivalFlyingModule extends BaseModule
 			} // end if isFlying
 			else //so therefore isFlying is false
 			{ 
-				
 				// i am not flying so do the fall damage thing
 				if (event.player.posY < event.player.prevPosY)
 				{
@@ -206,13 +193,11 @@ public class SurvivalFlyingModule extends BaseModule
 					//double fallen = Math.max(	(event.player.prevPosY - event.player.posY), 0);
 //dont add the number, it doubles (ish) our fall damage
 					//event.player.fallDistance += (fallen * 0.5);
-
-					 System.out.println("ffff");
+ 
 					event.player.capabilities.allowFlying = false;// to enable  fall distance
  
 				} 
 			} 
 		}// end if not creative and Client only
 	}// end player tick event
- 
 }

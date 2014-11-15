@@ -24,9 +24,6 @@ public class ExtraCraftingModule extends BaseModule
 	private static boolean craftableBonemealColouredWool;   
 	private static boolean craftableMobHeads;
  
-	//	FeatureList.add("Extra recipes: unobtainable items, whitewashing wool, ");
- 
-	
 	public static boolean skullSignNames;
 	
 	public void onPreInit(FMLPreInitializationEvent event) 
@@ -43,23 +40,19 @@ public class ExtraCraftingModule extends BaseModule
 
 		craftableBonemealColouredWool =  config.getBoolean( "craftableBonemealColouredWool",category,true
 				,"Allows you to dye coloured wool back to white using bonemeal"); 
- 
- 
+  
 		craftableMobHeads =  config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. ");  
  
-  
 		skullSignNames  =  config.getBoolean( "skullSignNames",category,true
 				,"Hitting a player head on a sign will set the SkullOwner to the first word on the sign, which displays that " +
 						"head on the skull "); 
-  
 	} 
     
 	public void onInit(FMLInitializationEvent event) 
 	{ 
 		int EXP = 0; 
-		
 		
 		int otherSide = 0;
 		for (int side = 0; side < 16; side++)
@@ -132,11 +125,8 @@ public class ExtraCraftingModule extends BaseModule
 	 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_creeper), "xxx", "xsx","xxx"
 	 				, 'x', new ItemStack(Blocks.tnt)
 	 				, 's', new ItemStack(Items.skull,1,Reference.skull_wither));		
-	 				
-	 		 
 
-			GameRegistry.addSmelting(Items.skull ,new ItemStack(Items.skull,1,Reference.skull_wither), 0);
-			
+			GameRegistry.addSmelting(Items.skull ,new ItemStack(Items.skull,1,Reference.skull_wither), 0);	
 		}
 		
 		if(craftableBonemealColouredWool)
@@ -173,7 +163,6 @@ public class ExtraCraftingModule extends BaseModule
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 1, 0),
 					new ItemStack(Blocks.wool, 1, 15), new ItemStack(Items.dye, 1,				Reference.dye_bonemeal));
 		}
-		
 		
 		if(craftableTransmuteRecords)  
 		{
@@ -223,7 +212,6 @@ public class ExtraCraftingModule extends BaseModule
 		 
 		if(craftableFlatDoubleSlab)
 		{
-			 
 			int islab_sandstone = 1;
 
 			// special: get the magic ones

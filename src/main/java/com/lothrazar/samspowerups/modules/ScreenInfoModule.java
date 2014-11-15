@@ -28,33 +28,29 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ScreenInfoModule extends BaseModule
 { 
+	private boolean showDefaultDebug = true ; //TODO: split to left and right
+	private boolean showGameRules = true;
+	private boolean showSlimeChunk = true;
+	private boolean showVillageInfo = true; 
+	private boolean showHorseInfo = true;
+	
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
 		MinecraftForge.EVENT_BUS.register(this); 
+		
+		// TODO: config entries for the above settings
 	} 
 	  
 	public void onServerLoad(FMLServerStartingEvent event) 
 	{
 		event.registerServerCommand(new CommandTodoList());
 	} 
-	
-	
-	
-	
-	
-	
-	private static boolean showDefaultDebug = true ; //TODO: split to left and right
-	private static boolean showGameRules = true;
-	private static boolean showSlimeChunk = true;
-	private static boolean showVillageInfo = true; 
-	private static boolean showHorseInfo = true;
-  
+	 
 	public static boolean showDebugInfo()
 	{
 		return Minecraft.getMinecraft().gameSettings.showDebugInfo;
 	}
-	
-	
+	 
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{
@@ -72,18 +68,11 @@ public class ScreenInfoModule extends BaseModule
 		}
 		
 		AddLeftInfo(event.left);
-		AddRightInfo(event.right);
-		
-		
-		//simplewp was here
+		AddRightInfo(event.right); 
 	} 
-	
-	
-	
-	
+	 
 	private void AddLeftInfo(ArrayList<String> side)
-	{ 
-  
+	{  
 		//the current client side player, not SMP
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
@@ -137,9 +126,7 @@ public class ScreenInfoModule extends BaseModule
 		{
 			//only show this part if we are hiding the vanilla
 			//since Y and biome are already in that part
-			
-			
-
+			 
 			BiomeGenBase biome = world.getBiomeGenForCoords((int)player.posX, (int)player.posZ); 
 			String biomeDetails = biome.biomeName;// +" (Temperature "+biome.temperature+")";
 			
@@ -149,8 +136,6 @@ public class ScreenInfoModule extends BaseModule
 			side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
 			 
 		}
- 
-	 	
   
 	 	if(showSlimeChunk && player.dimension == 0)
 	 	{ 
@@ -332,16 +317,13 @@ public class ScreenInfoModule extends BaseModule
 				}
 			} 
 		} 
-		 
-  
+		  
 		String todoCurrent = CommandTodoList.GetTodoForPlayerName(player.getDisplayName());
 		
 		if(todoCurrent != null && todoCurrent.isEmpty() == false)
 		{
 			side.add("");
 			side.add("TODO : "+todoCurrent); 
-		} 
-		 
-	}
-	
+		}  
+	} 
 }

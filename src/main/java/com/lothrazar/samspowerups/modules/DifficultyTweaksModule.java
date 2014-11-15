@@ -37,13 +37,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class DifficultyTweaksModule extends BaseModule
 {  
-	//Name="Difficulty tweaks: smoothstone tools, spawning changes, ";
-	//
-	//FeatureList.add("Stone tools and furnaces need smoothstone");
-	//FeatureList.add("Cannot punch trees: Make a wooden axe from sticks, after you craft staplings into sticks");
-	//FeatureList.add("Extra mob spawns: cave spiders in roofed forests.");
-	//FeatureList.add("Extra mob spawns: Magma cubes in the desert.");
-	//FeatureList.add("Extra mob spawns: zombies and creepers in the nether.");
 	private static int HUNGER_SECONDS = 30;
 	private static int HUNGER_LEVEL = 0;// III
 	private static int FOOD_COST = 2;//full bar is 20
@@ -66,8 +59,7 @@ public class DifficultyTweaksModule extends BaseModule
 	 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
-    	MinecraftForge.EVENT_BUS.register(this);// new DifficultyHandler()); 
-		//TODO: config file
+    	MinecraftForge.EVENT_BUS.register(this); 
 	}
 	
 	public void onInit(FMLInitializationEvent event)
@@ -102,30 +94,30 @@ public class DifficultyTweaksModule extends BaseModule
 		 * */
 		
 		int wProb = 1;
-		int minGroup=1;
-		int maxGroup=2;
+		int minGroup = 1;
+		int maxGroup = 2;
 		
 		 EntityRegistry.addSpawn(EntityMagmaCube.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		 {
-			 	BiomeGenBase.desert
-			 	,BiomeGenBase.desertHills
+			  BiomeGenBase.desert
+			 ,BiomeGenBase.desertHills
 		 });
 
 		EntityRegistry.addSpawn(EntityCaveSpider.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
-			 	BiomeGenBase.roofedForest
-			 	,BiomeGenBase.birchForest
-			 	,BiomeGenBase.birchForestHills
+			  BiomeGenBase.roofedForest
+			 ,BiomeGenBase.birchForest
+			 ,BiomeGenBase.birchForestHills
 		});
 
 		EntityRegistry.addSpawn(EntityZombie.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
-			 	BiomeGenBase.hell 
+			 BiomeGenBase.hell 
 		});
 
 		EntityRegistry.addSpawn(EntityCreeper.class, wProb, minGroup, 1, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
-			 	BiomeGenBase.hell 
+			 BiomeGenBase.hell 
 		});
 	}
 
@@ -257,9 +249,6 @@ public class DifficultyTweaksModule extends BaseModule
 		, 't', Items.stick);
 	}
 	
-	
-	 
-
 	@SubscribeEvent
 	public  void onBlockBreak(HarvestDropsEvent event)
 	{ 
@@ -326,7 +315,7 @@ public class DifficultyTweaksModule extends BaseModule
 			//EntityZombie zombie = (EntityZombie)event.entity;
 			//zombie.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.5D);
 			EntityZombie zombie = (EntityZombie)event.entity;
-			zombie.addPotionEffect(new PotionEffect(Potion.jump.getId(), 72000,0));
+			zombie.addPotionEffect(new PotionEffect(Potion.jump.getId(), 72000,1));
 			
 		}
 		//

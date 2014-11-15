@@ -121,13 +121,10 @@ public class UncraftingModule extends BaseModule
 					"xx", 'x', Blocks.acacia_stairs);
 			GameRegistry.addRecipe(new ItemStack(Blocks.planks, 6, Reference.planks_darkoak), "xx",
 					"xx", 'x', Blocks.dark_oak_stairs);
-		
 		}
 		
 		if(slabs)
-		{
-			// 3 blocks is 6 slabs
-			
+		{ 
 		//turn slabs back into raw materials
 			GameRegistry.addRecipe(new ItemStack(Blocks.stone, 3), "   ", "xxx","xxx", 
 					'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_stone));
@@ -158,19 +155,16 @@ public class UncraftingModule extends BaseModule
 					'x', new ItemStack(Blocks.wooden_slab, 1, Reference.planks_acacia));
 			GameRegistry.addRecipe(new ItemStack(Blocks.planks, 3, Reference.planks_darkoak), "   ","xxx", "xxx", 
 					'x', new ItemStack(Blocks.wooden_slab, 1, Reference.planks_darkoak));
-			
 		}
 
 		if(logs)
 		{
-			// L shape for logs
 			GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_oak),     "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_oak));
 			GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_spruce),  "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_spruce));
 			GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_birch),   "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_birch));
 			GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_jungle),  "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_jungle));
 			GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_acacia), "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1,Reference.planks_acacia));
 			GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_darkoak),"x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_darkoak));
-
 		}
 		
 		if(woodstuffs)
@@ -443,9 +437,6 @@ public class UncraftingModule extends BaseModule
 					new ItemStack(Blocks.gold_block, 8), EXP);
 		}
 
-
-		// bonemeal to clean out wool. have to do one for each color
-		
 		if(wool)
 		{ 
 			// get 4 string back from wool (white only, that's okay)
