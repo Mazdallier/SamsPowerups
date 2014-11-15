@@ -3,15 +3,12 @@ package com.lothrazar.samspowerups.modules;
 import java.util.HashMap;
 
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-
+import net.minecraft.world.World; 
+import net.minecraftforge.common.config.Configuration; 
 import com.lothrazar.samspowerups.BaseModule;
 import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.command.CommandFlyHelp;
-
+import com.lothrazar.samspowerups.command.CommandFlyHelp; 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -22,8 +19,9 @@ public class SurvivalFlyingModule extends BaseModule
 { 
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
-		MinecraftForge.EVENT_BUS.register(this); 
-		
+		//MinecraftForge.EVENT_BUS.register(this); //nope this is only for forge events
+		FMLCommonHandler.instance().bus().register(this); //so that the player events hits here
+
 		Configuration config = ModSamsPowerups.config;
 		 
 		String CATEGORY_FLY = ModSamsPowerups.MODID+":survival_flying";  
@@ -82,17 +80,17 @@ public class SurvivalFlyingModule extends BaseModule
 	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
    
 	
-	private static HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
+	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
 	
  
 	//all the heavy lifting happens here
  
 	@SubscribeEvent
-	public static void onPlayerTick(PlayerTickEvent event)
+	public void onPlayerTick(PlayerTickEvent event)
 	{   
 		//use the players display name as the hashmap key for the flyCountdown
 		String pname = event.player.getDisplayName();
-		 
+		 System.out.println("tstfly");
 		//start at zero, of course. it counts up to the limit (from config)
 		if(playerFlyDamageCounters.containsKey(pname) == false) { playerFlyDamageCounters.put(pname, 0); }
 		 
@@ -102,8 +100,7 @@ public class SurvivalFlyingModule extends BaseModule
 		
 		World world = event.player.worldObj;
 		
-		if(world != null)
-		{ 
+		 
 			
 			int difficultyCurrent = event.player.worldObj.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
 			
@@ -117,7 +114,7 @@ public class SurvivalFlyingModule extends BaseModule
 			
 			//if we are not allowed, and its night, then disable
 			if(cannotFlyAtNight && !world.isDaytime()) { disabledFromNight = true; } 
-		}
+		 
 		  
 		boolean isNaked = (
 				   event.player.getEquipmentInSlot(1) == null
@@ -149,10 +146,13 @@ public class SurvivalFlyingModule extends BaseModule
 					&& disabledFromNight == false
 			)
 			{
+
+				 System.out.println("true");
 				event.player.capabilities.allowFlying = true; // can fly
 
 			} else
 			{
+				 System.out.println("f");
 				// disable flying in future
 				event.player.capabilities.allowFlying = false; 
 				// turn off current flying ability
@@ -207,6 +207,7 @@ public class SurvivalFlyingModule extends BaseModule
 //dont add the number, it doubles (ish) our fall damage
 					//event.player.fallDistance += (fallen * 0.5);
 
+					 System.out.println("ffff");
 					event.player.capabilities.allowFlying = false;// to enable  fall distance
  
 				} 

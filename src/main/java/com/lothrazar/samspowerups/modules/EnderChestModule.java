@@ -12,11 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class EnderChestModule extends BaseModule
-{ 
-	//	FeatureList.add("Easily open ender chest without placing it");
-		//FeatureList.add("New /ec command opens ender inventory");
- 
-
+{  
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{
     	MinecraftForge.EVENT_BUS.register(this);
@@ -33,12 +29,7 @@ public class EnderChestModule extends BaseModule
     	*/
     	
 	}
-
-	public void onInit(FMLInitializationEvent event)   
-	{
-		
-	}
-	 
+  
 	public void onServerLoad(FMLServerStartingEvent event) 
 	{
 		event.registerServerCommand(new CommandEnderChest());
