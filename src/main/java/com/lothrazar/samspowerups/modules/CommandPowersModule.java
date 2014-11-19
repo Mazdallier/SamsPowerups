@@ -6,8 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList; 
-import net.minecraftforge.common.DimensionManager; 
-import com.lothrazar.samspowerups.BaseModule;
+import net.minecraftforge.common.DimensionManager;  
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
@@ -17,7 +16,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-public class CommandPowersModule extends BaseModule 
+public class CommandPowersModule 
 { 
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{

@@ -1,17 +1,14 @@
 package com.lothrazar.samspowerups.modules;
-
-import com.lothrazar.samspowerups.BaseModule;
-
+ 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-
+import cpw.mods.fml.common.event.FMLServerStartingEvent; 
 import net.minecraft.block.BlockMushroom;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
-public class CreativeInventoryModule extends BaseModule
+public class CreativeInventoryModule  
 {  
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{ 

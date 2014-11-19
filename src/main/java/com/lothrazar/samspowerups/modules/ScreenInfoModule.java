@@ -2,8 +2,7 @@ package com.lothrazar.samspowerups.modules;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Random;
-
+import java.util.Random; 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,18 +14,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.MinecraftForge;
-
-import com.lothrazar.samspowerups.BaseModule;
+import net.minecraftforge.common.MinecraftForge; 
 import com.lothrazar.samspowerups.command.CommandTodoList;
-import com.lothrazar.samspowerups.util.Reference;
-
+import com.lothrazar.util.*;  
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ScreenInfoModule extends BaseModule
+public class ScreenInfoModule  
 { 
 	private boolean showDefaultDebug = true ; //TODO: split to left and right
 	private boolean showGameRules = true;

@@ -3,9 +3,7 @@ package com.lothrazar.samspowerups.modules;
 import java.util.HashMap;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration; 
-import net.minecraft.world.World; 
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups;
+import net.minecraft.world.World;  
 import com.lothrazar.samspowerups.command.CommandFlyHelp; 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -14,7 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class SurvivalFlyingModule extends BaseModule
+public class SurvivalFlyingModule  
 {
 	public static int StartFlyingLevel = 2;
 	public static int StartFlyingHealth = 20;
@@ -30,15 +28,17 @@ public class SurvivalFlyingModule extends BaseModule
 	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
   
 	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
+	private Configuration config;
+	private String MODID="samspowerups.survivalflying";
 	
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		//MinecraftForge.EVENT_BUS.register(this); //nope this is only for forge events
 		FMLCommonHandler.instance().bus().register(this); //so that the player events hits here
 
-		Configuration config = ModSamsPowerups.config;
+		 config =   new Configuration(event.getSuggestedConfigurationFile());  
 		 
-		String CATEGORY_FLY = ModSamsPowerups.MODID+":survival_flying";  
+		String CATEGORY_FLY = MODID+":survival_flying";  
 
 		cannotFlyWhileBurning = config.getBoolean(CATEGORY_FLY,"cannotFlyWhileBurning", true
 				,"When true, this disables flying while you are burning."); 

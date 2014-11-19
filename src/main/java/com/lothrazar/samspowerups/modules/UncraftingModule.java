@@ -1,8 +1,6 @@
 package com.lothrazar.samspowerups.modules;
   
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups;
-import com.lothrazar.samspowerups.util.Reference; 
+import com.lothrazar.util.*; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,7 +11,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class UncraftingModule extends BaseModule
+public class UncraftingModule
 {  
 	private static boolean stairs;
 	private static boolean misc;
@@ -27,11 +25,14 @@ public class UncraftingModule extends BaseModule
 	private static boolean armor; 
 	private static boolean natureblocks;
 	private static boolean glass;
+	private String MODID = "samspowerups.uncrafting";
+	private Configuration config;
  
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{  
-		String category = ModSamsPowerups.MODID;
-		Configuration config = ModSamsPowerups.config;
+		String category = MODID;
+ 
+	   config =   new Configuration(event.getSuggestedConfigurationFile());  
 		
 		stairs = config.getBoolean( "stairs",category,true,
 			"Craft stairs back into blocks using a 4x4 pattern."

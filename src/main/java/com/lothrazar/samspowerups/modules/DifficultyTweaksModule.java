@@ -1,9 +1,7 @@
 package com.lothrazar.samspowerups.modules;
 
-import java.util.ArrayList; 
-
-import com.lothrazar.samspowerups.BaseModule; 
-import com.lothrazar.samspowerups.util.Reference; 
+import java.util.ArrayList;  
+import com.lothrazar.util.*; 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
@@ -35,7 +33,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class DifficultyTweaksModule extends BaseModule
+public class DifficultyTweaksModule  
 {  
 	private static int HUNGER_SECONDS = 30;
 	private static int HUNGER_LEVEL = 0;// III

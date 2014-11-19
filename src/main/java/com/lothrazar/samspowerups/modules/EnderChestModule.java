@@ -3,15 +3,14 @@ package com.lothrazar.samspowerups.modules;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
-import com.lothrazar.samspowerups.BaseModule;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
 import com.lothrazar.samspowerups.command.CommandEnderChest; 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class EnderChestModule extends BaseModule
+public class EnderChestModule  
 {  
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{

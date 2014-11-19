@@ -1,9 +1,8 @@
 package com.lothrazar.samspowerups.command;
 
 import java.util.ArrayList;
-import java.util.List; 
-import com.lothrazar.samspowerups.util.Chat;
-import com.lothrazar.samspowerups.ModSamsPowerups; 
+import java.util.List;  
+import com.lothrazar.util.Chat; 
 import cpw.mods.fml.common.FMLCommonHandler; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -18,6 +17,7 @@ public class CommandSearchItem  implements ICommand
 {
 	private static int RADIUS = 32;
 	private static boolean isEnabled;
+	private static String MODID;
 
 	public CommandSearchItem()
 	{
@@ -70,7 +70,7 @@ public class CommandSearchItem  implements ICommand
   
 	public static void loadConfig(Configuration config)
 	{ 
-		String category = ModSamsPowerups.MODID  ;  
+		String category = MODID  ;  
 		
 		isEnabled = config.get(category,"itemsearch", true,
 				"When true, this enables /searchitem command, which searches chests and other containers near you for an item within 32 blocks.")

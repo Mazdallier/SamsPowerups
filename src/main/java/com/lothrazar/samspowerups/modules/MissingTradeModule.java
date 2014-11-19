@@ -7,17 +7,16 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
-import net.minecraft.village.MerchantRecipeList;
-import com.lothrazar.samspowerups.BaseModule;
+import net.minecraft.village.MerchantRecipeList; 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
-public class MissingTradeModule extends BaseModule  implements IVillageTradeHandler
+public class MissingTradeModule  implements IVillageTradeHandler
 {  
-	@Override
+ 
 	public void onInit(FMLInitializationEvent event) 
 	{  
 		VillagerRegistry.instance().registerVillageTradeHandler(1, this);
@@ -30,7 +29,8 @@ public class MissingTradeModule extends BaseModule  implements IVillageTradeHand
 	final int BLACK = 3;
 	final int WHITEAPRON = 4;
 	 
-	@Override
+ 
+
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
 	{  
 		// TODO Auto-generated method stub

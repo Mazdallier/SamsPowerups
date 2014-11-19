@@ -1,31 +1,63 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
+import java.util.Set;
+
+import org.apache.logging.log4j.Logger;
+
+import com.lothrazar.samspowerups.gui.ConfigGUI;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups;
-
+import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
+import cpw.mods.fml.client.IModGuiFactory;
+import cpw.mods.fml.client.IModGuiFactory.RuntimeOptionCategoryElement;
+import cpw.mods.fml.client.IModGuiFactory.RuntimeOptionGuiHandler;
+import cpw.mods.fml.client.config.GuiConfig;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-public class RichLootModule extends BaseModule
+@Mod(modid = RichLootMod.MODID, version = RichLootMod.VERSION)
+public class RichLootMod 
 { 
-	private boolean enabled;
+    public static final String MODID = "samspowerups.richloot";
+    public static final String VERSION = "1";
  
+	//saddle, iron, bread, wheat, ...
+	private int RARITY_COMMON = 100; 
+	private int RARITY_REDSTONE = 50;
+	private int RARITY_RECORD = 5;
+	private int RARITY_GAPPLE = 1;
+	private Logger logger; 
+	public static Configuration config;  
+	
+	//todo: emerald/quartz/glowstone/ etc those items as numeric config options in the menu there
+	
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
-		String category = ModSamsPowerups.MODID; 
+    	logger = event.getModLog();	
+    	
+		String category = MODID; 
 
-		enabled = ModSamsPowerups.config.getBoolean( "richLoot",category,true,
-				"More goodies in dungeon chests: all records, glowstone, emeralds, quartz..."
+    	config = new Configuration(event.getSuggestedConfigurationFile());  
+		/*
+		enabled = config.getBoolean( "richLoot",category,true,
+				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
 		);
+		*/
+		
 	}
 
+    @EventHandler
 	public void onInit(FMLInitializationEvent event)  //a test seed   1660196624
 	{ 
 		addToAllExceptBonus(new ItemStack(Blocks.emerald_block),1,5,RARITY_RECORD);
@@ -37,7 +69,10 @@ public class RichLootModule extends BaseModule
 		addToAllExceptBonus(new ItemStack(Blocks.piston),1,8,RARITY_COMMON);
 
 		addToAllExceptBonus(new ItemStack(Blocks.gold_block),1,8,RARITY_REDSTONE);
-		
+
+		addToAllExceptBonus(new ItemStack(Blocks.tnt),1,8,RARITY_REDSTONE);
+
+		addToAllExceptBonus(new ItemStack(Blocks.anvil),1,1,RARITY_REDSTONE);
 		//the gold and green records already spawn by default
 
 	//	addToAllExceptBonus(new ItemStack(Items.record_13),1,1,RARITY_RECORD); // gold
@@ -54,11 +89,6 @@ public class RichLootModule extends BaseModule
 		addToAllExceptBonus(new ItemStack(Items.record_ward),1,1,RARITY_RECORD); 
 	}
 	
-	//saddle, iron, bread, wheat, ...
-	private int RARITY_COMMON = 100; 
-	private int RARITY_REDSTONE = 50;
-	private int RARITY_RECORD = 5;
-	private int RARITY_GAPPLE = 1;
 	
 	private void addToAllExceptBonus(ItemStack loot)
 	{ 
@@ -92,4 +122,61 @@ public class RichLootModule extends BaseModule
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(
 				new WeightedRandomChestContent(loot,  min,  max,  rarity)); 
 	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public class ConfigGUI extends GuiConfig 
+	{ 
+	    public ConfigGUI(GuiScreen parent) 
+	    {
+	        super(parent,
+	                new ConfigElement(RichLootMod.config.getCategory(RichLootMod.MODID)).getChildElements(),
+	                "Sam's Powerups", false, false, 
+	                GuiConfig.getAbridgedConfigPath(RichLootMod.config.toString()));
+	    }
+	}
+
+public class ConfigGuiFactory implements IModGuiFactory 
+{
+    @Override
+    public void initialize(Minecraft minecraftInstance) 
+    {
+ 
+    }
+ 
+    @Override
+    public Class<? extends GuiScreen> mainConfigGuiClass() 
+    {
+        return ConfigGUI.class;
+    }
+ 
+    @Override
+    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() 
+    {
+        return null;
+    }
+ 
+    @Override
+    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
+    {
+        return null;
+    }
+
 }
+
+
+	
+	
+	
+}
+
+
+

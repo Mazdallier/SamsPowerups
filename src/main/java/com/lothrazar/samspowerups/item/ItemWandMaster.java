@@ -1,10 +1,8 @@
 package com.lothrazar.samspowerups.item;
 
 import com.google.common.collect.Sets;
-import com.lothrazar.samspowerups.ModSamsPowerups; 
 import com.lothrazar.samspowerups.modules.MasterWandModule;
-import com.lothrazar.samspowerups.util.Chat;
-import com.lothrazar.samspowerups.util.Reference;
+import com.lothrazar.util.*; 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;

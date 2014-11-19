@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;  
 import com.lothrazar.samspowerups.modules.CommandPowersModule; 
-import com.lothrazar.samspowerups.util.Chat;
-import com.lothrazar.samspowerups.util.Location; 
+import com.lothrazar.util.Chat;
+import com.lothrazar.util.Location;
+
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;

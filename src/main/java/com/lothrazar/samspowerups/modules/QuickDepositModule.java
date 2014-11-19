@@ -5,16 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups; 
+import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class QuickDepositModule extends BaseModule
+public class QuickDepositModule  
 {  
 	//public boolean quickSortEnabled;
  

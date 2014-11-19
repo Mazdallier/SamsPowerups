@@ -8,12 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge; 
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups; 
-import com.lothrazar.samspowerups.util.Reference;
-import com.lothrazar.samspowerups.util.Reference.FurnaceBurnTime;
+import net.minecraftforge.event.world.BlockEvent; 
+import com.lothrazar.util.*; 
+import com.lothrazar.util.Reference.*;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -21,15 +20,17 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class SmartPlantsModule extends BaseModule  implements IFuelHandler
+public class SmartPlantsModule    implements IFuelHandler
 {  
 	private boolean enabled = true;
+	private String MODID;
+	private Configuration config;
   
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{ 
-		String category = ModSamsPowerups.MODID; 
-
-		enabled = ModSamsPowerups.config.getBoolean( "bonemealAllFlowers",category,true,
+		String category = MODID; 
+config =   new Configuration(event.getSuggestedConfigurationFile());  
+		enabled = config.getBoolean( "bonemealAllFlowers",category,true,
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, " +
 				"snot just the double height ones as normal."
 		); 

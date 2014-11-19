@@ -1,24 +1,24 @@
 package com.lothrazar.samspowerups.modules;
 
-import java.util.ArrayList; 
-
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups;
+import java.util.ArrayList;  
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item; 
+import net.minecraftforge.common.config.Configuration;
 
-public class StackSizeModule extends BaseModule //implements ISamModule
+public class StackSizeModule  
 {  
 	private boolean enabled;
+	private String MODID = "samspowerups.stacksize";
+	private Configuration config;
  
 	public void loadConfig()
 	{  
-		String category = ModSamsPowerups.MODID; 
+		String category = MODID; 
 		 
-		enabled = ModSamsPowerups.config.getBoolean("increasedStackSizes",category, true,
+		enabled = config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
 			"horse armor, empty bucket, bed, all records."

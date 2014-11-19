@@ -1,9 +1,7 @@
 package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
-import com.lothrazar.samspowerups.util.Reference; 
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups; 
+import com.lothrazar.util.*;   
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
@@ -17,19 +15,20 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class ExtraCraftingModule extends BaseModule
+public class ExtraCraftingModule  
 { 	
 	private static boolean craftableTransmuteRecords = true;  
 	private static boolean craftableFlatDoubleSlab = true; 
 	private static boolean craftableBonemealColouredWool;   
 	private static boolean craftableMobHeads;
- 
+	Configuration config ;
+	private String MODID = "samspowerups.extracrafting";
 	public static boolean skullSignNames;
 	
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{  
-		String category = ModSamsPowerups.MODID ; 
-		Configuration config = ModSamsPowerups.config;
+		String category = MODID  ; 
+		config = new Configuration(event.getSuggestedConfigurationFile());  
 		craftableTransmuteRecords = config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
 				);

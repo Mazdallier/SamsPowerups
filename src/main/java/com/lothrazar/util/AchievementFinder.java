@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.util;
+package com.lothrazar.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

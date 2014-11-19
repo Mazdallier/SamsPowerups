@@ -3,7 +3,7 @@ package com.lothrazar.samspowerups.command;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lothrazar.samspowerups.util.Chat;
+import com.lothrazar.util.Chat;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

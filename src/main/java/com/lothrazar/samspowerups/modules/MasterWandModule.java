@@ -15,22 +15,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups; 
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
 import com.lothrazar.samspowerups.item.ItemChestSack;
 import com.lothrazar.samspowerups.item.ItemWandMaster;
-import com.lothrazar.samspowerups.util.Reference; 
+import com.lothrazar.util.*; 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class MasterWandModule extends BaseModule
+public class MasterWandModule  
 { 
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
+	private String MODID;
   
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{ 
@@ -40,7 +39,7 @@ public class MasterWandModule extends BaseModule
 	public void onInit(FMLInitializationEvent event) 
 	{  
 		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName(ModSamsPowerups.MODID+":wand_master");
+		itemWand.setUnlocalizedName("wand_master").setTextureName(MODID+":wand_master");
 		GameRegistry.registerItem(itemWand,  "wand_master");   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
@@ -52,7 +51,7 @@ public class MasterWandModule extends BaseModule
 		
 		
 		itemChestSack = new ItemChestSack();
-		itemChestSack.setTextureName(ModSamsPowerups.MODID+":chest_sack").setUnlocalizedName("chest_sack");
+		itemChestSack.setTextureName(MODID+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
 	

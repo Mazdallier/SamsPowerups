@@ -2,7 +2,8 @@ package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
-import com.lothrazar.samspowerups.util.Location; 
+import com.lothrazar.util.Location;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.util.MathHelper;

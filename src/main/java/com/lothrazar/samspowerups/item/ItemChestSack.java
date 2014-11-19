@@ -1,9 +1,7 @@
 package com.lothrazar.samspowerups.item;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.lothrazar.samspowerups.ModSamsPowerups; 
+import java.util.List; 
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;

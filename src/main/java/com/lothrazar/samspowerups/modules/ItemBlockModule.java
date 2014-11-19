@@ -6,17 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import com.lothrazar.samspowerups.BaseModule;
-import com.lothrazar.samspowerups.ModSamsPowerups;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
 import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
 import com.lothrazar.samspowerups.block.BlockFishing;
 import com.lothrazar.samspowerups.block.BlockXRay;
 import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
-import com.lothrazar.samspowerups.util.Chat;
-import com.lothrazar.samspowerups.util.Reference;
+import com.lothrazar.util.*;  
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -24,7 +21,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class ItemBlockModule extends BaseModule 
+public class ItemBlockModule  
 {
 	public static  int SLOT_RUNESTONE = 8; 
  
@@ -57,6 +54,10 @@ public class ItemBlockModule extends BaseModule
 	private ItemFoodAppleMagic appleChocolate;
 
 	private boolean enderBookEnabled;
+
+	private Configuration config;
+
+	private String MODID = "samspowerups.itemsblocks";
 	
 	public static enum CommandType 
 	{
@@ -65,35 +66,36 @@ public class ItemBlockModule extends BaseModule
 
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
-		String category = ModSamsPowerups.MODID;
-		
-		enderBookEnabled = ModSamsPowerups.config.getBoolean( "enderBook",category,true,
+		String category = MODID ;
+
+		config = new Configuration(event.getSuggestedConfigurationFile());  
+		enderBookEnabled = config.getBoolean( "enderBook",category,true,
 			 	"This allows you to craft an ender book using 8 ender pearls and a book.  "+
 			    "Right click while sneaking to save a location in the book.  " +
 			 	"Attack with the book to teleport.  Only works in the overworld."
 			 );
 		
-		magicApplesEnabled = ModSamsPowerups.config.getBoolean( "magicApples", ModSamsPowerups.MODID,true,
+		magicApplesEnabled = config.getBoolean( "magicApples", category,true,
 			 	 "This allows you to craft golden apples into one of four powerful items: chocolate, lapis, emerald, diamond.  " +
 			 	 "Combine the gem with a golden apple.  Or surround a regular apple with cocoa.  "
 					 ) ;
 		
-		fishingBlockEnabled = ModSamsPowerups.config.getBoolean( "fishingBlock",ModSamsPowerups.MODID,true,
+		fishingBlockEnabled = config.getBoolean( "fishingBlock",category,true,
 				"Build a fishing net block with four planks in the corners, a (fully repaired) fishing pole in the middle, and four cobwebs.  " +
 				"If you place this in water (touching on 4 sides and 2 deep below), it will randomly spawn fish " +
 				"(but no treasure or junk like real fishing would)."
 			);
 		
-		runestoneEnabled = ModSamsPowerups.config.getBoolean( "runestoneEnabled",category,true,
+		runestoneEnabled = config.getBoolean( "runestoneEnabled",category,true,
 				"Lets you make a rune that enables flying in survival."
 				);
 		 
-		blockCaveFinderEnabled = ModSamsPowerups.config.getBoolean( "blockCaveFinder",category,true
+		blockCaveFinderEnabled = config.getBoolean( "blockCaveFinder",category,true
 				, "Build a Cave finder block (lets you see like XRay throught the world) with four obsidian "+
 						"in the corners , glass in the middle, and four cobwebs.  " +
 						"This lets you see through the world."
 		);  
-		Configuration config = ModSamsPowerups.config;
+	 
 		weatherCommandBlock = config.getBoolean( "weatherCommandBlock",category,true
 				,"Build a weather command block." 
 				); 
@@ -119,7 +121,7 @@ public class ItemBlockModule extends BaseModule
 	
 	public void initFishing() 
 	{
-		String MODID = ModSamsPowerups.MODID;
+ 
 		BlockFishing block = new BlockFishing();
 		block.setBlockName("block_fishing")
 			 .setBlockTextureName(MODID + ":block_fishing");
@@ -135,7 +137,7 @@ public class ItemBlockModule extends BaseModule
 	
 	public void initApples()
 	{   
-		 String MODID = ModSamsPowerups.MODID;
+ 
 		//the potion effect ids listed at http://minecraft.gamepedia.com/Potion_Effects
 		int SPEED = 1;
 		int HASTE = 3;
@@ -225,7 +227,7 @@ public class ItemBlockModule extends BaseModule
 	
 	private void initXray() 
 	{
-		String MODID = ModSamsPowerups.MODID;
+	 
 		block_xray = new BlockXRay();
 		block_xray.setBlockName("block_xray")
 			 .setBlockTextureName(MODID + ":block_xray");
@@ -241,7 +243,7 @@ public class ItemBlockModule extends BaseModule
 	
 	private void initCommand() 
 	{
-		String MODID = ModSamsPowerups.MODID;
+ 
 
 		if(gameRuleNatRegen)
 		{
@@ -318,7 +320,7 @@ public class ItemBlockModule extends BaseModule
 	private void initEnderbook()
 	{ 
 		itemEnderBook = new ItemEnderBook();
-		itemEnderBook.setTextureName(ModSamsPowerups.MODID+":book_ender").setUnlocalizedName("book_ender");
+		itemEnderBook.setTextureName(MODID+":book_ender").setUnlocalizedName("book_ender");
 		GameRegistry.registerItem(itemEnderBook,  "book_ender");   
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook)
 			,"eee"
@@ -345,7 +347,7 @@ public class ItemBlockModule extends BaseModule
 
 	private void initRunestones() 
 	{
-		String MODID = ModSamsPowerups.MODID; 
+ 
 		boolean shiny = true;
 		boolean not_shiny = false;
 		  
