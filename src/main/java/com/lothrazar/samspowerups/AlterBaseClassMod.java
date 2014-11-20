@@ -67,6 +67,7 @@ public class AlterBaseClassMod
    @Instance(value = AlterBaseClassMod.MODID)
     public static AlterBaseClassMod instance; 
     public static Logger logger;  
+	public static Configuration config;  
     protected static final String MODID = "samspowerups"; 
     public static final String VERSION = "1";
  
@@ -94,8 +95,20 @@ public class AlterBaseClassMod
     	//BlockPumpkin p;
     //	BlockPumpkin.class.canPlaceBlockAt = 
     	//door, what did i change there? 
+    	
+     	config = new Configuration(event.getSuggestedConfigurationFile());  
+		
+    	 
+    		
+         syncConfig() ;
     }
 	  
+
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
+    
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{ 

@@ -58,9 +58,14 @@ public class RichLootMod
 				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
 		);
 		
-		config.save();
+		syncConfig();
 		
 	}
+    
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
 
     @EventHandler
 	public void onInit(FMLInitializationEvent event)  //a test seed   1660196624

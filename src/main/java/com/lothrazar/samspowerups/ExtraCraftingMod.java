@@ -1,7 +1,8 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import java.util.ArrayList; 
-import com.lothrazar.util.*;   
+import com.lothrazar.util.*; 
+import org.apache.logging.log4j.Logger;  
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
@@ -10,21 +11,30 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
- 
-public class ExtraCraftingModule  
+
+@Mod(modid = ExtraCraftingMod.MODID, version = ExtraCraftingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class ExtraCraftingMod  
 { 	
+   @Instance(value = ExtraCraftingMod.MODID)
+    public static ExtraCraftingMod instance; 
+    public static Logger logger;  
+	public static Configuration config;  
+    protected static final String MODID = "samspowerups.extracrafting"; 
+    public static final String VERSION = "1";
 	private static boolean craftableTransmuteRecords = true;  
 	private static boolean craftableFlatDoubleSlab = true; 
 	private static boolean craftableBonemealColouredWool;   
-	private static boolean craftableMobHeads;
-	Configuration config ;
-	private String MODID = "samspowerups.extracrafting";
+	private static boolean craftableMobHeads; 
 	public static boolean skullSignNames;
-	
+
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{  
 		String category = MODID  ; 
@@ -48,7 +58,8 @@ public class ExtraCraftingModule
 				,"Hitting a player head on a sign will set the SkullOwner to the first word on the sign, which displays that " +
 						"head on the skull "); 
 	} 
-    
+
+    @EventHandler
 	public void onInit(FMLInitializationEvent event) 
 	{ 
 		int EXP = 0; 

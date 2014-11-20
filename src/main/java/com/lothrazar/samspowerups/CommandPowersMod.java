@@ -5,19 +5,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList; 
-
-import org.apache.logging.log4j.Logger;
-
+import java.util.ArrayList;  
+import org.apache.logging.log4j.Logger; 
 import net.minecraftforge.common.DimensionManager;  
-import net.minecraftforge.common.config.Configuration;
-
+import net.minecraftforge.common.config.Configuration; 
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
-import com.lothrazar.samspowerups.command.CommandSimpleWaypoints; 
-
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;  
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -47,10 +43,15 @@ public class CommandPowersMod
 				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
 		);
 		
-		config.save();
+		 syncConfig() ;
 		
     }
- 
+	
+	public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
+	
     @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{ 
