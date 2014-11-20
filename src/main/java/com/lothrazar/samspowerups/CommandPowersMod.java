@@ -14,12 +14,15 @@ import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;  
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = CommandPowersMod.MODID, version = CommandPowersMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class CommandPowersMod
@@ -51,7 +54,14 @@ public class CommandPowersMod
 	{
 		if(config.hasChanged()) { config.save(); } 
 	} 
-	
+	  @SubscribeEvent
+	    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+		{ 
+			if(eventArgs.modID.equals(MODID))
+			{
+				instance.syncConfig();
+			} 
+	    }
     @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{ 

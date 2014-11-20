@@ -23,6 +23,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent; 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -88,7 +89,14 @@ public class DifficultyTweaksMod
 	{
 		if(config.hasChanged()) { config.save(); } 
 	} 
-
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
     @EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{ 

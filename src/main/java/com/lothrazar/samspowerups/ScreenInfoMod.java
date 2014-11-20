@@ -23,6 +23,7 @@ import net.minecraftforge.common.config.Configuration;
 import com.lothrazar.samspowerups.command.CommandTodoList;
 import com.lothrazar.util.*;  
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -58,7 +59,14 @@ public class ScreenInfoMod
         syncConfig() ;
 		// TODO: config entries for the above settings
 	} 
-
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
     public void syncConfig() 
 	{
 		if(config.hasChanged()) { config.save(); } 

@@ -17,6 +17,7 @@ import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.util.*;  
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -133,7 +134,14 @@ public class ItemBlockMod
 		syncConfig();
 	}
     
-
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
     public void syncConfig() 
 	{
 		if(config.hasChanged()) { config.save(); } 

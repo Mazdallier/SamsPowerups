@@ -11,12 +11,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ExtraCraftingMod.MODID, version = ExtraCraftingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
@@ -57,8 +59,23 @@ public class ExtraCraftingMod
 		skullSignNames  =  config.getBoolean( "skullSignNames",category,true
 				,"Hitting a player head on a sign will set the SkullOwner to the first word on the sign, which displays that " +
 						"head on the skull "); 
+		
+		syncConfig();
 	} 
 
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
+    
     @EventHandler
 	public void onInit(FMLInitializationEvent event) 
 	{ 

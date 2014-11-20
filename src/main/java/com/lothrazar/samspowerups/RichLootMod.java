@@ -19,12 +19,14 @@ import cpw.mods.fml.client.IModGuiFactory;
 import cpw.mods.fml.client.IModGuiFactory.RuntimeOptionCategoryElement;
 import cpw.mods.fml.client.IModGuiFactory.RuntimeOptionGuiHandler;
 import cpw.mods.fml.client.config.GuiConfig;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = RichLootMod.MODID, version = RichLootMod.VERSION,guiFactory = "com.lothrazar.samspowerups.RichLootMod.ConfigGuiFactory")
 public class RichLootMod 
@@ -61,7 +63,14 @@ public class RichLootMod
 		syncConfig();
 		
 	}
-    
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
     public void syncConfig() 
 	{
 		if(config.hasChanged()) { config.save(); } 
