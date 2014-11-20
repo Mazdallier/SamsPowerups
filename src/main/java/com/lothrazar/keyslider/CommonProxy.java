@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.net;
+package com.lothrazar.keyslider;
 
 public class CommonProxy 
 {  

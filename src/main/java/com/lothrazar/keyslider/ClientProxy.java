@@ -1,7 +1,8 @@
-package com.lothrazar.samspowerups.net;
+package com.lothrazar.keyslider;
 
 import org.lwjgl.input.Keyboard;  
-import com.lothrazar.samspowerups.modules.KeySliderModule; 
+
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.client.settings.KeyBinding;
 
