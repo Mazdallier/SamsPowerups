@@ -1,6 +1,9 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;  
+
+import org.apache.logging.log4j.Logger;
+
 import com.lothrazar.util.*; 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
@@ -33,8 +36,15 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class DifficultyTweaksModule  
-{  
+@Mod(modid = DifficultyTweaksMod.MODID, version = DifficultyTweaksMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class DifficultyTweaksMod  
+{     
+	@Instance(value = DifficultyTweaksMod.MODID)
+	public static DifficultyTweaksMod instance; 
+	public static Logger logger;  
+	public static Configuration config;  
+	protected static final String MODID = "samspowerups.difficulty"; 
+	public static final String VERSION = "1";
 	private static int HUNGER_SECONDS = 30;
 	private static int HUNGER_LEVEL = 0;// III
 	private static int FOOD_COST = 2;//full bar is 20
@@ -42,7 +52,7 @@ public class DifficultyTweaksModule
 	private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	
-	public DifficultyTweaksModule()
+	public DifficultyTweaksMod()
 	{
 		blocksRequireShovel.add(Blocks.dirt);
 		blocksRequireShovel.add(Blocks.grass);
@@ -54,12 +64,26 @@ public class DifficultyTweaksModule
 		blocksRequireAxe.add(Blocks.log2);
 		blocksRequireAxe.add(Blocks.planks);
 	}
-	 
+
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
+    	logger = event.getModLog(); 
+    	
+    	config = new Configuration(event.getSuggestedConfigurationFile());  
+		
+		boolean enabled = config.getBoolean( "richLoot",MODID,true,
+				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
+		);
+		
+		config.save();
+		
+    	
+    	
     	MinecraftForge.EVENT_BUS.register(this); 
 	}
-	
+
+    @EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{ 
 		SaplingStickAxe();
@@ -69,7 +93,8 @@ public class DifficultyTweaksModule
 		MobSpawnExtras();
 	}
 
-	public void onServerLoad(FMLServerStartingEvent event) {}
+   // @EventHandler
+	//public void onServerLoad(FMLServerStartingEvent event) {}
 
 	private void MobSpawnExtras() 
 	{

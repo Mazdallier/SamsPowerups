@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.common.DimensionManager;  
+import net.minecraftforge.common.config.Configuration;
+
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
@@ -30,12 +32,23 @@ public class CommandPowersMod
    @Instance(value = CommandPowersMod.MODID)
     public static CommandPowersMod instance; 
     public static Logger logger;  
+	public static Configuration config;  
     protected static final String MODID = "samspowerups.commands"; 
     public static final String VERSION = "1";
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
     	logger = event.getModLog(); 
+    	
+    	
+    	config = new Configuration(event.getSuggestedConfigurationFile());  
+		
+		boolean enabled = config.getBoolean( "richLoot",MODID,true,
+				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
+		);
+		
+		config.save();
+		
     }
  
     @EventHandler
