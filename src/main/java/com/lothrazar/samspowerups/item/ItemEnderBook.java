@@ -2,7 +2,7 @@ package com.lothrazar.samspowerups.item;
 
 import java.util.List; 
 import com.google.common.collect.Sets; 
-import com.lothrazar.samspowerups.modules.ItemBlockModule;
+import com.lothrazar.samspowerups.ItemBlockMod;
 import com.lothrazar.util.Location; 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;

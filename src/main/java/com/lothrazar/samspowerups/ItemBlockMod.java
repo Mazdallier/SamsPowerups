@@ -1,4 +1,6 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
+
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,15 +16,26 @@ import com.lothrazar.samspowerups.item.ItemEnderBook;
 import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
 import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.util.*;  
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
- 
-public class ItemBlockModule  
+
+@Mod(modid = ItemBlockMod.MODID, version = ItemBlockMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class ItemBlockMod  
 {
+	
+    public static ItemBlockMod instance; 
+    public static Logger logger;  
+	public static Configuration config;  
+	protected final static String MODID = "samspowerups.itemsblocks";
+    public static final String VERSION = "1";
+    
 	public static  int SLOT_RUNESTONE = 8; 
  
  	public static int RUNESTONE_DURABILITY = 90000;//90 thousand ticks is 4500 seconds which is 75 minutes
@@ -54,16 +67,15 @@ public class ItemBlockModule
 	private ItemFoodAppleMagic appleChocolate;
 
 	private boolean enderBookEnabled;
+ 
 
-	private Configuration config;
-
-	private String MODID = "samspowerups.itemsblocks";
 	
 	public static enum CommandType 
 	{
 	    Teleport,Gamerule,Weather
 	}
 
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
 		String category = MODID ;
@@ -117,9 +129,34 @@ public class ItemBlockModule
 		gameRuleDaylightCycle = config.getBoolean( "gameRuleDaylightCycle",category,true
 				,"Build a command block that toggles the game rule doDaylightCycle." 
 				);  
+		
+		syncConfig();
 	}
+    
+
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
+
+    @EventHandler
+    public void onServerLoad(FMLServerStartingEvent event) 
+	{
+    	MinecraftForge.EVENT_BUS.register(this);
+	}
+
+    @EventHandler
+	public void onInit(FMLInitializationEvent event)   
+	{
+		initXray();
+		initFishing();
+		initApples();
+		initCommand();
+		initRunestones();	 
+	}
+
 	
-	public void initFishing() 
+	private void initFishing() 
 	{
  
 		BlockFishing block = new BlockFishing();
@@ -135,7 +172,7 @@ public class ItemBlockModule
 	  	GameRegistry.addSmelting(new ItemStack(block),new ItemStack(Blocks.web,4),0); 
 	}
 	
-	public void initApples()
+	private void initApples()
 	{   
  
 		//the potion effect ids listed at http://minecraft.gamepedia.com/Potion_Effects
@@ -331,20 +368,7 @@ public class ItemBlockModule
 		GameRegistry.addSmelting(itemEnderBook, new ItemStack(Items.ender_pearl,8),0); 
 	}	
 
-	public void onServerLoad(FMLServerStartingEvent event) 
-	{
-    	MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	public void onInit(FMLInitializationEvent event)   
-	{
-		initXray();
-		initFishing();
-		initApples();
-		initCommand();
-		initRunestones();	 
-	}
-
+	
 	private void initRunestones() 
 	{
  
@@ -434,14 +458,14 @@ public class ItemBlockModule
 			 
 			if (enderBookInstance.stackTagCompound == null) {return;}
 			
-			ItemBlockModule.itemEnderBook.teleport(event.entityPlayer, itemStack);
+			ItemBlockMod.itemEnderBook.teleport(event.entityPlayer, itemStack);
 			 
 		}
 		else
 		{ 			
-			if(itemStack.getItem() == ItemBlockModule.itemEnderBook)
+			if(itemStack.getItem() == ItemBlockMod.itemEnderBook)
 			{
-				ItemBlockModule.itemEnderBook.saveCurrentLocation(event.entityPlayer, itemStack);
+				ItemBlockMod.itemEnderBook.saveCurrentLocation(event.entityPlayer, itemStack);
 			}
 		}		 
   	}
@@ -449,7 +473,7 @@ public class ItemBlockModule
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{       
-		ItemStack runestone = event.player.inventory.getStackInSlot(ItemBlockModule.SLOT_RUNESTONE);
+		ItemStack runestone = event.player.inventory.getStackInSlot(ItemBlockMod.SLOT_RUNESTONE);
 		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}
  
 		ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
