@@ -1,4 +1,6 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
+
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -14,32 +16,55 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
 import com.lothrazar.samspowerups.item.ItemChestSack;
 import com.lothrazar.samspowerups.item.ItemWandMaster;
 import com.lothrazar.util.*; 
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class MasterWandModule  
+@Mod(modid = MasterWandMod.MODID, version = MasterWandMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class MasterWandMod  
 { 
+    @Instance(value = MasterWandMod.MODID)
+    public static MasterWandMod instance; 
+    public static Logger logger;  
+    protected static final String MODID = "samspowerups.masterwand"; 
+    public static final String VERSION = "1"; 
+	public static Configuration config;  
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	}  
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
-	private String MODID;
-  
+
+	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{ 
 		MinecraftForge.EVENT_BUS.register(this);  //new WandHandler()); 
 	}
- 
+
+	@EventHandler
 	public void onInit(FMLInitializationEvent event) 
 	{  
 		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName(MODID+":wand_master");
+		itemWand.setUnlocalizedName("wand_master").setTextureName("samspowerups"+":wand_master");
 		GameRegistry.registerItem(itemWand,  "wand_master");   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
@@ -69,7 +94,7 @@ public class MasterWandModule
 		 
 		if(event.action.LEFT_CLICK_BLOCK == event.action)
 		{ 
-			if(held.getItem() == MasterWandModule.itemWand)
+			if(held.getItem() == MasterWandMod.itemWand)
 			{ 
 				if(blockClicked == null || blockClicked == Blocks.air ){return;}
 				
@@ -78,16 +103,16 @@ public class MasterWandModule
 					TileEntity container = event.world.getTileEntity(event.x, event.y, event.z);
 					if(container instanceof TileEntityChest)
 					{
-						MasterWandModule.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
+						MasterWandMod.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
 					}
 				} 
 				else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
 				{ 
 					//	public static void replantField(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
-					MasterWandModule.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
+					MasterWandMod.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
 				}
 			}
-			else if(held.getItem() == MasterWandModule.itemChestSack)
+			else if(held.getItem() == MasterWandMod.itemChestSack)
 			{
 				TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z); 
 				
@@ -117,28 +142,28 @@ public class MasterWandModule
 		  	  		teAdjacent = chest.adjacentChestZPos; 
 		  	  	}
 		  		 
-		  		MasterWandModule.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+		  		MasterWandMod.itemChestSack.sortFromSackToChestEntity(chest,held,event);
 		  		
 		  		if(teAdjacent != null)
 		  		{
-		  			MasterWandModule.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
+		  			MasterWandMod.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
 		  		} 	
 			}
 		}
 		else // right click
 		{
-			if(held.getItem() == MasterWandModule.itemWand)
+			if(held.getItem() == MasterWandMod.itemWand)
 			{
 				if( blockClicked.equals(Blocks.diamond_block))
 				{
-					MasterWandModule.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
+					MasterWandMod.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
 				}
 				else if( blockClicked.equals(Blocks.stone))
 				{
-					MasterWandModule.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
+					MasterWandMod.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
 				} 
 			}
-			else if(held.getItem() == MasterWandModule.itemChestSack)
+			else if(held.getItem() == MasterWandMod.itemChestSack)
 			{ 	
 				if(  held.stackTagCompound==null){return;}
 			   
@@ -152,7 +177,7 @@ public class MasterWandModule
 					return;
 				}
 				
-				MasterWandModule.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
+				MasterWandMod.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
 			}
 		}
   	}
@@ -161,7 +186,7 @@ public class MasterWandModule
 	public void onEntityInteractEvent(EntityInteractEvent event)
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-		if(held == null || held.getItem() != MasterWandModule.itemWand ){ return;}
+		if(held == null || held.getItem() != MasterWandMod.itemWand ){ return;}
   
 		if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){ return;}
 		

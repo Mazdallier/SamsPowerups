@@ -169,7 +169,7 @@ public class ItemBlockMod
  
 		BlockFishing block = new BlockFishing();
 		block.setBlockName("block_fishing")
-			 .setBlockTextureName(MODID + ":block_fishing");
+			 .setBlockTextureName("samspowerups" + ":block_fishing");
 		GameRegistry.registerBlock(block, "block_fishing");
 		
 		GameRegistry.addRecipe(new ItemStack(block), "pwp",	"wfw", "pwp" 
@@ -223,7 +223,7 @@ public class ItemBlockMod
 				.addEffect(SPEED,potionTimeSeconds,I) 
 				.addEffect(ABSORP,potionTimeSeconds,II) 
 				.setUnlocalizedName("apple_emerald")
-				.setTextureName(MODID+":apple_emerald");  
+				.setTextureName("samspowerups"+":apple_emerald");  
 		GameRegistry.registerItem(appleEmerald,  "apple_emerald" );   
 		GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald), Items.emerald , Items.golden_apple );
 		GameRegistry.addSmelting(appleEmerald, new ItemStack(Items.emerald,8),0);		
@@ -238,7 +238,7 @@ public class ItemBlockMod
 				.addEffect(RESISTANCE,potionTimeSeconds,II)
 				.addEffect(REGEN,20,II)//just enough to fill those extras
 				.setUnlocalizedName("apple_diamond")
-				.setTextureName(MODID+":apple_diamond"); 
+				.setTextureName("samspowerups"+":apple_diamond"); 
 		GameRegistry.registerItem(appleDiamond,  "apple_diamond"); 
 		GameRegistry.addShapelessRecipe(new ItemStack(appleDiamond),  Items.diamond,  Items.golden_apple );
 		GameRegistry.addSmelting(appleDiamond, new ItemStack(Items.diamond,1),0);//getcha that diamond back
@@ -249,7 +249,7 @@ public class ItemBlockMod
 				.addEffect(WATER_BREATHING,potionTimeSeconds,II) //puffer fish are way too rare
 				.addEffect(ABSORP,potionTimeSeconds,II) 
 				.setUnlocalizedName("apple_lapis")
-				.setTextureName(MODID+":apple_lapis");  
+				.setTextureName("samspowerups"+":apple_lapis");  
 		GameRegistry.registerItem(appleLapis,  "apple_lapis"); 
 		GameRegistry.addShapelessRecipe(new ItemStack(appleLapis),   new ItemStack(Items.dye,1,4) , Items.golden_apple );
 		GameRegistry.addSmelting(appleLapis, new ItemStack(Items.dye,8,4),0);//uncraft
@@ -262,7 +262,7 @@ public class ItemBlockMod
 		appleChocolate.addEffect(SPEED,30,II) //just a short burst of speed. mini speed potion
 				.addEffect(HASTE,30,II)
 				.setUnlocalizedName("apple_chocolate")
-				.setTextureName(MODID+":apple_chocolate"); 
+				.setTextureName("samspowerups"+":apple_chocolate"); 
 		GameRegistry.registerItem(appleChocolate,  "apple_chocolate" ); 
 		GameRegistry.addRecipe(new ItemStack(appleChocolate), "eee", "eae","eee"
 				, 'e', new ItemStack(Items.dye,1,3) //3 for cocoa
@@ -365,7 +365,7 @@ public class ItemBlockMod
 	private void initEnderbook()
 	{ 
 		itemEnderBook = new ItemEnderBook();
-		itemEnderBook.setTextureName(MODID+":book_ender").setUnlocalizedName("book_ender");
+		itemEnderBook.setTextureName("samspowerups"+":book_ender").setUnlocalizedName("book_ender");
 		GameRegistry.registerItem(itemEnderBook,  "book_ender");   
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook)
 			,"eee"
@@ -392,7 +392,7 @@ public class ItemBlockMod
 		//changing to register item before adding recipes. it fixed a bug in other mods
 		 
 		rune_jump = new ItemRunestone(new int[]{Reference.potion_JUMP},new int[]{V},not_shiny); 
-		rune_jump.setUnlocalizedName("rune_jump").setTextureName(MODID+":rune_jump");   
+		rune_jump.setUnlocalizedName("rune_jump").setTextureName("samspowerups"+":rune_jump");   
 		GameRegistry.registerItem(rune_jump,  "rune_jump"); 
 		GameRegistry.addRecipe(new ItemStack(rune_jump), "eee", "eae","eee"
 				, 'e', Items.emerald // could be slime ball/block?
@@ -400,7 +400,7 @@ public class ItemBlockMod
 		GameRegistry.addSmelting(rune_jump, new ItemStack(Items.nether_star,1),0);	
 	
 		rune_resistance = new ItemRunestone(new int[]{Reference.potion_RESISTANCE,Reference.potion_HUNGER},new int[]{II,I},shiny);  
-		rune_resistance.setUnlocalizedName("rune_resistance").setTextureName(MODID+":rune_resistance");
+		rune_resistance.setUnlocalizedName("rune_resistance").setTextureName("samspowerups"+":rune_resistance");
 		GameRegistry.registerItem(rune_resistance,  "rune_resistance"); 
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae","eee"
 				, 'e', Items.diamond
@@ -408,7 +408,7 @@ public class ItemBlockMod
 		GameRegistry.addSmelting(rune_resistance, new ItemStack(Items.nether_star,1),0);		
 		 
 		rune_goldheart = new ItemRunestone(new int[]{Reference.potion_HEALTH_BOOST,Reference.potion_HUNGER},new int[]{V,I},not_shiny);  
-		rune_goldheart.setUnlocalizedName("rune_goldheart").setTextureName(MODID+":rune_goldheart");
+		rune_goldheart.setUnlocalizedName("rune_goldheart").setTextureName("samspowerups"+":rune_goldheart");
 		GameRegistry.registerItem(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae","eee"
 				, 'e', Blocks.gold_block
@@ -416,7 +416,7 @@ public class ItemBlockMod
 		GameRegistry.addSmelting(rune_goldheart, new ItemStack(Items.nether_star,1),0);		
  
 		rune_haste = new ItemRunestone(new int[]{Reference.potion_HASTE,Reference.potion_WEAKNESS},new int[]{II,II},not_shiny);   
-		rune_haste.setUnlocalizedName( "rune_haste" ).setTextureName(MODID+":rune_haste"); 
+		rune_haste.setUnlocalizedName( "rune_haste" ).setTextureName("samspowerups"+":rune_haste"); 
 		GameRegistry.registerItem(rune_haste,   "rune_haste" ); 
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae","eee"
 				, 'e', Blocks.redstone_block
@@ -424,7 +424,7 @@ public class ItemBlockMod
 		GameRegistry.addSmelting(rune_haste, new ItemStack(Items.nether_star,1),0);	
 		
 		rune_water = new ItemRunestone(new int[]{Reference.potion_WATER_BREATHING,Reference.potion_NIGHT_VISION },new int[]{V,II},not_shiny); 
-		rune_water.setUnlocalizedName("rune_water").setTextureName(MODID+":rune_water"); 
+		rune_water.setUnlocalizedName("rune_water").setTextureName("samspowerups"+":rune_water"); 
 		GameRegistry.registerItem(rune_water, "rune_water"); 
 		GameRegistry.addRecipe(new ItemStack(rune_water), "eee", "eae","eee"
 				, 'e', Blocks.lapis_block // new ItemStack(Items.dye,1,Reference.dye_lapis)//LAPIS
@@ -432,7 +432,7 @@ public class ItemBlockMod
 		GameRegistry.addSmelting(rune_water, new ItemStack(Items.nether_star,1),0);	
 		 
 		rune_speed = new ItemRunestone(new int[]{Reference.potion_SPEED,Reference.potion_FATIGUE},new int[]{II,II},not_shiny);  
-		rune_speed.setUnlocalizedName("rune_speed").setTextureName(MODID+":rune_speed"); 
+		rune_speed.setUnlocalizedName("rune_speed").setTextureName("samspowerups"+":rune_speed"); 
 		GameRegistry.registerItem(rune_speed,  "rune_speed"); 
 		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae","eee"
 				, 'e', Items.sugar  
@@ -440,7 +440,7 @@ public class ItemBlockMod
 		GameRegistry.addSmelting(rune_speed, new ItemStack(Items.nether_star,1),0);	
 		
 		rune_fire = new ItemRunestone(new int[]{Reference.potion_FIRERESIST,Reference.potion_WEAKNESS,Reference.potion_FATIGUE},new int[]{I,II,II},shiny);  
-		rune_fire.setUnlocalizedName("rune_fire" ).setTextureName(MODID+":rune_fire"); 
+		rune_fire.setUnlocalizedName("rune_fire" ).setTextureName("samspowerups"+":rune_fire"); 
 		GameRegistry.registerItem(rune_fire,  "rune_fire" ); 
 		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae","eee"
 				, 'e', Items.blaze_rod

@@ -63,8 +63,8 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = AlterBaseClassMod.MODID, version = AlterBaseClassMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class AlterBaseClassMod
 {
-//program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
-   @Instance(value = AlterBaseClassMod.MODID)
+	//program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
+    @Instance(value = AlterBaseClassMod.MODID)
     public static AlterBaseClassMod instance; 
     public static Logger logger;  
     protected static final String MODID = "samspowerups"; 
