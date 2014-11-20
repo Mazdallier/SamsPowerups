@@ -1,5 +1,7 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
   
+import org.apache.logging.log4j.Logger;
+
 import com.lothrazar.util.*; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -7,12 +9,22 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class UncraftingModule
-{  
+@Mod(modid = UncraftingMod.MODID, version = UncraftingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class UncraftingMod
+{
+    @Instance(value = UncraftingMod.MODID)
+    public static UncraftingMod instance; 
+    public static Logger logger;   
+    public static final String VERSION = "1";   
 	private static boolean stairs;
 	private static boolean misc;
 	private static boolean slabs; 
@@ -25,9 +37,19 @@ public class UncraftingModule
 	private static boolean armor; 
 	private static boolean natureblocks;
 	private static boolean glass;
-	private String MODID = "samspowerups.uncrafting";
+	public final static String MODID = "samspowerups.uncrafting";
 	private Configuration config;
- 
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	}  
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }
+    
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{  
 		String category = MODID;
@@ -86,6 +108,7 @@ public class UncraftingModule
 		); 
 	}
 
+    @EventHandler
 	public void onInit(FMLInitializationEvent event) 
 	{     
 		int EXP = 0;// same for all recipes - default

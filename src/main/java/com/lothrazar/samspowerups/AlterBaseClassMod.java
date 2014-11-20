@@ -80,7 +80,6 @@ public class AlterBaseClassMod
 		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
     }
     
-    
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  

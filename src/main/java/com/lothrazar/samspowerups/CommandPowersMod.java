@@ -73,8 +73,8 @@ public class CommandPowersMod
 		logger.info("Register searchitem command");
 		event.registerServerCommand(new CommandKillAll());
 		logger.info("Register killall command");
-		event.registerServerCommand(new CommandSimpleWaypoints());
-		logger.info("Register simplewaypoint command");
+	//	event.registerServerCommand(new CommandSimpleWaypoints());
+	//	logger.info("Register simplewaypoint command");
 	}
 	
 	public static ArrayList<String> GetForPlayerName(String playerName)

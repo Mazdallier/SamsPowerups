@@ -35,7 +35,7 @@ public class SmartPlantsMod    implements IFuelHandler
 	public static Logger logger;   
 	public static final String VERSION = "1";
 	private boolean enabled;
-	protected final static String MODID = "samspowerups.stacksize";
+	protected final static String MODID = "samspowerups.smartplants";
 	private Configuration config; 
     public void syncConfig() 
 	{
@@ -47,12 +47,11 @@ public class SmartPlantsMod    implements IFuelHandler
 		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
     }
 
-    
     @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{ 
 		String category = MODID; 
-config =   new Configuration(event.getSuggestedConfigurationFile());  
+		config =   new Configuration(event.getSuggestedConfigurationFile());  
 		enabled = config.getBoolean( "bonemealAllFlowers",category,true,
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, " +
 				"snot just the double height ones as normal."
