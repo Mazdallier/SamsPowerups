@@ -1,8 +1,11 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random; 
+
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,28 +18,53 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge; 
+import net.minecraftforge.common.config.Configuration;
+
 import com.lothrazar.samspowerups.command.CommandTodoList;
 import com.lothrazar.util.*;  
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ScreenInfoModule  
+@Mod(modid = ScreenInfoMod.MODID, version = ScreenInfoMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class ScreenInfoMod  
 { 
+    @Instance(value = ScreenInfoMod.MODID)
+    public static ScreenInfoMod instance; 
+    public static Logger logger;  
+	public static Configuration config;  
+    protected static final String MODID = "samspowerups.screeninfo"; 
+    public static final String VERSION = "1";
 	private boolean showDefaultDebug = true ; //TODO: split to left and right
 	private boolean showGameRules = true;
 	private boolean showSlimeChunk = true;
 	private boolean showVillageInfo = true; 
 	private boolean showHorseInfo = true;
-	
+
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
+    	logger = event.getModLog(); 
 		MinecraftForge.EVENT_BUS.register(this); 
+		config = new Configuration(event.getSuggestedConfigurationFile());  
 		
+   	 
+		
+        syncConfig() ;
 		// TODO: config entries for the above settings
 	} 
-	  
+
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
+
+    @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event) 
 	{
 		event.registerServerCommand(new CommandTodoList());
