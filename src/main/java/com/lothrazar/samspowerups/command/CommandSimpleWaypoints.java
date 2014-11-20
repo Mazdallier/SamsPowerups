@@ -3,7 +3,8 @@ package com.lothrazar.samspowerups.command;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;  
-import com.lothrazar.samspowerups.modules.CommandPowersModule; 
+
+import com.lothrazar.samspowerups.CommandPowersMod;
 import com.lothrazar.util.Chat;
 import com.lothrazar.util.Location;
 
@@ -132,7 +133,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeSave(EntityPlayer p, String name) 
 	{ 
-		ArrayList<String> lines = CommandPowersModule.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = CommandPowersMod.GetForPlayerName(p.getDisplayName());
 		
 		if(name == null) name = "";
 		
@@ -149,7 +150,7 @@ public class CommandSimpleWaypoints  implements ICommand
 
 	private void executeHide(EntityPlayer p) 
 	{
-		ArrayList<String> lines = CommandPowersModule.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = CommandPowersMod.GetForPlayerName(p.getDisplayName());
 		
 		if(lines.size() < 1){return;}
 		lines.set(0,"0");
@@ -158,7 +159,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeClear(EntityPlayer p) 
 	{
-		ArrayList<String> lines = CommandPowersModule.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = CommandPowersMod.GetForPlayerName(p.getDisplayName());
 		
 		if(lines.size() <= 1){return;}
 		
@@ -195,7 +196,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeList(EntityPlayer p) 
 	{ 
-		ArrayList<String> lines = CommandPowersModule.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = CommandPowersMod.GetForPlayerName(p.getDisplayName());
 		
 		int i = 0;
 		String d;
@@ -233,7 +234,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void SetCurrentForPlayerName(String playerName, int current)
 	{
-		ArrayList<String> lines = CommandPowersModule.GetForPlayerName(playerName);
+		ArrayList<String> lines = CommandPowersMod.GetForPlayerName(playerName);
 		
 		lines.set(0, current+"");//overwrite the current index
  

@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -6,36 +6,61 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList; 
+
+import org.apache.logging.log4j.Logger;
+
 import net.minecraftforge.common.DimensionManager;  
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints; 
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-public class CommandPowersModule 
-{ 
-	public void onPreInit(FMLPreInitializationEvent event) 
-	{
-		// : config settings here
-	}
-
-	public void onInit(FMLInitializationEvent event)   {}
-	
+@Mod(modid = CommandPowersMod.MODID, version = CommandPowersMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class CommandPowersMod
+{
+//program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
+   @Instance(value = CommandPowersMod.MODID)
+    public static CommandPowersMod instance; 
+    public static Logger logger;  
+    protected static final String MODID = "samspowerups.commands"; 
+    public static final String VERSION = "1";
+    @EventHandler
+    public void onPreInit(FMLPreInitializationEvent event)   
+    {  
+    	logger = event.getModLog(); 
+    }
+ 
+    @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
-	{
+	{ 
+		event.registerServerCommand(new CommandEnderChest());
+		logger.info("Register searchtrade command");
 		event.registerServerCommand(new CommandSearchTrades());
-		event.registerServerCommand(new CommandSearchTrades());
+		logger.info("Register searchtrade command");
 		event.registerServerCommand(new CommandSearchItem());
+		logger.info("Register searchitem command");
 		event.registerServerCommand(new CommandKillAll());
+		logger.info("Register killall command");
 		event.registerServerCommand(new CommandSimpleWaypoints());
+		logger.info("Register simplewaypoint command");
 	}
 	
 	public static ArrayList<String> GetForPlayerName(String playerName)
 	{ 
+		if(playerName == null)
+		{
+			logger.info("GetForPlayerName possible exception: <null>");
+			return null;
+		}
+		logger.info("GetForPlayerName : "+ playerName);
 		String fileName = "swp_"+playerName +".dat";
 		ArrayList<String> lines = new ArrayList<String>();
 	 

@@ -14,10 +14,10 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerRenderers() 
     {  
-		keyShiftUp = new KeyBinding(KeySliderModule.keyMenuUpName, Keyboard.KEY_V, KeySliderModule.keyCategory);
+		keyShiftUp = new KeyBinding(KeySliderMod.keyMenuUpName, Keyboard.KEY_V, KeySliderMod.keyCategory);
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftUp);
          
-		keyShiftDown = new KeyBinding(KeySliderModule.keyMenuDownName, Keyboard.KEY_C, KeySliderModule.keyCategory); 
+		keyShiftDown = new KeyBinding(KeySliderMod.keyMenuDownName, Keyboard.KEY_C, KeySliderMod.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
     }
 }

@@ -1,6 +1,8 @@
 package com.lothrazar.samspowerups.modules;
 
 import java.util.ArrayList; 
+
+import com.lothrazar.samspowerups.CommandPowersMod;
 import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;
 import com.lothrazar.util.Location;
 
@@ -19,7 +21,7 @@ public class WaypointHandler
 		
 		EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
 	 
-    	ArrayList<String> saved = CommandPowersModule.GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
+    	ArrayList<String> saved = CommandPowersMod.GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
 
     	if(saved.size() > 0 && saved.get(0) != null)
     	{ 

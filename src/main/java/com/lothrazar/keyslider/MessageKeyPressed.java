@@ -39,11 +39,13 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	{
 		EntityPlayer player = ctx.getServerHandler().playerEntity;
 
+    	System.out.println("mmssgginput!!");
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html
  
 		if( message.keyPressed == ClientProxy.keyShiftUp.getKeyCode())
  	    {  
+        	System.out.println("upupupkey input!!");
 			ItemStack held = player.inventory.getCurrentItem();
 			 
 			//so we move each up by nine

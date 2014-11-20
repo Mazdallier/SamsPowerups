@@ -1,6 +1,7 @@
 package com.lothrazar.keyslider;
  
 import net.minecraftforge.common.MinecraftForge; 
+import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -13,8 +14,8 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = KeySliderModule.MODID, version = KeySliderModule.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class KeySliderModule  
+@Mod(modid = KeySliderMod.MODID, version = KeySliderMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class KeySliderMod  
 {    	
 	@SidedProxy(clientSide="com.lothrazar.keyslider.ClientProxy", serverSide="com.lothrazar.keyslider.CommonProxy")
 	public static CommonProxy proxy;  
@@ -23,10 +24,10 @@ public class KeySliderModule
 	public static final String keyCategory = "key.categories.inventory";
 	public static SimpleNetworkWrapper network; 
 
-    @Instance(value = KeySliderModule.MODID)
-    public static KeySliderModule instance;
+    @Instance(value = KeySliderMod.MODID)
+    public static KeySliderMod instance;
 	protected static final String MODID = "keyslider";
-	//private Configuration config;
+	private Configuration config;
     //public static Logger logger;   
     public static final String VERSION = "1";
 	 
@@ -35,14 +36,26 @@ public class KeySliderModule
     {  
     
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID ); 
+    	
     	 network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
-    	//config = new Configuration(event.getSuggestedConfigurationFile());  
+    	config = new Configuration(event.getSuggestedConfigurationFile());  
  
-		//syncConfig();  
+		syncConfig();  
+    	
+    	
 		
     	 MinecraftForge.EVENT_BUS.register(instance);  //for onConfigChanged
     }
 
+	
+	public void syncConfig() 
+	{
+		if(config.hasChanged())
+		{
+			config.save();
+		}
+	} 
+    
     @EventHandler
     public void load(FMLInitializationEvent event)
     {
@@ -60,6 +73,7 @@ public class KeySliderModule
         
         if(ClientProxy.keyShiftDown.isPressed()   )
         { 	    
+        	System.out.println("On key input!!");
         	network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
         }  
     }

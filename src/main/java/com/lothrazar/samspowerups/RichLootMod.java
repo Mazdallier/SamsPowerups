@@ -26,11 +26,11 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-//@Mod(modid = RichLootMod.MODID, version = RichLootMod.VERSION,guiFactory = "com.lothrazar.samspowerups.RichLootMod.ConfigGuiFactory")
+@Mod(modid = RichLootMod.MODID, version = RichLootMod.VERSION,guiFactory = "com.lothrazar.samspowerups.RichLootMod.ConfigGuiFactory")
 public class RichLootMod 
 { 
 
-   // @Instance(value = RichLootMod.MODID)
+    @Instance(value = RichLootMod.MODID)
     public static RichLootMod instance; 
     public static final String MODID = "samspowerups.richloot";
     public static final String VERSION = "1";
@@ -52,12 +52,13 @@ public class RichLootMod
     	
 		String category = MODID; 
 
-    	//config = new Configuration(event.getSuggestedConfigurationFile());  
-		/*
-		enabled = config.getBoolean( "richLoot",category,true,
+    	config = new Configuration(event.getSuggestedConfigurationFile());  
+		
+		boolean enabled = config.getBoolean( "richLoot",category,true,
 				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
 		);
-		*/
+		
+		config.save();
 		
 	}
 

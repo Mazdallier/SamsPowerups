@@ -60,11 +60,11 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.BlockLilyPad;
 import org.apache.logging.log4j.Logger;
 
-//@Mod(modid = AlterBaseClassMod.MODID, version = AlterBaseClassMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+@Mod(modid = AlterBaseClassMod.MODID, version = AlterBaseClassMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class AlterBaseClassMod
 {
 //program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
-  // @Instance(value = AlterBaseClassMod.MODID)
+   @Instance(value = AlterBaseClassMod.MODID)
     public static AlterBaseClassMod instance; 
     public static Logger logger;  
     protected static final String MODID = "samspowerups"; 
@@ -95,29 +95,7 @@ public class AlterBaseClassMod
     //	BlockPumpkin.class.canPlaceBlockAt = 
     	//door, what did i change there? 
     }
-	
-	// #region SandboxCode
-	
-	//PRE INIT 
-	//network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID); 
-	
-	//config = new Configuration(event.getSuggestedConfigurationFile());  
-
-	//syncConfig();  
-	
-	//MinecraftForge.EVENT_BUS.register(instance);  //for onConfigChanged
-	
-	
-	public void syncConfig() 
-	{
-		/*
-		if(config.hasChanged())
-		{
-			config.save();
-		}
-		*/
-	} 
-    
+	  
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{ 
