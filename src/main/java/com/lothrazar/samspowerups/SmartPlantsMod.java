@@ -1,4 +1,6 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
+
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommand;
@@ -13,19 +15,40 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent; 
 import com.lothrazar.util.*; 
 import com.lothrazar.util.Reference.*;
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.IFuelHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class SmartPlantsModule    implements IFuelHandler
-{  
-	private boolean enabled = true;
-	private String MODID;
-	private Configuration config;
-  
+@Mod(modid = SmartPlantsMod.MODID, version = SmartPlantsMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class SmartPlantsMod    implements IFuelHandler
+{   
+	@Instance(value = SmartPlantsMod.MODID)
+	public static SmartPlantsMod instance; 
+	public static Logger logger;   
+	public static final String VERSION = "1";
+	private boolean enabled;
+	protected final static String MODID = "samspowerups.stacksize";
+	private Configuration config; 
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	}  
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }
+
+    
+    @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{ 
 		String category = MODID; 
@@ -34,10 +57,11 @@ config =   new Configuration(event.getSuggestedConfigurationFile());
 				"Bonemeal any flower to grow another one, and also lilypads.  This makes it work on all flowers, " +
 				"snot just the double height ones as normal."
 		); 
-		
-		MinecraftForge.EVENT_BUS.register(this); 
+		syncConfig();
+		MinecraftForge.EVENT_BUS.register(instance); 
 	} 
-	
+
+    @EventHandler
 	public void onInit(FMLInitializationEvent event)   
 	{
 		GameRegistry.registerFuelHandler(this);

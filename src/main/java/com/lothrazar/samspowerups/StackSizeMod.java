@@ -18,8 +18,7 @@ import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = StackSizeMod.MODID, version = StackSizeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class StackSizeMod  
-{  
-	
+{   
 	@Instance(value = StackSizeMod.MODID)
 	public static StackSizeMod instance; 
 	public static Logger logger;   
