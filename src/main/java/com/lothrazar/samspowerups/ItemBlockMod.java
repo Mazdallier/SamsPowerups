@@ -157,6 +157,7 @@ public class ItemBlockMod
 	public void onInit(FMLInitializationEvent event)   
 	{
 		initXray();
+		initEnderbook();
 		initFishing();
 		initApples();
 		initCommand();
@@ -275,7 +276,7 @@ public class ItemBlockMod
 	 
 		block_xray = new BlockXRay();
 		block_xray.setBlockName("block_xray")
-			 .setBlockTextureName(MODID + ":block_xray");
+			 .setBlockTextureName("samspowerups" + ":block_xray");
 		GameRegistry.registerBlock(block_xray, "block_xray");
 		 
 		GameRegistry.addRecipe(new ItemStack(block_xray), "owo",	"wgw", "owo" 
@@ -294,7 +295,7 @@ public class ItemBlockMod
 		{
 			BlockCommandBlockCraftable gameruleRegenBlock;
 			gameruleRegenBlock = new BlockCommandBlockCraftable(CommandType.Gamerule ,"naturalRegeneration");
-			gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName(MODID+":regen_command_block");  
+			gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName("samspowerups"+":regen_command_block");  
 			GameRegistry.registerBlock(gameruleRegenBlock, "grRegenBlock");  
 			GameRegistry.addRecipe(new ItemStack(gameruleRegenBlock), "rcr", "tet","rcr" 
 					, 'c', Items.comparator
@@ -309,7 +310,7 @@ public class ItemBlockMod
 		{ 
 			BlockCommandBlockCraftable weatherblock ;
 			weatherblock = new BlockCommandBlockCraftable(CommandType.Weather); 
-			weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName(MODID+":weather_command_block");
+			weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName("samspowerups"+":weather_command_block");
 			GameRegistry.registerBlock(weatherblock, "weatherCommandBlock"); 
 			
 			GameRegistry.addRecipe(new ItemStack(weatherblock), "rcr", "tet","rcr", 
@@ -323,7 +324,7 @@ public class ItemBlockMod
 		{ 
 			BlockCommandBlockCraftable gamerulemobGriefingblock;
 			gamerulemobGriefingblock = new BlockCommandBlockCraftable(CommandType.Gamerule ,"mobGriefing");
-			gamerulemobGriefingblock.setBlockName("grmobGriefingblock").setBlockTextureName(MODID+":mobgrief_command_block"); 
+			gamerulemobGriefingblock.setBlockName("grmobGriefingblock").setBlockTextureName("samspowerups"+":mobgrief_command_block"); 
 			GameRegistry.registerBlock(gamerulemobGriefingblock,"grmobGriefingblock"); 
 			
 			GameRegistry.addRecipe(new ItemStack(gamerulemobGriefingblock), "rcr", "tet","rcr" 
@@ -337,7 +338,7 @@ public class ItemBlockMod
 		{ 
 			BlockCommandBlockCraftable gameruleFiretickblock;
 			gameruleFiretickblock = new BlockCommandBlockCraftable(CommandType.Gamerule ,"doFireTick"); 
-			gameruleFiretickblock.setBlockName("grdoFiretickblock").setBlockTextureName(MODID+":firetick_command_block");  
+			gameruleFiretickblock.setBlockName("grdoFiretickblock").setBlockTextureName("samspowerups"+":firetick_command_block");  
 			GameRegistry.registerBlock(gameruleFiretickblock, "grdoFiretickblock");  
 			
 			GameRegistry.addRecipe(new ItemStack(gameruleFiretickblock), "rcr", "tet","rcr" 
@@ -351,7 +352,7 @@ public class ItemBlockMod
 		{ 
 			BlockCommandBlockCraftable day;
 			day = new BlockCommandBlockCraftable(CommandType.Gamerule ,"doDaylightCycle"); 
-			day.setBlockName("daycycle_command_block").setBlockTextureName(MODID+":daycycle_command_block");  
+			day.setBlockName("daycycle_command_block").setBlockTextureName("samspowerups"+":daycycle_command_block");  
 			GameRegistry.registerBlock(day, "daycycle_command_block");  
 			
 			GameRegistry.addRecipe(new ItemStack(day), "rcr", "tet","rcr" 
@@ -462,11 +463,14 @@ public class ItemBlockMod
 		{ 
 			//public void onPlayerLeftClick(PlayerInteractEvent event)
  
-			ItemStack enderBookInstance = event.entityPlayer.getCurrentEquippedItem(); 
-			 
-			if (enderBookInstance.stackTagCompound == null) {return;}
 			
-			ItemBlockMod.itemEnderBook.teleport(event.entityPlayer, itemStack);
+			if(itemStack.getItem() != itemEnderBook){return;}
+		 
+			
+			if (itemStack.stackTagCompound == null) {return;}
+			
+			////////////////////////////
+			ItemEnderBook.teleport(event.entityPlayer, itemStack);
 			 
 		}
 		else

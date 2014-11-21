@@ -93,7 +93,7 @@ public class ItemEnderBook extends ItemTool
     	itemStack.stackTagCompound.setString(KEY, loc.toCSV());		
 	} 
 	
-	public void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
+	public static void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
 	{
 		int slot = entityPlayer.inventory.currentItem+1;
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;

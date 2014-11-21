@@ -28,7 +28,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = RichLootMod.MODID, version = RichLootMod.VERSION,guiFactory = "com.lothrazar.samspowerups.RichLootMod.ConfigGuiFactory")
+//,guiFactory = "com.lothrazar.samspowerups.RichLootMod.ConfigGuiFactory"
+@Mod(modid = RichLootMod.MODID, version = RichLootMod.VERSION)
 public class RichLootMod 
 { 
 
