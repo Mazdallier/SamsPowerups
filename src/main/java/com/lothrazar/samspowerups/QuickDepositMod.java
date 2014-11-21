@@ -1,8 +1,7 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import org.apache.logging.log4j.Logger;
 
-import com.lothrazar.samspowerups.AlterBaseClassMod;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -51,7 +50,7 @@ public class QuickDepositMod
 			"Will not deposit items from your hotbar, and will not deposit into empty slots in the chest, it matches what is already there."
 		);  
 		
-	syncConfig();
+		syncConfig();
 		MinecraftForge.EVENT_BUS.register(instance); 
 	} 
   
