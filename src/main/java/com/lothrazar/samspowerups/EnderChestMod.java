@@ -42,6 +42,8 @@ public class EnderChestMod
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)  
 	{
+
+     	config = new Configuration(event.getSuggestedConfigurationFile());  
     	MinecraftForge.EVENT_BUS.register(this); 
 	}
 

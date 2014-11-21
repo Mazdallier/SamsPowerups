@@ -25,7 +25,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class SurvivalFlyingMod  
 {
     @Instance(value = SurvivalFlyingMod.MODID)
-    public static QuickDepositMod instance; 
+    public static SurvivalFlyingMod instance; 
     public static Logger logger;  
     protected static final String MODID = "samspowerups.sflying"; 
     public static final String VERSION = "1"; 

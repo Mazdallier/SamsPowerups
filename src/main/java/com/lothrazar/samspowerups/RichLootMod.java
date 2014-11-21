@@ -36,7 +36,18 @@ public class RichLootMod
     public static RichLootMod instance; 
     public static final String MODID = "samspowerups.richloot";
     public static final String VERSION = "1";
- 
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
 	//saddle, iron, bread, wheat, ...
 	private int RARITY_COMMON = 100; 
 	private int RARITY_REDSTONE = 50;
@@ -63,18 +74,8 @@ public class RichLootMod
 		syncConfig();
 		
 	}
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID))
-		{
-			instance.syncConfig();
-		} 
-    }
-    public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	} 
+    
+    
 
     @EventHandler
 	public void onInit(FMLInitializationEvent event)  //a test seed   1660196624
@@ -141,9 +142,7 @@ public class RichLootMod
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(
 				new WeightedRandomChestContent(loot,  min,  max,  rarity)); 
 	} 
-	
-
-	
+	 
 	public class ConfigGUI extends GuiConfig 
 	{ 
 	    public ConfigGUI(GuiScreen parent) 
@@ -155,37 +154,35 @@ public class RichLootMod
 	    }
 	}
 
-public class ConfigGuiFactory implements IModGuiFactory 
-{
-    @Override
-    public void initialize(Minecraft minecraftInstance) 
-    {
- 
-    }
- 
-    @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() 
-    {
-        return ConfigGUI.class;
-    }
- 
-    @Override
-    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() 
-    {
-        return null;
-    }
- 
-    @Override
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
-    {
-        return null;
-    }
-
-}
-
-
+	public class ConfigGuiFactory implements IModGuiFactory 
+	{
+	    @Override
+	    public void initialize(Minecraft minecraftInstance) 
+	    {
+	 
+	    }
+	 
+	    @Override
+	    public Class<? extends GuiScreen> mainConfigGuiClass() 
+	    {
+	        return ConfigGUI.class;
+	    }
+	 
+	    @Override
+	    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() 
+	    {
+	        return null;
+	    }
+	 
+	    @Override
+	    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
+	    {
+	        return null;
+	    }
 	
+	}
 	
+ 
 	
 }
 

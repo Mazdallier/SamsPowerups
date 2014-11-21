@@ -47,6 +47,7 @@ public class QuickDepositMod
 		
 		String category = MODID ; 
 
+     	config = new Configuration(event.getSuggestedConfigurationFile());  
 		quickSortEnabled = config.getBoolean("magicSort",category, true,
 			"Shift right click any chest with an empty hand, and it tries to safely deposit and sort any items that belong.  " +
 			"Will not deposit items from your hotbar, and will not deposit into empty slots in the chest, it matches what is already there."
