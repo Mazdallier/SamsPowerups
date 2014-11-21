@@ -1,39 +1,60 @@
 package com.lothrazar.samspowerups.modules;
 
+import org.apache.logging.log4j.Logger;
+
+import com.lothrazar.samspowerups.AlterBaseClassMod;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class QuickDepositModule  
+public class QuickDepositMod  
 {  
 	//public boolean quickSortEnabled;
- 
+	//program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
+    @Instance(value = QuickDepositMod.MODID)
+    public static QuickDepositMod instance; 
+    public static Logger logger;  
+    protected static final String MODID = "samspowerups.deposit"; 
+    public static final String VERSION = "1"; 
+	public static Configuration config;
+	private boolean quickSortEnabled;  
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	}  
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }
+    
+	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{
-		/*
-		String category = ModSamsPowerups.MODID ; 
+		
+		String category = MODID ; 
 
-		quickSortEnabled = ModSamsPowerups.config.getBoolean("magicSort",category, true,
+		quickSortEnabled = config.getBoolean("magicSort",category, true,
 			"Shift right click any chest with an empty hand, and it tries to safely deposit and sort any items that belong.  " +
 			"Will not deposit items from your hotbar, and will not deposit into empty slots in the chest, it matches what is already there."
 		);  
 		
-*/
-		MinecraftForge.EVENT_BUS.register(this); 
+	syncConfig();
+		MinecraftForge.EVENT_BUS.register(instance); 
 	} 
-	//for creating blocks/ items etc
-	public void onInit(FMLInitializationEvent event)   {}
-	 
-	//to register commands
-	public void onServerLoad(FMLServerStartingEvent event) {}
-	 
+  
 	@SuppressWarnings("unused")
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)
