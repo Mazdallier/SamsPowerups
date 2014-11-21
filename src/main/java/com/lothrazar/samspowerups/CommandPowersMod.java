@@ -7,14 +7,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;  
 import org.apache.logging.log4j.Logger; 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.DimensionManager;  
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration; 
 import com.lothrazar.samspowerups.command.CommandEnderChest;
 import com.lothrazar.samspowerups.command.CommandKillAll;
 import com.lothrazar.samspowerups.command.CommandSearchItem;
 import com.lothrazar.samspowerups.command.CommandSearchTrades;
-import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;  
-
+import com.lothrazar.samspowerups.command.CommandSimpleWaypoints;   
+import com.lothrazar.util.Location; 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -34,11 +41,23 @@ public class CommandPowersMod
 	public static Configuration config;  
     protected static final String MODID = "samspowerups.commands"; 
     public static final String VERSION = "1";
+	public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	} 
+	
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID))
+		{
+			instance.syncConfig();
+		} 
+    }
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
     	logger = event.getModLog(); 
-    	
     	
     	config = new Configuration(event.getSuggestedConfigurationFile());  
 		
@@ -46,22 +65,15 @@ public class CommandPowersMod
 				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
 		);
 		
-		 syncConfig() ;
-		
-    }
-	
-	public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	} 
-	  @SubscribeEvent
-	    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-		{ 
-			if(eventArgs.modID.equals(MODID))
-			{
-				instance.syncConfig();
-			} 
-	    }
+		syncConfig() ;
+
+	    MinecraftForge.EVENT_BUS.register(instance); 
+    } 
+    
+
+  
+  
+	  
     @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{ 
@@ -73,9 +85,68 @@ public class CommandPowersMod
 		logger.info("Register searchitem command");
 		event.registerServerCommand(new CommandKillAll());
 		logger.info("Register killall command");
-	//	event.registerServerCommand(new CommandSimpleWaypoints());
-	//	logger.info("Register simplewaypoint command");
+		event.registerServerCommand(new CommandSimpleWaypoints());
+		logger.info("Register simplewaypoint command");
 	}
+	
+
+	@SubscribeEvent
+	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
+	{
+		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
+		
+		EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
+	 
+    	ArrayList<String> saved = CommandPowersMod.GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
+
+    	if(saved.size() > 0 && saved.get(0) != null)
+    	{ 
+    		int index = 0;
+    		try
+    		{
+	    		index = Integer.parseInt( saved.get(0) );
+    		}
+    		catch(NumberFormatException e) 
+    		{
+    			System.out.println("NAN"  );
+    			return;
+    		}// do nothing, its allowed to be a string
+    		
+    		if(index <= 0){return;}
+    		
+    		Location loc = null;
+
+    		if(saved.size() <= index) {return;}
+    		
+    		String sloc = saved.get(index);
+    		
+    		if(sloc == null || sloc.isEmpty()) {return;}
+    	 
+    		if( index < saved.size() && saved.get(index) != null) loc = new Location(sloc);
+    		
+    		if(loc != null)
+    		{ 
+    			//return  showName +Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + dim;	
+    			
+    			if(p.dimension != loc.dimension){return;}
+    			
+    			double dX = p.posX - loc.X;
+    			double dZ = p.posZ - loc.Z;
+    			
+    			int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
+    			 
+    			String showName = "Distance "+dist+ " from waypoint ["+index+"] " + loc.name;	
+    			
+    			boolean sideRight=true;
+    			if(sideRight)
+    				event.right.add(showName);
+    			else 
+    				event.left.add(showName);
+    		} 
+    	}
+    
+	}
+	
 	
 	public static ArrayList<String> GetForPlayerName(String playerName)
 	{ 

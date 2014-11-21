@@ -189,6 +189,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		OverwriteForPlayerName(p.getDisplayName(),newLines);
 		
 	}
+	
 	private void executeDisplay(EntityPlayer p, int index) 
 	{  
 		SetCurrentForPlayerName(p.getDisplayName(),index);
@@ -231,7 +232,6 @@ public class CommandSimpleWaypoints  implements ICommand
 		return false;
 	} 
 	 
-	
 	private void SetCurrentForPlayerName(String playerName, int current)
 	{
 		ArrayList<String> lines = CommandPowersMod.GetForPlayerName(playerName);
@@ -267,5 +267,7 @@ public class CommandSimpleWaypoints  implements ICommand
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 }
