@@ -1,7 +1,8 @@
 package com.lothrazar.samspowerups.command;
  
 import java.util.ArrayList;  
-import com.lothrazar.samspowerups.modules.SurvivalFlyingModule;
+
+import com.lothrazar.samspowerups.SurvivalFlyingMod;
 import com.lothrazar.util.Chat;
 
 import net.minecraft.command.ICommand;
@@ -46,7 +47,7 @@ public class CommandFlyHelp implements ICommand
 		  Chat.addMessage(p,"Expensive flying is enabled if:");
 		  
 		  String strdiff = "";
-		  switch(SurvivalFlyingModule.difficultyRequiredToFly)//iknow i know, there is a better way maybe with EnumDifficulty ....
+		  switch(SurvivalFlyingMod.difficultyRequiredToFly)//iknow i know, there is a better way maybe with EnumDifficulty ....
 		  {
 		  	case 0: strdiff = "Peaceful";break;
 		  	case 1: strdiff = "Easy"; break;
@@ -54,20 +55,20 @@ public class CommandFlyHelp implements ICommand
 		  	case 3: strdiff = "Hard"; break;
 		  }
 		  
-		  Chat.addMessage(p, "- Your world difficulty is "+strdiff+" ("+SurvivalFlyingModule.difficultyRequiredToFly+") or greater"); 
+		  Chat.addMessage(p, "- Your world difficulty is "+strdiff+" ("+SurvivalFlyingMod.difficultyRequiredToFly+") or greater"); 
 		   
-		  if(SurvivalFlyingModule.NoArmorOnly) Chat.addMessage(p, "- You are not wearing armor");
-		  if(SurvivalFlyingModule.cannotFlyWhileBurning) Chat.addMessage(p, "- You are not on fire");
+		  if(SurvivalFlyingMod.NoArmorOnly) Chat.addMessage(p, "- You are not wearing armor");
+		  if(SurvivalFlyingMod.cannotFlyWhileBurning) Chat.addMessage(p, "- You are not on fire");
 		    
-		  if(SurvivalFlyingModule.cannotFlyAtNight) Chat.addMessage(p, "- It is not night");
-		  if(SurvivalFlyingModule.cannotFlyInRain) Chat.addMessage(p, "- It is not raining");
+		  if(SurvivalFlyingMod.cannotFlyAtNight) Chat.addMessage(p, "- It is not night");
+		  if(SurvivalFlyingMod.cannotFlyInRain) Chat.addMessage(p, "- It is not raining");
 		  
-		  double hearts = SurvivalFlyingModule.StartFlyingHealth / 2;
-		  double hunger = SurvivalFlyingModule.StartFlyingHunger / 2;
+		  double hearts = SurvivalFlyingMod.StartFlyingHealth / 2;
+		  double hunger = SurvivalFlyingMod.StartFlyingHunger / 2;
 		  
 		  Chat.addMessage(p, "- You have at least "+hearts+" hearts , and at least "+hunger+" hunger");
   
-		  Chat.addMessage(p, "- You have at least "+SurvivalFlyingModule.StartFlyingLevel+" levels");  
+		  Chat.addMessage(p, "- You have at least "+SurvivalFlyingMod.StartFlyingLevel+" levels");  
 		  
 		  //no message needed for xp drain
 	 

@@ -1,19 +1,46 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import java.util.HashMap;
+
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration; 
 import net.minecraft.world.World;  
+
 import com.lothrazar.samspowerups.command.CommandFlyHelp; 
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class SurvivalFlyingModule  
+@Mod(modid = SurvivalFlyingMod.MODID, version = SurvivalFlyingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class SurvivalFlyingMod  
 {
+    @Instance(value = SurvivalFlyingMod.MODID)
+    public static QuickDepositMod instance; 
+    public static Logger logger;  
+    protected static final String MODID = "samspowerups.sflying"; 
+    public static final String VERSION = "1"; 
+	public static Configuration config;
+	private boolean quickSortEnabled;  
+    public void syncConfig() 
+	{
+		if(config.hasChanged()) { config.save(); } 
+	}  
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }
+    
 	public static int StartFlyingLevel = 2;
 	public static int StartFlyingHealth = 20;
 	public static int StartFlyingHunger = 14;
@@ -28,15 +55,15 @@ public class SurvivalFlyingModule
 	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
   
 	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
-	private Configuration config;
-	private String MODID="samspowerups.survivalflying";
-	
+ 
+
+	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		//MinecraftForge.EVENT_BUS.register(this); //nope this is only for forge events
 		FMLCommonHandler.instance().bus().register(this); //so that the player events hits here
 
-		 config =   new Configuration(event.getSuggestedConfigurationFile());  
+		config =   new Configuration(event.getSuggestedConfigurationFile());  
 		 
 		String CATEGORY_FLY = MODID+":survival_flying";  
 
@@ -71,8 +98,11 @@ public class SurvivalFlyingModule
 		flyDamageCounterLimit = config.getInt(CATEGORY_FLY, "flycountdown", 70,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
  	
+		
+		syncConfig();
 	}
-	    
+
+	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event) 
 	{
 		event.registerServerCommand(new CommandFlyHelp());
