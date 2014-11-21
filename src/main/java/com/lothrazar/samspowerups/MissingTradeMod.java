@@ -1,6 +1,8 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
 
 import java.util.Random;
+
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
@@ -8,15 +10,38 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList; 
+import net.minecraftforge.common.config.Configuration;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
-public class MissingTradeModule  implements IVillageTradeHandler
+@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class MissingTradeMod  implements IVillageTradeHandler
 {  
- 
+    @Instance(value = MissingTradeMod.MODID)
+    public static MissingTradeMod instance; 
+    public static Logger logger;  
+    protected static final String MODID = "samspowerups.trading"; 
+    public static final String VERSION = "1"; 
+	public static Configuration config;  
+    public void syncConfig() 
+	{
+		//if(config.hasChanged()) { config.save(); } 
+	}  
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
+	{ 
+		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }
+    
+    @EventHandler
 	public void onInit(FMLInitializationEvent event) 
 	{  
 		VillagerRegistry.instance().registerVillageTradeHandler(1, this);
@@ -30,7 +55,7 @@ public class MissingTradeModule  implements IVillageTradeHandler
 	final int WHITEAPRON = 4;
 	 
  
-
+	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
 	{  
 		// TODO Auto-generated method stub
@@ -70,8 +95,8 @@ public class MissingTradeModule  implements IVillageTradeHandler
 			
 			//ender pearls 2
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.ender_pearl, 16)
-			,new ItemStack(Items.ender_pearl, 16)
-			, new ItemStack(Items.emerald,1)));
+
+				, new ItemStack(Items.emerald,1)));
 			break;
 		case BLACK:
 			
