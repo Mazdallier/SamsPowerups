@@ -1,10 +1,136 @@
 [
 {
-  "modid": "samspowerups",
-  "name": "Sam's Powerups",
-  "description": "ASM.  ",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "modid": "samscommands",
+  "name": "Sam's  ",
+  "description": " .  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samscontent",
+  "name": "Sam's ",
+  "description": ".  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samscrafting",
+  "name": "Sam's  ",
+  "description": " .  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsdebug",
+  "name": "Sam's ",
+  "description": ".  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsdeposit",
+  "name": "Sam's ",
+  "description": ".  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsdifficulty",
+  "name": "Sam's ",
+  "description": ".  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsenderpower",
+  "name": "Sam's ",
+  "description": ".  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsflying",
+  "name": "Sam's samsflying",
+  "description": "samsflying.  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samskeyslider",
+  "name": "Sam's samskeyslider",
+  "description": "samskeyslider.  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsmultiwand",
+  "name": "Sam's samsrichloot",
+  "description": "samsrichloot.  ",
+  "version": "",
+  "mcversion": "",
   "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
   "updateUrl": "",
   "authorList": ["Lothrazar"],
@@ -15,8 +141,78 @@
 }
 ,{
   "modid": "samsnature",
-  "name": "Sam's samsnature",
-  "description": "samsnaturesamsnaturesamsnature.  ",
+  "name": "Sam's ",
+  "description": ".  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samspowerups",
+  "name": "Sam's ",
+  "description": "",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsrichloot",
+  "name": "Sam's samsrichloot",
+  "description": "samsrichloot.  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsstackable",
+  "name": "Sam's  
+  "description": " ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samstrades",
+  "name": "Sam's  ",
+  "description": " .  ",
+  "version": "",
+  "mcversion": "",
+  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
+  "updateUrl": "",
+  "authorList": ["Lothrazar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+,{
+  "modid": "samsuncrafting",
+  "name": "Sam's  ",
+  "description": " .  ",
   "version": "",
   "mcversion": "",
   "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2200957",
