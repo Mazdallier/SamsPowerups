@@ -80,13 +80,14 @@ public class AlterBaseClassMod
     	logger = event.getModLog(); 
 
     	logger.info("Base Class Editited (not ASM or forge)");
-    	logger.info(" net.minecraft.client.gui.inventory.GuiInventory.java");
+    	logger.info(" net.minecraft.world.Explosion.java"); 
     	logger.info(" net.minecraft.client.gui.inventory.GuiInventory.java");
     	logger.info(" net.minecraft.inventory.ContainerPlayer.java");
     	logger.info(" net.minecraft.block.BlockFenceGate.java");  
     	logger.info(" net.minecraft.block.BlockHugeMushroom.java");  
     	logger.info(" net.minecraft.block.BlockPumpkin.java");  
     	logger.info(" net.minecraft.block.BlockSnow.java");  
+    	logger.info(" net.minecraft.entity.item.EntityBoat.java");
       
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
