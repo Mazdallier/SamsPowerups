@@ -74,7 +74,7 @@ public class MasterWandMod
 		
 		
 		itemChestSack = new ItemChestSack();
-		itemChestSack.setTextureName(MODID+":chest_sack").setUnlocalizedName("chest_sack");
+		itemChestSack.setTextureName("samspowerups"+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
 	
