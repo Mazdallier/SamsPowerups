@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samsmultiwand;
 
 import org.apache.logging.log4j.Logger;
 
@@ -19,8 +19,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
-import com.lothrazar.samspowerups.item.ItemChestSack;
-import com.lothrazar.samspowerups.item.ItemWandMaster;
 import com.lothrazar.util.*; 
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -39,7 +37,7 @@ public class MasterWandMod
     @Instance(value = MasterWandMod.MODID)
     public static MasterWandMod instance; 
     public static Logger logger;  
-    protected static final String MODID = "samspowerups.masterwand"; 
+    protected static final String MODID = "samsmultiwand"; 
     public static final String VERSION = "1"; 
 	public static Configuration config;  
     public void syncConfig() 

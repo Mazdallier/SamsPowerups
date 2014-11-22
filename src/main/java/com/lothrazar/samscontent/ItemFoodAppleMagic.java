@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samscontent;
 
 import java.util.ArrayList; 
 import cpw.mods.fml.common.registry.GameRegistry;

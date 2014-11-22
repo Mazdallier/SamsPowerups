@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samsmultiwand;
 
 import java.util.ArrayList;
 import java.util.List; 

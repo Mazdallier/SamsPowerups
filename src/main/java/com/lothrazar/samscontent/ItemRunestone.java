@@ -1,9 +1,7 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samscontent;
 
-import java.util.ArrayList;
-
-import com.google.common.collect.Sets;
-import com.lothrazar.samspowerups.ItemBlockMod;
+import java.util.ArrayList; 
+import com.google.common.collect.Sets; 
 import com.lothrazar.util.*; 
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;

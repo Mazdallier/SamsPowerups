@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.block;
+package com.lothrazar.samscontent;
 
 import java.util.Random;  
 import cpw.mods.fml.common.registry.GameRegistry;

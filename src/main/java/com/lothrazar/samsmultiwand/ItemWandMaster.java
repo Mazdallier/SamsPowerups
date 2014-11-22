@@ -1,7 +1,6 @@
-package com.lothrazar.samspowerups.item;
+package com.lothrazar.samsmultiwand;
 
 import com.google.common.collect.Sets;
-import com.lothrazar.samspowerups.MasterWandMod;
 import com.lothrazar.util.*; 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;

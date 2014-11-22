@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samscontent;
 
 import org.apache.logging.log4j.Logger;
 
@@ -9,12 +9,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
-import com.lothrazar.samspowerups.block.BlockCommandBlockCraftable;
-import com.lothrazar.samspowerups.block.BlockFishing;
-import com.lothrazar.samspowerups.block.BlockXRay;
-import com.lothrazar.samspowerups.item.ItemEnderBook;
-import com.lothrazar.samspowerups.item.ItemFoodAppleMagic;
-import com.lothrazar.samspowerups.item.ItemRunestone;
 import com.lothrazar.util.*;  
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -29,12 +23,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ItemBlockMod.MODID, version = ItemBlockMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ItemBlockMod  
-{
-	
+{	
     public static ItemBlockMod instance; 
     public static Logger logger;  
 	public static Configuration config;  
-	protected final static String MODID = "samspowerups.itemsblocks";
+	protected final static String MODID = "samscontent";
     public static final String VERSION = "1";
     
 	public static  int SLOT_RUNESTONE = 8; 

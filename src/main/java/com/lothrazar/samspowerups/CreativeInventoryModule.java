@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups.modules;
+package com.lothrazar.samspowerups;
  
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
