@@ -55,7 +55,7 @@ public class MasterWandMod
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{ 
-		MinecraftForge.EVENT_BUS.register(this);  //new WandHandler()); 
+		MinecraftForge.EVENT_BUS.register(instance);  //new WandHandler()); 
 	}
 
 	@EventHandler

@@ -125,6 +125,9 @@ public class ItemBlockMod
 				);  
 		
 		syncConfig();
+		
+
+		MinecraftForge.EVENT_BUS.register(instance);
 	}
     
     @SubscribeEvent
@@ -478,6 +481,7 @@ public class ItemBlockMod
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{       
+		System.out.println("the tick eh");
 		ItemStack runestone = event.player.inventory.getStackInSlot(ItemBlockMod.SLOT_RUNESTONE);
 		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}
  
