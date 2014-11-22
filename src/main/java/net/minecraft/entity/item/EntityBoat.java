@@ -36,8 +36,8 @@ public class EntityBoat  extends Entity
     @SideOnly(Side.CLIENT)
     private double velocityZ;
     private static final String __OBFID = "CL_00001667";
-//lothrazar: i made this a bit faster
-    private final double speedMultiplierMax =  0.50D;// 0.35D;
+  
+    private final double speedMultiplierMax =  0.350D;// 0.35D;
     private final double speedMultiplierMin = 0.07D;
     
     public EntityBoat(World w)
