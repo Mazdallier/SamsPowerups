@@ -2,8 +2,6 @@ package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;
 import java.util.List; 
-//import com.lothrazar.samspowerups.gui.GUIHandler;
-import com.lothrazar.samspowerups.item.*;
 import net.minecraftforge.event.entity.player.PlayerEvent.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPumpkin;
