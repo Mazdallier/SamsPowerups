@@ -9,11 +9,15 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
+
+import com.lothrazar.samspowerups.AlterBaseClassMod;
 import com.lothrazar.util.*;  
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -24,6 +28,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @Mod(modid = ItemBlockMod.MODID, version = ItemBlockMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ItemBlockMod  
 {	
+    @Instance(value = ItemBlockMod.MODID)
     public static ItemBlockMod instance; 
     public static Logger logger;  
 	public static Configuration config;  
@@ -127,7 +132,8 @@ public class ItemBlockMod
 		syncConfig();
 		
 
-		MinecraftForge.EVENT_BUS.register(instance);
+		MinecraftForge.EVENT_BUS.register(instance);//??iunstance no worky?
+		FMLCommonHandler.instance().bus().register(instance); 
 	}
     
     @SubscribeEvent
@@ -480,8 +486,7 @@ public class ItemBlockMod
 	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
-	{       
-		System.out.println("the tick eh");
+	{        
 		ItemStack runestone = event.player.inventory.getStackInSlot(ItemBlockMod.SLOT_RUNESTONE);
 		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}
  
