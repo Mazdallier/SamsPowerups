@@ -106,17 +106,6 @@ public class AlterBaseClassMod
     		
          syncConfig() ;
     }
-
-    @EventHandler
-    public void init (FMLInitializationEvent event)
-    { 
-	
-		//	m.onInit(event); 
-		
-     	//NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
-     	
-	//	proxy.registerRenderers(); 
-    }
  
 	
 	/*

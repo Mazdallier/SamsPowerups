@@ -57,7 +57,7 @@ public class ItemRunestone extends ItemTool
 	public static void applyRunestoneToPlayer(EntityPlayer player,	ItemStack runestone) 
 	{ 
 		ItemRunestone itemRunestone = (ItemRunestone)runestone.getItem();
-		Chat.addMessage(player, "Runestone tick?:");
+ 
 		int runestoneEffect, amp; 
 		
 		for(int i = 0; i < itemRunestone.effects.length; i++)
