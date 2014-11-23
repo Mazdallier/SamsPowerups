@@ -35,7 +35,7 @@ public class ItemBlockMod
 	protected final static String MODID = "samscontent";
     public static final String VERSION = "1";
     
-	public static  int SLOT_RUNESTONE = 8; 
+	public static  int SLOT_RUNESTONE = 17;// TOP RIGHT 
  
  	public static int RUNESTONE_DURABILITY = 90000;//90 thousand ticks is 4500 seconds which is 75 minutes
    
@@ -402,7 +402,9 @@ public class ItemBlockMod
 				, 'a', Items.nether_star );   
 		GameRegistry.addSmelting(rune_jump, new ItemStack(Items.nether_star,1),0);	
 	
-		rune_resistance = new ItemRunestone(new int[]{Reference.potion_RESISTANCE,Reference.potion_HUNGER},new int[]{II,I},shiny);  
+		rune_resistance = new ItemRunestone(
+				new int[]{Reference.potion_RESISTANCE}
+				,new int[]{II},shiny);  
 		rune_resistance.setUnlocalizedName("rune_resistance").setTextureName("samspowerups"+":rune_resistance");
 		GameRegistry.registerItem(rune_resistance,  "rune_resistance"); 
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae","eee"
@@ -410,7 +412,7 @@ public class ItemBlockMod
 				, 'a', Items.nether_star );   
 		GameRegistry.addSmelting(rune_resistance, new ItemStack(Items.nether_star,1),0);		
 		 
-		rune_goldheart = new ItemRunestone(new int[]{Reference.potion_HEALTH_BOOST,Reference.potion_HUNGER},new int[]{V,I},not_shiny);  
+		rune_goldheart = new ItemRunestone(new int[]{Reference.potion_HEALTH_BOOST},new int[]{V},not_shiny);  
 		rune_goldheart.setUnlocalizedName("rune_goldheart").setTextureName("samspowerups"+":rune_goldheart");
 		GameRegistry.registerItem(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae","eee"
