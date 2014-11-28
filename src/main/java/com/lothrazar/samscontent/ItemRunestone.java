@@ -2,11 +2,12 @@ package com.lothrazar.samscontent;
 
 import java.util.ArrayList; 
 import com.google.common.collect.Sets; 
-import com.lothrazar.util.*; 
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly; 
+import com.lothrazar.samscontent.ItemBlockMod.Reference;
+
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly; 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -51,7 +52,7 @@ public class ItemRunestone extends ItemTool
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{ 
-		return EnumRarity.epic;  //give it the purple text similar to goldapple
+		return EnumRarity.EPIC;  //give it the purple text similar to goldapple
 	}
 
 	public static void applyRunestoneToPlayer(EntityPlayer player,	ItemStack runestone) 

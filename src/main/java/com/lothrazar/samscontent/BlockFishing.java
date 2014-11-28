@@ -1,15 +1,17 @@
 package com.lothrazar.samscontent;
 
 import java.util.Random;  
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -29,15 +31,23 @@ public class BlockFishing extends Block
     }
 	    
 	@Override
-	public void updateTick(World worldObj, int xCoord, int yCoord, int zCoord, Random rand)
+	public void updateTick(World worldObj, BlockPos pos,IBlockState state, Random rand)//int xCoord, int yCoord, int zCoord, Random rand)
     {  
+		
 		// Relay.addChatMessage(worldObj, "update tick on fisher");
-		 if(worldObj.getBlock(xCoord+1, yCoord, zCoord).equals(Blocks.water) == false
+		 if(worldObj.getBlockState(pos.add(1, 0, 0)).getBlock().equals(Blocks.water) == false
+		 || worldObj.getBlockState(pos.add(-1, 0, 0)).getBlock().equals(Blocks.water) == false 
+		 || worldObj.getBlockState(pos.add(0, 0, 1)).getBlock().equals(Blocks.water) == false
+		 || worldObj.getBlockState(pos.add(0, 0, -1)).getBlock().equals(Blocks.water) == false //these 4 lines cover the four direct sides horiz
+		 || worldObj.getBlockState(pos.add(0, -1, 0)).getBlock().equals(Blocks.water) == false 
+		 || worldObj.getBlockState(pos.add(0, -2, 0)).getBlock().equals(Blocks.water) == false 
+	/*	 if(worldObj.getBlock(xCoord+1, yCoord, zCoord).equals(Blocks.water) == false
 		 || worldObj.getBlock(xCoord-1, yCoord, zCoord).equals(Blocks.water) == false 
 		 || worldObj.getBlock(xCoord, yCoord, zCoord+1).equals(Blocks.water) == false
 		 || worldObj.getBlock(xCoord, yCoord, zCoord-1).equals(Blocks.water) == false //these 4 lines cover the four direct sides horiz
 		 || worldObj.getBlock(xCoord, yCoord-1, zCoord).equals(Blocks.water) == false 
 		 || worldObj.getBlock(xCoord, yCoord-2, zCoord).equals(Blocks.water) == false //also go 2 deep
+		 */
 		 
 		)
 		 {
@@ -85,13 +95,11 @@ public class BlockFishing extends Block
 			 fishSpawned = pufferfish;
 		 }
 		 
-        EntityItem entityItem = new EntityItem(worldObj, xCoord, yCoord, zCoord, fishSpawned);
+        EntityItem entityItem = new EntityItem(worldObj, pos.getX(), pos.getY(), pos.getZ(), fishSpawned);
     	 
     	worldObj.spawnEntityInWorld(entityItem);
     	
-
 	// Relay.addChatMessage(worldObj, "fished");
-    	
     	
     	worldObj.playSoundAtEntity(entityItem,"liquid.splash1",1F,1F);
 	 

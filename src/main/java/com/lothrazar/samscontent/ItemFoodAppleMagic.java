@@ -1,9 +1,9 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList; 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -77,9 +77,9 @@ public class ItemFoodAppleMagic extends ItemFood
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	 {
 		 if(_hasEffect)
-			 return EnumRarity.epic; //dynamic text to match the two apple colours
+			 return EnumRarity.EPIC; //dynamic text to match the two apple colours
 		 else 
-			 return EnumRarity.rare;
+			 return EnumRarity.RARE;
 	 } 
 	
 }

@@ -2,8 +2,8 @@ package com.lothrazar.samscontent;
 
 import java.util.List; 
 import com.google.common.collect.Sets;  
-import com.lothrazar.util.Location; 
-import cpw.mods.fml.common.registry.GameRegistry;
+//import com.lothrazar.util.Location; 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +41,7 @@ public class ItemEnderBook extends ItemTool
 	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) 
 	{ 
-	     if (itemStack.stackTagCompound == null) 
+	     if (itemStack.getTagCompound() == null) 
 	     { 
         	 list.add("Right Click while sneaking to set location" );
 	    	 return;
@@ -59,7 +59,7 @@ public class ItemEnderBook extends ItemTool
 
 	     	 KEY = KEY_LOC + "_" + i;
 
-	 		String csv = itemStack.stackTagCompound.getString(KEY);
+	 		String csv = itemStack.getTagCompound().getString(KEY);
 
 			if(csv == null || csv.isEmpty()) {continue;} 
 			loc = new Location(csv);
@@ -88,8 +88,8 @@ public class ItemEnderBook extends ItemTool
     	
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
 
-		if (itemStack.stackTagCompound == null) itemStack.stackTagCompound = new NBTTagCompound();
-    	itemStack.stackTagCompound.setString(KEY, loc.toCSV());		
+		if (itemStack.getTagCompound() == null) itemStack.setTagCompound(new NBTTagCompound());
+    	itemStack.getTagCompound().setString(KEY, loc.toCSV());		
 	} 
 	
 	public static void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
@@ -97,7 +97,7 @@ public class ItemEnderBook extends ItemTool
 		int slot = entityPlayer.inventory.currentItem+1;
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
     	
-		String csv = enderBookInstance.stackTagCompound.getString(KEY);
+		String csv = enderBookInstance.getTagCompound().getString(KEY);
 		
 		if(csv == null || csv.isEmpty()) 
 		{

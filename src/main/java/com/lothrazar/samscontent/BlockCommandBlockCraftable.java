@@ -1,10 +1,12 @@
+/*
 package com.lothrazar.samscontent;
+
 
 import java.util.Random; 
 
 import com.lothrazar.samscontent.ItemBlockMod.CommandType;
 
-import cpw.mods.fml.common.registry.GameRegistry; 
+import net.minecraftforge.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.command.server.CommandBlockLogic;
@@ -150,3 +152,4 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
     }
 	  
 }
+*/
