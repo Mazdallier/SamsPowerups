@@ -1,15 +1,14 @@
 package com.lothrazar.samskeyslider;
  
-
-import com.lothrazar.util.Chat;
-
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+ 
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 
 public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPressed, IMessage>
 {
@@ -40,8 +39,11 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	public IMessage onMessage(MessageKeyPressed message, MessageContext ctx)
 	{
 		EntityPlayer player = ctx.getServerHandler().playerEntity;
-Chat.addMessage(player, "message key pressed");
-    	System.out.println("mmssgginput!!");
+		
+//Chat.addMessage(player, "message key pressed");
+
+		player.addChatMessage(new ChatComponentTranslation("message key pressed")); 
+
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html
  

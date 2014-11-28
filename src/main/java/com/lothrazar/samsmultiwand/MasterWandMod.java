@@ -19,17 +19,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
-import com.lothrazar.util.*; 
-
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+ 
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = MasterWandMod.MODID, version = MasterWandMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class MasterWandMod  
@@ -62,7 +61,8 @@ public class MasterWandMod
 	public void onInit(FMLInitializationEvent event) 
 	{  
 		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName("samspowerups"+":wand_master");
+		itemWand.setUnlocalizedName("wand_master")
+		;//.setTextureName("samspowerups"+":wand_master");
 		GameRegistry.registerItem(itemWand,  "wand_master");   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
@@ -74,7 +74,9 @@ public class MasterWandMod
 		
 		
 		itemChestSack = new ItemChestSack();
-		itemChestSack.setTextureName("samspowerups"+":chest_sack").setUnlocalizedName("chest_sack");
+		itemChestSack
+		//.setTextureName("samspowerups"+":chest_sack")
+		.setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
 	
@@ -163,7 +165,7 @@ public class MasterWandMod
 			}
 			else if(held.getItem() == MasterWandMod.itemChestSack)
 			{ 	
-				if(  held.stackTagCompound==null){return;}
+				if(  held.getTagCompound() == null){return;}
 			   
 				int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
 				  
