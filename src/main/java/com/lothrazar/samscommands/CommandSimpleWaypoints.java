@@ -19,8 +19,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	private ArrayList<String> aliases;
 
 	public CommandSimpleWaypoints()
-	{
-		
+	{ 
 		this.aliases = new ArrayList<String>();
 		this.aliases.add("wp");
 		this.aliases.add("simplewp");

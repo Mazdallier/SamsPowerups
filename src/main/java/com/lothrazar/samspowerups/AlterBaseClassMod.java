@@ -88,7 +88,9 @@ public class AlterBaseClassMod
     	logger.info(" net.minecraft.block.BlockPumpkin.java");  
     	logger.info(" net.minecraft.block.BlockSnow.java");  
     	logger.info(" net.minecraft.entity.item.EntityBoat.java");
-      
+    	
+    
+//package net.minecraft.item;// Item.registerItems();   
     	//TODO baseedits:
     	//C:\Users\Samson\Desktop\Minecraft\BACKUPS\146 src
     	//silk touch on farm and mushroom and snow
