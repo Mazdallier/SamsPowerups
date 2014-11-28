@@ -1,17 +1,15 @@
 package com.lothrazar.samsstackable;
 
 import java.util.ArrayList;  
-
 import org.apache.logging.log4j.Logger;
-
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item; 
 import net.minecraftforge.common.config.Configuration;
@@ -64,7 +62,12 @@ public class StackSizeMod
 		to64.add(Items.boat);
 		to64.add(Items.minecart);
 		to64.add(Items.iron_door);
-		to64.add(Items.wooden_door);
+		to64.add(Items.acacia_door);//was wooden_door
+		to64.add(Items.oak_door);
+		to64.add(Items.dark_oak_door);
+		to64.add(Items.birch_door);
+		to64.add(Items.spruce_door);
+		to64.add(Items.jungle_door);
 		to64.add(Items.cake);
 		to64.add(Items.saddle);
 		to64.add(Items.bucket);

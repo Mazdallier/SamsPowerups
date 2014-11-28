@@ -1,22 +1,21 @@
 package com.lothrazar.samsuncrafting;
   
 import org.apache.logging.log4j.Logger;
-
-import com.lothrazar.util.*; 
+//import com.lothrazar.util.*; 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = UncraftingMod.MODID, version = UncraftingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class UncraftingMod
@@ -193,6 +192,11 @@ public class UncraftingMod
 		
 		if(woodstuffs)
 		{
+			/* 
+			 *
+			 
+			 
+			 //TODO
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),
 					new ItemStack(Blocks.fence));
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8),
@@ -200,7 +204,7 @@ public class UncraftingMod
 			
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 12),
 					new ItemStack(Blocks.wooden_door));
-
+*/
 			GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),	new ItemStack(Items.bowl), new ItemStack(Items.bowl));
 		
 			// every two sticks is one plank. so 8 sticks plus one in the middle
@@ -609,4 +613,97 @@ public class UncraftingMod
  
 		} 
 	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    class Reference 
+    {
+
+    
+    	
+    	public static final int face_bottom = 0;	
+    	public static final int face_top = 1;
+    	public static final int face_north = 2;
+    	public static final int face_south = 3;
+    	public static final int face_west = 4;
+    	public static final int face_east = 5;
+    	
+    	
+    		// Items.skull
+    	public static final int skull_skeleton = 0;	
+    	public static final int skull_wither = 1;
+    	public static final int skull_zombie = 2;
+    	public static final int skull_player = 3;
+    	public static final int skull_creeper = 4;
+    	
+
+    	public static final int dye_incsac = 0;
+    	public static final int dye_red = 1;
+    	public static final int dye_cactus = 2;
+    	public static final int dye_cocoa = 3;
+    	public static final int dye_lapis = 4;
+    	public static final int dye_purple = 5;
+    	public static final int dye_cyan = 6;
+    	public static final int dye_lightgray = 7;
+    	public static final int dye_gray = 8;
+    	public static final int dye_pink = 9;
+    	public static final int dye_lime = 10;
+    	public static final int dye_dandelion = 11;
+    	public static final int dye_lightblue = 12;
+    	public static final int dye_magenta = 13;
+    	public static final int dye_orange = 14;
+    	public static final int dye_bonemeal = 15;
+    	
+
+    	public static final int stone_slab_stone = 0;
+    	public static final int stone_slab_sandstone = 1;
+    	public static final int stone_slab_oldwood = 2;
+    	public static final int stone_slab_cobble = 3;
+    	public static final int stone_slab_brickred = 4;
+    	public static final int stone_slab_stonebrick = 5;
+    	public static final int stone_slab_netehrbrick = 6;
+    	public static final int stone_slab_quartz = 7;
+    	
+    	public static final int stonebrick_stone = 0;
+    	public static final int stonebrick_mossy = 1;
+    	public static final int stonebrick_cracked = 2;
+    	public static final int stonebrick_chisel = 3;
+    	
+    	public static final int planks_oak = 0;
+    	public static final int planks_spruce = 1;
+    	public static final int planks_birch = 2;
+    	public static final int planks_jungle = 3;
+    	public static final int planks_acacia = 4;
+    	public static final int planks_darkoak = 5;
+    	 
+    	public static final int log_oak = 0;
+    	public static final int log_spruce = 1;
+    	public static final int log_birch = 2;
+    	public static final int log_jungle = 3;
+    	public static final int log2_acacia = 0;
+    	public static final int log2_darkoak = 5;
+    	
+    	public static final int sapling_oak = 0;
+    	public static final int sapling_spruce = 1;
+    	public static final int sapling_birch = 2;
+    	public static final int sapling_jungle = 3;
+    	public static final int sapling_acacia = 4;
+    	public static final int sapling_darkoak = 5;
+    	 
+    	public static final int quartz_block = 0;
+    	public static final int quartz_chiselled = 1;
+    	public static final int quartz_pillar = 2;
+    	
+    	public static final int cobblestone_wall_plain = 0;
+    	public static final int cobblestone_wall_mossy = 1;
+    	
+   
+    }
 }

@@ -1,10 +1,8 @@
 package com.lothrazar.samsdifficulty;
 
 import java.util.ArrayList;  
-
 import org.apache.logging.log4j.Logger;
-
-import com.lothrazar.util.*; 
+//import com.lothrazar.util.*; 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
@@ -23,19 +21,19 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent; 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = DifficultyTweaksMod.MODID, version = DifficultyTweaksMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class DifficultyTweaksMod  
@@ -134,25 +132,25 @@ public class DifficultyTweaksMod
 		int minGroup = 1;
 		int maxGroup = 2;
 		
-		 EntityRegistry.addSpawn(EntityMagmaCube.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		 EntityRegistry.addSpawn(EntityMagmaCube.class, wProb, minGroup, maxGroup, EnumCreatureType.MONSTER, new BiomeGenBase[] 
 		 {
 			  BiomeGenBase.desert
 			 ,BiomeGenBase.desertHills
 		 });
 
-		EntityRegistry.addSpawn(EntityCaveSpider.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		EntityRegistry.addSpawn(EntityCaveSpider.class, wProb, minGroup, maxGroup, EnumCreatureType.MONSTER, new BiomeGenBase[] 
 		{
 			  BiomeGenBase.roofedForest
 			 ,BiomeGenBase.birchForest
 			 ,BiomeGenBase.birchForestHills
 		});
 
-		EntityRegistry.addSpawn(EntityZombie.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
+		EntityRegistry.addSpawn(EntityZombie.class, wProb, minGroup, maxGroup, EnumCreatureType.MONSTER, new BiomeGenBase[] 
 		{
 			 BiomeGenBase.hell 
 		});
 
-		EntityRegistry.addSpawn(EntityCreeper.class, wProb, minGroup, 1, EnumCreatureType.monster, new BiomeGenBase[] 
+		EntityRegistry.addSpawn(EntityCreeper.class, wProb, minGroup, 1, EnumCreatureType.MONSTER, new BiomeGenBase[] 
 		{
 			 BiomeGenBase.hell 
 		});
@@ -294,7 +292,7 @@ public class DifficultyTweaksMod
 		
 		//thanks to https://pay.reddit.com/r/ModdingMC/comments/2dceup/setharvestlevel_for_vanilla_blocks_not_working/
 		//if(event.isCancelable() ) event.setCanceled(true);//not allowed to cancel
-		if (  blocksRequireAxe.contains(event.block))
+		if (  blocksRequireAxe.contains(event.state.getBlock()))
 		{ 
 			if(event.harvester.getCurrentEquippedItem() == null
 			|| !(event.harvester.getCurrentEquippedItem().getItem() instanceof ItemAxe) )
@@ -302,7 +300,7 @@ public class DifficultyTweaksMod
 				event.drops.clear();
 			}
 		}
-		if (  blocksRequireShovel.contains(event.block))
+		if (  blocksRequireShovel.contains(event.state.getBlock()))
 		{
 			System.out.println("blocksRequireShovel"); 
 			if(event.harvester.getCurrentEquippedItem() == null
@@ -366,4 +364,96 @@ public class DifficultyTweaksMod
 		 //entityCow.tasks.addTask(4, new EntityAITempt(pig, 1.2D, Items.wheat, false));
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+    class Reference 
+    {
+
+    
+    	
+    	public static final int face_bottom = 0;	
+    	public static final int face_top = 1;
+    	public static final int face_north = 2;
+    	public static final int face_south = 3;
+    	public static final int face_west = 4;
+    	public static final int face_east = 5;
+    	
+    	
+    		// Items.skull
+    	public static final int skull_skeleton = 0;	
+    	public static final int skull_wither = 1;
+    	public static final int skull_zombie = 2;
+    	public static final int skull_player = 3;
+    	public static final int skull_creeper = 4;
+    	
+
+    	public static final int dye_incsac = 0;
+    	public static final int dye_red = 1;
+    	public static final int dye_cactus = 2;
+    	public static final int dye_cocoa = 3;
+    	public static final int dye_lapis = 4;
+    	public static final int dye_purple = 5;
+    	public static final int dye_cyan = 6;
+    	public static final int dye_lightgray = 7;
+    	public static final int dye_gray = 8;
+    	public static final int dye_pink = 9;
+    	public static final int dye_lime = 10;
+    	public static final int dye_dandelion = 11;
+    	public static final int dye_lightblue = 12;
+    	public static final int dye_magenta = 13;
+    	public static final int dye_orange = 14;
+    	public static final int dye_bonemeal = 15;
+    	
+
+    	public static final int stone_slab_stone = 0;
+    	public static final int stone_slab_sandstone = 1;
+    	public static final int stone_slab_oldwood = 2;
+    	public static final int stone_slab_cobble = 3;
+    	public static final int stone_slab_brickred = 4;
+    	public static final int stone_slab_stonebrick = 5;
+    	public static final int stone_slab_netehrbrick = 6;
+    	public static final int stone_slab_quartz = 7;
+    	
+    	public static final int stonebrick_stone = 0;
+    	public static final int stonebrick_mossy = 1;
+    	public static final int stonebrick_cracked = 2;
+    	public static final int stonebrick_chisel = 3;
+    	
+    	public static final int planks_oak = 0;
+    	public static final int planks_spruce = 1;
+    	public static final int planks_birch = 2;
+    	public static final int planks_jungle = 3;
+    	public static final int planks_acacia = 4;
+    	public static final int planks_darkoak = 5;
+    	 
+    	public static final int log_oak = 0;
+    	public static final int log_spruce = 1;
+    	public static final int log_birch = 2;
+    	public static final int log_jungle = 3;
+    	public static final int log2_acacia = 0;
+    	public static final int log2_darkoak = 5;
+    	
+    	public static final int sapling_oak = 0;
+    	public static final int sapling_spruce = 1;
+    	public static final int sapling_birch = 2;
+    	public static final int sapling_jungle = 3;
+    	public static final int sapling_acacia = 4;
+    	public static final int sapling_darkoak = 5;
+    }
 }
