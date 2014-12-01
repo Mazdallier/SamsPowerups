@@ -1,10 +1,12 @@
 package com.lothrazar.samsmultiwand;
 
 import com.google.common.collect.Sets;
-import com.lothrazar.util.*; 
-import cpw.mods.fml.common.registry.GameRegistry;
+//import com.lothrazar.util.*; 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
@@ -21,6 +23,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper; 
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -79,8 +82,8 @@ public class ItemWandMaster extends ItemTool
 		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
 		{
 			for (int zLoop = zMin; zLoop <= zMax; zLoop++)
-			{ 
-				if(entityPlayer.worldObj.getBlock(xLoop, y, zLoop).equals(Blocks.diamond_ore))
+			{  
+				if(entityPlayer.worldObj.getBlockState(new BlockPos(xLoop, y, zLoop)).getBlock().equals(Blocks.diamond_ore))
 				{ 
 					xDistance = Math.abs(xLoop - x);
 					zDistance = Math.abs(zLoop - z);
@@ -98,8 +101,10 @@ public class ItemWandMaster extends ItemTool
 			}
 		}
 
-		Chat.addMessage(entityPlayer, foundMessage);
-	 
+		//entityPlayer.addChatMessage(new ChatTranslation(foundMessage));
+		//Chat.addMessage(entityPlayer, foundMessage);
+
+		System.out.println(foundMessage);
 		onSuccess(entityPlayer);
 	}
 	
@@ -133,7 +138,7 @@ public class ItemWandMaster extends ItemTool
 			{
 				for (int zLoop = zMin; zLoop <= zMax; zLoop++)
 				{ 
-					if(player.worldObj.getBlock(xLoop, yLoop, zLoop).equals(Blocks.mob_spawner))
+					if(player.worldObj.getBlockState(new BlockPos(xLoop, yLoop, zLoop)).getBlock().equals(Blocks.mob_spawner))
 					{ 
 						xDistance = Math.abs(xLoop - x);
 						zDistance = Math.abs(zLoop - z);
@@ -153,8 +158,9 @@ public class ItemWandMaster extends ItemTool
 			}
 		}
 		  
-		Chat.addMessage(player, foundMessage);
+		//Chat.addMessage(player, foundMessage);
 		
+		System.out.println(foundMessage);
 		onSuccess(entityPlayer);
 	}
 	
@@ -176,7 +182,7 @@ public class ItemWandMaster extends ItemTool
 
 		ItemStack drop = new ItemStack(MasterWandMod.itemChestSack ,1,0); 
 		
-		if(drop.stackTagCompound == null)  drop.stackTagCompound = new NBTTagCompound();
+		if(drop.getTagCompound() == null)  drop.setTagCompound(  new NBTTagCompound());
  
 		int stacks = 0;
 		int count = 0;
@@ -214,18 +220,19 @@ public class ItemWandMaster extends ItemTool
 			chestTarget.setInventorySlotContents(islotChest, null);	
 		}
 		 
-		drop.stackTagCompound.setIntArray("itemids", itemids);
-		drop.stackTagCompound.setIntArray("itemdmg", itemdmg);
-		drop.stackTagCompound.setIntArray("itemqty", itemqty);
+		drop.getTagCompound().setIntArray("itemids", itemids);
+		drop.getTagCompound().setIntArray("itemdmg", itemdmg);
+		drop.getTagCompound().setIntArray("itemqty", itemqty);
 		 
-		drop.stackTagCompound.setString("count",""+count);
-		drop.stackTagCompound.setString("stacks",""+stacks);
+		drop.getTagCompound().setString("count",""+count);
+		drop.getTagCompound().setString("stacks",""+stacks);
 	 	 
 		entityPlayer.entityDropItem(drop, 1);//quantity = 1
 			 
 		 //the 2 here is just a magic flag it passes to the world to propogate the event
-	
-		entityPlayer.worldObj.setBlock(eventx, eventy, eventz, Blocks.air, 0,2);	 
+		//entityPlayer.worldObj.setBlockState(new BlockPos(eventx, eventy, eventz), new BlockState(Blocks.air))
+		entityPlayer.worldObj.setBlockToAir(new BlockPos(eventx, eventy, eventz));
+		//entityPlayer.worldObj.setBlock(eventx, eventy, eventz, Blocks.air, 0,2);	 
 
 		onSuccess(entityPlayer); 
 	}
@@ -252,8 +259,11 @@ public class ItemWandMaster extends ItemTool
 		{ 
 			for (int zLoop = zMin; zLoop <= zMax; zLoop++)
 			{
-				Block blockCheck = entityPlayer.worldObj.getBlock(xLoop, eventy, zLoop); 
-				int blockDamage = entityPlayer.worldObj.getBlockMetadata(xLoop,eventy,zLoop);
+				IBlockState st =  entityPlayer.worldObj.getBlockState(new BlockPos(xLoop, eventy, zLoop));
+				
+				Block blockCheck = st.getBlock(); 
+				int blockDamage = blockCheck.getMetaFromState(st);
+				//int blockDamage = entityPlayer.worldObj.getBlockMetadata(xLoop,eventy,zLoop);
 				
 				if(blockDamage == isFullyGrown)
 				{
@@ -261,19 +271,20 @@ public class ItemWandMaster extends ItemTool
 					//because we replant for free, so a full grown carrot becomes a fresh planted carrot but also drops one
 					if(blockCheck == Blocks.wheat )
 					{ 
-						entityPlayer.worldObj.setBlock(xLoop,eventy,zLoop, Blocks.wheat);//this plants a seed. it is not 'hay_block'
+					
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop),(IBlockState) new BlockState( Blocks.wheat));//this plants a seed. it is not 'hay_block'
 						 
 						entityPlayer.dropItem(Items.wheat, 1); //no seeds, they got replanted
 					}
 					if( blockCheck == Blocks.carrots)
 					{
-						entityPlayer.worldObj.setBlock(xLoop,eventy,zLoop, Blocks.carrots);
+						//entityPlayer.worldObj.setBlockState(xLoop,eventy,zLoop, Blocks.carrots);
 						 
 						entityPlayer.dropItem(Items.carrot, 1); 
 					}
 					if( blockCheck == Blocks.potatoes)
 					{
-						entityPlayer.worldObj.setBlock(xLoop,eventy,zLoop, Blocks.potatoes);
+						//entityPlayer.worldObj.setBlockState(xLoop,eventy,zLoop, Blocks.potatoes);
 						 
 						entityPlayer.dropItem(Items.potato, 1); 
 					}

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -15,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -89,8 +91,11 @@ public class MasterWandMod
 		if(held == null) { return; }//empty hand so do nothing
 		
 		//if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}//required??
-	
-		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
+		IBlockState bs = event.entityPlayer.worldObj.getBlockState(event.pos);
+		
+		Block blockClicked = bs.getBlock();
+		int blockClickedDamage = blockClicked.getMetaFromState(bs);
+				//event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
 		 
 		if(event.action.LEFT_CLICK_BLOCK == event.action)
 		{ 
@@ -100,21 +105,22 @@ public class MasterWandMod
 				
 				if(blockClicked instanceof BlockChest && event.entityPlayer.isSneaking())
 				{   
-					TileEntity container = event.world.getTileEntity(event.x, event.y, event.z);
+					TileEntity container = event.world.getTileEntity(new BlockPos(event.pos.getX(), event.pos.getY(), event.pos.getZ()));
 					if(container instanceof TileEntityChest)
 					{
-						MasterWandMod.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
+						MasterWandMod.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.pos.getX(),event.pos.getY(), event.pos.getZ());  
 					}
 				} 
 				else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
 				{ 
 					//	public static void replantField(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
-					MasterWandMod.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
+					MasterWandMod.itemWand.replantField(event.entityPlayer,held,event.pos.getX(),event.pos.getY(), event.pos.getZ()); 
 				}
 			}
 			else if(held.getItem() == MasterWandMod.itemChestSack)
 			{
-				TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z); 
+				TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.pos);
+						//.getTileEntity(new BlockPos(event.pos.getY(), event.pos.getZ())); 
 				
 				if(container == null){return;}
 				 
@@ -156,28 +162,29 @@ public class MasterWandMod
 			{
 				if( blockClicked.equals(Blocks.diamond_block))
 				{
-					MasterWandMod.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
+					MasterWandMod.itemWand.searchSpawner(event.entityPlayer,held,event.pos.getX(),event.pos.getY(), event.pos.getZ()); 
 				}
 				else if( blockClicked.equals(Blocks.stone))
 				{
-					MasterWandMod.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
+					MasterWandMod.itemWand.searchProspect(event.entityPlayer,held,event.pos.getX(),event.pos.getY(), event.pos.getZ());  
 				} 
 			}
 			else if(held.getItem() == MasterWandMod.itemChestSack)
 			{ 	
 				if(  held.getTagCompound() == null){return;}
 			   
-				int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
+				
+						//.getBlockMetadata(event.pos.getY(), event.pos.getZ()); 
 				  
 				// : is y+1 actually air?
-				if(event.entityPlayer.worldObj.isAirBlock(event.x, event.y + 1, event.z) == false
-						|| event.entityPlayer.worldObj.getActualHeight() < event.y+1)//do not place above world height
+				if(event.entityPlayer.worldObj.isAirBlock(new BlockPos(event.pos.getX(),event.pos.getY() + 1, event.pos.getZ())) == false
+						|| event.entityPlayer.worldObj.getActualHeight() < event.pos.getY() + 1)//do not place above world height
 				{
 					//can only be placed on valid air location
 					return;
 				}
 				
-				MasterWandMod.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
+				MasterWandMod.itemChestSack.createAndFillChest(event.entityPlayer,held, event.pos.getX(),event.pos.getY() + 1, event.pos.getZ());
 			}
 		}
   	}
@@ -234,6 +241,16 @@ public class MasterWandMod
 			//onSuccess(event.entityPlayer);
 			
 		}
+		
   	}
+	class Reference
+	{
+		public static final int entity_cow = 92;
+		public static final int entity_pig = 90;
+		public static final int entity_sheep = 91;
+		public static final int entity_chicken = 93;
+		public static final int entity_mooshroom = 96;
+		public static final int entity_bat = 65;
+	}
 	
 }
