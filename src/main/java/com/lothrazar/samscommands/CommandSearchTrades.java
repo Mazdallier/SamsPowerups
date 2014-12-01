@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 
@@ -46,7 +47,8 @@ public class CommandSearchTrades  implements ICommand
 		EntityPlayer p = (EntityPlayer)ic;
 		if(args.length == 0)
 		{ 
-			Chat.addMessage(p,  getCommandUsage(ic));
+		 
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic)));
 			return;
 		}
 		
@@ -139,12 +141,14 @@ public class CommandSearchTrades  implements ICommand
 
 		 for(int j = 0; j < messages.size();j++)
 		 {
-			 Chat.addMessage(p,messages.get(j)); 
+	 
+			p.addChatMessage(new ChatComponentTranslation(messages.get(j)));
 		 }
 		 
 		 if(messages.size() == 0)
 		 {
-			 Chat.addMessage(p,"No matching trades found in nearby villagers ("+range+"m).");
+	 
+			p.addChatMessage(new ChatComponentTranslation("No matching trades found in nearby villagers ("+range+"m)."));
 		 }
   
 	}

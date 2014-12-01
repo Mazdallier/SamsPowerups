@@ -11,6 +11,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
@@ -89,7 +90,10 @@ public class CommandSearchItem  implements ICommand
 		EntityPlayerMP player = (EntityPlayerMP) sender;
 		if (args.length < 1)
 		{
-			Chat.addMessage(sender.getEntityWorld() , getCommandUsage(sender));
+			//Chat.addMessage(sender.getEntityWorld() , getCommandUsage(sender));
+			
+
+			player.addChatMessage(new ChatComponentTranslation(getCommandUsage(sender)));
 			return;
 		}
 		
@@ -165,7 +169,8 @@ public class CommandSearchItem  implements ICommand
 		
 		if(found == 0)
 		{
-			Chat.addMessage(sender.getEntityWorld(),"No items found within "+RADIUS+" blocks of you."); 
+	 
+			player.addChatMessage(new ChatComponentTranslation("No items found within "+RADIUS+" blocks of you."));
 		}
 		else
 		{
@@ -173,7 +178,10 @@ public class CommandSearchItem  implements ICommand
 			
 			for (int i = 0; i < found; i++) 
 			{ 
-				Chat.addMessage(sender.getEntityWorld(),foundMessages.get(i)); 
+				//Chat.addMessage(sender.getEntityWorld(),foundMessages.get(i)); 
+				
+
+				player.addChatMessage(new ChatComponentTranslation(foundMessages.get(i)));
 		    }
 		}
 		

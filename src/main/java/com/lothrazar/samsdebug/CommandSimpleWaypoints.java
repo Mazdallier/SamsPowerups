@@ -1,9 +1,8 @@
-package com.lothrazar.samscommands;
+package com.lothrazar.samsdebug;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;  
-
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,7 +61,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		
 		if(args == null || args.length == 0 || args[0] == null || args[0].length() == 0)
 		{ 
-		    Chat.addMessage(p,getCommandUsage(icommandsender));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender)));
 			return;//not enough args
 		}
 		
@@ -104,7 +103,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		if(index <= 0 ) //invalid number, or int parse failed
 		{
 			// ZERO NOT ALLOWED
-			Chat.addMessage(p,getCommandUsage(icommandsender));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender)));
 			return;
 		}
 		
@@ -124,12 +123,12 @@ public class CommandSimpleWaypoints  implements ICommand
 		//} 
 		
 //if nothing else
-	    Chat.addMessage(p,getCommandUsage(icommandsender));
+		p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender)));
 	}
 	
 	private void executeSave(EntityPlayer p, String name) 
 	{ 
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getName());
+		ArrayList<String> lines = ScreenInfoMod.GetForPlayerName(p.getName());
 		
 		if(name == null) name = "";
 		
@@ -146,7 +145,7 @@ public class CommandSimpleWaypoints  implements ICommand
 
 	private void executeHide(EntityPlayer p) 
 	{
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getName());
+		ArrayList<String> lines = ScreenInfoMod.GetForPlayerName(p.getName());
 		
 		if(lines.size() < 1){return;}
 		lines.set(0,"0");
@@ -155,7 +154,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeClear(EntityPlayer p) 
 	{
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getName());
+		ArrayList<String> lines = ScreenInfoMod.GetForPlayerName(p.getName());
 		
 		if(lines.size() <= 1){return;}
 		
@@ -193,7 +192,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeList(EntityPlayer p) 
 	{ 
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getName());
+		ArrayList<String> lines = ScreenInfoMod.GetForPlayerName(p.getName());
 		
 		int i = 0;
 		String d;
@@ -204,8 +203,9 @@ public class CommandSimpleWaypoints  implements ICommand
 			if(line == null || line.isEmpty()) {continue;}
 			
 			d = ""+i +" : " +(new Location(line).toDisplay());
-			Chat.addMessage(p,d);
-			
+		
+
+			p.addChatMessage(new ChatComponentTranslation(d));
 			i++;
 		}
 	}
@@ -230,7 +230,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	 
 	private void SetCurrentForPlayerName(String playerName, int current)
 	{
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(playerName);
+		ArrayList<String> lines = ScreenInfoMod.GetForPlayerName(playerName);
 		
 		lines.set(0, current+"");//overwrite the current index
  

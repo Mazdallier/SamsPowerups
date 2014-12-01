@@ -55,7 +55,7 @@ public class SamsCommandsMod
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
     	logger = event.getModLog(); 
-    	
+    	/*
     	config = new Configuration(event.getSuggestedConfigurationFile());  
 		
 		boolean enabled = config.getBoolean( "richLoot",MODID,true,
@@ -63,7 +63,7 @@ public class SamsCommandsMod
 		);
 		
 		syncConfig() ;
-
+*/
 	    MinecraftForge.EVENT_BUS.register(instance); 
     } 
     
@@ -71,110 +71,17 @@ public class SamsCommandsMod
     @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{ 
+    	//was a Null Exception here?
+    	/*
 		event.registerServerCommand(new CommandSearchTrades());
 		logger.info("Register searchtrade command");
 		event.registerServerCommand(new CommandSearchItem());
 		logger.info("Register searchitem command");
 		event.registerServerCommand(new CommandKillAll());
 		logger.info("Register killall command");
-		event.registerServerCommand(new CommandSimpleWaypoints());
 		logger.info("Register simplewaypoint command");
+		*/
 
 	}
 	
-
-	@SubscribeEvent
-	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
-	{
-		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
-		
-		//was EntityClientPlayerMP
-		EntityPlayerSP p = Minecraft.getMinecraft().thePlayer;
-	 
-    	ArrayList<String> saved = SamsCommandsMod.GetForPlayerName(p.getDisplayName().getUnformattedText());
-
-    	if(saved.size() > 0 && saved.get(0) != null)
-    	{ 
-    		int index = 0;
-    		try
-    		{
-	    		index = Integer.parseInt( saved.get(0) );
-    		}
-    		catch(NumberFormatException e) 
-    		{
-    			System.out.println("NAN"  );
-    			return;
-    		}// do nothing, its allowed to be a string
-    		
-    		if(index <= 0){return;}
-    		
-    		Location loc = null;
-
-    		if(saved.size() <= index) {return;}
-    		
-    		String sloc = saved.get(index);
-    		
-    		if(sloc == null || sloc.isEmpty()) {return;}
-    	 
-    		if( index < saved.size() && saved.get(index) != null) loc = new Location(sloc);
-    		
-    		if(loc != null)
-    		{ 
-    			//return  showName +Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + dim;	
-    			
-    			if(p.dimension != loc.dimension){return;}
-    			
-    			double dX = p.posX - loc.X;
-    			double dZ = p.posZ - loc.Z;
-    			
-    			int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
-    			 
-    			String showName = "Distance "+dist+ " from waypoint ["+index+"] " + loc.name;	
-    			
-    			boolean sideRight=true;
-    			if(sideRight)
-    				event.right.add(showName);
-    			else 
-    				event.left.add(showName);
-    		} 
-    	}
-    
-	}
-	
-	
-	public static ArrayList<String> GetForPlayerName(String playerName)
-	{ 
-		if(playerName == null)
-		{
-			logger.info("GetForPlayerName possible exception: <null>");
-			return null;
-		}
-		logger.info("GetForPlayerName : "+ playerName);
-		String fileName = "swp_"+playerName +".dat";
-		ArrayList<String> lines = new ArrayList<String>();
-	 
-		try
-		{
-			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName);
-			if(!myFile.exists()) myFile.createNewFile();
-			FileInputStream fis = new FileInputStream(myFile);
-			DataInputStream instream = new DataInputStream(fis);
-			String val;
-			
-			while((val = instream.readLine()) != null) lines.add(val);
-			
-			instream.close();
-			fis.close();
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		} //this makes it per-world
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return lines;
-	} 
 }

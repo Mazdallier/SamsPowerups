@@ -10,6 +10,7 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 
 public class CommandKillAll implements ICommand
@@ -50,8 +51,8 @@ public class CommandKillAll implements ICommand
 		
 				 
 		if(args.length == 0)
-		{
-			Chat.addMessage(p,getCommandUsage(ic));
+		{ 
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic))); 
 			return;
 		}
 		
@@ -70,7 +71,8 @@ public class CommandKillAll implements ICommand
 		}
 		if(range < 1 || range > 64)
 		{
-			Chat.addMessage(p,getCommandUsage(ic)+ " ; Maximum range of 64");
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic)+ " ; Maximum range of 64"));
+		
 			return;
 		}
 
@@ -217,12 +219,14 @@ public class CommandKillAll implements ICommand
 		} 
 		else
 		{
-			Chat.addMessage(p,getCommandUsage(ic));
+			//Chat.addMessage(p,getCommandUsage(ic));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic)));
 			return;
 		}
 		if(this.killed > 0)
 		{
-			Chat.addMessage(p,"Killed "+this.killed);
+			p.addChatMessage(new ChatComponentTranslation("Killed "+this.killed));
+		//	Chat.addMessage(p,"Killed "+this.killed);
 			this.killed = 0;
 		}
 	}
