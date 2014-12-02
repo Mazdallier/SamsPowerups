@@ -67,15 +67,17 @@ public class AlterBaseClassMod
 	{
 		if(config.hasChanged()) { config.save(); } 
 	}  
+    /*
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{ 
-		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
-    }
+		//if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
+    }*/
     
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
+    	/*
     	logger = event.getModLog(); 
 
     	logger.info("Base Class Editited (not ASM or forge)");
@@ -87,7 +89,7 @@ public class AlterBaseClassMod
     	logger.info(" net.minecraft.block.BlockPumpkin.java");  
     	logger.info(" net.minecraft.block.BlockSnow.java");  
     	logger.info(" net.minecraft.entity.item.EntityBoat.java");
-    	
+    	*/
     
 //package net.minecraft.item;// Item.registerItems();   
     	//TODO baseedits:
@@ -100,12 +102,12 @@ public class AlterBaseClassMod
     	//BlockPumpkin p;
     //	BlockPumpkin.class.canPlaceBlockAt = 
     	//door, what did i change there? 
-    	
+    	/*
      	config = new Configuration(event.getSuggestedConfigurationFile());  
 		
     	 
     		
-         syncConfig() ;
+         syncConfig() ;*/
     }
  
 	

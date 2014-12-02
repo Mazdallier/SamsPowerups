@@ -77,7 +77,7 @@ public class DifficultyTweaksMod
 		
 		syncConfig();
 		
-    	
+		enabled = false;//todo; from config? this turns off spawns
     	
     	MinecraftForge.EVENT_BUS.register(instance); 
 	}
@@ -95,6 +95,8 @@ public class DifficultyTweaksMod
 			instance.syncConfig();
 		} 
     }
+    
+    boolean enabled=false;
     @EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{ 
@@ -127,6 +129,7 @@ public class DifficultyTweaksMod
     Mushroom biomes can spawn only Mooshrooms.
 
 		 * */
+		if(!enabled){return;}
 		
 		int wProb = 1;
 		int minGroup = 1;
@@ -333,7 +336,7 @@ public class DifficultyTweaksMod
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event)
 	{
-
+if(!enabled){return;}
     	//give weapons to mobs?
     	//event.entityLiving.setCurrentItemOrArmor(0, new ItemStack(Items.sword_something));
 		
