@@ -1,4 +1,4 @@
-package com.lothrazar.samstrades;
+package com.lothrazar.samsrichloot;
 
 import java.util.Random;
 

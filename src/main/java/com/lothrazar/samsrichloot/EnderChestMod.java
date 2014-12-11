@@ -1,6 +1,8 @@
-package com.lothrazar.samsenderpower;
+package com.lothrazar.samsrichloot;
 
 import org.apache.logging.log4j.Logger;
+
+import com.lothrazar.samscommands.CommandEnderChest;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

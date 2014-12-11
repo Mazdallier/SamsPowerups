@@ -1,4 +1,4 @@
-package com.lothrazar.samsenderpower;
+package com.lothrazar.samscommands;
 /*
  * 
  * imported from my 

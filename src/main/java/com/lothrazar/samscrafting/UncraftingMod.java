@@ -1,4 +1,4 @@
-package com.lothrazar.samsuncrafting;
+package com.lothrazar.samscrafting;
   
 import org.apache.logging.log4j.Logger;
 

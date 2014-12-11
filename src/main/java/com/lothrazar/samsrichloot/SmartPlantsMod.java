@@ -1,4 +1,4 @@
-package com.lothrazar.samsnature;
+package com.lothrazar.samsrichloot;
 
 import org.apache.logging.log4j.Logger;
 

@@ -1,4 +1,4 @@
-package com.lothrazar.samsstackable;
+package com.lothrazar.samsrichloot;
 
 import java.util.ArrayList;  
 

@@ -8,11 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
-
-import com.lothrazar.samspowerups.AlterBaseClassMod;
-import com.lothrazar.util.*;  
-
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;   
+import com.lothrazar.util.*;   
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;

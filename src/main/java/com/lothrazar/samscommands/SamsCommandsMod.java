@@ -27,7 +27,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration; 
 
-import com.lothrazar.samsenderpower.CommandEnderChest;
 import com.lothrazar.util.Location; 
 import com.lothrazar.util.Reference;
 
