@@ -7,8 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;  
-import java.util.Random;
-
+import java.util.Random; 
 import org.apache.logging.log4j.Logger; 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -25,11 +24,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraftforge.common.DimensionManager;  
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration; 
-
-import com.lothrazar.util.Location; 
-import com.lothrazar.util.Reference;
-
+import net.minecraftforge.common.config.Configuration;  
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -94,10 +89,10 @@ public class SamsCommandsMod
 		event.registerServerCommand(new CommandKillAll()); 
 		event.registerServerCommand(new CommandSimpleWaypoints()); 
 		event.registerServerCommand(new CommandTodoList());  
-	}
-
+		event.registerServerCommand(new CommandEnderChest()); 
   
-	 
+	}
+ 
 	
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
