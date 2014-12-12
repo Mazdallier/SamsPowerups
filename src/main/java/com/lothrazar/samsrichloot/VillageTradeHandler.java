@@ -22,11 +22,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
-@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class MissingTradeMod  implements IVillageTradeHandler
+//@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class VillageTradeHandler  implements IVillageTradeHandler
 {  
-    @Instance(value = MissingTradeMod.MODID)
-    public static MissingTradeMod instance; 
+    @Instance(value = VillageTradeHandler.MODID)
+    public static VillageTradeHandler instance; 
     public static Logger logger;  
     protected static final String MODID = "samstrades"; 
     public static final String VERSION = "1"; 
