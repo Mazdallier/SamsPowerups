@@ -15,6 +15,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -78,6 +79,9 @@ public class ModSamsPowerups
   	@EventHandler
 	public void onInit(FMLInitializationEvent event)  
 	{    
+  		VillageTradeHandler v = new VillageTradeHandler();
+		VillagerRegistry.instance().registerVillageTradeHandler(1, v);
+		VillagerRegistry.instance().registerVillageTradeHandler(2, v);
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
   	 

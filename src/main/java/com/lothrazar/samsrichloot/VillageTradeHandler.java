@@ -25,28 +25,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 //@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class VillageTradeHandler  implements IVillageTradeHandler
 {  
-    @Instance(value = VillageTradeHandler.MODID)
-    public static VillageTradeHandler instance; 
-    public static Logger logger;  
-    protected static final String MODID = "samstrades"; 
-    public static final String VERSION = "1"; 
-	public static Configuration config;  
-    public void syncConfig() 
-	{
-		//if(config.hasChanged()) { config.save(); } 
-	}  
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
-    }
-    
-    @EventHandler
-	public void onInit(FMLInitializationEvent event) 
-	{  
-		VillagerRegistry.instance().registerVillageTradeHandler(1, this);
-		VillagerRegistry.instance().registerVillageTradeHandler(2, this);
-	} 
+ 
 	 
 	final int BROWN = 0;
 	final int WHITE = 1;
@@ -57,9 +36,7 @@ public class VillageTradeHandler  implements IVillageTradeHandler
  
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
-	{  
-		// TODO Auto-generated method stub
- 
+	{  	
 		// this is all the minecrtaft 1.7.10 stuff
 		
 		//see the 1.8 here http://minecraft.gamepedia.com/Trading#Functionality
