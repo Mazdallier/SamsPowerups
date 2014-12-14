@@ -36,15 +36,8 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	
 	@Override
 	public IMessage onMessage(MessageKeyPressed message, MessageContext ctx)
-	{
-    	System.out.println("onMessage!!");
-    	System.out.println("onMessage!!");
-    	System.out.println("onMessage!!");
-    	System.out.println("onMessage!!");
-    	
-    	
-		EntityPlayer player = ctx.getServerHandler().playerEntity;
-  player.addChatMessage(new ChatComponentTranslation("keykey"));
+	{ 
+		EntityPlayer player = ctx.getServerHandler().playerEntity; 
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html
  

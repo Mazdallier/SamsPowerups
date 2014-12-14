@@ -38,44 +38,27 @@ public class KeySliderMod
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID ); 
     	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
-   
-    	
-    	System.out.println("keyslider onPreInit");
-     
-
-    	FMLCommonHandler.instance().bus().register(instance);
-    	//MinecraftForge.EVENT_BUS.register(instance);  //for onConfigChanged
+    
+    	FMLCommonHandler.instance().bus().register(instance); 
     }
  
     
     @EventHandler
     public void load(FMLInitializationEvent event)
-    {
-    	System.out.println("keyslider load");
+    { 
     	proxy.registerRenderers();
     }
 
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
-    {  
-    	System.out.println("keyslider onKeyInput");
+    {   
         if(ClientProxy.keyShiftUp.isPressed() )
-        { 	    
-        	System.out.println("keyShiftUp!");
-        	System.out.println("keyShiftUp!");
-        	System.out.println("keyShiftUp!");
-        	System.out.println("keyShiftUp!");
+        { 	     
         	 network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
-        }
-        
-        if(ClientProxy.keyShiftDown.isPressed()   )
-        { 	    
-        	System.out.println("keyShiftDown!"); 
-        	System.out.println("keyShiftDown!"); 
-        	System.out.println("keyShiftDown!"); 
-        	System.out.println("keyShiftDown!"); 
+        }        
+        else if(ClientProxy.keyShiftDown.isPressed()   )
+        { 	      
         	network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
         }  
-    }
-
+    } 
 }
