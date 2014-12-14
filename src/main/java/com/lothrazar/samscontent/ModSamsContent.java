@@ -22,11 +22,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = ItemBlockMod.MODID, version = ItemBlockMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class ItemBlockMod  
+@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class ModSamsContent  
 {	
-    @Instance(value = ItemBlockMod.MODID)
-    public static ItemBlockMod instance; 
+    @Instance(value = ModSamsContent.MODID)
+    public static ModSamsContent instance; 
     public static Logger logger;  
 	public static Configuration config;  
 	protected final static String MODID = "samscontent";
@@ -476,9 +476,9 @@ public class ItemBlockMod
 		}
 		else
 		{ 			
-			if(itemStack.getItem() == ItemBlockMod.itemEnderBook)
+			if(itemStack.getItem() == ModSamsContent.itemEnderBook)
 			{
-				ItemBlockMod.itemEnderBook.saveCurrentLocation(event.entityPlayer, itemStack);
+				ModSamsContent.itemEnderBook.saveCurrentLocation(event.entityPlayer, itemStack);
 			}
 		}		 
   	}
@@ -486,7 +486,7 @@ public class ItemBlockMod
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{        
-		ItemStack runestone = event.player.inventory.getStackInSlot(ItemBlockMod.SLOT_RUNESTONE);
+		ItemStack runestone = event.player.inventory.getStackInSlot(ModSamsContent.SLOT_RUNESTONE);
 		if(runestone == null || (runestone.getItem() instanceof ItemRunestone) == false) {return;}
  
 		ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();

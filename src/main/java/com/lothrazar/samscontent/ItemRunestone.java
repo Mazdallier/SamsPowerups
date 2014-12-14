@@ -32,7 +32,7 @@ public class ItemRunestone extends ItemTool
     public ItemRunestone(  int[] _effects, int[] _amplifiers,boolean shimmer)
     {
 		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 
-    	this.setMaxDamage(ItemBlockMod.RUNESTONE_DURABILITY);
+    	this.setMaxDamage(ModSamsContent.RUNESTONE_DURABILITY);
     	setMaxStackSize(1);
     	setCreativeTab(CreativeTabs.tabCombat) ; 
   
@@ -106,9 +106,9 @@ public class ItemRunestone extends ItemTool
 		
 		runestone.damageItem(1, player);
 		 
-		if(runestone.getItemDamage() == ItemBlockMod.RUNESTONE_DURABILITY - 1)
+		if(runestone.getItemDamage() == ModSamsContent.RUNESTONE_DURABILITY - 1)
 		{
-			player.inventory.setInventorySlotContents(ItemBlockMod.SLOT_RUNESTONE, new ItemStack(Items.nether_star));
+			player.inventory.setInventorySlotContents(ModSamsContent.SLOT_RUNESTONE, new ItemStack(Items.nether_star));
 		} 
 	}
 	

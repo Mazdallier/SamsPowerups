@@ -34,12 +34,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = SamsCommandsMod.MODID, version = SamsCommandsMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class SamsCommandsMod
+@Mod(modid = ModSamsCommands.MODID, version = ModSamsCommands.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+public class ModSamsCommands
 {
 //program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
-   @Instance(value = SamsCommandsMod.MODID)
-    public static SamsCommandsMod instance; 
+   @Instance(value = ModSamsCommands.MODID)
+    public static ModSamsCommands instance; 
     public static Logger logger;  
 	public static Configuration config;  
     protected static final String MODID = "samscommands"; 

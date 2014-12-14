@@ -131,7 +131,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeSave(EntityPlayer p, String name) 
 	{ 
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = ModSamsCommands.GetForPlayerName(p.getDisplayName());
 		
 		if(name == null) name = "";
 		
@@ -148,7 +148,7 @@ public class CommandSimpleWaypoints  implements ICommand
 
 	private void executeHide(EntityPlayer p) 
 	{
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = ModSamsCommands.GetForPlayerName(p.getDisplayName());
 		
 		if(lines.size() < 1){return;}
 		lines.set(0,"0");
@@ -157,7 +157,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeClear(EntityPlayer p) 
 	{
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = ModSamsCommands.GetForPlayerName(p.getDisplayName());
 		
 		if(lines.size() <= 1){return;}
 		
@@ -195,7 +195,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeList(EntityPlayer p) 
 	{ 
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = ModSamsCommands.GetForPlayerName(p.getDisplayName());
 		
 		int i = 0;
 		String d;
@@ -232,7 +232,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	 
 	private void SetCurrentForPlayerName(String playerName, int current)
 	{
-		ArrayList<String> lines = SamsCommandsMod.GetForPlayerName(playerName);
+		ArrayList<String> lines = ModSamsCommands.GetForPlayerName(playerName);
 		
 		lines.set(0, current+"");//overwrite the current index
  
