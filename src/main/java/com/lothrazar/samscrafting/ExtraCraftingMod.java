@@ -1,8 +1,6 @@
 package com.lothrazar.samscrafting;
 
-import java.util.ArrayList; 
-import com.lothrazar.util.*; 
-
+import java.util.ArrayList;  
 import org.apache.logging.log4j.Logger;  
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;

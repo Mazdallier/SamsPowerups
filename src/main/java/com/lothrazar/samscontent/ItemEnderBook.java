@@ -1,8 +1,7 @@
 package com.lothrazar.samscontent;
 
 import java.util.List; 
-import com.google.common.collect.Sets;  
-import com.lothrazar.util.Location; 
+import com.google.common.collect.Sets;   
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;

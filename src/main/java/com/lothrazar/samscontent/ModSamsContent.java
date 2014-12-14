@@ -1,15 +1,13 @@
 package com.lothrazar.samscontent;
 
-import org.apache.logging.log4j.Logger;
-
+import org.apache.logging.log4j.Logger; 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;   
-import com.lothrazar.util.*;   
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;    
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;

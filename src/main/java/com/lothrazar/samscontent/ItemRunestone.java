@@ -1,8 +1,7 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList; 
-import com.google.common.collect.Sets; 
-import com.lothrazar.util.*; 
+import com.google.common.collect.Sets;  
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -53,7 +52,7 @@ public class ItemRunestone extends ItemTool
 	{ 
 		return EnumRarity.epic;  //give it the purple text similar to goldapple
 	}
-
+private static int TICKS_PER_SEC=20;
 	public static void applyRunestoneToPlayer(EntityPlayer player,	ItemStack runestone) 
 	{ 
 		ItemRunestone itemRunestone = (ItemRunestone)runestone.getItem();
@@ -82,7 +81,7 @@ public class ItemRunestone extends ItemTool
 				//it is not already active, so safe to reapply 
 				//just use get and set on amplifier, dont do the stack size
 				// 0:02 (seconds)
-				player.addPotionEffect(new PotionEffect(runestoneEffect, Reference.TICKS_PER_SEC * 2, amp));
+				player.addPotionEffect(new PotionEffect(runestoneEffect, TICKS_PER_SEC * 2, amp));
 			}
 			else 
 			{   
@@ -97,7 +96,7 @@ public class ItemRunestone extends ItemTool
 			      if( p.getPotionID() == runestoneEffect)
 			      { 
 						// Relay.addChatMessage(player,"Runestone combine "+runestoneEffect);
-			    	  p.combine(new PotionEffect(runestoneEffect,  Reference.TICKS_PER_SEC * 2, amp));
+			    	  p.combine(new PotionEffect(runestoneEffect,  TICKS_PER_SEC * 2, amp));
 			    	  break;//end loop
 			      } 
 				} 
@@ -158,4 +157,6 @@ public class ItemRunestone extends ItemTool
 		return false;
 	}
 	 */
+	
+	
 }

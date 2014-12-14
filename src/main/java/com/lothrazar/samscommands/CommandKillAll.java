@@ -1,9 +1,6 @@
 package com.lothrazar.samscommands;
 
-import java.util.List;
-
-import com.lothrazar.util.Chat;
-
+import java.util.List;  
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
@@ -12,6 +9,7 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 
 public class CommandKillAll implements ICommand
@@ -22,22 +20,26 @@ public class CommandKillAll implements ICommand
 	private static final String CREEPER = "creeper";
 
 	@Override
-	public int compareTo(Object arg0) {
+	public int compareTo(Object arg0) 
+	{
 		return 0;
 	}
 
 	@Override
-	public String getCommandName() { 
+	public String getCommandName() 
+	{ 
 		return "killall";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender ic) { 
+	public String getCommandUsage(ICommandSender ic) 
+	{ 
 		return "killall <entity> <range>";
 	}
 
 	@Override
-	public List getCommandAliases() { 
+	public List getCommandAliases() 
+	{ 
 		return null;
 	}
 	private int killed = 0;
@@ -53,7 +55,8 @@ public class CommandKillAll implements ICommand
 				 
 		if(args.length == 0)
 		{
-			Chat.addMessage(p,getCommandUsage(ic));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic))); 
+			//Chat.addMessage(p,getCommandUsage(ic));
 			return;
 		}
 		
@@ -72,7 +75,7 @@ public class CommandKillAll implements ICommand
 		}
 		if(range < 1 || range > 64)
 		{
-			Chat.addMessage(p,getCommandUsage(ic)+ " ; Maximum range of 64");
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic)+ " ; Maximum range of 64"));  
 			return;
 		}
 
@@ -219,12 +222,14 @@ public class CommandKillAll implements ICommand
 		} 
 		else
 		{
-			Chat.addMessage(p,getCommandUsage(ic));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic))); 
+ 
 			return;
 		}
 		if(this.killed > 0)
 		{
-			Chat.addMessage(p,"Killed "+this.killed);
+			p.addChatMessage(new ChatComponentTranslation("Killed "+this.killed)); 
+		 
 			this.killed = 0;
 		}
 	}
@@ -241,17 +246,20 @@ public class CommandKillAll implements ICommand
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender ic) { 
+	public boolean canCommandSenderUseCommand(ICommandSender ic) 
+	{ 
 		return true;
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender ic,			String[] args) { 
+	public List addTabCompletionOptions(ICommandSender ic, String[] args) 
+	{ 
 		return null;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] args, int i) {
+	public boolean isUsernameIndex(String[] args, int i) 
+	{
 		return false;
 	}
 

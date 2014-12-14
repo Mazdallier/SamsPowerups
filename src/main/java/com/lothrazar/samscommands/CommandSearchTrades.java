@@ -1,10 +1,7 @@
 package com.lothrazar.samscommands;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.lothrazar.util.Chat;
-
+import java.util.List; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
@@ -12,6 +9,7 @@ import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 
@@ -19,26 +17,26 @@ public class CommandSearchTrades  implements ICommand
 {
 
 	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
+	public int compareTo(Object arg0) 
+	{ 
 		return 0;
 	}
 
 	@Override
-	public String getCommandName() {
-		// TODO Auto-generated method stub
+	public String getCommandName() 
+	{ 
 		return "searchtrade";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender ic) {
-		// TODO Auto-generated method stub
+	public String getCommandUsage(ICommandSender ic) 
+	{ 
 		return  "searchtrade itemname <qty>";
 	}
 
 	@Override
-	public List getCommandAliases() {
-		// TODO Auto-generated method stub
+	public List getCommandAliases() 
+	{ 
 		return null;
 	}
 
@@ -47,8 +45,8 @@ public class CommandSearchTrades  implements ICommand
 	{
 		EntityPlayer p = (EntityPlayer)ic;
 		if(args.length == 0)
-		{ 
-			Chat.addMessage(p,  getCommandUsage(ic));
+		{  
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic))); 
 			return;
 		}
 		
@@ -136,38 +134,35 @@ public class CommandSearchTrades  implements ICommand
 				 }
 			 } 
 		 }
-
-
-
+ 
 		 for(int j = 0; j < messages.size();j++)
 		 {
-			 Chat.addMessage(p,messages.get(j)); 
+			p.addChatMessage(new ChatComponentTranslation(messages.get(j))); 
+		 
 		 }
 		 
 		 if(messages.size() == 0)
 		 {
-			 Chat.addMessage(p,"No matching trades found in nearby villagers ("+range+"m).");
-		 }
-  
+			p.addChatMessage(new ChatComponentTranslation("No matching trades found in nearby villagers ("+range+"m).")); 
+		 
+		 } 
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_) {
-		// TODO Auto-generated method stub
+	public boolean canCommandSenderUseCommand(ICommandSender ic) 
+	{ 
 		return true;
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender p_71516_1_,
-			String[] p_71516_2_) {
-		// TODO Auto-generated method stub
+	public List addTabCompletionOptions(ICommandSender ic,	String[] args) 
+	{ 
 		return null;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
-		// TODO Auto-generated method stub
+	public boolean isUsernameIndex(String[] args, int i) 
+	{ 
 		return false;
-	}
-
+	} 
 }

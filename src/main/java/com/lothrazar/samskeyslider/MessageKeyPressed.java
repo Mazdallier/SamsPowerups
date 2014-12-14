@@ -1,8 +1,5 @@
 package com.lothrazar.samskeyslider;
- 
-
-import com.lothrazar.util.Chat;
-
+  
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -40,7 +37,7 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	public IMessage onMessage(MessageKeyPressed message, MessageContext ctx)
 	{
 		EntityPlayer player = ctx.getServerHandler().playerEntity;
-Chat.addMessage(player, "message key pressed");
+//Chat.addMessage(player, "message key pressed");
     	System.out.println("mmssgginput!!");
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html

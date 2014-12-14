@@ -2,11 +2,7 @@ package com.lothrazar.samscommands;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;  
- 
-import com.lothrazar.util.Chat;
-import com.lothrazar.util.Location;
-
+import java.util.List;    
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -64,7 +60,8 @@ public class CommandSimpleWaypoints  implements ICommand
 		
 		if(args == null || args.length == 0 || args[0] == null || args[0].length() == 0)
 		{ 
-		    Chat.addMessage(p,getCommandUsage(icommandsender));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender))); 
+	 
 			return;//not enough args
 		}
 		
@@ -106,7 +103,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		if(index <= 0 ) //invalid number, or int parse failed
 		{
 			// ZERO NOT ALLOWED
-			Chat.addMessage(p,getCommandUsage(icommandsender));
+			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender))); 
 			return;
 		}
 		
@@ -126,7 +123,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		//} 
 		
 //if nothing else
-	    Chat.addMessage(p,getCommandUsage(icommandsender));
+		p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender))); 
 	}
 	
 	private void executeSave(EntityPlayer p, String name) 
@@ -205,8 +202,9 @@ public class CommandSimpleWaypoints  implements ICommand
 			
 			if(line == null || line.isEmpty()) {continue;}
 			
-			d = ""+i +" : " +(new Location(line).toDisplay());
-			Chat.addMessage(p,d);
+			d = "" + i +" : " +(new Location(line).toDisplay());
+	 
+			p.addChatMessage(new ChatComponentTranslation(d)); 
 			
 			i++;
 		}

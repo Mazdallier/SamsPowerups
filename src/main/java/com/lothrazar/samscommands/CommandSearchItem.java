@@ -1,8 +1,7 @@
 package com.lothrazar.samscommands;
 
 import java.util.ArrayList;
-import java.util.List;  
-import com.lothrazar.util.Chat; 
+import java.util.List;   
 import cpw.mods.fml.common.FMLCommonHandler; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -10,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
@@ -88,7 +88,8 @@ public class CommandSearchItem  implements ICommand
 		EntityPlayerMP player = (EntityPlayerMP) sender;
 		if (args.length < 1)
 		{
-			Chat.addMessage(sender.getEntityWorld() , getCommandUsage(sender));
+		//Chat.addMessage(sender.getEntityWorld() , getCommandUsage(sender));
+			player.addChatMessage(new ChatComponentTranslation(getCommandUsage(sender))); 
 			return;
 		}
 		
@@ -162,16 +163,16 @@ public class CommandSearchItem  implements ICommand
 		int found = foundMessages.size();
 		
 		if(found == 0)
-		{
-			Chat.addMessage(sender.getEntityWorld(),"No items found within "+RADIUS+" blocks of you."); 
+		{ 
+			player.addChatMessage(new ChatComponentTranslation("No items found within "+RADIUS+" blocks of you."));
 		}
 		else
 		{
 			//Relay.addChatMessage(sender.getEntityWorld(),"Found at the following locations:");
 			
 			for (int i = 0; i < found; i++) 
-			{ 
-				Chat.addMessage(sender.getEntityWorld(),foundMessages.get(i)); 
+			{  
+				player.addChatMessage(new ChatComponentTranslation(foundMessages.get(i)));
 		    }
 		}
 		

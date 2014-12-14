@@ -1,7 +1,6 @@
 package com.lothrazar.samsmultiwand;
 
-import com.google.common.collect.Sets;
-import com.lothrazar.util.*; 
+import com.google.common.collect.Sets; 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -98,15 +97,15 @@ public class ItemWandMaster extends ItemTool
 			}
 		}
 
-		Chat.addMessage(entityPlayer, foundMessage);
+		entityPlayer.addChatMessage(new ChatComponentTranslation( foundMessage));
 	 
 		onSuccess(entityPlayer);
 	}
 	
-	public void searchSpawner(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
+	public void searchSpawner(EntityPlayer player, ItemStack heldWand, int eventx, int eventy, int eventz)
 	{
 	//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}
-		EntityPlayer player = entityPlayer;
+ 
 		//Chat.addMessage(player, "Searching for spawners...");
  //private static int RADIUS = 128;
 	    //changed to only show ONE message, for closest spawner
@@ -153,9 +152,9 @@ public class ItemWandMaster extends ItemTool
 			}
 		}
 		  
-		Chat.addMessage(player, foundMessage);
+		player.addChatMessage(new ChatComponentTranslation(  foundMessage ));
 		
-		onSuccess(entityPlayer);
+		onSuccess(player);
 	}
 	
 	public void convertChestToSack(EntityPlayer entityPlayer, ItemStack heldWand, TileEntityChest chestTarget, int eventx, int eventy, int eventz)

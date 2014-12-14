@@ -1,7 +1,6 @@
 package com.lothrazar.samsmultiwand;
 
-import org.apache.logging.log4j.Logger;
-
+import org.apache.logging.log4j.Logger; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.passive.EntityBat;
@@ -18,9 +17,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;  
-import com.lothrazar.util.*; 
-
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;   
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -233,5 +230,14 @@ public class MasterWandMod
 			
 		}
   	}
-	
+	class Reference
+	{
+		public static final int entity_cow = 92;
+		public static final int entity_pig = 90;
+		public static final int entity_sheep = 91;
+		public static final int entity_chicken = 93;
+		public static final int entity_mooshroom = 96;
+		public static final int entity_bat = 65;
+	 
+	}
 }
