@@ -7,6 +7,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 
 public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPressed, IMessage>
 {
@@ -36,9 +37,14 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	@Override
 	public IMessage onMessage(MessageKeyPressed message, MessageContext ctx)
 	{
+    	System.out.println("onMessage!!");
+    	System.out.println("onMessage!!");
+    	System.out.println("onMessage!!");
+    	System.out.println("onMessage!!");
+    	
+    	
 		EntityPlayer player = ctx.getServerHandler().playerEntity;
-//Chat.addMessage(player, "message key pressed");
-    	System.out.println("mmssgginput!!");
+  player.addChatMessage(new ChatComponentTranslation("keykey"));
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html
  

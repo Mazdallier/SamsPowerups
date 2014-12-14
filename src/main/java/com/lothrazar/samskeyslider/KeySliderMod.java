@@ -2,6 +2,7 @@ package com.lothrazar.samskeyslider;
  
 import net.minecraftforge.common.MinecraftForge; 
 import net.minecraftforge.common.config.Configuration;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,8 +28,7 @@ public class KeySliderMod
     @Instance(value = KeySliderMod.MODID)
     public static KeySliderMod instance;
 	protected static final String MODID = "samskeyslider";
-	private Configuration config;
-    //public static Logger logger;   
+  
     public static final String VERSION = "1";
 	 
     @EventHandler
@@ -37,43 +37,43 @@ public class KeySliderMod
     
     	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID ); 
     	
-    	 network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
-    	config = new Configuration(event.getSuggestedConfigurationFile());  
- 
-		syncConfig();  
+    	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
+   
     	
-    	
-		
-    	 MinecraftForge.EVENT_BUS.register(instance);  //for onConfigChanged
-    }
+    	System.out.println("keyslider onPreInit");
+     
 
-	
-	public void syncConfig() 
-	{
-		if(config.hasChanged())
-		{
-			config.save();
-		}
-	} 
+    	FMLCommonHandler.instance().bus().register(instance);
+    	//MinecraftForge.EVENT_BUS.register(instance);  //for onConfigChanged
+    }
+ 
     
     @EventHandler
     public void load(FMLInitializationEvent event)
     {
+    	System.out.println("keyslider load");
     	proxy.registerRenderers();
     }
 
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
     {  
+    	System.out.println("keyslider onKeyInput");
         if(ClientProxy.keyShiftUp.isPressed() )
         { 	    
-        	System.out.println("On key input!!");
+        	System.out.println("keyShiftUp!");
+        	System.out.println("keyShiftUp!");
+        	System.out.println("keyShiftUp!");
+        	System.out.println("keyShiftUp!");
         	 network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
         }
         
         if(ClientProxy.keyShiftDown.isPressed()   )
         { 	    
-        	System.out.println("On key input!!");
+        	System.out.println("keyShiftDown!"); 
+        	System.out.println("keyShiftDown!"); 
+        	System.out.println("keyShiftDown!"); 
+        	System.out.println("keyShiftDown!"); 
         	network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
         }  
     }
