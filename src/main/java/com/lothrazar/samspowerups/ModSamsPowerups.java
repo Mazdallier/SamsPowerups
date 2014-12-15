@@ -138,6 +138,7 @@ public class ModSamsPowerups
  
 		to64.add(Items.ender_pearl);
 		to64.add(Items.egg);
+		to64.add(Items.sign);
 		to64.add(Items.snowball);
 		to64.add(Items.cookie);
 		to64.add(Items.mushroom_stew);
