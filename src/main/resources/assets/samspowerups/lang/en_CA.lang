@@ -18,3 +18,7 @@ tile.grRegenBlock.name=Natural Regen Command Block
 tile.grdoFiretickblock.name=Do Fire Tick Command Block
 tile.grmobGriefingblock.name=Mob Griefing Command Block
 tile.daycycle_command_block.name=Daylight Cycle Command Block
+item.apple_emerald.name=Emerald Apple
+item.apple_diamond.name=Diamond Apple
+item.apple_lapis.name=Lapis Apple
+item.apple_chocolate=Chocolate Apple
