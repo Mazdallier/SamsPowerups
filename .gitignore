@@ -6,6 +6,8 @@ world/
 logs/
 mods/
 config/
+.gradle/
+.settings/
 gradlew
 gradlew.bat
 server.properties
