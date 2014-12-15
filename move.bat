@@ -1,1 +1,0 @@
-move %~dp0\build\libs\*.* C:\Users\Samson\AppData\Roaming\.minecraft_forge17\mods

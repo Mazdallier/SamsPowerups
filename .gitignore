@@ -11,7 +11,12 @@ gradlew.bat
 server.properties
 *.txt
 *.json
+*.bat
+gradle/
+*.properties
+*.gradle
 .gradle/
 .settings/
 .classpath
 .project
+gradlew
