@@ -28,10 +28,12 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -289,10 +291,46 @@ public class ModSamsPowerups
 					event.entityPlayer.getCurrentEquippedItem().getItem() == Item.getItemFromBlock(Blocks.ender_chest) )
 			{
 				event.entityPlayer.displayGUIChest(event.entityPlayer.getInventoryEnderChest());
+				return;
 			}
 		} 
-		
+/*	public static final int skull_skeleton = 0;
+public static final int skull_wither = 1;
+public static final int skull_zombie = 2;
+public static final int skull_player = 3;
+public static final int skull_creeper = 4;*/
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
+		
+		if(held != null && held.getItem() == Items.skull && held.getItemDamage() == 3
+				//&& ExtraCrafting.skullSignNames
+				)
+		{
+			TileEntity maybesign = event.world.getTileEntity(event.x, event.y, event.z);
+			if(maybesign != null && maybesign instanceof TileEntitySign)
+			{
+				TileEntitySign sign = (TileEntitySign)maybesign;
+				if(sign != null) //does a tile entity exist here and is it a sign
+				{
+					String firstLine = sign.signText[0];
+					if(firstLine == null) firstLine = "";
+					if(firstLine.isEmpty() || firstLine.split(" ").length == 0)
+					{
+						held.stackTagCompound = null;
+					}
+					else
+					{
+						//get the first word
+						firstLine = firstLine.split(" ")[0];
+						if(held.getTagCompound() == null) held.stackTagCompound = new NBTTagCompound();
+						held.stackTagCompound.setString("SkullOwner",firstLine);
+					}
+				}
+			}
+			
+		}
+			//http://docs.larry1123.net/forge/965/net/minecraft/tileentity/TileEntitySign.html
+
+		
 		if(isUsingBonemeal(held)  ) 
 		{ 
 		 
@@ -326,7 +364,7 @@ public class ModSamsPowerups
 			  	event.entity.entityDropItem( new ItemStack(Blocks.waterlily ,1), 1);
 		 	}
 		 	
-		}
+		}//emd of bpme,ea;
 		
 		
 		//if(event.entityPlayer.getItemInUse() != null){ return; }
