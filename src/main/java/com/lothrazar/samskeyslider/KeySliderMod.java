@@ -22,6 +22,7 @@ public class KeySliderMod
 	public static CommonProxy proxy;  
 	public static final String keyMenuUpName = "key.columnshiftup";
 	public static final String keyMenuDownName = "key.columnshiftdown";
+	//TODO: left and right swaps
 	public static final String keyCategory = "key.categories.inventory";
 	public static SimpleNetworkWrapper network; 
 

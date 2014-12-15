@@ -50,7 +50,7 @@ public class CommandSearchTrades  implements ICommand
 			return;
 		}
 		
-		String searching = args[0];
+		String searching = args[0].toLowerCase();
 		int searchingQty = -1;
 		if(args.length > 1)
 		{
@@ -62,6 +62,7 @@ public class CommandSearchTrades  implements ICommand
 		double X = ic.getPlayerCoordinates().posX;
 		double Z = ic.getPlayerCoordinates().posZ;
 		double range = 64;
+		
 		AxisAlignedBB searchRange = AxisAlignedBB.getBoundingBox(
 				X + 0.5D - range, 0.0D, 
 				Z + 0.5D - range, 
@@ -79,6 +80,7 @@ public class CommandSearchTrades  implements ICommand
 		    	 villagers.add((IMerchant)m);
 		     }
 		 }
+		 
 		 MerchantRecipeList list;
 		 MerchantRecipe rec;
 		 ItemStack buy;
@@ -105,7 +107,7 @@ public class CommandSearchTrades  implements ICommand
 				 //match to any of the three possible items
 				 //only match quantity if they enter one
 				 
-				 if(buy.getDisplayName().contains(searching))
+				 if(buy.getDisplayName().toLowerCase().contains(searching))
 				 {
 					 if(searchingQty < 0 || searchingQty == buy.stackSize)
 						 match = true;
@@ -128,7 +130,7 @@ public class CommandSearchTrades  implements ICommand
 				 {
 					 m =  disabled  +
 							 sell.stackSize +" "+sell.getDisplayName()+
-							 "::"+
+							 " :: "+
 							 buy.stackSize+" "+buy.getDisplayName();
 					 messages.add(m); 
 				 }
