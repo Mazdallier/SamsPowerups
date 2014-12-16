@@ -1,22 +1,20 @@
 package com.anon10w1z.craftPP;
 
-import net.minecraftforge.common.MinecraftForge;
-
+import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge; 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger; 
 import com.anon10w1z.craftPP.dispenser.CppDispenserBehaviors;
 import com.anon10w1z.craftPP.enchantments.CppEnchantments;
 import com.anon10w1z.craftPP.entities.CppEntities;
-import com.anon10w1z.craftPP.items.CppItems;
-import com.anon10w1z.craftPP.lib.CppRecipeRemover;
+import com.anon10w1z.craftPP.items.CppItems; 
 import com.anon10w1z.craftPP.lib.CppRecipes;
 import com.anon10w1z.craftPP.lib.CppReferences;
 import com.anon10w1z.craftPP.lib.CppVanillaPropertiesChanger;
 import com.anon10w1z.craftPP.lib.handlers.CppConfigHandler;
 import com.anon10w1z.craftPP.lib.handlers.CppEventHandler; 
-import com.anon10w1z.craftPP.proxies.CppCommonProxy;
-
+import com.anon10w1z.craftPP.proxies.CppCommonProxy; 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -38,7 +36,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * Changelog of fork:
  * -removed all blocks
  * -removed AutoSmelt enchantment 
- * 
+ * -removed glass shard
+ * -removed all food items
+ * -removed commandBlockInRedstoneTab
+ * -removed CppRecipeRemover
  */
 @Mod(modid = CppReferences.MODID, name = "Craft++", version = CppReferences.VERSION, guiFactory = "com.anon10w1z.craftPP.lib.CppGuiFactory")
 public final class CraftPlusPlus {
@@ -112,9 +113,7 @@ public final class CraftPlusPlus {
 		//Registering the dispenser behaviors
 		logger.log(Level.INFO, "Registering the dispenser behaviors");
 		CppDispenserBehaviors.init();
-		//Removing recipes
-		logger.log(Level.INFO, "Initializing the recipe remover");
-		CppRecipeRemover.init();
+	 
 		//Changing certain vanilla properties
 		logger.log(Level.INFO, "Initializing the vanilla properties changer");
 		CppVanillaPropertiesChanger.init();

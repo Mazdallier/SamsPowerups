@@ -76,21 +76,9 @@ public class CppEventHandler {
 			}
 			
 			int dropAmount = world.rand.nextInt(3) + 1;
-			//Squids drop calamari
-			if (entity instanceof EntitySquid) {
-				if (!entity.isBurning())
-				entity.dropItem(CppItems.squid_tentacle, dropAmount);
-				else entity.dropItem(CppItems.calamari, dropAmount);
-			}
-			//Sheep drop mutton
-			else if (entity instanceof EntitySheep && !((EntityAnimal) entity).isChild()) {
-				if(!entity.isBurning())
-				entity.dropItem(CppItems.raw_mutton, dropAmount);
-				else entity.dropItem(CppItems.cooked_mutton, dropAmount);
-			}
-			 
+		 
 			//Bats drop leather
-			else if (entity instanceof EntityBat) {
+			if (entity instanceof EntityBat) {
 				entity.dropItem(Items.leather, 1);
 			}
 			//Enderman drop the block they are carrying
@@ -159,45 +147,11 @@ public class CppEventHandler {
 	public void extraDropsEvent(HarvestDropsEvent event) 
 	{
 	 
-		if (event.harvester != null && !event.harvester.capabilities.isCreativeMode) {
-			//Glass Shards
-			if (event.block == Blocks.glass) {
-				int spawnAmount = event.world.rand.nextInt(6) + 4;
-				ItemStack shards = new ItemStack(CppItems.glass_shard, spawnAmount);
-				EntityItem entityitem = new EntityItem(event.world, event.x + 0.5, event.y + 0.5, event.z + 0.5, shards);
-				entityitem.delayBeforeCanPickup = 10;
-				event.drops.clear();
-				event.world.spawnEntityInWorld(entityitem);
-			}
-			
-			else if (event.block == Blocks.stained_glass && !event.isSilkTouching) {
-				int spawnAmount = event.world.rand.nextInt(6) + 4;
-				ItemStack shards = new ItemStack(CppItems.stained_glass_shard, spawnAmount, event.blockMetadata);
-				EntityItem entityitem = new EntityItem(event.world, event.x + 0.5, event.y + 0.5, event.z + 0.5, shards);
-				entityitem.delayBeforeCanPickup = 10;
-				event.drops.clear();
-				event.world.spawnEntityInWorld(entityitem);
-			}
-			
-			else if (event.block == Blocks.glass_pane && !event.isSilkTouching) {
-				int spawnAmount = event.world.rand.nextInt(3) + 1;
-				ItemStack shards = new ItemStack(CppItems.glass_shard, spawnAmount);
-				EntityItem entityitem = new EntityItem(event.world, event.x + 0.5, event.y + 0.5, event.z + 0.5, shards);
-				entityitem.delayBeforeCanPickup = 10;
-				event.drops.clear();
-				event.world.spawnEntityInWorld(entityitem);
-			}
-			
-			else if (event.block == Blocks.stained_glass_pane && !event.isSilkTouching) {
-				int spawnAmount = event.world.rand.nextInt(3) + 1;
-				ItemStack shards = new ItemStack(CppItems.stained_glass_shard, spawnAmount, event.blockMetadata);
-				EntityItem entityitem = new EntityItem(event.world, event.x + 0.5, event.y + 0.5, event.z + 0.5, shards);
-				entityitem.delayBeforeCanPickup = 10;
-				event.drops.clear();
-				event.world.spawnEntityInWorld(entityitem);
-			}
+		if (event.harvester != null && !event.harvester.capabilities.isCreativeMode) 
+		{
+			 
 			//Deadbush
-			else if (event.block == Blocks.deadbush && !event.isSilkTouching) {
+			  if (event.block == Blocks.deadbush && !event.isSilkTouching) {
 				if (event.world.rand.nextInt(4) < 3) {
 					ItemStack stick = new ItemStack(Items.stick);
 					EntityItem entityitem = new EntityItem(event.world, event.x + 0.5, event.y + 0.5, event.z + 0.5, stick);

@@ -13,11 +13,8 @@ public class CppRecipes {
 	/**
 	 * Registers the recipes for Craft++
 	 */
-	public static void init() {
-		//Smelting
-		GameRegistry.addSmelting(Items.egg, new ItemStack(CppItems.fried_egg), 0.35F);
-		GameRegistry.addSmelting(CppItems.raw_mutton, new ItemStack(CppItems.cooked_mutton), 0.35F);
-		GameRegistry.addSmelting(CppItems.squid_tentacle, new ItemStack(CppItems.calamari), 0.35F);
+	public static void init() 
+	{
 	
 		//Crafting
 		CraftingManager craftingmanager = CraftingManager.getInstance();
@@ -35,6 +32,7 @@ public class CppRecipes {
 			"BBB",
 			'B', Blocks.obsidian);
 		//Glass Shards
+		/*
 		craftingmanager.addShapelessRecipe(new ItemStack(CppItems.glass_shard, 9), Blocks.glass);
 		craftingmanager.addRecipe(new ItemStack(Blocks.glass),
 			"SSS",
@@ -57,6 +55,7 @@ public class CppRecipes {
 			
 			craftingmanager.addShapelessRecipe(new ItemStack(CppItems.stained_glass_shard, 3, i), new ItemStack(Blocks.stained_glass_pane, 1, i));
 		}
+		*/
 		//Storage Blocks
 		/*
 		craftingmanager.addShapelessRecipe(new ItemStack(Items.flint, 9), CppBlocks.flint_block);

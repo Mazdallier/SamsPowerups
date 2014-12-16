@@ -16,8 +16,6 @@ public class CppVanillaPropertiesChanger {
 		//Modifying step sounds
 		Blocks.melon_stem.setStepSound(Block.soundTypeGrass);
 		Blocks.pumpkin_stem.setStepSound(Block.soundTypeGrass);
-		//Modifying creative tabs
-		if (CppConfigHandler.commandBlockInRedstoneTab)
-		Blocks.command_block.setCreativeTab(CreativeTabs.tabRedstone);
+ 
 	}
 }

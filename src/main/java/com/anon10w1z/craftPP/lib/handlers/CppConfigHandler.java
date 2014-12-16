@@ -13,7 +13,7 @@ public class CppConfigHandler {
 	public static boolean creeperDropTnt;
 	
 	public static boolean useStoneToolRecipes;
-	public static boolean commandBlockInRedstoneTab;
+	 
 	public static boolean babyZombieBurnInDaylight;
 	
 	public static boolean doAnimalBoneDrop;
@@ -37,7 +37,7 @@ public class CppConfigHandler {
 		config.setCategoryComment(creeperCategory, "Properties for creepers");
 		
 		useStoneToolRecipes = config.get(Configuration.CATEGORY_GENERAL, "Stone tools crafted from stone: ", true).getBoolean(true);
-		commandBlockInRedstoneTab = config.get(Configuration.CATEGORY_GENERAL, "Command Blocks in creative menu: ", true).getBoolean(true);
+		//commandBlockInRedstoneTab = config.get(Configuration.CATEGORY_GENERAL, "Command Blocks in creative menu: ", true).getBoolean(true);
 		babyZombieBurnInDaylight = config.get(Configuration.CATEGORY_GENERAL, "Baby zombies burn in daylight: ", true).getBoolean(true);
 		
 		String boneDropCategory = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "Animal Bone Drops";
