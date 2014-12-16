@@ -61,9 +61,7 @@ public class ModSamsContent
 	private ItemFoodAppleMagic appleChocolate;
 
 	private boolean enderBookEnabled;
- 
-
-	
+  
 	public static enum CommandType 
 	{
 	    Teleport,Gamerule,Weather
@@ -109,8 +107,7 @@ public class ModSamsContent
 		gameRuleNatRegen = config.getBoolean( "gameRuleNatRegen",category,true
 				,"Build a command block that toggles the game rule naturalRegeneration." 
 				); 
-		
-
+ 
 		gameRuleMobGrief = config.getBoolean( "gameRuleMobGrief",category,true
 				,"Build a command block that toggles the game rule mobGriefing." 
 				); 
@@ -118,15 +115,13 @@ public class ModSamsContent
 		gameRuleFireTick = config.getBoolean( "gameRuleFireTick",category,true
 				,"Build a command block that toggles the game rule doFireTick." 
 				); 
-		
  
 		gameRuleDaylightCycle = config.getBoolean( "gameRuleDaylightCycle",category,true
 				,"Build a command block that toggles the game rule doDaylightCycle." 
 				);  
 		
 		syncConfig();
-		
-
+		 
 		MinecraftForge.EVENT_BUS.register(instance);//??iunstance no worky?
 		FMLCommonHandler.instance().bus().register(instance); 
 	}
@@ -139,6 +134,7 @@ public class ModSamsContent
 			instance.syncConfig();
 		} 
     }
+    
     public void syncConfig() 
 	{
 		if(config.hasChanged()) { config.save(); } 
@@ -160,11 +156,9 @@ public class ModSamsContent
 		initCommand();
 		initRunestones();	 
 	}
-
-	
-	private void initFishing() 
-	{
  
+	private void initFishing() 
+	{ 
 		BlockFishing block = new BlockFishing();
 		block.setBlockName("block_fishing")
 			 .setBlockTextureName("samspowerups" + ":block_fishing");

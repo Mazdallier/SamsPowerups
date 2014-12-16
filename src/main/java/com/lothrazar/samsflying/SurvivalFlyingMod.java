@@ -34,6 +34,7 @@ public class SurvivalFlyingMod
 	{
 		if(config.hasChanged()) { config.save(); } 
 	}  
+    
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
 	{ 
@@ -55,13 +56,14 @@ public class SurvivalFlyingMod
   
 	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
  
-
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		//MinecraftForge.EVENT_BUS.register(this); //nope this is only for forge events
 		FMLCommonHandler.instance().bus().register(this); //so that the player events hits here
-
+//!!
+		
+		
 		config =   new Configuration(event.getSuggestedConfigurationFile());  
 		 
 		String CATEGORY_FLY = MODID+":survival_flying";  
@@ -110,6 +112,10 @@ public class SurvivalFlyingMod
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{   
+		if( !event.player.worldObj.isRemote  ){ return; }
+		if( event.player.capabilities.isCreativeMode){return;}//leave flying alone
+		
+		System.out.println("onPlayerTick flying?");
 		//use the players display name as the hashmap key for the flyCountdown
 		String pname = event.player.getDisplayName();
 		// System.out.println("tstfly");
@@ -122,7 +128,7 @@ public class SurvivalFlyingMod
 		
 		World world = event.player.worldObj;
 	
-		int difficultyCurrent = event.player.worldObj.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
+		int difficultyCurrent = world.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
 		
 		//ex: if current is peaceful, required is easy, then disabled is true
 		//but, if current and required and both peaceful (equal) or if current > required then disabled false
@@ -134,8 +140,7 @@ public class SurvivalFlyingMod
 		
 		//if we are not allowed, and its night, then disable
 		if(cannotFlyAtNight && !world.isDaytime()) { disabledFromNight = true; } 
-	 
-		  
+	  		  
 		boolean isNaked = (
 				   event.player.getEquipmentInSlot(1) == null
 				&& event.player.getEquipmentInSlot(2) == null
@@ -152,81 +157,85 @@ public class SurvivalFlyingMod
 
 		// only if single player and NOT creative
 
-		if ( event.player.isClientWorld()	&& event.player.capabilities.isCreativeMode == false)
-		{
+
+		//http://minecraft.gamepedia.com/Status_effect 
+		int miningFatigue = 4;
+		int weakness = 18;
 			// entire block is disabled
 
-			if (event.player.getHealth() >= StartFlyingHealth
-					&& event.player.getFoodStats().getFoodLevel() >= StartFlyingHunger
-					&& event.player.experienceLevel >= StartFlyingLevel
-					&& disabledFromArmor == false// did wearing armor disable 
-					&& disabledFromBurning == false// are we burning disabled 
-					&& disabledFromDifficulty == false//is difficulty too low
-					&& disabledFromRain == false
-					&& disabledFromNight == false
-			)
+		if (       event.player.getHealth() >= StartFlyingHealth
+				&& event.player.getFoodStats().getFoodLevel() >= StartFlyingHunger
+				&& event.player.experienceLevel >= StartFlyingLevel
+				&& disabledFromArmor == false// did wearing armor disable 
+				&& disabledFromBurning == false// are we burning disabled 
+				&& disabledFromDifficulty == false//is difficulty too low
+				&& disabledFromRain == false
+				&& disabledFromNight == false
+		)
+		{
+			//okay, you have passed all the tests
+			event.player.capabilities.allowFlying = true; 
+			System.out.println("tru?");
+		} 
+		else
+		{ 
+			System.out.println("fff?");
+			// disable flying in future
+			event.player.capabilities.allowFlying = false; 
+			// turn off current flying ability
+			event.player.capabilities.isFlying = false; 
+			//reset the timer for this player
+			playerFlyDamageCounters.put(pname, 0); 
+		}
+		if (event.player.capabilities.isFlying)
+		{ 
+			//if the config is set to drain your xp, then up this counter
+			if(doesDrainLevels) 
 			{
-				//okay, you have passed all the tests
-				event.player.capabilities.allowFlying = true; 
-			} 
-			else
-			{
-				// disable flying in future
-				event.player.capabilities.allowFlying = false; 
-				// turn off current flying ability
-				event.player.capabilities.isFlying = false; 
-				//reset the timer for this player
-				playerFlyDamageCounters.put(pname, 0); 
-			}
-			if (event.player.capabilities.isFlying)
-			{ 
-				//if the config is set to drain your xp, then up this counter
-				if(doesDrainLevels) 
-				{
-					//do flyDamageCounter++; but use put and get of hashmap
-					int prevCounter = playerFlyDamageCounters.get(pname);
-					
-					prevCounter++;
-					   
-					if (prevCounter == flyDamageCounterLimit)
-					{
-						prevCounter = 0;//this will get set into the hashmap regardless
-						event.player.experience = 0;
-						event.player.experienceLevel--;
-					}
-					
-					//save the prev counter. is eitehr zero, or it was increased by one
-		 
-					playerFlyDamageCounters.put(pname, prevCounter); 
-				} //if the counter is never increased, the counter never reaches the limit (stays at 0 of default max 70)
+				//do flyDamageCounter++; but use put and get of hashmap
+				int prevCounter = playerFlyDamageCounters.get(pname);
 				
-				//http://minecraft.gamepedia.com/Status_effect 
-				int miningFatigue = 4;
-				int weakness = 18;
-				//int hunger = 17;
-				 
-				int duration = 20;//20 ticks = 1 second. and this is added every time, so cosntant effect  until we land
-				int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
-				  
-				event.player.addPotionEffect(new PotionEffect(miningFatigue, duration, level));
-				event.player.addPotionEffect(new PotionEffect(weakness, duration, level));
-				 //event.player.addPotionEffect(new PotionEffect(hunger, duration, level));
+				prevCounter++;
 				   
-			} // end if isFlying
-			else //so therefore isFlying is false
-			{ 
-				// i am not flying so do the fall damage thing
-				if (event.player.posY < event.player.prevPosY)
+				if (prevCounter == flyDamageCounterLimit)
 				{
-					// we are falling 
-					//double fallen = Math.max(	(event.player.prevPosY - event.player.posY), 0);
+					prevCounter = 0;//this will get set into the hashmap regardless
+					event.player.experience = 0;
+					event.player.experienceLevel--;
+				}
+				
+				//save the prev counter. is eitehr zero, or it was increased by one
+	 
+				playerFlyDamageCounters.put(pname, prevCounter); 
+			} //if the counter is never increased, the counter never reaches the limit (stays at 0 of default max 70)
+			
+			//int hunger = 17;
+			 
+			int duration = 20;//20 ticks = 1 second. and this is added every time, so cosntant effect  until we land
+			int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
+			  
+			event.player.addPotionEffect(new PotionEffect(miningFatigue, duration, level));
+			event.player.addPotionEffect(new PotionEffect(weakness, duration, level));
+			 //event.player.addPotionEffect(new PotionEffect(hunger, duration, level));
+			   
+		} // end if isFlying
+		else //so therefore isFlying is false
+		{ 
+			// i am not flying so do the fall damage thing
+			if (event.player.posY < event.player.prevPosY)
+			{
+				// we are falling 
+				//double fallen = Math.max(	(event.player.prevPosY - event.player.posY), 0);
 //dont add the number, it doubles (ish) our fall damage
-					//event.player.fallDistance += (fallen * 0.5);
- 
+				//event.player.fallDistance += (fallen * 0.5);
+				
+					 
 					event.player.capabilities.allowFlying = false;// to enable  fall distance
- 
+
+					//dont leave them lingering with 0:00 potions forever 
+					 event.player.removePotionEffect(miningFatigue);
+					 event.player.removePotionEffect(weakness);
 				} 
-			} 
-		}// end if not creative and Client only
+			}  
 	}// end player tick event
 }
