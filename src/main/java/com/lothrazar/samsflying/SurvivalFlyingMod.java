@@ -114,11 +114,10 @@ public class SurvivalFlyingMod
 	{   
 		if( !event.player.worldObj.isRemote  ){ return; }
 		if( event.player.capabilities.isCreativeMode){return;}//leave flying alone
-		
-		System.out.println("onPlayerTick flying?");
+ 
 		//use the players display name as the hashmap key for the flyCountdown
 		String pname = event.player.getDisplayName();
-		// System.out.println("tstfly");
+	 
 		//start at zero, of course. it counts up to the limit (from config)
 		if(playerFlyDamageCounters.containsKey(pname) == false) { playerFlyDamageCounters.put(pname, 0); }
 		 
@@ -174,12 +173,10 @@ public class SurvivalFlyingMod
 		)
 		{
 			//okay, you have passed all the tests
-			event.player.capabilities.allowFlying = true; 
-			System.out.println("tru?");
+			event.player.capabilities.allowFlying = true;  
 		} 
 		else
-		{ 
-			System.out.println("fff?");
+		{  
 			// disable flying in future
 			event.player.capabilities.allowFlying = false; 
 			// turn off current flying ability

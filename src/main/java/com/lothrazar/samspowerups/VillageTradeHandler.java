@@ -57,6 +57,8 @@ public class VillageTradeHandler  implements IVillageTradeHandler
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.melon_block, 7), new ItemStack(Items.emerald,1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.potatoes, 15), new ItemStack(Items.emerald,1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.carrots, 15), new ItemStack(Items.emerald,1)));
+
+			//string is in 18 for fletcher and fisherman.....
 			
 			break;
 		case WHITE:
@@ -76,6 +78,11 @@ public class VillageTradeHandler  implements IVillageTradeHandler
 			
 			break;
 		case WHITEAPRON:
+			
+			///add chicken . they dont buy this in 17 but they do in 18
+
+			recipeList.add(new MerchantRecipe(new ItemStack(Items.chicken, 14), new ItemStack(Items.emerald,1)));
+			
 			
 			break;
 		} 
