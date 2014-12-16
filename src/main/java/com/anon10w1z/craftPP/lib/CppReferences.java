@@ -1,6 +1,7 @@
 package com.anon10w1z.craftPP.lib;
 
-public class CppReferences {
+public class CppReferences 
+{
 	/**
 	 * Craft++'s mod ID
 	 */

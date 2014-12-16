@@ -1,7 +1,6 @@
 package com.anon10w1z.craftPP.lib.handlers;
 
-import java.util.Random;
-
+import java.util.Random; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.enchantment.Enchantment;
@@ -41,20 +40,14 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
-import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-
-import com.anon10w1z.craftPP.CppItems;
-import com.anon10w1z.craftPP.enchantments.CppEnchantments;
-import com.anon10w1z.craftPP.lib.CppReferences;
-
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent; 
+import com.anon10w1z.craftPP.CppItems; 
+import com.anon10w1z.craftPP.lib.CppReferences; 
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class CppEventHandler {
-	/**
-	 * Mobs drop better stuff!
-	 * @param event - The LivingDropsEvent
-	 */
+public class CppEventHandler 
+{ 
 	@SubscribeEvent
 	public void mobDropsEvent(LivingDropsEvent event) 
 	{
@@ -62,29 +55,22 @@ public class CppEventHandler {
 		World world = entity.worldObj;
 		
 		if (!world.isRemote) 
-		{
-			
-			//All animals drop bones
-			 
-			
+		{ 
 			int dropAmount = world.rand.nextInt(3) + 1;
 		 
-	 
 			//Enderman drop the block they are carrying
-			if (entity instanceof EntityEnderman) {
+			if (entity instanceof EntityEnderman) 
+			{
 				EntityEnderman enderman = (EntityEnderman) entity;
 				enderman.dropItem(Item.getItemFromBlock(enderman.func_146080_bZ()), 1);
 				enderman.func_146081_a(null);
 			}
 			//Creepers can rarely drop a TNT, and their head
 			else if (entity instanceof EntityCreeper) 
-			{
-				Random random = world.rand;
-			 
-				
-				int threshold = random.nextInt(200) - event.lootingLevel;
+			{ 
+				int threshold = world.rand.nextInt(200) - event.lootingLevel;
 				if (threshold < 5) 
-				world.spawnEntityInWorld(new EntityItem(world, event.entity.posX, event.entity.posY, event.entity.posZ, new ItemStack(Items.skull, 1, 4)));
+					world.spawnEntityInWorld(new EntityItem(world, event.entity.posX, event.entity.posY, event.entity.posZ, new ItemStack(Items.skull, 1, 4)));
 			}
 			
 			//Zombies also drop their heads
@@ -92,14 +78,14 @@ public class CppEventHandler {
 			{
 				int threshold = world.rand.nextInt(200) - event.lootingLevel;
 				if (threshold < 5) 
-				world.spawnEntityInWorld(new EntityItem(world, event.entity.posX, event.entity.posY, event.entity.posZ, new ItemStack(Items.skull, 1, 2)));
+					world.spawnEntityInWorld(new EntityItem(world, event.entity.posX, event.entity.posY, event.entity.posZ, new ItemStack(Items.skull, 1, 2)));
             }
 			//So do skeletons
 			else if (entity instanceof EntitySkeleton) 
 			{
 				int threshold = world.rand.nextInt(200) - event.lootingLevel;
 				if (threshold < 5) 
-				entity.dropItem(Items.skull, 1);
+					entity.dropItem(Items.skull, 1);
             }
 		}
 	}
@@ -159,38 +145,17 @@ public class CppEventHandler {
 			}
 		}
 	}
-	
- 
-	/**
-	 * Gives the Quickdraw enchantment functionality.
-	 * @param event - The ArrowNockEvent
-	 */
-	@SubscribeEvent
-	public void enableQuickdrawEvent(ArrowNockEvent event) 
-	{
-		EntityPlayer player = event.entityPlayer;
-		ItemStack heldItem = player.getHeldItem();
-		if (heldItem != null) 
-		{
-			if (EnchantmentHelper.getEnchantmentLevel(CppEnchantments.quickdraw.effectId, heldItem) > 0) {
-				if (player.capabilities.isCreativeMode || player.inventory.hasItem(Items.arrow)) 
-				{
-					player.setItemInUse(heldItem, heldItem.getMaxItemUseDuration()/3);
-					event.result = heldItem;
-					event.setCanceled(true);
-				}
-			}
-		}
-	}
-	
+	 
 	@SubscribeEvent
 	public void configChangeEvent(OnConfigChangedEvent event) {
+		
 		if(event.modID.equals(CppReferences.MODID))
 		CppConfigHandler.syncConfig();
 	}
 	
 	@SubscribeEvent
-	public void igniteEntityEvent(EntityInteractEvent event) {
+	public void igniteEntityEvent(EntityInteractEvent event) 
+	{
 		if (event.entityPlayer.getHeldItem() != null) {
 			Item heldItem = event.entityPlayer.getHeldItem().getItem();
 			World world = event.entityPlayer.worldObj;

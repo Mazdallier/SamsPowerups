@@ -5,8 +5,7 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger; 
-import com.anon10w1z.craftPP.dispenser.CppDispenserBehaviors;
-import com.anon10w1z.craftPP.enchantments.CppEnchantments;
+import com.anon10w1z.craftPP.dispenser.CppDispenserBehaviors; 
 import com.anon10w1z.craftPP.entities.CppEntities;
 import com.anon10w1z.craftPP.lib.CppRecipes;
 import com.anon10w1z.craftPP.lib.CppReferences;
@@ -35,7 +34,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * Changelog of fork:
  * -removed all blocks
  * -remove animal bonedrops and other things
- * -removed AutoSmelt. speed, hops enchantment 
+ * -removed  enchantment s
  * -removed glass shard
  * -removed all food items
  * -removed commandBlockInRedstoneTab
@@ -102,9 +101,9 @@ public final class CraftPlusPlus
 	 * @param event - The FMLInitializationEvent, also known as init or load
 	 */
 	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		logger.log(Level.INFO, "Registering the enchantments");
-		CppEnchantments.init();
+	public void init(FMLInitializationEvent event) 
+	{
+ 
 		//Registering the event handler
 		logger.log(Level.INFO, "Registering the event handler");
 		MinecraftForge.EVENT_BUS.register(new CppEventHandler());
