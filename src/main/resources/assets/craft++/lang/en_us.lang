@@ -1,0 +1,37 @@
+item.friedEgg.name=Fried Egg
+item.squidTentacle.name=Squid Tentacle
+item.calamari.name=Calamari
+item.rawMutton.name=Raw Mutton
+item.cookedMutton.name=Cooked Mutton
+
+item.dynamite.name=Dynamite
+item.obsidianBoat.name=Obsidian Boat
+item.shardGlass.name=Glass Shard
+
+item.shardGlassStained_white.name=White Stained Glass Shard
+item.shardGlassStained_orange.name=Orange Stained Glass Shard
+item.shardGlassStained_magenta.name=Magenta Stained Glass Shard
+item.shardGlassStained_light_blue.name=Light Blue Stained Glass Shard
+item.shardGlassStained_yellow.name=Yellow Stained Glass Shard
+item.shardGlassStained_lime.name=Lime Stained Glass Shard
+item.shardGlassStained_pink.name=Pink Stained Glass Shard
+item.shardGlassStained_gray.name=Gray Stained Glass Shard
+item.shardGlassStained_light_gray.name=Light Gray Stained Glass Shard
+item.shardGlassStained_cyan.name=Cyan Stained Glass Shard
+item.shardGlassStained_purple.name=Purple Stained Glass Shard
+item.shardGlassStained_blue.name=Blue Stained Glass Shard
+item.shardGlassStained_brown.name=Brown Stained Glass Shard
+item.shardGlassStained_green.name=Green Stained Glass Shard
+item.shardGlassStained_red.name=Red Stained Glass Shard
+item.shardGlassStained_black.name=Black Stained Glass Shard
+
+tile.barrier.name=Barrier
+
+tile.flintBlock.name=Block of Flint
+tile.sugarBlock.name=Block of Sugar
+tile.charcoalBlock.name=Block of Charcoal
+
+enchantment.autoSmelt=Automatic Smelting
+enchantment.speedBoost=Speed Boost
+enchantment.hops=Hops
+enchantment.quickdraw=Quickdraw
