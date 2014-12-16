@@ -37,7 +37,7 @@ public class ItemWandMaster extends ItemTool
     	setCreativeTab(CreativeTabs.tabTools) ;   
 	}
 	 
-	private static int RADIUS_PROSPECT = 8;
+	private static int RADIUS_PROSPECT = 16;
 	
 	@Override
     public boolean hasEffect(ItemStack par1ItemStack)
@@ -55,14 +55,15 @@ public class ItemWandMaster extends ItemTool
 		
 		//the x-axis indicates the player's distance east (positive) or west (negative) of the origin point—i.e., the longitude,
 	  //	the z-axis indicates the player's distance south (positive) or north (negative) of the origin point—i.e., the latitude,
-		
-		//if player hits the EAST side of the block, then the blocks east side is facing them
-		//therefore, the player is facing west
-		String foundMessage = "No diamond ore found";//"No Spawner found within " + RADIUS + " blocks.";
-		
+
 		int x = (int)entityPlayer.posX;
 		int y = (int)entityPlayer.posY;
 		int z = (int)entityPlayer.posZ;
+		
+		//if player hits the EAST side of the block, then the blocks east side is facing them
+		//therefore, the player is facing west
+		String foundMessage = "No diamond ore found within "+ItemWandMaster.RADIUS_PROSPECT+" blocks";//at current y = "+y;//"No Spawner found within " + RADIUS + " blocks.";
+		
 		
 		int xMin = x - ItemWandMaster.RADIUS_PROSPECT;
 		int xMax = x + ItemWandMaster.RADIUS_PROSPECT;
@@ -72,7 +73,7 @@ public class ItemWandMaster extends ItemTool
 
 		int zMin = z - ItemWandMaster.RADIUS_PROSPECT;
 		int zMax = z + ItemWandMaster.RADIUS_PROSPECT;
-		int xDistance,zDistance,distance , distanceClosest = ItemWandMaster.RADIUS_PROSPECT* ItemWandMaster.RADIUS_PROSPECT;
+		int xDistance,zDistance,distance , distanceClosest = ItemWandMaster.RADIUS_PROSPECT* ItemWandMaster.RADIUS_PROSPECT* ItemWandMaster.RADIUS_PROSPECT;
 		 
 		
 		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
@@ -89,9 +90,7 @@ public class ItemWandMaster extends ItemTool
 					if(distance < distanceClosest)
 					{ 
 						distanceClosest = distance;
-						foundMessage =  "Diamond ore found "
-								 + distance +" blocks away" 
-								 ;
+						foundMessage =  "Diamond ore found at distance " + distance  ;
 					} 
 				} 
 			}

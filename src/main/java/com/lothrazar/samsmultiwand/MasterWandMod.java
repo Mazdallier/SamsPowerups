@@ -68,8 +68,7 @@ public class MasterWandMod
 			, 'd', Blocks.emerald_block 
 			, 'b', Items.blaze_rod  );
 		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
-		
-		
+
 		itemChestSack = new ItemChestSack();
 		itemChestSack.setTextureName("samspowerups"+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
@@ -186,8 +185,7 @@ public class MasterWandMod
 		if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){ return;}
 		
 		if(event.entityPlayer.worldObj.isRemote ){ return;}
-		
-		 
+ 
 		int entity_id = 0;
  
 		if(event.target instanceof EntityCow
@@ -227,9 +225,9 @@ public class MasterWandMod
 			 
 		//	 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
 			//onSuccess(event.entityPlayer);
-			
 		}
   	}
+	
 	class Reference
 	{
 		public static final int entity_cow = 92;
