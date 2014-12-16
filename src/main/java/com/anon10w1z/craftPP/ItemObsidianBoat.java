@@ -1,4 +1,4 @@
-package com.anon10w1z.craftPP.items;
+package com.anon10w1z.craftPP;
 
 import java.util.List;
 

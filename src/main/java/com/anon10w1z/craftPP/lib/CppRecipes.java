@@ -5,7 +5,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager; 
-import com.anon10w1z.craftPP.items.CppItems;
+
+import com.anon10w1z.craftPP.CppItems;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

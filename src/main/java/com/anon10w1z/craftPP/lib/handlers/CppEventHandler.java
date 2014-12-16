@@ -43,8 +43,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 
+import com.anon10w1z.craftPP.CppItems;
 import com.anon10w1z.craftPP.enchantments.CppEnchantments;
-import com.anon10w1z.craftPP.items.CppItems;
 import com.anon10w1z.craftPP.lib.CppReferences;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
@@ -65,48 +65,38 @@ public class CppEventHandler {
 		{
 			
 			//All animals drop bones
-			if (entity instanceof EntityAnimal && !((EntityAnimal) entity).isChild() && CppConfigHandler.doAnimalBoneDrop) {
-				if (entity instanceof EntityChicken) 
-				entity.dropItem(Items.bone, CppConfigHandler.chickenBoneDropAmount);
-				else if (entity instanceof EntityPig || entity instanceof EntityCow || entity instanceof EntitySheep) {
-					Random random = world.rand;
-					int boneDropAmount = random.nextInt((CppConfigHandler.maxAnimalBoneDrop - CppConfigHandler.minAnimalBoneDrop) + 1) + CppConfigHandler.minAnimalBoneDrop;
-					entity.dropItem(Items.bone, boneDropAmount);	
-				}
-			}
+			 
 			
 			int dropAmount = world.rand.nextInt(3) + 1;
 		 
-			//Bats drop leather
-			if (entity instanceof EntityBat) {
-				entity.dropItem(Items.leather, 1);
-			}
+	 
 			//Enderman drop the block they are carrying
-			else if (entity instanceof EntityEnderman) {
+			if (entity instanceof EntityEnderman) {
 				EntityEnderman enderman = (EntityEnderman) entity;
 				enderman.dropItem(Item.getItemFromBlock(enderman.func_146080_bZ()), 1);
 				enderman.func_146081_a(null);
 			}
 			//Creepers can rarely drop a TNT, and their head
-			else if (entity instanceof EntityCreeper) {
+			else if (entity instanceof EntityCreeper) 
+			{
 				Random random = world.rand;
-				if (random.nextInt(10) == 0 && CppConfigHandler.creeperDropTnt && event.source.damageType != null) {
-					event.drops.clear();
-					entity.dropItem(Item.getItemFromBlock(Blocks.tnt), 1);
-				}
+			 
 				
 				int threshold = random.nextInt(200) - event.lootingLevel;
 				if (threshold < 5) 
 				world.spawnEntityInWorld(new EntityItem(world, event.entity.posX, event.entity.posY, event.entity.posZ, new ItemStack(Items.skull, 1, 4)));
 			}
+			
 			//Zombies also drop their heads
-			else if (entity instanceof EntityZombie) {
+			else if (entity instanceof EntityZombie) 
+			{
 				int threshold = world.rand.nextInt(200) - event.lootingLevel;
 				if (threshold < 5) 
 				world.spawnEntityInWorld(new EntityItem(world, event.entity.posX, event.entity.posY, event.entity.posZ, new ItemStack(Items.skull, 1, 2)));
             }
 			//So do skeletons
-			else if (entity instanceof EntitySkeleton) {
+			else if (entity instanceof EntitySkeleton) 
+			{
 				int threshold = world.rand.nextInt(200) - event.lootingLevel;
 				if (threshold < 5) 
 				entity.dropItem(Items.skull, 1);
@@ -170,107 +160,21 @@ public class CppEventHandler {
 		}
 	}
 	
-	/**
-	 * Makes creepers and baby zombies burn in daylight. <br>
-	 * Also gives the Speed Boost/Hops enchantment functionality.
-	 * @param event - The LivingUpdateEvent
-	 */
-	@SubscribeEvent
-	public void livingUpdateEvent(LivingUpdateEvent event) {
-		EntityLivingBase entity = event.entityLiving;	
-		if (!entity.worldObj.isRemote && entity instanceof EntityCreeper) {
-			if (entity.worldObj.isDaytime() && CppConfigHandler.creeperBurnInDaylight) {
-				float f = entity.getBrightness(1.0F);
-
-	            if (f > 0.5F && entity.worldObj.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && entity.worldObj.canBlockSeeTheSky(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posY), MathHelper.floor_double(entity.posZ)))
-	            {
-	                boolean flag = true;
-	                ItemStack itemstack = entity.getEquipmentInSlot(4);
-
-	                if (itemstack != null)
-	                {
-	                    if (itemstack.isItemStackDamageable())
-	                    {
-	                        itemstack.setItemDamage(itemstack.getItemDamageForDisplay() + entity.worldObj.rand.nextInt(2));
-
-	                        if (itemstack.getItemDamageForDisplay() >= itemstack.getMaxDamage())
-	                        {
-	                            entity.renderBrokenItemStack(itemstack);
-	                            entity.setCurrentItemOrArmor(4, (ItemStack)null);
-	                        }
-	                    }
-
-	                    flag = false;
-	                }
-
-	                if (flag)
-	                {
-	                    entity.setFire(8);
-	                }
-	            }
-			}
-		}
-		
-		if (!entity.worldObj.isRemote && entity instanceof EntityZombie) {
-			if (entity.worldObj.isDaytime() && CppConfigHandler.babyZombieBurnInDaylight && entity.isChild()) {
-				float f = entity.getBrightness(1.0F);
-
-	            if (f > 0.5F && entity.worldObj.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && entity.worldObj.canBlockSeeTheSky(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posY), MathHelper.floor_double(entity.posZ)))
-	            {
-	                boolean flag = true;
-	                ItemStack itemstack = entity.getEquipmentInSlot(4);
-
-	                if (itemstack != null)
-	                {
-	                    if (itemstack.isItemStackDamageable())
-	                    {
-	                        itemstack.setItemDamage(itemstack.getItemDamageForDisplay() + entity.worldObj.rand.nextInt(2));
-
-	                        if (itemstack.getItemDamageForDisplay() >= itemstack.getMaxDamage())
-	                        {
-	                            entity.renderBrokenItemStack(itemstack);
-	                            entity.setCurrentItemOrArmor(4, (ItemStack)null);
-	                        }
-	                    }
-
-	                    flag = false;
-	                }
-
-	                if (flag)
-	                {
-	                    entity.setFire(8);
-	                }
-	            }
-			}
-		}
-		
-		if (!entity.worldObj.isRemote) {
-			ItemStack boots = entity.getEquipmentInSlot(1);
-			if (boots != null) {
-				if (EnchantmentHelper.getEnchantmentLevel(CppEnchantments.speedBoost.effectId, boots) > 0) {
-					int speedLevel = EnchantmentHelper.getEnchantmentLevel(CppEnchantments.speedBoost.effectId, boots) - 1;
-					entity.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 2, speedLevel));
-				}
-			
-				if (EnchantmentHelper.getEnchantmentLevel(CppEnchantments.hops.effectId, boots) > 0) {
-					int hopsLevel = EnchantmentHelper.getEnchantmentLevel(CppEnchantments.hops.effectId, boots) - 1;
-					entity.addPotionEffect(new PotionEffect(Potion.jump.id, 2, hopsLevel));
-				}
-			}
-		}
-	}
-	
+ 
 	/**
 	 * Gives the Quickdraw enchantment functionality.
 	 * @param event - The ArrowNockEvent
 	 */
 	@SubscribeEvent
-	public void enableQuickdrawEvent(ArrowNockEvent event) {
+	public void enableQuickdrawEvent(ArrowNockEvent event) 
+	{
 		EntityPlayer player = event.entityPlayer;
 		ItemStack heldItem = player.getHeldItem();
-		if (heldItem != null) {
+		if (heldItem != null) 
+		{
 			if (EnchantmentHelper.getEnchantmentLevel(CppEnchantments.quickdraw.effectId, heldItem) > 0) {
-				if (player.capabilities.isCreativeMode || player.inventory.hasItem(Items.arrow)) {
+				if (player.capabilities.isCreativeMode || player.inventory.hasItem(Items.arrow)) 
+				{
 					player.setItemInUse(heldItem, heldItem.getMaxItemUseDuration()/3);
 					event.result = heldItem;
 					event.setCanceled(true);

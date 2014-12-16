@@ -13,10 +13,7 @@ public class CppEnchantments
 	 * Registers the enchantments for Craft++
 	 */
 	public static void init() 
-	{
-	//	autoSmelt = new EnchantmentAutoSmelt();
-		speedBoost = new EnchantmentSpeedBoost();
-		hops = new EnchantmentHops();
+	{ 
 		quickdraw = new EnchantmentQuickdraw();
 	}
 }

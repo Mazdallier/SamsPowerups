@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import com.anon10w1z.craftPP.items.CppItems;
+import com.anon10w1z.craftPP.CppItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

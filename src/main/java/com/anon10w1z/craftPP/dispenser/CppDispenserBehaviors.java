@@ -12,8 +12,8 @@ import net.minecraft.item.ItemSword;
 
 import org.apache.logging.log4j.Level;
 
+import com.anon10w1z.craftPP.CppItems;
 import com.anon10w1z.craftPP.CraftPlusPlus;
-import com.anon10w1z.craftPP.items.CppItems;
 
 public class CppDispenserBehaviors {
 	/**

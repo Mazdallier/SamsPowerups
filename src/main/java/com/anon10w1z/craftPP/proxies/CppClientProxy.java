@@ -4,10 +4,10 @@ import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
+import com.anon10w1z.craftPP.CppItems;
 import com.anon10w1z.craftPP.entities.EntityDynamite;
 import com.anon10w1z.craftPP.entities.EntityObsidianBoat;
 import com.anon10w1z.craftPP.entities.RenderObsidianBoat;
-import com.anon10w1z.craftPP.items.CppItems;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

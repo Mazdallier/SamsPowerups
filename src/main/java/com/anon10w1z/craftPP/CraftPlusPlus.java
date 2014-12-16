@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import com.anon10w1z.craftPP.dispenser.CppDispenserBehaviors;
 import com.anon10w1z.craftPP.enchantments.CppEnchantments;
 import com.anon10w1z.craftPP.entities.CppEntities;
-import com.anon10w1z.craftPP.items.CppItems; 
 import com.anon10w1z.craftPP.lib.CppRecipes;
 import com.anon10w1z.craftPP.lib.CppReferences;
 import com.anon10w1z.craftPP.lib.CppVanillaPropertiesChanger;
@@ -35,14 +34,17 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * removing most features and just keeping the ones I want
  * Changelog of fork:
  * -removed all blocks
- * -removed AutoSmelt enchantment 
+ * -remove animal bonedrops and other things
+ * -removed AutoSmelt. speed, hops enchantment 
  * -removed glass shard
  * -removed all food items
  * -removed commandBlockInRedstoneTab
  * -removed CppRecipeRemover
+ * -merged some namespaces together
  */
 @Mod(modid = CppReferences.MODID, name = "Craft++", version = CppReferences.VERSION, guiFactory = "com.anon10w1z.craftPP.lib.CppGuiFactory")
-public final class CraftPlusPlus {
+public final class CraftPlusPlus 
+{
 	/**
 	 * The proxy of CraftPlusPlus
 	 */
@@ -69,7 +71,8 @@ public final class CraftPlusPlus {
 	 * @param event - The FMLPreInitializationEvent, also known as preInit
 	 */
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event) 
+	{
 		//Initializing the config handler
 		logger.log(Level.INFO, "Initializing the config handler");
 		CppConfigHandler.init(event.getSuggestedConfigurationFile());
