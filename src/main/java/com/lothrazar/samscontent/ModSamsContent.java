@@ -26,7 +26,7 @@ public class ModSamsContent
     @Instance(value = ModSamsContent.MODID)
     public static ModSamsContent instance; 
     public static Logger logger;  
-//	public static Configuration config;  
+	public static Configuration config;  
 	protected final static String MODID = "samscontent";
     public static final String VERSION = "1";
     
@@ -38,28 +38,16 @@ public class ModSamsContent
 	private static ItemRunestone rune_jump;
 	private static ItemRunestone rune_goldheart;
 	private static ItemRunestone rune_haste;
-	private static ItemRunestone rune_water;
-	//private static ItemRunestone rune_saturation;
+	private static ItemRunestone rune_water; 
 	private static ItemRunestone rune_speed;
-    private static ItemRunestone rune_fire; 
-    //private static ItemRunestone rune_fly;
-   // private static ItemRunestone rune_horse;
+    private static ItemRunestone rune_fire;  
 	private BlockXRay block_xray; 
-	/*
-	private boolean blockCaveFinderEnabled;
-	private boolean runestoneEnabled; 
-	private boolean fishingBlockEnabled; 
-	private boolean magicApplesEnabled;
-	private static boolean weatherCommandBlock;
-	private static boolean gameRuleNatRegen;
-	private static boolean gameRuleMobGrief;
-	private static boolean gameRuleFireTick;
-	private static boolean gameRuleDaylightCycle ; 
-	private boolean enderBookEnabled;*/
+ 
 	private ItemFoodAppleMagic appleEmerald;
 	private ItemFoodAppleMagic appleDiamond;
 	private ItemFoodAppleMagic appleLapis;
 	private ItemFoodAppleMagic appleChocolate;
+	private boolean allEnabled;
 
 	public static ItemEnderBook itemEnderBook;
 	
@@ -73,57 +61,13 @@ public class ModSamsContent
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
 		String category = MODID ;
-/*
+
 		config = new Configuration(event.getSuggestedConfigurationFile());  
-		enderBookEnabled = config.getBoolean( "enderBook",category,true,
-			 	"This allows you to craft an ender book using 8 ender pearls and a book.  "+
-			    "Right click while sneaking to save a location in the book.  " +
-			 	"Attack with the book to teleport.  Only works in the overworld."
+		
+		allEnabled = config.getBoolean( "allEnabled",category,true,
+			 	"Enable all blocks and items."
 			 );
-		
-		magicApplesEnabled = config.getBoolean( "magicApples", category,true,
-			 	 "This allows you to craft golden apples into one of four powerful items: chocolate, lapis, emerald, diamond.  " +
-			 	 "Combine the gem with a golden apple.  Or surround a regular apple with cocoa.  "
-					 ) ;
-		
-		fishingBlockEnabled = config.getBoolean( "fishingBlock",category,true,
-				"Build a fishing net block with four planks in the corners, a (fully repaired) fishing pole in the middle, and four cobwebs.  " +
-				"If you place this in water (touching on 4 sides and 2 deep below), it will randomly spawn fish " +
-				"(but no treasure or junk like real fishing would)."
-			);
-		
-		runestoneEnabled = config.getBoolean( "runestoneEnabled",category,true,
-				"Lets you make a rune that enables flying in survival."
-				);
-		 
-		blockCaveFinderEnabled = config.getBoolean( "blockCaveFinder",category,true
-				, "Build a Cave finder block (lets you see like XRay throught the world) with four obsidian "+
-						"in the corners , glass in the middle, and four cobwebs.  " +
-						"This lets you see through the world."
-		);  
-	 
-		weatherCommandBlock = config.getBoolean( "weatherCommandBlock",category,true
-				,"Build a weather command block." 
-				); 
-	 
-		gameRuleNatRegen = config.getBoolean( "gameRuleNatRegen",category,true
-				,"Build a command block that toggles the game rule naturalRegeneration." 
-				); 
- 
-		gameRuleMobGrief = config.getBoolean( "gameRuleMobGrief",category,true
-				,"Build a command block that toggles the game rule mobGriefing." 
-				); 
 
-		gameRuleFireTick = config.getBoolean( "gameRuleFireTick",category,true
-				,"Build a command block that toggles the game rule doFireTick." 
-				); 
- 
-		gameRuleDaylightCycle = config.getBoolean( "gameRuleDaylightCycle",category,true
-				,"Build a command block that toggles the game rule doDaylightCycle." 
-				);  
-
-		if(config.hasChanged()) { config.save(); } 
-		 */
 		MinecraftForge.EVENT_BUS.register(instance);//??iunstance no worky?
 		FMLCommonHandler.instance().bus().register(instance); 
 	}
@@ -138,6 +82,8 @@ public class ModSamsContent
     @EventHandler
 	public void onInit(FMLInitializationEvent event)   
 	{
+    	if(allEnabled==false){return;}
+    	
 		initXray();
 		initEnderbook();
 		initFishing();
@@ -437,8 +383,7 @@ public class ModSamsContent
 		 
 			
 			if (itemStack.stackTagCompound == null) {return;}
-			
-			////////////////////////////
+			 
 			ItemEnderBook.teleport(event.entityPlayer, itemStack);
 			 
 		}

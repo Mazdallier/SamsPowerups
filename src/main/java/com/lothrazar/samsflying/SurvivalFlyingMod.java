@@ -30,16 +30,7 @@ public class SurvivalFlyingMod
     public static final String VERSION = "1"; 
 	public static Configuration config;
 	private boolean quickSortEnabled;  
-    public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	}  
-    
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
-    }
+ 
     
 	public static int StartFlyingLevel = 2;
 	public static int StartFlyingHealth = 20;
@@ -99,8 +90,8 @@ public class SurvivalFlyingMod
 		flyDamageCounterLimit = config.getInt( "flycountdown",CATEGORY_FLY, 300,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
  	
-		
-		syncConfig();
+
+		if(config.hasChanged()) { config.save(); } 
 	}
 
 	@EventHandler

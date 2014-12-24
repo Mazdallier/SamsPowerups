@@ -42,9 +42,13 @@ public class CommandEnderChest implements ICommand
 		p.displayGUIChest(p.getInventoryEnderChest());
 	}
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
+	public boolean canCommandSenderUseCommand(ICommandSender ic)
 	{
-		return true;
+	//removed from 172 : MinecraftServer.getServer().getConfigurationManager().isPlayerOpped()
+		
+		//http://www.minecraftforge.net/forum/index.php?topic=22907.0
+		//for some magic reason, 2 means op. and "" is ?? but it works.
+		return ic.canCommandSenderUseCommand(2, "");
 	}
 	@Override
 	public ArrayList<String> addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
