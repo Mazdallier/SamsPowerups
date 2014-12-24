@@ -26,7 +26,7 @@ public class ModSamsContent
     @Instance(value = ModSamsContent.MODID)
     public static ModSamsContent instance; 
     public static Logger logger;  
-	public static Configuration config;  
+//	public static Configuration config;  
 	protected final static String MODID = "samscontent";
     public static final String VERSION = "1";
     
@@ -45,9 +45,9 @@ public class ModSamsContent
     //private static ItemRunestone rune_fly;
    // private static ItemRunestone rune_horse;
 	private BlockXRay block_xray; 
+	/*
 	private boolean blockCaveFinderEnabled;
 	private boolean runestoneEnabled; 
-	public static ItemEnderBook itemEnderBook;
 	private boolean fishingBlockEnabled; 
 	private boolean magicApplesEnabled;
 	private static boolean weatherCommandBlock;
@@ -55,12 +55,14 @@ public class ModSamsContent
 	private static boolean gameRuleMobGrief;
 	private static boolean gameRuleFireTick;
 	private static boolean gameRuleDaylightCycle ; 
+	private boolean enderBookEnabled;*/
 	private ItemFoodAppleMagic appleEmerald;
 	private ItemFoodAppleMagic appleDiamond;
 	private ItemFoodAppleMagic appleLapis;
 	private ItemFoodAppleMagic appleChocolate;
 
-	private boolean enderBookEnabled;
+	public static ItemEnderBook itemEnderBook;
+	
   
 	public static enum CommandType 
 	{
@@ -71,7 +73,7 @@ public class ModSamsContent
 	public void onPreInit(FMLPreInitializationEvent event)   
 	{
 		String category = MODID ;
-
+/*
 		config = new Configuration(event.getSuggestedConfigurationFile());  
 		enderBookEnabled = config.getBoolean( "enderBook",category,true,
 			 	"This allows you to craft an ender book using 8 ender pearls and a book.  "+
@@ -119,26 +121,13 @@ public class ModSamsContent
 		gameRuleDaylightCycle = config.getBoolean( "gameRuleDaylightCycle",category,true
 				,"Build a command block that toggles the game rule doDaylightCycle." 
 				);  
-		
-		syncConfig();
-		 
+
+		if(config.hasChanged()) { config.save(); } 
+		 */
 		MinecraftForge.EVENT_BUS.register(instance);//??iunstance no worky?
 		FMLCommonHandler.instance().bus().register(instance); 
 	}
-    
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID))
-		{
-			instance.syncConfig();
-		} 
-    }
-    
-    public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	} 
+ 
 
     @EventHandler
     public void onServerLoad(FMLServerStartingEvent event) 
@@ -282,8 +271,7 @@ public class ModSamsContent
 	{
  
 
-		if(gameRuleNatRegen)
-		{
+		 
 			BlockCommandBlockCraftable gameruleRegenBlock;
 			gameruleRegenBlock = new BlockCommandBlockCraftable(CommandType.Gamerule ,"naturalRegeneration");
 			gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName("samspowerups"+":regen_command_block");  
@@ -295,10 +283,7 @@ public class ModSamsContent
 					, 't', Items.ghast_tear
 					
 					);  
-		}	
-		
-		if(weatherCommandBlock)
-		{ 
+	 
 			BlockCommandBlockCraftable weatherblock ;
 			weatherblock = new BlockCommandBlockCraftable(CommandType.Weather); 
 			weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName("samspowerups"+":weather_command_block");
@@ -309,10 +294,7 @@ public class ModSamsContent
 					  'e',Items.water_bucket,
 					  'r', Blocks.redstone_block
 					, 't', Items.ghast_tear); 
-		}
-		
-		if(gameRuleMobGrief)
-		{ 
+	 
 			BlockCommandBlockCraftable gamerulemobGriefingblock;
 			gamerulemobGriefingblock = new BlockCommandBlockCraftable(CommandType.Gamerule ,"mobGriefing");
 			gamerulemobGriefingblock.setBlockName("grmobGriefingblock").setBlockTextureName("samspowerups"+":mobgrief_command_block"); 
@@ -323,10 +305,7 @@ public class ModSamsContent
 					, 'e', Blocks.tnt
 					, 'r', Blocks.redstone_block
 					, 't', Items.ghast_tear);
-		}
-		
-		if(gameRuleFireTick)
-		{ 
+	 
 			BlockCommandBlockCraftable gameruleFiretickblock;
 			gameruleFiretickblock = new BlockCommandBlockCraftable(CommandType.Gamerule ,"doFireTick"); 
 			gameruleFiretickblock.setBlockName("grdoFiretickblock").setBlockTextureName("samspowerups"+":firetick_command_block");  
@@ -337,10 +316,7 @@ public class ModSamsContent
 					, 'e', Items.lava_bucket 
 					, 'r', Blocks.redstone_block
 					, 't', Items.ghast_tear);
-		} 
-		
-		if(gameRuleDaylightCycle)
-		{ 
+ 
 			BlockCommandBlockCraftable day;
 			day = new BlockCommandBlockCraftable(CommandType.Gamerule ,"doDaylightCycle"); 
 			day.setBlockName("daycycle_command_block").setBlockTextureName("samspowerups"+":daycycle_command_block");  
@@ -351,7 +327,7 @@ public class ModSamsContent
 					, 'e', Blocks.glowstone
 					, 'r', Blocks.redstone_block
 					, 't', Items.ghast_tear);
-		}  
+		  
 	}
 	
 	private void initEnderbook()

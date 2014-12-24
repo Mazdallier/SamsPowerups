@@ -36,16 +36,7 @@ public class MasterWandMod
     public static Logger logger;  
     protected static final String MODID = "samsmultiwand"; 
     public static final String VERSION = "1"; 
-	public static Configuration config;  
-    public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	}  
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID)) {instance.syncConfig(); } 
-    }
+	 
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
 

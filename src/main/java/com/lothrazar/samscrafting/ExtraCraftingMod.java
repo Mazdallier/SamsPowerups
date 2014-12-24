@@ -33,7 +33,7 @@ public class ExtraCraftingMod
 	private static boolean craftableFlatDoubleSlab = true; 
 	private static boolean craftableBonemealColouredWool;   
 	private static boolean craftableMobHeads; 
-	public static boolean skullSignNames;
+ 
 
 	private static boolean stairs;
 	private static boolean misc;
@@ -47,12 +47,18 @@ public class ExtraCraftingMod
 	private static boolean armor; 
 	private static boolean natureblocks;
 	private static boolean glass;
+//	private boolean spawnEggs;
 	
     @EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) 
 	{  
 		String category = MODID  ; 
 		config = new Configuration(event.getSuggestedConfigurationFile());  
+		
+ 
+
+		category = "crafting";
+		
 		craftableTransmuteRecords = config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
 				);
@@ -68,19 +74,16 @@ public class ExtraCraftingMod
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. ");  
  
-		skullSignNames  =  config.getBoolean( "skullSignNames",category,true
-				,"Hitting a player head on a sign will set the SkullOwner to the first word on the sign, which displays that " +
-						"head on the skull "); 
-		
+		 
+		category = "uncrafting";
 
-
-	   config =   new Configuration(event.getSuggestedConfigurationFile());  
+	   //config =   new Configuration(event.getSuggestedConfigurationFile());  
 		
 		stairs = config.getBoolean( "stairs",category,true,
 			"Craft stairs back into blocks using a 4x4 pattern."
 		); 
 		 
-		slabs = config.getBoolean(category, "slabs",true,
+		slabs = config.getBoolean( "slabs",category,true,
 			"Uncraft slabs back into blocks using the trapdoor recipe."
 		); 
 
@@ -129,23 +132,9 @@ public class ExtraCraftingMod
 	
 		
 		
-		syncConfig();
-	} 
-
-    public void syncConfig() 
-	{
 		if(config.hasChanged()) { config.save(); } 
 	} 
-    
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID))
-		{
-			instance.syncConfig();
-		} 
-    }
-    
+ 
     @EventHandler
 	public void onInit(FMLInitializationEvent event) 
 	{ 
@@ -226,6 +215,7 @@ public class ExtraCraftingMod
 			GameRegistry.addSmelting(Items.skull ,new ItemStack(Items.skull,1,Reference.skull_wither), 0);	
 		}
 		
+	 
 		if(craftableBonemealColouredWool)
 		{
 			//use bonemeal to bleach colored wool back to white

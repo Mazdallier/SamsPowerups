@@ -17,8 +17,11 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -53,33 +56,24 @@ public class ModSamsPowerups
 	public static ModSamsPowerups instance; 
 	public static Logger logger;   
 	public static final String VERSION = "1";
-	private boolean enabled;
+	//private boolean enabled;
 	protected final static String MODID = "samsstackable";
 	public Configuration config; 
 	
-	private static ArrayList<Block> blocksRequireAxe = new ArrayList<Block>();
-	private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();
+	//private static ArrayList<Block> blocksRequireAxe = new ArrayList<Block>();
+	//private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();
 	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
 	private static int HUNGER_SECONDS = 30;
 	private static int HUNGER_LEVEL = 0;// III
 	private static int FOOD_COST = 2;//full bar is 20
  
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID))
-		{
-			instance.syncConfig();
-		} 
-    }
-    public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	} 
  
   	@EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
+	    logger = event.getModLog(); 
+  		/*
+  		 //these are not fun. plus possibly doesnt work well with treecaptiator
 		blocksRequireShovel.add(Blocks.dirt);
 		blocksRequireShovel.add(Blocks.grass);
 		blocksRequireShovel.add(Blocks.sand);
@@ -90,8 +84,8 @@ public class ModSamsPowerups
 		blocksRequireAxe.add(Blocks.log2);
 		blocksRequireAxe.add(Blocks.planks);
   		
-  		
-	    logger = event.getModLog(); 
+	    
+	    
 		String category = MODID; 
 
      	config = new Configuration(event.getSuggestedConfigurationFile()); 
@@ -102,6 +96,8 @@ public class ModSamsPowerups
 		
 		); 
 		
+  		*/
+	    
 		/*	
 		boolean enabled = config.getBoolean( "richLoot",MODID,true,
 				"More goodies in dungeon chests (all chests in the game except for starter chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, gold blocks, records, TNT, anvils."
@@ -110,7 +106,7 @@ public class ModSamsPowerups
 
     	MinecraftForge.EVENT_BUS.register(instance); 
 		
-        syncConfig();
+      //  syncConfig();
 	} 
 
  
@@ -174,7 +170,7 @@ public class ModSamsPowerups
 		{
 			item.setMaxStackSize(64);
 		}
-		
+		/*
 		addToAllExceptBonus(new ItemStack(Blocks.emerald_block),1,5,RARITY_RECORD);
 
 		addToAllExceptBonus(new ItemStack(Blocks.quartz_block),8,32,RARITY_COMMON);
@@ -202,9 +198,9 @@ public class ModSamsPowerups
 		addToAllExceptBonus(new ItemStack(Items.record_strad),1,1,RARITY_RECORD);
 		addToAllExceptBonus(new ItemStack(Items.record_wait),1,1,RARITY_RECORD);
 		addToAllExceptBonus(new ItemStack(Items.record_ward),1,1,RARITY_RECORD); 
-	
+	*/
 	} 
-  	
+  	/*
 	private void addToAllExceptBonus(ItemStack loot)
 	{ 
 		addToAllExceptBonus(loot, 1, 2, RARITY_REDSTONE);
@@ -238,9 +234,10 @@ public class ModSamsPowerups
 				new WeightedRandomChestContent(loot,  min,  max,  rarity)); 
 	} 
 	
-	 
+	 */
 	
 
+  	/*
 	@SubscribeEvent
     public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
     { 
@@ -267,6 +264,8 @@ public class ModSamsPowerups
     		}
     	}
     }
+    */
+  	
 	public static final int dye_bonemeal = 15;
 	
 	private boolean isUsingBonemeal(ItemStack held )
@@ -388,7 +387,7 @@ public static final int skull_creeper = 4;*/
   	  	//to check for joined doublechests!!
   	  	//now we have access to both the chest inventory and the player inventory
   	  	
-  	  TileEntityChest teAdjacent = null;
+  	   TileEntityChest teAdjacent = null;
   	  	
   	  	if(chest.adjacentChestXNeg != null)
   	  	{
@@ -547,6 +546,7 @@ public static final int skull_creeper = 4;*/
 		 {
 			  BiomeGenBase.desert
 			 ,BiomeGenBase.desertHills
+			 ,BiomeGenBase.savanna
 		 });
 
 		EntityRegistry.addSpawn(EntityCaveSpider.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
@@ -554,16 +554,30 @@ public static final int skull_creeper = 4;*/
 			  BiomeGenBase.roofedForest
 			 ,BiomeGenBase.birchForest
 			 ,BiomeGenBase.birchForestHills
+			 ,BiomeGenBase.deepOcean
+			 ,BiomeGenBase.jungle
 		});
 
 		EntityRegistry.addSpawn(EntityZombie.class, wProb, minGroup, maxGroup, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
-			 BiomeGenBase.hell 
+			 BiomeGenBase.hell  
 		});
 
 		EntityRegistry.addSpawn(EntityCreeper.class, wProb, minGroup, 1, EnumCreatureType.monster, new BiomeGenBase[] 
 		{
 			 BiomeGenBase.hell 
+		});
+		EntityRegistry.addSpawn(EntityPig.class, wProb, minGroup, 1, EnumCreatureType.creature, new BiomeGenBase[] 
+		{
+			 BiomeGenBase.hell 
+		});
+		EntityRegistry.addSpawn(EntityGhast.class, wProb, minGroup, 1, EnumCreatureType.monster, new BiomeGenBase[] 
+		{
+			 BiomeGenBase.sky 
+		});
+		EntityRegistry.addSpawn(EntitySpider.class, wProb, minGroup, 1, EnumCreatureType.monster, new BiomeGenBase[] 
+		{
+			 BiomeGenBase.sky 
 		});
 	}
 
@@ -701,7 +715,8 @@ public static final int skull_creeper = 4;*/
 		,"t "
 		, 't', Items.stick);
 	}
-	
+
+	/*
 	@SubscribeEvent
 	public  void onBlockBreak(HarvestDropsEvent event)
 	{ 
@@ -719,8 +734,7 @@ public static final int skull_creeper = 4;*/
 			}
 		}
 		if (  blocksRequireShovel.contains(event.block))
-		{
-			System.out.println("blocksRequireShovel"); 
+		{ 
 			if(event.harvester.getCurrentEquippedItem() == null
 			|| !(event.harvester.getCurrentEquippedItem().getItem() instanceof ItemSpade) )
 			{ 
@@ -729,6 +743,9 @@ public static final int skull_creeper = 4;*/
 		}
 	}
 
+		*/
+	
+	/*
 	@SubscribeEvent
 	public  void onPlayerSleepInBedAtNight(PlayerSleepInBedEvent event)
 	{
@@ -747,7 +764,8 @@ public static final int skull_creeper = 4;*/
 		event.entityPlayer.getFoodStats().setFoodLevel(Math.max(event.entityPlayer.getFoodStats().getFoodLevel() - FOOD_COST, 0));
  
 	}
-	 
+	 */
+	
 	@SubscribeEvent
 	public void onEntityJoinWorld(EntityJoinWorldEvent event)
 	{

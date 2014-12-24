@@ -41,7 +41,7 @@ public class ModSamsCommands
    @Instance(value = ModSamsCommands.MODID)
     public static ModSamsCommands instance; 
     public static Logger logger;  
-	public static Configuration config;  
+//	public static Configuration config;  
     protected static final String MODID = "samscommands"; 
     public static final String VERSION = "1";	
     private boolean showDefaultDebug = true ; //TODO: split to left and right
@@ -49,25 +49,14 @@ public class ModSamsCommands
 	private boolean showSlimeChunk = true;
 	private boolean showVillageInfo = true; 
 	private boolean showHorseInfo = true;
-	public void syncConfig() 
-	{
-		if(config.hasChanged()) { config.save(); } 
-	} 
-	
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) 
-	{ 
-		if(eventArgs.modID.equals(MODID))
-		{
-			instance.syncConfig();
-		} 
-    }
-    
+ 
+ 
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
     	logger = event.getModLog(); 
-    	
+
+    	/*
     	config = new Configuration(event.getSuggestedConfigurationFile());  
 		
 		boolean enabled = config.getBoolean( "richLoot",MODID,true,
@@ -76,7 +65,8 @@ public class ModSamsCommands
 				"gold blocks, records, TNT, anvils."
 		);
 		
-		syncConfig() ;
+		if(config.hasChanged()) { config.save(); } 
+*/
 
 	    MinecraftForge.EVENT_BUS.register(instance); 
     } 

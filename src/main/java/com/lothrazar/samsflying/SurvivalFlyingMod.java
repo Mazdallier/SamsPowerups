@@ -66,37 +66,37 @@ public class SurvivalFlyingMod
 		
 		config =   new Configuration(event.getSuggestedConfigurationFile());  
 		 
-		String CATEGORY_FLY = MODID+":survival_flying";  
+		String CATEGORY_FLY = MODID;
 
-		cannotFlyWhileBurning = config.getBoolean(CATEGORY_FLY,"cannotFlyWhileBurning", true
+		cannotFlyWhileBurning = config.getBoolean("cannotFlyWhileBurning",CATEGORY_FLY, true
 				,"When true, this disables flying while you are burning."); 
 
-		NoArmorOnly= config.getBoolean(CATEGORY_FLY, "noArmorFlyingOnly",false
+		NoArmorOnly= config.getBoolean( "noArmorFlyingOnly",CATEGORY_FLY,false
 				,"When this is true, you may only fly if not wearing any armor. ");
 		
-		cannotFlyAtNight = config.getBoolean(CATEGORY_FLY, "cannotFlyAtNight",false
+		cannotFlyAtNight = config.getBoolean( "cannotFlyAtNight",CATEGORY_FLY,false
 			,"When this is true, you cannot use survival flying at night.");
 		
-		cannotFlyInRain = config.getBoolean(CATEGORY_FLY, "cannotFlyInRain",false
+		cannotFlyInRain = config.getBoolean( "cannotFlyInRain",CATEGORY_FLY,false
 				,"When this is true, you cannot use survival flying in the rain.");
  
-		StartFlyingLevel  = config.getInt(CATEGORY_FLY, "startFlyingLevel", 10,0,99// default,min,max
+		StartFlyingLevel  = config.getInt( "startFlyingLevel",CATEGORY_FLY, 10,0,99// default,min,max
 					,"The minimum level required to fly in survival.  ");
 		  
-		difficultyRequiredToFly = config.getInt(CATEGORY_FLY, "difficultyRequiredToFly", 3,0,3
+		difficultyRequiredToFly = config.getInt( "difficultyRequiredToFly",CATEGORY_FLY, 3,0,3
 				,"Minimum difficulty required for survival fly (0 = Peaceful, 3 = Hard).");
 		  
-		StartFlyingHealth = config.getInt(CATEGORY_FLY, "startflyinghealth", 20,1,20
+		StartFlyingHealth = config.getInt( "startflyinghealth",CATEGORY_FLY, 10,1,20
 				,"The minimum health required in order to fly in survival.  Each number is one half heart, " +
 						"so 20 means 10 hearts.");
 		 
-		StartFlyingHunger = config.getInt(CATEGORY_FLY, "startflyinghunger", 14,1,20,
+		StartFlyingHunger = config.getInt( "startflyinghunger",CATEGORY_FLY, 5,1,20,
 				"Minimum hunger required to fly.  Each number is one half hunger, so 20 means full hunger.");
 		 
-		doesDrainLevels  = config.getBoolean(CATEGORY_FLY, "doesDrainLevels",true,
+		doesDrainLevels  = config.getBoolean( "doesDrainLevels",CATEGORY_FLY,true,
 			"When this is true, your XP Levels will drain while flying."); 
 		 
-		flyDamageCounterLimit = config.getInt(CATEGORY_FLY, "flycountdown", 70,5,999
+		flyDamageCounterLimit = config.getInt( "flycountdown",CATEGORY_FLY, 300,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
  	
 		

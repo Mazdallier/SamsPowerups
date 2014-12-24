@@ -22,3 +22,5 @@ item.apple_emerald.name=Emerald Apple
 item.apple_diamond.name=Diamond Apple
 item.apple_lapis.name=Lapis Apple
 item.apple_chocolate=Chocolate Apple
+key.columnshiftup=Column Shift Up
+key.columnshiftdown=Column Shift Down
