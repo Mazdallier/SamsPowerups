@@ -180,7 +180,8 @@ public class ModSamsCommands
 	  
 		side.add("Day "+days +" ("+detail+")");  
 		
-		
+		/*
+		 //doesnt work ,and is not needed anyway
 		//inspired by : http://www.minecraftforge.net/forum/index.php?topic=6514.0
 	 	int yaw = (int)player.rotationYaw ;
 	 	if(yaw < 360) yaw += 360;//this SEEMS LIKE it doesnt matter, since we do Math.abs
@@ -207,7 +208,7 @@ public class ModSamsCommands
 		}
 			  
 		side.add(facing); 
-		 
+		 */
 		if(showDefaultDebug == false)
 		{
 			//only show this part if we are hiding the vanilla
