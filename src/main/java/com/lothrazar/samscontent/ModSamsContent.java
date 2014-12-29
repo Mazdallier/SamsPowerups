@@ -1,6 +1,13 @@
 package com.lothrazar.samscontent;
 
 import org.apache.logging.log4j.Logger; 
+
+import com.lothrazar.backport.*;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockStone;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -90,7 +97,45 @@ public class ModSamsContent
 		initApples();
 		initCommand();
 		initRunestones();	 
+		
+		//resistance and hardness are the same as vanilla Blocks.stonestone
+		 
+		   //the standard block constructor is protected...so... //   protected Block(Material
+		//so that means you can only set the material of Block if you extend the class. so i did that
+		 
+		//we had to make our own
+		BlockSimple diorite = new BlockSimple(Material.rock);  
+		registerStoneDefaults(diorite,"stone_diorite");
+  
+		BlockSimple andesite = new BlockSimple(Material.rock);    
+		registerStoneDefaults(andesite,"stone_andesite"); 
+		
+		BlockSimple granite = new BlockSimple(Material.rock);        
+		registerStoneDefaults(granite,"stone_granite"); 
+
+		BlockSimple diorite_smooth = new BlockSimple(Material.rock);  
+		registerStoneDefaults(diorite,"stone_diorite_smooth");
+  
+		BlockSimple andesite_smooth = new BlockSimple(Material.rock);    
+		registerStoneDefaults(andesite,"stone_andesite_smooth"); 
+		
+		BlockSimple granite_smooth = new BlockSimple(Material.rock);        
+		registerStoneDefaults(granite,"stone_granite_smooth"); 
+		
+		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);       
+		registerStoneDefaults(prismarine_bricks,"prismarine_bricks");
+
+		BlockSimple prismarine_dark = new BlockSimple(Material.rock);       
+		registerStoneDefaults(prismarine_dark,"prismarine_dark"); 
+		 
 	}
+    
+    private void registerStoneDefaults(BlockSimple s,String name)
+    {
+    	s.setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName(name).setBlockTextureName("samspowerups:" + name);
+    	s.setCreativeTab(CreativeTabs.tabBlock);
+    	GameRegistry.registerBlock(s, name);
+    }
  
 	private void initFishing() 
 	{ 
