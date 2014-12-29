@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
@@ -104,35 +105,60 @@ public class ModSamsContent
 		//so that means you can only set the material of Block if you extend the class. so i did that
 		 
 		//we had to make our own
+		//regular stone is .setHardness(1.5F).setResistance(10.0F) but 
+		
+		//http://minecraft.gamepedia.com/Andesite and so on
+		
 		BlockSimple diorite = new BlockSimple(Material.rock);  
+		diorite.setHardness(1.5F).setResistance(30.0F);
 		registerStoneDefaults(diorite,"stone_diorite");
   
-		BlockSimple andesite = new BlockSimple(Material.rock);    
+		BlockSimple andesite = new BlockSimple(Material.rock); 
+		andesite.setHardness(1.5F).setResistance(30.0F);
 		registerStoneDefaults(andesite,"stone_andesite"); 
 		
-		BlockSimple granite = new BlockSimple(Material.rock);        
+		BlockSimple granite = new BlockSimple(Material.rock);   
+		granite.setHardness(1.5F).setResistance(30.0F);
 		registerStoneDefaults(granite,"stone_granite"); 
 
 		BlockSimple diorite_smooth = new BlockSimple(Material.rock);  
-		registerStoneDefaults(diorite,"stone_diorite_smooth");
+		diorite_smooth.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(diorite_smooth,"stone_diorite_smooth");
   
-		BlockSimple andesite_smooth = new BlockSimple(Material.rock);    
-		registerStoneDefaults(andesite,"stone_andesite_smooth"); 
+		BlockSimple andesite_smooth = new BlockSimple(Material.rock); 
+		andesite_smooth.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(andesite_smooth,"stone_andesite_smooth"); 
 		
-		BlockSimple granite_smooth = new BlockSimple(Material.rock);        
-		registerStoneDefaults(granite,"stone_granite_smooth"); 
+		BlockSimple granite_smooth = new BlockSimple(Material.rock);     
+		granite_smooth.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(granite_smooth,"stone_granite_smooth"); 
+		 
+		//http://minecraft.gamepedia.com/Prismarine_Shard
+		//http://minecraft.gamepedia.com/Prismarine_Crystals
+		Item prismarine_crystals = new Item(); 
+		registerItemDefaults(prismarine_crystals,"prismarine_crystals");
 		
-		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);       
+		Item prismarine_shard = new Item();
+		registerItemDefaults(prismarine_shard,"prismarine_shard");
+		
+		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);    
+		prismarine_bricks.setHardness(1.2F).setResistance(30.0F);
 		registerStoneDefaults(prismarine_bricks,"prismarine_bricks");
 
-		BlockSimple prismarine_dark = new BlockSimple(Material.rock);       
+		BlockSimple prismarine_dark = new BlockSimple(Material.rock);    
+		prismarine_dark.setHardness(1.5F).setResistance(30.0F);    
 		registerStoneDefaults(prismarine_dark,"prismarine_dark"); 
 		 
 	}
-    
+    private void registerItemDefaults(Item s,String name)
+    { 
+    	s.setTextureName("samspowerups:" + name).setUnlocalizedName(name);
+    	s.setCreativeTab(CreativeTabs.tabDecorations);
+    	GameRegistry.registerItem(s, name);
+    }
     private void registerStoneDefaults(BlockSimple s,String name)
     {
-    	s.setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName(name).setBlockTextureName("samspowerups:" + name);
+    	s.setStepSound(Block.soundTypeStone).setBlockName(name).setBlockTextureName("samspowerups:" + name);
     	s.setCreativeTab(CreativeTabs.tabBlock);
     	GameRegistry.registerBlock(s, name);
     }

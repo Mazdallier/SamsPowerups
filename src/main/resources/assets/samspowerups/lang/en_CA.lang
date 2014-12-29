@@ -25,3 +25,5 @@ item.apple_chocolate=Chocolate Apple
 key.columnshiftup=Column Shift Up
 key.columnshiftdown=Column Shift Down
 tile.stone_diorite.name=Diorite
+item.prismarine_shard.name=Prismarine Shard
+item.prismarine_crystal.name=Prismarine Crystal
