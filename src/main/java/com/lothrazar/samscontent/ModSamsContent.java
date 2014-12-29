@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockStone;
+import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -209,7 +210,7 @@ public class ModSamsContent
        // blockRegistry.addObject(64, "wooden_door", (new BlockDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("doorWood").disableStats().setBlockTextureName("door_wood"));
         //again, the BlockDoor base class has a protected constructor, so we needed our own class
 		BlockDoorSimple birchDoor = new BlockDoorSimple(); 
-		birchDoor.setBlockTextureName("door_birch").setBlockName("door_birch");//dont do the _upper or _lower, thats decided for us at runtime based on spot
+		birchDoor.setBlockTextureName("samspowerups:" + "door_birch").setBlockName("door_birch");//dont do the _upper or _lower, thats decided for us at runtime based on spot
     	GameRegistry.registerBlock(birchDoor, "door_birch");
 
 
@@ -236,7 +237,14 @@ public class ModSamsContent
     	// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak", Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
 		
 		//Iron Trapdoor, Armor Stand
+    	//is protected again
+    	BlockIronTrapdoor ironTrapdoor = new BlockIronTrapdoor();
+    	ironTrapdoor.setBlockName("iron_trapdoor").setBlockTextureName("samspowerups:" + "iron_trapdoor");
+    	GameRegistry.registerBlock(ironTrapdoor, "iron_trapdoor");
     	
+    	
+ //blockRegistry.addObject(96, "trapdoor", (new BlockTrapDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("trapdoor").disableStats().setBlockTextureName("trapdoor"));
+          
 		
 		/*Items:
 Rabbit's Foot, New Fences, New Gates, Iron Trapdoor, Armor Stand
