@@ -182,13 +182,18 @@ public class ModSamsContent
 				, 's', prismarine_crystals
 				);
 
-		GameRegistry.addRecipe(new ItemStack(prismarine_bricks), "ppp","p9p",	"ppp"  
+		GameRegistry.addRecipe(new ItemStack(prismarine_bricks), "ppp","ppp",	"ppp"  
 				, 'p', prismarine_shard
 				);
 		GameRegistry.addRecipe(new ItemStack(prismarine_dark), "ppp","pip",	"ppp"  
 				, 'p', prismarine_shard
 				, 'i', new ItemStack(Items.dye,1,Reference.dye_incsac) 
 				);
+		
+		
+		//no guardians exist yet. so for now just smelt lapis?
+
+	  	GameRegistry.addSmelting( new ItemStack(Items.dye,1,Reference.dye_lapis) ,new ItemStack(prismarine_shard,2),0); 
 		
 		//5 doors
 		
