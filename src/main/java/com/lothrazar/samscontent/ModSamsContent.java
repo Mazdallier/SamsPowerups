@@ -247,12 +247,12 @@ public class ModSamsContent
     	
     	
 
-        Block redSandstone = new BlockSandStone();
-        redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone").setBlockTextureName("samspowerups:" + "red_sandstone");
+    	BlockRedSandStone redSandstone = new BlockRedSandStone();
+        redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone").setBlockTextureName("samspowerups:" + "red_sandstone_normal");
     	GameRegistry.registerBlock(redSandstone, "red_sandstone");
     	
 
-        Block redSandstoneSm = new BlockSandStone();
+    	BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
         redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone_smooth").setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
     	GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
     	
