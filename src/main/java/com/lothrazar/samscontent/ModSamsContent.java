@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockSandStone;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
@@ -255,6 +256,14 @@ public class ModSamsContent
     	BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
         redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone_smooth").setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
     	GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
+
+    	BlockRedSandStone redSandstoneCv = new BlockRedSandStone();
+    	redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone_carved").setBlockTextureName("samspowerups:" + "red_sandstone_carved");
+    	GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
+    	
+    	
+    	/*  blockRegistry.addObject(128, "sandstone_stairs", (new BlockStairs(block2, 0)).setBlockName("stairsSandStone"));
+      */
     	
     	//GameRegistry.registerBlock(redSandstone, BlockSandStone.class);
     	//above should work to just auto popuplate the subtypes the carved and such for damage values. and they show up but with no textures

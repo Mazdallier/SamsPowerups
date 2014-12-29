@@ -22,7 +22,7 @@ public class BlockRedSandStone extends BlockSandStone
     //public static final String[] field_150157_a = new String[] {"default", "chiseled", "smooth"};
    // private static final String[] field_150156_b = new String[] {"normal", "carved", "smooth"};
     @SideOnly(Side.CLIENT)
-    private IIcon[] iconsFourSides;
+    private IIcon iconsFourSides;
     @SideOnly(Side.CLIENT)
     private IIcon iconTop;
     @SideOnly(Side.CLIENT)
@@ -41,14 +41,11 @@ public class BlockRedSandStone extends BlockSandStone
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister p_149651_1_)
     {
-        this.iconsFourSides = new IIcon[3];
+  
+        this.iconsFourSides = p_149651_1_.registerIcon(this.getTextureName());//four sides are either carved/normal/smooth
+   
 
-        for (int i = 0; i < this.iconsFourSides.length; ++i)
-        {
-            this.iconsFourSides[i] = p_149651_1_.registerIcon(this.getTextureName());//four sides are either carved/normal/smooth
-        }
-
-        //top bottom same for all
+        //top bottom same for all of them, regardless of carved,smooth,whatever
         this.iconTop = p_149651_1_.registerIcon("samspowerups:" + "red_sandstone" + "_top");
         this.iconBottom = p_149651_1_.registerIcon("samspowerups:" + "red_sandstone" + "_bottom");
     }
@@ -56,26 +53,18 @@ public class BlockRedSandStone extends BlockSandStone
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
-    {
-        if (side != 1 && (side != 0 || meta != 1 && meta != 2))
+    { 
+        if (side == 0)
         {
-            if (side == 0)
-            {
-                return this.iconBottom;
-            }
-            else
-            {
-                if (meta < 0 || meta >= this.iconsFourSides.length)
-                {
-                    meta = 0;
-                }
-
-                return this.iconsFourSides[meta];
-            }
+            return this.iconBottom;
         }
+        else if(side == 1)
+        { 
+            return this.iconTop;
+        } 
         else
         {
-            return this.iconTop;
+            return this.iconsFourSides;
         }
     }
 }
