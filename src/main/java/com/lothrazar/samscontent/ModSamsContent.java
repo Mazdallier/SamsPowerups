@@ -86,7 +86,9 @@ public class ModSamsContent
 	{
     	MinecraftForge.EVENT_BUS.register(this);
 	}
-
+	public  BlockSimple sea_lantern;
+	public static Item prismarine_crystals;
+	public Item prismarine_shard;
     @EventHandler
 	public void onInit(FMLInitializationEvent event)   
 	{
@@ -133,33 +135,60 @@ public class ModSamsContent
 		granite_smooth.setHardness(1.5F).setResistance(30.0F);
 		registerStoneDefaults(granite_smooth,"stone_granite_smooth"); 
 		 
+
+		GameRegistry.addRecipe(new ItemStack(diorite_smooth), "pp",	"pp"  
+				, 'p', diorite
+				);
+		GameRegistry.addRecipe(new ItemStack(andesite_smooth),"pp", "pp"  
+				, 'p', andesite
+				);
+		GameRegistry.addRecipe(new ItemStack(granite_smooth), "pp",	"pp"  
+				, 'p', granite
+				);
+		 
 		//http://minecraft.gamepedia.com/Prismarine_Shard
 		//http://minecraft.gamepedia.com/Prismarine_Crystals
-		Item prismarine_crystals = new Item(); 
+		prismarine_crystals = new Item(); 
 		registerItemDefaults(prismarine_crystals,"prismarine_crystals");
 		
-		Item prismarine_shard = new Item();
+		prismarine_shard = new Item();
 		registerItemDefaults(prismarine_shard,"prismarine_shard");
 		
 		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);    
 		prismarine_bricks.setHardness(1.2F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_bricks,"prismarine_bricks");
+		registerStoneDefaults(prismarine_bricks,"prismarine_bricks");//NO SILK, BY HAND GIVES NOTHING
 
 		BlockSimple prismarine_dark = new BlockSimple(Material.rock);    
 		prismarine_dark.setHardness(1.5F).setResistance(30.0F);    
-		registerStoneDefaults(prismarine_dark,"prismarine_dark"); 
+		registerStoneDefaults(prismarine_dark,"prismarine_dark"); //NO SILK NEEDED. BUT BY HAND GIVES NOTHING
 
 		BlockSimple prismarine_rough = new BlockSimple(Material.rock);    
 		prismarine_rough.setHardness(1.5F).setResistance(30.0F);    
-		registerStoneDefaults(prismarine_rough,"prismarine_rough"); 
+		registerStoneDefaults(prismarine_rough,"prismarine_rough"); //NO SILK, BY HAND GIVES NOTHING
 
-		BlockSimple sea_lantern = new BlockSimple(Material.rock);    
-		sea_lantern.setHardness(1.5F).setResistance(30.0F).setLightLevel(15.0F);    
+		sea_lantern = new BlockSimple(Material.glass, prismarine_crystals);    
+		//todo: drops 2-3 p crystals if no silk. or up to 5 with fortune
+		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(15.0F);    //SILK ONLY. BY HAND IS FINE
 		registerStoneDefaults(sea_lantern,"sea_lantern"); 
 		
 		//recipe time
 		
-		
+		GameRegistry.addRecipe(new ItemStack(prismarine_rough), "pp",	"pp"  
+				, 'p', prismarine_shard
+				);
+
+		GameRegistry.addRecipe(new ItemStack(sea_lantern), "psp","sss",	"psp"  
+				, 'p', prismarine_shard
+				, 's', prismarine_crystals
+				);
+
+		GameRegistry.addRecipe(new ItemStack(prismarine_bricks), "ppp","p9p",	"ppp"  
+				, 'p', prismarine_shard
+				);
+		GameRegistry.addRecipe(new ItemStack(prismarine_dark), "ppp","pip",	"ppp"  
+				, 'p', prismarine_shard
+				, 'i', new ItemStack(Items.dye,1,Reference.dye_incsac) 
+				);
 		
 		//5 doors
 		
