@@ -148,6 +148,41 @@ public class ModSamsContent
 		BlockSimple prismarine_dark = new BlockSimple(Material.rock);    
 		prismarine_dark.setHardness(1.5F).setResistance(30.0F);    
 		registerStoneDefaults(prismarine_dark,"prismarine_dark"); 
+
+		BlockSimple prismarine_rough = new BlockSimple(Material.rock);    
+		prismarine_rough.setHardness(1.5F).setResistance(30.0F);    
+		registerStoneDefaults(prismarine_rough,"prismarine_rough"); 
+
+		BlockSimple sea_lantern = new BlockSimple(Material.rock);    
+		sea_lantern.setHardness(1.5F).setResistance(30.0F).setLightLevel(15.0F);    
+		registerStoneDefaults(sea_lantern,"sea_lantern"); 
+		
+		//recipe time
+		
+		
+		
+		//5 doors
+		
+		
+		
+		
+		//5 fences
+		
+		//Iron Trapdoor, Armor Stand
+		
+		
+		/*Items:
+Rabbit's Foot, New Fences, New Gates, Iron Trapdoor, Armor Stand
+Food:
+Raw Rabbit, Cooked Rabbit, Rabbit Stew, Raw Mutton, Cooked Mutton
+Potions:
+Potion of Leaping
+Enchantment:
+Depth Strider
+Mobs:
+Endermites, Guardians, Elder Guardians, Rabbit
+
+*/
 		 
 	}
     private void registerItemDefaults(Item s,String name)
