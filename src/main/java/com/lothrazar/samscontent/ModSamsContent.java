@@ -168,7 +168,7 @@ public class ModSamsContent
 
 		sea_lantern = new BlockSimple(Material.glass, prismarine_crystals);    
 		//todo: drops 2-3 p crystals if no silk. or up to 5 with fortune
-		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(15.0F);    //SILK ONLY. BY HAND IS FINE
+		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(1.0F);    //SILK ONLY. BY HAND IS FINE
 		registerStoneDefaults(sea_lantern,"sea_lantern"); 
 		
 		//recipe time
