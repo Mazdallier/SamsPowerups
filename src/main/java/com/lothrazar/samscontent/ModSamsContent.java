@@ -101,6 +101,13 @@ public class ModSamsContent
 		initCommand();
 		initRunestones();	 
 		
+		
+		initBackport18();
+	}
+    
+    
+    public void initBackport18()
+    {
 		//resistance and hardness are the same as vanilla Blocks.stonestone
 		 
 		   //the standard block constructor is protected...so... //   protected Block(Material
