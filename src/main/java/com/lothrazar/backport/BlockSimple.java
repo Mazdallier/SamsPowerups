@@ -17,7 +17,7 @@ public class BlockSimple extends Block
 	Item itemDropped = null;
 	public BlockSimple(Material m)
 	{
-		super(m);  
+		super(m);   
 	}
 	public BlockSimple(Material m, Item d)
 	{

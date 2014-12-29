@@ -7,6 +7,7 @@ import com.lothrazar.backport.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
+import net.minecraft.block.BlockSandStone;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
@@ -241,12 +242,41 @@ public class ModSamsContent
     	BlockIronTrapdoor ironTrapdoor = new BlockIronTrapdoor();
     	ironTrapdoor.setBlockName("iron_trapdoor").setBlockTextureName("samspowerups:" + "iron_trapdoor");
     	GameRegistry.registerBlock(ironTrapdoor, "iron_trapdoor");
-    	
-    	
- //blockRegistry.addObject(96, "trapdoor", (new BlockTrapDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("trapdoor").disableStats().setBlockTextureName("trapdoor"));
-          
+ 
 		
-		/*Items:
+    	
+    	
+
+        Block redSandstone = new BlockSandStone();
+        redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone").setBlockTextureName("samspowerups:" + "red_sandstone");
+    	GameRegistry.registerBlock(redSandstone, "red_sandstone");
+    	
+
+        Block redSandstoneSm = new BlockSandStone();
+        redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone_smooth").setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
+    	GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
+    	
+    	//GameRegistry.registerBlock(redSandstone, BlockSandStone.class);
+    	//above should work to just auto popuplate the subtypes the carved and such for damage values. and they show up but with no textures
+    	//so do it the same style that i did stone
+
+		/*
+		BlockSimple redSandstone = new BlockSimple(Material.rock);    
+		redSandstone.setHardness(0.8F);//.setResistance(30.0F);
+		registerStoneDefaults(redSandstone,"red_sandstone");
+    	*/
+    	
+    	/*
+    	
+        Block block2 = (new BlockSandStone()).setStepSound(soundTypePiston).setHardness(0.8F).setBlockName("sandStone").setBlockTextureName("sandstone");
+        blockRegistry.addObject(24, "sandstone", block2);
+        */
+    	
+    	
+		/*
+		 * 
+		 NOT IMPLEMENTED
+Items:
 Rabbit's Foot, New Fences, New Gates, Iron Trapdoor, Armor Stand
 Food:
 Raw Rabbit, Cooked Rabbit, Rabbit Stew, Raw Mutton, Cooked Mutton
