@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import com.lothrazar.backport.*;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -203,14 +205,38 @@ public class ModSamsContent
 	  	GameRegistry.addSmelting( new ItemStack(Items.dye,1,Reference.dye_lapis) ,new ItemStack(prismarine_shard,2),0); 
 		
 		//5 doors
-		
-		
-		
-		
+
+       // blockRegistry.addObject(64, "wooden_door", (new BlockDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("doorWood").disableStats().setBlockTextureName("door_wood"));
+        //again, the BlockDoor base class has a protected constructor, so we needed our own class
+		BlockDoorSimple birchDoor = new BlockDoorSimple(); 
+		birchDoor.setBlockTextureName("door_birch").setBlockName("door_birch");//dont do the _upper or _lower, thats decided for us at runtime based on spot
+    	GameRegistry.registerBlock(birchDoor, "door_birch");
+
+
 		//5 fences
+    	BlockFence birchFence = new BlockFence("planks_birch", Material.wood);
+    	birchFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("birch_fence");
+    	GameRegistry.registerBlock(birchFence, "birch_fence");
+       
+    	BlockFence jungleFence = new BlockFence("planks_jungle", Material.wood);
+    	jungleFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("jungle_fence");
+    	GameRegistry.registerBlock(jungleFence, "birch_jungle");
+
+    	BlockFence spruceFence = new BlockFence("planks_spruce", Material.wood);
+    	spruceFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("spruce_fence");
+    	GameRegistry.registerBlock(spruceFence, "spruce_jungle");
+
+    	BlockFence big_oakFence = new BlockFence("planks_big_oak", Material.wood);
+    	big_oakFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("big_oak_fence");
+    	GameRegistry.registerBlock(big_oakFence, "big_oak_jungle");
+
+    	BlockFence acaciaFence = new BlockFence("planks_acacia", Material.wood);
+    	acaciaFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("acacia_fence");
+    	GameRegistry.registerBlock(acaciaFence, "acacia_jungle");
+    	// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak", Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
 		
 		//Iron Trapdoor, Armor Stand
-		
+    	
 		
 		/*Items:
 Rabbit's Foot, New Fences, New Gates, Iron Trapdoor, Armor Stand
