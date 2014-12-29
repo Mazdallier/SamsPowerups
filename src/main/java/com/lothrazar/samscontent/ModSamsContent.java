@@ -347,7 +347,7 @@ public class ModSamsContent
 				, 'a', Items.nether_star  );   
 		GameRegistry.addSmelting(rune_water, new ItemStack(Items.nether_star,1),0);	
 		 
-		rune_speed = new ItemRunestone(new int[]{Reference.potion_SPEED,Reference.potion_FATIGUE},new int[]{II,II},not_shiny);  
+		rune_speed = new ItemRunestone(new int[]{Reference.potion_SPEED,Reference.potion_WEAKNESS},new int[]{III,I},not_shiny);  
 		rune_speed.setUnlocalizedName("rune_speed").setTextureName("samspowerups"+":rune_speed"); 
 		GameRegistry.registerItem(rune_speed,  "rune_speed"); 
 		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae","eee"
