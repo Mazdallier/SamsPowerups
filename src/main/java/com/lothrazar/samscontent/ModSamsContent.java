@@ -178,7 +178,7 @@ public class ModSamsContent
 		initRunestones(); 
 	}
 
-
+//BOUNTIFUL UPDATE
 	public void initBackport18()
 	{
 		initNewStones();
@@ -214,22 +214,41 @@ public class ModSamsContent
 		initSlimeBlock();
 		/*
 		 *TODO: COarse Dirt
+		 *Crafting recipe: dirt and gravel in a 2×2 checkered pattern, yields four coarse dirt
+		 *remove my smelting dirt, if it exists somewhere
+		 *
+		 *TODO FIX DOORS
+		 *
+		 *TODO SPONGE
 		 * 
-		 * NOT YET IMPLEMENTED 
+		 *  
 		 * 
-		 * BANNER 
+		 * TODO BANNER 
 		 * 
-		 * ARMOR STAND
+		 * TODO ARMOR STAND
 		 * 
+		 * WONTDO difficulty locking
 		 * 
-		 * Water Temples in Oceans
+		 * WONTDO Skin Customization
+		 * 
+		 * MAYBE
+		 * New achievement Overpowered
+Obtained by crafting an enchanted golden apple
+Requires first obtaining Getting an Upgrade
+
+gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
+		 * 
+		 * WONTDO Water Temples in Oceans
 		 * 
 		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
 		 * 
 		 * Rabbit Stew, 
 		 * 
 		 *  Potions: Potion of Leaping
-		 * Enchantment: Depth Strider 
+		 * Enchantment: Depth Strider (up to 3)
+		 * 
+		 * COMMAND /clone
+		 * COMMAND /fill
 		 * 
 		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
 		 */

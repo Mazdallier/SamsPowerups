@@ -102,7 +102,7 @@ public class BlockSlime extends BlockBreakable
 	        	//since its in a differetn event, motion is always close to zero. so mult by fall dist 
 	            //  entityIn.motionY = -entityIn.motionY; 
 	             // entityIn.motionY = -entityIn.motionY*fallDistance;  
-	           	entityIn.moveEntity(0, -entityIn.motionY * fallDistance / 1.8, 0);//bounce up by a bit over half
+	           	entityIn.moveEntity(0, -entityIn.motionY * fallDistance * 0.6, 0);//bounce up by a bit over half
 	           	System.out.println("bounce trying to reverse motion TO =? "+entityIn.motionY);
         	}
         }
