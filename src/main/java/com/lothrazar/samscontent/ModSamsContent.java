@@ -244,6 +244,8 @@ public class ModSamsContent
 
 		GameRegistry.addRecipe(new ItemStack(slime), "ppp", "ppp",	"ppp", 
 				'p', Items.slime_ball);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.slime_ball, 9), slime);
 	}
 
 	private void initMutton()
