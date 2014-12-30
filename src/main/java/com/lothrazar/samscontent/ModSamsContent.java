@@ -317,36 +317,54 @@ public class ModSamsContent
 				.setStepSound(Block.soundTypeWood).setBlockName("birch_fence");
 		GameRegistry.registerBlock(birchFence, "birch_fence");
 
+		GameRegistry.addRecipe(new ItemStack(birchFence,3), "   ", "lsl", "lsl", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_birch),
+				's', Items.stick
+				);
+		
 		jungleFence = new BlockFenceSimple("planks_jungle");
 		jungleFence.setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("jungle_fence");
 		GameRegistry.registerBlock(jungleFence, "jungle_fence");
 
+		GameRegistry.addRecipe(new ItemStack(jungleFence,3), "   ", "lsl", "lsl", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_jungle),
+				's', Items.stick
+				);
+		
 		spruceFence = new BlockFenceSimple("planks_spruce");
 		spruceFence.setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("spruce_fence");
 		GameRegistry.registerBlock(spruceFence, "spruce_fence");
 
+		GameRegistry.addRecipe(new ItemStack(spruceFence,3), "   ", "lsl", "lsl", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_spruce),
+				's', Items.stick
+				);
+		
 		big_oakFence = new BlockFenceSimple("planks_big_oak");
 		big_oakFence.setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood)
 				.setBlockName("big_oak_fence");
 		GameRegistry.registerBlock(big_oakFence, "big_oak_fence");
 
+		GameRegistry.addRecipe(new ItemStack(big_oakFence,3), "   ", "lsl", "lsl", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_darkoak),
+				's', Items.stick
+				);
+
 		acaciaFence = new BlockFenceSimple("planks_acacia");
 		acaciaFence.setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("acacia_fence");
 		GameRegistry.registerBlock(acaciaFence, "acacia_fence");
-		// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak",
-		// Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
-
-		
+	 
 
 		GameRegistry.addRecipe(new ItemStack(acaciaFence,3), "   ", "lsl", "lsl", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_acacia),
 				's', Items.stick
 				);
-		
+
+
 		
 		/*
 		 * TODO: override blockfence to override this for connections
@@ -371,26 +389,49 @@ public class ModSamsContent
 		acaciaGate.setBlockName("acacia_fence_gate").setBlockTextureName(
 				"planks_acacia");
 		GameRegistry.registerBlock(acaciaGate, "acacia_fence_gate");
+		
+		GameRegistry.addRecipe(new ItemStack(acaciaGate,1), "   ", "sls", "sls", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_acacia),
+				's', Items.stick
+				);
+		
 
 		spruceGate = new BlockFenceGateSimple();
 		spruceGate.setBlockName("spruce_fence_gate").setBlockTextureName(
 				"planks_spruce");
 		GameRegistry.registerBlock(spruceGate, "spruce_fence_gate");
+		GameRegistry.addRecipe(new ItemStack(spruceGate,1), "   ", "sls", "sls", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_spruce),
+				's', Items.stick
+				);
+		
 
 		birchGate = new BlockFenceGateSimple();
 		birchGate.setBlockName("birch_fence_gate").setBlockTextureName(
 				"planks_birch");
 		GameRegistry.registerBlock(birchGate, "birch_fence_gate");
+		GameRegistry.addRecipe(new ItemStack(birchGate,1), "   ", "sls", "sls", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_birch),
+				's', Items.stick
+				);
 
 		jungleGate = new BlockFenceGateSimple();
 		jungleGate.setBlockName("jungle_fence_gate").setBlockTextureName(
 				"planks_jungle");
 		GameRegistry.registerBlock(jungleGate, "jungle_fence_gate");
+		GameRegistry.addRecipe(new ItemStack(jungleGate,1), "   ", "sls", "sls", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_jungle),
+				's', Items.stick
+				);
 
 		big_oakGate = new BlockFenceGateSimple();
 		big_oakGate.setBlockName("big_oak_fence_gate").setBlockTextureName(
 				"planks_big_oak");
 		GameRegistry.registerBlock(big_oakGate, "big_oak_fence_gate");
+		GameRegistry.addRecipe(new ItemStack(big_oakGate,1), "   ", "sls", "sls", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_darkoak),
+				's', Items.stick
+				);
 	}
 
 	private void initNewStones()
