@@ -261,7 +261,10 @@ public class ModSamsContent
     	redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone_carved").setBlockTextureName("samspowerups:" + "red_sandstone_carved");
     	GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
     	
-    	
+    	//dang protected again
+    	BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone, 0);
+    	rss.setBlockName("red_sandstone_stairs");
+    	GameRegistry.registerBlock(rss, "red_sandstone_stairs");
     	/*  blockRegistry.addObject(128, "sandstone_stairs", (new BlockStairs(block2, 0)).setBlockName("stairsSandStone"));
       */
     	
