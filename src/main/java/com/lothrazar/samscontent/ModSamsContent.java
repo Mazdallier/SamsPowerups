@@ -374,12 +374,12 @@ public class ModSamsContent
 
 		mutton_raw = new ItemFood(2, false);
 		mutton_raw.setUnlocalizedName("mutton_raw").setTextureName(
-				"samspowerups" + ":mutton_raw");
+				"samspowerups:" + "mutton_raw");
 		GameRegistry.registerItem(mutton_raw, "mutton_raw");
 
 		mutton_cooked = new ItemFood(6, false);
 		mutton_cooked.setUnlocalizedName("mutton_cooked").setTextureName(
-				"samspowerups" + ":mutton_cooked");
+				"samspowerups:" + "mutton_cooked");
 		GameRegistry.registerItem(mutton_cooked, "mutton_cooked");
 
 		// GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
@@ -388,8 +388,10 @@ public class ModSamsContent
 
 		
 		
-		//    registerBlock(165, "slime", (new BlockSlime()).setUnlocalizedName("slime").setStepSound(SLIME_SOUND));
-	       
+		BlockSlime slime = new BlockSlime();
+		slime.setBlockName("slime").setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
+		slime.setBlockTextureName("samspowerups:" +"slime");
+		GameRegistry.registerBlock(slime, "slime");
 		
 		/*
 		 * 

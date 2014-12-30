@@ -19,7 +19,7 @@ public class BlockSlime extends BlockBreakable
 
     public BlockSlime()
     {
-        super("slime_block", Material.clay, false);
+        super("slime", Material.clay, false);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.slipperiness = 0.8F;
     }
@@ -31,9 +31,11 @@ public class BlockSlime extends BlockBreakable
     }
 */
     
-    
+
+    @Override
     public void onFallenUpon(World worldIn, int x,int y, int z, Entity entityIn, float fallDistance)
     {
+    	System.out.println("onFallenUpon ::  fallDistance = "+fallDistance);
         if (entityIn.isSneaking())
         {
         	super.onFallenUpon(worldIn, x, y, z, entityIn,fallDistance);
@@ -71,12 +73,20 @@ public class BlockSlime extends BlockBreakable
         }
     }
 
-    public void onLanded(World worldIn, Entity entityIn)
+    //@Override
+    public void onLanded(World worldObj, Entity entityIn)
     {
+    	System.out.println("onLanded ::  entityIn.motionY = "+entityIn.motionY);
         if (entityIn.isSneaking())
         { 
         	//super doesnt exist so we skip it. must have been added in 1.8
            // super.onLanded(worldIn, entityIn);
+        	//the super just does this anyway
+        	/*  public void onLanded(World worldIn, Entity entityIn)
+    {
+        entityIn.motionY = 0.0D;
+    }*/
+        	entityIn.motionY = 0.0D;
         }
         else if (entityIn.motionY < 0.0D)
         {
@@ -84,8 +94,11 @@ public class BlockSlime extends BlockBreakable
         }
     }
 
+    //where the bounce happens
+    @Override
     public void onEntityCollidedWithBlock(World worldIn, int x,int y, int z, Entity entityIn)
     {
+    	System.out.println("onEntityCollidedWithBlock ::  entityIn.motionY = "+entityIn.motionY);
         if (Math.abs(entityIn.motionY) < 0.1D && !entityIn.isSneaking())
         {
             double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
