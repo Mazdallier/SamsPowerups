@@ -24,9 +24,9 @@ public class BlockSlime extends BlockBreakable
         super("slime", Material.clay, false);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.slipperiness = 0.8F;
-        this.setBlockName("slime").setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
+        this.setBlockName("slime");//.setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
         this.setBlockTextureName("samspowerups:" +"slime_block");
-        
+        //mob.slime.big from sounds.json
         //water has opacity of 3
         this.setLightOpacity(3);
     }
@@ -63,7 +63,7 @@ public class BlockSlime extends BlockBreakable
     }
     
     @Override
-    public void onFallenUpon(World worldIn, int x,int y, int z, Entity entityIn, float fallDistance)
+    public void onFallenUpon(World worldObj, int x,int y, int z, Entity entityIn, float fallDistance)
     {
     	//this fires twice. assuming its once for each client/server
     	System.out.println("onFallenUpon ::  fallDistance = "+fallDistance);
@@ -72,7 +72,7 @@ public class BlockSlime extends BlockBreakable
      	
         if (entityIn.isSneaking())
         {
-        	super.onFallenUpon(worldIn, x, y, z, entityIn,fallDistance);
+        	super.onFallenUpon(worldObj, x, y, z, entityIn,fallDistance);
           //  super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
         }
         else
@@ -133,6 +133,13 @@ public class BlockSlime extends BlockBreakable
          	System.out.println("bounce trying to reverse motion TO =? "+entityIn.motionY);
          	
         }
+   	 	worldObj.playSoundAtEntity(
+   			entityIn, // the entity at which to play the sound
+   			"mob.slime.big", // sound file name from sounds.json
+   			1.0F, // volume (randomize if you want)
+   			0.5F * ((worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.7F + 1.8F) // pitch that has lots some randomness
+   			);
+   	 
     }
 
     //@Override
