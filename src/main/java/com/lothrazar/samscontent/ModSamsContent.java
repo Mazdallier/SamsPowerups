@@ -7,6 +7,7 @@ import com.lothrazar.backport.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockSandStone;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStone;
@@ -227,21 +228,35 @@ public class ModSamsContent
        
     	BlockFence jungleFence = new BlockFence("planks_jungle", Material.wood);
     	jungleFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("jungle_fence");
-    	GameRegistry.registerBlock(jungleFence, "birch_jungle");
+    	GameRegistry.registerBlock(jungleFence, "jungle_fence");
 
     	BlockFence spruceFence = new BlockFence("planks_spruce", Material.wood);
     	spruceFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("spruce_fence");
-    	GameRegistry.registerBlock(spruceFence, "spruce_jungle");
+    	GameRegistry.registerBlock(spruceFence, "spruce_fence");
 
     	BlockFence big_oakFence = new BlockFence("planks_big_oak", Material.wood);
     	big_oakFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("big_oak_fence");
-    	GameRegistry.registerBlock(big_oakFence, "big_oak_jungle");
+    	GameRegistry.registerBlock(big_oakFence, "big_oak_fence");
 
     	BlockFence acaciaFence = new BlockFence("planks_acacia", Material.wood);
     	acaciaFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("acacia_fence");
-    	GameRegistry.registerBlock(acaciaFence, "acacia_jungle");
+    	GameRegistry.registerBlock(acaciaFence, "acacia_fence");
     	// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak", Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
 		
+    	// f;
+    	
+//blockRegistry.addObject(107, "fence_gate", (new BlockFenceGate()).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood)
+    	//.setBlockName("fenceGate"));
+        
+//we inherited from basic fencegate to override getIcon, which was set to only plain planks
+    	BlockFenceGateSimple acaciaGate = new BlockFenceGateSimple();
+    	acaciaGate.setBlockName("acacia_fence_gate").setBlockTextureName("planks_acacia");
+    	GameRegistry.registerBlock(acaciaGate, "acacia_fence_gate");
+    	
+    	BlockFenceGateSimple spruceGate = new BlockFenceGateSimple();
+    	spruceGate.setBlockName("spruce_fence_gate").setBlockTextureName("planks_spruce");
+    	GameRegistry.registerBlock(spruceGate, "spruce_fence_gate");
+    	
 		//Iron Trapdoor, Armor Stand
     	//is protected again
     	BlockIronTrapdoor ironTrapdoor = new BlockIronTrapdoor();
@@ -273,47 +288,24 @@ public class ModSamsContent
     	
     	
     	redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
-    	redSandstoneSingleSlab.setBlockName("red_sandstone_slab"); 
-    	//GameRegistry.registerBlock(redSandstoneSingleSlab,    "red_sandstone_slab");
+    	redSandstoneSingleSlab.setBlockName("red_sandstone_slab");  
 
-    	redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true);
-    	//GameRegistry.registerBlock(redSandstoneDoubleSlab, "red_sandstone_dbl_slab");
-
-    	
-    	//ItemSlabRedSandstone rsingle = new ItemSlabRedSandstone(redSandstoneSingleSlab);
-    	//ItemSlabRedSandstone rdouble = new ItemSlabRedSandstone(redSandstoneDoubleSlab);
+    	redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true); 
     	
     	GameRegistry.registerBlock(redSandstoneSingleSlab, ItemSlabRedSandstone.class, "red_sandstone_slab");
     	GameRegistry.registerBlock(redSandstoneDoubleSlab, ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");
     	
-    	// blockRegistry.addObject(43, "double_stone_slab", (new BlockStoneSlab(true)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundTypePiston).setBlockName("stoneSlab"));
-        
-    	
-    	/*  blockRegistry.addObject(128, "sandstone_stairs", (new BlockStairs(block2, 0)).setBlockName("stairsSandStone"));
-      */
-    	
-    	//GameRegistry.registerBlock(redSandstone, BlockSandStone.class);
-    	//above should work to just auto popuplate the subtypes the carved and such for damage values. and they show up but with no textures
-    	//so do it the same style that i did stone
-
-		/*
-		BlockSimple redSandstone = new BlockSimple(Material.rock);    
-		redSandstone.setHardness(0.8F);//.setResistance(30.0F);
-		registerStoneDefaults(redSandstone,"red_sandstone");
-    	*/
-    	
-    	/*
-    	
-        Block block2 = (new BlockSandStone()).setStepSound(soundTypePiston).setHardness(0.8F).setBlockName("sandStone").setBlockTextureName("sandstone");
-        blockRegistry.addObject(24, "sandstone", block2);
-        */
-    	
+     
     	
 		/*
 		 * 
-		 NOT IMPLEMENTED
+		 NOT YET IMPLEMENTED
+		 BANNER
+		 ARMOR STAND
+		 5 WOOD GATES
+		 
 Items:
-Rabbit's Foot, New Fences, New Gates, Iron Trapdoor, Armor Stand
+Rabbit's Foot,   Armor Stand
 Food:
 Raw Rabbit, Cooked Rabbit, Rabbit Stew, Raw Mutton, Cooked Mutton
 Potions:
