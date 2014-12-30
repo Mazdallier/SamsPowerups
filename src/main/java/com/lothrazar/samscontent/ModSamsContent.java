@@ -242,7 +242,7 @@ public class ModSamsContent
     	acaciaFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("acacia_fence");
     	GameRegistry.registerBlock(acaciaFence, "acacia_fence");
     	// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak", Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
-		
+    	
     	// f;
     	
 //blockRegistry.addObject(107, "fence_gate", (new BlockFenceGate()).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood)
@@ -256,6 +256,19 @@ public class ModSamsContent
     	BlockFenceGateSimple spruceGate = new BlockFenceGateSimple();
     	spruceGate.setBlockName("spruce_fence_gate").setBlockTextureName("planks_spruce");
     	GameRegistry.registerBlock(spruceGate, "spruce_fence_gate");
+
+    	BlockFenceGateSimple birchGate = new BlockFenceGateSimple();
+    	birchGate.setBlockName("birch_fence_gate").setBlockTextureName("planks_birch");
+    	GameRegistry.registerBlock(birchGate, "birch_fence_gate");
+
+    	BlockFenceGateSimple jungleGate = new BlockFenceGateSimple();
+    	jungleGate.setBlockName("jungle_fence_gate").setBlockTextureName("planks_jungle");
+    	GameRegistry.registerBlock(jungleGate, "jungle_fence_gate");
+
+    	BlockFenceGateSimple big_oakGate = new BlockFenceGateSimple();
+    	big_oakGate.setBlockName("big_oak_fence_gate").setBlockTextureName("planks_big_oak");
+    	GameRegistry.registerBlock(big_oakGate, "big_oak_fence_gate");
+    	
     	
 		//Iron Trapdoor, Armor Stand
     	//is protected again
