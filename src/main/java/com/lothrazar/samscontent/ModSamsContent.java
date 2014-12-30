@@ -213,6 +213,7 @@ public class ModSamsContent
 		
 		initSlimeBlock();
 		/*
+		 *TODO: COarse Dirt
 		 * 
 		 * NOT YET IMPLEMENTED 
 		 * 
@@ -505,11 +506,22 @@ public class ModSamsContent
 		registerStoneDefaults(granite_smooth, "stone_granite_smooth");
 
 		GameRegistry.addRecipe(new ItemStack(diorite_smooth), "pp", "pp", 'p',
-				diorite);
+				diorite);//2quartz,2cobble in diagonal. quartz top right
 		GameRegistry.addRecipe(new ItemStack(andesite_smooth), "pp", "pp", 'p',
-				andesite);
+				andesite);//1 dio + 1 cobble
 		GameRegistry.addRecipe(new ItemStack(granite_smooth), "pp", "pp", 'p',
-				granite);
+				granite);//1diorite+1qutz
+		
+		
+
+		GameRegistry.addRecipe(new ItemStack(diorite), "cq", "qc", 
+				'c',Blocks.cobblestone,
+				'q',Items.quartz);//2quartz,2cobble in diagonal. quartz top right
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(andesite), diorite,Blocks.cobblestone);
+		GameRegistry.addShapelessRecipe(new ItemStack(granite), diorite,Items.quartz);
+		
+		
 	}
 
 	private void initPrismarine()
