@@ -132,14 +132,16 @@ public class BlockSlime extends BlockBreakable
          	entityIn.moveEntity(0, -entityIn.motionY * fallDistance / 1.8, 0);
          	System.out.println("bounce trying to reverse motion TO =? "+entityIn.motionY);
          	
+         	
         }
    	 	worldObj.playSoundAtEntity(
-   			entityIn, // the entity at which to play the sound
+   			entityIn,  
    			"mob.slime.big", // sound file name from sounds.json
-   			1.0F, // volume (randomize if you want)
+   			1.0F, // volume 
    			0.5F * ((worldObj.rand.nextFloat() - worldObj.rand.nextFloat()) * 0.7F + 1.8F) // pitch that has lots some randomness
    			);
-   	 
+
+     	entityIn.fallDistance = 0;//remove fall damage!!
     }
 
     //@Override
