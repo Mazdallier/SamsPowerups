@@ -16,13 +16,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class BlockRedSandStoneSlab  extends BlockStoneSlab
+public class BlockRedSandStoneSlab  extends BlockSlab
 {
 
     private IIcon icon;//field_150007_M
 	public BlockRedSandStoneSlab(boolean b) 
-	{
-		super(b); 
+	{ 
+		super(b, Blocks.sandstone.getMaterial()); 
 		this.setLightOpacity(0);
 	}
  
@@ -53,4 +53,12 @@ public class BlockRedSandStoneSlab  extends BlockStoneSlab
     {
         return new ItemStack(Item.getItemFromBlock(this), 2, 0);
     }
+
+    //getFullSlabName
+	@Override
+	public String func_150002_b(int par1) 
+	{
+		          
+		  return super.getUnlocalizedName();// + "." + (par1+1);
+	}
 }

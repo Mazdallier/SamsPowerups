@@ -95,6 +95,9 @@ public class ModSamsContent
 	public  BlockSimple sea_lantern;
 	public static Item prismarine_crystals;
 	public Item prismarine_shard;
+	public static BlockRedSandStoneSlab redSandstoneSingleSlab;
+	public static BlockRedSandStoneSlab redSandstoneDoubleSlab;
+	
     @EventHandler
 	public void onInit(FMLInitializationEvent event)   
 	{
@@ -268,13 +271,20 @@ public class ModSamsContent
     	GameRegistry.registerBlock(rss, "red_sandstone_stairs");
     	
     	
+    	
+    	redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
+    	redSandstoneSingleSlab.setBlockName("red_sandstone_slab"); 
+    	//GameRegistry.registerBlock(redSandstoneSingleSlab,    "red_sandstone_slab");
 
-    	BlockRedSandStoneSlab rsl = new BlockRedSandStoneSlab(false);
-    	rsl.setBlockName("red_sandstone_slab"); 
-    	GameRegistry.registerBlock(rsl, "red_sandstone_slab");
+    	redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true);
+    	//GameRegistry.registerBlock(redSandstoneDoubleSlab, "red_sandstone_dbl_slab");
 
-    	BlockRedSandStoneSlab rsldouble = new BlockRedSandStoneSlab(true);
-    	GameRegistry.registerBlock(rsldouble, "red_sandstone_dbl_slab");
+    	
+    	//ItemSlabRedSandstone rsingle = new ItemSlabRedSandstone(redSandstoneSingleSlab);
+    	//ItemSlabRedSandstone rdouble = new ItemSlabRedSandstone(redSandstoneDoubleSlab);
+    	
+    	GameRegistry.registerBlock(redSandstoneSingleSlab, ItemSlabRedSandstone.class, "red_sandstone_slab");
+    	GameRegistry.registerBlock(redSandstoneDoubleSlab, ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");
     	
     	// blockRegistry.addObject(43, "double_stone_slab", (new BlockStoneSlab(true)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundTypePiston).setBlockName("stoneSlab"));
         
