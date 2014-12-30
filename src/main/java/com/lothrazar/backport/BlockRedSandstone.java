@@ -16,6 +16,7 @@ public class BlockRedSandStone extends BlockSandStone
     public BlockRedSandStone()
     {
         super(); 
+        this.setLightOpacity(0);
     }
 
     //@Override

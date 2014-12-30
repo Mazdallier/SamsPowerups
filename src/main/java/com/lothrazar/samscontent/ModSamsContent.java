@@ -10,6 +10,7 @@ import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockSandStone;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStone;
+import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -110,7 +111,7 @@ public class ModSamsContent
 		initBackport18();
 	}
     
-    
+    public static BlockRedSandStone redSandstone;
     public void initBackport18()
     {
 		//resistance and hardness are the same as vanilla Blocks.stonestone
@@ -248,7 +249,7 @@ public class ModSamsContent
     	
     	
 
-    	BlockRedSandStone redSandstone = new BlockRedSandStone();
+    	redSandstone = new BlockRedSandStone();
         redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F).setBlockName("red_sandstone").setBlockTextureName("samspowerups:" + "red_sandstone_normal");
     	GameRegistry.registerBlock(redSandstone, "red_sandstone");
     	
@@ -265,6 +266,19 @@ public class ModSamsContent
     	BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone, 0);
     	rss.setBlockName("red_sandstone_stairs");
     	GameRegistry.registerBlock(rss, "red_sandstone_stairs");
+    	
+    	
+
+    	BlockRedSandStoneSlab rsl = new BlockRedSandStoneSlab(false);
+    	rsl.setBlockName("red_sandstone_slab"); 
+    	GameRegistry.registerBlock(rsl, "red_sandstone_slab");
+
+    	BlockRedSandStoneSlab rsldouble = new BlockRedSandStoneSlab(true);
+    	GameRegistry.registerBlock(rsldouble, "red_sandstone_dbl_slab");
+    	
+    	// blockRegistry.addObject(43, "double_stone_slab", (new BlockStoneSlab(true)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundTypePiston).setBlockName("stoneSlab"));
+        
+    	
     	/*  blockRegistry.addObject(128, "sandstone_stairs", (new BlockStairs(block2, 0)).setBlockName("stairsSandStone"));
       */
     	

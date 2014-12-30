@@ -19,6 +19,7 @@ public class BlockRedSandStoneStairs extends BlockStairs
 	public BlockRedSandStoneStairs(Block b, int o) 
 	{
 		super(b, o); 
+		this.setLightOpacity(0);
 	} 
     
 }
