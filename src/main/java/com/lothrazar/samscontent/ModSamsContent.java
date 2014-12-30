@@ -18,6 +18,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.IBlockAccess;
@@ -97,6 +98,9 @@ public class ModSamsContent
 	public  BlockSimple sea_lantern;
 	public static Item prismarine_crystals;
 	public Item prismarine_shard;
+ 
+	private ItemFood mutton_raw;
+	private ItemFood mutton_cooked;
 	public static BlockFenceGateSimple acaciaGate;
 	public static BlockFenceGateSimple spruceGate;
 	public static BlockFenceGateSimple birchGate;
@@ -336,12 +340,28 @@ public class ModSamsContent
     	
      
     	
+    	mutton_raw = new ItemFood(2,false);  
+    	mutton_raw.setUnlocalizedName("mutton_raw")
+				.setTextureName("samspowerups"+":mutton_raw");   
+		GameRegistry.registerItem(mutton_raw,  "mutton_raw" );
+
+		mutton_cooked = new ItemFood(6,false);  
+		mutton_cooked.setUnlocalizedName("mutton_cooked")
+				.setTextureName("samspowerups"+":mutton_cooked");   
+		GameRegistry.registerItem(mutton_cooked,  "mutton_cooked" );
+		
+		
+		//GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald), Items.emerald , Items.golden_apple );
+		GameRegistry.addSmelting(mutton_raw, new ItemStack(mutton_cooked,1),0);		
+		
+	 
+    	
 		/*
 		 * 
 		 NOT YET IMPLEMENTED
 		 BANNER
 		 ARMOR STAND
-		 5 WOOD GATES
+	 
 		 
 Items:
 Rabbit's Foot,   Armor Stand
