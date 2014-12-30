@@ -20,6 +20,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;    
@@ -96,6 +97,16 @@ public class ModSamsContent
 	public  BlockSimple sea_lantern;
 	public static Item prismarine_crystals;
 	public Item prismarine_shard;
+	public static BlockFenceGateSimple acaciaGate;
+	public static BlockFenceGateSimple spruceGate;
+	public static BlockFenceGateSimple birchGate;
+	public static BlockFenceGateSimple jungleGate;
+	public static BlockFenceGateSimple big_oakGate;
+	public static BlockFenceSimple birchFence;
+	public static BlockFenceSimple jungleFence;
+	public static BlockFenceSimple spruceFence;
+	public static BlockFenceSimple big_oakFence;
+	public static BlockFenceSimple acaciaFence;
 	public static BlockRedSandStoneSlab redSandstoneSingleSlab;
 	public static BlockRedSandStoneSlab redSandstoneDoubleSlab;
 	
@@ -222,26 +233,41 @@ public class ModSamsContent
 
 
 		//5 fences
-    	BlockFence birchFence = new BlockFence("planks_birch", Material.wood);
+    	birchFence = new BlockFenceSimple("planks_birch");
     	birchFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("birch_fence");
     	GameRegistry.registerBlock(birchFence, "birch_fence");
        
-    	BlockFence jungleFence = new BlockFence("planks_jungle", Material.wood);
+    	jungleFence = new BlockFenceSimple("planks_jungle");
     	jungleFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("jungle_fence");
     	GameRegistry.registerBlock(jungleFence, "jungle_fence");
 
-    	BlockFence spruceFence = new BlockFence("planks_spruce", Material.wood);
+    	spruceFence = new BlockFenceSimple("planks_spruce");
     	spruceFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("spruce_fence");
     	GameRegistry.registerBlock(spruceFence, "spruce_fence");
 
-    	BlockFence big_oakFence = new BlockFence("planks_big_oak", Material.wood);
+    	big_oakFence = new BlockFenceSimple("planks_big_oak");
     	big_oakFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("big_oak_fence");
     	GameRegistry.registerBlock(big_oakFence, "big_oak_fence");
 
-    	BlockFence acaciaFence = new BlockFence("planks_acacia", Material.wood);
+    	acaciaFence = new BlockFenceSimple("planks_acacia");
     	acaciaFence.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("acacia_fence");
     	GameRegistry.registerBlock(acaciaFence, "acacia_fence");
     	// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak", Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
+    	
+    	
+    	
+    	
+    	
+    	
+    	/*TODO: override blockfence to override this for connections
+    	 
+    public boolean canConnectFenceTo(IBlockAccess p_149826_1_, int p_149826_2_, int p_149826_3_, int p_149826_4_)
+    {
+        Block block = p_149826_1_.getBlock(p_149826_2_, p_149826_3_, p_149826_4_);
+        return block != this && block != Blocks.fence_gate ? (block.blockMaterial.isOpaque() && block.renderAsNormalBlock() ? block.blockMaterial != Material.gourd : false) : true;
+    }
+    */
+    	
     	
     	// f;
     	
@@ -249,23 +275,23 @@ public class ModSamsContent
     	//.setBlockName("fenceGate"));
         
 //we inherited from basic fencegate to override getIcon, which was set to only plain planks
-    	BlockFenceGateSimple acaciaGate = new BlockFenceGateSimple();
+    	acaciaGate = new BlockFenceGateSimple();
     	acaciaGate.setBlockName("acacia_fence_gate").setBlockTextureName("planks_acacia");
     	GameRegistry.registerBlock(acaciaGate, "acacia_fence_gate");
     	
-    	BlockFenceGateSimple spruceGate = new BlockFenceGateSimple();
+    	spruceGate = new BlockFenceGateSimple();
     	spruceGate.setBlockName("spruce_fence_gate").setBlockTextureName("planks_spruce");
     	GameRegistry.registerBlock(spruceGate, "spruce_fence_gate");
 
-    	BlockFenceGateSimple birchGate = new BlockFenceGateSimple();
+    	birchGate = new BlockFenceGateSimple();
     	birchGate.setBlockName("birch_fence_gate").setBlockTextureName("planks_birch");
     	GameRegistry.registerBlock(birchGate, "birch_fence_gate");
 
-    	BlockFenceGateSimple jungleGate = new BlockFenceGateSimple();
+    	jungleGate = new BlockFenceGateSimple();
     	jungleGate.setBlockName("jungle_fence_gate").setBlockTextureName("planks_jungle");
     	GameRegistry.registerBlock(jungleGate, "jungle_fence_gate");
 
-    	BlockFenceGateSimple big_oakGate = new BlockFenceGateSimple();
+    	big_oakGate = new BlockFenceGateSimple();
     	big_oakGate.setBlockName("big_oak_fence_gate").setBlockTextureName("planks_big_oak");
     	GameRegistry.registerBlock(big_oakGate, "big_oak_fence_gate");
     	
