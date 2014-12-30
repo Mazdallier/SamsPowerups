@@ -340,6 +340,14 @@ public class ModSamsContent
 		// blockRegistry.addObject(85, "fence", (new BlockFence("planks_oak",
 		// Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood).setBlockName("fence"));
 
+		
+
+		GameRegistry.addRecipe(new ItemStack(acaciaFence,3), "   ", "lsl", "lsl", 
+				'l', new ItemStack(Blocks.planks,1,Reference.planks_acacia),
+				's', Items.stick
+				);
+		
+		
 		/*
 		 * TODO: override blockfence to override this for connections
 		 * 
