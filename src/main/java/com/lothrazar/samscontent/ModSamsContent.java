@@ -590,6 +590,8 @@ public class ModSamsContent
 
 		GameRegistry.addSmelting(new ItemStack(Items.dye, 1,
 				Reference.dye_lapis), new ItemStack(prismarine_shard, 2), 0);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(prismarine_crystals), prismarine_shard,Items.glowstone_dust);
 	}
 
 	private void registerItemDefaults(Item s, String name)
