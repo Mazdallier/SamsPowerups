@@ -38,7 +38,22 @@ public class BlockSlime extends BlockBreakable
         return EnumWorldBlockLayer.TRANSLUCENT;
     }
 */
-
+	@Override
+    @SideOnly(Side.CLIENT)
+	public boolean isOpaqueCube() 
+	{
+		return false;
+	}
+	@Override
+	public boolean renderAsNormalBlock() 
+	{
+		return false;
+	} 
+	@Override
+    public int getRenderBlockPass()
+	{
+            return 1;
+	}
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ii)
