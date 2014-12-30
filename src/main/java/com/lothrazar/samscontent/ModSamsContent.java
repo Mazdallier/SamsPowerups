@@ -390,7 +390,7 @@ public class ModSamsContent
 		
 		BlockSlime slime = new BlockSlime();
 		slime.setBlockName("slime").setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
-		slime.setBlockTextureName("samspowerups:" +"slime");
+		slime.setBlockTextureName("samspowerups:" +"slime_block");
 		GameRegistry.registerBlock(slime, "slime");
 		
 		/*
