@@ -41,7 +41,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION)
 // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class ModSamsContent {
+public class ModSamsContent
+{
 	@Instance(value = ModSamsContent.MODID)
 	public static ModSamsContent instance;
 	public static Logger logger;
@@ -72,12 +73,14 @@ public class ModSamsContent {
 
 	public static ItemEnderBook itemEnderBook;
 
-	public static enum CommandType {
+	public static enum CommandType
+	{
 		Teleport, Gamerule, Weather
 	}
 
 	@EventHandler
-	public void onPreInit(FMLPreInitializationEvent event) {
+	public void onPreInit(FMLPreInitializationEvent event)
+	{
 		String category = MODID;
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
@@ -90,7 +93,8 @@ public class ModSamsContent {
 	}
 
 	@EventHandler
-	public void onServerLoad(FMLServerStartingEvent event) {
+	public void onServerLoad(FMLServerStartingEvent event)
+	{
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -114,8 +118,10 @@ public class ModSamsContent {
 	public static BlockRedSandStoneSlab redSandstoneDoubleSlab;
 
 	@EventHandler
-	public void onInit(FMLInitializationEvent event) {
-		if (allEnabled == false) {
+	public void onInit(FMLInitializationEvent event)
+	{
+		if (allEnabled == false)
+		{
 			return;
 		}
 
@@ -131,7 +137,8 @@ public class ModSamsContent {
 
 	public static BlockRedSandStone redSandstone;
 
-	public void initBackport18() {
+	public void initBackport18()
+	{
 		// resistance and hardness are the same as vanilla Blocks.stonestone
 
 		// the standard block constructor is protected...so... // protected
@@ -377,9 +384,13 @@ public class ModSamsContent {
 
 		// GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
 		// Items.emerald , Items.golden_apple );
-		GameRegistry
-				.addSmelting(mutton_raw, new ItemStack(mutton_cooked, 1), 0);
+		GameRegistry.addSmelting(mutton_raw, new ItemStack(mutton_cooked, 1), 0);
 
+		
+		
+		//    registerBlock(165, "slime", (new BlockSlime()).setUnlocalizedName("slime").setStepSound(SLIME_SOUND));
+	       
+		
 		/*
 		 * 
 		 * NOT YET IMPLEMENTED BANNER ARMOR STAND
@@ -393,20 +404,23 @@ public class ModSamsContent {
 
 	}
 
-	private void registerItemDefaults(Item s, String name) {
+	private void registerItemDefaults(Item s, String name)
+	{
 		s.setTextureName("samspowerups:" + name).setUnlocalizedName(name);
 		s.setCreativeTab(CreativeTabs.tabDecorations);
 		GameRegistry.registerItem(s, name);
 	}
 
-	private void registerStoneDefaults(BlockSimple s, String name) {
+	private void registerStoneDefaults(BlockSimple s, String name)
+	{
 		s.setStepSound(Block.soundTypeStone).setBlockName(name)
 				.setBlockTextureName("samspowerups:" + name);
 		s.setCreativeTab(CreativeTabs.tabBlock);
 		GameRegistry.registerBlock(s, name);
 	}
 
-	private void initFishing() {
+	private void initFishing()
+	{
 		BlockFishing block = new BlockFishing();
 		block.setBlockName("block_fishing").setBlockTextureName(
 				"samspowerups" + ":block_fishing");
@@ -420,7 +434,8 @@ public class ModSamsContent {
 				Blocks.web, 4), 0);
 	}
 
-	private void initApples() {
+	private void initApples()
+	{
 
 		// the potion effect ids listed at
 		// http://minecraft.gamepedia.com/Potion_Effects
@@ -530,7 +545,8 @@ public class ModSamsContent {
 
 	}
 
-	private void initXray() {
+	private void initXray()
+	{
 
 		block_xray = new BlockXRay();
 		block_xray.setBlockName("block_xray").setBlockTextureName(
@@ -544,7 +560,8 @@ public class ModSamsContent {
 				Blocks.web, 4), 0);
 	}
 
-	private void initCommand() {
+	private void initCommand()
+	{
 
 		BlockCommandBlockCraftable gameruleRegenBlock;
 		gameruleRegenBlock = new BlockCommandBlockCraftable(
@@ -606,7 +623,8 @@ public class ModSamsContent {
 
 	}
 
-	private void initEnderbook() {
+	private void initEnderbook()
+	{
 		itemEnderBook = new ItemEnderBook();
 		itemEnderBook.setTextureName("samspowerups" + ":book_ender")
 				.setUnlocalizedName("book_ender");
@@ -617,7 +635,8 @@ public class ModSamsContent {
 				Items.ender_pearl, 8), 0);
 	}
 
-	private void initRunestones() {
+	private void initRunestones()
+	{
 
 		boolean shiny = true;
 		boolean not_shiny = false;
@@ -712,7 +731,8 @@ public class ModSamsContent {
 	}
 
 	@SubscribeEvent
-	public void onPlayerInteract(PlayerInteractEvent event) {
+	public void onPlayerInteract(PlayerInteractEvent event)
+	{
 		// if(event.entityPlayer.isSneaking() == false){ return;}
 		// BiomeGenBase biome =
 		// event.world.getBiomeGenForCoords((int)event.entityPlayer.posX,
@@ -720,65 +740,71 @@ public class ModSamsContent {
 
 		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem();
 
-		if (itemStack == null) {
+		if (itemStack == null)
+		{
 			return;
 		}
 
-		if (event.action.LEFT_CLICK_BLOCK == event.action) 
+		if (event.action.LEFT_CLICK_BLOCK == event.action)
 		{
 			// public void onPlayerLeftClick(PlayerInteractEvent event)
 
-			if (itemStack.getItem() != itemEnderBook) 
+			if (itemStack.getItem() != itemEnderBook)
 			{
 				return;
 			}
 
-			if (itemStack.stackTagCompound == null) 
+			if (itemStack.stackTagCompound == null)
 			{
 				return;
 			}
 
 			ItemEnderBook.teleport(event.entityPlayer, itemStack);
 
-		} else {
-			if (itemStack.getItem() == ModSamsContent.itemEnderBook) 
+		} else
+		{
+			if (itemStack.getItem() == ModSamsContent.itemEnderBook)
 			{
-				ModSamsContent.itemEnderBook.saveCurrentLocation(event.entityPlayer, itemStack);
+				ModSamsContent.itemEnderBook.saveCurrentLocation(
+						event.entityPlayer, itemStack);
 			}
 		}
 	}
 
-
 	@SubscribeEvent
-	public void onLivingDrops(LivingDropsEvent event) 
+	public void onLivingDrops(LivingDropsEvent event)
 	{
-		
-		if(event.entityLiving instanceof EntitySheep)
+
+		if (event.entityLiving instanceof EntitySheep)
 		{
 
-			//  50/50 drop 1-2
-			//TODO. more with looting
-			//  if on fire do cooked
-			
-			//so now we have 1-2
-			int drops = 1 + event.entity.worldObj.rand.nextInt(2);//this gets num in range [0,1]
-			
-			
-			if(event.entityLiving.isBurning())
+			// 50/50 drop 1-2
+			// if on fire do cooked
+
+			// TODO. more with looting
+			// use event.source instanceof EntityPlayer, and if so, check held
+			// item for enchants. or meh
+
+			// so now we have 1-2
+			int drops = 1 + event.entity.worldObj.rand.nextInt(2);// this gets
+																	// num in
+																	// range
+																	// [0,1]
+
+			if (event.entityLiving.isBurning())
 				event.entityLiving.dropItem(mutton_cooked, drops);
 			else
 				event.entityLiving.dropItem(mutton_raw, drops);
-			
-			
 		}
 	}
-	
+
 	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event) 
+	public void onPlayerTick(PlayerTickEvent event)
 	{
-		ItemStack runestone = event.player.inventory.getStackInSlot(ModSamsContent.SLOT_RUNESTONE);
+		ItemStack runestone = event.player.inventory
+				.getStackInSlot(ModSamsContent.SLOT_RUNESTONE);
 		if (runestone == null
-				|| (runestone.getItem() instanceof ItemRunestone) == false) 
+				|| (runestone.getItem() instanceof ItemRunestone) == false)
 		{
 			return;
 		}
