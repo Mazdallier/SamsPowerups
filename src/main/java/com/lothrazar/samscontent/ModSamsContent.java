@@ -601,6 +601,7 @@ public class ModSamsContent
 		GameRegistry.registerItem(s, name);
 	}
 
+	
 	private void registerStoneDefaults(BlockSimple s, String name)
 	{
 		s.setStepSound(Block.soundTypeStone).setBlockName(name)
@@ -609,6 +610,7 @@ public class ModSamsContent
 		GameRegistry.registerBlock(s, name);
 	}
 
+	
 	private void initFishing()
 	{
 		BlockFishing block = new BlockFishing();
@@ -624,6 +626,7 @@ public class ModSamsContent
 				Blocks.web, 4), 0);
 	}
 
+	
 	private void initApples()
 	{
 
@@ -735,6 +738,7 @@ public class ModSamsContent
 
 	}
 
+	
 	private void initXray()
 	{
 
@@ -750,6 +754,7 @@ public class ModSamsContent
 				Blocks.web, 4), 0);
 	}
 
+	
 	private void initCommand()
 	{
 
@@ -813,6 +818,7 @@ public class ModSamsContent
 
 	}
 
+	
 	private void initEnderbook()
 	{
 		itemEnderBook = new ItemEnderBook();
@@ -825,6 +831,7 @@ public class ModSamsContent
 				Items.ender_pearl, 8), 0);
 	}
 
+	
 	private void initRunestones()
 	{
 
@@ -920,6 +927,7 @@ public class ModSamsContent
 				new ItemStack(Items.nether_star, 1), 0);
 	}
 
+	
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
@@ -961,6 +969,7 @@ public class ModSamsContent
 		}
 	}
 
+	
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
@@ -988,6 +997,7 @@ public class ModSamsContent
 		}
 	}
 
+	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{
