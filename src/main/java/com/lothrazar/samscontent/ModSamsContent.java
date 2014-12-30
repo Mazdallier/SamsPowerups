@@ -307,6 +307,11 @@ public class ModSamsContent
 		ironTrapdoor.setBlockName("iron_trapdoor").setBlockTextureName(
 				"samspowerups:" + "iron_trapdoor");
 		GameRegistry.registerBlock(ironTrapdoor, "iron_trapdoor");
+		
+		GameRegistry.addRecipe(new ItemStack(ironTrapdoor), "ii", "ii",	 
+				'i', Items.iron_ingot);
+		
+		
 	}
 
 	private void initFencesGates()
