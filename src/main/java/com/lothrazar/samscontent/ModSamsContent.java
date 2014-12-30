@@ -10,6 +10,7 @@ import com.lothrazar.samscommands.CommandSearchTrades;
 import com.lothrazar.samscommands.CommandSimpleWaypoints;
 import com.lothrazar.samscommands.CommandTodoList;
 import com.lothrazar.samscommands.ModSamsCommands;
+import com.lothrazar.samscrafting.ExtraCraftingMod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -55,7 +56,7 @@ public class ModSamsContent
 	public static ModSamsContent instance;
 	public static Logger logger;
 	public static Configuration config;
-	protected final static String MODID = "samscontent";
+	public final static String MODID = "samscontent";
 	public static final String VERSION = "1";
 
 	public static int SLOT_RUNESTONE = 17;// TOP RIGHT
@@ -90,11 +91,19 @@ public class ModSamsContent
 	public void onPreInit(FMLPreInitializationEvent event)
 	{
 		String category = MODID;
+		
+		logger = event.getModLog();
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
 
 		allEnabled = config.getBoolean("allEnabled", category, true,
 				"Enable all blocks and items.");
+		
+		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
+		ExtraCraftingMod.onPreInit(event);
+		
+		
+		if(config.hasChanged()){ config.save(); }
 
 		MinecraftForge.EVENT_BUS.register(instance);// ??iunstance no worky?
 		FMLCommonHandler.instance().bus().register(instance);
@@ -138,6 +147,9 @@ public class ModSamsContent
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{
+		ExtraCraftingMod.onInit(event);
+
+		initBackport18();
 		if (allEnabled == false)
 		{
 			return;
@@ -150,7 +162,6 @@ public class ModSamsContent
 		initCommand();
 		initRunestones();
 
-		initBackport18();
 	}
 
 

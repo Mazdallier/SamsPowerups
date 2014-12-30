@@ -2,6 +2,9 @@ package com.lothrazar.samscrafting;
 
 import java.util.ArrayList;  
 import org.apache.logging.log4j.Logger;  
+
+import com.lothrazar.samscontent.ModSamsContent;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
@@ -20,15 +23,15 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = ExtraCraftingMod.MODID, version = ExtraCraftingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+//@Mod(modid = ExtraCraftingMod.MODID, version = ExtraCraftingMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ExtraCraftingMod  
 { 	
-   @Instance(value = ExtraCraftingMod.MODID)
-    public static ExtraCraftingMod instance; 
+  // @Instance(value = ExtraCraftingMod.MODID)
+  ////  public static ExtraCraftingMod instance; 
     public static Logger logger;  
-	public static Configuration config;  
-    protected static final String MODID = "samscrafting"; 
-    public static final String VERSION = "1";
+//	public static Configuration config;  
+  ////  protected static final String MODID = "samscrafting"; 
+   // public static final String VERSION = "1";
 	private static boolean craftableTransmuteRecords = true;  
 	private static boolean craftableFlatDoubleSlab = true; 
 	private static boolean craftableBonemealColouredWool;   
@@ -49,28 +52,28 @@ public class ExtraCraftingMod
 	private static boolean glass;
 //	private boolean spawnEggs;
 	
-    @EventHandler
-	public void onPreInit(FMLPreInitializationEvent event) 
+   // @EventHandler
+	public static void onPreInit(FMLPreInitializationEvent event) 
 	{  
-		String category = MODID  ; 
-		config = new Configuration(event.getSuggestedConfigurationFile());  
+		String category = ModSamsContent.MODID  ; 
+		//config = new Configuration(event.getSuggestedConfigurationFile());  
 		
- 
+
 
 		category = "crafting";
 		
-		craftableTransmuteRecords = config.getBoolean( "transmuteRecords",category,true,
+		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
 				);
    
-		craftableFlatDoubleSlab = config.getBoolean( "craftableFlatDoubleSlab",category,true,
+		craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
 			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."
 				);
 
-		craftableBonemealColouredWool =  config.getBoolean( "craftableBonemealColouredWool",category,true
+		craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
 				,"Allows you to dye coloured wool back to white using bonemeal"); 
   
-		craftableMobHeads =  config.getBoolean( "craftableMobHeads",category,true
+		craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. ");  
  
@@ -79,64 +82,61 @@ public class ExtraCraftingMod
 
 	   //config =   new Configuration(event.getSuggestedConfigurationFile());  
 		
-		stairs = config.getBoolean( "stairs",category,true,
+		stairs = ModSamsContent.config.getBoolean( "stairs",category,true,
 			"Craft stairs back into blocks using a 4x4 pattern."
 		); 
 		 
-		slabs = config.getBoolean( "slabs",category,true,
+		slabs = ModSamsContent.config.getBoolean( "slabs",category,true,
 			"Uncraft slabs back into blocks using the trapdoor recipe."
 		); 
 
-		woodstuffs = config.getBoolean( "woodstuffs",category,true,
+		woodstuffs = ModSamsContent.config.getBoolean( "woodstuffs",category,true,
 			"Surround a plank with sticks to get planks back.  Also deconstruct: ladder, sign, crafting table, " +
 			"painting, item frame, bookshelf, book, fence, fence gate, door."
 		); 
 
-		logs = config.getBoolean( "logs",category,true,
+		logs = ModSamsContent.config.getBoolean( "logs",category,true,
 			"Craft planks into logs with an L shape."
 		);; 
 
-		redstone = config.getBoolean( "redstone",category,true,
+		redstone = ModSamsContent.config.getBoolean( "redstone",category,true,
 			"Uncraft and smelt redstone related items into parts (repeaters, lamps, hoppers, pistons, and so on)."
 		); 
 
-		plants = config.getBoolean( "plants",category,true,
+		plants = ModSamsContent.config.getBoolean( "plants",category,true,
 			"Uncraft pumkin lanterns, melon blocks into slices, smelt golden carrots and apples back into gold."
 		); 
 
-		wool = config.getBoolean( "wool",category,true,
+		wool = ModSamsContent.config.getBoolean( "wool",category,true,
 			"Uncraft carpet into wool."
 		); 
 
-		weapontools = config.getBoolean( "weapontools",category,true,
+		weapontools = ModSamsContent.config.getBoolean( "weapontools",category,true,
 			"Smelt non-wooden weapons and tools back into materials, if fully repaired."
 		); 
 
-		armor = config.getBoolean( "armor",category,true,
+		armor = ModSamsContent.config.getBoolean( "armor",category,true,
 			 "Smelt non-wooden armor back into ingots/diamonds if fully repaired."
 		); 
  
-		natureblocks  = config.getBoolean( "natureblocks",category,true,
+		natureblocks = ModSamsContent.config.getBoolean( "natureblocks",category,true,
 			 "Uncraft all quarts blocks, glowstone into 4 dust, clay blocks into 4 balls, snow, " +
 			 "smelt stone brick and smoothstone back to what they were, " +
 			 "turn mycelium and dirt back into grass, smelt stained clay to remove dye, turn sandstone into sand."
 		); 
  
-		glass = config.getBoolean( "glass",category,true,
+		glass = ModSamsContent.config.getBoolean( "glass",category,true,
 			 "Smelt glass bottles, smelt stained glass and panes to remove dye, craft panes into blocks, and smelt plain glass blocks into sand."
 		); 
 		 
-		misc = config.getBoolean( "misc",category,true,
+		misc = ModSamsContent.config.getBoolean( "misc",category,true,
 			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
 		); 
-	
-		
-		
-		if(config.hasChanged()) { config.save(); } 
+	 
 	} 
  
-    @EventHandler
-	public void onInit(FMLInitializationEvent event) 
+ 
+	public static void onInit(FMLInitializationEvent event) 
 	{ 
 		int EXP = 0; 
 		
