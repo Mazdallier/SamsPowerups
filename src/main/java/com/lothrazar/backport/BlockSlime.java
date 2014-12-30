@@ -26,8 +26,12 @@ public class BlockSlime extends BlockBreakable
         this.slipperiness = 0.8F;
         this.setBlockName("slime").setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
         this.setBlockTextureName("samspowerups:" +"slime_block");
+        
+        //water has opacity of 3
+        this.setLightOpacity(3);
     }
 /*
+ //this is what gives it that outer transparency , but not the same in 1.7
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
@@ -99,7 +103,7 @@ public class BlockSlime extends BlockBreakable
         
         
       //copy from landed, which never fires
-   	 if (entityIn.isSneaking())
+   	 	if (entityIn.isSneaking())
         {  
         	entityIn.motionY = 0.0D;
         }
@@ -110,7 +114,7 @@ public class BlockSlime extends BlockBreakable
           //  entityIn.motionY = -entityIn.motionY; 
            // entityIn.motionY = -entityIn.motionY*fallDistance; 
 
-         	entityIn.moveEntity(0, -entityIn.motionY*fallDistance, 0);
+         	entityIn.moveEntity(0, -entityIn.motionY * fallDistance / 1.8, 0);
          	System.out.println("bounce trying to reverse motion TO =? "+entityIn.motionY);
          	
         }

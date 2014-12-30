@@ -389,19 +389,28 @@ public class ModSamsContent
 		
 		
 		BlockSlime slime = new BlockSlime();
-		slime.setBlockName("slime").setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
-		slime.setBlockTextureName("samspowerups:" +"slime_block");
+	
 		GameRegistry.registerBlock(slime, "slime");
-		
+
+		GameRegistry.addRecipe(new ItemStack(slime), "ppp", "ppp",	"ppp", 
+				'p', Items.slime_ball);
 		/*
 		 * 
-		 * NOT YET IMPLEMENTED BANNER ARMOR STAND
+		 * NOT YET IMPLEMENTED 
+		 * 
+		 * BANNER 
+		 * 
+		 * ARMOR STAND
 		 * 
 		 * 
-		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit,
-		 * Rabbit Stew, Raw Mutton, Cooked Mutton Potions: Potion of Leaping
-		 * Enchantment: Depth Strider Mobs: Endermites, Guardians, Elder
-		 * Guardians, Rabbit
+		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
+		 * 
+		 * Rabbit Stew, 
+		 * 
+		 *  Potions: Potion of Leaping
+		 * Enchantment: Depth Strider 
+		 * 
+		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
 		 */
 
 	}
