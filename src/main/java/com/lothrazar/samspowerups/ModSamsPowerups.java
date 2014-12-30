@@ -2,6 +2,9 @@ package com.lothrazar.samspowerups;
 
 import java.util.ArrayList;   
 import org.apache.logging.log4j.Logger;  
+
+import com.lothrazar.samscontent.ModSamsContent;
+
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -49,19 +52,19 @@ import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 
-@Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+//@Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ModSamsPowerups  
 {   
-	@Instance(value = ModSamsPowerups.MODID)
-	public static ModSamsPowerups instance; 
-	public static Logger logger;   
-	public static final String VERSION = "1";
+//	@Instance(value = ModSamsPowerups.MODID)
+	//public static ModSamsPowerups instance; 
+/////public static Logger logger;   
+//	public static final String VERSION = "1";
 	//private boolean enabled;
-	protected final static String MODID = "samspowerups";
-	public Configuration config;
-	private boolean increasedStackSizes;
-	private boolean moreFuel;
-	private boolean moreFutureTrades;
+//	protected final static String MODID = "samspowerups";
+	//public Configuration config;
+	private static boolean increasedStackSizes;
+	private static boolean moreFuel;
+	private static boolean moreFutureTrades;
 	private boolean swiftDeposit;
 	private boolean smartEnderchest; 
 	
@@ -76,41 +79,39 @@ public class ModSamsPowerups
   	@EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
-	    logger = event.getModLog(); 
+	    //logger = event.getModLog(); 
     
-		String category = MODID; 
+		String category =  ModSamsContent.MODID; 
 
-     	config = new Configuration(event.getSuggestedConfigurationFile()); 
+     	//config = new Configuration(event.getSuggestedConfigurationFile()); 
      	
      	
-     	increasedStackSizes = config.getBoolean("increasedStackSizes",category, true,
+     	increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
 			"horse armor, empty bucket, bed, all records."
 		
 		); 
 		
-    	moreFuel = config.getBoolean("increasedStackSizes",category, true,
+    	moreFuel = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
     			"More can be used as furnace fuel."
     		
     		); 
 	    
-    	moreFutureTrades = config.getBoolean("moreFutureTrades",category, true,
+    	moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
     			"Adds in villager trades that would be added in 1.8."
     		
     		); 
 	    
-    	swiftDeposit = config.getBoolean("swiftDeposit",category, true,
+    	swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
     			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
     		
     		); 
-    	smartEnderchest = config.getBoolean("smartEnderchest",category, true,
+    	smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
     			"Attack with the ender chest to open it without placing it."
     		
     		);
-	if(config.hasChanged()) config.save();
-
-    	MinecraftForge.EVENT_BUS.register(instance); 
+	 
 		
       //  syncConfig();
 	} 
@@ -120,9 +121,8 @@ public class ModSamsPowerups
 	private int RARITY_REDSTONE = 50;
 	private int RARITY_RECORD = 5;
 	private int RARITY_GAPPLE = 1;
-	
-  	@EventHandler
-	public void onInit(FMLInitializationEvent event)  
+	 
+	public static void onInit(FMLInitializationEvent event)  
 	{    
   		if(moreFutureTrades)
   		{
@@ -135,7 +135,8 @@ public class ModSamsPowerups
 		//SmoothstoneRequired();
 		
 		//MobSpawnExtras();
-  		if(moreFuel){
+  		if(moreFuel)
+  		{
   			GameRegistry.registerFuelHandler(new FuelHandler());
   		}
   		

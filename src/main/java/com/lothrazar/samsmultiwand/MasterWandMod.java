@@ -1,6 +1,7 @@
 package com.lothrazar.samsmultiwand;
 
 import org.apache.logging.log4j.Logger; 
+import com.lothrazar.samscontent.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.passive.EntityBat;
@@ -28,26 +29,12 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = MasterWandMod.MODID, version = MasterWandMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class MasterWandMod  
 { 
-    @Instance(value = MasterWandMod.MODID)
-    public static MasterWandMod instance; 
-    public static Logger logger;  
-    protected static final String MODID = "samsmultiwand"; 
-    public static final String VERSION = "1"; 
-	 
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
 
-	@EventHandler
-	public void onPreInit(FMLPreInitializationEvent event)   
-	{ 
-		MinecraftForge.EVENT_BUS.register(instance);  //new WandHandler()); 
-	}
-
-	@EventHandler
-	public void onInit(FMLInitializationEvent event) 
+	public static void onInit(FMLInitializationEvent event) 
 	{  
 		itemWand = new ItemWandMaster();
 		itemWand.setUnlocalizedName("wand_master").setTextureName("samspowerups"+":wand_master");
@@ -219,14 +206,4 @@ public class MasterWandMod
 		}
   	}
 	
-	class Reference
-	{
-		public static final int entity_cow = 92;
-		public static final int entity_pig = 90;
-		public static final int entity_sheep = 91;
-		public static final int entity_chicken = 93;
-		public static final int entity_mooshroom = 96;
-		public static final int entity_bat = 65;
-	 
-	}
 }

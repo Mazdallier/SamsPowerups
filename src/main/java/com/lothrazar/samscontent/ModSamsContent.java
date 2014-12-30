@@ -11,6 +11,10 @@ import com.lothrazar.samscommands.CommandSimpleWaypoints;
 import com.lothrazar.samscommands.CommandTodoList;
 import com.lothrazar.samscommands.ModSamsCommands;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
+import com.lothrazar.samsflying.CommandFlyHelp;
+import com.lothrazar.samsflying.SurvivalFlyingMod; 
+import com.lothrazar.samsmultiwand.MasterWandMod;
+import com.lothrazar.samspowerups.ModSamsPowerups;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -46,10 +50,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-
-
-@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION)
-// ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+ 
+@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION) // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ModSamsContent
 {
 	@Instance(value = ModSamsContent.MODID)
@@ -101,7 +103,13 @@ public class ModSamsContent
 		
 		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
 		ExtraCraftingMod.onPreInit(event);
+    	MinecraftForge.EVENT_BUS.register(new ModSamsPowerups()); 
 		
+		SurvivalFlyingMod flyMod = new SurvivalFlyingMod();
+		flyMod.onPreInit(event);
+		FMLCommonHandler.instance().bus().register(flyMod);
+		
+		MinecraftForge.EVENT_BUS.register(new MasterWandMod());
 		
 		if(config.hasChanged()){ config.save(); }
 
@@ -122,6 +130,9 @@ public class ModSamsContent
 		event.registerServerCommand(new CommandSimpleWaypoints()); 
 		event.registerServerCommand(new CommandTodoList());  
 		event.registerServerCommand(new CommandEnderChest()); 
+		
+
+		event.registerServerCommand(new CommandFlyHelp());
 	}
 
 	public BlockSimple sea_lantern;
@@ -149,7 +160,12 @@ public class ModSamsContent
 	{
 		ExtraCraftingMod.onInit(event);
 
+		MasterWandMod.onInit(event);
+		
+		ModSamsPowerups.onInit(event);
+		
 		initBackport18();
+		
 		if (allEnabled == false)
 		{
 			return;
@@ -160,8 +176,7 @@ public class ModSamsContent
 		initFishing();
 		initApples();
 		initCommand();
-		initRunestones();
-
+		initRunestones(); 
 	}
 
 
