@@ -34,29 +34,29 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = ModSamsCommands.MODID, version = ModSamsCommands.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+//@Mod(modid = ModSamsCommands.MODID, version = ModSamsCommands.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ModSamsCommands
 {
 //program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
-   @Instance(value = ModSamsCommands.MODID)
-    public static ModSamsCommands instance; 
-    public static Logger logger;  
+  // @Instance(value = ModSamsCommands.MODID)
+  //  public static ModSamsCommands instance; 
+  // public static Logger logger;  
 //	public static Configuration config;  
-    protected static final String MODID = "samscommands"; 
-    public static final String VERSION = "1";	
+  //  protected static final String MODID = "samscommands"; 
+  //  public static final String VERSION = "1";	
     private boolean showDefaultDebug = true ; //TODO: split to left and right
 	private boolean showGameRules = true;
 	private boolean showSlimeChunk = true;
 	private boolean showVillageInfo = true; 
 	private boolean showHorseInfo = true;
  
- 
+ /*
     @EventHandler
     public void onPreInit(FMLPreInitializationEvent event)   
     {  
     	logger = event.getModLog(); 
 
-    	/*
+
     	config = new Configuration(event.getSuggestedConfigurationFile());  
 		
 		boolean enabled = config.getBoolean( "richLoot",MODID,true,
@@ -66,11 +66,13 @@ public class ModSamsCommands
 		);
 		
 		if(config.hasChanged()) { config.save(); } 
-*/
+
 
 	    MinecraftForge.EVENT_BUS.register(instance); 
     } 
-     
+    
+	
+	
     @EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{ 
@@ -82,7 +84,7 @@ public class ModSamsCommands
 		event.registerServerCommand(new CommandEnderChest()); 
   
 	}
- 
+  */
 	
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
@@ -415,17 +417,15 @@ public class ModSamsCommands
 	} 
 
 
-	
-	
 	 
 	public static ArrayList<String> GetForPlayerName(String playerName)
 	{ 
 		if(playerName == null)
 		{
-			logger.info("GetForPlayerName possible exception: <null>");
+			//logger.info("GetForPlayerName possible exception: <null>");
 			return null;
 		}
-		logger.info("GetForPlayerName : "+ playerName);
+	//	logger.info("GetForPlayerName : "+ playerName);
 		String fileName = "swp_"+playerName +".dat";
 		ArrayList<String> lines = new ArrayList<String>();
 	 

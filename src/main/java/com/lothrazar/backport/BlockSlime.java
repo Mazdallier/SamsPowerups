@@ -24,20 +24,22 @@ public class BlockSlime extends BlockBreakable
         super("slime", Material.clay, false);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.slipperiness = 0.8F;
-        this.setBlockName("slime");//.setStepSound(new Block.SoundType("mob.slime.big", 1.0F, 1.0F));
+        this.setBlockName("slime"); 
         this.setBlockTextureName("samspowerups:" +"slime_block");
         //mob.slime.big from sounds.json
         //water has opacity of 3
         this.setLightOpacity(3);
     }
 /*
- //this is what gives it that outer transparency , but not the same in 1.7
+ //this is what gives it that outer transparency and the inner solid chunk, but not the same in 1.7
     @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
         return EnumWorldBlockLayer.TRANSLUCENT;
     }
 */
+    
+    //the following three methods are for transparency/opacity
 	@Override
     @SideOnly(Side.CLIENT)
 	public boolean isOpaqueCube() 
@@ -54,47 +56,28 @@ public class BlockSlime extends BlockBreakable
 	{
             return 1;
 	}
+	
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ii)
     {
-    	//texture wasnt showing up bc this was missing
+    	//same texture on all sides
         this.blockIcon = ii.registerIcon(this.textureName);
     }
     
     @Override
     public void onFallenUpon(World worldObj, int x,int y, int z, Entity entityIn, float fallDistance)
     {
-    	//this fires twice. assuming its once for each client/server
-    	System.out.println("onFallenUpon ::  fallDistance = "+fallDistance);
-     	System.out.println("motionY = "+entityIn.motionY);
-     	
-     	
         if (entityIn.isSneaking())
         {
-        	super.onFallenUpon(worldObj, x, y, z, entityIn,fallDistance);
-          //  super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+        	super.onFallenUpon(worldObj, x, y, z, entityIn,fallDistance); 
+        	
+
+            //copy from landed, which never fires
+        	entityIn.motionY = 0.0D;
         }
         else
-        {
-        	//entity does not have a 'fall' method in 1.7
-          //  entityIn.fall(fallDistance, 0.0F);
-           // float damageMultiplier = 0.0F;
-        	//in 1.8 it loosk like this, which does nothing unless a 
-        	//specific entity has overridden it
-
-            //public void fall(float distance, float damageMultiplier)
-           // {
-            /*
-                if (entityIn.riddenByEntity != null)
-                {
-                	entityIn.riddenByEntity.fall(fallDistance, damageMultiplier);
-                }
-                */
-          //  }
-        	
-        	//and for a player, all it does is add to stats. only change is 1.8 added the multiplier,
-        	//which for us is zero anyway
+        { 
         	if(entityIn instanceof EntityPlayer && fallDistance >= 2.0F)
         	{
         		//p.fall(fallDistance);//its protected though in 1.7, and public in 1.8
@@ -113,27 +96,18 @@ public class BlockSlime extends BlockBreakable
             }
         	*/
         	
-
+        	if (entityIn.motionY < 0.0D) //we fell, so bounce back up
+        	{
+	            //copy from landed, which never fires
+	        	//since its in a differetn event, motion is always close to zero. so mult by fall dist 
+	            //  entityIn.motionY = -entityIn.motionY; 
+	             // entityIn.motionY = -entityIn.motionY*fallDistance;  
+	           	entityIn.moveEntity(0, -entityIn.motionY * fallDistance / 1.8, 0);//bounce up by a bit over half
+	           	System.out.println("bounce trying to reverse motion TO =? "+entityIn.motionY);
+        	}
         }
         
-        
-      //copy from landed, which never fires
-   	 	if (entityIn.isSneaking())
-        {  
-        	entityIn.motionY = 0.0D;
-        }
-        else if (entityIn.motionY < 0.0D)
-        {
-        	//since its in a differetn event, motion is always close to zero. so mult by fall dist
-        	
-          //  entityIn.motionY = -entityIn.motionY; 
-           // entityIn.motionY = -entityIn.motionY*fallDistance; 
-
-         	entityIn.moveEntity(0, -entityIn.motionY * fallDistance / 1.8, 0);
-         	System.out.println("bounce trying to reverse motion TO =? "+entityIn.motionY);
-         	
-         	
-        }
+        //same sound as slime mob
    	 	worldObj.playSoundAtEntity(
    			entityIn,  
    			"mob.slime.big", // sound file name from sounds.json
@@ -143,7 +117,7 @@ public class BlockSlime extends BlockBreakable
 
      	entityIn.fallDistance = 0;//remove fall damage!!
     }
-
+    /*
     //@Override
     public void onLanded(World worldObj, Entity entityIn)
     {
@@ -155,10 +129,7 @@ public class BlockSlime extends BlockBreakable
         	//super doesnt exist so we skip it. must have been added in 1.8
            // super.onLanded(worldIn, entityIn);
         	//the super just does this anyway
-        	/*  public void onLanded(World worldIn, Entity entityIn)
-    {
-        entityIn.motionY = 0.0D;
-    }*/
+ 
         	entityIn.motionY = 0.0D;
         }
         else if (entityIn.motionY < 0.0D)
@@ -182,4 +153,5 @@ public class BlockSlime extends BlockBreakable
 
         super.onEntityCollidedWithBlock(worldIn, x,y,z, entityIn);
     }
+    */
 }

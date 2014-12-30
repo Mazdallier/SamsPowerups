@@ -3,6 +3,13 @@ package com.lothrazar.samscontent;
 import org.apache.logging.log4j.Logger;
 
 import com.lothrazar.backport.*;
+import com.lothrazar.samscommands.CommandEnderChest;
+import com.lothrazar.samscommands.CommandKillAll;
+import com.lothrazar.samscommands.CommandSearchItem;
+import com.lothrazar.samscommands.CommandSearchTrades;
+import com.lothrazar.samscommands.CommandSimpleWaypoints;
+import com.lothrazar.samscommands.CommandTodoList;
+import com.lothrazar.samscommands.ModSamsCommands;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -38,6 +45,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+
 
 @Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION)
 // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
@@ -90,12 +98,21 @@ public class ModSamsContent
 
 		MinecraftForge.EVENT_BUS.register(instance);// ??iunstance no worky?
 		FMLCommonHandler.instance().bus().register(instance);
+		
+		MinecraftForge.EVENT_BUS.register(new ModSamsCommands()); 
 	}
 
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(this);
+		
+		event.registerServerCommand(new CommandSearchTrades()); 
+		event.registerServerCommand(new CommandSearchItem()); 
+		event.registerServerCommand(new CommandKillAll()); 
+		event.registerServerCommand(new CommandSimpleWaypoints()); 
+		event.registerServerCommand(new CommandTodoList());  
+		event.registerServerCommand(new CommandEnderChest()); 
 	}
 
 	public BlockSimple sea_lantern;
@@ -116,6 +133,7 @@ public class ModSamsContent
 	public static BlockFenceSimple acaciaFence;
 	public static BlockRedSandStoneSlab redSandstoneSingleSlab;
 	public static BlockRedSandStoneSlab redSandstoneDoubleSlab;
+	public static BlockRedSandStone redSandstone;
 
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
@@ -135,7 +153,6 @@ public class ModSamsContent
 		initBackport18();
 	}
 
-	public static BlockRedSandStone redSandstone;
 
 	public void initBackport18()
 	{
@@ -402,6 +419,8 @@ public class ModSamsContent
 		 * 
 		 * ARMOR STAND
 		 * 
+		 * 
+		 * Water Temples in Oceans
 		 * 
 		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
 		 * 
