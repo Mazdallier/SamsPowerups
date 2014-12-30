@@ -15,7 +15,6 @@ import com.lothrazar.samsflying.CommandFlyHelp;
 import com.lothrazar.samsflying.SurvivalFlyingMod; 
 import com.lothrazar.samsmultiwand.MasterWandMod;
 import com.lothrazar.samspowerups.ModSamsPowerups;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
@@ -182,111 +181,12 @@ public class ModSamsContent
 
 	public void initBackport18()
 	{
-		// resistance and hardness are the same as vanilla Blocks.stonestone
+		initNewStones();
+		
+		
+		
 
-		// the standard block constructor is protected...so... // protected
-		// Block(Material
-		// so that means you can only set the material of Block if you extend
-		// the class. so i did that
-
-		// we had to make our own
-		// regular stone is .setHardness(1.5F).setResistance(10.0F) but
-
-		// http://minecraft.gamepedia.com/Andesite and so on
-
-		BlockSimple diorite = new BlockSimple(Material.rock);
-		diorite.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(diorite, "stone_diorite");
-
-		BlockSimple andesite = new BlockSimple(Material.rock);
-		andesite.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(andesite, "stone_andesite");
-
-		BlockSimple granite = new BlockSimple(Material.rock);
-		granite.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(granite, "stone_granite");
-
-		BlockSimple diorite_smooth = new BlockSimple(Material.rock);
-		diorite_smooth.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(diorite_smooth, "stone_diorite_smooth");
-
-		BlockSimple andesite_smooth = new BlockSimple(Material.rock);
-		andesite_smooth.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(andesite_smooth, "stone_andesite_smooth");
-
-		BlockSimple granite_smooth = new BlockSimple(Material.rock);
-		granite_smooth.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(granite_smooth, "stone_granite_smooth");
-
-		GameRegistry.addRecipe(new ItemStack(diorite_smooth), "pp", "pp", 'p',
-				diorite);
-		GameRegistry.addRecipe(new ItemStack(andesite_smooth), "pp", "pp", 'p',
-				andesite);
-		GameRegistry.addRecipe(new ItemStack(granite_smooth), "pp", "pp", 'p',
-				granite);
-
-		// http://minecraft.gamepedia.com/Prismarine_Shard
-		// http://minecraft.gamepedia.com/Prismarine_Crystals
-		prismarine_crystals = new Item();
-		registerItemDefaults(prismarine_crystals, "prismarine_crystals");
-
-		prismarine_shard = new Item();
-		registerItemDefaults(prismarine_shard, "prismarine_shard");
-
-		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);
-		prismarine_bricks.setHardness(1.2F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_bricks, "prismarine_bricks");// NO
-																		// SILK,
-																		// BY
-																		// HAND
-																		// GIVES
-																		// NOTHING
-
-		BlockSimple prismarine_dark = new BlockSimple(Material.rock);
-		prismarine_dark.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_dark, "prismarine_dark"); // NO SILK
-																	// NEEDED.
-																	// BUT BY
-																	// HAND
-																	// GIVES
-																	// NOTHING
-
-		BlockSimple prismarine_rough = new BlockSimple(Material.rock);
-		prismarine_rough.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_rough, "prismarine_rough"); // NO SILK,
-																		// BY
-																		// HAND
-																		// GIVES
-																		// NOTHING
-
-		sea_lantern = new BlockSimple(Material.glass, prismarine_crystals);
-		// todo: drops 2-3 p crystals if no silk. or up to 5 with fortune
-		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(1.0F); // SILK
-																				// ONLY.
-																				// BY
-																				// HAND
-																				// IS
-																				// FINE
-		registerStoneDefaults(sea_lantern, "sea_lantern");
-
-		// recipe time
-
-		GameRegistry.addRecipe(new ItemStack(prismarine_rough), "pp", "pp",
-				'p', prismarine_shard);
-
-		GameRegistry.addRecipe(new ItemStack(sea_lantern), "psp", "sss", "psp",
-				'p', prismarine_shard, 's', prismarine_crystals);
-
-		GameRegistry.addRecipe(new ItemStack(prismarine_bricks), "ppp", "ppp",
-				"ppp", 'p', prismarine_shard);
-		GameRegistry.addRecipe(new ItemStack(prismarine_dark), "ppp", "pip",
-				"ppp", 'p', prismarine_shard, 'i', new ItemStack(Items.dye, 1,
-						Reference.dye_incsac));
-
-		// no guardians exist yet. so for now just smelt lapis?
-
-		GameRegistry.addSmelting(new ItemStack(Items.dye, 1,
-				Reference.dye_lapis), new ItemStack(prismarine_shard, 2), 0);
+		initPrismarine();
 
 		// 5 doors
 
@@ -301,6 +201,116 @@ public class ModSamsContent
 											// based on spot
 		GameRegistry.registerBlock(birchDoor, "door_birch");
 
+		initFencesGates();
+
+		initIronTrapdoor();
+
+		initRedSandstone();
+
+		initMutton();
+
+		
+		
+		initSlimeBlock();
+		/*
+		 * 
+		 * NOT YET IMPLEMENTED 
+		 * 
+		 * BANNER 
+		 * 
+		 * ARMOR STAND
+		 * 
+		 * 
+		 * Water Temples in Oceans
+		 * 
+		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
+		 * 
+		 * Rabbit Stew, 
+		 * 
+		 *  Potions: Potion of Leaping
+		 * Enchantment: Depth Strider 
+		 * 
+		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
+		 */
+
+	}
+
+	private void initSlimeBlock()
+	{
+		BlockSlime slime = new BlockSlime();
+	
+		GameRegistry.registerBlock(slime, "slime");
+
+		GameRegistry.addRecipe(new ItemStack(slime), "ppp", "ppp",	"ppp", 
+				'p', Items.slime_ball);
+	}
+
+	private void initMutton()
+	{
+		mutton_raw = new ItemFood(2, false);
+		mutton_raw.setUnlocalizedName("mutton_raw").setTextureName(
+				"samspowerups:" + "mutton_raw");
+		GameRegistry.registerItem(mutton_raw, "mutton_raw");
+
+		mutton_cooked = new ItemFood(6, false);
+		mutton_cooked.setUnlocalizedName("mutton_cooked").setTextureName(
+				"samspowerups:" + "mutton_cooked");
+		GameRegistry.registerItem(mutton_cooked, "mutton_cooked");
+
+		// GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
+		// Items.emerald , Items.golden_apple );
+		GameRegistry.addSmelting(mutton_raw, new ItemStack(mutton_cooked, 1), 0);
+	}
+
+	private void initRedSandstone()
+	{
+		redSandstone = new BlockRedSandStone();
+		redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F)
+				.setBlockName("red_sandstone")
+				.setBlockTextureName("samspowerups:" + "red_sandstone_normal");
+		GameRegistry.registerBlock(redSandstone, "red_sandstone");
+
+		BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
+		redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F)
+				.setBlockName("red_sandstone_smooth")
+				.setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
+		GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
+
+		BlockRedSandStone redSandstoneCv = new BlockRedSandStone();
+		redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F)
+				.setBlockName("red_sandstone_carved")
+				.setBlockTextureName("samspowerups:" + "red_sandstone_carved");
+		GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
+
+		// dang protected again
+		BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone,
+				0);
+		rss.setBlockName("red_sandstone_stairs");
+		GameRegistry.registerBlock(rss, "red_sandstone_stairs");
+
+		redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
+		redSandstoneSingleSlab.setBlockName("red_sandstone_slab");
+
+		redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true);
+
+		GameRegistry.registerBlock(redSandstoneSingleSlab,
+				ItemSlabRedSandstone.class, "red_sandstone_slab");
+		GameRegistry.registerBlock(redSandstoneDoubleSlab,
+				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");
+	}
+
+	private void initIronTrapdoor()
+	{
+		// Iron Trapdoor, Armor Stand
+		// is protected again
+		BlockIronTrapdoor ironTrapdoor = new BlockIronTrapdoor();
+		ironTrapdoor.setBlockName("iron_trapdoor").setBlockTextureName(
+				"samspowerups:" + "iron_trapdoor");
+		GameRegistry.registerBlock(ironTrapdoor, "iron_trapdoor");
+	}
+
+	private void initFencesGates()
+	{
 		// 5 fences
 		birchFence = new BlockFenceSimple("planks_birch");
 		birchFence.setHardness(2.0F).setResistance(5.0F)
@@ -373,91 +383,118 @@ public class ModSamsContent
 		big_oakGate.setBlockName("big_oak_fence_gate").setBlockTextureName(
 				"planks_big_oak");
 		GameRegistry.registerBlock(big_oakGate, "big_oak_fence_gate");
+	}
 
-		// Iron Trapdoor, Armor Stand
-		// is protected again
-		BlockIronTrapdoor ironTrapdoor = new BlockIronTrapdoor();
-		ironTrapdoor.setBlockName("iron_trapdoor").setBlockTextureName(
-				"samspowerups:" + "iron_trapdoor");
-		GameRegistry.registerBlock(ironTrapdoor, "iron_trapdoor");
+	private void initNewStones()
+	{
+		// resistance and hardness are the same as vanilla Blocks.stonestone
 
-		redSandstone = new BlockRedSandStone();
-		redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F)
-				.setBlockName("red_sandstone")
-				.setBlockTextureName("samspowerups:" + "red_sandstone_normal");
-		GameRegistry.registerBlock(redSandstone, "red_sandstone");
+		// the standard block constructor is protected...so... // protected
+		// Block(Material
+		// so that means you can only set the material of Block if you extend
+		// the class. so i did that
 
-		BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
-		redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F)
-				.setBlockName("red_sandstone_smooth")
-				.setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
-		GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
+		// we had to make our own
+		// regular stone is .setHardness(1.5F).setResistance(10.0F) but
 
-		BlockRedSandStone redSandstoneCv = new BlockRedSandStone();
-		redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F)
-				.setBlockName("red_sandstone_carved")
-				.setBlockTextureName("samspowerups:" + "red_sandstone_carved");
-		GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
+		// http://minecraft.gamepedia.com/Andesite and so on
 
-		// dang protected again
-		BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone,
-				0);
-		rss.setBlockName("red_sandstone_stairs");
-		GameRegistry.registerBlock(rss, "red_sandstone_stairs");
+		BlockSimple diorite = new BlockSimple(Material.rock);
+		diorite.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(diorite, "stone_diorite");
 
-		redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
-		redSandstoneSingleSlab.setBlockName("red_sandstone_slab");
+		BlockSimple andesite = new BlockSimple(Material.rock);
+		andesite.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(andesite, "stone_andesite");
 
-		redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true);
+		BlockSimple granite = new BlockSimple(Material.rock);
+		granite.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(granite, "stone_granite");
 
-		GameRegistry.registerBlock(redSandstoneSingleSlab,
-				ItemSlabRedSandstone.class, "red_sandstone_slab");
-		GameRegistry.registerBlock(redSandstoneDoubleSlab,
-				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");
+		BlockSimple diorite_smooth = new BlockSimple(Material.rock);
+		diorite_smooth.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(diorite_smooth, "stone_diorite_smooth");
 
-		mutton_raw = new ItemFood(2, false);
-		mutton_raw.setUnlocalizedName("mutton_raw").setTextureName(
-				"samspowerups:" + "mutton_raw");
-		GameRegistry.registerItem(mutton_raw, "mutton_raw");
+		BlockSimple andesite_smooth = new BlockSimple(Material.rock);
+		andesite_smooth.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(andesite_smooth, "stone_andesite_smooth");
 
-		mutton_cooked = new ItemFood(6, false);
-		mutton_cooked.setUnlocalizedName("mutton_cooked").setTextureName(
-				"samspowerups:" + "mutton_cooked");
-		GameRegistry.registerItem(mutton_cooked, "mutton_cooked");
+		BlockSimple granite_smooth = new BlockSimple(Material.rock);
+		granite_smooth.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(granite_smooth, "stone_granite_smooth");
 
-		// GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
-		// Items.emerald , Items.golden_apple );
-		GameRegistry.addSmelting(mutton_raw, new ItemStack(mutton_cooked, 1), 0);
+		GameRegistry.addRecipe(new ItemStack(diorite_smooth), "pp", "pp", 'p',
+				diorite);
+		GameRegistry.addRecipe(new ItemStack(andesite_smooth), "pp", "pp", 'p',
+				andesite);
+		GameRegistry.addRecipe(new ItemStack(granite_smooth), "pp", "pp", 'p',
+				granite);
+	}
 
-		
-		
-		BlockSlime slime = new BlockSlime();
-	
-		GameRegistry.registerBlock(slime, "slime");
+	private void initPrismarine()
+	{
+		// http://minecraft.gamepedia.com/Prismarine_Shard
+		// http://minecraft.gamepedia.com/Prismarine_Crystals
+		prismarine_crystals = new Item();
+		registerItemDefaults(prismarine_crystals, "prismarine_crystals");
 
-		GameRegistry.addRecipe(new ItemStack(slime), "ppp", "ppp",	"ppp", 
-				'p', Items.slime_ball);
-		/*
-		 * 
-		 * NOT YET IMPLEMENTED 
-		 * 
-		 * BANNER 
-		 * 
-		 * ARMOR STAND
-		 * 
-		 * 
-		 * Water Temples in Oceans
-		 * 
-		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
-		 * 
-		 * Rabbit Stew, 
-		 * 
-		 *  Potions: Potion of Leaping
-		 * Enchantment: Depth Strider 
-		 * 
-		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
-		 */
+		prismarine_shard = new Item();
+		registerItemDefaults(prismarine_shard, "prismarine_shard");
 
+		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);
+		prismarine_bricks.setHardness(1.2F).setResistance(30.0F);
+		registerStoneDefaults(prismarine_bricks, "prismarine_bricks");// NO
+																		// SILK,
+																		// BY
+																		// HAND
+																		// GIVES
+																		// NOTHING
+
+		BlockSimple prismarine_dark = new BlockSimple(Material.rock);
+		prismarine_dark.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(prismarine_dark, "prismarine_dark"); // NO SILK
+																	// NEEDED.
+																	// BUT BY
+																	// HAND
+																	// GIVES
+																	// NOTHING
+
+		BlockSimple prismarine_rough = new BlockSimple(Material.rock);
+		prismarine_rough.setHardness(1.5F).setResistance(30.0F);
+		registerStoneDefaults(prismarine_rough, "prismarine_rough"); // NO SILK,
+																		// BY
+																		// HAND
+																		// GIVES
+																		// NOTHING
+
+		sea_lantern = new BlockSimple(Material.glass, prismarine_crystals);
+		// todo: drops 2-3 p crystals if no silk. or up to 5 with fortune
+		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(1.0F); // SILK
+																				// ONLY.
+																				// BY
+																				// HAND
+																				// IS
+																				// FINE
+		registerStoneDefaults(sea_lantern, "sea_lantern");
+
+		// recipe time
+
+		GameRegistry.addRecipe(new ItemStack(prismarine_rough), "pp", "pp",
+				'p', prismarine_shard);
+
+		GameRegistry.addRecipe(new ItemStack(sea_lantern), "psp", "sss", "psp",
+				'p', prismarine_shard, 's', prismarine_crystals);
+
+		GameRegistry.addRecipe(new ItemStack(prismarine_bricks), "ppp", "ppp",
+				"ppp", 'p', prismarine_shard);
+		GameRegistry.addRecipe(new ItemStack(prismarine_dark), "ppp", "pip",
+				"ppp", 'p', prismarine_shard, 'i', new ItemStack(Items.dye, 1,
+						Reference.dye_incsac));
+
+		// no guardians exist yet. so for now just smelt lapis?
+
+		GameRegistry.addSmelting(new ItemStack(Items.dye, 1,
+				Reference.dye_lapis), new ItemStack(prismarine_shard, 2), 0);
 	}
 
 	private void registerItemDefaults(Item s, String name)
