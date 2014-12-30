@@ -269,6 +269,10 @@ public class ModSamsContent
 				.setBlockName("red_sandstone")
 				.setBlockTextureName("samspowerups:" + "red_sandstone_normal");
 		GameRegistry.registerBlock(redSandstone, "red_sandstone");
+		
+
+		GameRegistry.addRecipe(new ItemStack(redSandstone), "ss", "ss",	 
+				's', new ItemStack(Blocks.sand));
 
 		BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
 		redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F)
@@ -276,20 +280,31 @@ public class ModSamsContent
 				.setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
 		GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
 
+
+		GameRegistry.addRecipe(new ItemStack(redSandstoneSm), "ss", "ss",	 
+				's', new ItemStack(redSandstone));
+		
 		BlockRedSandStone redSandstoneCv = new BlockRedSandStone();
 		redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F)
 				.setBlockName("red_sandstone_carved")
 				.setBlockTextureName("samspowerups:" + "red_sandstone_carved");
 		GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
+		
+
 
 		// dang protected again
-		BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone,
-				0);
+		BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone,0);
 		rss.setBlockName("red_sandstone_stairs");
 		GameRegistry.registerBlock(rss, "red_sandstone_stairs");
+		
+
+		GameRegistry.addRecipe(new ItemStack(rss,4), "s  ", "ss ","sss",	 
+				's', new ItemStack(redSandstone));
+		GameRegistry.addRecipe(new ItemStack(rss,4), "  s", " ss","sss",	 
+				's', new ItemStack(redSandstone));
 
 		redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
-		redSandstoneSingleSlab.setBlockName("red_sandstone_slab");
+		redSandstoneSingleSlab.setBlockName("red_sandstone_slab").setCreativeTab(CreativeTabs.tabBlock);
 
 		redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true);
 
@@ -297,6 +312,18 @@ public class ModSamsContent
 				ItemSlabRedSandstone.class, "red_sandstone_slab");
 		GameRegistry.registerBlock(redSandstoneDoubleSlab,
 				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");
+		
+
+		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "   ", "   ","sss",	 
+				's', new ItemStack(redSandstone));
+		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "sss", "   ","   ",	 
+				's', new ItemStack(redSandstone));
+		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "   ", "sss","   ",	 
+				's', new ItemStack(redSandstone));
+		
+
+		GameRegistry.addRecipe(new ItemStack(redSandstoneCv), "s ", "s ",	 
+				's', new ItemStack(redSandstoneSingleSlab));
 	}
 
 	private void initIronTrapdoor()
