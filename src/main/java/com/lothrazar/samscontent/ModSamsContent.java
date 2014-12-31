@@ -335,7 +335,10 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		
 		GameRegistry.registerBlock(birchDoor, "door_birch");
 		GameRegistry.registerItem(birchDoorItem, "door_birch_item");
-
+		 
+		GameRegistry.addRecipe(new ItemStack(birchDoorItem,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_birch) );
+		
 	}
 
 	private void initSlimeBlock()
