@@ -14,15 +14,19 @@ import net.minecraft.world.World;
 
 public class ItemDoorSimple extends ItemDoor
 {
-
-	public Block doorBlock;
-
-	public ItemDoorSimple(Material par1, Block block)
+	public Block doorBlock; 
+	public ItemDoorSimple(Material par1, Block block,String texture)
 	{
-		super(par1);
+		super(par1); 
 		this.doorBlock = block;
 		this.maxStackSize = 64;
-		this.setCreativeTab(CreativeTabs.tabRedstone);
+		this.setCreativeTab(CreativeTabs.tabRedstone).setTextureName(texture);
+	}
+
+	@Override
+	public void registerIcons(IIconRegister iconRegister)
+	{
+		itemIcon = iconRegister.registerIcon("samspowerups:" + this.iconString);
 	}
 
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
@@ -57,11 +61,4 @@ public class ItemDoorSimple extends ItemDoor
 			}
 		}
 	}
-
-	@Override
-	public void registerIcons(IIconRegister iconRegister)
-	{
-		itemIcon = iconRegister.registerIcon("samspowerups" + ":door_birch");
-	}
-
 }

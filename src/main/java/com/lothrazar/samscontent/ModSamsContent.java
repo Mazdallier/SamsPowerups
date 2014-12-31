@@ -330,14 +330,12 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 											// thats decided for us at runtime
 											// based on spot
 		
-		ItemDoorSimple birchDoorItem = new ItemDoorSimple(Material.wood, birchDoor);
-		birchDoorItem.setUnlocalizedName("door_birch_icon").setTextureName("door_birch");//same texture name but its in the assets......items package
+		ItemDoorSimple birchDoorItem = new ItemDoorSimple(Material.wood, birchDoor,"door_birch");
+		birchDoorItem.setUnlocalizedName("door_birch_icon");//same texture name but its in the assets......items package
 		
 		GameRegistry.registerBlock(birchDoor, "door_birch");
 		GameRegistry.registerItem(birchDoorItem, "door_birch_item");
-		
-		//TODO:SOLUTION the ItemDoor
-		// itemRegistry.addObject(324, "wooden_door", (new ItemDoor(Material.wood)).setUnlocalizedName("doorWood").setTextureName("door_wood"));
+
 	}
 
 	private void initSlimeBlock()

@@ -17,40 +17,32 @@ import net.minecraft.world.World;
 
 public class BlockDoorSimple extends BlockDoor
 {
-
-    
 	public BlockDoorSimple()
 	{
 		super(Material.wood);
 		//same hardness as vanilla basic door
-		this.setHardness(3.0F).setStepSound(soundTypeWood);//.setCreativeTab(CreativeTabs.tabRedstone); 
-		
+		this.setHardness(3.0F).setStepSound(soundTypeWood);
 	}
-	
-	//BlockDoor has these private so im just stealing them
 	 
     @SideOnly(Side.CLIENT)
-    private IIcon[] field_150017_a;
+    private IIcon[] iconsUpper;
  
     @SideOnly(Side.CLIENT)
-    private IIcon[] field_150016_b;
-    
-    //again copy more in because privates
-    
-	
+    private IIcon[] iconsLower;
+     
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister p_149651_1_)
     {
-        this.field_150017_a = new IIcon[2];
-        this.field_150016_b = new IIcon[2];
-        //
-        this.field_150017_a[0] = p_149651_1_.registerIcon("samspowerups:" + "door_birch" + "_upper");
-        this.field_150016_b[0] = p_149651_1_.registerIcon("samspowerups:" + "door_birch" + "_lower");
+        this.iconsUpper = new IIcon[2];
+        this.iconsLower = new IIcon[2];
+        //"samspowerups:" +
+        this.iconsUpper[0] = p_149651_1_.registerIcon( this.textureName + "_upper");
+        this.iconsLower[0] = p_149651_1_.registerIcon( this.textureName + "_lower");
         //this.field_150017_a[0] = p_149651_1_.registerIcon(this.getTextureName() + "_upper");
        // this.field_150016_b[0] = p_149651_1_.registerIcon(this.getTextureName() + "_lower");
-        this.field_150017_a[1] = new IconFlipped(this.field_150017_a[0], true, false);
-        this.field_150016_b[1] = new IconFlipped(this.field_150016_b[0], true, false);
+        this.iconsUpper[1] = new IconFlipped(this.iconsUpper[0], true, false);
+        this.iconsLower[1] = new IconFlipped(this.iconsLower[0], true, false);
     }
 	
 	 /**
@@ -60,7 +52,7 @@ public class BlockDoorSimple extends BlockDoor
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_)
     {
-        return this.field_150016_b[0];
+        return this.iconsLower[0];
     }
 
 	@Override
@@ -119,11 +111,11 @@ public class BlockDoorSimple extends BlockDoor
                 }
             }
 
-            return flag2 ? this.field_150017_a[flag1?1:0] : this.field_150016_b[flag1?1:0];
+            return flag2 ? this.iconsUpper[flag1?1:0] : this.iconsLower[flag1?1:0];
         }
         else
         {
-            return this.field_150016_b[0];
+            return this.iconsLower[0];
         }
     }
 	
