@@ -246,23 +246,15 @@ public class ModSamsContent
 		initSlimeBlock();
 		
 		
+		//more random changse from
+		// http://minecraft.gamepedia.com/1.8
+		Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
+		Blocks.melon_block.setHarvestLevel("axe", 0);
+		Blocks.ladder.setHarvestLevel("axe", 0);
+		
 		
 		/*http://minecraft.gamepedia.com/1.8
-		 *TODO: COarse Dirt
-		 *Crafting recipe: dirt and gravel in a 2×2 checkered pattern, yields four coarse dirt
-		 *remove my smelting dirt, if it exists somewhere
-		 *
-		 *
-		 *The crafting recipe for doors now gives 3 doors instead of one
-		 *
-		 *Dead bush & sapling
-Can now catch fire
-Packed ice
-Mined faster with a pickaxe
-Melon (block)
-Mined faster with an axe
-Ladder
-Mined faster with an axe
+ 
 
 
 Mob head
@@ -273,12 +265,7 @@ Skulls worn on heads are now bigger so the 2nd skin layer no longer peaks throug
 Player and mob heads in inventories and held by mobs/players now display the actual head
 Placed mob heads now show the 2nd skin layer
 
-
-Daylight sensor
-Can be inverted with a right click
-Reaches full strength at the opposite time than it would when set to normal
-This can allow for a light that turns on at night rather than day without the need of a NOT gate
-Inverted form cannot be obtained in inventory
+ 
 
 Tamed Ocelots and Tamed Wolves
 Now display a death message if named with a name tag
@@ -288,33 +275,16 @@ Monster spawner
 Can be right-clicked with a spawn egg in hand to change what the spawner produces
 
 
-Dispenser
-Can now place pumpkins or wither skeleton skulls to spawn golems and withers respectively
-Will only place them if the body of the golem or wither is already built
-Can now place command blocks with pre-configured commands, rather than dispensing it
+ 
 Button
 Can now be placed on ceiling and on the ground
-
-		 *
-		 *MOVE RECIPES FROM THE RECIPE MODULE BAK INTO HERE
-		 *Chiseled stone bricks
-Now craftable from two stone brick slabs on top of each other
-Cracked stone bricks
-Can now be obtained by smelting stone bricks, making them renewable
-Moss stone
-Now craftable from one cobblestone and one vine
-Mossy stone bricks
-Now craftable from one stone brick and one vine
+ 
 		 *
 		 *
 		 * 
 		 *
-		 *TODO SPONGE
-		 *??Reintroduced sponge to survival mode, with new behavior and texture
-Sponge turns into wet sponge when it soaks up water
-Water particles appear around the sponge when this happens
-Sponge destroys water blocks from 5 blocks away in a kind of sphere
-Sponge soaks up water only when water is touching it
+		 *TODO ??SPONGE
+ 
 		 * 
 		 *  ??barrier
 		 *  
@@ -327,10 +297,7 @@ Repairing costs can no longer be kept down by renaming items
 		 * TODO BANNER 
 		 * 
 		 * TODO ARMOR STAND
-		 * 
-		 * WONTDO difficulty locking
-		 * 
-		 * WONTDO Skin Customization
+		 *  
 		 * 
 		 * MAYBE
 		 * New achievement Overpowered
@@ -526,7 +493,7 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		GameRegistry.registerBlock(redSandstoneSingleSlab,
 				ItemSlabRedSandstone.class, "red_sandstone_slab");
 		GameRegistry.registerBlock(redSandstoneDoubleSlab,
-				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");
+				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");//TODO: PICK BLOCK DOES TSONE LAB
 		
 
 		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "   ", "   ","sss",	 
