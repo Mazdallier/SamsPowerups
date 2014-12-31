@@ -182,6 +182,26 @@ public class ModSamsContent
 //BOUNTIFUL UPDATE
 	public void initBackport18()
 	{
+		
+		//cant turn these off : they are in 1.8 anyway
+ 
+		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
+				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
+  
+		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
+				 ,'s', Blocks.stonebrick
+		 		 ,'v', Blocks.vine 
+				);
+
+		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
+				 ,'s', Blocks.cobblestone
+		 		 ,'v', Blocks.vine 
+				);
+		 
+		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
+		
+		
+		
 		initNewStones();
 		 
 		initPrismarine();
@@ -208,6 +228,9 @@ public class ModSamsContent
 		
 		
 		initSlimeBlock();
+		
+		
+		
 		/*http://minecraft.gamepedia.com/1.8
 		 *TODO: COarse Dirt
 		 *Crafting recipe: dirt and gravel in a 2×2 checkered pattern, yields four coarse dirt
@@ -268,8 +291,7 @@ Mossy stone bricks
 Now craftable from one stone brick and one vine
 		 *
 		 *
-		 *
-		 *TODO FIX DOORS
+		 * 
 		 *
 		 *TODO SPONGE
 		 *??Reintroduced sponge to survival mode, with new behavior and texture

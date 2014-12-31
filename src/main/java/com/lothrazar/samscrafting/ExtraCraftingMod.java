@@ -162,22 +162,7 @@ public class ExtraCraftingMod
 		
 		
 		
-		//cant turn these off : they are in 1.8 anyway
-		 
-		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
-				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
-  
-		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
-				 ,'s', Blocks.stonebrick
-		 		 ,'v', Blocks.vine 
-				);
-
-		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
-				 ,'s', Blocks.cobblestone
-		 		 ,'v', Blocks.vine 
-				);
-		 
-		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
+		
  
 		//recipe shortcuts:
 		
