@@ -51,12 +51,18 @@ public class BlockDoorSimple extends BlockDoor
 	{
 		dropped = itemDoor;
 	}
-	
+	 
 	@Override
 	public Item getItemDropped(int par1, Random rand, int par2)
     {
-		return dropped;
-	}
+		return dropped;//override this so they dont drop the oak door
+	} 
+	
+	@SideOnly(Side.CLIENT)
+    public Item getItem(World worldObj, int x, int y, int z)
+    {
+		return dropped; // so creative mode pick block works
+    }
 	
 	@Override
     @SideOnly(Side.CLIENT)
