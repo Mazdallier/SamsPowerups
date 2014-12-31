@@ -183,8 +183,9 @@ public class ModSamsContent
 	public void initBackport18()
 	{
 		
-		//cant turn these off : they are in 1.8 anyway
- 
+
+		//new recipes for existing blocks
+		
 		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
 				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
   
@@ -200,6 +201,21 @@ public class ModSamsContent
 		 
 		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
 		
+		//coarse dirt	
+		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
+			 ,'g', Blocks.gravel
+	 		 ,'d', Blocks.dirt
+		);
+		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
+			 ,'g', Blocks.gravel
+	 		 ,'d', Blocks.dirt
+		); 
+		
+		
+		//doors made only 1 each build in 1.7, but 3 in 1.8
+		//we do it just for oak because i have all the door stuff for the types
+		GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
 		
 		
 		initNewStones();

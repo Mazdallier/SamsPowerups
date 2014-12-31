@@ -704,8 +704,6 @@ public class ExtraCraftingMod
    		
    			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.grass));
    			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.mycelium));
-   			//GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.dirt, 1, 1));
-   		//	GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.dirt, 1, 2));
    	
    			// smelt smoothstone to uncraft it into cobblestone
    			GameRegistry.addSmelting(Blocks.stone, new ItemStack(Blocks.cobblestone), 0);
@@ -806,7 +804,5 @@ public class ExtraCraftingMod
    					new ItemStack(Items.lead), new ItemStack(Items.lead));
     
    		} 
-   	}
-
-
+   	} 
 }
