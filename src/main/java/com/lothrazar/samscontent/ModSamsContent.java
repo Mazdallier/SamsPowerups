@@ -30,6 +30,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -188,18 +189,8 @@ public class ModSamsContent
 
 		initPrismarine();
 
-		// 5 doors
-
-		// blockRegistry.addObject(64, "wooden_door", (new
-		// BlockDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("doorWood").disableStats().setBlockTextureName("door_wood"));
-		// again, the BlockDoor base class has a protected constructor, so we
-		// needed our own class
-		BlockDoorSimple birchDoor = new BlockDoorSimple();
-		birchDoor.setBlockTextureName("samspowerups:" + "door_birch")
-				.setBlockName("door_birch");// dont do the _upper or _lower,
-											// thats decided for us at runtime
-											// based on spot
-		GameRegistry.registerBlock(birchDoor, "door_birch");
+		initDoors();
+        
 
 		initFencesGates();
 
@@ -212,16 +203,83 @@ public class ModSamsContent
 		
 		
 		initSlimeBlock();
-		/*
+		/*http://minecraft.gamepedia.com/1.8
 		 *TODO: COarse Dirt
 		 *Crafting recipe: dirt and gravel in a 2×2 checkered pattern, yields four coarse dirt
 		 *remove my smelting dirt, if it exists somewhere
 		 *
+		 *
+		 *The crafting recipe for doors now gives 3 doors instead of one
+		 *
+		 *Dead bush & sapling
+Can now catch fire
+Packed ice
+Mined faster with a pickaxe
+Melon (block)
+Mined faster with an axe
+Ladder
+Mined faster with an axe
+
+
+Mob head
+Made creeper, skeleton and zombie heads available in survival
+Creepers, skeletons, wither skeletons, and zombies drop their heads when killed by charged creepers. Wither skeletons continue to have heads as rare drops.
+Note that a charged creeper explosions will not yield more than one mob head
+Skulls worn on heads are now bigger so the 2nd skin layer no longer peaks through
+Player and mob heads in inventories and held by mobs/players now display the actual head
+Placed mob heads now show the 2nd skin layer
+
+
+Daylight sensor
+Can be inverted with a right click
+Reaches full strength at the opposite time than it would when set to normal
+This can allow for a light that turns on at night rather than day without the need of a NOT gate
+Inverted form cannot be obtained in inventory
+
+Tamed Ocelots and Tamed Wolves
+Now display a death message if named with a name tag
+
+
+Monster spawner
+Can be right-clicked with a spawn egg in hand to change what the spawner produces
+
+
+Dispenser
+Can now place pumpkins or wither skeleton skulls to spawn golems and withers respectively
+Will only place them if the body of the golem or wither is already built
+Can now place command blocks with pre-configured commands, rather than dispensing it
+Button
+Can now be placed on ceiling and on the ground
+
+		 *
+		 *MOVE RECIPES FROM THE RECIPE MODULE BAK INTO HERE
+		 *Chiseled stone bricks
+Now craftable from two stone brick slabs on top of each other
+Cracked stone bricks
+Can now be obtained by smelting stone bricks, making them renewable
+Moss stone
+Now craftable from one cobblestone and one vine
+Mossy stone bricks
+Now craftable from one stone brick and one vine
+		 *
+		 *
+		 *
 		 *TODO FIX DOORS
 		 *
 		 *TODO SPONGE
+		 *??Reintroduced sponge to survival mode, with new behavior and texture
+Sponge turns into wet sponge when it soaks up water
+Water particles appear around the sponge when this happens
+Sponge destroys water blocks from 5 blocks away in a kind of sphere
+Sponge soaks up water only when water is touching it
 		 * 
+		 *  ??barrier
 		 *  
+		 *  ANVIL COSTS?
+		 *  Costs reduced to balance out with the new enchanting system
+Renaming items will now only cost 1 level
+Repairing cost now increases exponentially (1, 2, 4, 8, etc.)
+Repairing costs can no longer be kept down by renaming items
 		 * 
 		 * TODO BANNER 
 		 * 
@@ -253,6 +311,33 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
 		 */
 
+	}
+
+	private void initDoors()
+	{
+		
+		//http://www.minecraftforge.net/forum/index.php?topic=14390.0
+		
+		// 5 doors
+
+		// blockRegistry.addObject(64, "wooden_door", (new
+		// BlockDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("doorWood").disableStats().setBlockTextureName("door_wood"));
+		// again, the BlockDoor base class has a protected constructor, so we
+		// needed our own class
+		BlockDoorSimple birchDoor = new BlockDoorSimple();
+		birchDoor.setBlockTextureName("samspowerups:" + "door_birch")
+				.setBlockName("door_birch");// dont do the _upper or _lower,
+											// thats decided for us at runtime
+											// based on spot
+		
+		ItemDoorSimple birchDoorItem = new ItemDoorSimple(Material.wood, birchDoor);
+		birchDoorItem.setUnlocalizedName("door_birch_icon").setTextureName("door_birch");//same texture name but its in the assets......items package
+		
+		GameRegistry.registerBlock(birchDoor, "door_birch");
+		GameRegistry.registerItem(birchDoorItem, "door_birch_item");
+		
+		//TODO:SOLUTION the ItemDoor
+		// itemRegistry.addObject(324, "wooden_door", (new ItemDoor(Material.wood)).setUnlocalizedName("doorWood").setTextureName("door_wood"));
 	}
 
 	private void initSlimeBlock()

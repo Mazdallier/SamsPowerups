@@ -23,7 +23,7 @@ public class BlockDoorSimple extends BlockDoor
 	{
 		super(Material.wood);
 		//same hardness as vanilla basic door
-		this.setHardness(3.0F).setStepSound(soundTypeWood).setCreativeTab(CreativeTabs.tabRedstone); 
+		this.setHardness(3.0F).setStepSound(soundTypeWood);//.setCreativeTab(CreativeTabs.tabRedstone); 
 		
 	}
 	

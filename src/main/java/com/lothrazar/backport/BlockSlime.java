@@ -17,8 +17,10 @@ import net.minecraft.world.World;
 
 public class BlockSlime extends BlockBreakable
 {
-    private static final String __OBFID = "CL_00002063";
+    //private static final String __OBFID = "CL_00002063";
 
+    //TODO: THE PISTON STICK ACTION doesnt work??!!!
+    
     public BlockSlime()
     {
         super("slime", Material.clay, false);
