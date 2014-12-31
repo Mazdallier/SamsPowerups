@@ -183,15 +183,20 @@ public class ModSamsContent
 	public void initBackport18()
 	{
 		initNewStones();
-		
-		
-		
-
+		 
 		initPrismarine();
 
-		initDoors();
+		initBirchDoor();
+		 
+		initSpruceDoor();
+		 
+		initJungleDoor();
+		
+		
+		initAcaciaDoor();
         
-
+		initDarkoakDoor();
+		
 		initFencesGates();
 
 		initIronTrapdoor();
@@ -313,34 +318,98 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 
 	}
 
-	private void initDoors()
-	{
-		
-		//http://www.minecraftforge.net/forum/index.php?topic=14390.0
-		
-		// 5 doors
+ 
 
-		// blockRegistry.addObject(64, "wooden_door", (new
-		// BlockDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("doorWood").disableStats().setBlockTextureName("door_wood"));
-		// again, the BlockDoor base class has a protected constructor, so we
-		// needed our own class
+	private void initAcaciaDoor()
+	{
+		BlockDoorSimple acaciaDoor = new BlockDoorSimple();
+		acaciaDoor.setBlockTextureName("samspowerups:" + "door_acacia")
+				.setBlockName("door_acacia");
+
+		ItemDoorSimple acaciaDoorItem = new ItemDoorSimple(Material.wood, acaciaDoor,"door_acacia");
+		acaciaDoorItem.setUnlocalizedName("door_acacia_item");//same texture name but its in the assets......items package
+
+		acaciaDoor.setItemDropped(acaciaDoorItem);
+		
+		GameRegistry.registerBlock(acaciaDoor, "door_acacia");
+		GameRegistry.registerItem(acaciaDoorItem, "door_acacia_item");
+		 
+		GameRegistry.addRecipe(new ItemStack(acaciaDoorItem,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_acacia));
+	}
+	
+	private void initJungleDoor()
+	{
+		BlockDoorSimple jungleDoor = new BlockDoorSimple();
+		jungleDoor.setBlockTextureName("samspowerups:" + "door_jungle")
+				.setBlockName("door_jungle");
+
+		ItemDoorSimple jungleDoorItem = new ItemDoorSimple(Material.wood, jungleDoor,"door_jungle");
+		jungleDoorItem.setUnlocalizedName("door_jungle_iten");//same texture name but its in the assets......items package
+
+		jungleDoor.setItemDropped(jungleDoorItem);
+		
+		GameRegistry.registerBlock(jungleDoor, "door_jungle");
+		GameRegistry.registerItem(jungleDoorItem, "door_jungle_item");
+		 
+		GameRegistry.addRecipe(new ItemStack(jungleDoorItem,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_jungle ));
+	}
+
+	private void initSpruceDoor()
+	{
+		BlockDoorSimple spruceDoor = new BlockDoorSimple();
+		spruceDoor.setBlockTextureName("samspowerups:" + "door_spruce")
+				.setBlockName("door_spruce");
+
+		ItemDoorSimple sprucehDoorItem = new ItemDoorSimple(Material.wood, spruceDoor,"door_spruce");
+		sprucehDoorItem.setUnlocalizedName("door_spruce_item");//same texture name but its in the assets......items package
+
+		spruceDoor.setItemDropped(sprucehDoorItem);
+		
+		GameRegistry.registerBlock(spruceDoor, "door_spruce");
+		GameRegistry.registerItem(sprucehDoorItem, "door_spruce_item");
+		 
+		GameRegistry.addRecipe(new ItemStack(sprucehDoorItem,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_spruce) );
+	}
+
+	private void initBirchDoor()
+	{
 		BlockDoorSimple birchDoor = new BlockDoorSimple();
 		birchDoor.setBlockTextureName("samspowerups:" + "door_birch")
-				.setBlockName("door_birch");// dont do the _upper or _lower,
-											// thats decided for us at runtime
-											// based on spot
+				.setBlockName("door_birch"); 
 		
 		ItemDoorSimple birchDoorItem = new ItemDoorSimple(Material.wood, birchDoor,"door_birch");
-		birchDoorItem.setUnlocalizedName("door_birch_icon");//same texture name but its in the assets......items package
+		birchDoorItem.setUnlocalizedName("door_birch_item");//same texture name but its in the assets......items package
+
+		birchDoor.setItemDropped(birchDoorItem);
 		
 		GameRegistry.registerBlock(birchDoor, "door_birch");
 		GameRegistry.registerItem(birchDoorItem, "door_birch_item");
 		 
 		GameRegistry.addRecipe(new ItemStack(birchDoorItem,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_birch) );
-		
 	}
 
+	private void initDarkoakDoor()
+	{
+		BlockDoorSimple dark_oakDoor = new BlockDoorSimple();
+		dark_oakDoor.setBlockTextureName("samspowerups:" + "door_dark_oak")
+				.setBlockName("door_dark_oak"); 
+		
+		ItemDoorSimple dark_oakDoorItem = new ItemDoorSimple(Material.wood, dark_oakDoor,"door_dark_oak");
+		dark_oakDoorItem.setUnlocalizedName("door_dark_oak_item");//same texture name but its in the assets......items package
+		
+		dark_oakDoor.setItemDropped(dark_oakDoorItem);
+		
+		GameRegistry.registerBlock(dark_oakDoor, "door_dark_oak");
+		GameRegistry.registerItem(dark_oakDoorItem, "door_dark_oak_item");
+		 
+		GameRegistry.addRecipe(new ItemStack(dark_oakDoorItem,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_darkoak) );
+	}
+	
 	private void initSlimeBlock()
 	{
 		BlockSlime slime = new BlockSlime();

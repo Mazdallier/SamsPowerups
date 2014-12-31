@@ -45,9 +45,19 @@ public class BlockDoorSimple extends BlockDoor
         this.iconsLower[1] = new IconFlipped(this.iconsLower[0], true, false);
     }
 	
-	 /**
-     * Gets the block's texture. Args: side, meta
-     */
+	private Item dropped;
+	
+	public void setItemDropped(Item itemDoor)
+	{
+		dropped = itemDoor;
+	}
+	
+	@Override
+	public Item getItemDropped(int par1, Random rand, int par2)
+    {
+		return dropped;
+	}
+	
 	@Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_)
@@ -118,6 +128,7 @@ public class BlockDoorSimple extends BlockDoor
             return this.iconsLower[0];
         }
     }
+
 	
 	
 	/*
