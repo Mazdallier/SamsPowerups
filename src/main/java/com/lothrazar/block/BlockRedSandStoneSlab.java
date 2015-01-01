@@ -3,6 +3,7 @@ package com.lothrazar.block;
 import java.util.List;
 import java.util.Random;
 
+import com.lothrazar.samscontent.HandlerBountifulUpdate;
 import com.lothrazar.samscontent.ModSamsContent;
 
 import cpw.mods.fml.relauncher.Side;
@@ -40,7 +41,7 @@ public class BlockRedSandStoneSlab  extends BlockSlab
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        return ModSamsContent.redSandstone.getBlockTextureFromSide(side) ;
+        return HandlerBountifulUpdate.redSandstone.getBlockTextureFromSide(side) ;
     }
 
 	@Override

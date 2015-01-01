@@ -1,5 +1,6 @@
 package com.lothrazar.item;
 
+import com.lothrazar.samscontent.HandlerBountifulUpdate;
 import com.lothrazar.samscontent.ModSamsContent;
 
 import cpw.mods.fml.relauncher.Side;
@@ -22,8 +23,8 @@ public class ItemSlabRedSandstone extends ItemBlock
     public ItemSlabRedSandstone(Block block)
     {
         super(block);
-        this.field_150949_c = ModSamsContent.redSandstoneSingleSlab;
-        this.field_150947_d = ModSamsContent.redSandstoneDoubleSlab;
+        this.field_150949_c = HandlerBountifulUpdate.redSandstoneSingleSlab;
+        this.field_150947_d = HandlerBountifulUpdate.redSandstoneDoubleSlab;
         this.field_150948_b = false;
         this.setMaxDamage(0);
         this.setHasSubtypes(true);

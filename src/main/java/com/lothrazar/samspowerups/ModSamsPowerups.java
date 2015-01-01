@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.lothrazar.samscontent.HandlerFurnaceFuel;
 import com.lothrazar.samscontent.HandlerVillageTrading;
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.Reference;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.Mod;
@@ -53,154 +54,11 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
-
-//@Mod(modid = ModSamsPowerups.MODID, version = ModSamsPowerups.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+ 
 public class ModSamsPowerups  
 {   
-//	@Instance(value = ModSamsPowerups.MODID)
-	//public static ModSamsPowerups instance; 
-/////public static Logger logger;   
-//	public static final String VERSION = "1";
-	//private boolean enabled;
-//	protected final static String MODID = "samspowerups";
-	//public Configuration config;
-	private static boolean increasedStackSizes = true;
-	private static boolean moreFuel = true;
-	private static boolean moreFutureTrades = true;
-	private boolean swiftDeposit = true;
-	private boolean smartEnderchest = true; 
-	
-	//private static ArrayList<Block> blocksRequireAxe = new ArrayList<Block>();
-	//private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();
-	private static ArrayList<ItemStack> stoneToolsFurnaces = new ArrayList<ItemStack>();
-	private static int HUNGER_SECONDS = 30;
-	private static int HUNGER_LEVEL = 0;// III
-	private static int FOOD_COST = 2;//full bar is 20
- 
- 
-  	@EventHandler
-    public void onPreInit(FMLPreInitializationEvent event)   
-    {  
-	    //logger = event.getModLog(); 
-    
-		String category =  ModSamsContent.MODID; 
-
-     	//config = new Configuration(event.getSuggestedConfigurationFile()); 
-     	
-     	
-     	increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		
-		); 
-		
-    	moreFuel = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
-    			"More can be used as furnace fuel."
-    		
-    		); 
-	    
-    	moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
-    			"Adds in villager trades that would be added in 1.8."
-    		
-    		); 
-	    
-    	swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
-    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
-    		
-    		); 
-    	smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
-    			"Attack with the ender chest to open it without placing it."
-    		
-    		);
+  
 	 
-		
-      //  syncConfig();
-	} 
-
- 
-	private int RARITY_COMMON = 100; 
-	private int RARITY_REDSTONE = 50;
-	private int RARITY_RECORD = 5;
-	private int RARITY_GAPPLE = 1;
-	 
-	public static void onInit(FMLInitializationEvent event)  
-	{    
-  		if(moreFutureTrades)
-  		{
-	  		HandlerVillageTrading v = new HandlerVillageTrading();
-			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
-			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
-  		}
-		//SaplingStickAxe();
-		
-		//SmoothstoneRequired();
-		
-		//MobSpawnExtras();
-  		if(moreFuel)
-  		{
-  			GameRegistry.registerFuelHandler(new HandlerFurnaceFuel());
-  		}
-  		
-		if(increasedStackSizes)
-		{
-			ArrayList<Item> to64 = new ArrayList<Item>();
-	 
-			to64.add(Items.ender_pearl);
-			to64.add(Items.egg);
-			to64.add(Items.sign);
-			to64.add(Items.snowball);
-			to64.add(Items.cookie);
-			to64.add(Items.mushroom_stew);
-			to64.add(Items.boat);
-			to64.add(Items.minecart);
-			to64.add(Items.iron_door);
-			to64.add(Items.wooden_door);
-			to64.add(Items.cake);
-			to64.add(Items.saddle);
-			to64.add(Items.bucket);
-			to64.add(Items.bed);
-			to64.add(Items.chest_minecart);
-			to64.add(Items.furnace_minecart);
-			to64.add(Items.tnt_minecart);
-			to64.add(Items.hopper_minecart);
-			to64.add(Items.iron_horse_armor);
-			to64.add(Items.golden_horse_armor);
-			to64.add(Items.diamond_horse_armor); 
-			to64.add(Items.record_13);
-			to64.add(Items.record_blocks);
-			to64.add(Items.record_chirp);
-			to64.add(Items.record_far);
-			to64.add(Items.record_mall);
-			to64.add(Items.record_mellohi);
-			to64.add(Items.record_cat);
-			to64.add(Items.record_stal);
-			to64.add(Items.record_strad);
-			to64.add(Items.record_ward);
-			to64.add(Items.record_11);
-			to64.add(Items.record_wait);
-			 
-			for(Item item : to64)
-			{
-				item.setMaxStackSize(64);
-			}
-		}
-	} 
-    
-	public static final int dye_bonemeal = 15;
-	
-	private boolean isUsingBonemeal(ItemStack held )
-	{ 
-		Item heldItem = (held == null) ? null : held.getItem();
-		
-		if(heldItem == null){return false;}
-	 
-		if(heldItem.equals(Items.dye)  && held.getItemDamage() == dye_bonemeal)
-			return true;
-		else
-			return false;
-	}
-	
 
 	@SuppressWarnings("unused")
   	@SubscribeEvent
@@ -208,7 +66,7 @@ public class ModSamsPowerups
   	{      
 		if(event.action == event.action.LEFT_CLICK_BLOCK)
 		{
-			if(smartEnderchest && 
+			if(ModSamsContent.smartEnderchest && 
 					event.entityPlayer.getCurrentEquippedItem() != null && 
 					event.entityPlayer.getCurrentEquippedItem().getItem() == Item.getItemFromBlock(Blocks.ender_chest) )
 			{
@@ -217,7 +75,7 @@ public class ModSamsPowerups
 			}
 		} 
 		
-		if(swiftDeposit==false){return;}
+		if(ModSamsContent.swiftDeposit==false){return;}
  
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
 		
@@ -251,40 +109,6 @@ public class ModSamsPowerups
 			//http://docs.larry1123.net/forge/965/net/minecraft/tileentity/TileEntitySign.html
 
 		
-		if(isUsingBonemeal(held)  ) 
-		{ 
-		 
-			Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
-			if(blockClicked == null || blockClicked == Blocks.air ){return;}
-			
-			int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
-			
-		 	if ( blockClicked.equals(Blocks.yellow_flower))//yellow flowers have no damage variations
-		 	{  
-		 		held.stackSize--;
-		 		
-		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
-		 		 
-			  	event.entity.entityDropItem( new ItemStack(Blocks.yellow_flower ,1), 1); 
-		 	}
-		 	if ( blockClicked.equals(Blocks.red_flower)) 	//the red flower is ALL the flowers
-		 	{   
-		 		held.stackSize--;
-		 		
-		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
-		 		 
-			  	event.entity.entityDropItem( new ItemStack(Blocks.red_flower ,1,blockClickedDamage), 1);//quantity = 1
-		 	}
-		 	if ( blockClicked.equals(Blocks.waterlily))
-		 	{
-		 		held.stackSize--;
-		 		
-		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
-		 		 
-			  	event.entity.entityDropItem( new ItemStack(Blocks.waterlily ,1), 1);
-		 	}
-		 	
-		}//emd of bpme,ea;
 		
 		
 		//if(event.entityPlayer.getItemInUse() != null){ return; }
@@ -325,8 +149,7 @@ public class ModSamsPowerups
   	  	{
   	  		teAdjacent = chest.adjacentChestZPos; 
   	  	}
-  	  	
-  	  	
+ 
   		sortFromPlayerToChestEntity(chest,event.entityPlayer);
   	
   		if(teAdjacent != null)
@@ -352,12 +175,11 @@ public class ModSamsPowerups
 		int chestMax;
 		
 		//player inventory and the small chest have the same dimensions 
-		int ROWS = 3;
-		int COLS = 9;
+		
 		int START_CHEST = 0;
-		int START_INV = 9;//because we are ignoring the item hotbar, we skip the first row this way
-		int END_CHEST =  START_CHEST + ROWS * COLS;
-		int END_INV = START_INV + ROWS * COLS;
+	//	int START_INV = 9;//because we are ignoring the item hotbar, we skip the first row this way
+		int END_CHEST =  START_CHEST + Reference.PlayerInventory.SIZE;
+	//	int END_INV = Reference.PlayerInventory.START + Reference.PlayerInventory.SIZE;
 		
 		//inventory and chest has 9 rows by 3 columns, never changes. same as 64 max stack size
 		for(int islotChest = START_CHEST; islotChest < END_CHEST; islotChest++)
@@ -369,7 +191,7 @@ public class ModSamsPowerups
 				continue;
 			}//not an error; empty chest slot
 			 
-			for(int islotInv = START_INV; islotInv < END_INV; islotInv++)
+			for(int islotInv = Reference.PlayerInventory.START; islotInv < Reference.PlayerInventory.END; islotInv++)
   			{
 				invItem = entityPlayer.inventory.getStackInSlot(islotInv);
 				

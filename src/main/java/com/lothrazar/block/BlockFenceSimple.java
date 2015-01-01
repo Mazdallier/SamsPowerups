@@ -1,5 +1,6 @@
 package com.lothrazar.block;
 
+import com.lothrazar.samscontent.HandlerBountifulUpdate;
 import com.lothrazar.samscontent.ModSamsContent;
 
 import net.minecraft.block.Block;
@@ -22,16 +23,16 @@ public class BlockFenceSimple extends BlockFence
     {
         Block block = ib.getBlock(x, y, z);
         return block != this && block != Blocks.fence && block != Blocks.fence_gate && 
-        		block != ModSamsContent.acaciaFence && 
-        		block != ModSamsContent.birchFence && 
-        		block != ModSamsContent.jungleFence && 
-        		block != ModSamsContent.spruceFence && 
-        		block != ModSamsContent.big_oakFence && 
-        		block != ModSamsContent.acaciaGate && 
-        		block != ModSamsContent.birchGate && 
-        		block != ModSamsContent.jungleGate && 
-        		block != ModSamsContent.spruceGate && 
-        		block != ModSamsContent.big_oakGate 
+        		block != HandlerBountifulUpdate.acaciaFence && 
+        		block != HandlerBountifulUpdate.birchFence && 
+        		block != HandlerBountifulUpdate.jungleFence && 
+        		block != HandlerBountifulUpdate.spruceFence && 
+        		block != HandlerBountifulUpdate.big_oakFence && 
+        		block != HandlerBountifulUpdate.acaciaGate && 
+        		block != HandlerBountifulUpdate.birchGate && 
+        		block != HandlerBountifulUpdate.jungleGate && 
+        		block != HandlerBountifulUpdate.spruceGate && 
+        		block != HandlerBountifulUpdate.big_oakGate 
         		? //if its NOT a fence or fence gate, do one extra check
         		(block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) 
         		: true;//it was for sure a fence or fgate, so we went true right away

@@ -13,6 +13,8 @@ public class Reference
 { 
 	public static final int TICKS_PER_SEC = 20;
 	
+
+
  
 	public static final int face_bottom = 0;	
 	public static final int face_top = 1;
@@ -47,6 +49,13 @@ public class Reference
 	public static final int dye_orange = 14;
 	public static final int dye_bonemeal = 15;
 	
+ 
+	public static final int CHEST_RARITY_COMMON = 100; 
+	public static final int CHEST_RARITY_REDSTONE = 50;
+	public static final int CHEST_RARITY_RECORD = 5;
+	public static final int CHEST_RARITY_GAPPLE = 1;
+	 
+ 
 	//import net.minecraftforge.common.ChestGenHooks;
 	public static String chest_mineshaftCorridor = "mineshaftCorridor"; 
 	public static String chest_pyramidJungleChest= "pyramidJungleChest"; 
@@ -160,6 +169,16 @@ public class Reference
 	public static final int entity_chicken = 93;
 	public static final int entity_mooshroom = 96;
 	public static final int entity_bat = 65;
+	
+	
+	public class PlayerInventory
+	{
+		public static final int ROWS = 3;
+		public static final int COLS = 9;
+		public static final int SIZE = ROWS*COLS;
+		public static final int START = 9;//top left
+		public static final int END = START + SIZE;
+	}
  
 //	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
 	public class FurnaceBurnTime // inner class

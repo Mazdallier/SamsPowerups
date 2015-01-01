@@ -1,4 +1,4 @@
-package com.lothrazar.samsmultiwand;
+package com.lothrazar.samscontent;
 
 import org.apache.logging.log4j.Logger; 
 
@@ -33,28 +33,10 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class SamsItems  
+public class HandlerMasterWand  
 { 
-	public static ItemWandMaster itemWand;
-	public static ItemChestSack itemChestSack;
 
-	public static void onInit(FMLInitializationEvent event) 
-	{  
-		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName("samspowerups"+":wand_master");
-		GameRegistry.registerItem(itemWand,  "wand_master");   
-		GameRegistry.addRecipe(new ItemStack(itemWand)
-			,"bdb"
-			," b "
-			," b "
-			, 'd', Blocks.emerald_block 
-			, 'b', Items.blaze_rod  );
-		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
 
-		itemChestSack = new ItemChestSack();
-		itemChestSack.setTextureName("samspowerups"+":chest_sack").setUnlocalizedName("chest_sack");
-		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
-	}
 	
 	@SuppressWarnings("unused")
 	@SubscribeEvent
@@ -70,7 +52,7 @@ public class SamsItems
 		 
 		if(event.action.LEFT_CLICK_BLOCK == event.action)
 		{ 
-			if(held.getItem() == SamsItems.itemWand)
+			if(held.getItem() == ItemWandMaster.itemWand)
 			{ 
 				if(blockClicked == null || blockClicked == Blocks.air ){return;}
 				
@@ -79,16 +61,16 @@ public class SamsItems
 					TileEntity container = event.world.getTileEntity(event.x, event.y, event.z);
 					if(container instanceof TileEntityChest)
 					{
-						SamsItems.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
+						ItemWandMaster.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
 					}
 				} 
 				else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
 				{ 
 					//	public static void replantField(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
-					SamsItems.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
+					ItemWandMaster.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
 				}
 			}
-			else if(held.getItem() == SamsItems.itemChestSack)
+			else if(held.getItem() == ItemWandMaster.itemChestSack)
 			{
 				TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z); 
 				
@@ -118,28 +100,28 @@ public class SamsItems
 		  	  		teAdjacent = chest.adjacentChestZPos; 
 		  	  	}
 		  		 
-		  		SamsItems.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+		  		ItemWandMaster.itemChestSack.sortFromSackToChestEntity(chest,held,event);
 		  		
 		  		if(teAdjacent != null)
 		  		{
-		  			SamsItems.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
+		  			ItemWandMaster.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
 		  		} 	
 			}
 		}
 		else // right click
 		{
-			if(held.getItem() == SamsItems.itemWand)
+			if(held.getItem() == ItemWandMaster.itemWand)
 			{
 				if( blockClicked.equals(Blocks.diamond_block))
 				{
-					SamsItems.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
+					ItemWandMaster.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
 				}
 				else if( blockClicked.equals(Blocks.stone))
 				{
-					SamsItems.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
+					ItemWandMaster.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
 				} 
 			}
-			else if(held.getItem() == SamsItems.itemChestSack)
+			else if(held.getItem() == ItemWandMaster.itemChestSack)
 			{ 	
 				if(  held.stackTagCompound==null){return;}
 			   
@@ -153,7 +135,7 @@ public class SamsItems
 					return;
 				}
 				
-				SamsItems.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
+				ItemWandMaster.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
 			}
 		}
   	}
@@ -162,7 +144,7 @@ public class SamsItems
 	public void onEntityInteractEvent(EntityInteractEvent event)
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-		if(held == null || held.getItem() != SamsItems.itemWand ){ return;}
+		if(held == null || held.getItem() != ItemWandMaster.itemWand ){ return;}
   
 		if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){ return;}
 		
