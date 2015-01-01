@@ -33,107 +33,24 @@ public class ExtraCraftingMod
 //	public static Configuration config;  
   ////  protected static final String MODID = "samscrafting"; 
    // public static final String VERSION = "1";
-	private static boolean craftableTransmuteRecords = true;  
-	private static boolean craftableFlatDoubleSlab = true; 
-	private static boolean craftableBonemealColouredWool;   
-	private static boolean craftableMobHeads; 
+	public static boolean craftableTransmuteRecords = true;  
+	public static boolean craftableFlatDoubleSlab = true; 
+	public static boolean craftableBonemealColouredWool;   
+	public static boolean craftableMobHeads; 
  
 
-	private static boolean stairs;
-	private static boolean misc;
-	private static boolean slabs; 
-	private static boolean woodstuffs;
-	private static boolean logs;
-	private static boolean redstone;
-	private static boolean plants;
-	private static boolean wool;
-	private static boolean weapontools;
-	private static boolean armor; 
-	private static boolean natureblocks;
-	private static boolean glass;
-//	private boolean spawnEggs;
-	
-   // @EventHandler
-	public static void setupConfig() 
-	{  
-		String category = ModSamsContent.MODID  ; 
- 
-
-		category = "crafting";
-		
-		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
-			"This allows you to surround any record in emeralds to transmute it into a different record."
-				);
-   
-		craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
-			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."
-				);
-
-		craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
-				,"Allows you to dye coloured wool back to white using bonemeal"); 
-  
-		craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
-				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
-				"TNT, flesh, cake, or bones. ");  
- 
-		 
-		category = "uncrafting";
-
-	   //config =   new Configuration(event.getSuggestedConfigurationFile());  
-		
-		stairs = ModSamsContent.config.getBoolean( "stairs",category,true,
-			"Craft stairs back into blocks using a 4x4 pattern."
-		); 
-		 
-		slabs = ModSamsContent.config.getBoolean( "slabs",category,true,
-			"Uncraft slabs back into blocks using the trapdoor recipe."
-		); 
-
-		woodstuffs = ModSamsContent.config.getBoolean( "woodstuffs",category,true,
-			"Surround a plank with sticks to get planks back.  Also deconstruct: ladder, sign, crafting table, " +
-			"painting, item frame, bookshelf, book, fence, fence gate, door."
-		); 
-
-		logs = ModSamsContent.config.getBoolean( "logs",category,true,
-			"Craft planks into logs with an L shape."
-		);; 
-
-		redstone = ModSamsContent.config.getBoolean( "redstone",category,true,
-			"Uncraft and smelt redstone related items into parts (repeaters, lamps, hoppers, pistons, and so on)."
-		); 
-
-		plants = ModSamsContent.config.getBoolean( "plants",category,true,
-			"Uncraft pumkin lanterns, melon blocks into slices, smelt golden carrots and apples back into gold."
-		); 
-
-		wool = ModSamsContent.config.getBoolean( "wool",category,true,
-			"Uncraft carpet into wool."
-		); 
-
-		weapontools = ModSamsContent.config.getBoolean( "weapontools",category,true,
-			"Smelt non-wooden weapons and tools back into materials, if fully repaired."
-		); 
-
-		armor = ModSamsContent.config.getBoolean( "armor",category,true,
-			 "Smelt non-wooden armor back into ingots/diamonds if fully repaired."
-		); 
- 
-		natureblocks = ModSamsContent.config.getBoolean( "natureblocks",category,true,
-			 "Uncraft all quarts blocks, glowstone into 4 dust, clay blocks into 4 balls, snow, " +
-			 "smelt stone brick and smoothstone back to what they were, " +
-			 "turn mycelium and dirt back into grass, smelt stained clay to remove dye, turn sandstone into sand."
-		); 
- 
-		glass = ModSamsContent.config.getBoolean( "glass",category,true,
-			 "Smelt glass bottles, smelt stained glass and panes to remove dye, craft panes into blocks, and smelt plain glass blocks into sand."
-		); 
-		 
-		misc = ModSamsContent.config.getBoolean( "misc",category,true,
-			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
-		); 
-	 
-	} 
- 
+	public static boolean stairs;
+	public static boolean misc;
+	public static boolean slabs; 
+	public static boolean woodstuffs;
+	public static boolean logs;
+	public static boolean redstone;
+	public static boolean plants;
+	public static boolean wool;
+	public static boolean weapontools;
+	public static boolean armor; 
+	public static boolean natureblocks;
+	public static boolean glass;
  
 	public static void onInit(FMLInitializationEvent event) 
 	{ 

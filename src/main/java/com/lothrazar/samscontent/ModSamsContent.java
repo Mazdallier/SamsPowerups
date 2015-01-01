@@ -74,26 +74,26 @@ public class ModSamsContent
 	@Instance(value = ModSamsContent.MODID)
 	public static ModSamsContent instance;
 	public static Logger logger;
-	public static Configuration config;
 	public final static String MODID = "samscontent";
 	public static final String VERSION = "1";
- 
+
+	public static Configuration config;
 
 	public static boolean swiftDeposit = true;
 	public static boolean smartEnderchest = true;
-	private static boolean increasedStackSizes = true;
-	private static boolean moreFuel = true;
-	private static boolean moreFutureTrades = true; 
+	public static boolean increasedStackSizes = true;
+	public static boolean moreFuel = true;
+	public static boolean moreFutureTrades = true; 
 	
 	
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
 		logger = event.getModLog();
-
+		
 		config = new Configuration(event.getSuggestedConfigurationFile());
  
-     	setupConfig();
+     	HandlerConfigFile.setupConfig();
  
     	MinecraftForge.EVENT_BUS.register(new ModSamsPowerups()); 
     	MinecraftForge.EVENT_BUS.register(new HandlerBonemealUse()); 
@@ -112,53 +112,6 @@ public class ModSamsContent
 		
 	}
 
-	private void setupConfig()
-	{
-		String category = MODID;
-    	
-    	
-		/*
-		allEnabled = config.getBoolean("allEnabled", category, true,
-				"Enable all blocks and items.");
-				*/
-		
-		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
-		increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		
-		); 
-		
-    	moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
-    			"More can be used as furnace fuel."
-    		
-    		); 
-	    
-    	moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
-    			"Adds in villager trades that would be added in 1.8."
-    		
-    		); 
-	    
-    	swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
-    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
-    		
-    		); 
-    	smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
-    			"Attack with the ender chest to open it without placing it."
-    		
-    		);
-    	
-    	
-    	
-		ExtraCraftingMod.setupConfig();
-		HandlerSurvivalFlying.setupConfig();
-		/*
-		HandlerSurvivalFlying flyMod = new HandlerSurvivalFlying();
-		flyMod.onPreInit(event);
-*/
-		if(config.hasChanged()){ config.save(); }
-	}
 
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)

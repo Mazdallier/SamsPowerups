@@ -36,43 +36,6 @@ public class HandlerSurvivalFlying
   
 	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
   
-	public static void setupConfig()
-	{  
-		String CATEGORY_FLY = "flying";
-
-		cannotFlyWhileBurning = ModSamsContent.config.getBoolean("cannotFlyWhileBurning",CATEGORY_FLY, true
-				,"When true, this disables flying while you are burning."); 
-
-		NoArmorOnly = ModSamsContent.config.getBoolean( "noArmorFlyingOnly",CATEGORY_FLY,false
-				,"When this is true, you may only fly if not wearing any armor. ");
-		
-		cannotFlyAtNight = ModSamsContent.config.getBoolean( "cannotFlyAtNight",CATEGORY_FLY,false
-			,"When this is true, you cannot use survival flying at night.");
-		
-		cannotFlyInRain = ModSamsContent.config.getBoolean( "cannotFlyInRain",CATEGORY_FLY,false
-				,"When this is true, you cannot use survival flying in the rain.");
- 
-		StartFlyingLevel = ModSamsContent.config.getInt( "startFlyingLevel",CATEGORY_FLY, 10,0,99// default,min,max
-					,"The minimum level required to fly in survival.  ");
-		  
-		difficultyRequiredToFly = ModSamsContent.config.getInt( "difficultyRequiredToFly",CATEGORY_FLY, 3,0,3
-				,"Minimum difficulty required for survival fly (0 = Peaceful, 3 = Hard).");
-		  
-		StartFlyingHealth = ModSamsContent.config.getInt( "startflyinghealth",CATEGORY_FLY, 10,1,20
-				,"The minimum health required in order to fly in survival.  Each number is one half heart, " +
-						"so 20 means 10 hearts.");
-		 
-		StartFlyingHunger = ModSamsContent.config.getInt( "startflyinghunger",CATEGORY_FLY, 5,1,20,
-				"Minimum hunger required to fly.  Each number is one half hunger, so 20 means full hunger.");
-		 
-		doesDrainLevels = ModSamsContent.config.getBoolean( "doesDrainLevels",CATEGORY_FLY,true,
-			"When this is true, your XP Levels will drain while flying."); 
-		 
-		flyDamageCounterLimit = ModSamsContent.config.getInt( "flycountdown",CATEGORY_FLY, 300,5,999
-			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
- 	
-	}
-
 	 
 	
 	@SubscribeEvent
