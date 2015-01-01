@@ -130,7 +130,7 @@ public class ModSamsContent
 		
 		); 
 		
-    	moreFuel = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
+    	moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
     			"More can be used as furnace fuel."
     		
     		); 
