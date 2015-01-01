@@ -475,19 +475,20 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F)
 				.setBlockName("red_sandstone_carved")
 				.setBlockTextureName("samspowerups:" + "red_sandstone_carved");
+		
 		GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
 		
 
 
 		// dang protected again
-		BlockRedSandStoneStairs rss = new BlockRedSandStoneStairs(redSandstone,0);
-		rss.setBlockName("red_sandstone_stairs");
-		GameRegistry.registerBlock(rss, "red_sandstone_stairs");
+		BlockRedSandStoneStairs rsStair = new BlockRedSandStoneStairs(redSandstone,0);
+		rsStair.setBlockName("red_sandstone_stairs");
+		GameRegistry.registerBlock(rsStair, "red_sandstone_stairs");
 		
 
-		GameRegistry.addRecipe(new ItemStack(rss,4), "s  ", "ss ","sss",	 
+		GameRegistry.addRecipe(new ItemStack(rsStair,4), "s  ", "ss ","sss",	 
 				's', new ItemStack(redSandstone));
-		GameRegistry.addRecipe(new ItemStack(rss,4), "  s", " ss","sss",	 
+		GameRegistry.addRecipe(new ItemStack(rsStair,4), "  s", " ss","sss",	 
 				's', new ItemStack(redSandstone));
 
 		redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
@@ -499,7 +500,9 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 				ItemSlabRedSandstone.class, "red_sandstone_slab");
 		GameRegistry.registerBlock(redSandstoneDoubleSlab,
 				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");//TODO: PICK BLOCK DOES TSONE LAB
-		
+
+		//undo the chiselled back to the 2 slabs
+		GameRegistry.addSmelting(new ItemStack(redSandstoneCv), new ItemStack(redSandstoneSingleSlab,2), 0); 
 
 		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "   ", "   ","sss",	 
 				's', new ItemStack(redSandstone));
@@ -511,6 +514,15 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 
 		GameRegistry.addRecipe(new ItemStack(redSandstoneCv), "s ", "s ",	 
 				's', new ItemStack(redSandstoneSingleSlab));
+		
+		//uncraft slabs
+		GameRegistry.addRecipe(new ItemStack(redSandstone,6), "   ", "sss","sss",	 
+				's', new ItemStack(redSandstoneSingleSlab));
+		
+		//uncraft stairs
+		GameRegistry.addRecipe(new ItemStack(redSandstone,6), "ss", "ss",	 
+				's', new ItemStack(rsStair));
+		
 	}
 
 	private void initIronTrapdoor()
@@ -525,7 +537,8 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		GameRegistry.addRecipe(new ItemStack(ironTrapdoor), "ii", "ii",	 
 				'i', Items.iron_ingot);
 		
-		
+
+		GameRegistry.addSmelting(new ItemStack(ironTrapdoor), new ItemStack(Items.iron_ingot,4), 0); 
 	}
 
 	private void initFencesGates()
