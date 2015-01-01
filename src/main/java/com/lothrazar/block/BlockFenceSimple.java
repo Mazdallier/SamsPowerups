@@ -1,4 +1,4 @@
-package com.lothrazar.backport;
+package com.lothrazar.block;
 
 import com.lothrazar.samscontent.ModSamsContent;
 

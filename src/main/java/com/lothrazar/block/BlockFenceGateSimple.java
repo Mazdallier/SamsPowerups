@@ -1,4 +1,4 @@
-package com.lothrazar.backport;
+package com.lothrazar.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

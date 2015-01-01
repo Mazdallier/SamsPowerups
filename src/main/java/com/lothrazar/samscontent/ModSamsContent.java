@@ -4,20 +4,30 @@ import org.apache.logging.log4j.Logger;
 
 import com.lothrazar.backport.*;
 import com.lothrazar.block.BlockCommandBlockCraftable;
+import com.lothrazar.block.BlockDoorSimple;
+import com.lothrazar.block.BlockFenceGateSimple;
+import com.lothrazar.block.BlockFenceSimple;
 import com.lothrazar.block.BlockFishing;
+import com.lothrazar.block.BlockIronTrapdoor;
+import com.lothrazar.block.BlockRedSandStone;
+import com.lothrazar.block.BlockRedSandStoneSlab;
+import com.lothrazar.block.BlockRedSandStoneStairs;
+import com.lothrazar.block.BlockSimple;
+import com.lothrazar.block.BlockSlime;
 import com.lothrazar.block.BlockXRay;
 import com.lothrazar.command.CommandEnderChest;
+import com.lothrazar.command.CommandFlyHelp;
 import com.lothrazar.command.CommandKillAll;
 import com.lothrazar.command.CommandSearchItem;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
+import com.lothrazar.item.ItemDoorSimple;
 import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
 import com.lothrazar.item.ItemRunestone;
+import com.lothrazar.item.ItemSlabRedSandstone;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
-import com.lothrazar.samsflying.CommandFlyHelp;
-import com.lothrazar.samsflying.SurvivalFlyingMod; 
 import com.lothrazar.samsmultiwand.SamsItems;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.util.Reference;
@@ -66,11 +76,7 @@ public class ModSamsContent
 	public static Configuration config;
 	public final static String MODID = "samscontent";
 	public static final String VERSION = "1";
-
-
-
-
-
+ 
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{
@@ -89,7 +95,7 @@ public class ModSamsContent
 		ExtraCraftingMod.onPreInit(event);
     	MinecraftForge.EVENT_BUS.register(new ModSamsPowerups()); 
 		
-		SurvivalFlyingMod flyMod = new SurvivalFlyingMod();
+		HandlerSurvivalFlying flyMod = new HandlerSurvivalFlying();
 		flyMod.onPreInit(event);
 		FMLCommonHandler.instance().bus().register(flyMod);
 		
@@ -114,8 +120,7 @@ public class ModSamsContent
 		event.registerServerCommand(new CommandSimpleWaypoints()); 
 		event.registerServerCommand(new CommandTodoList());  
 		event.registerServerCommand(new CommandEnderChest()); 
-		
-
+		 
 		event.registerServerCommand(new CommandFlyHelp());
 	}
 
@@ -155,9 +160,7 @@ public class ModSamsContent
 		ItemFoodAppleMagic.initApples();
 		BlockCommandBlockCraftable.initCommand();
 		ItemRunestone.initRunestones(); 
-		
 		 
-
 		initBackport18();
 		
 		 
@@ -184,9 +187,7 @@ public class ModSamsContent
 		initRedSandstone();
 
 		initMutton();
-
-		
-		
+ 
 		initSlimeBlock();
 		
 		
@@ -268,9 +269,7 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 
 //BOUNTIFUL UPDATE
 	public void initBackport18()
-	{
-		
-
+	{ 
 		//new recipes for existing blocks
 		
 		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
@@ -309,7 +308,6 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 	}
 
  
-
 	private void initAcaciaDoor()
 	{
 		BlockDoorSimple acaciaDoor = new BlockDoorSimple();

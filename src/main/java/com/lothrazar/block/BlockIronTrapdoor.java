@@ -1,4 +1,4 @@
-package com.lothrazar.backport;
+package com.lothrazar.block;
 
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;

@@ -1,8 +1,7 @@
-package com.lothrazar.samsflying;
+package com.lothrazar.samscontent;
 
 import java.util.HashMap; 
 import org.apache.logging.log4j.Logger; 
-import com.lothrazar.samscontent.ModSamsContent; 
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration; 
 import net.minecraft.world.World;   
@@ -17,7 +16,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
  
-public class SurvivalFlyingMod  
+public class HandlerSurvivalFlying  
 { 
 	private boolean quickSortEnabled;  
  
