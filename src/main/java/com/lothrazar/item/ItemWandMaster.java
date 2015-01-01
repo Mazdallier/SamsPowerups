@@ -1,6 +1,8 @@
-package com.lothrazar.samsmultiwand;
+package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
+import com.lothrazar.samsmultiwand.MasterWandMod;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;

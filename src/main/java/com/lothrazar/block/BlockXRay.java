@@ -45,4 +45,24 @@ public class BlockXRay extends Block
  
 	 	return ret;
 	} 
+	
+	
+	
+
+	private static BlockXRay block_xray;
+	
+	public static void initXray()
+	{
+
+		block_xray = new BlockXRay();
+		block_xray.setBlockName("block_xray").setBlockTextureName(
+				"samspowerups" + ":block_xray");
+		GameRegistry.registerBlock(block_xray, "block_xray");
+
+		GameRegistry.addRecipe(new ItemStack(block_xray), "owo", "wgw", "owo",
+				'w', Blocks.web, 'g', Blocks.glass, 'o', Blocks.obsidian);
+
+		GameRegistry.addSmelting(new ItemStack(block_xray), new ItemStack(
+				Blocks.web, 4), 0);
+	}
 }

@@ -62,11 +62,11 @@ public class ModSamsPowerups
 	//private boolean enabled;
 //	protected final static String MODID = "samspowerups";
 	//public Configuration config;
-	private static boolean increasedStackSizes;
-	private static boolean moreFuel;
-	private static boolean moreFutureTrades;
-	private boolean swiftDeposit;
-	private boolean smartEnderchest; 
+	private static boolean increasedStackSizes = true;
+	private static boolean moreFuel = true;
+	private static boolean moreFutureTrades = true;
+	private boolean swiftDeposit = true;
+	private boolean smartEnderchest = true; 
 	
 	//private static ArrayList<Block> blocksRequireAxe = new ArrayList<Block>();
 	//private static ArrayList<Block> blocksRequireShovel= new ArrayList<Block>();

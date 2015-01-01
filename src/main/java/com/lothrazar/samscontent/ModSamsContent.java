@@ -6,23 +6,22 @@ import com.lothrazar.backport.*;
 import com.lothrazar.block.BlockCommandBlockCraftable;
 import com.lothrazar.block.BlockFishing;
 import com.lothrazar.block.BlockXRay;
+import com.lothrazar.command.CommandEnderChest;
+import com.lothrazar.command.CommandKillAll;
+import com.lothrazar.command.CommandSearchItem;
+import com.lothrazar.command.CommandSearchTrades;
+import com.lothrazar.command.CommandSimpleWaypoints;
+import com.lothrazar.command.CommandTodoList;
+import com.lothrazar.command.ModSamsCommands;
 import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
 import com.lothrazar.item.ItemRunestone;
-import com.lothrazar.samscommands.CommandEnderChest;
-import com.lothrazar.samscommands.CommandKillAll;
-import com.lothrazar.samscommands.CommandSearchItem;
-import com.lothrazar.samscommands.CommandSearchTrades;
-import com.lothrazar.samscommands.CommandSimpleWaypoints;
-import com.lothrazar.samscommands.CommandTodoList;
-import com.lothrazar.samscommands.ModSamsCommands;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
 import com.lothrazar.samsflying.CommandFlyHelp;
 import com.lothrazar.samsflying.SurvivalFlyingMod; 
 import com.lothrazar.samsmultiwand.MasterWandMod;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.util.Reference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
@@ -70,19 +69,8 @@ public class ModSamsContent
 	public static final String VERSION = "1";
 
 
-	private BlockXRay block_xray;
 
-	private ItemFoodAppleMagic appleEmerald;
-	private ItemFoodAppleMagic appleDiamond;
-	private ItemFoodAppleMagic appleLapis;
-	private ItemFoodAppleMagic appleChocolate;
-  
-	public static ItemEnderBook itemEnderBook;
 
-	public static enum CommandType
-	{
-		Teleport, Gamerule, Weather
-	}
 
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
@@ -161,55 +149,20 @@ public class ModSamsContent
 		
 		ModSamsPowerups.onInit(event);
 		
-		initBackport18();
 		 
-		initXray();
-		initEnderbook();
-		initFishing();
-		initApples();
-		initCommand();
+		BlockXRay.initXray();
+		ItemEnderBook.initEnderbook();
+		BlockFishing.initFishing();
+		ItemFoodAppleMagic.initApples();
+		BlockCommandBlockCraftable.initCommand();
 		ItemRunestone.initRunestones(); 
-	}
-
-//BOUNTIFUL UPDATE
-	public void initBackport18()
-	{
 		
-
-		//new recipes for existing blocks
-		
-		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
-				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
-  
-		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
-				 ,'s', Blocks.stonebrick
-		 		 ,'v', Blocks.vine 
-				);
-
-		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
-				 ,'s', Blocks.cobblestone
-		 		 ,'v', Blocks.vine 
-				);
 		 
-		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
+
+		initBackport18();
 		
-		//coarse dirt	
-		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
-			 ,'g', Blocks.gravel
-	 		 ,'d', Blocks.dirt
-		);
-		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
-			 ,'g', Blocks.gravel
-	 		 ,'d', Blocks.dirt
-		); 
-		
-		
-		//doors made only 1 each build in 1.7, but 3 in 1.8
-		//we do it just for oak because i have all the door stuff for the types
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
-				'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
-		
-		
+		 
+
 		initNewStones();
 		 
 		initPrismarine();
@@ -312,6 +265,47 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		 * 
 		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
 		 */
+	}
+
+//BOUNTIFUL UPDATE
+	public void initBackport18()
+	{
+		
+
+		//new recipes for existing blocks
+		
+		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
+				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
+  
+		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
+				 ,'s', Blocks.stonebrick
+		 		 ,'v', Blocks.vine 
+				);
+
+		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
+				 ,'s', Blocks.cobblestone
+		 		 ,'v', Blocks.vine 
+				);
+		 
+		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
+		
+		//coarse dirt	
+		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
+			 ,'g', Blocks.gravel
+	 		 ,'d', Blocks.dirt
+		);
+		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
+			 ,'g', Blocks.gravel
+	 		 ,'d', Blocks.dirt
+		); 
+		
+		
+		//doors made only 1 each build in 1.7, but 3 in 1.8
+		//we do it just for oak because i have all the door stuff for the types
+		GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
+		
+ 
 
 	}
 
@@ -802,228 +796,13 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 	}
 
 	
-	private void initFishing()
-	{
-		BlockFishing block = new BlockFishing();
-		block.setBlockName("block_fishing").setBlockTextureName(
-				"samspowerups" + ":block_fishing");
-		GameRegistry.registerBlock(block, "block_fishing");
-
-		GameRegistry.addRecipe(new ItemStack(block), "pwp", "wfw", "pwp", 'w',
-				Blocks.web, 'f', new ItemStack(Items.fishing_rod, 1, 0), 'p',
-				Blocks.planks);
-
-		GameRegistry.addSmelting(new ItemStack(block), new ItemStack(
-				Blocks.web, 4), 0);
-	}
 
 	
-	private void initApples()
-	{
-
-		// the potion effect ids listed at
-		// http://minecraft.gamepedia.com/Potion_Effects
-		int SPEED = 1;
-		int HASTE = 3;
-		// int JUMP = 8; // .addEffect(SATURATION,FIVE_MINUTES,1)
-		int NAUSEA = 9;
-		int REGEN = 10;
-		int RESISTANCE = 11;
-		int FIRE_RESIST = 12;
-		int WATER_BREATHING = 13;
-		int BLINDNESS = 15;
-		int NIGHT_VISION = 16;
-		int HUNGER = 17;
-		int WEAKNESS = 18;
-		int HEALTH_BOOST = 21;
-		int ABSORP = 22;// same as regular gold apple
-		// int SATURATION = 23;
-
-		int potionTimeSeconds = 300 * 4;// 300 is five minutes.
-
-		// for the record, the gold BLOCKS apple is 2min absorp, 5minute
-		// resistance, 5 minute fire resist. and 30 seconds of REGENH
-		// so if any of these get something like 5 minute of resist or fire
-		// resist, it is not OP
-
-		// the addEffect takes in (effectID, seconds , level)
-
-		// this seems to be a good balance, haste for speed mining,
-		// which is an advantage since you can do it without making / moving a
-		// beacon.
-		// draw back is the weakness
-
-		int I = 0;
-		int II = 1;
-		int III = 2;
-		int IV = 3;
-		int V = 4;
-
-		appleEmerald = new ItemFoodAppleMagic(1, false);
-		appleEmerald.addEffect(HASTE, potionTimeSeconds, II)
-				.addEffect(SPEED, potionTimeSeconds, I)
-				.addEffect(ABSORP, potionTimeSeconds, II)
-				.setUnlocalizedName("apple_emerald")
-				.setTextureName("samspowerups" + ":apple_emerald");
-		GameRegistry.registerItem(appleEmerald, "apple_emerald");
-		GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
-				Items.emerald, Items.golden_apple);
-		GameRegistry.addSmelting(appleEmerald, new ItemStack(Items.emerald, 8),
-				0);
-
-		// diamond apple : Resistance, night vision, fills hunger, and double
-		// the hearts
-		// we do not want to overlap with notch gold apple, so i removed
-		// .addEffect(RESISTANCE,FIVE_MINUTES,1)
-
-		// only diamond is getting the shiny effect
-		appleDiamond = new ItemFoodAppleMagic(1, true); // JUMP,SECONDS,1 //(int
-														// potionID, int
-														// duration, int level )
-		appleDiamond
-				.addEffect(HEALTH_BOOST, potionTimeSeconds, V)
-				// ten extra hearts
-				.addEffect(FIRE_RESIST, potionTimeSeconds, II)
-				// resist and fire so it is same as the NOTCH apple
-				.addEffect(RESISTANCE, potionTimeSeconds, II)
-				.addEffect(REGEN, 20, II)
-				// just enough to fill those extras
-				.setUnlocalizedName("apple_diamond")
-				.setTextureName("samspowerups" + ":apple_diamond");
-		GameRegistry.registerItem(appleDiamond, "apple_diamond");
-		GameRegistry.addShapelessRecipe(new ItemStack(appleDiamond),
-				Items.diamond, Items.golden_apple);
-		GameRegistry.addSmelting(appleDiamond, new ItemStack(Items.diamond, 1),
-				0);// getcha that diamond back
-
-		// woo night vision
-		appleLapis = new ItemFoodAppleMagic(1, false);
-		appleLapis
-				.addEffect(NIGHT_VISION, potionTimeSeconds, II)
-				// night vision potion uses gold carrots maybe cheaper?
-				.addEffect(WATER_BREATHING, potionTimeSeconds, II)
-				// puffer fish are way too rare
-				.addEffect(ABSORP, potionTimeSeconds, II)
-				.setUnlocalizedName("apple_lapis")
-				.setTextureName("samspowerups" + ":apple_lapis");
-		GameRegistry.registerItem(appleLapis, "apple_lapis");
-		GameRegistry.addShapelessRecipe(new ItemStack(appleLapis),
-				new ItemStack(Items.dye, 1, 4), Items.golden_apple);
-		GameRegistry.addSmelting(appleLapis, new ItemStack(Items.dye, 8, 4), 0);// uncraft
-
-		// diamond should hvae health boost, speed strength and regen? all
-		// together?
-
-		// this one is less powerful, no gold required
-		appleChocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger
-															// points it gives
-															// you
-		appleChocolate.addEffect(SPEED, 30, II)
-				// just a short burst of speed. mini speed potion
-				.addEffect(HASTE, 30, II).setUnlocalizedName("apple_chocolate")
-				.setTextureName("samspowerups" + ":apple_chocolate");
-		GameRegistry.registerItem(appleChocolate, "apple_chocolate");
-		GameRegistry.addRecipe(new ItemStack(appleChocolate), "eee", "eae",
-				"eee", 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
-				, 'a', Items.apple);
-
-	}
 
 	
-	private void initXray()
-	{
-
-		block_xray = new BlockXRay();
-		block_xray.setBlockName("block_xray").setBlockTextureName(
-				"samspowerups" + ":block_xray");
-		GameRegistry.registerBlock(block_xray, "block_xray");
-
-		GameRegistry.addRecipe(new ItemStack(block_xray), "owo", "wgw", "owo",
-				'w', Blocks.web, 'g', Blocks.glass, 'o', Blocks.obsidian);
-
-		GameRegistry.addSmelting(new ItemStack(block_xray), new ItemStack(
-				Blocks.web, 4), 0);
-	}
 
 	
-	private void initCommand()
-	{
 
-		BlockCommandBlockCraftable gameruleRegenBlock;
-		gameruleRegenBlock = new BlockCommandBlockCraftable(
-				CommandType.Gamerule, "naturalRegeneration");
-		gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName(
-				"samspowerups" + ":regen_command_block");
-		GameRegistry.registerBlock(gameruleRegenBlock, "grRegenBlock");
-		GameRegistry.addRecipe(new ItemStack(gameruleRegenBlock), "rcr", "tet",
-				"rcr", 'c', Items.comparator, 'e', Items.golden_apple, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear
-
-		);
-
-		BlockCommandBlockCraftable weatherblock;
-		weatherblock = new BlockCommandBlockCraftable(CommandType.Weather);
-		weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName(
-				"samspowerups" + ":weather_command_block");
-		GameRegistry.registerBlock(weatherblock, "weatherCommandBlock");
-
-		GameRegistry.addRecipe(new ItemStack(weatherblock), "rcr", "tet",
-				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear);
-
-		BlockCommandBlockCraftable gamerulemobGriefingblock;
-		gamerulemobGriefingblock = new BlockCommandBlockCraftable(
-				CommandType.Gamerule, "mobGriefing");
-		gamerulemobGriefingblock
-				.setBlockName("grmobGriefingblock")
-				.setBlockTextureName("samspowerups" + ":mobgrief_command_block");
-		GameRegistry.registerBlock(gamerulemobGriefingblock,
-				"grmobGriefingblock");
-
-		GameRegistry.addRecipe(new ItemStack(gamerulemobGriefingblock), "rcr",
-				"tet", "rcr", 'c', Items.comparator, 'e', Blocks.tnt, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear);
-
-		BlockCommandBlockCraftable gameruleFiretickblock;
-		gameruleFiretickblock = new BlockCommandBlockCraftable(
-				CommandType.Gamerule, "doFireTick");
-		gameruleFiretickblock
-				.setBlockName("grdoFiretickblock")
-				.setBlockTextureName("samspowerups" + ":firetick_command_block");
-		GameRegistry.registerBlock(gameruleFiretickblock, "grdoFiretickblock");
-
-		GameRegistry.addRecipe(new ItemStack(gameruleFiretickblock), "rcr",
-				"tet", "rcr", 'c', Items.comparator, 'e', Items.lava_bucket,
-				'r', Blocks.redstone_block, 't', Items.ghast_tear);
-
-		BlockCommandBlockCraftable day;
-		day = new BlockCommandBlockCraftable(CommandType.Gamerule,
-				"doDaylightCycle");
-		day.setBlockName("daycycle_command_block").setBlockTextureName(
-				"samspowerups" + ":daycycle_command_block");
-		GameRegistry.registerBlock(day, "daycycle_command_block");
-
-		GameRegistry.addRecipe(new ItemStack(day), "rcr", "tet", "rcr", 'c',
-				Items.comparator, 'e', Blocks.glowstone, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear);
-
-	}
-
-	
-	private void initEnderbook()
-	{
-		itemEnderBook = new ItemEnderBook();
-		itemEnderBook.setTextureName("samspowerups" + ":book_ender")
-				.setUnlocalizedName("book_ender");
-		GameRegistry.registerItem(itemEnderBook, "book_ender");
-		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
-				"eee", 'e', Items.ender_pearl, 'b', Items.book);
-		GameRegistry.addSmelting(itemEnderBook, new ItemStack(
-				Items.ender_pearl, 8), 0);
-	}
-
-	
-	
 
 	
 	@SubscribeEvent
@@ -1036,16 +815,16 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		if (event.action.LEFT_CLICK_BLOCK == event.action)
 		{
  
-			if (itemStack.getItem() == itemEnderBook)
+			if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
 			{
 				ItemEnderBook.teleport(event.entityPlayer, itemStack);
 			} 
 		} 
 		else
 		{
-			if (itemStack.getItem() == ModSamsContent.itemEnderBook)
+			if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
 			{
-				ModSamsContent.itemEnderBook.saveCurrentLocation(
+				ItemEnderBook.itemEnderBook.saveCurrentLocation(
 						event.entityPlayer, itemStack);
 			}
 		}

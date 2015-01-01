@@ -1,10 +1,7 @@
 package com.lothrazar.block;
 
 import java.util.Random; 
-
 import com.lothrazar.samscontent.ModSamsContent;
-import com.lothrazar.samscontent.ModSamsContent.CommandType;
-
 import cpw.mods.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
@@ -149,5 +146,80 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
     {
 		return true;
     }
+	
+	
+
+	public static enum CommandType
+	{
+		Teleport, Gamerule, Weather
+	}
+	
+	
+	
+	
+	
+
+	public static void initCommand()
+	{
+
+		BlockCommandBlockCraftable gameruleRegenBlock;
+		gameruleRegenBlock = new BlockCommandBlockCraftable(
+				CommandType.Gamerule, "naturalRegeneration");
+		gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName(
+				"samspowerups" + ":regen_command_block");
+		GameRegistry.registerBlock(gameruleRegenBlock, "grRegenBlock");
+		GameRegistry.addRecipe(new ItemStack(gameruleRegenBlock), "rcr", "tet",
+				"rcr", 'c', Items.comparator, 'e', Items.golden_apple, 'r',
+				Blocks.redstone_block, 't', Items.ghast_tear
+
+		);
+
+		BlockCommandBlockCraftable weatherblock;
+		weatherblock = new BlockCommandBlockCraftable(CommandType.Weather);
+		weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName(
+				"samspowerups" + ":weather_command_block");
+		GameRegistry.registerBlock(weatherblock, "weatherCommandBlock");
+
+		GameRegistry.addRecipe(new ItemStack(weatherblock), "rcr", "tet",
+				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
+				Blocks.redstone_block, 't', Items.ghast_tear);
+
+		BlockCommandBlockCraftable gamerulemobGriefingblock;
+		gamerulemobGriefingblock = new BlockCommandBlockCraftable(
+				CommandType.Gamerule, "mobGriefing");
+		gamerulemobGriefingblock
+				.setBlockName("grmobGriefingblock")
+				.setBlockTextureName("samspowerups" + ":mobgrief_command_block");
+		GameRegistry.registerBlock(gamerulemobGriefingblock,
+				"grmobGriefingblock");
+
+		GameRegistry.addRecipe(new ItemStack(gamerulemobGriefingblock), "rcr",
+				"tet", "rcr", 'c', Items.comparator, 'e', Blocks.tnt, 'r',
+				Blocks.redstone_block, 't', Items.ghast_tear);
+
+		BlockCommandBlockCraftable gameruleFiretickblock;
+		gameruleFiretickblock = new BlockCommandBlockCraftable(
+				CommandType.Gamerule, "doFireTick");
+		gameruleFiretickblock
+				.setBlockName("grdoFiretickblock")
+				.setBlockTextureName("samspowerups" + ":firetick_command_block");
+		GameRegistry.registerBlock(gameruleFiretickblock, "grdoFiretickblock");
+
+		GameRegistry.addRecipe(new ItemStack(gameruleFiretickblock), "rcr",
+				"tet", "rcr", 'c', Items.comparator, 'e', Items.lava_bucket,
+				'r', Blocks.redstone_block, 't', Items.ghast_tear);
+
+		BlockCommandBlockCraftable day;
+		day = new BlockCommandBlockCraftable(CommandType.Gamerule,
+				"doDaylightCycle");
+		day.setBlockName("daycycle_command_block").setBlockTextureName(
+				"samspowerups" + ":daycycle_command_block");
+		GameRegistry.registerBlock(day, "daycycle_command_block");
+
+		GameRegistry.addRecipe(new ItemStack(day), "rcr", "tet", "rcr", 'c',
+				Items.comparator, 'e', Blocks.glowstone, 'r',
+				Blocks.redstone_block, 't', Items.ghast_tear);
+
+	}
 	  
 }

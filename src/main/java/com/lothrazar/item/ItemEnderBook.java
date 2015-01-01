@@ -139,5 +139,24 @@ public class ItemEnderBook extends ItemTool
 
 		entityPlayer.getCurrentEquippedItem().damageItem(1, entityPlayer);
 	}
+	
+	
+
+	public static ItemEnderBook itemEnderBook;
+	
+	public static void initEnderbook()
+	{
+		itemEnderBook = new ItemEnderBook();
+		itemEnderBook.setTextureName("samspowerups" + ":book_ender")
+				.setUnlocalizedName("book_ender");
+		GameRegistry.registerItem(itemEnderBook, "book_ender");
+		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
+				"eee", 'e', Items.ender_pearl, 'b', Items.book);
+		GameRegistry.addSmelting(itemEnderBook, new ItemStack(
+				Items.ender_pearl, 8), 0);
+	}
+
+	
+	
 }
  

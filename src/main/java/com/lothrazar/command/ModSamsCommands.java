@@ -1,4 +1,4 @@
-package com.lothrazar.samscommands;
+package com.lothrazar.command;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random; 
 import org.apache.logging.log4j.Logger; 
 
+import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
 
 import net.minecraft.client.Minecraft;
@@ -104,61 +105,9 @@ public class ModSamsCommands
 		AddLeftInfo(event.left);
 		AddRightInfo(event.right); 
 		
-		AddWaypointInfo(event); 
+		CommandSimpleWaypoints.AddWaypointInfo(event); 
 	}
 
-	private void AddWaypointInfo(RenderGameOverlayEvent.Text event) 
-	{
-		EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
-	 
-    	ArrayList<String> saved = GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
-
-    	if(saved.size() > 0 && saved.get(0) != null)
-    	{ 
-    		int index = 0;
-    		try
-    		{
-	    		index = Integer.parseInt( saved.get(0) );
-    		}
-    		catch(NumberFormatException e) 
-    		{
-    			System.out.println("NAN"  );
-    			return;
-    		}// do nothing, its allowed to be a string
-    		
-    		if(index <= 0){return;}
-    		
-    		Location loc = null;
-
-    		if(saved.size() <= index) {return;}
-    		
-    		String sloc = saved.get(index);
-    		
-    		if(sloc == null || sloc.isEmpty()) {return;}
-    	 
-    		if( index < saved.size() && saved.get(index) != null) loc = new Location(sloc);
-    		
-    		if(loc != null)
-    		{ 
-    			//return  showName +Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + dim;	
-    			
-    			if(p.dimension != loc.dimension){return;}
-    			
-    			double dX = p.posX - loc.X;
-    			double dZ = p.posZ - loc.Z;
-    			
-    			int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
-    			 
-    			String showName = "Distance "+dist+ " from waypoint ["+index+"] " + loc.name;	
-    			
-    			boolean sideRight=true;
-    			if(sideRight)
-    				event.right.add(showName);
-    			else 
-    				event.left.add(showName);
-    		} 
-    	}
-	}
 	
  
 	 
@@ -421,39 +370,4 @@ public class ModSamsCommands
 
 
 	 
-	public static ArrayList<String> GetForPlayerName(String playerName)
-	{ 
-		if(playerName == null)
-		{
-			//logger.info("GetForPlayerName possible exception: <null>");
-			return null;
-		}
-	//	logger.info("GetForPlayerName : "+ playerName);
-		String fileName = "swp_"+playerName +".dat";
-		ArrayList<String> lines = new ArrayList<String>();
-	 
-		try
-		{
-			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName);
-			if(!myFile.exists()) myFile.createNewFile();
-			FileInputStream fis = new FileInputStream(myFile);
-			DataInputStream instream = new DataInputStream(fis);
-			String val;
-			
-			while((val = instream.readLine()) != null) lines.add(val);
-			
-			instream.close();
-			fis.close();
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		} //this makes it per-world
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return lines;
-	} 
 }

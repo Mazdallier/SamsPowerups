@@ -117,4 +117,24 @@ public class BlockFishing extends Block
 	{
 		return false;
 	} 
+	
+	
+	
+	
+
+	public static void initFishing()
+	{
+		BlockFishing block = new BlockFishing();
+		block.setBlockName("block_fishing").setBlockTextureName(
+				"samspowerups" + ":block_fishing");
+		GameRegistry.registerBlock(block, "block_fishing");
+
+		GameRegistry.addRecipe(new ItemStack(block), "pwp", "wfw", "pwp", 'w',
+				Blocks.web, 'f', new ItemStack(Items.fishing_rod, 1, 0), 'p',
+				Blocks.planks);
+
+		GameRegistry.addSmelting(new ItemStack(block), new ItemStack(
+				Blocks.web, 4), 0);
+	}
+	
 }

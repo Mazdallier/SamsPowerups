@@ -1,4 +1,4 @@
-package com.lothrazar.samscommands;
+package com.lothrazar.command;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

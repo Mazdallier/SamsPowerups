@@ -2,6 +2,8 @@ package com.lothrazar.samsmultiwand;
 
 import org.apache.logging.log4j.Logger; 
 
+import com.lothrazar.item.ItemChestSack;
+import com.lothrazar.item.ItemWandMaster;
 import com.lothrazar.util.Reference;
 
 import net.minecraft.block.Block;

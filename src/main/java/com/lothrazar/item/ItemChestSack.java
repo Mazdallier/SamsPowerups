@@ -1,4 +1,4 @@
-package com.lothrazar.samsmultiwand;
+package com.lothrazar.item;
 
 import java.util.ArrayList;
 import java.util.List; 

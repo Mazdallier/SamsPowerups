@@ -1,8 +1,8 @@
-package com.lothrazar.samscommands;
+package com.lothrazar.command;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
- 
+ /*
 public class Location
 {
 	public double X;
@@ -71,4 +71,4 @@ public class Location
 	{
 		return name+" (Height "+MathHelper.floor_double(Y)+")";
 	}
-}
+}*/
