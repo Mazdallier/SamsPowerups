@@ -454,7 +454,7 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		
 
 		GameRegistry.addRecipe(new ItemStack(redSandstone), "ss", "ss",	 
-				's', new ItemStack(Blocks.sand));
+				's', new ItemStack(Blocks.sand,1,1));
 
 		BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
 		redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F)
