@@ -42,8 +42,9 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
  
 public class HandlerScreenText
 { 
-    private boolean showDefaultDebug = true ; //TODO: split to left and right
-	private boolean showGameRules = true;
+    private boolean clearLeft = true ;
+    private boolean clearRight = true ;
+	private boolean showGameRules = false;
 	private boolean showSlimeChunk = true;
 	private boolean showVillageInfo = true; 
 	private boolean showHorseInfo = true;
@@ -56,12 +57,10 @@ public class HandlerScreenText
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
 		 
 		//config file can disable all this, which keeps the original screen un-cleared
-		if(showDefaultDebug == false)
-		{
-			event.left.clear();
-			event.right.clear();
-		}
+		if(clearLeft  )event.left.clear();
 		
+		if(clearRight) event.right.clear();
+
 		AddLeftInfo(event.left);
 		AddRightInfo(event.right); 
 		
@@ -71,6 +70,9 @@ public class HandlerScreenText
 	 
 	private void AddLeftInfo(ArrayList<String> side)
 	{  
+
+		side.add("Minecraft 1.7.10");//i tried to get this info from the objects , couldnt find it
+		
 		//the current client side player, not SMP
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
@@ -92,17 +94,23 @@ public class HandlerScreenText
 	  
 		side.add("Day "+days +" ("+detail+")");  
 		
+		//Minecraft.getMinecraft().gameSettings.difficulty
+
+	 
+		side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
+	 
 		/*
+		 * 	 	int yaw = (int)player.rotationYaw ;
+		int f = Math.abs( (yaw %= 360) /45);
 		 //doesnt work ,and is not needed anyway
 		//inspired by : http://www.minecraftforge.net/forum/index.php?topic=6514.0
-	 	int yaw = (int)player.rotationYaw ;
 	 	if(yaw < 360) yaw += 360;//this SEEMS LIKE it doesnt matter, since we do Math.abs
 	 	//BUT, by doing that then adding the 22, it fixes th half widths
 		yaw += 22;//  magic fix number so SE and SW are balanced for example
 		//if we dont do this 22 fix, then south east and south west will NOT be at 45 deg, they will 
 		//not be equidistant from SOUTH 
 		
-	 	int f = Math.abs( (yaw %= 360) /45);   //  360degrees divided by 45 == 8 zones
+	 	   //  360degrees divided by 45 == 8 zones
 	
 		 
 		String facing = "";
@@ -121,20 +129,20 @@ public class HandlerScreenText
 			  
 		side.add(facing); 
 		 */
-		if(showDefaultDebug == false)
-		{
+		side.add("XYZ: "+(int)player.posX +" / "+  (int)player.posY  +" / "+ (int)player.posZ); 
+		//side.add("f:"+  f); 
+		
+		 
 			//only show this part if we are hiding the vanilla
-			//since Y and biome are already in that part
-			 
-			BiomeGenBase biome = world.getBiomeGenForCoords((int)player.posX, (int)player.posZ); 
-			String biomeDetails = biome.biomeName;// +" (Temperature "+biome.temperature+")";
-			
-			side.add(biomeDetails);
-			side.add("Height " +MathHelper.floor_double(player.posY)); 
-			//side.add("");
-			side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
-			 
-		}
+		//since Y and biome are already in that part
+		 
+		BiomeGenBase biome = world.getBiomeGenForCoords((int)player.posX, (int)player.posZ); 
+	 
+		side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
+		
+		//side.add("Height " +MathHelper.floor_double(player.posY)); 
+		//side.add("");
+	 
   
 	 	if(showSlimeChunk && player.dimension == 0)
 	 	{ 
