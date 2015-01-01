@@ -93,6 +93,7 @@ public class HandlerScreenText
 		else detail = "Moon Phase" + world.getMoonPhase();
 	  
 		side.add("Day "+days +" ("+detail+")");  
+		side.add("Difficulty "+ world.difficultySetting.toString());  
 		
 		//Minecraft.getMinecraft().gameSettings.difficulty
 
