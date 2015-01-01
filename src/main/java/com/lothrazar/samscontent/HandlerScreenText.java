@@ -70,36 +70,33 @@ public class HandlerScreenText
 	 
 	private void AddLeftInfo(ArrayList<String> side)
 	{  
-
-		side.add("Minecraft 1.7.10");//i tried to get this info from the objects , couldnt find it
-		
-		//the current client side player, not SMP
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
-    	   
-		long ticksPerDay = 24000 ;
+
+		//couldnt find game version as a variable
+		side.add("Minecraft 1.7.10 ["+world.difficultySetting.toString()+"]");
+		 
+		
 	
 		long time = world.getWorldTime(); 
 	 
-		int days = MathHelper.floor_double( time / ticksPerDay);
+		int days = MathHelper.floor_double( time / Reference.ticksPerDay);
 		 
-		long remainder = time % ticksPerDay;
+		long remainder = time % Reference.ticksPerDay;
 		
 		String detail = "";
 	
 		if(remainder < 5000) detail = "Morning";
 		else if(remainder < 7000) detail = "Mid-day";//midd ay is exactly 6k, so go one on each side
 		else if(remainder < 12000) detail = "Afternoon";
-		else detail = "Moon Phase" + world.getMoonPhase();
+		else detail = "Moon Phase " + world.getMoonPhase();
 	  
 		side.add("Day "+days +" ("+detail+")");  
-		side.add("Difficulty "+ world.difficultySetting.toString());  
-		
-		//Minecraft.getMinecraft().gameSettings.difficulty
-
-	 
+  
 		side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
 	 
+		
+		
 		/*
 		 * 	 	int yaw = (int)player.rotationYaw ;
 		int f = Math.abs( (yaw %= 360) /45);
@@ -130,10 +127,14 @@ public class HandlerScreenText
 			  
 		side.add(facing); 
 		 */
+		
+		
 		side.add("XYZ: "+(int)player.posX +" / "+  (int)player.posY  +" / "+ (int)player.posZ); 
 		//side.add("f:"+  f); 
 		
 		 
+		
+		
 			//only show this part if we are hiding the vanilla
 		//since Y and biome are already in that part
 		 

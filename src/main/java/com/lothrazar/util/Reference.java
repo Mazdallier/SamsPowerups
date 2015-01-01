@@ -66,7 +66,12 @@ public class Reference
 	public static String chest_strongholdCrossing= "strongholdCrossing";  
 	public static String chest_villageBlacksmith= "villageBlacksmith"; 
 	public static String chest_bonusChest= "bonusChest"; 
-	public static String chest_dungeonChest= "dungeonChest"; 
+	public static String chest_dungeonChest= "dungeonChest";
+
+
+
+
+	public static long ticksPerDay = 24000 ;
  
 	/*s:
 
