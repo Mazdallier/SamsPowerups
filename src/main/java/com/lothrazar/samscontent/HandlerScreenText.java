@@ -85,12 +85,12 @@ public class HandlerScreenText
 		 
 		long remainder = time % ticksPerDay;
 		
-		String detail="";
+		String detail = "";
 	
-		if(remainder < 5000) detail="Morning";
-		else if(remainder < 7000) detail="Mid-day";//midd ay is exactly 6k, so go one on each side
-		else if(remainder < 12000) detail="Afternoon";
-		else detail = "Night"; //  (Moon Phase" + world.getMoonPhase()+")??
+		if(remainder < 5000) detail = "Morning";
+		else if(remainder < 7000) detail = "Mid-day";//midd ay is exactly 6k, so go one on each side
+		else if(remainder < 12000) detail = "Afternoon";
+		else detail = "Moon Phase" + world.getMoonPhase();
 	  
 		side.add("Day "+days +" ("+detail+")");  
 		
