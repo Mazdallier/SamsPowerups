@@ -455,15 +455,20 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 
 		GameRegistry.addRecipe(new ItemStack(redSandstone), "ss", "ss",	 
 				's', new ItemStack(Blocks.sand,1,1));
-
+		
+		//reverse it back to sand
+		GameRegistry.addSmelting(redSandstone, new ItemStack(Blocks.sand,4,1), 0); 
+		
 		BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
 		redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F)
 				.setBlockName("red_sandstone_smooth")
 				.setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
 		GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
 
-
-		GameRegistry.addRecipe(new ItemStack(redSandstoneSm), "ss", "ss",	 
+		//remove the smoothness
+		GameRegistry.addSmelting(new ItemStack(redSandstoneSm), new ItemStack(redSandstone), 0); 
+		
+		GameRegistry.addRecipe(new ItemStack(redSandstoneSm,4), "ss", "ss",	 
 				's', new ItemStack(redSandstone));
 		
 		BlockRedSandStone redSandstoneCv = new BlockRedSandStone();
