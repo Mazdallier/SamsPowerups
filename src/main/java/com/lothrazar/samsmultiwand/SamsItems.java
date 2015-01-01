@@ -33,7 +33,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class MasterWandMod  
+public class SamsItems  
 { 
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
@@ -70,7 +70,7 @@ public class MasterWandMod
 		 
 		if(event.action.LEFT_CLICK_BLOCK == event.action)
 		{ 
-			if(held.getItem() == MasterWandMod.itemWand)
+			if(held.getItem() == SamsItems.itemWand)
 			{ 
 				if(blockClicked == null || blockClicked == Blocks.air ){return;}
 				
@@ -79,16 +79,16 @@ public class MasterWandMod
 					TileEntity container = event.world.getTileEntity(event.x, event.y, event.z);
 					if(container instanceof TileEntityChest)
 					{
-						MasterWandMod.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
+						SamsItems.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.x,event.y,event.z);  
 					}
 				} 
 				else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
 				{ 
 					//	public static void replantField(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
-					MasterWandMod.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
+					SamsItems.itemWand.replantField(event.entityPlayer,held,event.x,event.y,event.z); 
 				}
 			}
-			else if(held.getItem() == MasterWandMod.itemChestSack)
+			else if(held.getItem() == SamsItems.itemChestSack)
 			{
 				TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z); 
 				
@@ -118,28 +118,28 @@ public class MasterWandMod
 		  	  		teAdjacent = chest.adjacentChestZPos; 
 		  	  	}
 		  		 
-		  		MasterWandMod.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+		  		SamsItems.itemChestSack.sortFromSackToChestEntity(chest,held,event);
 		  		
 		  		if(teAdjacent != null)
 		  		{
-		  			MasterWandMod.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
+		  			SamsItems.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
 		  		} 	
 			}
 		}
 		else // right click
 		{
-			if(held.getItem() == MasterWandMod.itemWand)
+			if(held.getItem() == SamsItems.itemWand)
 			{
 				if( blockClicked.equals(Blocks.diamond_block))
 				{
-					MasterWandMod.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
+					SamsItems.itemWand.searchSpawner(event.entityPlayer,held,event.x,event.y,event.z); 
 				}
 				else if( blockClicked.equals(Blocks.stone))
 				{
-					MasterWandMod.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
+					SamsItems.itemWand.searchProspect(event.entityPlayer,held,event.x,event.y,event.z);  
 				} 
 			}
-			else if(held.getItem() == MasterWandMod.itemChestSack)
+			else if(held.getItem() == SamsItems.itemChestSack)
 			{ 	
 				if(  held.stackTagCompound==null){return;}
 			   
@@ -153,7 +153,7 @@ public class MasterWandMod
 					return;
 				}
 				
-				MasterWandMod.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
+				SamsItems.itemChestSack.createAndFillChest(event.entityPlayer,held,event.x,event.y+1,event.z);
 			}
 		}
   	}
@@ -162,7 +162,7 @@ public class MasterWandMod
 	public void onEntityInteractEvent(EntityInteractEvent event)
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-		if(held == null || held.getItem() != MasterWandMod.itemWand ){ return;}
+		if(held == null || held.getItem() != SamsItems.itemWand ){ return;}
   
 		if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){ return;}
 		

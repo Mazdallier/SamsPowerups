@@ -1,7 +1,7 @@
 package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
-import com.lothrazar.samsmultiwand.MasterWandMod;
+import com.lothrazar.samsmultiwand.SamsItems;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -174,7 +174,7 @@ public class ItemWandMaster extends ItemTool
 		int END_CHEST =  START_CHEST + ROWS * COLS;
 		int END_INV = START_INV + ROWS * COLS;
 
-		ItemStack drop = new ItemStack(MasterWandMod.itemChestSack ,1,0); 
+		ItemStack drop = new ItemStack(SamsItems.itemChestSack ,1,0); 
 		
 		if(drop.stackTagCompound == null)  drop.stackTagCompound = new NBTTagCompound();
  

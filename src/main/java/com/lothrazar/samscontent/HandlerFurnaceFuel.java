@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samscontent;
 
 import org.apache.logging.log4j.Logger; 
 import net.minecraft.block.Block;
@@ -23,7 +23,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class FuelHandler    implements IFuelHandler
+public class HandlerFurnaceFuel    implements IFuelHandler
 {    
 	@Override
 	public int getBurnTime(ItemStack fuel) 

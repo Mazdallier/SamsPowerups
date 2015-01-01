@@ -12,14 +12,13 @@ import com.lothrazar.command.CommandSearchItem;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
-import com.lothrazar.command.ModSamsCommands;
 import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
 import com.lothrazar.item.ItemRunestone;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
 import com.lothrazar.samsflying.CommandFlyHelp;
 import com.lothrazar.samsflying.SurvivalFlyingMod; 
-import com.lothrazar.samsmultiwand.MasterWandMod;
+import com.lothrazar.samsmultiwand.SamsItems;
 import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.util.Reference;
 import net.minecraft.block.Block;
@@ -94,14 +93,14 @@ public class ModSamsContent
 		flyMod.onPreInit(event);
 		FMLCommonHandler.instance().bus().register(flyMod);
 		
-		MinecraftForge.EVENT_BUS.register(new MasterWandMod());
+		MinecraftForge.EVENT_BUS.register(new SamsItems());
 		
 		if(config.hasChanged()){ config.save(); }
 
 		MinecraftForge.EVENT_BUS.register(instance);// ??iunstance no worky?
 		FMLCommonHandler.instance().bus().register(instance);
 		
-		MinecraftForge.EVENT_BUS.register(new ModSamsCommands()); 
+		MinecraftForge.EVENT_BUS.register(new HandlerScreenText()); 
 	}
 
 	@EventHandler
@@ -145,7 +144,7 @@ public class ModSamsContent
 	{
 		ExtraCraftingMod.onInit(event);
 
-		MasterWandMod.onInit(event);
+		SamsItems.onInit(event);
 		
 		ModSamsPowerups.onInit(event);
 		

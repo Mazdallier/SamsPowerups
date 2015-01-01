@@ -1,4 +1,4 @@
-package com.lothrazar.command;
+package com.lothrazar.samscontent;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Random; 
 import org.apache.logging.log4j.Logger; 
 
+import com.lothrazar.command.CommandSimpleWaypoints;
+import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
 
@@ -37,58 +39,16 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
-//@Mod(modid = ModSamsCommands.MODID, version = ModSamsCommands.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class ModSamsCommands
-{
-//program argument3s--username=lothrazar@hotmail.com --password=xxxxxx
-  // @Instance(value = ModSamsCommands.MODID)
-  //  public static ModSamsCommands instance; 
-  // public static Logger logger;  
-//	public static Configuration config;  
-  //  protected static final String MODID = "samscommands"; 
-  //  public static final String VERSION = "1";	
+ 
+public class HandlerScreenText
+{ 
     private boolean showDefaultDebug = true ; //TODO: split to left and right
 	private boolean showGameRules = true;
 	private boolean showSlimeChunk = true;
 	private boolean showVillageInfo = true; 
 	private boolean showHorseInfo = true;
- 
- /*
-    @EventHandler
-    public void onPreInit(FMLPreInitializationEvent event)   
-    {  
-    	logger = event.getModLog(); 
 
 
-    	config = new Configuration(event.getSuggestedConfigurationFile());  
-		
-		boolean enabled = config.getBoolean( "richLoot",MODID,true,
-				"More goodies in dungeon chests (all chests in the game except for starter " +
-				"chest and dungeon dispensers): emeralds, quartz, glowstone, pistons, " +
-				"gold blocks, records, TNT, anvils."
-		);
-		
-		if(config.hasChanged()) { config.save(); } 
-
-
-	    MinecraftForge.EVENT_BUS.register(instance); 
-    } 
-    
-	
-	
-    @EventHandler
-	public void onServerLoad(FMLServerStartingEvent event)
-	{ 
-		event.registerServerCommand(new CommandSearchTrades()); 
-		event.registerServerCommand(new CommandSearchItem()); 
-		event.registerServerCommand(new CommandKillAll()); 
-		event.registerServerCommand(new CommandSimpleWaypoints()); 
-		event.registerServerCommand(new CommandTodoList());  
-		event.registerServerCommand(new CommandEnderChest()); 
-  
-	}
-  */
 	
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
@@ -107,8 +67,6 @@ public class ModSamsCommands
 		
 		CommandSimpleWaypoints.AddWaypointInfo(event); 
 	}
-
-	
  
 	 
 	private void AddLeftInfo(ArrayList<String> side)

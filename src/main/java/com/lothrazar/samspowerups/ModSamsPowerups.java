@@ -3,6 +3,8 @@ package com.lothrazar.samspowerups;
 import java.util.ArrayList;   
 import org.apache.logging.log4j.Logger;  
 
+import com.lothrazar.samscontent.HandlerFurnaceFuel;
+import com.lothrazar.samscontent.HandlerVillageTrading;
 import com.lothrazar.samscontent.ModSamsContent;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -126,7 +128,7 @@ public class ModSamsPowerups
 	{    
   		if(moreFutureTrades)
   		{
-	  		VillageTradeHandler v = new VillageTradeHandler();
+	  		HandlerVillageTrading v = new HandlerVillageTrading();
 			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
@@ -137,7 +139,7 @@ public class ModSamsPowerups
 		//MobSpawnExtras();
   		if(moreFuel)
   		{
-  			GameRegistry.registerFuelHandler(new FuelHandler());
+  			GameRegistry.registerFuelHandler(new HandlerFurnaceFuel());
   		}
   		
 		if(increasedStackSizes)

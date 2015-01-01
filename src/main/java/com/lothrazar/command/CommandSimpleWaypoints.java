@@ -244,10 +244,16 @@ public class CommandSimpleWaypoints  implements ICommand
 		OverwriteForPlayerName(playerName, lines);
 	}
 	
+	private static String filenameForPlayer(String playerName)
+	{
+		return "swp_"+playerName +".dat";
+	}
+	
 	private void OverwriteForPlayerName(String playerName, ArrayList<String> lines)
 	{
-		String fileName = "swp_"+playerName +".dat";
-		try{
+		String fileName = filenameForPlayer(playerName);
+		try
+		{
 			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName);
 			if(!myFile.exists()) myFile.createNewFile();
 			FileOutputStream fos = new FileOutputStream(myFile);
@@ -284,7 +290,7 @@ public class CommandSimpleWaypoints  implements ICommand
 			return null;
 		}
 	//	logger.info("GetForPlayerName : "+ playerName);
-		String fileName = "swp_"+playerName +".dat";
+		String fileName = filenameForPlayer(playerName);;
 		ArrayList<String> lines = new ArrayList<String>();
 	 
 		try

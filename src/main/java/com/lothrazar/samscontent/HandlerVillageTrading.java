@@ -1,4 +1,4 @@
-package com.lothrazar.samspowerups;
+package com.lothrazar.samscontent;
 
 import java.util.Random;
 
@@ -23,7 +23,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
 //@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class VillageTradeHandler  implements IVillageTradeHandler
+public class HandlerVillageTrading  implements IVillageTradeHandler
 {   
 	final int BROWN = 0;
 	final int WHITE = 1;
