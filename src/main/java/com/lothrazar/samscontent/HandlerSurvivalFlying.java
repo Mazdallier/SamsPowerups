@@ -36,9 +36,9 @@ public class HandlerSurvivalFlying
   
 	private HashMap<String, Integer> playerFlyDamageCounters = new HashMap<String, Integer>();
   
-	public void onPreInit(FMLPreInitializationEvent event)
+	public static void setupConfig()
 	{  
-		String CATEGORY_FLY = ModSamsContent.MODID;
+		String CATEGORY_FLY = "flying";
 
 		cannotFlyWhileBurning = ModSamsContent.config.getBoolean("cannotFlyWhileBurning",CATEGORY_FLY, true
 				,"When true, this disables flying while you are burning."); 

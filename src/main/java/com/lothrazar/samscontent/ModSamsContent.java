@@ -80,7 +80,10 @@ public class ModSamsContent
  
 
 	public static boolean swiftDeposit = true;
-	public static boolean smartEnderchest = true; 
+	public static boolean smartEnderchest = true;
+	private static boolean increasedStackSizes = true;
+	private static boolean moreFuel = true;
+	private static boolean moreFutureTrades = true; 
 	
 	
 	@EventHandler
@@ -89,14 +92,9 @@ public class ModSamsContent
 		logger = event.getModLog();
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
-
-		 
-		
+ 
      	setupConfig();
-
-    	
-
-		
+ 
     	MinecraftForge.EVENT_BUS.register(new ModSamsPowerups()); 
     	MinecraftForge.EVENT_BUS.register(new HandlerBonemealUse()); 
 		MinecraftForge.EVENT_BUS.register(new HandlerScreenText()); 
@@ -104,13 +102,10 @@ public class ModSamsContent
 		MinecraftForge.EVENT_BUS.register(instance);// ???is this still used/needed
 		
 
-		ExtraCraftingMod.onPreInit(event);
-		
-		HandlerSurvivalFlying flyMod = new HandlerSurvivalFlying();
-		flyMod.onPreInit(event);
+
 		
 		
-		FMLCommonHandler.instance().bus().register(flyMod); //player events
+		FMLCommonHandler.instance().bus().register(new HandlerSurvivalFlying()); //player events
 		FMLCommonHandler.instance().bus().register(instance);// ???is this still used/needed
 		
 		
@@ -153,7 +148,15 @@ public class ModSamsContent
     			"Attack with the ender chest to open it without placing it."
     		
     		);
-
+    	
+    	
+    	
+		ExtraCraftingMod.setupConfig();
+		HandlerSurvivalFlying.setupConfig();
+		/*
+		HandlerSurvivalFlying flyMod = new HandlerSurvivalFlying();
+		flyMod.onPreInit(event);
+*/
 		if(config.hasChanged()){ config.save(); }
 	}
 
@@ -171,12 +174,7 @@ public class ModSamsContent
 		 
 		event.registerServerCommand(new CommandFlyHelp());
 	}
-
-
-	private static boolean increasedStackSizes = true;
-	private static boolean moreFuel = true;
-	private static boolean moreFutureTrades = true;
-	
+ 
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     
@@ -270,8 +268,6 @@ public class ModSamsContent
 	}
 
  
- 
-	
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
@@ -297,7 +293,6 @@ public class ModSamsContent
 		}
 	}
 
-	
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
@@ -327,7 +322,6 @@ public class ModSamsContent
 		}
 	}
 
-	
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{
@@ -344,7 +338,5 @@ public class ModSamsContent
 			ItemRunestone.applyRunestoneToPlayer(event.player, runestone);
 		} 
 	}// end player tick event
-
-
-	
+ 
 }

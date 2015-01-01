@@ -54,12 +54,10 @@ public class ExtraCraftingMod
 //	private boolean spawnEggs;
 	
    // @EventHandler
-	public static void onPreInit(FMLPreInitializationEvent event) 
+	public static void setupConfig() 
 	{  
 		String category = ModSamsContent.MODID  ; 
-		//config = new Configuration(event.getSuggestedConfigurationFile());  
-		
-
+ 
 
 		category = "crafting";
 		
