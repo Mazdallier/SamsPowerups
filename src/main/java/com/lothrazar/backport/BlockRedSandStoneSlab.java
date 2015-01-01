@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 public class BlockRedSandStoneSlab  extends BlockSlab
 {
@@ -54,6 +55,13 @@ public class BlockRedSandStoneSlab  extends BlockSlab
         return new ItemStack(Item.getItemFromBlock(this), 2, 0);
     }
 
+    @Override
+	@SideOnly(Side.CLIENT)
+    public Item getItem(World worldObj, int x, int y, int z)
+    {
+		return Item.getItemFromBlock(this); // so creative mode pick block works
+    }
+    
     //getFullSlabName
 	@Override
 	public String func_150002_b(int par1) 

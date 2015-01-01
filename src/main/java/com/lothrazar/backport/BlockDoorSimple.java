@@ -57,7 +57,8 @@ public class BlockDoorSimple extends BlockDoor
     {
 		return dropped;//override this so they dont drop the oak door
 	} 
-	
+
+	@Override
 	@SideOnly(Side.CLIENT)
     public Item getItem(World worldObj, int x, int y, int z)
     {
