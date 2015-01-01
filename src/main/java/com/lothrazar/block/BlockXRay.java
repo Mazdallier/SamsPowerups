@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.block;
 
 import java.util.ArrayList;
 import java.util.Random; 

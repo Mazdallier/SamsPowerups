@@ -3,6 +3,12 @@ package com.lothrazar.samscontent;
 import org.apache.logging.log4j.Logger;
 
 import com.lothrazar.backport.*;
+import com.lothrazar.block.BlockCommandBlockCraftable;
+import com.lothrazar.block.BlockFishing;
+import com.lothrazar.block.BlockXRay;
+import com.lothrazar.item.ItemEnderBook;
+import com.lothrazar.item.ItemFoodAppleMagic;
+import com.lothrazar.item.ItemRunestone;
 import com.lothrazar.samscommands.CommandEnderChest;
 import com.lothrazar.samscommands.CommandKillAll;
 import com.lothrazar.samscommands.CommandSearchItem;
@@ -15,6 +21,8 @@ import com.lothrazar.samsflying.CommandFlyHelp;
 import com.lothrazar.samsflying.SurvivalFlyingMod; 
 import com.lothrazar.samsmultiwand.MasterWandMod;
 import com.lothrazar.samspowerups.ModSamsPowerups;
+import com.lothrazar.util.Reference;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
@@ -61,27 +69,14 @@ public class ModSamsContent
 	public final static String MODID = "samscontent";
 	public static final String VERSION = "1";
 
-	public static int SLOT_RUNESTONE = 17;// TOP RIGHT
 
-	public static int RUNESTONE_DURABILITY = 90000;// 90 thousand ticks is 4500
-													// seconds which is 75
-													// minutes
-
-	private static ItemRunestone rune_resistance;
-	private static ItemRunestone rune_jump;
-	private static ItemRunestone rune_goldheart;
-	private static ItemRunestone rune_haste;
-	private static ItemRunestone rune_water;
-	private static ItemRunestone rune_speed;
-	private static ItemRunestone rune_fire;
 	private BlockXRay block_xray;
 
 	private ItemFoodAppleMagic appleEmerald;
 	private ItemFoodAppleMagic appleDiamond;
 	private ItemFoodAppleMagic appleLapis;
 	private ItemFoodAppleMagic appleChocolate;
-	private boolean allEnabled;
-
+  
 	public static ItemEnderBook itemEnderBook;
 
 	public static enum CommandType
@@ -98,8 +93,10 @@ public class ModSamsContent
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
 
+		/*
 		allEnabled = config.getBoolean("allEnabled", category, true,
 				"Enable all blocks and items.");
+				*/
 		
 		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
 		ExtraCraftingMod.onPreInit(event);
@@ -165,18 +162,13 @@ public class ModSamsContent
 		ModSamsPowerups.onInit(event);
 		
 		initBackport18();
-		
-		if (allEnabled == false)
-		{
-			return;
-		}
-
+		 
 		initXray();
 		initEnderbook();
 		initFishing();
 		initApples();
 		initCommand();
-		initRunestones(); 
+		ItemRunestone.initRunestones(); 
 	}
 
 //BOUNTIFUL UPDATE
@@ -524,6 +516,8 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 				's', new ItemStack(rsStair));
 		
 	}
+	
+	
 
 	private void initIronTrapdoor()
 	{
@@ -1029,134 +1023,25 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 	}
 
 	
-	private void initRunestones()
-	{
-
-		boolean shiny = true;
-		boolean not_shiny = false;
-
-		// since number 1 will give "Speed II" so the roman numeral names show
-		// that
-		int I = 0;
-		int II = 1;
-		int III = 2;
-		int IV = 3;
-		int V = 4;
-		// changing to register item before adding recipes. it fixed a bug in
-		// other mods
-
-		rune_jump = new ItemRunestone(new int[] { Reference.potion_JUMP },
-				new int[] { V }, not_shiny);
-		rune_jump.setUnlocalizedName("rune_jump").setTextureName(
-				"samspowerups" + ":rune_jump");
-		GameRegistry.registerItem(rune_jump, "rune_jump");
-		GameRegistry.addRecipe(new ItemStack(rune_jump), "eee", "eae", "eee",
-				'e', Items.emerald // could be slime ball/block?
-				, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_jump,
-				new ItemStack(Items.nether_star, 1), 0);
-
-		rune_resistance = new ItemRunestone(
-				new int[] { Reference.potion_RESISTANCE }, new int[] { II },
-				shiny);
-		rune_resistance.setUnlocalizedName("rune_resistance").setTextureName(
-				"samspowerups" + ":rune_resistance");
-		GameRegistry.registerItem(rune_resistance, "rune_resistance");
-		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae",
-				"eee", 'e', Items.diamond, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_resistance, new ItemStack(
-				Items.nether_star, 1), 0);
-
-		rune_goldheart = new ItemRunestone(
-				new int[] { Reference.potion_HEALTH_BOOST }, new int[] { V },
-				not_shiny);
-		rune_goldheart.setUnlocalizedName("rune_goldheart").setTextureName(
-				"samspowerups" + ":rune_goldheart");
-		GameRegistry.registerItem(rune_goldheart, "rune_goldheart");
-		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
-				"eee", 'e', Blocks.gold_block, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_goldheart, new ItemStack(
-				Items.nether_star, 1), 0);
-
-		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE,
-				Reference.potion_WEAKNESS }, new int[] { II, II }, not_shiny);
-		rune_haste.setUnlocalizedName("rune_haste").setTextureName(
-				"samspowerups" + ":rune_haste");
-		GameRegistry.registerItem(rune_haste, "rune_haste");
-		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
-				'e', Blocks.redstone_block, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_haste,
-				new ItemStack(Items.nether_star, 1), 0);
-
-		rune_water = new ItemRunestone(
-				new int[] { Reference.potion_WATER_BREATHING,
-						Reference.potion_NIGHT_VISION }, new int[] { V, II },
-				not_shiny);
-		rune_water.setUnlocalizedName("rune_water").setTextureName(
-				"samspowerups" + ":rune_water");
-		GameRegistry.registerItem(rune_water, "rune_water");
-		GameRegistry.addRecipe(new ItemStack(rune_water), "eee", "eae", "eee",
-				'e', Blocks.lapis_block // new
-										// ItemStack(Items.dye,1,Reference.dye_lapis)//LAPIS
-				, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_water,
-				new ItemStack(Items.nether_star, 1), 0);
-
-		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED,
-				Reference.potion_WEAKNESS }, new int[] { III, I }, not_shiny);
-		rune_speed.setUnlocalizedName("rune_speed").setTextureName(
-				"samspowerups" + ":rune_speed");
-		GameRegistry.registerItem(rune_speed, "rune_speed");
-		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae", "eee",
-				'e', Items.sugar, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_speed,
-				new ItemStack(Items.nether_star, 1), 0);
-
-		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST,
-				Reference.potion_WEAKNESS, Reference.potion_FATIGUE },
-				new int[] { I, II, II }, shiny);
-		rune_fire.setUnlocalizedName("rune_fire").setTextureName(
-				"samspowerups" + ":rune_fire");
-		GameRegistry.registerItem(rune_fire, "rune_fire");
-		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae", "eee",
-				'e', Items.blaze_rod, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_fire,
-				new ItemStack(Items.nether_star, 1), 0);
-	}
+	
 
 	
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
-		// if(event.entityPlayer.isSneaking() == false){ return;}
-		// BiomeGenBase biome =
-		// event.world.getBiomeGenForCoords((int)event.entityPlayer.posX,
-		// (int)event.entityPlayer.posZ);
-
 		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem();
 
-		if (itemStack == null)
-		{
-			return;
-		}
+		if (itemStack == null || itemStack.getItem() == null ) { return; }
 
 		if (event.action.LEFT_CLICK_BLOCK == event.action)
 		{
-			// public void onPlayerLeftClick(PlayerInteractEvent event)
-
-			if (itemStack.getItem() != itemEnderBook)
+ 
+			if (itemStack.getItem() == itemEnderBook)
 			{
-				return;
-			}
-
-			if (itemStack.stackTagCompound == null)
-			{
-				return;
-			}
-
-			ItemEnderBook.teleport(event.entityPlayer, itemStack);
-
-		} else
+				ItemEnderBook.teleport(event.entityPlayer, itemStack);
+			} 
+		} 
+		else
 		{
 			if (itemStack.getItem() == ModSamsContent.itemEnderBook)
 			{
@@ -1171,7 +1056,9 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 	public void onLivingDrops(LivingDropsEvent event)
 	{
 
-		if (event.entityLiving instanceof EntitySheep)
+		if (event.entityLiving instanceof EntitySheep
+				&& mutton_cooked != null
+				&& mutton_raw != null)
 		{
 
 			// 50/50 drop 1-2
@@ -1198,21 +1085,27 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{
-		ItemStack runestone = event.player.inventory
-				.getStackInSlot(ModSamsContent.SLOT_RUNESTONE);
-		if (runestone == null
-				|| (runestone.getItem() instanceof ItemRunestone) == false)
+		ItemStack runestone = event.player.inventory.getStackInSlot(ItemRunestone.SLOT_RUNESTONE);
+		
+		
+		if (runestone != null
+				&& (runestone.getItem() instanceof ItemRunestone) == false)
 		{
-			return;
+
+			ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
+
+			//the player tick event 
+			ItemRunestone.applyRunestoneToPlayer(event.player, runestone);
 		}
-
-		ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
-
-		// no need to check for null here, it is done in the method
-		ItemRunestone.applyRunestoneToPlayer(event.player, runestone);
-		// applyRunestoneToPlayer(event, MIDDLE_LEFT);
-		// applyRunestoneToPlayer(event, LOWER_LEFT);
+ 
+		
+		
 
 	}// end player tick event
 
+	
+
+	
+	
+	
 }

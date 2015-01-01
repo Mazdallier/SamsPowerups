@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;

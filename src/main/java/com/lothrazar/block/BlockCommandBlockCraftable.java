@@ -1,7 +1,8 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.block;
 
 import java.util.Random; 
 
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.samscontent.ModSamsContent.CommandType;
 
 import cpw.mods.fml.common.registry.GameRegistry; 

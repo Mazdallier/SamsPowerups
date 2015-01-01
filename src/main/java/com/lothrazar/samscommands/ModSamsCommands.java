@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Random; 
 import org.apache.logging.log4j.Logger; 
 
-import com.lothrazar.samscontent.Reference;
+import com.lothrazar.util.Reference;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;

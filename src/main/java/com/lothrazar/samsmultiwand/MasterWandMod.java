@@ -1,7 +1,9 @@
 package com.lothrazar.samsmultiwand;
 
 import org.apache.logging.log4j.Logger; 
-import com.lothrazar.samscontent.Reference;
+
+import com.lothrazar.util.Reference;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.passive.EntityBat;

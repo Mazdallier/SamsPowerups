@@ -1,7 +1,9 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.item;
 
 import java.util.List; 
 import com.google.common.collect.Sets;   
+import com.lothrazar.util.Location;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -74,8 +76,12 @@ public class ItemEnderBook extends ItemTool
 	 }
 
 	public void saveCurrentLocation(EntityPlayer entityPlayer, ItemStack itemStack) 
-	{
-		
+	{ 
+		// if(event.entityPlayer.isSneaking() == false){ return;}
+		// BiomeGenBase biome =
+		// event.world.getBiomeGenForCoords((int)event.entityPlayer.posX,
+		// (int)event.entityPlayer.posZ);
+
 		int slot = entityPlayer.inventory.currentItem + 1;
     	Location loc = new Location(slot
     			,entityPlayer.posX
@@ -93,6 +99,14 @@ public class ItemEnderBook extends ItemTool
 	
 	public static void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
 	{
+
+		/*
+		if (itemStack.stackTagCompound == null)
+		{
+			return;
+		}
+		 */
+		
 		int slot = entityPlayer.inventory.currentItem+1;
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
     	
