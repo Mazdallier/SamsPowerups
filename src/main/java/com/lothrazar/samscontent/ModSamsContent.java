@@ -67,7 +67,8 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
  
-@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION	) // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+//TODO: fix // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION	, canBeDeactivated = false, name = ModSamsContent.NAME, useMetadata = true) 
 public class ModSamsContent
 {
 	@Instance(value = ModSamsContent.MODID)
@@ -75,6 +76,7 @@ public class ModSamsContent
 	public static Logger logger;
 	public final static String MODID = "samscontent";
 	public static final String VERSION = "1";
+	public static final String NAME = "Sam's Content";
 
 	public static Configuration config;
 	public static ConfigFile settings;
