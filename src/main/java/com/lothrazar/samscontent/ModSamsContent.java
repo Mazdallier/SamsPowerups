@@ -148,19 +148,21 @@ public class ModSamsContent
 	  
 		ExtraCraftingMod.onInit(event);
 
-		ItemWandMaster.onInit(event);
+		if(ModSamsContent.settings.masterWand)  ItemWandMaster.onInit(event);
 		 
-		BlockXRay.initXray();
+		if(ModSamsContent.settings.xRayBlock) BlockXRay.initXray();
+  
+		if(ModSamsContent.settings.enderBook)  ItemEnderBook.initEnderbook();
 		
-		ItemEnderBook.initEnderbook();
+		if(ModSamsContent.settings.fishingNetBlock) BlockFishing.initFishing();
 		
-		BlockFishing.initFishing();
+		if(ModSamsContent.settings.magicApples) ItemFoodAppleMagic.initApples();
 		
-		ItemFoodAppleMagic.initApples();
+		if(ModSamsContent.settings.gameruleBlocks) BlockCommandBlockCraftable.initCommand();
 		
-		BlockCommandBlockCraftable.initCommand();
+		if(ModSamsContent.settings.weatherBlock)BlockCommandBlockCraftable.initWeatherBlock();
 		
-		ItemRunestone.initRunestones(); 
+		if(ModSamsContent.settings.runestones) ItemRunestone.initRunestones(); 
 		 
 		//HandlerBountifulUpdate h = ;
 		(new HandlerBountifulUpdate()).Init();

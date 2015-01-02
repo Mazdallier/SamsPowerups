@@ -28,6 +28,14 @@ public class ConfigFile
 	public boolean recipes;
 	boolean incompSlime;
 	public boolean uncraftGeneral;
+	public boolean runestones;
+	public boolean magicApples;
+	public boolean fishingNetBlock;
+	public boolean xRayBlock;
+	public boolean masterWand;
+	public boolean enderBook;
+	public boolean weatherBlock;
+	public boolean gameruleBlocks;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -140,20 +148,41 @@ public class ConfigFile
 		
 		
 		//apples
-		
+
+		magicApples = ModSamsContent.config.getBoolean( "magicApples",category,true,
+			" Create emerald, lapis, chocolate, and diamond apples."); 
+		 
 		
 		//runestones
+		runestones = ModSamsContent.config.getBoolean( "runestones",category,true,
+				" Create runestones out of nether stars that give you beacon-like effects wherever you go, as long as you carry them.  Inspired by Diablo II runestones."); 
+			 
 		
 		
 		//fishing net block
+		fishingNetBlock = ModSamsContent.config.getBoolean( "fishingNetBlock",category,true,
+				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 
 		
 		
 		//xray block
+		xRayBlock = ModSamsContent.config.getBoolean( "xRayBlock",category,true,
+				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
 		
 		
+		masterWand = ModSamsContent.config.getBoolean( "masterWand",category,true,
+				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
 		
+
+		enderBook = ModSamsContent.config.getBoolean( "enderBook",category,true,
+				" Craft an ender book that lets you save waypoints, and then teleport to them later (only in the overworld)."); 
 		
+		weatherBlock = ModSamsContent.config.getBoolean( "weatherBlock",category,true,
+				"Craft block that will run /toggledownfall whenever it gets a redstone signal."); 
 		
+		gameruleBlocks = ModSamsContent.config.getBoolean( "gameruleBlocks",category,true,
+				"Craft blocks that toggle certain game rules on redstone signal (only naturalRegenration, doFireTick, mobGriefing, and doDaylightCycle)."); 
+		
+
 
 /*********************************************************************************************/   
 		

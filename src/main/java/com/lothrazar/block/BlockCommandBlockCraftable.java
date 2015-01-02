@@ -174,15 +174,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
 		);
 
-		BlockCommandBlockCraftable weatherblock;
-		weatherblock = new BlockCommandBlockCraftable(CommandType.Weather);
-		weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName(
-				"samspowerups" + ":weather_command_block");
-		GameRegistry.registerBlock(weatherblock, "weatherCommandBlock");
-
-		GameRegistry.addRecipe(new ItemStack(weatherblock), "rcr", "tet",
-				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear);
+	
 
 		BlockCommandBlockCraftable gamerulemobGriefingblock;
 		gamerulemobGriefingblock = new BlockCommandBlockCraftable(
@@ -220,6 +212,19 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				Items.comparator, 'e', Blocks.glowstone, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 
+	}
+
+	public static void initWeatherBlock()
+	{
+		BlockCommandBlockCraftable weatherblock;
+		weatherblock = new BlockCommandBlockCraftable(CommandType.Weather);
+		weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName(
+				"samspowerups" + ":weather_command_block");
+		GameRegistry.registerBlock(weatherblock, "weatherCommandBlock");
+
+		GameRegistry.addRecipe(new ItemStack(weatherblock), "rcr", "tet",
+				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
+				Blocks.redstone_block, 't', Items.ghast_tear);
 	}
 	  
 }
