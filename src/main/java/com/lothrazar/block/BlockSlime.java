@@ -12,13 +12,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.stats.StatList;
 //import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-
+ 
 public class BlockSlime extends BlockBreakable
-{
-    //private static final String __OBFID = "CL_00002063";
-
+{ 
     //TODO: THE PISTON STICK ACTION doesnt work??!!!
     
     public BlockSlime()
@@ -27,8 +23,8 @@ public class BlockSlime extends BlockBreakable
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.slipperiness = 0.8F;
         this.setBlockName("slime"); 
-        this.setBlockTextureName("samspowerups:" +"slime_block");
-        //mob.slime.big from sounds.json
+        this.setBlockTextureName("samspowerups:" +"slime_block");       
+
         //water has opacity of 3
         this.setLightOpacity(3);
     }
@@ -56,15 +52,14 @@ public class BlockSlime extends BlockBreakable
 	@Override
     public int getRenderBlockPass()
 	{
-            return 1;
+        return 1;
 	}
 	
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ii)
-    {
-    	//same texture on all sides
-        this.blockIcon = ii.registerIcon(this.textureName);
+    { 
+        this.blockIcon = ii.registerIcon(this.textureName); //same texture on all sides
     }
     
     @Override
@@ -74,7 +69,6 @@ public class BlockSlime extends BlockBreakable
         {
         	super.onFallenUpon(worldObj, x, y, z, entityIn,fallDistance); 
         	
-
             //copy from landed, which never fires
         	entityIn.motionY = 0.0D;
         }
@@ -109,7 +103,6 @@ public class BlockSlime extends BlockBreakable
         	}
         }
         
-        //same sound as slime mob
    	 	worldObj.playSoundAtEntity(
    			entityIn,  
    			"mob.slime.big", // sound file name from sounds.json
@@ -119,41 +112,4 @@ public class BlockSlime extends BlockBreakable
 
      	entityIn.fallDistance = 0;//remove fall damage!!
     }
-    /*
-    //@Override
-    public void onLanded(World worldObj, Entity entityIn)
-    {
-    	//this does not fire at all. probably because we cant override since
-    	//super doesnt exist
-    	System.out.println("onLanded ::  entityIn.motionY = "+entityIn.motionY);
-        if (entityIn.isSneaking())
-        { 
-        	//super doesnt exist so we skip it. must have been added in 1.8
-           // super.onLanded(worldIn, entityIn);
-        	//the super just does this anyway
- 
-        	entityIn.motionY = 0.0D;
-        }
-        else if (entityIn.motionY < 0.0D)
-        {
-            entityIn.motionY = -entityIn.motionY;
-        }
-    }
-
-    //where the bounce happens
-    @Override
-    public void onEntityCollidedWithBlock(World worldIn, int x,int y, int z, Entity entityIn)
-    {
-    	//this has an override so it should be good, but it never fires
-    	System.out.println("onEntityCollidedWithBlock ::  entityIn.motionY = "+entityIn.motionY);
-        if (Math.abs(entityIn.motionY) < 0.1D && !entityIn.isSneaking())
-        {
-            double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
-            entityIn.motionX *= d0;
-            entityIn.motionZ *= d0;
-        }
-
-        super.onEntityCollidedWithBlock(worldIn, x,y,z, entityIn);
-    }
-    */
 }

@@ -25,7 +25,7 @@ public class BlockXRay extends Block
 		super(Material.glass); 
 		
 		this.setCreativeTab(CreativeTabs.tabRedstone);
-		this.setHardness(4F); //was 6.0F in 1.1
+		this.setHardness(4F); 
 		this.setResistance(5F); 
 		this.setTickRandomly(true);
     }
@@ -46,15 +46,9 @@ public class BlockXRay extends Block
 	 	return ret;
 	} 
 	
-	
-	
-
-	private static BlockXRay block_xray;
-	
 	public static void initXray()
 	{
-
-		block_xray = new BlockXRay();
+		BlockXRay block_xray = new BlockXRay();
 		block_xray.setBlockName("block_xray").setBlockTextureName(
 				"samspowerups" + ":block_xray");
 		GameRegistry.registerBlock(block_xray, "block_xray");

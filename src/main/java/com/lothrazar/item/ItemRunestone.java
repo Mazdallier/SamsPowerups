@@ -24,6 +24,13 @@ import net.minecraftforge.common.config.Property;
 
 public class ItemRunestone extends ItemTool 
 {   
+	private static ItemRunestone rune_resistance;
+	private static ItemRunestone rune_jump;
+	private static ItemRunestone rune_goldheart;
+	private static ItemRunestone rune_haste;
+	private static ItemRunestone rune_water;
+	private static ItemRunestone rune_speed;
+	private static ItemRunestone rune_fire;
 	//private static 	int FLYING = -99;//this key identifier tells me its not a built in potion effect
 	//private static 	int HORSE = -50;//this key identifier tells me its not a built in potion effect
 
@@ -174,18 +181,9 @@ public class ItemRunestone extends ItemTool
 	 */
 	
 
-	private static ItemRunestone rune_resistance;
-	private static ItemRunestone rune_jump;
-	private static ItemRunestone rune_goldheart;
-	private static ItemRunestone rune_haste;
-	private static ItemRunestone rune_water;
-	private static ItemRunestone rune_speed;
-	private static ItemRunestone rune_fire;
-	
 	
 	public static void initRunestones()
 	{
-
 		boolean shiny = true;
 		boolean not_shiny = false;
 
@@ -277,5 +275,4 @@ public class ItemRunestone extends ItemTool
 		GameRegistry.addSmelting(rune_fire,
 				new ItemStack(Items.nether_star, 1), 0);
 	}
-	
 }

@@ -15,7 +15,6 @@ import net.minecraft.village.MerchantRecipeList;
 
 public class CommandSearchTrades  implements ICommand
 {
-
 	@Override
 	public int compareTo(Object arg0) 
 	{ 
@@ -125,7 +124,6 @@ public class CommandSearchTrades  implements ICommand
 						 match = true;
 				 }
 				 
-
 				 if(match)
 				 {
 					 m =  disabled  +
@@ -140,13 +138,11 @@ public class CommandSearchTrades  implements ICommand
 		 for(int j = 0; j < messages.size();j++)
 		 {
 			p.addChatMessage(new ChatComponentTranslation(messages.get(j))); 
-		 
 		 }
 		 
 		 if(messages.size() == 0)
 		 {
 			p.addChatMessage(new ChatComponentTranslation("No matching trades found in nearby villagers ("+range+"m).")); 
-		 
 		 } 
 	}
 

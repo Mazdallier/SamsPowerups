@@ -15,13 +15,12 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class ItemFoodAppleMagic extends ItemFood
-{ 
-	private static boolean isEnabled = true;
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
-	
+{  
+	private static ItemFoodAppleMagic appleEmerald;
+	private static ItemFoodAppleMagic appleDiamond;
+	private static ItemFoodAppleMagic appleLapis;
+	private static ItemFoodAppleMagic appleChocolate;
+  
 	private boolean _hasEffect = false;
 
 	private ArrayList<Integer> _potionIds;
@@ -81,18 +80,9 @@ public class ItemFoodAppleMagic extends ItemFood
 		 else 
 			 return EnumRarity.rare;
 	} 
-	 
-
-	private static ItemFoodAppleMagic appleEmerald;
-	private static ItemFoodAppleMagic appleDiamond;
-	private static ItemFoodAppleMagic appleLapis;
-	private static ItemFoodAppleMagic appleChocolate;
-  
- 
-
+	  
 	public static void initApples()
-	{
-
+	{ 
 		// the potion effect ids listed at
 		// http://minecraft.gamepedia.com/Potion_Effects
 		int SPEED = 1;
@@ -199,9 +189,5 @@ public class ItemFoodAppleMagic extends ItemFood
 				"eee", 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
 				, 'a', Items.apple);
 
-	}
-
-		
-		
-	
+	} 
 }

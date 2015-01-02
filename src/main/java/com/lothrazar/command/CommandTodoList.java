@@ -37,10 +37,8 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-
 public class CommandTodoList implements ICommand
-{  
-  
+{   
 	private ArrayList<String> aliases;  
 	
 	public static String KEY_LIST = "todo_list";
@@ -50,8 +48,7 @@ public class CommandTodoList implements ICommand
 	    this.aliases = new ArrayList<String>(); 
 	    this.aliases.add("todo");   
 	}
- 
-	
+  
 	@Override
 	public String getCommandUsage(ICommandSender s) 
 	{ 
@@ -93,8 +90,7 @@ public class CommandTodoList implements ICommand
 	{
 		String fileName = "todo_"+playerName +".dat";
 		try{
-			
-	 
+			 
 			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName); 
 			if(!myFile.exists()) myFile.createNewFile(); 
 			FileOutputStream fos = new FileOutputStream(myFile);
@@ -103,8 +99,7 @@ public class CommandTodoList implements ICommand
 			stream.writeBytes(todoCurrent);
 			stream.close();
 			fos.close();
-			 
-		
+			  
 		} catch (FileNotFoundException e) { 
 		//	Relay.addChatMessage(p, "Error with "+fileName);
 			e.printStackTrace();
@@ -112,8 +107,7 @@ public class CommandTodoList implements ICommand
 		catch (IOException e) {
 		//	Relay.addChatMessage(p, "Error with "+fileName);
 			e.printStackTrace();
-		}
-
+		} 
 	}
 	
 	@Override
@@ -122,13 +116,8 @@ public class CommandTodoList implements ICommand
 		EntityPlayer p = (EntityPlayer)icommandsender;//
 
 		String fileName = "todo_"+ p.getDisplayName() +".dat";
-
-		// create file if not exist
-		//NBTTagCompound c = p.getEntityData();
  
 		String todoCurrent = GetTodoForPlayerName(p.getDisplayName() );
-
- 
  
 		 //is the first argument empty
 		 if(args == null || args.length == 0 || args[0] == null || args[0].isEmpty())
@@ -172,23 +161,14 @@ public class CommandTodoList implements ICommand
 			 } 
 			 todoCurrent = message;//so replace
 		 }
-
  
-		 SetTodoForPlayerName(p.getDisplayName(),todoCurrent);
-		
+		 SetTodoForPlayerName(p.getDisplayName(),todoCurrent); 
 	}
 	 
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) 
 	{  
-		//TODO: only if OP
-		// EntityPlayer p = (EntityPlayer)icommandsender;
-	//	 MinecraftServer.getServer().getConfigurationManager().areCommandsAllowed(p.getDisplayName());
-		// if(p.worldObj.)
-
-	//	return MinecraftServer.getServer().getOpPermissionLevel();
-	//	return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(((EntityPlayerMP) icommandsender).getCommandSenderName());
- 
+		//doesnt matter if OP or not. its for everyone.
 		return true;
 	}
 	
@@ -222,22 +202,6 @@ public class CommandTodoList implements ICommand
 	{ 
 		return "todo";
 	}
-/*
-	 
-	public static void onPlayerDeath(EntityPlayer p) 
-	{
-		//since everything gets erased on player death, we write them to chat as a kind of backup
- 
-		NBTTagCompound c = p.getEntityData();
-	 
-		String todoCurrent = c.getString(KEY_LIST);
-		 
-		if(todoCurrent != null && todoCurrent.isEmpty() == false)
-		{ 
-			//Chat.addMessage(p, "Task failure, ToDo erased : " +todoCurrent);
-		}  
-	}
-*/
 }
 
 

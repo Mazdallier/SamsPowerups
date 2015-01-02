@@ -310,7 +310,6 @@ public class ItemWandMaster extends ItemTool
 
 	}
 	
-
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
 	
@@ -331,6 +330,4 @@ public class ItemWandMaster extends ItemTool
 		itemChestSack.setTextureName("samspowerups"+":chest_sack").setUnlocalizedName("chest_sack");
 		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
 	}
-	
-	
 }

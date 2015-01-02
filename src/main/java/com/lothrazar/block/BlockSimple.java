@@ -19,21 +19,19 @@ public class BlockSimple extends Block
 	{
 		super(m);   
 	}
+	
 	public BlockSimple(Material m, Item d)
 	{
 		super(m); 
 		itemDropped = d;
 	}
 	
-	@Override
-	 // public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
-	  public boolean canSilkHarvest()
-    {
-		//??baseclass??
+	@Override 
+	public boolean canSilkHarvest()
+    { 
 		return true;
     }
-	
-	
+	 
 	@Override
 	public int quantityDroppedWithBonus(int fortuneLevel, Random r)
     {
@@ -50,33 +48,11 @@ public class BlockSimple extends Block
         return min + r.nextInt(extra+1);//so range is [min,extra]
     }
 	
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(int i, Random rand, int m)
     {
 		if(itemDropped == null)
 			return Item.getItemFromBlock(this);
 		else 
-			return itemDropped;
-       // return ModSamsContent.prismarine_crystals;
+			return itemDropped; 
     }
-       
-	
-	/*      
-    
-     
-     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
-    {
-        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-
-        int count = quantityDropped(metadata, fortune, world.rand);
-        for(int i = 0; i < count; i++)
-        {
-            Item item = getItemDropped(metadata, world.rand, fortune);
-            if (item != null)
-            {
-                ret.add(new ItemStack(item, 1, damageDropped(metadata)));
-            }
-        }
-        return ret;
-    }*/
-	
 }

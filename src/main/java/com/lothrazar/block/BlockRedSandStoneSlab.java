@@ -19,9 +19,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockRedSandStoneSlab  extends BlockSlab
-{
-
-    private IIcon icon;//field_150007_M
+{ 
+    private IIcon icon; 
 	public BlockRedSandStoneSlab(boolean b) 
 	{ 
 		super(b, Blocks.sandstone.getMaterial()); 
@@ -30,11 +29,9 @@ public class BlockRedSandStoneSlab  extends BlockSlab
  
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs p_149666_2_, List p_149666_3_)
-    {
- 
-         p_149666_3_.add(new ItemStack(item, 1, 0));
-
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list)
+    { 
+		list.add(new ItemStack(item, 1, 0)); 
     }
 
 	@Override
@@ -45,7 +42,7 @@ public class BlockRedSandStoneSlab  extends BlockSlab
     }
 
 	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+	public Item getItemDropped(int i, Random rand, int m)
     {
         return Item.getItemFromBlock(this);
     }
@@ -63,11 +60,9 @@ public class BlockRedSandStoneSlab  extends BlockSlab
 		return Item.getItemFromBlock(this); // so creative mode pick block works
     }
     
-    //getFullSlabName
 	@Override
-	public String func_150002_b(int par1) 
-	{
-		          
-		  return super.getUnlocalizedName();// + "." + (par1+1);
+	public String func_150002_b(int par1)   //getFullSlabName
+	{ 
+		  return super.getUnlocalizedName(); 
 	}
 }

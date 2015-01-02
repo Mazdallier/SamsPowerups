@@ -106,14 +106,12 @@ public class CommandSimpleWaypoints  implements ICommand
 		
 		index = Integer.parseInt(args[1]);
 		
-		
 		if(index <= 0 ) //invalid number, or int parse failed
 		{
 			// ZERO NOT ALLOWED
 			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(icommandsender))); 
 			return;
 		}
-		
 		
 		if(args[0].equals(MODE_DISPLAY))
 		{
@@ -268,20 +266,15 @@ public class CommandSimpleWaypoints  implements ICommand
 			stream.close();
 			fos.close();
 		} catch (FileNotFoundException e) {
-		// Relay.addChatMessage(p, "Error with "+fileName);
+
 			e.printStackTrace();
 		} //this makes it per-world
 		catch (IOException e) {
-		// Relay.addChatMessage(p, "Error with "+fileName);
+
 			e.printStackTrace();
 		}
 	}
 	
-	
-	
-	
-	
-
 	public static ArrayList<String> GetForPlayerName(String playerName)
 	{ 
 		if(playerName == null)
@@ -318,8 +311,6 @@ public class CommandSimpleWaypoints  implements ICommand
 		return lines;
 	} 
 	
-	
-
 	public static void AddWaypointInfo(RenderGameOverlayEvent.Text event) 
 	{
 		EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
@@ -353,8 +344,6 @@ public class CommandSimpleWaypoints  implements ICommand
     		
     		if(loc != null)
     		{ 
-    			//return  showName +Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + dim;	
-    			
     			if(p.dimension != loc.dimension){return;}
     			
     			double dX = p.posX - loc.X;
@@ -372,6 +361,4 @@ public class CommandSimpleWaypoints  implements ICommand
     		} 
     	}
 	}
-	
-	
 }

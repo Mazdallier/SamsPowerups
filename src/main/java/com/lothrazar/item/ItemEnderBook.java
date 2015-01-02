@@ -25,10 +25,9 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraft.util.MathHelper;
 
 public class ItemEnderBook extends ItemTool
-{
- 
-	public static String KEY_LOC = "location";
-	
+{ 
+	public static String KEY_LOC = "location"; 
+	public static ItemEnderBook itemEnderBook;
 	private static int DURABILITY = 50;
 	
 	public ItemEnderBook( )
@@ -77,11 +76,7 @@ public class ItemEnderBook extends ItemTool
 
 	public void saveCurrentLocation(EntityPlayer entityPlayer, ItemStack itemStack) 
 	{ 
-		// if(event.entityPlayer.isSneaking() == false){ return;}
-		// BiomeGenBase biome =
-		// event.world.getBiomeGenForCoords((int)event.entityPlayer.posX,
-		// (int)event.entityPlayer.posZ);
-
+		// if(event.entityPlayer.isSneaking() == false){ return;} 
 		int slot = entityPlayer.inventory.currentItem + 1;
     	Location loc = new Location(slot
     			,entityPlayer.posX
@@ -98,15 +93,7 @@ public class ItemEnderBook extends ItemTool
 	} 
 	
 	public static void teleport(EntityPlayer entityPlayer, ItemStack enderBookInstance) 
-	{
-
-		/*
-		if (itemStack.stackTagCompound == null)
-		{
-			return;
-		}
-		 */
-		
+	{ 
 		int slot = entityPlayer.inventory.currentItem+1;
     	String KEY = ItemEnderBook.KEY_LOC + "_" + slot;
     	
@@ -139,11 +126,7 @@ public class ItemEnderBook extends ItemTool
 
 		entityPlayer.getCurrentEquippedItem().damageItem(1, entityPlayer);
 	}
-	
-	
-
-	public static ItemEnderBook itemEnderBook;
-	
+	 
 	public static void initEnderbook()
 	{
 		itemEnderBook = new ItemEnderBook();
@@ -155,12 +138,5 @@ public class ItemEnderBook extends ItemTool
 		GameRegistry.addSmelting(itemEnderBook, new ItemStack(
 				Items.ender_pearl, 8), 0);
 	}
-
-	
-	
-	
-	
-	
-	
 }
  

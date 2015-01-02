@@ -53,7 +53,6 @@ public class ItemChestSack extends Item
 		String count = itemStack.getTagCompound().getString("count"); 
 		if(count == null ) {count =   "0";}
         		 
-        	 
         list.add("Items: " + EnumChatFormatting.GREEN +count);
  
         String stacks = itemStack.getTagCompound().getString("stacks"); 
@@ -71,8 +70,7 @@ public class ItemChestSack extends Item
 		int[] itemdmg = held.stackTagCompound.getIntArray(KEY_ITEMDMG);
 		int[] itemqty = held.stackTagCompound.getIntArray(KEY_ITEMQTY);
 		
-		
-		if(itemids==null)
+		if(itemids == null)
 		{
 			//Chat.addMessage(event.entityPlayer, "null nbt problem in itemchestsack");
 			return;
@@ -191,10 +189,7 @@ public class ItemChestSack extends Item
 			//doesnt fing work anyway
 			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
-		
-		//event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray("itemids",null);
- 
-
+	 
 		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMIDS,itemids);
 		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMDMG,itemdmg);
 		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMQTY,itemqty);

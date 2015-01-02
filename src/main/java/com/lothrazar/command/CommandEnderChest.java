@@ -20,46 +20,54 @@ public class CommandEnderChest implements ICommand
 		this.aliases.add("ec");
 		this.aliases.add("enderchest");
 	}
+	
 	@Override
 	public String getCommandName()
 	{
 		return "enderchest";
 	}
+	
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
 		return "enderchest";
 	}
+	
 	@Override
 	public ArrayList<String> getCommandAliases()
 	{
 		return this.aliases;
 	}
+	
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring)
 	{
 		EntityPlayer p = (EntityPlayer)icommandsender;
 		p.displayGUIChest(p.getInventoryEnderChest());
 	}
+	
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender ic)
 	{
-	//removed from 172 : MinecraftServer.getServer().getConfigurationManager().isPlayerOpped()
-		
+		//removed from 172 : MinecraftServer.getServer().getConfigurationManager().isPlayerOpped()
+		//instead we do:
 		//http://www.minecraftforge.net/forum/index.php?topic=22907.0
 		//for some magic reason, 2 means op. and "" is ?? but it works.
 		return ic.canCommandSenderUseCommand(2, "");
 	}
+	
 	@Override
 	public ArrayList<String> addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
 	{
 		return null;
 	}
+	
 	@Override
 	public boolean isUsernameIndex(String[] astring, int i)
 	{
 		return false;
 	}
+	
 	@Override
 	public int compareTo(Object o)
 	{

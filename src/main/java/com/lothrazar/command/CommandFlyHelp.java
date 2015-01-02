@@ -73,10 +73,8 @@ public class CommandFlyHelp implements ICommand
 		  p.addChatMessage(new ChatComponentTranslation( "- You have at least "+HandlerSurvivalFlying.StartFlyingLevel+" levels"));  
 		  
 		  //no message needed for xp drain
-	 
 	  }
 	   
-
 	  @Override
 	  public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
 	  { 

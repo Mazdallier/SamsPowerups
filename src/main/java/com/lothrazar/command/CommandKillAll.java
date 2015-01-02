@@ -42,26 +42,23 @@ public class CommandKillAll implements ICommand
 	{ 
 		return null;
 	}
+	
 	private int killed = 0;
 	@Override
 	public void processCommand(ICommandSender ic, String[] args) 
 	{ 
-
 		EntityPlayer p = (EntityPlayer)ic;
 		double px = p.posX;
 		double py = p.posY;
 		double pz = p.posZ;
 		
-				 
 		if(args.length == 0)
 		{
 			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic))); 
-			//Chat.addMessage(p,getCommandUsage(ic));
 			return;
 		}
 		
-		int range = 50;
-		
+		int range = 50;//default range
 		
 		if(args.length > 1 && args[1] != null && args[1] != "")
 		{
@@ -69,10 +66,12 @@ public class CommandKillAll implements ICommand
 			{
 				range = Integer.parseInt(args[1]);
 			}
-			catch(Exception ex){
-				
+			catch(Exception ex)
+			{
+				//range will stay as default
 			}
 		}
+		
 		if(range < 1 || range > 64)
 		{
 			p.addChatMessage(new ChatComponentTranslation(getCommandUsage(ic)+ " ; Maximum range of 64"));  
@@ -209,12 +208,7 @@ public class CommandKillAll implements ICommand
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityVillager.class, rangeBox)); 
-		}/*//no endermite yet either or guardian
-		else if("rabbit".contains(args[0]) || "bunny".contains(args[0]))
-		{  
-			this.killAll( p.worldObj.getEntitiesWithinAABB(
-					EntityRabbit.class, rangeBox)); 
-		}*/
+		}
 		else if("horse".contains(args[0])  )
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(

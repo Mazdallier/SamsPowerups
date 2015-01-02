@@ -16,15 +16,15 @@ import net.minecraft.world.World;
 public class ItemSlabRedSandstone extends ItemBlock
 {
     private final boolean field_150948_b;
-    private final BlockSlab field_150949_c;
-    private final BlockSlab field_150947_d;
-    private static final String __OBFID = "CL_00000071";
+    private final BlockSlab blockSingle;
+    private final BlockSlab blockDouble;
+   // private static final String __OBFID = "CL_00000071";
 
     public ItemSlabRedSandstone(Block block)
     {
         super(block);
-        this.field_150949_c = HandlerBountifulUpdate.redSandstoneSingleSlab;
-        this.field_150947_d = HandlerBountifulUpdate.redSandstoneDoubleSlab;
+        this.blockSingle = HandlerBountifulUpdate.redSandstoneSingleSlab;
+        this.blockDouble = HandlerBountifulUpdate.redSandstoneDoubleSlab;
         this.field_150948_b = false;
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
@@ -42,158 +42,158 @@ public class ItemSlabRedSandstone extends ItemBlock
     /**
      * Returns the metadata of the block which this Item (ItemBlock) can place
      */
-    public int getMetadata(int p_77647_1_)
+    public int getMetadata(int m)
     {
-        return p_77647_1_;
+        return m;
     }
 
     /**
      * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
      * different names based on their damage or NBT.
      */
-    public String getUnlocalizedName(ItemStack p_77667_1_)
+    public String getUnlocalizedName(ItemStack is)
     {
-        return this.field_150949_c.func_150002_b(p_77667_1_.getItemDamage());
+        return this.blockSingle.func_150002_b(is.getItemDamage());
     }
 
     /**
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_)
+    public boolean onItemUse(ItemStack is, EntityPlayer player, World world, int x, int y, int z, int m, float par1Float, float par2Float, float par3Float)
     {
         if (this.field_150948_b)
         {
-            return super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_8_, p_77648_9_, p_77648_10_);
+            return super.onItemUse(is, player, world, x, y, z, m, par1Float, par2Float, par3Float);
         }
-        else if (p_77648_1_.stackSize == 0)
+        else if (is.stackSize == 0)
         {
             return false;
         }
-        else if (!p_77648_2_.canPlayerEdit(p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_1_))
+        else if (!player.canPlayerEdit(x, y, z, m, is))
         {
             return false;
         }
         else
         {
-            Block block = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
-            int i1 = p_77648_3_.getBlockMetadata(p_77648_4_, p_77648_5_, p_77648_6_);
+            Block block = world.getBlock(x, y, z);
+            int i1 = world.getBlockMetadata(x, y, z);
             int j1 = i1 & 7;
             boolean flag = (i1 & 8) != 0;
 
-            if ((p_77648_7_ == 1 && !flag || p_77648_7_ == 0 && flag) && block == this.field_150949_c && j1 == p_77648_1_.getItemDamage())
+            if ((m == 1 && !flag || m == 0 && flag) && block == this.blockSingle && j1 == is.getItemDamage())
             {
-                if (p_77648_3_.checkNoEntityCollision(this.field_150947_d.getCollisionBoundingBoxFromPool(p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_)) && p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, this.field_150947_d, j1, 3))
+                if (world.checkNoEntityCollision(this.blockDouble.getCollisionBoundingBoxFromPool(world, x, y, z)) && world.setBlock(x, y, z, this.blockDouble, j1, 3))
                 {
-                    p_77648_3_.playSoundEffect((double)((float)p_77648_4_ + 0.5F), (double)((float)p_77648_5_ + 0.5F), (double)((float)p_77648_6_ + 0.5F), this.field_150947_d.stepSound.func_150496_b(), (this.field_150947_d.stepSound.getVolume() + 1.0F) / 2.0F, this.field_150947_d.stepSound.getPitch() * 0.8F);
-                    --p_77648_1_.stackSize;
+                    world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), this.blockDouble.stepSound.func_150496_b(), (this.blockDouble.stepSound.getVolume() + 1.0F) / 2.0F, this.blockDouble.stepSound.getPitch() * 0.8F);
+                    --is.stackSize;
                 }
 
                 return true;
             }
             else
             {
-                return this.func_150946_a(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_) ? true : super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_8_, p_77648_9_, p_77648_10_);
+                return this.func_150946_a(is, player, world, x, y, z, m) ? true : super.onItemUse(is, player, world, x, y, z, m, par1Float, par2Float, par3Float);
             }
         }
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean func_150936_a(World p_150936_1_, int p_150936_2_, int p_150936_3_, int p_150936_4_, int p_150936_5_, EntityPlayer p_150936_6_, ItemStack p_150936_7_)
+    public boolean func_150936_a(World world, int x, int y, int z, int f, EntityPlayer player, ItemStack itemStack)
     {
-        int i1 = p_150936_2_;
-        int j1 = p_150936_3_;
-        int k1 = p_150936_4_;
-        Block block = p_150936_1_.getBlock(p_150936_2_, p_150936_3_, p_150936_4_);
-        int l1 = p_150936_1_.getBlockMetadata(p_150936_2_, p_150936_3_, p_150936_4_);
+        int i1 = x;
+        int j1 = y;
+        int k1 = z;
+        Block block = world.getBlock(x, y, z);
+        int l1 = world.getBlockMetadata(x, y, z);
         int i2 = l1 & 7;
         boolean flag = (l1 & 8) != 0;
 
-        if ((p_150936_5_ == 1 && !flag || p_150936_5_ == 0 && flag) && block == this.field_150949_c && i2 == p_150936_7_.getItemDamage())
+        if ((f == 1 && !flag || f == 0 && flag) && block == this.blockSingle && i2 == itemStack.getItemDamage())
         {
             return true;
         }
         else
         {
-            if (p_150936_5_ == 0)
+            if (f == 0)
             {
-                --p_150936_3_;
+                --y;
             }
 
-            if (p_150936_5_ == 1)
+            if (f == 1)
             {
-                ++p_150936_3_;
+                ++y;
             }
 
-            if (p_150936_5_ == 2)
+            if (f == 2)
             {
-                --p_150936_4_;
+                --z;
             }
 
-            if (p_150936_5_ == 3)
+            if (f == 3)
             {
-                ++p_150936_4_;
+                ++z;
             }
 
-            if (p_150936_5_ == 4)
+            if (f == 4)
             {
-                --p_150936_2_;
+                --x;
             }
 
-            if (p_150936_5_ == 5)
+            if (f == 5)
             {
-                ++p_150936_2_;
+                ++x;
             }
 
-            Block block1 = p_150936_1_.getBlock(p_150936_2_, p_150936_3_, p_150936_4_);
-            int j2 = p_150936_1_.getBlockMetadata(p_150936_2_, p_150936_3_, p_150936_4_);
+            Block block1 = world.getBlock(x, y, z);
+            int j2 = world.getBlockMetadata(x, y, z);
             i2 = j2 & 7;
-            return block1 == this.field_150949_c && i2 == p_150936_7_.getItemDamage() ? true : super.func_150936_a(p_150936_1_, i1, j1, k1, p_150936_5_, p_150936_6_, p_150936_7_);
+            return block1 == this.blockSingle && i2 == itemStack.getItemDamage() ? true : super.func_150936_a(world, i1, j1, k1, f, player, itemStack);
         }
     }
 
-    private boolean func_150946_a(ItemStack p_150946_1_, EntityPlayer p_150946_2_, World p_150946_3_, int p_150946_4_, int p_150946_5_, int p_150946_6_, int p_150946_7_)
+    private boolean func_150946_a(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int f)
     {
-        if (p_150946_7_ == 0)
+        if (f == 0)
         {
-            --p_150946_5_;
+            --y;
         }
 
-        if (p_150946_7_ == 1)
+        if (f == 1)
         {
-            ++p_150946_5_;
+            ++y;
         }
 
-        if (p_150946_7_ == 2)
+        if (f == 2)
         {
-            --p_150946_6_;
+            --z;
         }
 
-        if (p_150946_7_ == 3)
+        if (f == 3)
         {
-            ++p_150946_6_;
+            ++z;
         }
 
-        if (p_150946_7_ == 4)
+        if (f == 4)
         {
-            --p_150946_4_;
+            --x;
         }
 
-        if (p_150946_7_ == 5)
+        if (f == 5)
         {
-            ++p_150946_4_;
+            ++x;
         }
 
-        Block block = p_150946_3_.getBlock(p_150946_4_, p_150946_5_, p_150946_6_);
-        int i1 = p_150946_3_.getBlockMetadata(p_150946_4_, p_150946_5_, p_150946_6_);
+        Block block = world.getBlock(x, y, z);
+        int i1 = world.getBlockMetadata(x, y, z);
         int j1 = i1 & 7;
 
-        if (block == this.field_150949_c && j1 == p_150946_1_.getItemDamage())
+        if (block == this.blockSingle && j1 == itemStack.getItemDamage())
         {
-            if (p_150946_3_.checkNoEntityCollision(this.field_150947_d.getCollisionBoundingBoxFromPool(p_150946_3_, p_150946_4_, p_150946_5_, p_150946_6_)) && p_150946_3_.setBlock(p_150946_4_, p_150946_5_, p_150946_6_, this.field_150947_d, j1, 3))
+            if (world.checkNoEntityCollision(this.blockDouble.getCollisionBoundingBoxFromPool(world, x, y, z)) && world.setBlock(x, y, z, this.blockDouble, j1, 3))
             {
-                p_150946_3_.playSoundEffect((double)((float)p_150946_4_ + 0.5F), (double)((float)p_150946_5_ + 0.5F), (double)((float)p_150946_6_ + 0.5F), this.field_150947_d.stepSound.func_150496_b(), (this.field_150947_d.stepSound.getVolume() + 1.0F) / 2.0F, this.field_150947_d.stepSound.getPitch() * 0.8F);
-                --p_150946_1_.stackSize;
+                world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), this.blockDouble.stepSound.func_150496_b(), (this.blockDouble.stepSound.getVolume() + 1.0F) / 2.0F, this.blockDouble.stepSound.getPitch() * 0.8F);
+                --itemStack.stackSize;
             }
 
             return true;

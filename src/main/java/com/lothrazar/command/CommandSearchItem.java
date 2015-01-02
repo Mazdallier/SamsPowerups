@@ -16,8 +16,6 @@ import net.minecraftforge.common.config.Property;
 public class CommandSearchItem  implements ICommand
 {
 	private static int RADIUS = 32;
-	private static boolean isEnabled;
-	private static String MODID;
 
 	public CommandSearchItem()
 	{
@@ -68,16 +66,6 @@ public class CommandSearchItem  implements ICommand
 		return false;
 	}
   
-	public static void loadConfig(Configuration config)
-	{ 
-		String category = MODID  ;  
-		
-		isEnabled = config.get(category,"itemsearch", true,
-				"When true, this enables /searchitem command, which searches chests and other containers near you for an item within 32 blocks.")
-		.getBoolean(true); 
-	 
-	}
-	 
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) 
 	{
@@ -88,14 +76,12 @@ public class CommandSearchItem  implements ICommand
 		EntityPlayerMP player = (EntityPlayerMP) sender;
 		if (args.length < 1)
 		{
-		//Chat.addMessage(sender.getEntityWorld() , getCommandUsage(sender));
 			player.addChatMessage(new ChatComponentTranslation(getCommandUsage(sender))); 
 			return;
 		}
 		
 		String search = args[0].trim().toLowerCase(); // args[0] is the command name or alias used such as "is"
  
-		 
 		ArrayList<String> foundMessages = new ArrayList<String>();
 	  
 		int x = (int)player.posX;
@@ -175,7 +161,6 @@ public class CommandSearchItem  implements ICommand
 				player.addChatMessage(new ChatComponentTranslation(foundMessages.get(i)));
 		    }
 		}
-		
 	}
 	
 	private static String itemLocDisplay(	EntityPlayerMP player, int xLoop, int yLoop, int zLoop ,int foundQty, int foundStacks)
@@ -219,11 +204,4 @@ public class CommandSearchItem  implements ICommand
 		 
 		return xStr +  yStr +  zStr +": "+ totalsStr;
 	}
-	
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
-	
-	 
 }
