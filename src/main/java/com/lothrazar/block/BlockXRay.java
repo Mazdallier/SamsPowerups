@@ -2,6 +2,9 @@ package com.lothrazar.block;
 
 import java.util.ArrayList;
 import java.util.Random; 
+
+import com.lothrazar.samscontent.ModSamsContent;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -49,9 +52,8 @@ public class BlockXRay extends Block
 	public static void initXray()
 	{
 		BlockXRay block_xray = new BlockXRay();
-		block_xray.setBlockName("block_xray").setBlockTextureName(
-				"samspowerups" + ":block_xray");
-		GameRegistry.registerBlock(block_xray, "block_xray");
+ 
+		ModSamsContent.registerBlockHelper(block_xray,"block_xray");
 
 		GameRegistry.addRecipe(new ItemStack(block_xray), "owo", "wgw", "owo",
 				'w', Blocks.web, 'g', Blocks.glass, 'o', Blocks.obsidian);

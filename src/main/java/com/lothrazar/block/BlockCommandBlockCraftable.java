@@ -155,15 +155,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static void initCommand()
 	{
 
-		BlockCommandBlockCraftable gameruleRegenBlock;
-		gameruleRegenBlock = new BlockCommandBlockCraftable(
-				CommandType.Gamerule, "naturalRegeneration");
+		BlockCommandBlockCraftable regen_command_block;
+		regen_command_block = new BlockCommandBlockCraftable( CommandType.Gamerule, "naturalRegeneration");
+	 
+		ModSamsContent.registerBlockHelper(regen_command_block,"regen_command_block");
 		
-		gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName(
-				"samspowerups" + ":regen_command_block");
-		
-		GameRegistry.registerBlock(gameruleRegenBlock, "grRegenBlock");
-		GameRegistry.addRecipe(new ItemStack(gameruleRegenBlock)
+		GameRegistry.addRecipe(new ItemStack(regen_command_block)
 				, "rcr"
 				, "tet"
 				, "rcr", 
@@ -172,40 +169,33 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				'r', Blocks.redstone_block, 
 				't', Items.ghast_tear
 		);
-
-		BlockCommandBlockCraftable gamerulemobGriefingblock;
-		gamerulemobGriefingblock = new BlockCommandBlockCraftable(
+//the vanilla texture is called simply "command_block"
+		BlockCommandBlockCraftable mobgrief_command_block;
+		mobgrief_command_block = new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "mobGriefing");
-		gamerulemobGriefingblock
-				.setBlockName("grmobGriefingblock")
-				.setBlockTextureName("samspowerups" + ":mobgrief_command_block");
-		GameRegistry.registerBlock(gamerulemobGriefingblock,
-				"grmobGriefingblock");
+	 
+		ModSamsContent.registerBlockHelper(mobgrief_command_block,"mobgrief_command_block");
 
-		GameRegistry.addRecipe(new ItemStack(gamerulemobGriefingblock), "rcr",
+		GameRegistry.addRecipe(new ItemStack(mobgrief_command_block), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Blocks.tnt, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 
-		BlockCommandBlockCraftable gameruleFiretickblock;
-		gameruleFiretickblock = new BlockCommandBlockCraftable(
-				CommandType.Gamerule, "doFireTick");
-		gameruleFiretickblock
-				.setBlockName("grdoFiretickblock")
-				.setBlockTextureName("samspowerups" + ":firetick_command_block");
-		GameRegistry.registerBlock(gameruleFiretickblock, "grdoFiretickblock");
-
-		GameRegistry.addRecipe(new ItemStack(gameruleFiretickblock), "rcr",
+		BlockCommandBlockCraftable firetick_command_block;
+		firetick_command_block = new BlockCommandBlockCraftable(
+				CommandType.Gamerule, "doFireTick"); 
+		ModSamsContent.registerBlockHelper(firetick_command_block,"firetick_command_block");
+ 
+		GameRegistry.addRecipe(new ItemStack(firetick_command_block), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Items.lava_bucket,
 				'r', Blocks.redstone_block, 't', Items.ghast_tear);
 
-		BlockCommandBlockCraftable day;
-		day = new BlockCommandBlockCraftable(CommandType.Gamerule,
+		BlockCommandBlockCraftable daycycle_command_block;
+		daycycle_command_block = new BlockCommandBlockCraftable(CommandType.Gamerule,
 				"doDaylightCycle");
-		day.setBlockName("daycycle_command_block").setBlockTextureName(
-				"samspowerups" + ":daycycle_command_block");
-		GameRegistry.registerBlock(day, "daycycle_command_block");
+ 
+		ModSamsContent.registerBlockHelper(daycycle_command_block,"daycycle_command_block");
 
-		GameRegistry.addRecipe(new ItemStack(day), "rcr", "tet", "rcr", 'c',
+		GameRegistry.addRecipe(new ItemStack(daycycle_command_block), "rcr", "tet", "rcr", 'c',
 				Items.comparator, 'e', Blocks.glowstone, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 
@@ -213,13 +203,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
 	public static void initWeatherBlock()
 	{
-		BlockCommandBlockCraftable weatherblock;
-		weatherblock = new BlockCommandBlockCraftable(CommandType.Weather);
-		weatherblock.setBlockName("weatherCommandBlock").setBlockTextureName(
-				"samspowerups" + ":weather_command_block");
-		GameRegistry.registerBlock(weatherblock, "weatherCommandBlock");
+		BlockCommandBlockCraftable weather_command_block;
+		weather_command_block = new BlockCommandBlockCraftable(CommandType.Weather);
+ 
+		ModSamsContent.registerBlockHelper(weather_command_block,"weather_command_block");
 
-		GameRegistry.addRecipe(new ItemStack(weatherblock), "rcr", "tet",
+		GameRegistry.addRecipe(new ItemStack(weather_command_block), "rcr", "tet",
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 	}

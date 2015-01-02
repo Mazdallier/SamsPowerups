@@ -319,7 +319,7 @@ public class ItemWandMaster extends ItemTool
 		itemWand = new ItemWandMaster();
   
 		ModSamsContent.registerItemHelper(itemWand, "wand_master");
-;		GameRegistry.addRecipe(new ItemStack(itemWand)
+		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "
 			," b "

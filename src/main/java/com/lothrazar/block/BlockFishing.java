@@ -1,6 +1,9 @@
 package com.lothrazar.block;
 
 import java.util.Random;  
+
+import com.lothrazar.samscontent.ModSamsContent;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -117,16 +120,14 @@ public class BlockFishing extends Block
 
 	public static void initFishing()
 	{
-		BlockFishing block = new BlockFishing();
-		block.setBlockName("block_fishing").setBlockTextureName(
-				"samspowerups" + ":block_fishing");
-		GameRegistry.registerBlock(block, "block_fishing");
+		BlockFishing block_fishing = new BlockFishing(); 
+		ModSamsContent.registerBlockHelper(block_fishing,"block_fishing");
 
-		GameRegistry.addRecipe(new ItemStack(block), "pwp", "wfw", "pwp", 'w',
+		GameRegistry.addRecipe(new ItemStack(block_fishing), "pwp", "wfw", "pwp", 'w',
 				Blocks.web, 'f', new ItemStack(Items.fishing_rod, 1, 0), 'p',
 				Blocks.planks);
 
-		GameRegistry.addSmelting(new ItemStack(block), new ItemStack(
+		GameRegistry.addSmelting(new ItemStack(block_fishing), new ItemStack(
 				Blocks.web, 4), 0);
 	}
 	
