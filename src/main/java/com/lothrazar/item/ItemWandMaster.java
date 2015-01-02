@@ -314,7 +314,7 @@ public class ItemWandMaster extends ItemTool
 	public static ItemWandMaster itemWand;
 	public static ItemChestSack itemChestSack;
 	
-	public static void onInit(FMLInitializationEvent event) 
+	public static void onInit() 
 	{  
 		itemWand = new ItemWandMaster();
 		itemWand.setUnlocalizedName("wand_master").setTextureName("samspowerups"+":wand_master");

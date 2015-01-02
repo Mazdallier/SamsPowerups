@@ -32,9 +32,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class HandlerBountifulUpdate
 {
 
-	public BlockSimple sea_lantern;
+	public static BlockSimple sea_lantern;
 	public static Item prismarine_crystals;
-	public Item prismarine_shard;
+	public static Item prismarine_shard;
 
 	static ItemFood mutton_raw;
 	static ItemFood mutton_cooked;
@@ -51,87 +51,49 @@ public class HandlerBountifulUpdate
 	public static BlockRedSandStoneSlab redSandstoneSingleSlab;
 	public static BlockRedSandStoneSlab redSandstoneDoubleSlab;
 	public static BlockRedSandStone redSandstone;
-
-	public  void Init()
+ 
+	static void initRecipes()
 	{
-		if(ModSamsContent.settings.recipes)
-		{
-			 
-			//more random changse from
-			// http://minecraft.gamepedia.com/1.8
-			Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
-			Blocks.melon_block.setHarvestLevel("axe", 0);
-			Blocks.ladder.setHarvestLevel("axe", 0);
-			
-			//new recipes for existing blocks
+		//more random changse from
+		// http://minecraft.gamepedia.com/1.8
+		Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
+		Blocks.melon_block.setHarvestLevel("axe", 0);
+		Blocks.ladder.setHarvestLevel("axe", 0);
 		
-			GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
-					 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
-	  
-			GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
-					 ,'s', Blocks.stonebrick
-			 		 ,'v', Blocks.vine 
-					);
-	
-			GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
-					 ,'s', Blocks.cobblestone
-			 		 ,'v', Blocks.vine 
-					);
-			 
-			GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
-			
-			//coarse dirt	
-			GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
-				 ,'g', Blocks.gravel
-		 		 ,'d', Blocks.dirt
-			);
-			GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
-				 ,'g', Blocks.gravel
-		 		 ,'d', Blocks.dirt
-			); 
+		//new recipes for existing blocks
 
-			//doors made only 1 each build in 1.7, but 3 in 1.8
-			//we do it just for oak because i have all the door stuff for the types
-			GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
-					'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
-			
-		}
-		
-		if(ModSamsContent.settings.decorativeBlocks)
-		{
-			initNewStones();
-			 
-			initPrismarine();
-	
-			initBirchDoor();
-			 
-			initSpruceDoor();
-			 
-			initJungleDoor();
-			
-			initAcaciaDoor();
-	        
-			initDarkoakDoor();
-			
-			initFencesGates();
-	
-			initIronTrapdoor();
-	
-			initRedSandstone();
-		}
+		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
+				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
+  
+		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
+				 ,'s', Blocks.stonebrick
+		 		 ,'v', Blocks.vine 
+				);
 
-		if(ModSamsContent.settings.mutton)
-		{
-			initMutton();
-		}
+		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
+				 ,'s', Blocks.cobblestone
+		 		 ,'v', Blocks.vine 
+				);
+		 
+		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
 		
-		if(ModSamsContent.settings.incompSlime)
-		{
-			initSlimeBlock();
-		}
+		//coarse dirt	
+		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
+			 ,'g', Blocks.gravel
+			 ,'d', Blocks.dirt
+		);
+		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
+			 ,'g', Blocks.gravel
+			 ,'d', Blocks.dirt
+		); 
+
+		//doors made only 1 each build in 1.7, but 3 in 1.8
+		//we do it just for oak because i have all the door stuff for the types
+		GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
+				'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
 	}
 	
-	private void initAcaciaDoor()
+	 static void initAcaciaDoor()
 	{
 		BlockDoorSimple acaciaDoor = new BlockDoorSimple();
 		acaciaDoor.setBlockTextureName("samspowerups:" + "door_acacia")
@@ -149,7 +111,7 @@ public class HandlerBountifulUpdate
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_acacia));
 	}
 	
-	private void initJungleDoor()
+	 static void initJungleDoor()
 	{
 		BlockDoorSimple jungleDoor = new BlockDoorSimple();
 		jungleDoor.setBlockTextureName("samspowerups:" + "door_jungle")
@@ -167,7 +129,7 @@ public class HandlerBountifulUpdate
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_jungle ));
 	}
 
-	private void initSpruceDoor()
+	 static void initSpruceDoor()
 	{
 		BlockDoorSimple spruceDoor = new BlockDoorSimple();
 		spruceDoor.setBlockTextureName("samspowerups:" + "door_spruce")
@@ -185,7 +147,7 @@ public class HandlerBountifulUpdate
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_spruce) );
 	}
 
-	private void initBirchDoor()
+	 static void initBirchDoor()
 	{
 		BlockDoorSimple birchDoor = new BlockDoorSimple();
 		birchDoor.setBlockTextureName("samspowerups:" + "door_birch")
@@ -203,7 +165,7 @@ public class HandlerBountifulUpdate
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_birch) );
 	}
 
-	private void initDarkoakDoor()
+	 static void initDarkoakDoor()
 	{
 		BlockDoorSimple dark_oakDoor = new BlockDoorSimple();
 		dark_oakDoor.setBlockTextureName("samspowerups:" + "door_dark_oak")
@@ -221,7 +183,7 @@ public class HandlerBountifulUpdate
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_darkoak) );
 	}
 	
-	private void initSlimeBlock()
+	 static void initSlimeBlock()
 	{
 		BlockSlime slime = new BlockSlime();
 	
@@ -233,7 +195,7 @@ public class HandlerBountifulUpdate
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.slime_ball, 9), slime);
 	}
 
-	private void initMutton()
+	 static void initMutton()
 	{
 		mutton_raw = new ItemFood(2, false);
 		mutton_raw.setUnlocalizedName("mutton_raw").setTextureName(
@@ -250,7 +212,7 @@ public class HandlerBountifulUpdate
 		GameRegistry.addSmelting(mutton_raw, new ItemStack(mutton_cooked, 1), 0);
 	}
 
-	private void initRedSandstone()
+	 static void initRedSandstone()
 	{
 		redSandstone = new BlockRedSandStone();
 		redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F)
@@ -331,7 +293,7 @@ public class HandlerBountifulUpdate
 		
 	}
 	
-	private void initIronTrapdoor()
+	 static void initIronTrapdoor()
 	{
 		// Iron Trapdoor, Armor Stand
 		// is protected again
@@ -347,7 +309,7 @@ public class HandlerBountifulUpdate
 		GameRegistry.addSmelting(new ItemStack(ironTrapdoor), new ItemStack(Items.iron_ingot,4), 0); 
 	}
 
-	private void initFencesGates()
+	 static void initFencesGates()
 	{
 		// 5 fences
 		birchFence = new BlockFenceSimple("planks_birch");
@@ -472,7 +434,7 @@ public class HandlerBountifulUpdate
 				);
 	}
 
-	private void initNewStones()
+	 static void initNewStones()
 	{
 		// resistance and hardness are the same as vanilla Blocks.stonestone
 
@@ -529,7 +491,7 @@ public class HandlerBountifulUpdate
 		
 	}
 
-	private void initPrismarine()
+	 static void initPrismarine()
 	{
 		// http://minecraft.gamepedia.com/Prismarine_Shard
 		// http://minecraft.gamepedia.com/Prismarine_Crystals
@@ -597,7 +559,7 @@ public class HandlerBountifulUpdate
 		GameRegistry.addShapelessRecipe(new ItemStack(prismarine_crystals), prismarine_shard,Items.glowstone_dust);
 	}
 
-	private void registerItemDefaults(Item s, String name)
+	 static void registerItemDefaults(Item s, String name)
 	{
 		s.setTextureName("samspowerups:" + name).setUnlocalizedName(name);
 		s.setCreativeTab(CreativeTabs.tabDecorations);
@@ -605,7 +567,7 @@ public class HandlerBountifulUpdate
 	}
 
 	
-	private void registerStoneDefaults(BlockSimple s, String name)
+	 static void registerStoneDefaults(BlockSimple s, String name)
 	{
 		s.setStepSound(Block.soundTypeStone).setBlockName(name)
 				.setBlockTextureName("samspowerups:" + name);

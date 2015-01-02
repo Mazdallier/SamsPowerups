@@ -36,6 +36,7 @@ public class ConfigFile
 	public boolean enderBook;
 	public boolean weatherBlock;
 	public boolean gameruleBlocks;
+	public boolean craftableMushroomBlocks;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -105,6 +106,11 @@ public class ConfigFile
 				"uncrafting: craft or smelt blocks back into their ingredients.  Often it is not a perfect trade.  " +
 				"Example: Craft stairs back into blocks using a 4x4 pattern."
 			); 
+		
+		
+		craftableMushroomBlocks =  ModSamsContent.config.getBoolean( "craftableMushroomBlocks",category,true
+				,"Craft mushroom blocks. "
+						);  
 		
 /*********************************************************************************************/	
 		

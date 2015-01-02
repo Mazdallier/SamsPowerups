@@ -133,46 +133,112 @@ public class ModSamsContent
 			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
+  		
+  		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
+  	 
+  		
+  		if(ModSamsContent.settings.increasedStackSizes ) { initStackSizes(); }
+	   
+		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
+		 
+		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+  
+		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
+		
+		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
+		
+		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
+		
+		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
+		
+		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
+		
+		if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
+		 
+		if(ModSamsContent.settings.craftableMushroomBlocks)  { ExtraCraftingMod.mushroomBlocks(); }
+		 
+
+		
+		if(ModSamsContent.settings.craftableMobHeads) 	{ExtraCraftingMod.mobHeads();	}
+ 
+		
+		if(ModSamsContent.settings.craftableBonemealColouredWool)  {ExtraCraftingMod.bonemealWool();}
+	 
+		
+		if(ModSamsContent.settings.craftableTransmuteRecords)   { ExtraCraftingMod.records();}
+		 
+		 
+		if(ModSamsContent.settings.craftableFlatDoubleSlab) { ExtraCraftingMod.doubleSlabsFlat();}
+		 
+   		if(ModSamsContent.settings.uncraftGeneral) { ExtraCraftingMod.uncrafting();}
+   		 
+		
+   		if(ModSamsContent.settings.recipes)
+		{
+			 
+			HandlerBountifulUpdate.initRecipes();
+			
+		}
+		
+		if(ModSamsContent.settings.decorativeBlocks)
+		{
+			HandlerBountifulUpdate.initNewStones();
+			 
+			HandlerBountifulUpdate.initPrismarine();
+	
+			HandlerBountifulUpdate.initBirchDoor();
+			 
+			HandlerBountifulUpdate.initSpruceDoor();
+			 
+			HandlerBountifulUpdate.initJungleDoor();
+			
+			HandlerBountifulUpdate.initAcaciaDoor();
+	        
+			HandlerBountifulUpdate.initDarkoakDoor();
+			
+			HandlerBountifulUpdate.initFencesGates();
+	
+			HandlerBountifulUpdate.initIronTrapdoor();
+	
+			HandlerBountifulUpdate.initRedSandstone();
+		}
+
+		if(ModSamsContent.settings.mutton)
+		{
+			HandlerBountifulUpdate.initMutton();
+		}
+		
+		if(ModSamsContent.settings.incompSlime)
+		{
+			HandlerBountifulUpdate.initSlimeBlock();
+		}
+ 
+
 		//SaplingStickAxe();
 		
 		//SmoothstoneRequired();
 		
 		//MobSpawnExtras();
-  		
-  		if(ModSamsContent.settings.moreFuel)
-  		{
-  			GameRegistry.registerFuelHandler(new FurnaceFuel());
-  		}
-  		
-		initStackSizes();
-	  
-		ExtraCraftingMod.onInit(event);
-
-		if(ModSamsContent.settings.masterWand)  ItemWandMaster.onInit(event);
-		 
-		if(ModSamsContent.settings.xRayBlock) BlockXRay.initXray();
-  
-		if(ModSamsContent.settings.enderBook)  ItemEnderBook.initEnderbook();
+		//mushroom???
+		//blocks
+		//rotate damage value 1 by 1
 		
-		if(ModSamsContent.settings.fishingNetBlock) BlockFishing.initFishing();
-		
-		if(ModSamsContent.settings.magicApples) ItemFoodAppleMagic.initApples();
-		
-		if(ModSamsContent.settings.gameruleBlocks) BlockCommandBlockCraftable.initCommand();
-		
-		if(ModSamsContent.settings.weatherBlock)BlockCommandBlockCraftable.initWeatherBlock();
-		
-		if(ModSamsContent.settings.runestones) ItemRunestone.initRunestones(); 
-		 
-		//HandlerBountifulUpdate h = ;
-		(new HandlerBountifulUpdate()).Init();
  
+		//recipe shortcuts:
+		
+		//dye wool by 8 blocks instead of 1
+		
+		
+		//easier redstone repeater recipe, to use sticks nad redstone instead of torches
+		 //https://i.imgur.com/UqthR4k.png
+		
+		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
+		//etc for other minecarts too
+		
 	}
 
 	private void initStackSizes()
 	{
-		if(ModSamsContent.settings.increasedStackSizes == false){ return; }
-	
 		ArrayList<Item> to64 = new ArrayList<Item>();
  
 		to64.add(Items.ender_pearl);

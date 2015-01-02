@@ -28,55 +28,7 @@ public class ExtraCraftingMod
 { 	 
     public static Logger logger;  
   
-	public static void onInit(FMLInitializationEvent event) 
-	{ 
-		int EXP = 0; 
-		
-		mushroomBlocks(); 
-		
-		//mushroom???
-		//blocks
-		//rotate damage value 1 by 1
-		
- 
-		//recipe shortcuts:
-		
-		//dye wool by 8 blocks instead of 1
-		
-		
-		//easier redstone repeater recipe, to use sticks nad redstone instead of torches
-		 //https://i.imgur.com/UqthR4k.png
-		
-		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
-		//etc for other minecarts too
-		
-		if(ModSamsContent.settings.craftableMobHeads)
-		{ 	
-			mobHeads();	
-		}
-		
-		if(ModSamsContent.settings.craftableBonemealColouredWool)
-		{
-			bonemealWool();
-		}
-		
-		if(ModSamsContent.settings.craftableTransmuteRecords)  
-		{
-			records();
-		}
-		 
-		if(ModSamsContent.settings.craftableFlatDoubleSlab)
-		{
-			doubleSlabsFlat();
-		}
-	 
-   		if(ModSamsContent.settings.uncraftGeneral)
-   		{ 
-   			uncrafting();
-   		}
-   	}
-
-	private static void mushroomBlocks()
+	public static void mushroomBlocks()
 	{
 		int otherSide = 0;
 		for (int side = 0; side < 16; side++)
@@ -94,7 +46,7 @@ public class ExtraCraftingMod
 		}
 	}
 
-	private static void uncrafting()
+	public static void uncrafting()
 	{
 		int EXP=0;
 		GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), "xx", "xx",
@@ -557,7 +509,7 @@ public class ExtraCraftingMod
 				new ItemStack(Items.lead), new ItemStack(Items.lead));
 	}
 
-	private static void doubleSlabsFlat()
+	public static void doubleSlabsFlat()
 	{
 		int islab_sandstone = 1;
 
@@ -584,7 +536,7 @@ public class ExtraCraftingMod
 				'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_sandstone));
 	}
 
-	private static void records()
+	public static void records()
 	{
 		// iterate down the list, 8 emeralds each time
 		
@@ -630,7 +582,7 @@ public class ExtraCraftingMod
 						Items.record_13));
 	}
 
-	private static void bonemealWool()
+	public static void bonemealWool()
 	{
 		//use bonemeal to bleach colored wool back to white
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 1, 0),
@@ -665,7 +617,7 @@ public class ExtraCraftingMod
 				new ItemStack(Blocks.wool, 1, 15), new ItemStack(Items.dye, 1,				Reference.dye_bonemeal));
 	}
 
-	private static void mobHeads()
+	public static void mobHeads()
 	{
 		//skeleton 0
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_skeleton), "xxx", "xsx","xxx"
