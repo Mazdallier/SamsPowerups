@@ -24,7 +24,6 @@ public class HandlerConfigFile
     
 		ModSamsContent.moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
     			"Adds in villager trades that would be added in 1.8."
-    		
     		);
 		
 		//TODO decoration blocks: Stone types; red sandstone ; prismarine; wooden doors;  wooden fences and gates; Iron trapdoor
@@ -52,16 +51,16 @@ public class HandlerConfigFile
 				);
 
 		ExtraCraftingMod.craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
-				,"Allows you to dye coloured wool back to white using bonemeal"); 
+				,"Allows you to dye coloured wool back to white using bonemeal"
+				); 
   
 		ExtraCraftingMod.craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
-				"TNT, flesh, cake, or bones. ");  
+				"TNT, flesh, cake, or bones. "
+						);  
  
+/*********************************************************************************************/	
 		
-
-
-/*********************************************************************************************/		
 		category = "flyingInSurvival";
 
 		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("disableWhileBurning",category, true
@@ -93,7 +92,8 @@ public class HandlerConfigFile
 			"When this is true, your XP Levels will drain while flying."); 
 		 
 		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "countdownSpeed",category, 300,5,999
-			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
+			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5."
+			);
  
 
 /*********************************************************************************************/  
@@ -120,37 +120,25 @@ public class HandlerConfigFile
 		
 		category = "tweaks"; 	
     	
-		/*
-		allEnabled = config.getBoolean("allEnabled", category, true,
-				"Enable all blocks and items.");
-				*/
-		
-		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
 		ModSamsContent.increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
 			"horse armor, empty bucket, bed, all records."
-		
 		); 
 		
 		ModSamsContent.moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
     			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
-	 
-		 
     		); 
 	 
-		
-	    
 		ModSamsContent.swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
-    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
-    		
+    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."	
     		); 
+		
 		ModSamsContent.smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
     			"Attack with the ender chest to open it without placing it."
-    		
     		);
 		
-		
+		ModSamsContent.skullSignNames = true;//TODO
 		
 		//debug screen
 		

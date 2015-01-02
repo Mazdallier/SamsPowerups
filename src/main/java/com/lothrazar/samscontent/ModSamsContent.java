@@ -29,7 +29,6 @@ import com.lothrazar.item.ItemRunestone;
 import com.lothrazar.item.ItemSlabRedSandstone;
 import com.lothrazar.item.ItemWandMaster;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
-import com.lothrazar.samspowerups.ModSamsPowerups;
 import com.lothrazar.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -83,7 +82,8 @@ public class ModSamsContent
 	public static boolean smartEnderchest = true;
 	public static boolean increasedStackSizes = true;
 	public static boolean moreFuel = true;
-	public static boolean moreFutureTrades = true; 
+	public static boolean moreFutureTrades = true;
+	public static boolean skullSignNames; 
 	
 	
 	@EventHandler
@@ -97,7 +97,7 @@ public class ModSamsContent
      	
      	
  
-    	MinecraftForge.EVENT_BUS.register(new ModSamsPowerups()); 
+    	MinecraftForge.EVENT_BUS.register(new HandlerSkullSignNames()); 
     	MinecraftForge.EVENT_BUS.register(new HandlerBonemealUse()); 
 		MinecraftForge.EVENT_BUS.register(new HandlerScreenText()); 
 		MinecraftForge.EVENT_BUS.register(new HandlerMasterWand());
