@@ -84,7 +84,7 @@ public class FurnaceFuel    implements IFuelHandler
 		{
 			return FurnaceBurnTime.Sticks;
 		} 
-//todo: do mushrooms currently burn?
+
 		if(fuel.getItem().equals(Items.paper))
 		{
 			return FurnaceBurnTime.Sticks;

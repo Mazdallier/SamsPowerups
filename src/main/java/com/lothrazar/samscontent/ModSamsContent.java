@@ -309,12 +309,6 @@ public class ModSamsContent
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{
-		ItemStack runestone = event.player.inventory.getStackInSlot(ItemRunestone.SLOT_RUNESTONE);
-		
-		if (runestone != null
-				&& (runestone.getItem() instanceof ItemRunestone) == false)
-		{ 
-			ItemRunestone.applyRunestoneToPlayer(event.player, runestone);
-		} 
+		ItemRunestone.applyHeldRunestones(event.player); 
 	} 
 }

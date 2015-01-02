@@ -34,8 +34,8 @@ public class ItemRunestone extends ItemTool
 	//private static 	int FLYING = -99;//this key identifier tells me its not a built in potion effect
 	//private static 	int HORSE = -50;//this key identifier tells me its not a built in potion effect
 
-	public static boolean DurabilityTicksDown = true;
-	public static int SLOT_RUNESTONE = 17;// TOP RIGHT
+	public static boolean DurabilityTicksDown = false;
+	//public static int SLOT_RUNESTONE = 17;// TOP RIGHT
 
 	public static int RUNESTONE_DURABILITY = 90000;// 90 thousand ticks is 4500
 													// seconds which is 75
@@ -75,7 +75,7 @@ public class ItemRunestone extends ItemTool
 	 * @param player
 	 * @param runestone
 	 */
-	public static void applyRunestoneToPlayer(EntityPlayer player,	ItemStack runestone) 
+	public static void applyRunestoneToPlayer(EntityPlayer player,	ItemStack runestone, int SLOT) 
 	{ 
 		ItemRunestone itemRunestone = (ItemRunestone)runestone.getItem();
  
@@ -131,7 +131,7 @@ public class ItemRunestone extends ItemTool
 			 
 			if(runestone.getItemDamage() == RUNESTONE_DURABILITY - 1)
 			{
-				player.inventory.setInventorySlotContents(SLOT_RUNESTONE, new ItemStack(Items.nether_star));
+				player.inventory.setInventorySlotContents(SLOT, new ItemStack(Items.nether_star));
 			} 
 			
 		}
@@ -197,8 +197,7 @@ public class ItemRunestone extends ItemTool
 		// changing to register item before adding recipes. it fixed a bug in
 		// other mods
 
-		rune_jump = new ItemRunestone(new int[] { Reference.potion_JUMP },
-				new int[] { V }, not_shiny);
+		rune_jump = new ItemRunestone(new int[] { Reference.potion_JUMP },		new int[] { V }, not_shiny);
 		rune_jump.setUnlocalizedName("rune_jump").setTextureName(
 				"samspowerups" + ":rune_jump");
 		GameRegistry.registerItem(rune_jump, "rune_jump");
@@ -209,8 +208,7 @@ public class ItemRunestone extends ItemTool
 				new ItemStack(Items.nether_star, 1), 0);
 
 		rune_resistance = new ItemRunestone(
-				new int[] { Reference.potion_RESISTANCE }, new int[] { II },
-				shiny);
+				new int[] { Reference.potion_RESISTANCE }, new int[] { II },				shiny);
 		rune_resistance.setUnlocalizedName("rune_resistance").setTextureName(
 				"samspowerups" + ":rune_resistance");
 		GameRegistry.registerItem(rune_resistance, "rune_resistance");
@@ -226,17 +224,19 @@ public class ItemRunestone extends ItemTool
 				"samspowerups" + ":rune_goldheart");
 		GameRegistry.registerItem(rune_goldheart, "rune_goldheart");
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
-				"eee", 'e', Blocks.gold_block, 'a', Items.nether_star);
+				"eee", 
+				'e', Blocks.gold_block, 
+				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_goldheart, new ItemStack(
 				Items.nether_star, 1), 0);
 
-		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE,
-				Reference.potion_WEAKNESS }, new int[] { II, II }, not_shiny);
+		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE }, new int[] { II  }, not_shiny);
 		rune_haste.setUnlocalizedName("rune_haste").setTextureName(
 				"samspowerups" + ":rune_haste");
 		GameRegistry.registerItem(rune_haste, "rune_haste");
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
-				'e', Blocks.redstone_block, 'a', Items.nether_star);
+				'e', Blocks.redstone_block, 
+				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_haste,
 				new ItemStack(Items.nether_star, 1), 0);
 
@@ -248,14 +248,13 @@ public class ItemRunestone extends ItemTool
 				"samspowerups" + ":rune_water");
 		GameRegistry.registerItem(rune_water, "rune_water");
 		GameRegistry.addRecipe(new ItemStack(rune_water), "eee", "eae", "eee",
-				'e', Blocks.lapis_block // new
-										// ItemStack(Items.dye,1,Reference.dye_lapis)//LAPIS
+				'e', Blocks.lapis_block  
 				, 'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_water,
 				new ItemStack(Items.nether_star, 1), 0);
 
-		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED,
-				Reference.potion_WEAKNESS }, new int[] { III, I }, not_shiny);
+		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED
+				 }, new int[] { II }, not_shiny);
 		rune_speed.setUnlocalizedName("rune_speed").setTextureName(
 				"samspowerups" + ":rune_speed");
 		GameRegistry.registerItem(rune_speed, "rune_speed");
@@ -264,9 +263,8 @@ public class ItemRunestone extends ItemTool
 		GameRegistry.addSmelting(rune_speed,
 				new ItemStack(Items.nether_star, 1), 0);
 
-		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST,
-				Reference.potion_WEAKNESS, Reference.potion_FATIGUE },
-				new int[] { I, II, II }, shiny);
+		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST },
+				new int[] { I  }, shiny);
 		rune_fire.setUnlocalizedName("rune_fire").setTextureName(
 				"samspowerups" + ":rune_fire");
 		GameRegistry.registerItem(rune_fire, "rune_fire");
@@ -274,5 +272,19 @@ public class ItemRunestone extends ItemTool
 				'e', Items.blaze_rod, 'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_fire,
 				new ItemStack(Items.nether_star, 1), 0);
+	}
+
+	public static void applyHeldRunestones(EntityPlayer player)
+	{
+		//can be anywhere in the inventory except hotbar
+		for(int i = Reference.PlayerInventory.START; i < Reference.PlayerInventory.END; i++)
+		{ 
+			ItemStack runestone = player.inventory.getStackInSlot(i); // ItemRunestone.SLOT_RUNESTONE
+			
+			if (runestone != null && (runestone.getItem() instanceof ItemRunestone))
+			{ 
+				ItemRunestone.applyRunestoneToPlayer(player, runestone, i);
+			} 
+		} 
 	}
 }
