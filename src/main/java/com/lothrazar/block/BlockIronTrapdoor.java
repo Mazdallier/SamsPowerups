@@ -10,9 +10,6 @@ public class BlockIronTrapdoor extends BlockTrapDoor
 		super(Material.iron);
  
 		this.disableStats();
-		this.setHardness(3.0F).setStepSound(soundTypeWood);
-    	
-		 //blockRegistry.addObject(96, "trapdoor", (new BlockTrapDoor(Material.wood)).setHardness(3.0F).setStepSound(soundTypeWood).setBlockName("trapdoor").disableStats().setBlockTextureName("trapdoor"));
-		         
+		this.setHardness(3.0F).setStepSound(soundTypeMetal);
 	}
 }
