@@ -27,6 +27,7 @@ public class ConfigFile
 	public boolean mutton;
 	public boolean recipes;
 	boolean incompSlime;
+	public boolean uncraftGeneral;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -44,12 +45,12 @@ public class ConfigFile
     			"Adds in villager trades that would be added in 1.8."
     		);
 		
-		//TODO decoration blocks: Stone types; red sandstone ; prismarine; wooden doors;  wooden fences and gates; Iron trapdoor
+		// decoration blocks: Stone types; red sandstone ; prismarine; wooden doors;  wooden fences and gates; Iron trapdoor
 		decorativeBlocks = ModSamsContent.config.getBoolean("decorativeBlocks",category, true,
     			"Adds decorative blocks from 1.8: wooden doors, wooden fences and gates, iron trapdoor,  red sandstone, new stone types (do not generate naturally but they are craftable), prismarine (without ocean temples, so instead we smelt lapis)"
     		);
 		
-		//TODO: partially working slime block (craftable, bouncy, does not interact with pistons the same way)
+		// partially working slime block (craftable, bouncy, does not interact with pistons the same way)
 		incompSlime = ModSamsContent.config.getBoolean("slimeBlock",category, true,
     			"Adds the 1.8 Slime block.  It is craftable, and it bounces entites that land on it, but it does not interact with pistons the same way"
     		);
@@ -68,7 +69,8 @@ public class ConfigFile
 		/*********************************************************************************************/
 		category = "commands";
 		
-		//one flag for each command
+		//one flag for each command??
+		
 		
 		
 		/*********************************************************************************************/
@@ -91,6 +93,11 @@ public class ConfigFile
 				"TNT, flesh, cake, or bones. "
 						);  
  
+		uncraftGeneral = ModSamsContent.config.getBoolean( "uncrafting",category,true,
+				"uncrafting: craft or smelt blocks back into their ingredients.  Often it is not a perfect trade.  " +
+				"Example: Craft stairs back into blocks using a 4x4 pattern."
+			); 
+		
 /*********************************************************************************************/	
 		
 		category = "flyingInSurvival";
@@ -185,68 +192,9 @@ public class ConfigFile
     			"Bonemeal grows more things: lilypads, all flowers "
     		);
  
-    	
-
-
 
 /*********************************************************************************************/
 		 
-		category = "uncrafting";
-
-	   //config =   new Configuration(event.getSuggestedConfigurationFile());  
-		
-		ExtraCraftingMod.stairs = ModSamsContent.config.getBoolean( "stairs",category,true,
-			"Craft stairs back into blocks using a 4x4 pattern."
-		); 
-		 
-		ExtraCraftingMod.slabs = ModSamsContent.config.getBoolean( "slabs",category,true,
-			"Uncraft slabs back into blocks using the trapdoor recipe."
-		); 
-
-		ExtraCraftingMod.woodstuffs = ModSamsContent.config.getBoolean( "woodstuffs",category,true,
-			"Surround a plank with sticks to get planks back.  Also deconstruct: ladder, sign, crafting table, " +
-			"painting, item frame, bookshelf, book, fence, fence gate, door."
-		); 
-
-		ExtraCraftingMod.logs = ModSamsContent.config.getBoolean( "logs",category,true,
-			"Craft planks into logs with an L shape."
-		);; 
-
-		ExtraCraftingMod.redstone = ModSamsContent.config.getBoolean( "redstone",category,true,
-			"Uncraft and smelt redstone related items into parts (repeaters, lamps, hoppers, pistons, and so on)."
-		); 
-
-		ExtraCraftingMod.plants = ModSamsContent.config.getBoolean( "plants",category,true,
-			"Uncraft pumkin lanterns, melon blocks into slices, smelt golden carrots and apples back into gold."
-		); 
-
-		ExtraCraftingMod.wool = ModSamsContent.config.getBoolean( "wool",category,true,
-			"Uncraft carpet into wool."
-		); 
-
-		ExtraCraftingMod.weapontools = ModSamsContent.config.getBoolean( "weapontools",category,true,
-			"Smelt non-wooden weapons and tools back into materials, if fully repaired."
-		); 
-
-		ExtraCraftingMod.armor = ModSamsContent.config.getBoolean( "armor",category,true,
-			 "Smelt non-wooden armor back into ingots/diamonds if fully repaired."
-		); 
- 
-		ExtraCraftingMod.natureblocks = ModSamsContent.config.getBoolean( "natureblocks",category,true,
-			 "Uncraft all quarts blocks, glowstone into 4 dust, clay blocks into 4 balls, snow, " +
-			 "smelt stone brick and smoothstone back to what they were, " +
-			 "turn mycelium and dirt back into grass, smelt stained clay to remove dye, turn sandstone into sand."
-		); 
- 
-		ExtraCraftingMod.glass = ModSamsContent.config.getBoolean( "glass",category,true,
-			 "Smelt glass bottles, smelt stained glass and panes to remove dye, craft panes into blocks, and smelt plain glass blocks into sand."
-		); 
-		 
-		ExtraCraftingMod.misc = ModSamsContent.config.getBoolean( "misc",category,true,
-			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
-		); 
-
-		
 		
 		if(ModSamsContent.config.hasChanged()){ ModSamsContent.config.save(); }
 	}
