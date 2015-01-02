@@ -94,17 +94,21 @@ public class ModSamsContent
 		config = new Configuration(event.getSuggestedConfigurationFile());
  
      	HandlerConfigFile.setupConfig();
+     	
+     	
  
     	MinecraftForge.EVENT_BUS.register(new ModSamsPowerups()); 
     	MinecraftForge.EVENT_BUS.register(new HandlerBonemealUse()); 
 		MinecraftForge.EVENT_BUS.register(new HandlerScreenText()); 
 		MinecraftForge.EVENT_BUS.register(new HandlerMasterWand());
+		MinecraftForge.EVENT_BUS.register(new HandlerEnderChestHit());//??
 		MinecraftForge.EVENT_BUS.register(instance);// ???is this still used/needed
 		
 
 
 		
-		
+
+		FMLCommonHandler.instance().bus().register(new HandlerEnderChestHit());//??
 		FMLCommonHandler.instance().bus().register(new HandlerSurvivalFlying()); //player events
 		FMLCommonHandler.instance().bus().register(instance);// ???is this still used/needed
 		

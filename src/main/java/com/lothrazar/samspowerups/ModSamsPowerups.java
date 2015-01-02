@@ -62,20 +62,14 @@ public class ModSamsPowerups
 
 	@SuppressWarnings("unused")
   	@SubscribeEvent
-	public void onPlayerLeftClick(PlayerInteractEvent event)
+	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(event.action == event.action.LEFT_CLICK_BLOCK)
-		{
-			if(ModSamsContent.smartEnderchest && 
-					event.entityPlayer.getCurrentEquippedItem() != null && 
-					event.entityPlayer.getCurrentEquippedItem().getItem() == Item.getItemFromBlock(Blocks.ender_chest) )
-			{
-				event.entityPlayer.displayGUIChest(event.entityPlayer.getInventoryEnderChest());
-				return;
-			}
-		} 
+		if(ModSamsContent.swiftDeposit == false){return;}
 		
-		if(ModSamsContent.swiftDeposit==false){return;}
+		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
+	 
+		if(event.entityPlayer.isSneaking() == false){ return; }
+		
  
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
 		
@@ -115,7 +109,6 @@ public class ModSamsPowerups
 		if(event.entityPlayer.getCurrentEquippedItem() != null){ return; }
 		//ok so we have an empty hand
 		
-		if(event.entityPlayer.isSneaking() == false){ return; }
 		//so we are sneaking
 		
   	  	TileEntity te =	event.entity.worldObj.getTileEntity(event.x, event.y, event.z);
