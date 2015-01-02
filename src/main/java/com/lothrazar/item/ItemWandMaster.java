@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.samscontent.HandlerMasterWand;
+import com.lothrazar.samscontent.ModSamsContent;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -316,9 +317,9 @@ public class ItemWandMaster extends ItemTool
 	public static void onInit() 
 	{  
 		itemWand = new ItemWandMaster();
-		itemWand.setUnlocalizedName("wand_master").setTextureName("samspowerups"+":wand_master");
-		GameRegistry.registerItem(itemWand,  "wand_master");   
-		GameRegistry.addRecipe(new ItemStack(itemWand)
+  
+		ModSamsContent.registerItemHelper(itemWand, "wand_master");
+;		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "
 			," b "
@@ -326,8 +327,7 @@ public class ItemWandMaster extends ItemTool
 			, 'b', Items.blaze_rod  );
 		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
 
-		itemChestSack = new ItemChestSack();
-		itemChestSack.setTextureName("samspowerups"+":chest_sack").setUnlocalizedName("chest_sack");
-		GameRegistry.registerItem(itemChestSack,  "chest_sack" );   
+		itemChestSack = new ItemChestSack();   
+		ModSamsContent.registerItemHelper(itemChestSack, "chest_sack");
 	}
 }

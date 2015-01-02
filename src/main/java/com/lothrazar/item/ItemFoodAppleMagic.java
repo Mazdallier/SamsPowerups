@@ -1,6 +1,9 @@
 package com.lothrazar.item;
 
 import java.util.ArrayList; 
+
+import com.lothrazar.samscontent.ModSamsContent;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,10 +19,10 @@ import net.minecraftforge.common.config.Property;
 
 public class ItemFoodAppleMagic extends ItemFood
 {  
-	private static ItemFoodAppleMagic appleEmerald;
-	private static ItemFoodAppleMagic appleDiamond;
-	private static ItemFoodAppleMagic appleLapis;
-	private static ItemFoodAppleMagic appleChocolate;
+	private static ItemFoodAppleMagic apple_emerald;
+	private static ItemFoodAppleMagic apple_diamond;
+	private static ItemFoodAppleMagic apple_lapis;
+	private static ItemFoodAppleMagic apple_chocolate;
   
 	private boolean _hasEffect = false;
 
@@ -121,71 +124,56 @@ public class ItemFoodAppleMagic extends ItemFood
 		int IV = 3;
 		int V = 4;
 
-		appleEmerald = new ItemFoodAppleMagic(1, false);
-		appleEmerald.addEffect(HASTE, potionTimeSeconds, II)
+		apple_emerald = new ItemFoodAppleMagic(1, false);
+		apple_emerald.addEffect(HASTE, potionTimeSeconds, II)
 				.addEffect(SPEED, potionTimeSeconds, I)
-				.addEffect(ABSORP, potionTimeSeconds, II)
-				.setUnlocalizedName("apple_emerald")
-				.setTextureName("samspowerups" + ":apple_emerald");
-		GameRegistry.registerItem(appleEmerald, "apple_emerald");
-		GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
+				.addEffect(ABSORP, potionTimeSeconds, II);
+		ModSamsContent.registerItemHelper(apple_emerald, "apple_emerald");
+		GameRegistry.addShapelessRecipe(new ItemStack(apple_emerald),
 				Items.emerald, Items.golden_apple);
-		GameRegistry.addSmelting(appleEmerald, new ItemStack(Items.emerald, 8),
+		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),
 				0);
-
-		// diamond apple : Resistance, night vision, fills hunger, and double
-		// the hearts
-		// we do not want to overlap with notch gold apple, so i removed
-		// .addEffect(RESISTANCE,FIVE_MINUTES,1)
-
+ 
 		// only diamond is getting the shiny effect
-		appleDiamond = new ItemFoodAppleMagic(1, true); // JUMP,SECONDS,1 //(int
-														// potionID, int
-														// duration, int level )
-		appleDiamond
-				.addEffect(HEALTH_BOOST, potionTimeSeconds, V)
+		apple_diamond = new ItemFoodAppleMagic(1, true);  
+		apple_diamond.addEffect(HEALTH_BOOST, potionTimeSeconds, V)
 				// ten extra hearts
 				.addEffect(FIRE_RESIST, potionTimeSeconds, II)
 				// resist and fire so it is same as the NOTCH apple
 				.addEffect(RESISTANCE, potionTimeSeconds, II)
-				.addEffect(REGEN, 20, II)
-				// just enough to fill those extras
-				.setUnlocalizedName("apple_diamond")
-				.setTextureName("samspowerups" + ":apple_diamond");
-		GameRegistry.registerItem(appleDiamond, "apple_diamond");
-		GameRegistry.addShapelessRecipe(new ItemStack(appleDiamond),
+				.addEffect(REGEN, 20, II);
+		ModSamsContent.registerItemHelper(apple_diamond, "apple_diamond");
+		GameRegistry.addShapelessRecipe(new ItemStack(apple_diamond),
 				Items.diamond, Items.golden_apple);
-		GameRegistry.addSmelting(appleDiamond, new ItemStack(Items.diamond, 1),
+		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 1),
 				0);// getcha that diamond back
 
 		// woo night vision
-		appleLapis = new ItemFoodAppleMagic(1, false);
-		appleLapis
+		apple_lapis = new ItemFoodAppleMagic(1, false);
+		apple_lapis
 				.addEffect(NIGHT_VISION, potionTimeSeconds, II)
 				// night vision potion uses gold carrots maybe cheaper?
 				.addEffect(WATER_BREATHING, potionTimeSeconds, II)
 				// puffer fish are way too rare
-				.addEffect(ABSORP, potionTimeSeconds, II)
-				.setUnlocalizedName("apple_lapis")
-				.setTextureName("samspowerups" + ":apple_lapis");
-		GameRegistry.registerItem(appleLapis, "apple_lapis");
-		GameRegistry.addShapelessRecipe(new ItemStack(appleLapis),
+				.addEffect(ABSORP, potionTimeSeconds, II);
+		ModSamsContent.registerItemHelper(apple_lapis, "apple_lapis");
+		GameRegistry.addShapelessRecipe(new ItemStack(apple_lapis),
 				new ItemStack(Items.dye, 1, 4), Items.golden_apple);
-		GameRegistry.addSmelting(appleLapis, new ItemStack(Items.dye, 8, 4), 0);// uncraft
+		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, 4), 0);// uncraft
 
 		// diamond should hvae health boost, speed strength and regen? all
 		// together?
 
 		// this one is less powerful, no gold required
-		appleChocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger
+		apple_chocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger
 															// points it gives
 															// you
-		appleChocolate.addEffect(SPEED, 30, II)
+		apple_chocolate.addEffect(SPEED, 30, II)
 				// just a short burst of speed. mini speed potion
-				.addEffect(HASTE, 30, II).setUnlocalizedName("apple_chocolate")
-				.setTextureName("samspowerups" + ":apple_chocolate");
-		GameRegistry.registerItem(appleChocolate, "apple_chocolate");
-		GameRegistry.addRecipe(new ItemStack(appleChocolate), "eee", "eae",
+				.addEffect(HASTE, 30, II);
+		
+		ModSamsContent.registerItemHelper(apple_chocolate, "apple_chocolate");
+		GameRegistry.addRecipe(new ItemStack(apple_chocolate), "eee", "eae",
 				"eee", 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
 				, 'a', Items.apple);
 

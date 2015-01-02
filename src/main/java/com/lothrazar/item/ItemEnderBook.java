@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import java.util.List; 
 import com.google.common.collect.Sets;   
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Location;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -107,17 +108,17 @@ public class ItemEnderBook extends ItemTool
 		
 		Location loc = new Location(csv);
 		
-		if(entityPlayer.dimension != 0)
+		if(entityPlayer.dimension != 0)// TODO: Reference dim nums
 		{
 			//Chat.addMessage(event.entityPlayer, "Only useable in the overworld");
 			return;
 		}
 	
-		if(loc.dimension == 1)
+		if(loc.dimension == 1) // TODO: Reference dim nums
 		{
 			entityPlayer.setFire(4);
 		} 
-		else if(loc.dimension == -1)
+		else if(loc.dimension == -1)// TODO: Reference dim nums
 		{
 			entityPlayer.heal(-15);
 		}
@@ -130,9 +131,9 @@ public class ItemEnderBook extends ItemTool
 	public static void initEnderbook()
 	{
 		itemEnderBook = new ItemEnderBook();
-		itemEnderBook.setTextureName("samspowerups" + ":book_ender")
-				.setUnlocalizedName("book_ender");
-		GameRegistry.registerItem(itemEnderBook, "book_ender");
+
+		ModSamsContent.registerItemHelper(itemEnderBook, "book_ender");
+
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
 				"eee", 'e', Items.ender_pearl, 'b', Items.book);
 		GameRegistry.addSmelting(itemEnderBook, new ItemStack(

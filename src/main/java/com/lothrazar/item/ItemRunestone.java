@@ -210,7 +210,7 @@ public class ItemRunestone extends ItemTool
 				new int[] { Reference.potion_RESISTANCE }, new int[] { II },				shiny);
 	 
 		ModSamsContent.registerItemHelper(rune_resistance, "rune_resistance");
-		GameRegistry.registerItem(rune_resistance, "rune_resistance");
+ 
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae",
 				"eee", 'e', Items.diamond, 'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_resistance, new ItemStack(
@@ -220,8 +220,7 @@ public class ItemRunestone extends ItemTool
 				new int[] { Reference.potion_HEALTH_BOOST }, new int[] { V },
 				not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_goldheart, "rune_goldheart");
-		GameRegistry.registerItem(rune_goldheart, "rune_goldheart");
+		ModSamsContent.registerItemHelper(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
 				"eee", 
 				'e', Blocks.gold_block, 
@@ -232,7 +231,7 @@ public class ItemRunestone extends ItemTool
 		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE }, new int[] { II  }, not_shiny);
  
 		ModSamsContent.registerItemHelper(rune_haste, "rune_haste");
-		GameRegistry.registerItem(rune_haste, "rune_haste");
+ 
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
 				'e', Blocks.redstone_block, 
 				'a', Items.nether_star);
@@ -254,8 +253,7 @@ public class ItemRunestone extends ItemTool
 		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED
 				 }, new int[] { II }, not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_speed, "rune_speed");
-		GameRegistry.registerItem(rune_speed, "rune_speed");
+		ModSamsContent.registerItemHelper(rune_speed, "rune_speed"); 
 		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae", "eee",
 				'e', Items.sugar, 
 				'a', Items.nether_star);
@@ -265,8 +263,7 @@ public class ItemRunestone extends ItemTool
 		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST },
 				new int[] { I  }, shiny);
  
-		ModSamsContent.registerItemHelper(rune_fire, "rune_fire");
-		GameRegistry.registerItem(rune_fire, "rune_fire");
+		ModSamsContent.registerItemHelper(rune_fire, "rune_fire"); 
 		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae", "eee",
 				'e', Items.blaze_rod, 
 				'a', Items.nether_star);
