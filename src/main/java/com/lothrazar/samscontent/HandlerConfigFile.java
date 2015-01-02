@@ -1,7 +1,11 @@
 package com.lothrazar.samscontent;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 
+import com.lothrazar.samscontent.HandlerFurnaceFuel.FurnaceBurnTime;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
 
 public class HandlerConfigFile
@@ -9,45 +13,18 @@ public class HandlerConfigFile
 
 	public static void setupConfig()
 	{
-		String category = "content";
-    	
-    	
-		/*
-		allEnabled = config.getBoolean("allEnabled", category, true,
-				"Enable all blocks and items.");
-				*/
+		String category;
 		
-		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
-		ModSamsContent.increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		
-		); 
-		
-		ModSamsContent.moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
-    			"More can be used as furnace fuel."
-    		
-    		); 
-	    
-		ModSamsContent.moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades","bountifulupdate", true,
+
+		/*********************************************************************************************/
+		category = "bountiful_update_1.8";
+    
+		ModSamsContent.moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
     			"Adds in villager trades that would be added in 1.8."
     		
-    		); 
-	    
-		ModSamsContent.swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
-    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
-    		
-    		); 
-		ModSamsContent.smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
-    			"Attack with the ender chest to open it without placing it."
-    		
     		);
-    	
-    	
-    	
-
-
+		
+		/*********************************************************************************************/
 		category = "crafting";
 		
 		ExtraCraftingMod.craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
@@ -65,6 +42,83 @@ public class HandlerConfigFile
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. ");  
  
+		
+
+/*********************************************************************************************/   
+		
+		category = "tweaks"; 	
+    	
+		/*
+		allEnabled = config.getBoolean("allEnabled", category, true,
+				"Enable all blocks and items.");
+				*/
+		
+		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
+		ModSamsContent.increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
+			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
+			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
+			"horse armor, empty bucket, bed, all records."
+		
+		); 
+		
+		ModSamsContent.moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
+    			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
+	 
+		 
+    		); 
+	 
+	    
+		ModSamsContent.swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
+    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
+    		
+    		); 
+		ModSamsContent.smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
+    			"Attack with the ender chest to open it without placing it."
+    		
+    		);
+    	
+
+/*********************************************************************************************/		
+		category = "flying";
+
+		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("cannotFlyWhileBurning",category, true
+				,"When true, this disables flying while you are burning."); 
+
+		HandlerSurvivalFlying.NoArmorOnly = ModSamsContent.config.getBoolean( "noArmorFlyingOnly",category,false
+				,"When this is true, you may only fly if not wearing any armor. ");
+		
+		HandlerSurvivalFlying.cannotFlyAtNight = ModSamsContent.config.getBoolean( "cannotFlyAtNight",category,false
+			,"When this is true, you cannot use survival flying at night.");
+		
+		HandlerSurvivalFlying.cannotFlyInRain = ModSamsContent.config.getBoolean( "cannotFlyInRain",category,false
+				,"When this is true, you cannot use survival flying in the rain.");
+ 
+		HandlerSurvivalFlying.StartFlyingLevel = ModSamsContent.config.getInt( "startFlyingLevel",category, 10,0,99// default,min,max
+					,"The minimum level required to fly in survival.  ");
+		  
+		HandlerSurvivalFlying.difficultyRequiredToFly = ModSamsContent.config.getInt( "difficultyRequiredToFly",category, 3,0,3
+				,"Minimum difficulty required for survival fly (0 = Peaceful, 3 = Hard).");
+		  
+		HandlerSurvivalFlying.StartFlyingHealth = ModSamsContent.config.getInt( "startflyinghealth",category, 10,1,20
+				,"The minimum health required in order to fly in survival.  Each number is one half heart, " +
+						"so 20 means 10 hearts.");
+		 
+		HandlerSurvivalFlying.StartFlyingHunger = ModSamsContent.config.getInt( "startflyinghunger",category, 5,1,20,
+				"Minimum hunger required to fly.  Each number is one half hunger, so 20 means full hunger.");
+		 
+		HandlerSurvivalFlying.doesDrainLevels = ModSamsContent.config.getBoolean( "doesDrainLevels",category,true,
+			"When this is true, your XP Levels will drain while flying."); 
+		 
+		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "flycountdown",category, 300,5,999
+			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
+ 
+		
+		
+    	
+
+
+
+/*********************************************************************************************/
 		 
 		category = "uncrafting";
 
@@ -120,40 +174,9 @@ public class HandlerConfigFile
 		ExtraCraftingMod.misc = ModSamsContent.config.getBoolean( "misc",category,true,
 			"Uncraft or smelt all the rest: brewing stand, tnt, anvils, flower pots, netherbrick fence, juke box, ender eye, books, maps, walls, ender chest, lead"
 		); 
-		
-		String CATEGORY_FLY = "flying";
 
-		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("cannotFlyWhileBurning",CATEGORY_FLY, true
-				,"When true, this disables flying while you are burning."); 
-
-		HandlerSurvivalFlying.NoArmorOnly = ModSamsContent.config.getBoolean( "noArmorFlyingOnly",CATEGORY_FLY,false
-				,"When this is true, you may only fly if not wearing any armor. ");
 		
-		HandlerSurvivalFlying.cannotFlyAtNight = ModSamsContent.config.getBoolean( "cannotFlyAtNight",CATEGORY_FLY,false
-			,"When this is true, you cannot use survival flying at night.");
 		
-		HandlerSurvivalFlying.cannotFlyInRain = ModSamsContent.config.getBoolean( "cannotFlyInRain",CATEGORY_FLY,false
-				,"When this is true, you cannot use survival flying in the rain.");
- 
-		HandlerSurvivalFlying.StartFlyingLevel = ModSamsContent.config.getInt( "startFlyingLevel",CATEGORY_FLY, 10,0,99// default,min,max
-					,"The minimum level required to fly in survival.  ");
-		  
-		HandlerSurvivalFlying.difficultyRequiredToFly = ModSamsContent.config.getInt( "difficultyRequiredToFly",CATEGORY_FLY, 3,0,3
-				,"Minimum difficulty required for survival fly (0 = Peaceful, 3 = Hard).");
-		  
-		HandlerSurvivalFlying.StartFlyingHealth = ModSamsContent.config.getInt( "startflyinghealth",CATEGORY_FLY, 10,1,20
-				,"The minimum health required in order to fly in survival.  Each number is one half heart, " +
-						"so 20 means 10 hearts.");
-		 
-		HandlerSurvivalFlying.StartFlyingHunger = ModSamsContent.config.getInt( "startflyinghunger",CATEGORY_FLY, 5,1,20,
-				"Minimum hunger required to fly.  Each number is one half hunger, so 20 means full hunger.");
-		 
-		HandlerSurvivalFlying.doesDrainLevels = ModSamsContent.config.getBoolean( "doesDrainLevels",CATEGORY_FLY,true,
-			"When this is true, your XP Levels will drain while flying."); 
-		 
-		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "flycountdown",CATEGORY_FLY, 300,5,999
-			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
- 
 		if(ModSamsContent.config.hasChanged()){ ModSamsContent.config.save(); }
 	}
 }

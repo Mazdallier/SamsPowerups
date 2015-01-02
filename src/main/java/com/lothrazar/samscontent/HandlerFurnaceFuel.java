@@ -36,6 +36,14 @@ public class HandlerFurnaceFuel    implements IFuelHandler
 		{
 			return FurnaceBurnTime.Sticks;
 		} 
+		if(fuel.getItem().equals(Items.pumpkin_seeds))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Items.melon_seeds))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
 		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.leaves)))
 		{
 			return FurnaceBurnTime.Sticks;
@@ -59,7 +67,6 @@ public class HandlerFurnaceFuel    implements IFuelHandler
 		public static final int Coal = 1600; 
 		public static final int LavaBucket = 20000;
 		public static final int Sapling = 100;
-		public static final int BlazeRod = 2400;
-				
+		public static final int BlazeRod = 2400; 
 	}
 }
