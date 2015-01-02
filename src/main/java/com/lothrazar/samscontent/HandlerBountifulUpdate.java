@@ -96,12 +96,8 @@ public class HandlerBountifulUpdate
 	static void initAcaciaDoor()
 	{
 		BlockDoorSimple door_acacia = new BlockDoorSimple();
- 
-
-		ItemDoorSimple door_acacia_item = new ItemDoorSimple(Material.wood, door_acacia); // ,"door_acacia"
-		//door_acacia_item.setUnlocalizedName("door_acacia_item");//same texture name but its in the assets......items package
-
-		
+  
+		ItemDoorSimple door_acacia_item = new ItemDoorSimple(door_acacia);  
 		door_acacia.setItemDropped(door_acacia_item);
 
 		ModSamsContent.registerBlockHelper(door_acacia, "door_acacia"); 
@@ -116,15 +112,13 @@ public class HandlerBountifulUpdate
 		BlockDoorSimple door_jungle = new BlockDoorSimple();
  
 
-		ItemDoorSimple door_jungle_item = new ItemDoorSimple(Material.wood, door_jungle);
+		ItemDoorSimple door_jungle_item = new ItemDoorSimple( door_jungle);
 		door_jungle_item.setUnlocalizedName("door_jungle_iten");//same texture name but its in the assets......items package
 
 		door_jungle.setItemDropped(door_jungle_item);
 
 		ModSamsContent.registerBlockHelper(door_jungle, "door_jungle"); 
-		ModSamsContent.registerItemHelper(door_jungle_item, "door_jungle_item") ;
-		//GameRegistry.registerBlock(jungleDoor, "door_jungle");
-		//GameRegistry.registerItem(jungleDoorItem, "door_jungle_item");
+		ModSamsContent.registerItemHelper(door_jungle_item, "door_jungle_item") ; 
 		 
 		GameRegistry.addRecipe(new ItemStack(door_jungle_item,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_jungle ));
@@ -135,7 +129,7 @@ public class HandlerBountifulUpdate
 		BlockDoorSimple door_spruce = new BlockDoorSimple();
  
 
-		ItemDoorSimple door_spruce_item = new ItemDoorSimple(Material.wood, door_spruce);
+		ItemDoorSimple door_spruce_item = new ItemDoorSimple(door_spruce);
 		door_spruce_item.setUnlocalizedName("door_spruce_item");//same texture name but its in the assets......items package
 
 		door_spruce.setItemDropped(door_spruce_item);
@@ -152,7 +146,7 @@ public class HandlerBountifulUpdate
 		BlockDoorSimple door_birch = new BlockDoorSimple();
  
 		
-		ItemDoorSimple door_birch_item = new ItemDoorSimple(Material.wood, door_birch );
+		ItemDoorSimple door_birch_item = new ItemDoorSimple(door_birch );
 		door_birch_item.setUnlocalizedName("door_birch_item");//same texture name but its in the assets......items package
 
 		door_birch.setItemDropped(door_birch_item);
@@ -171,7 +165,7 @@ public class HandlerBountifulUpdate
 		BlockDoorSimple door_dark_oak = new BlockDoorSimple();
  
 		
-		ItemDoorSimple door_dark_oak_item = new ItemDoorSimple(Material.wood, door_dark_oak);
+		ItemDoorSimple door_dark_oak_item = new ItemDoorSimple(door_dark_oak);
 		door_dark_oak_item.setUnlocalizedName("door_dark_oak_item");//same texture name but its in the assets......items package
 		
 		door_dark_oak.setItemDropped(door_dark_oak_item);
@@ -344,28 +338,13 @@ public class HandlerBountifulUpdate
 				's', Items.stick
 				);
 
-
-		
-		/*
-		 * TODO: override blockfence to override this for connections
-		 * 
-		 * public boolean canConnectFenceTo(IBlockAccess p_149826_1_, int
-		 * p_149826_2_, int p_149826_3_, int p_149826_4_) { Block block =
-		 * p_149826_1_.getBlock(p_149826_2_, p_149826_3_, p_149826_4_); return
-		 * block != this && block != Blocks.fence_gate ?
-		 * (block.blockMaterial.isOpaque() && block.renderAsNormalBlock() ?
-		 * block.blockMaterial != Material.gourd : false) : true; }
-		 */
  
 
 		// we inherited from basic fencegate to override getIcon, which was set
 		// to only plain planks
-		acacia_fence_gate = new BlockFenceGateSimple();
-		//acacia_fence_gate.setBlockName("acacia_fence_gate").setBlockTextureName(
-		//		"planks_acacia");
-		//GameRegistry.registerBlock(acacia_fence_gate, "acacia_fence_gate");
-		acacia_fence_gate.setBlockTextureName("planks_acacia");
+		acacia_fence_gate = new BlockFenceGateSimple(); 
 		ModSamsContent.registerBlockHelper(acacia_fence_gate, "acacia_fence_gate"); 
+		acacia_fence_gate.setBlockTextureName("planks_acacia");
 		
 		GameRegistry.addRecipe(new ItemStack(acacia_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_acacia),
@@ -373,42 +352,37 @@ public class HandlerBountifulUpdate
 				);
 		
 
-		spruce_fence_gate = new BlockFenceGateSimple();
-		//spruce_fence_gate.setBlockName("spruce_fence_gate").setBlockTextureName(
-		//		"planks_spruce");
-		//GameRegistry.registerBlock(spruce_fence_gate, "spruce_fence_gate");
+		spruce_fence_gate = new BlockFenceGateSimple(); 
 		ModSamsContent.registerBlockHelper(spruce_fence_gate, "spruce_fence_gate"); 
+
+		spruce_fence_gate.setBlockTextureName("planks_spruce");
 		GameRegistry.addRecipe(new ItemStack(spruce_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_spruce),
 				's', Items.stick
 				);
 		
 
-		birch_fence_gate = new BlockFenceGateSimple();
-		//birch_fence_gate.setBlockName("birch_fence_gate").setBlockTextureName(
-		//		"planks_birch");
-		//GameRegistry.registerBlock(birch_fence_gate, "");
+		birch_fence_gate = new BlockFenceGateSimple(); 
 		ModSamsContent.registerBlockHelper(birch_fence_gate, "birch_fence_gate"); 
+		birch_fence_gate.setBlockTextureName("planks_birch");
+		
 		GameRegistry.addRecipe(new ItemStack(birch_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_birch),
 				's', Items.stick
 				);
 
-		jungle_fence_gate = new BlockFenceGateSimple();
-		//jungle_fence_gate.setBlockName("jungle_fence_gate").setBlockTextureName(
-		//		"planks_jungle");
-		//GameRegistry.registerBlock(jungle_fence_gate, "");
+		jungle_fence_gate = new BlockFenceGateSimple(); 
 		ModSamsContent.registerBlockHelper(jungle_fence_gate, "jungle_fence_gate"); 
+		jungle_fence_gate.setBlockTextureName("planks_jungle");
 		GameRegistry.addRecipe(new ItemStack(jungle_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_jungle),
 				's', Items.stick
 				);
 
-		big_oak_fence_gate = new BlockFenceGateSimple();
-	//	big_oak_fence_gate.setBlockName("big_oak_fence_gate").setBlockTextureName(
-		//		"planks_big_oak");
-		ModSamsContent.registerBlockHelper(big_oak_fence_gate, "big_oak_fence_gate"); 
-		//GameRegistry.registerBlock(big_oak_fence_gate, "big_oak_fence_gate");
+		big_oak_fence_gate = new BlockFenceGateSimple(); 
+		ModSamsContent.registerBlockHelper(big_oak_fence_gate, "big_oak_fence_gate");  
+		big_oak_fence_gate.setBlockTextureName("planks_big_oak");
+		
 		GameRegistry.addRecipe(new ItemStack(big_oak_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_darkoak),
 				's', Items.stick

@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 public class ItemDoorSimple extends ItemDoor
 {
 	public Block doorBlock; 
-	public ItemDoorSimple(Material par1, Block block)
+	public ItemDoorSimple(Block block)
 	{
-		super(par1); 
+		super(Material.wood); 
 		this.doorBlock = block;
 		this.maxStackSize = 64;
 		this.setCreativeTab(CreativeTabs.tabRedstone);//.setTextureName(texture);
@@ -26,7 +26,7 @@ public class ItemDoorSimple extends ItemDoor
 	@Override
 	public void registerIcons(IIconRegister iconRegister)
 	{
-		itemIcon = iconRegister.registerIcon("samspowerups:" + this.iconString);
+		itemIcon = iconRegister.registerIcon(this.iconString);//removed "samspowerups:" +
 	}
 
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
