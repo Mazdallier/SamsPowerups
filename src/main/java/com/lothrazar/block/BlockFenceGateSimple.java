@@ -26,7 +26,6 @@ public class BlockFenceGateSimple extends BlockFenceGate
         return this.icon;//Blocks.planks.getBlockTextureFromSide(side);
     }
 
-
 	@Override
     public boolean canPlaceBlockAt(World w, int x, int y, int z)
     {
@@ -37,10 +36,6 @@ public class BlockFenceGateSimple extends BlockFenceGate
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister p_149651_1_)
     {
-        //this.icon = new IIcon[field_150096_a.length];
-
-        //"planks_" + spruce
         this.icon = p_149651_1_.registerIcon( this.getTextureName());
-   
     }
 }

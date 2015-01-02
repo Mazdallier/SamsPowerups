@@ -19,7 +19,12 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class BlockCommandBlockCraftable extends BlockCommandBlock
-{
+{ 
+	public static enum CommandType
+	{
+		Teleport, Gamerule, Weather
+	}
+	
 	private CommandType type;
 	private String rule = null;
 	
@@ -146,35 +151,27 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
     {
 		return true;
     }
-	
-	
-
-	public static enum CommandType
-	{
-		Teleport, Gamerule, Weather
-	}
-	
-	
-	
-	
-	
-
+	 
 	public static void initCommand()
 	{
 
 		BlockCommandBlockCraftable gameruleRegenBlock;
 		gameruleRegenBlock = new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "naturalRegeneration");
+		
 		gameruleRegenBlock.setBlockName("grRegenBlock").setBlockTextureName(
 				"samspowerups" + ":regen_command_block");
+		
 		GameRegistry.registerBlock(gameruleRegenBlock, "grRegenBlock");
-		GameRegistry.addRecipe(new ItemStack(gameruleRegenBlock), "rcr", "tet",
-				"rcr", 'c', Items.comparator, 'e', Items.golden_apple, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear
-
+		GameRegistry.addRecipe(new ItemStack(gameruleRegenBlock)
+				, "rcr"
+				, "tet"
+				, "rcr", 
+				'c', Items.comparator, 
+				'e', Items.golden_apple, 
+				'r', Blocks.redstone_block, 
+				't', Items.ghast_tear
 		);
-
-	
 
 		BlockCommandBlockCraftable gamerulemobGriefingblock;
 		gamerulemobGriefingblock = new BlockCommandBlockCraftable(
@@ -226,5 +223,4 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 	}
-	  
 }

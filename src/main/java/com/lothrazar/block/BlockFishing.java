@@ -31,7 +31,6 @@ public class BlockFishing extends Block
 	@Override
 	public void updateTick(World worldObj, int xCoord, int yCoord, int zCoord, Random rand)
     {  
-		// Relay.addChatMessage(worldObj, "update tick on fisher");
 		 if(worldObj.getBlock(xCoord+1, yCoord, zCoord).equals(Blocks.water) == false
 		 || worldObj.getBlock(xCoord-1, yCoord, zCoord).equals(Blocks.water) == false 
 		 || worldObj.getBlock(xCoord, yCoord, zCoord+1).equals(Blocks.water) == false
@@ -42,7 +41,6 @@ public class BlockFishing extends Block
 		)
 		 {
 			 //all   MUST be   water. so if any one of them is not water, dont fish
-		// Relay.addChatMessage(worldObj, "unot enoguh waterr");
 			  return; 
 		 }
 		
@@ -89,12 +87,7 @@ public class BlockFishing extends Block
     	 
     	worldObj.spawnEntityInWorld(entityItem);
     	
-
-	// Relay.addChatMessage(worldObj, "fished");
-    	
-    	
-    	worldObj.playSoundAtEntity(entityItem,"liquid.splash1",1F,1F);
-	 
+    	worldObj.playSoundAtEntity(entityItem,"liquid.splash1",1F,1F);//??game.neutral.swim.splash
     }
 
 	public static boolean isEnabled() 

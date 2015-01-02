@@ -67,7 +67,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
  
-@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION) // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
+@Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION	) // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 public class ModSamsContent
 {
 	@Instance(value = ModSamsContent.MODID)
@@ -78,7 +78,6 @@ public class ModSamsContent
 
 	public static Configuration config;
 	public static ConfigFile settings;
-
 
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
@@ -136,7 +135,6 @@ public class ModSamsContent
   		
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
   	 
-  		
   		if(ModSamsContent.settings.increasedStackSizes ) { initStackSizes(); }
 	   
 		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
@@ -156,29 +154,18 @@ public class ModSamsContent
 		if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
 		if(ModSamsContent.settings.craftableMushroomBlocks)  { ExtraCraftingMod.mushroomBlocks(); }
-		 
-
-		
+		  
 		if(ModSamsContent.settings.craftableMobHeads) 	{ExtraCraftingMod.mobHeads();	}
- 
-		
+  
 		if(ModSamsContent.settings.craftableBonemealColouredWool)  {ExtraCraftingMod.bonemealWool();}
-	 
-		
+	  
 		if(ModSamsContent.settings.craftableTransmuteRecords)   { ExtraCraftingMod.records();}
-		 
-		 
+		  
 		if(ModSamsContent.settings.craftableFlatDoubleSlab) { ExtraCraftingMod.doubleSlabsFlat();}
 		 
    		if(ModSamsContent.settings.uncraftGeneral) { ExtraCraftingMod.uncrafting();}
-   		 
-		
-   		if(ModSamsContent.settings.recipes)
-		{
-			 
-			HandlerBountifulUpdate.initRecipes();
-			
-		}
+   		  
+   		if(ModSamsContent.settings.recipes) { HandlerBountifulUpdate.initRecipes();  } 
 		
 		if(ModSamsContent.settings.decorativeBlocks)
 		{
@@ -203,15 +190,9 @@ public class ModSamsContent
 			HandlerBountifulUpdate.initRedSandstone();
 		}
 
-		if(ModSamsContent.settings.mutton)
-		{
-			HandlerBountifulUpdate.initMutton();
-		}
+		if(ModSamsContent.settings.mutton) { HandlerBountifulUpdate.initMutton(); }
 		
-		if(ModSamsContent.settings.incompSlime)
-		{
-			HandlerBountifulUpdate.initSlimeBlock();
-		}
+		if(ModSamsContent.settings.incompSlime) { HandlerBountifulUpdate.initSlimeBlock(); }
  
 
 		//SaplingStickAxe();
@@ -289,8 +270,7 @@ public class ModSamsContent
 		if (itemStack == null || itemStack.getItem() == null ) { return; }
 
 		if (event.action.LEFT_CLICK_BLOCK == event.action)
-		{
- 
+		{ 
 			if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
 			{
 				ItemEnderBook.teleport(event.entityPlayer, itemStack);
@@ -300,8 +280,7 @@ public class ModSamsContent
 		{
 			if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
 			{
-				ItemEnderBook.itemEnderBook.saveCurrentLocation(
-						event.entityPlayer, itemStack);
+				ItemEnderBook.itemEnderBook.saveCurrentLocation( event.entityPlayer, itemStack);
 			}
 		}
 	}
@@ -312,16 +291,10 @@ public class ModSamsContent
 		if (event.entityLiving instanceof EntitySheep
 				&& HandlerBountifulUpdate.mutton_cooked != null
 				&& HandlerBountifulUpdate.mutton_raw != null)
-		{
-
-			// 50/50 drop 1-2
-			// if on fire do cooked
-
-			// TODO. more with looting
-			// use event.source instanceof EntityPlayer, and if so, check held
-			// item for enchants. or meh
-
-			// so now we have 1-2
+		{ 
+			// 50/50 drop 1-2 
+			// TODO. more with looting 
+ 
 			int drops = 1 + event.entity.worldObj.rand.nextInt(2);// this gets num in range [0,1]
 
 			if (event.entityLiving.isBurning())
@@ -338,11 +311,8 @@ public class ModSamsContent
 		
 		if (runestone != null
 				&& (runestone.getItem() instanceof ItemRunestone) == false)
-		{
-			//ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
-
-			//the player tick event 
+		{ 
 			ItemRunestone.applyRunestoneToPlayer(event.player, runestone);
 		} 
-	}// end player tick event
+	} 
 }

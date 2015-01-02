@@ -12,7 +12,6 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockFenceSimple extends BlockFence
 {
-
     public BlockFenceSimple(String name)
     {
         super(name, Material.wood); 
@@ -37,5 +36,4 @@ public class BlockFenceSimple extends BlockFence
         		(block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) 
         		: true;//it was for sure a fence or fgate, so we went true right away
     }
-
 }
