@@ -27,6 +27,19 @@ public class HandlerConfigFile
     		
     		);
 		
+		//TODO decoration blocks: Stone types; red sandstone ; prismarine; wooden doors;  wooden fences and gates; Iron trapdoor
+		
+		
+		//TODO: partially working slime block (craftable, bouncy, does not interact with pistons the same way)
+		
+		
+
+		/*********************************************************************************************/
+		category = "commands";
+		
+		//one flag for each command
+		
+		
 		/*********************************************************************************************/
 		category = "crafting";
 		
@@ -47,42 +60,9 @@ public class HandlerConfigFile
  
 		
 
-/*********************************************************************************************/   
-		
-		category = "tweaks"; 	
-    	
-		/*
-		allEnabled = config.getBoolean("allEnabled", category, true,
-				"Enable all blocks and items.");
-				*/
-		
-		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
-		ModSamsContent.increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		
-		); 
-		
-		ModSamsContent.moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
-    			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
-	 
-		 
-    		); 
-	 
-	    
-		ModSamsContent.swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
-    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
-    		
-    		); 
-		ModSamsContent.smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
-    			"Attack with the ender chest to open it without placing it."
-    		
-    		);
-    	
 
 /*********************************************************************************************/		
-		category = "flying";
+		category = "flyingInSurvival";
 
 		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("disableWhileBurning",category, true
 				,"When true, this disables flying while you are burning."); 
@@ -115,8 +95,70 @@ public class HandlerConfigFile
 		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "countdownSpeed",category, 300,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
  
+
+/*********************************************************************************************/  
+		category = "new_blocks_items";
 		
 		
+		//apples
+		
+		
+		//runestones
+		
+		
+		//fishing net block
+		
+		
+		//xray block
+		
+		
+		
+		
+		
+
+/*********************************************************************************************/   
+		
+		category = "tweaks"; 	
+    	
+		/*
+		allEnabled = config.getBoolean("allEnabled", category, true,
+				"Enable all blocks and items.");
+				*/
+		
+		//TODO: config for each type (apples,runestones,backport,commandblocks,...)
+		ModSamsContent.increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
+			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
+			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
+			"horse armor, empty bucket, bed, all records."
+		
+		); 
+		
+		ModSamsContent.moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
+    			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
+	 
+		 
+    		); 
+	 
+		
+	    
+		ModSamsContent.swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
+    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."
+    		
+    		); 
+		ModSamsContent.smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
+    			"Attack with the ender chest to open it without placing it."
+    		
+    		);
+		
+		
+		
+		//debug screen
+		
+		
+		
+		//bonemeal
+		
+		//
     	
 
 
