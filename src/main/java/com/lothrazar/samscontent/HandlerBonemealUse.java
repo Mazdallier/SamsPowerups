@@ -24,8 +24,7 @@ public class HandlerBonemealUse
 		else
 			return false;
 	}
-	
-	//@SuppressWarnings("unused")
+	 
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)
   	{    
@@ -66,9 +65,7 @@ public class HandlerBonemealUse
 		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
 			  	event.entity.entityDropItem( new ItemStack(Blocks.waterlily ,1), 1);
-		 	}
-		 	
-		}
-		
+		 	} 
+		} 
   	}
 }

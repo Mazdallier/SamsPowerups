@@ -5,6 +5,12 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 
+import com.lothrazar.command.CommandEnderChest;
+import com.lothrazar.command.CommandKillAll;
+import com.lothrazar.command.CommandSearchItem;
+import com.lothrazar.command.CommandSearchTrades;
+import com.lothrazar.command.CommandSimpleWaypoints;
+import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.samscontent.FurnaceFuel.FurnaceBurnTime;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
 
@@ -37,6 +43,12 @@ public class ConfigFile
 	public boolean weatherBlock;
 	public boolean gameruleBlocks;
 	public boolean craftableMushroomBlocks;
+	public boolean searchtrade;
+	public boolean searchitem;
+	public boolean killall;
+	public boolean enderchest;
+	public boolean simplewaypoint;
+	public boolean todo;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -77,10 +89,28 @@ public class ConfigFile
 
 		/*********************************************************************************************/
 		category = "commands";
+		searchtrade = ModSamsContent.config.getBoolean("searchtrade",category, true,
+    			"Command that lets players search the trades of nearby villagers.  Result is only chat output."
+    		);
 		
-		//one flag for each command??
+
+		searchitem = ModSamsContent.config.getBoolean("searchitem",category, true,
+    			"Command that lets players search nearby chests for items.   Result is only chat output."
+    		);
 		
-		
+		killall = ModSamsContent.config.getBoolean("killall",category, true,
+    			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."
+    		);
+		enderchest = ModSamsContent.config.getBoolean("enderchest",category, true,
+    			"Command that lets players open their enderchest with a command, no item needed."
+    		);
+		simplewaypoint = ModSamsContent.config.getBoolean("simplewaypoint",category, true,
+    			"Command that lets players save waypoints that then show up in the F3 debug screen, so we can navigate back to it (no tp)."
+    		);
+		todo = ModSamsContent.config.getBoolean("todo",category, true,
+    			"Command that lets players use /todo myreminder text, which will then show whatever text they put on the F3 debug screen."
+    		);
+	 
 		
 		/*********************************************************************************************/
 		category = "crafting";
@@ -116,6 +146,12 @@ public class ConfigFile
 		
 		category = "flyingInSurvival";
 
+		
+		
+
+		HandlerSurvivalFlying.canFlySurvival = ModSamsContent.config.getBoolean("all_canFlySurvival",category, true
+				,"Set to false to disable this whole area.  If true, players can fly in survival mode, with restrictions and costs as listed here.  Also has a /flyhelp command for more info."); 
+		
 		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("disableWhileBurning",category, true
 				,"When true, this disables flying while you are burning."); 
 

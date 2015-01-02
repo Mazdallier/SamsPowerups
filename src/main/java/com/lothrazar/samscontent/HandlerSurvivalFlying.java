@@ -30,7 +30,8 @@ public class HandlerSurvivalFlying
 	public static boolean cannotFlyAtNight = true;
 	public static boolean cannotFlyInRain = true;
 	public static boolean doesDrainLevels = true;
-	 
+
+	public static boolean canFlySurvival = true;
 	//was 70 in old mod, farily fast
 	public static int flyDamageCounterLimit = 300;// speed of countdown. changed by cfg file. one for all players
   
@@ -41,8 +42,10 @@ public class HandlerSurvivalFlying
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{   
+		if(canFlySurvival == false ) { return; }//disable whole module
 		if( !event.player.worldObj.isRemote  ){ return; }
 		if( event.player.capabilities.isCreativeMode){return;}//leave flying alone
+		
  
 		//use the players display name as the hashmap key for the flyCountdown
 		String pname = event.player.getDisplayName();

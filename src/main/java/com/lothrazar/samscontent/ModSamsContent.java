@@ -114,14 +114,14 @@ public class ModSamsContent
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
-		event.registerServerCommand(new CommandSearchTrades()); 
-		event.registerServerCommand(new CommandSearchItem()); 
-		event.registerServerCommand(new CommandKillAll()); 
-		event.registerServerCommand(new CommandSimpleWaypoints()); 
-		event.registerServerCommand(new CommandTodoList());  
-		event.registerServerCommand(new CommandEnderChest()); 
+		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
+		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
+		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
+		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
+		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
+		if(ModSamsContent.settings.enderchest) { event.registerServerCommand(new CommandEnderChest()); }
 		 
-		event.registerServerCommand(new CommandFlyHelp());
+		if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
 	}
  
 	@EventHandler
