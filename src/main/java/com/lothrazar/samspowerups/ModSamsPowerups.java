@@ -64,18 +64,17 @@ public class ModSamsPowerups
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(ModSamsContent.swiftDeposit == false){return;}
+		if(ModSamsContent.swiftDeposit == false){ return; }
 		
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 
 		if(event.entityPlayer.isSneaking() == false){ return; }
 		
- 
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
 		
-		if(held != null && held.getItem() == Items.skull && held.getItemDamage() == 3
+		if(held != null && held.getItem() == Items.skull && held.getItemDamage() == Reference.skull_player
 				//&& ExtraCrafting.skullSignNames
-				)
+			)
 		{
 			TileEntity maybesign = event.world.getTileEntity(event.x, event.y, event.z);
 			if(maybesign != null && maybesign instanceof TileEntitySign)
@@ -98,13 +97,9 @@ public class ModSamsPowerups
 					}
 				}
 			}
-			
 		}
 			//http://docs.larry1123.net/forge/965/net/minecraft/tileentity/TileEntitySign.html
 
-		
-		
-		
 		//if(event.entityPlayer.getItemInUse() != null){ return; }
 		if(event.entityPlayer.getCurrentEquippedItem() != null){ return; }
 		//ok so we have an empty hand
@@ -149,8 +144,6 @@ public class ModSamsPowerups
   		{
   	  		sortFromPlayerToChestEntity(teAdjacent,event.entityPlayer);
   		}
-		
-		 
    	}//end player interact event  
  
   	private void sortFromPlayerToChestEntity(TileEntityChest chest, EntityPlayer entityPlayer)
@@ -251,5 +244,4 @@ public class ModSamsPowerups
 			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
   	}
-    
 }
