@@ -11,13 +11,16 @@ import com.lothrazar.samscrafting.ExtraCraftingMod;
 public class HandlerConfigFile
 {
 
+	//to go between main and sub levels nested in the json style cfg file
+	private static String LevelSep = ".";
+	
 	public static void setupConfig()
 	{
 		String category;
 		
 
 		/*********************************************************************************************/
-		category = "bountiful_update_1.8";
+		category = "bountiful_update";
     
 		ModSamsContent.moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
     			"Adds in villager trades that would be added in 1.8."
@@ -81,35 +84,35 @@ public class HandlerConfigFile
 /*********************************************************************************************/		
 		category = "flying";
 
-		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("cannotFlyWhileBurning",category, true
+		HandlerSurvivalFlying.cannotFlyWhileBurning = ModSamsContent.config.getBoolean("disableWhileBurning",category, true
 				,"When true, this disables flying while you are burning."); 
 
-		HandlerSurvivalFlying.NoArmorOnly = ModSamsContent.config.getBoolean( "noArmorFlyingOnly",category,false
+		HandlerSurvivalFlying.NoArmorOnly = ModSamsContent.config.getBoolean( "disableWithArmor",category,false
 				,"When this is true, you may only fly if not wearing any armor. ");
 		
-		HandlerSurvivalFlying.cannotFlyAtNight = ModSamsContent.config.getBoolean( "cannotFlyAtNight",category,false
+		HandlerSurvivalFlying.cannotFlyAtNight = ModSamsContent.config.getBoolean( "disableAtNight",category,false
 			,"When this is true, you cannot use survival flying at night.");
 		
-		HandlerSurvivalFlying.cannotFlyInRain = ModSamsContent.config.getBoolean( "cannotFlyInRain",category,false
+		HandlerSurvivalFlying.cannotFlyInRain = ModSamsContent.config.getBoolean( "disableInRain",category,false
 				,"When this is true, you cannot use survival flying in the rain.");
  
-		HandlerSurvivalFlying.StartFlyingLevel = ModSamsContent.config.getInt( "startFlyingLevel",category, 10,0,99// default,min,max
+		HandlerSurvivalFlying.StartFlyingLevel = ModSamsContent.config.getInt( "minLevel",category, 10,0,99// default,min,max
 					,"The minimum level required to fly in survival.  ");
 		  
-		HandlerSurvivalFlying.difficultyRequiredToFly = ModSamsContent.config.getInt( "difficultyRequiredToFly",category, 3,0,3
+		HandlerSurvivalFlying.difficultyRequiredToFly = ModSamsContent.config.getInt( "difficultyRequired",category, 3,0,3
 				,"Minimum difficulty required for survival fly (0 = Peaceful, 3 = Hard).");
 		  
-		HandlerSurvivalFlying.StartFlyingHealth = ModSamsContent.config.getInt( "startflyinghealth",category, 10,1,20
+		HandlerSurvivalFlying.StartFlyingHealth = ModSamsContent.config.getInt( "minHealth",category, 10,1,20
 				,"The minimum health required in order to fly in survival.  Each number is one half heart, " +
 						"so 20 means 10 hearts.");
 		 
-		HandlerSurvivalFlying.StartFlyingHunger = ModSamsContent.config.getInt( "startflyinghunger",category, 5,1,20,
+		HandlerSurvivalFlying.StartFlyingHunger = ModSamsContent.config.getInt( "minHunger",category, 5,1,20,
 				"Minimum hunger required to fly.  Each number is one half hunger, so 20 means full hunger.");
 		 
 		HandlerSurvivalFlying.doesDrainLevels = ModSamsContent.config.getBoolean( "doesDrainLevels",category,true,
 			"When this is true, your XP Levels will drain while flying."); 
 		 
-		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "flycountdown",category, 300,5,999
+		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "countdownSpeed",category, 300,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5.");
  
 		
