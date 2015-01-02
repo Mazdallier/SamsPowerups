@@ -21,7 +21,7 @@ public class HandlerSwiftDeposit
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(ModSamsContent.swiftDeposit == false){ return; }
+		if(ModSamsContent.settings.swiftDeposit == false){ return; }
 		
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 

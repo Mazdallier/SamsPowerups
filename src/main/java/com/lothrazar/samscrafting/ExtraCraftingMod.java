@@ -33,10 +33,7 @@ public class ExtraCraftingMod
 //	public static Configuration config;  
   ////  protected static final String MODID = "samscrafting"; 
    // public static final String VERSION = "1";
-	public static boolean craftableTransmuteRecords = true;  
-	public static boolean craftableFlatDoubleSlab = true; 
-	public static boolean craftableBonemealColouredWool;   
-	public static boolean craftableMobHeads; 
+
  
 
 	public static boolean stairs;
@@ -90,7 +87,7 @@ public class ExtraCraftingMod
 		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
 		//etc for other minecarts too
 		
-		if(craftableMobHeads)
+		if(ModSamsContent.settings.craftableMobHeads)
 		{ 	
 			//skeleton 0
 			GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_skeleton), "xxx", "xsx","xxx"
@@ -117,7 +114,7 @@ public class ExtraCraftingMod
 		}
 		
 	 
-		if(craftableBonemealColouredWool)
+		if(ModSamsContent.settings.craftableBonemealColouredWool)
 		{
 			//use bonemeal to bleach colored wool back to white
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 1, 0),
@@ -152,7 +149,7 @@ public class ExtraCraftingMod
 					new ItemStack(Blocks.wool, 1, 15), new ItemStack(Items.dye, 1,				Reference.dye_bonemeal));
 		}
 		
-		if(craftableTransmuteRecords)  
+		if(ModSamsContent.settings.craftableTransmuteRecords)  
 		{
 			// iterate down the list, 8 emeralds each time
 			
@@ -198,7 +195,7 @@ public class ExtraCraftingMod
 							Items.record_13));
 		}
 		 
-		if(craftableFlatDoubleSlab)
+		if(ModSamsContent.settings.craftableFlatDoubleSlab)
 		{
 			int islab_sandstone = 1;
 

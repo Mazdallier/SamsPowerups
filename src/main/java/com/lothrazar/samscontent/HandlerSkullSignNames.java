@@ -57,7 +57,7 @@ public class HandlerSkullSignNames
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(ModSamsContent.skullSignNames == false){ return; }
+		if(ModSamsContent.settings.skullSignNames == false){ return; }
 		
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 

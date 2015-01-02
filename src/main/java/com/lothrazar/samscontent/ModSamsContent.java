@@ -77,15 +77,9 @@ public class ModSamsContent
 	public static final String VERSION = "1";
 
 	public static Configuration config;
+	public static ConfigFile settings;
 
-	public static boolean swiftDeposit = true;
-	public static boolean smartEnderchest = true;
-	public static boolean increasedStackSizes = true;
-	public static boolean moreFuel = true;
-	public static boolean moreFutureTrades = true;
-	public static boolean skullSignNames; 
-	
-	
+
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
@@ -93,7 +87,7 @@ public class ModSamsContent
 		
 		config = new Configuration(event.getSuggestedConfigurationFile());
  
-     	ConfigFile.setupConfig();
+		settings = new ConfigFile();
      	
      	Object[] handlers = new Object[]
      	{
@@ -117,12 +111,9 @@ public class ModSamsContent
      	}
 	}
 
-
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
-		MinecraftForge.EVENT_BUS.register(this);//??is this needed/used
-		
 		event.registerServerCommand(new CommandSearchTrades()); 
 		event.registerServerCommand(new CommandSearchItem()); 
 		event.registerServerCommand(new CommandKillAll()); 
@@ -136,7 +127,7 @@ public class ModSamsContent
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     
-  		if(moreFutureTrades)
+  		if(ModSamsContent.settings.moreFutureTrades)
   		{
 	  		VillageTrading v = new VillageTrading();
 			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
@@ -148,7 +139,7 @@ public class ModSamsContent
 		
 		//MobSpawnExtras();
   		
-  		if(moreFuel)
+  		if(ModSamsContent.settings.moreFuel)
   		{
   			GameRegistry.registerFuelHandler(new FurnaceFuel());
   		}
@@ -180,49 +171,49 @@ public class ModSamsContent
 
 	private void initStackSizes()
 	{
-		if(increasedStackSizes)
+		if(ModSamsContent.settings.increasedStackSizes == false){ return; }
+	
+		ArrayList<Item> to64 = new ArrayList<Item>();
+ 
+		to64.add(Items.ender_pearl);
+		to64.add(Items.egg);
+		to64.add(Items.sign);
+		to64.add(Items.snowball);
+		to64.add(Items.cookie);
+		to64.add(Items.mushroom_stew);
+		to64.add(Items.boat);
+		to64.add(Items.minecart);
+		to64.add(Items.iron_door);
+		to64.add(Items.wooden_door);
+		to64.add(Items.cake);
+		to64.add(Items.saddle);
+		to64.add(Items.bucket);
+		to64.add(Items.bed);
+		to64.add(Items.chest_minecart);
+		to64.add(Items.furnace_minecart);
+		to64.add(Items.tnt_minecart);
+		to64.add(Items.hopper_minecart);
+		to64.add(Items.iron_horse_armor);
+		to64.add(Items.golden_horse_armor);
+		to64.add(Items.diamond_horse_armor); 
+		to64.add(Items.record_13);
+		to64.add(Items.record_blocks);
+		to64.add(Items.record_chirp);
+		to64.add(Items.record_far);
+		to64.add(Items.record_mall);
+		to64.add(Items.record_mellohi);
+		to64.add(Items.record_cat);
+		to64.add(Items.record_stal);
+		to64.add(Items.record_strad);
+		to64.add(Items.record_ward);
+		to64.add(Items.record_11);
+		to64.add(Items.record_wait);
+		 
+		for(Item item : to64)
 		{
-			ArrayList<Item> to64 = new ArrayList<Item>();
-	 
-			to64.add(Items.ender_pearl);
-			to64.add(Items.egg);
-			to64.add(Items.sign);
-			to64.add(Items.snowball);
-			to64.add(Items.cookie);
-			to64.add(Items.mushroom_stew);
-			to64.add(Items.boat);
-			to64.add(Items.minecart);
-			to64.add(Items.iron_door);
-			to64.add(Items.wooden_door);
-			to64.add(Items.cake);
-			to64.add(Items.saddle);
-			to64.add(Items.bucket);
-			to64.add(Items.bed);
-			to64.add(Items.chest_minecart);
-			to64.add(Items.furnace_minecart);
-			to64.add(Items.tnt_minecart);
-			to64.add(Items.hopper_minecart);
-			to64.add(Items.iron_horse_armor);
-			to64.add(Items.golden_horse_armor);
-			to64.add(Items.diamond_horse_armor); 
-			to64.add(Items.record_13);
-			to64.add(Items.record_blocks);
-			to64.add(Items.record_chirp);
-			to64.add(Items.record_far);
-			to64.add(Items.record_mall);
-			to64.add(Items.record_mellohi);
-			to64.add(Items.record_cat);
-			to64.add(Items.record_stal);
-			to64.add(Items.record_strad);
-			to64.add(Items.record_ward);
-			to64.add(Items.record_11);
-			to64.add(Items.record_wait);
-			 
-			for(Item item : to64)
-			{
-				item.setMaxStackSize(64 + 64);
-			}
+			item.setMaxStackSize(64 + 64);
 		}
+	
 	}
 
  

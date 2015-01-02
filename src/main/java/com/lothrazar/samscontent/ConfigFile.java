@@ -10,11 +10,23 @@ import com.lothrazar.samscrafting.ExtraCraftingMod;
 
 public class ConfigFile
 {
+	public boolean swiftDeposit = true;
+	public boolean smartEnderchest = true;
+	public boolean increasedStackSizes = true;
+	public boolean moreFuel = true;
+	public boolean moreFutureTrades = true;
+	public boolean skullSignNames;
+	public boolean betterDebugScreen; 
+	
+	public boolean craftableTransmuteRecords = true;  
+	public boolean craftableFlatDoubleSlab = true; 
+	public boolean craftableBonemealColouredWool;   
+	public boolean craftableMobHeads; 
 
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
 	
-	public static void setupConfig()
+	public ConfigFile()
 	{
 		String category;
 		
@@ -22,7 +34,7 @@ public class ConfigFile
 		/*********************************************************************************************/
 		category = "bountiful_update";
     
-		ModSamsContent.moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
+		moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
     			"Adds in villager trades that would be added in 1.8."
     		);
 		
@@ -42,19 +54,19 @@ public class ConfigFile
 		/*********************************************************************************************/
 		category = "crafting";
 		
-		ExtraCraftingMod.craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
+		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
 				);
    
-		ExtraCraftingMod.craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
+		craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
 			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."
 				);
 
-		ExtraCraftingMod.craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
+		craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
 				,"Allows you to dye coloured wool back to white using bonemeal"
 				); 
   
-		ExtraCraftingMod.craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
+		craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. "
 						);  
@@ -120,27 +132,35 @@ public class ConfigFile
 		
 		category = "tweaks"; 	
     	
-		ModSamsContent.increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
+		increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
 			"horse armor, empty bucket, bed, all records."
 		); 
 		
-		ModSamsContent.moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
+		moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
     			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
     		); 
 	 
-		ModSamsContent.swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
+		swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
     			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."	
     		); 
 		
-		ModSamsContent.smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
+		smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
     			"Attack with the ender chest to open it without placing it."
     		);
 		
-		ModSamsContent.skullSignNames = true;//TODO
+		skullSignNames = ModSamsContent.config.getBoolean("skullSignNames",category, true,
+    			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign"
+    		);
 		
 		//debug screen
+		betterDebugScreen = ModSamsContent.config.getBoolean("betterDebugScreen",category, true,
+    			"Improves the debug screen.  Removes lots of rarely used info, and adds info on slime chunks, day counter, ridden horse info (speed/jump height) "
+    		);
+		
+		
+		//stack64
 		
 		
 		

@@ -49,11 +49,11 @@ public class HandlerScreenText
 	private boolean showVillageInfo = true; 
 	private boolean showHorseInfo = true;
 
-
-	
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{
+		if(ModSamsContent.settings.betterDebugScreen == false){ return; }
+		
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
 		 
 		//config file can disable all this, which keeps the original screen un-cleared
@@ -67,7 +67,6 @@ public class HandlerScreenText
 		CommandSimpleWaypoints.AddWaypointInfo(event); 
 	}
  
-	 
 	private void AddLeftInfo(ArrayList<String> side)
 	{  
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 
@@ -76,8 +75,6 @@ public class HandlerScreenText
 		//couldnt find game version as a variable
 		side.add("Minecraft 1.7.10 ["+world.difficultySetting.toString()+"]");
 		 
-		
-	
 		long time = world.getWorldTime(); 
 	 
 		int days = MathHelper.floor_double( time / Reference.ticksPerDay);
