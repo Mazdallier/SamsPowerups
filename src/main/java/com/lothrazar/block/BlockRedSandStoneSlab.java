@@ -38,7 +38,7 @@ public class BlockRedSandStoneSlab  extends BlockSlab
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        return HandlerBountifulUpdate.redSandstone.getBlockTextureFromSide(side) ;
+        return HandlerBountifulUpdate.red_sandstone.getBlockTextureFromSide(side) ;
     }
 
 	@Override

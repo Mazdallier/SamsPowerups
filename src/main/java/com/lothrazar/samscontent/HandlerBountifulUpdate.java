@@ -38,19 +38,19 @@ public class HandlerBountifulUpdate
 
 	static ItemFood mutton_raw;
 	static ItemFood mutton_cooked;
-	public static BlockFenceGateSimple acaciaGate;
-	public static BlockFenceGateSimple spruceGate;
-	public static BlockFenceGateSimple birchGate;
-	public static BlockFenceGateSimple jungleGate;
-	public static BlockFenceGateSimple big_oakGate;
-	public static BlockFenceSimple birchFence;
-	public static BlockFenceSimple jungleFence;
-	public static BlockFenceSimple spruceFence;
-	public static BlockFenceSimple big_oakFence;
-	public static BlockFenceSimple acaciaFence;
-	public static BlockRedSandStoneSlab redSandstoneSingleSlab;
-	public static BlockRedSandStoneSlab redSandstoneDoubleSlab;
-	public static BlockRedSandStone redSandstone;
+	public static BlockFenceGateSimple acacia_fence_gate;
+	public static BlockFenceGateSimple spruce_fence_gate;
+	public static BlockFenceGateSimple birch_fence_gate;
+	public static BlockFenceGateSimple jungle_fence_gate;
+	public static BlockFenceGateSimple big_oak_fence_gate;
+	public static BlockFenceSimple birch_fence;
+	public static BlockFenceSimple jungle_fence;
+	public static BlockFenceSimple spruce_fence;
+	public static BlockFenceSimple big_oak_fence;
+	public static BlockFenceSimple acacia_fence;
+	public static BlockRedSandStoneSlab red_sandstone_slab;
+	public static BlockRedSandStoneSlab red_sandstone_dbl_slab;
+	public static BlockRedSandStone red_sandstone;
  
 	static void initRecipes()
 	{
@@ -63,16 +63,16 @@ public class HandlerBountifulUpdate
 		//new recipes for existing blocks
 
 		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
-				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
-  
+			,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
+
 		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
-				 ,'s', Blocks.stonebrick
-		 		 ,'v', Blocks.vine 
+			,'s', Blocks.stonebrick
+		 	,'v', Blocks.vine 
 				);
 
 		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
-				 ,'s', Blocks.cobblestone
-		 		 ,'v', Blocks.vine 
+			,'s', Blocks.cobblestone
+		 	,'v', Blocks.vine 
 				);
 		 
 		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
@@ -93,101 +93,101 @@ public class HandlerBountifulUpdate
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
 	}
 	
-	 static void initAcaciaDoor()
+	static void initAcaciaDoor()
 	{
-		BlockDoorSimple acaciaDoor = new BlockDoorSimple();
-		acaciaDoor.setBlockTextureName("samspowerups:" + "door_acacia")
-				.setBlockName("door_acacia");
+		BlockDoorSimple door_acacia = new BlockDoorSimple();
+ 
 
-		ItemDoorSimple acaciaDoorItem = new ItemDoorSimple(Material.wood, acaciaDoor,"door_acacia");
-		acaciaDoorItem.setUnlocalizedName("door_acacia_item");//same texture name but its in the assets......items package
+		ItemDoorSimple door_acacia_item = new ItemDoorSimple(Material.wood, door_acacia); // ,"door_acacia"
+		//door_acacia_item.setUnlocalizedName("door_acacia_item");//same texture name but its in the assets......items package
 
-		acaciaDoor.setItemDropped(acaciaDoorItem);
 		
-		GameRegistry.registerBlock(acaciaDoor, "door_acacia");
-		GameRegistry.registerItem(acaciaDoorItem, "door_acacia_item");
-		 
-		GameRegistry.addRecipe(new ItemStack(acaciaDoorItem,3), " pp", " pp",	" pp", 
+		door_acacia.setItemDropped(door_acacia_item);
+
+		ModSamsContent.registerBlockHelper(door_acacia, "door_acacia"); 
+		ModSamsContent.registerItemHelper(door_acacia_item, "door_acacia_item") ;
+		
+		GameRegistry.addRecipe(new ItemStack(door_acacia_item,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_acacia));
 	}
 	
 	 static void initJungleDoor()
 	{
-		BlockDoorSimple jungleDoor = new BlockDoorSimple();
-		jungleDoor.setBlockTextureName("samspowerups:" + "door_jungle")
-				.setBlockName("door_jungle");
+		BlockDoorSimple door_jungle = new BlockDoorSimple();
+ 
 
-		ItemDoorSimple jungleDoorItem = new ItemDoorSimple(Material.wood, jungleDoor,"door_jungle");
-		jungleDoorItem.setUnlocalizedName("door_jungle_iten");//same texture name but its in the assets......items package
+		ItemDoorSimple door_jungle_item = new ItemDoorSimple(Material.wood, door_jungle);
+		door_jungle_item.setUnlocalizedName("door_jungle_iten");//same texture name but its in the assets......items package
 
-		jungleDoor.setItemDropped(jungleDoorItem);
-		
-		GameRegistry.registerBlock(jungleDoor, "door_jungle");
-		GameRegistry.registerItem(jungleDoorItem, "door_jungle_item");
+		door_jungle.setItemDropped(door_jungle_item);
+
+		ModSamsContent.registerBlockHelper(door_jungle, "door_jungle"); 
+		ModSamsContent.registerItemHelper(door_jungle_item, "door_jungle_item") ;
+		//GameRegistry.registerBlock(jungleDoor, "door_jungle");
+		//GameRegistry.registerItem(jungleDoorItem, "door_jungle_item");
 		 
-		GameRegistry.addRecipe(new ItemStack(jungleDoorItem,3), " pp", " pp",	" pp", 
+		GameRegistry.addRecipe(new ItemStack(door_jungle_item,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_jungle ));
 	}
 
 	 static void initSpruceDoor()
 	{
-		BlockDoorSimple spruceDoor = new BlockDoorSimple();
-		spruceDoor.setBlockTextureName("samspowerups:" + "door_spruce")
-				.setBlockName("door_spruce");
+		BlockDoorSimple door_spruce = new BlockDoorSimple();
+ 
 
-		ItemDoorSimple sprucehDoorItem = new ItemDoorSimple(Material.wood, spruceDoor,"door_spruce");
-		sprucehDoorItem.setUnlocalizedName("door_spruce_item");//same texture name but its in the assets......items package
+		ItemDoorSimple door_spruce_item = new ItemDoorSimple(Material.wood, door_spruce);
+		door_spruce_item.setUnlocalizedName("door_spruce_item");//same texture name but its in the assets......items package
 
-		spruceDoor.setItemDropped(sprucehDoorItem);
-		
-		GameRegistry.registerBlock(spruceDoor, "door_spruce");
-		GameRegistry.registerItem(sprucehDoorItem, "door_spruce_item");
+		door_spruce.setItemDropped(door_spruce_item);
 		 
-		GameRegistry.addRecipe(new ItemStack(sprucehDoorItem,3), " pp", " pp",	" pp", 
+		ModSamsContent.registerBlockHelper(door_spruce, "door_spruce"); 
+		ModSamsContent.registerItemHelper(door_spruce_item, "door_spruce_item") ;
+		 
+		GameRegistry.addRecipe(new ItemStack(door_spruce_item,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_spruce) );
 	}
 
 	 static void initBirchDoor()
 	{
-		BlockDoorSimple birchDoor = new BlockDoorSimple();
-		birchDoor.setBlockTextureName("samspowerups:" + "door_birch")
-				.setBlockName("door_birch"); 
+		BlockDoorSimple door_birch = new BlockDoorSimple();
+ 
 		
-		ItemDoorSimple birchDoorItem = new ItemDoorSimple(Material.wood, birchDoor,"door_birch");
-		birchDoorItem.setUnlocalizedName("door_birch_item");//same texture name but its in the assets......items package
+		ItemDoorSimple door_birch_item = new ItemDoorSimple(Material.wood, door_birch );
+		door_birch_item.setUnlocalizedName("door_birch_item");//same texture name but its in the assets......items package
 
-		birchDoor.setItemDropped(birchDoorItem);
+		door_birch.setItemDropped(door_birch_item);
 		
-		GameRegistry.registerBlock(birchDoor, "door_birch");
-		GameRegistry.registerItem(birchDoorItem, "door_birch_item");
+
+		ModSamsContent.registerBlockHelper(door_birch, "door_birch"); 
+		ModSamsContent.registerItemHelper(door_birch_item, "door_birch_item") ;
+ 
 		 
-		GameRegistry.addRecipe(new ItemStack(birchDoorItem,3), " pp", " pp",	" pp", 
+		GameRegistry.addRecipe(new ItemStack(door_birch_item,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_birch) );
 	}
 
 	 static void initDarkoakDoor()
 	{
-		BlockDoorSimple dark_oakDoor = new BlockDoorSimple();
-		dark_oakDoor.setBlockTextureName("samspowerups:" + "door_dark_oak")
-				.setBlockName("door_dark_oak"); 
+		BlockDoorSimple door_dark_oak = new BlockDoorSimple();
+ 
 		
-		ItemDoorSimple dark_oakDoorItem = new ItemDoorSimple(Material.wood, dark_oakDoor,"door_dark_oak");
-		dark_oakDoorItem.setUnlocalizedName("door_dark_oak_item");//same texture name but its in the assets......items package
+		ItemDoorSimple door_dark_oak_item = new ItemDoorSimple(Material.wood, door_dark_oak);
+		door_dark_oak_item.setUnlocalizedName("door_dark_oak_item");//same texture name but its in the assets......items package
 		
-		dark_oakDoor.setItemDropped(dark_oakDoorItem);
-		
-		GameRegistry.registerBlock(dark_oakDoor, "door_dark_oak");
-		GameRegistry.registerItem(dark_oakDoorItem, "door_dark_oak_item");
-		 
-		GameRegistry.addRecipe(new ItemStack(dark_oakDoorItem,3), " pp", " pp",	" pp", 
+		door_dark_oak.setItemDropped(door_dark_oak_item);
+
+		ModSamsContent.registerBlockHelper(door_dark_oak, "door_dark_oak"); 
+		ModSamsContent.registerItemHelper(door_dark_oak_item, "door_dark_oak_item") ;
+ 
+		GameRegistry.addRecipe(new ItemStack(door_dark_oak_item,3), " pp", " pp",	" pp", 
 				'p',new ItemStack(Blocks.planks,1,Reference.planks_darkoak) );
 	}
 	
 	 static void initSlimeBlock()
 	{
 		BlockSlime slime = new BlockSlime();
-	
-		GameRegistry.registerBlock(slime, "slime");
+	 
+		ModSamsContent.registerBlockHelper(slime, "slime"); 
 
 		GameRegistry.addRecipe(new ItemStack(slime), "ppp", "ppp",	"ppp", 
 				'p', Items.slime_ball);
@@ -198,168 +198,148 @@ public class HandlerBountifulUpdate
 	 static void initMutton()
 	{
 		mutton_raw = new ItemFood(2, false);
-		mutton_raw.setUnlocalizedName("mutton_raw").setTextureName(
-				"samspowerups:" + "mutton_raw");
-		GameRegistry.registerItem(mutton_raw, "mutton_raw");
-
+  
+		ModSamsContent.registerItemHelper(mutton_raw, "mutton_raw") ;
+		
 		mutton_cooked = new ItemFood(6, false);
-		mutton_cooked.setUnlocalizedName("mutton_cooked").setTextureName(
-				"samspowerups:" + "mutton_cooked");
-		GameRegistry.registerItem(mutton_cooked, "mutton_cooked");
-
-		// GameRegistry.addShapelessRecipe(new ItemStack(appleEmerald),
-		// Items.emerald , Items.golden_apple );
+ 
+		ModSamsContent.registerItemHelper(mutton_cooked, "mutton_cooked") ;
+ 
 		GameRegistry.addSmelting(mutton_raw, new ItemStack(mutton_cooked, 1), 0);
 	}
 
 	 static void initRedSandstone()
 	{
-		redSandstone = new BlockRedSandStone();
-		redSandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F)
-				.setBlockName("red_sandstone")
-				.setBlockTextureName("samspowerups:" + "red_sandstone_normal");
-		GameRegistry.registerBlock(redSandstone, "red_sandstone");
+		red_sandstone = new BlockRedSandStone();
+		red_sandstone.setStepSound(Block.soundTypePiston).setHardness(0.8F);
+			  
+		ModSamsContent.registerBlockHelper(red_sandstone, "red_sandstone"); 
 		
 
-		GameRegistry.addRecipe(new ItemStack(redSandstone), "ss", "ss",	 
+		GameRegistry.addRecipe(new ItemStack(red_sandstone), "ss", "ss",	 
 				's', new ItemStack(Blocks.sand,1,1));
 		
 		//reverse it back to sand
-		GameRegistry.addSmelting(redSandstone, new ItemStack(Blocks.sand,4,1), 0); 
+		GameRegistry.addSmelting(red_sandstone, new ItemStack(Blocks.sand,4,1), 0); 
 		
-		BlockRedSandStone redSandstoneSm = new BlockRedSandStone();
-		redSandstoneSm.setStepSound(Block.soundTypePiston).setHardness(0.8F)
-				.setBlockName("red_sandstone_smooth")
-				.setBlockTextureName("samspowerups:" + "red_sandstone_smooth");
-		GameRegistry.registerBlock(redSandstoneSm, "red_sandstone_smooth");
+		BlockRedSandStone red_sandstone_smooth = new BlockRedSandStone();
+		red_sandstone_smooth.setStepSound(Block.soundTypePiston).setHardness(0.8F); 
+		ModSamsContent.registerBlockHelper(red_sandstone_smooth, "red_sandstone_smooth"); 
 
 		//remove the smoothness
-		GameRegistry.addSmelting(new ItemStack(redSandstoneSm), new ItemStack(redSandstone), 0); 
+		GameRegistry.addSmelting(new ItemStack(red_sandstone_smooth), new ItemStack(red_sandstone), 0); 
 		
-		GameRegistry.addRecipe(new ItemStack(redSandstoneSm,4), "ss", "ss",	 
-				's', new ItemStack(redSandstone));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_smooth,4), "ss", "ss",	 
+				's', new ItemStack(red_sandstone));
 		
-		BlockRedSandStone redSandstoneCv = new BlockRedSandStone();
-		redSandstoneCv.setStepSound(Block.soundTypePiston).setHardness(0.8F)
-				.setBlockName("red_sandstone_carved")
-				.setBlockTextureName("samspowerups:" + "red_sandstone_carved");
-		
-		GameRegistry.registerBlock(redSandstoneCv, "red_sandstone_carved");
+		BlockRedSandStone red_sandstone_carved = new BlockRedSandStone();
+		red_sandstone_carved.setStepSound(Block.soundTypePiston).setHardness(0.8F);
+ ;
+		ModSamsContent.registerBlockHelper(red_sandstone_carved, "red_sandstone_carved"); 
 		
 
 
 		// dang protected again
-		BlockRedSandStoneStairs rsStair = new BlockRedSandStoneStairs(redSandstone,0);
-		rsStair.setBlockName("red_sandstone_stairs");
-		GameRegistry.registerBlock(rsStair, "red_sandstone_stairs");
+		BlockRedSandStoneStairs red_sandstone_stairs = new BlockRedSandStoneStairs(red_sandstone,0); 
+		ModSamsContent.registerBlockHelper(red_sandstone_stairs, "red_sandstone_stairs"); 
 		
 
-		GameRegistry.addRecipe(new ItemStack(rsStair,4), "s  ", "ss ","sss",	 
-				's', new ItemStack(redSandstone));
-		GameRegistry.addRecipe(new ItemStack(rsStair,4), "  s", " ss","sss",	 
-				's', new ItemStack(redSandstone));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_stairs,4), "s  ", "ss ","sss",	 
+				's', new ItemStack(red_sandstone));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_stairs,4), "  s", " ss","sss",	 
+				's', new ItemStack(red_sandstone));
 
-		redSandstoneSingleSlab = new BlockRedSandStoneSlab(false);
-		redSandstoneSingleSlab.setBlockName("red_sandstone_slab").setCreativeTab(CreativeTabs.tabBlock);
+		red_sandstone_slab = new BlockRedSandStoneSlab(false);
+		red_sandstone_slab.setBlockName("red_sandstone_slab").setCreativeTab(CreativeTabs.tabBlock);
 
-		redSandstoneDoubleSlab = new BlockRedSandStoneSlab(true);
+		red_sandstone_dbl_slab = new BlockRedSandStoneSlab(true);
 
-		GameRegistry.registerBlock(redSandstoneSingleSlab,
+		GameRegistry.registerBlock(red_sandstone_slab,
 				ItemSlabRedSandstone.class, "red_sandstone_slab");
-		GameRegistry.registerBlock(redSandstoneDoubleSlab,
+		GameRegistry.registerBlock(red_sandstone_dbl_slab,
 				ItemSlabRedSandstone.class, "red_sandstone_dbl_slab");//TODO: PICK BLOCK DOES TSONE LAB
 
 		//undo the chiselled back to the 2 slabs
-		GameRegistry.addSmelting(new ItemStack(redSandstoneCv), new ItemStack(redSandstoneSingleSlab,2), 0); 
+		GameRegistry.addSmelting(new ItemStack(red_sandstone_carved), new ItemStack(red_sandstone_slab,2), 0); 
 
-		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "   ", "   ","sss",	 
-				's', new ItemStack(redSandstone));
-		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "sss", "   ","   ",	 
-				's', new ItemStack(redSandstone));
-		GameRegistry.addRecipe(new ItemStack(redSandstoneSingleSlab,6), "   ", "sss","   ",	 
-				's', new ItemStack(redSandstone));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_slab,6), "   ", "   ","sss",	 
+				's', new ItemStack(red_sandstone));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_slab,6), "sss", "   ","   ",	 
+				's', new ItemStack(red_sandstone));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_slab,6), "   ", "sss","   ",	 
+				's', new ItemStack(red_sandstone));
 		
 
-		GameRegistry.addRecipe(new ItemStack(redSandstoneCv), "s ", "s ",	 
-				's', new ItemStack(redSandstoneSingleSlab));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone_carved), "s ", "s ",	 
+				's', new ItemStack(red_sandstone_slab));
 		
 		//uncraft slabs
-		GameRegistry.addRecipe(new ItemStack(redSandstone,6), "   ", "sss","sss",	 
-				's', new ItemStack(redSandstoneSingleSlab));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone,6), "   ", "sss","sss",	 
+				's', new ItemStack(red_sandstone_slab));
 		
 		//uncraft stairs
-		GameRegistry.addRecipe(new ItemStack(redSandstone,6), "ss", "ss",	 
-				's', new ItemStack(rsStair));
+		GameRegistry.addRecipe(new ItemStack(red_sandstone,6), "ss", "ss",	 
+				's', new ItemStack(red_sandstone_stairs));
 		
 	}
 	
-	 static void initIronTrapdoor()
+	static void initIronTrapdoor()
 	{
 		// Iron Trapdoor, Armor Stand
 		// is protected again
-		BlockIronTrapdoor ironTrapdoor = new BlockIronTrapdoor();
-		ironTrapdoor.setBlockName("iron_trapdoor").setBlockTextureName(
-				"samspowerups:" + "iron_trapdoor");
-		GameRegistry.registerBlock(ironTrapdoor, "iron_trapdoor");
+		BlockIronTrapdoor iron_trapdoor = new BlockIronTrapdoor();
+ 
+		ModSamsContent.registerBlockHelper(iron_trapdoor, "iron_trapdoor"); 
 		
-		GameRegistry.addRecipe(new ItemStack(ironTrapdoor), "ii", "ii",	 
+		GameRegistry.addRecipe(new ItemStack(iron_trapdoor), "ii", "ii",	 
 				'i', Items.iron_ingot);
-		
-
-		GameRegistry.addSmelting(new ItemStack(ironTrapdoor), new ItemStack(Items.iron_ingot,4), 0); 
+		 
+		GameRegistry.addSmelting(new ItemStack(iron_trapdoor), new ItemStack(Items.iron_ingot,4), 0); 
 	}
 
 	 static void initFencesGates()
 	{
 		// 5 fences
-		birchFence = new BlockFenceSimple("planks_birch");
-		birchFence.setHardness(2.0F).setResistance(5.0F)
-				.setStepSound(Block.soundTypeWood).setBlockName("birch_fence");
-		GameRegistry.registerBlock(birchFence, "birch_fence");
+		birch_fence = new BlockFenceSimple("planks_birch");
+ 
+		ModSamsContent.registerBlockHelper(birch_fence, "birch_fence"); 
 
-		GameRegistry.addRecipe(new ItemStack(birchFence,3), "   ", "lsl", "lsl", 
+		GameRegistry.addRecipe(new ItemStack(birch_fence,3), "   ", "lsl", "lsl", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_birch),
 				's', Items.stick
 				);
 		
-		jungleFence = new BlockFenceSimple("planks_jungle");
-		jungleFence.setHardness(2.0F).setResistance(5.0F)
-				.setStepSound(Block.soundTypeWood).setBlockName("jungle_fence");
-		GameRegistry.registerBlock(jungleFence, "jungle_fence");
+		jungle_fence = new BlockFenceSimple("planks_jungle");
+ 
+		ModSamsContent.registerBlockHelper(jungle_fence, "jungle_fence"); 
 
-		GameRegistry.addRecipe(new ItemStack(jungleFence,3), "   ", "lsl", "lsl", 
+		GameRegistry.addRecipe(new ItemStack(jungle_fence,3), "   ", "lsl", "lsl", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_jungle),
 				's', Items.stick
 				);
 		
-		spruceFence = new BlockFenceSimple("planks_spruce");
-		spruceFence.setHardness(2.0F).setResistance(5.0F)
-				.setStepSound(Block.soundTypeWood).setBlockName("spruce_fence");
-		GameRegistry.registerBlock(spruceFence, "spruce_fence");
+		spruce_fence = new BlockFenceSimple("planks_spruce");
+ 
+		ModSamsContent.registerBlockHelper(spruce_fence, "spruce_fence"); 
 
-		GameRegistry.addRecipe(new ItemStack(spruceFence,3), "   ", "lsl", "lsl", 
+		GameRegistry.addRecipe(new ItemStack(spruce_fence,3), "   ", "lsl", "lsl", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_spruce),
 				's', Items.stick
 				);
 		
-		big_oakFence = new BlockFenceSimple("planks_big_oak");
-		big_oakFence.setHardness(2.0F).setResistance(5.0F)
-				.setStepSound(Block.soundTypeWood)
-				.setBlockName("big_oak_fence");
-		GameRegistry.registerBlock(big_oakFence, "big_oak_fence");
+		big_oak_fence = new BlockFenceSimple("planks_big_oak"); 
+		ModSamsContent.registerBlockHelper(big_oak_fence, "big_oak_fence"); 
 
-		GameRegistry.addRecipe(new ItemStack(big_oakFence,3), "   ", "lsl", "lsl", 
+		GameRegistry.addRecipe(new ItemStack(big_oak_fence,3), "   ", "lsl", "lsl", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_darkoak),
 				's', Items.stick
 				);
 
-		acaciaFence = new BlockFenceSimple("planks_acacia");
-		acaciaFence.setHardness(2.0F).setResistance(5.0F)
-				.setStepSound(Block.soundTypeWood).setBlockName("acacia_fence");
-		GameRegistry.registerBlock(acaciaFence, "acacia_fence");
+		acacia_fence = new BlockFenceSimple("planks_acacia"); 
+		ModSamsContent.registerBlockHelper(acacia_fence, "acacia_fence"); 
 	 
 
-		GameRegistry.addRecipe(new ItemStack(acaciaFence,3), "   ", "lsl", "lsl", 
+		GameRegistry.addRecipe(new ItemStack(acacia_fence,3), "   ", "lsl", "lsl", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_acacia),
 				's', Items.stick
 				);
@@ -376,59 +356,60 @@ public class HandlerBountifulUpdate
 		 * (block.blockMaterial.isOpaque() && block.renderAsNormalBlock() ?
 		 * block.blockMaterial != Material.gourd : false) : true; }
 		 */
-
-		// f;
-
-		// blockRegistry.addObject(107, "fence_gate", (new
-		// BlockFenceGate()).setHardness(2.0F).setResistance(5.0F).setStepSound(soundTypeWood)
-		// .setBlockName("fenceGate"));
+ 
 
 		// we inherited from basic fencegate to override getIcon, which was set
 		// to only plain planks
-		acaciaGate = new BlockFenceGateSimple();
-		acaciaGate.setBlockName("acacia_fence_gate").setBlockTextureName(
-				"planks_acacia");
-		GameRegistry.registerBlock(acaciaGate, "acacia_fence_gate");
+		acacia_fence_gate = new BlockFenceGateSimple();
+		//acacia_fence_gate.setBlockName("acacia_fence_gate").setBlockTextureName(
+		//		"planks_acacia");
+		//GameRegistry.registerBlock(acacia_fence_gate, "acacia_fence_gate");
+		acacia_fence_gate.setBlockTextureName("planks_acacia");
+		ModSamsContent.registerBlockHelper(acacia_fence_gate, "acacia_fence_gate"); 
 		
-		GameRegistry.addRecipe(new ItemStack(acaciaGate,1), "   ", "sls", "sls", 
+		GameRegistry.addRecipe(new ItemStack(acacia_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_acacia),
 				's', Items.stick
 				);
 		
 
-		spruceGate = new BlockFenceGateSimple();
-		spruceGate.setBlockName("spruce_fence_gate").setBlockTextureName(
-				"planks_spruce");
-		GameRegistry.registerBlock(spruceGate, "spruce_fence_gate");
-		GameRegistry.addRecipe(new ItemStack(spruceGate,1), "   ", "sls", "sls", 
+		spruce_fence_gate = new BlockFenceGateSimple();
+		//spruce_fence_gate.setBlockName("spruce_fence_gate").setBlockTextureName(
+		//		"planks_spruce");
+		//GameRegistry.registerBlock(spruce_fence_gate, "spruce_fence_gate");
+		ModSamsContent.registerBlockHelper(spruce_fence_gate, "spruce_fence_gate"); 
+		GameRegistry.addRecipe(new ItemStack(spruce_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_spruce),
 				's', Items.stick
 				);
 		
 
-		birchGate = new BlockFenceGateSimple();
-		birchGate.setBlockName("birch_fence_gate").setBlockTextureName(
-				"planks_birch");
-		GameRegistry.registerBlock(birchGate, "birch_fence_gate");
-		GameRegistry.addRecipe(new ItemStack(birchGate,1), "   ", "sls", "sls", 
+		birch_fence_gate = new BlockFenceGateSimple();
+		//birch_fence_gate.setBlockName("birch_fence_gate").setBlockTextureName(
+		//		"planks_birch");
+		//GameRegistry.registerBlock(birch_fence_gate, "");
+		ModSamsContent.registerBlockHelper(birch_fence_gate, "birch_fence_gate"); 
+		GameRegistry.addRecipe(new ItemStack(birch_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_birch),
 				's', Items.stick
 				);
 
-		jungleGate = new BlockFenceGateSimple();
-		jungleGate.setBlockName("jungle_fence_gate").setBlockTextureName(
-				"planks_jungle");
-		GameRegistry.registerBlock(jungleGate, "jungle_fence_gate");
-		GameRegistry.addRecipe(new ItemStack(jungleGate,1), "   ", "sls", "sls", 
+		jungle_fence_gate = new BlockFenceGateSimple();
+		//jungle_fence_gate.setBlockName("jungle_fence_gate").setBlockTextureName(
+		//		"planks_jungle");
+		//GameRegistry.registerBlock(jungle_fence_gate, "");
+		ModSamsContent.registerBlockHelper(jungle_fence_gate, "jungle_fence_gate"); 
+		GameRegistry.addRecipe(new ItemStack(jungle_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_jungle),
 				's', Items.stick
 				);
 
-		big_oakGate = new BlockFenceGateSimple();
-		big_oakGate.setBlockName("big_oak_fence_gate").setBlockTextureName(
-				"planks_big_oak");
-		GameRegistry.registerBlock(big_oakGate, "big_oak_fence_gate");
-		GameRegistry.addRecipe(new ItemStack(big_oakGate,1), "   ", "sls", "sls", 
+		big_oak_fence_gate = new BlockFenceGateSimple();
+	//	big_oak_fence_gate.setBlockName("big_oak_fence_gate").setBlockTextureName(
+		//		"planks_big_oak");
+		ModSamsContent.registerBlockHelper(big_oak_fence_gate, "big_oak_fence_gate"); 
+		//GameRegistry.registerBlock(big_oak_fence_gate, "big_oak_fence_gate");
+		GameRegistry.addRecipe(new ItemStack(big_oak_fence_gate,1), "   ", "sls", "sls", 
 				'l', new ItemStack(Blocks.planks,1,Reference.planks_darkoak),
 				's', Items.stick
 				);
@@ -449,28 +430,28 @@ public class HandlerBountifulUpdate
 		// http://minecraft.gamepedia.com/Andesite and so on
 
 		BlockSimple diorite = new BlockSimple(Material.rock);
-		diorite.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(diorite, "stone_diorite");
+		diorite.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(diorite, "stone_diorite");
 
 		BlockSimple andesite = new BlockSimple(Material.rock);
-		andesite.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(andesite, "stone_andesite");
+		andesite.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(andesite, "stone_andesite");
 
 		BlockSimple granite = new BlockSimple(Material.rock);
-		granite.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(granite, "stone_granite");
+		granite.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(granite, "stone_granite");
 
 		BlockSimple diorite_smooth = new BlockSimple(Material.rock);
-		diorite_smooth.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(diorite_smooth, "stone_diorite_smooth");
+		diorite_smooth.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(diorite_smooth, "stone_diorite_smooth");
 
 		BlockSimple andesite_smooth = new BlockSimple(Material.rock);
-		andesite_smooth.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(andesite_smooth, "stone_andesite_smooth");
+		andesite_smooth.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(andesite_smooth, "stone_andesite_smooth");
 
 		BlockSimple granite_smooth = new BlockSimple(Material.rock);
-		granite_smooth.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(granite_smooth, "stone_granite_smooth");
+		granite_smooth.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(granite_smooth, "stone_granite_smooth");
 
 		GameRegistry.addRecipe(new ItemStack(diorite_smooth), "pp", "pp", 'p',
 				diorite);//2quartz,2cobble in diagonal. quartz top right
@@ -496,46 +477,31 @@ public class HandlerBountifulUpdate
 		// http://minecraft.gamepedia.com/Prismarine_Shard
 		// http://minecraft.gamepedia.com/Prismarine_Crystals
 		prismarine_crystals = new Item();
-		registerItemDefaults(prismarine_crystals, "prismarine_crystals");
+		prismarine_crystals.setCreativeTab(CreativeTabs.tabDecorations);
+		ModSamsContent.registerItemHelper(prismarine_crystals, "prismarine_crystals");
 
 		prismarine_shard = new Item();
-		registerItemDefaults(prismarine_shard, "prismarine_shard");
+		prismarine_crystals.setCreativeTab(CreativeTabs.tabDecorations);
+		ModSamsContent.registerItemHelper(prismarine_shard, "prismarine_shard");
 
 		BlockSimple prismarine_bricks = new BlockSimple(Material.rock);
-		prismarine_bricks.setHardness(1.2F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_bricks, "prismarine_bricks");// NO
-																		// SILK,
-																		// BY
-																		// HAND
-																		// GIVES
-																		// NOTHING
-
+		prismarine_bricks.setHardness(1.2F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(prismarine_bricks, "prismarine_bricks"); 
+		
+		
 		BlockSimple prismarine_dark = new BlockSimple(Material.rock);
-		prismarine_dark.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_dark, "prismarine_dark"); // NO SILK
-																	// NEEDED.
-																	// BUT BY
-																	// HAND
-																	// GIVES
-																	// NOTHING
+		prismarine_dark.setHardness(1.5F).setResistance(30.0F).setStepSound(Block.soundTypeStone);
+		ModSamsContent.registerBlockHelper(prismarine_dark, "prismarine_dark"); 
 
 		BlockSimple prismarine_rough = new BlockSimple(Material.rock);
 		prismarine_rough.setHardness(1.5F).setResistance(30.0F);
-		registerStoneDefaults(prismarine_rough, "prismarine_rough"); // NO SILK,
-																		// BY
-																		// HAND
-																		// GIVES
-																		// NOTHING
-
-		sea_lantern = new BlockSimple(Material.glass, prismarine_crystals);
-		// todo: drops 2-3 p crystals if no silk. or up to 5 with fortune
-		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(1.0F); // SILK
-																				// ONLY.
-																				// BY
-																				// HAND
-																				// IS
-																				// FINE
-		registerStoneDefaults(sea_lantern, "sea_lantern");
+		ModSamsContent.registerBlockHelper(prismarine_rough, "prismarine_rough");
+		
+		
+		
+		sea_lantern = new BlockSimple(Material.glass, prismarine_crystals); 
+		sea_lantern.setHardness(0.3F).setResistance(1.5F).setLightLevel(1.0F);  
+		ModSamsContent.registerBlockHelper(sea_lantern, "sea_lantern");
 
 		// recipe time
 
@@ -559,23 +525,7 @@ public class HandlerBountifulUpdate
 		GameRegistry.addShapelessRecipe(new ItemStack(prismarine_crystals), prismarine_shard,Items.glowstone_dust);
 	}
 
-	 static void registerItemDefaults(Item s, String name)
-	{
-		s.setTextureName("samspowerups:" + name).setUnlocalizedName(name);
-		s.setCreativeTab(CreativeTabs.tabDecorations);
-		GameRegistry.registerItem(s, name);
-	}
-
-	
-	 static void registerStoneDefaults(BlockSimple s, String name)
-	{
-		s.setStepSound(Block.soundTypeStone).setBlockName(name)
-				.setBlockTextureName("samspowerups:" + name);
-		s.setCreativeTab(CreativeTabs.tabBlock);
-		GameRegistry.registerBlock(s, name);
-	}
-
-	 
+ 
 
 	/*http://minecraft.gamepedia.com/1.8
 

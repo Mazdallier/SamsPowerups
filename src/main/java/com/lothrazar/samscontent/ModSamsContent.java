@@ -311,4 +311,18 @@ public class ModSamsContent
 	{
 		ItemRunestone.applyHeldRunestones(event.player); 
 	} 
+	 
+	 public static String TEXTURE_LOCATION = "samspowerups:";
+	 public static void registerBlockHelper(Block s, String name)
+	 {
+		 s.setBlockName(name).setBlockTextureName(TEXTURE_LOCATION + name);
+		 GameRegistry.registerBlock(s, name);
+		 
+	 }
+	 public static void registerItemHelper(Item s, String name)
+	 {
+		 s.setUnlocalizedName(name).setTextureName(TEXTURE_LOCATION + name);
+		 GameRegistry.registerItem(s, name);
+	 }
+	 
 }

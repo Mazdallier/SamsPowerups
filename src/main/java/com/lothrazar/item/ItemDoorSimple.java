@@ -15,12 +15,12 @@ import net.minecraft.world.World;
 public class ItemDoorSimple extends ItemDoor
 {
 	public Block doorBlock; 
-	public ItemDoorSimple(Material par1, Block block,String texture)
+	public ItemDoorSimple(Material par1, Block block)
 	{
 		super(par1); 
 		this.doorBlock = block;
 		this.maxStackSize = 64;
-		this.setCreativeTab(CreativeTabs.tabRedstone).setTextureName(texture);
+		this.setCreativeTab(CreativeTabs.tabRedstone);//.setTextureName(texture);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import com.lothrazar.samscontent.ModSamsContent;
 
 import net.minecraft.block.Block; 
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ public class BlockSimple extends Block
 	public BlockSimple(Material m)
 	{
 		super(m);   
+		this.setCreativeTab(CreativeTabs.tabBlock).setStepSound(Block.soundTypeStone);
 	}
 	
 	public BlockSimple(Material m, Item d)

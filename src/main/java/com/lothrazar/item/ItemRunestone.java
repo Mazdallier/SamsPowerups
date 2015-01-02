@@ -198,19 +198,18 @@ public class ItemRunestone extends ItemTool
 		// other mods
 
 		rune_jump = new ItemRunestone(new int[] { Reference.potion_JUMP },		new int[] { V }, not_shiny);
-		rune_jump.setUnlocalizedName("rune_jump").setTextureName(
-				"samspowerups" + ":rune_jump");
-		GameRegistry.registerItem(rune_jump, "rune_jump");
+		
+		ModSamsContent.registerItemHelper(rune_jump, "rune_jump");
+		
 		GameRegistry.addRecipe(new ItemStack(rune_jump), "eee", "eae", "eee",
 				'e', Items.emerald // could be slime ball/block?
 				, 'a', Items.nether_star);
-		GameRegistry.addSmelting(rune_jump,
-				new ItemStack(Items.nether_star, 1), 0);
+		GameRegistry.addSmelting(rune_jump,	new ItemStack(Items.nether_star, 1), 0);
 
 		rune_resistance = new ItemRunestone(
 				new int[] { Reference.potion_RESISTANCE }, new int[] { II },				shiny);
-		rune_resistance.setUnlocalizedName("rune_resistance").setTextureName(
-				"samspowerups" + ":rune_resistance");
+	 
+		ModSamsContent.registerItemHelper(rune_resistance, "rune_resistance");
 		GameRegistry.registerItem(rune_resistance, "rune_resistance");
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae",
 				"eee", 'e', Items.diamond, 'a', Items.nether_star);
@@ -220,8 +219,8 @@ public class ItemRunestone extends ItemTool
 		rune_goldheart = new ItemRunestone(
 				new int[] { Reference.potion_HEALTH_BOOST }, new int[] { V },
 				not_shiny);
-		rune_goldheart.setUnlocalizedName("rune_goldheart").setTextureName(
-				"samspowerups" + ":rune_goldheart");
+ 
+		ModSamsContent.registerItemHelper(rune_goldheart, "rune_goldheart");
 		GameRegistry.registerItem(rune_goldheart, "rune_goldheart");
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
 				"eee", 
@@ -231,8 +230,8 @@ public class ItemRunestone extends ItemTool
 				Items.nether_star, 1), 0);
 
 		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE }, new int[] { II  }, not_shiny);
-		rune_haste.setUnlocalizedName("rune_haste").setTextureName(
-				"samspowerups" + ":rune_haste");
+ 
+		ModSamsContent.registerItemHelper(rune_haste, "rune_haste");
 		GameRegistry.registerItem(rune_haste, "rune_haste");
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
 				'e', Blocks.redstone_block, 
@@ -244,32 +243,33 @@ public class ItemRunestone extends ItemTool
 				new int[] { Reference.potion_WATER_BREATHING,
 						Reference.potion_NIGHT_VISION }, new int[] { V, II },
 				not_shiny);
-		rune_water.setUnlocalizedName("rune_water").setTextureName(
-				"samspowerups" + ":rune_water");
-		GameRegistry.registerItem(rune_water, "rune_water");
+	
+		ModSamsContent.registerItemHelper(rune_water, "rune_water");
 		GameRegistry.addRecipe(new ItemStack(rune_water), "eee", "eae", "eee",
-				'e', Blocks.lapis_block  
-				, 'a', Items.nether_star);
+				'e', Blocks.lapis_block , 
+				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_water,
 				new ItemStack(Items.nether_star, 1), 0);
 
 		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED
 				 }, new int[] { II }, not_shiny);
-		rune_speed.setUnlocalizedName("rune_speed").setTextureName(
-				"samspowerups" + ":rune_speed");
+ 
+		ModSamsContent.registerItemHelper(rune_speed, "rune_speed");
 		GameRegistry.registerItem(rune_speed, "rune_speed");
 		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae", "eee",
-				'e', Items.sugar, 'a', Items.nether_star);
+				'e', Items.sugar, 
+				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_speed,
 				new ItemStack(Items.nether_star, 1), 0);
 
 		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST },
 				new int[] { I  }, shiny);
-		rune_fire.setUnlocalizedName("rune_fire").setTextureName(
-				"samspowerups" + ":rune_fire");
+ 
+		ModSamsContent.registerItemHelper(rune_fire, "rune_fire");
 		GameRegistry.registerItem(rune_fire, "rune_fire");
 		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae", "eee",
-				'e', Items.blaze_rod, 'a', Items.nether_star);
+				'e', Items.blaze_rod, 
+				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_fire,
 				new ItemStack(Items.nether_star, 1), 0);
 	}

@@ -15,6 +15,8 @@ public class BlockFenceSimple extends BlockFence
     public BlockFenceSimple(String name)
     {
         super(name, Material.wood); 
+        this.setStepSound(Block.soundTypeWood);
+        this.setHardness(2.0F).setResistance(5.0F);//same as vanilla fence
     }
     
     @Override
@@ -22,16 +24,16 @@ public class BlockFenceSimple extends BlockFence
     {
         Block block = ib.getBlock(x, y, z);
         return block != this && block != Blocks.fence && block != Blocks.fence_gate && 
-        		block != HandlerBountifulUpdate.acaciaFence && 
-        		block != HandlerBountifulUpdate.birchFence && 
-        		block != HandlerBountifulUpdate.jungleFence && 
-        		block != HandlerBountifulUpdate.spruceFence && 
-        		block != HandlerBountifulUpdate.big_oakFence && 
-        		block != HandlerBountifulUpdate.acaciaGate && 
-        		block != HandlerBountifulUpdate.birchGate && 
-        		block != HandlerBountifulUpdate.jungleGate && 
-        		block != HandlerBountifulUpdate.spruceGate && 
-        		block != HandlerBountifulUpdate.big_oakGate 
+        		block != HandlerBountifulUpdate.acacia_fence && 
+        		block != HandlerBountifulUpdate.birch_fence && 
+        		block != HandlerBountifulUpdate.jungle_fence && 
+        		block != HandlerBountifulUpdate.spruce_fence && 
+        		block != HandlerBountifulUpdate.big_oak_fence && 
+        		block != HandlerBountifulUpdate.acacia_fence_gate && 
+        		block != HandlerBountifulUpdate.birch_fence_gate && 
+        		block != HandlerBountifulUpdate.jungle_fence_gate && 
+        		block != HandlerBountifulUpdate.spruce_fence_gate && 
+        		block != HandlerBountifulUpdate.big_oak_fence_gate 
         		? //if its NOT a fence or fence gate, do one extra check
         		(block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) 
         		: true;//it was for sure a fence or fgate, so we went true right away

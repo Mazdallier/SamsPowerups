@@ -23,8 +23,8 @@ public class ItemSlabRedSandstone extends ItemBlock
     public ItemSlabRedSandstone(Block block)
     {
         super(block);
-        this.blockSingle = HandlerBountifulUpdate.redSandstoneSingleSlab;
-        this.blockDouble = HandlerBountifulUpdate.redSandstoneDoubleSlab;
+        this.blockSingle = HandlerBountifulUpdate.red_sandstone_slab;
+        this.blockDouble = HandlerBountifulUpdate.red_sandstone_dbl_slab;
         this.field_150948_b = false;
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
