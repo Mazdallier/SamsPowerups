@@ -21,7 +21,13 @@ public class ConfigFile
 	public boolean craftableTransmuteRecords = true;  
 	public boolean craftableFlatDoubleSlab = true; 
 	public boolean craftableBonemealColouredWool;   
-	public boolean craftableMobHeads; 
+	public boolean craftableMobHeads;
+	public boolean betterBonemeal;
+	public boolean decorativeBlocks;
+	public boolean mutton;
+	public boolean recipes;
+	boolean incompSlime;
+ 
 
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
@@ -39,10 +45,24 @@ public class ConfigFile
     		);
 		
 		//TODO decoration blocks: Stone types; red sandstone ; prismarine; wooden doors;  wooden fences and gates; Iron trapdoor
-		
+		decorativeBlocks = ModSamsContent.config.getBoolean("decorativeBlocks",category, true,
+    			"Adds decorative blocks from 1.8: wooden doors, wooden fences and gates, iron trapdoor,  red sandstone, new stone types (do not generate naturally but they are craftable), prismarine (without ocean temples, so instead we smelt lapis)"
+    		);
 		
 		//TODO: partially working slime block (craftable, bouncy, does not interact with pistons the same way)
+		incompSlime = ModSamsContent.config.getBoolean("slimeBlock",category, true,
+    			"Adds the 1.8 Slime block.  It is craftable, and it bounces entites that land on it, but it does not interact with pistons the same way"
+    		);
+		 
+		//MUTTON
+		mutton = ModSamsContent.config.getBoolean("mutton",category, true,
+    			"Mutton from sheep"
+    		);
 		
+		//RECIPES
+		recipes = ModSamsContent.config.getBoolean("recipes",category, true,
+    			"Adds the 1.8 recipes such as crafting mossy cobblestone, cracked stone brick, coarse dirt (which isn't texutred yet but it wont get grass)"
+    		);
 		
 
 		/*********************************************************************************************/
@@ -159,14 +179,12 @@ public class ConfigFile
     			"Improves the debug screen.  Removes lots of rarely used info, and adds info on slime chunks, day counter, ridden horse info (speed/jump height) "
     		);
 		
-		
-		//stack64
-		
-		
-		
+		 
 		//bonemeal
-		
-		//
+		betterBonemeal = ModSamsContent.config.getBoolean("betterBonemeal",category, true,
+    			"Bonemeal grows more things: lilypads, all flowers "
+    		);
+ 
     	
 
 

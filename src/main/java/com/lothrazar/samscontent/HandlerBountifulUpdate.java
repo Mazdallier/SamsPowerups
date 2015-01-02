@@ -54,140 +54,81 @@ public class HandlerBountifulUpdate
 
 	public  void Init()
 	{
- 
-		//more random changse from
-		// http://minecraft.gamepedia.com/1.8
-		Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
-		Blocks.melon_block.setHarvestLevel("axe", 0);
-		Blocks.ladder.setHarvestLevel("axe", 0);
+		if(ModSamsContent.settings.recipes)
+		{
+			 
+			//more random changse from
+			// http://minecraft.gamepedia.com/1.8
+			Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
+			Blocks.melon_block.setHarvestLevel("axe", 0);
+			Blocks.ladder.setHarvestLevel("axe", 0);
+			
+			//new recipes for existing blocks
 		
-		//new recipes for existing blocks
+			GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
+					 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
+	  
+			GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
+					 ,'s', Blocks.stonebrick
+			 		 ,'v', Blocks.vine 
+					);
+	
+			GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
+					 ,'s', Blocks.cobblestone
+			 		 ,'v', Blocks.vine 
+					);
+			 
+			GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
+			
+			//coarse dirt	
+			GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
+				 ,'g', Blocks.gravel
+		 		 ,'d', Blocks.dirt
+			);
+			GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
+				 ,'g', Blocks.gravel
+		 		 ,'d', Blocks.dirt
+			); 
+
+			//doors made only 1 each build in 1.7, but 3 in 1.8
+			//we do it just for oak because i have all the door stuff for the types
+			GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
+					'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
+			
+		}
 		
-		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_chisel), " s", " s" 
-				 ,'s', new ItemStack(Blocks.stone_slab,1,Reference.stone_slab_stonebrick));
-  
-		GameRegistry.addRecipe(new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_mossy), "sv", "  " 
-				 ,'s', Blocks.stonebrick
-		 		 ,'v', Blocks.vine 
-				);
+		if(ModSamsContent.settings.decorativeBlocks)
+		{
+			initNewStones();
+			 
+			initPrismarine();
+	
+			initBirchDoor();
+			 
+			initSpruceDoor();
+			 
+			initJungleDoor();
+			
+			initAcaciaDoor();
+	        
+			initDarkoakDoor();
+			
+			initFencesGates();
+	
+			initIronTrapdoor();
+	
+			initRedSandstone();
+		}
 
-		GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone), "sv", "  " 
-				 ,'s', Blocks.cobblestone
-		 		 ,'v', Blocks.vine 
-				);
-		 
-		GameRegistry.addSmelting(Blocks.stonebrick, new ItemStack(Blocks.stonebrick,1,Reference.stonebrick_cracked), 0);
+		if(ModSamsContent.settings.mutton)
+		{
+			initMutton();
+		}
 		
-		//coarse dirt	
-		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "gd", "dg" 
-			 ,'g', Blocks.gravel
-	 		 ,'d', Blocks.dirt
-		);
-		GameRegistry.addRecipe(new ItemStack(Blocks.dirt,1,1), "dg", "gd" 
-			 ,'g', Blocks.gravel
-	 		 ,'d', Blocks.dirt
-		); 
-		
-		
-		//doors made only 1 each build in 1.7, but 3 in 1.8
-		//we do it just for oak because i have all the door stuff for the types
-		GameRegistry.addRecipe(new ItemStack(Items.wooden_door,3), " pp", " pp",	" pp", 
-				'p',new ItemStack(Blocks.planks,1,Reference.planks_oak));
-		
-		 
-
-		/*http://minecraft.gamepedia.com/1.8
- 
-
-
-Mob head
-Made creeper, skeleton and zombie heads available in survival
-Creepers, skeletons, wither skeletons, and zombies drop their heads when killed by charged creepers. Wither skeletons continue to have heads as rare drops.
-Note that a charged creeper explosions will not yield more than one mob head
-Skulls worn on heads are now bigger so the 2nd skin layer no longer peaks through
-Player and mob heads in inventories and held by mobs/players now display the actual head
-Placed mob heads now show the 2nd skin layer
-
- 
-
-Tamed Ocelots and Tamed Wolves
-Now display a death message if named with a name tag
-
-
-Monster spawner
-Can be right-clicked with a spawn egg in hand to change what the spawner produces
-
-
- 
-Button
-Can now be placed on ceiling and on the ground
- 
-		 *
-		 *
-		 * 
-		 *
-		 *TODO ??SPONGE
- 
-		 * 
-		 *  ??barrier
-		 *  
-		 *  ANVIL COSTS?
-		 *  Costs reduced to balance out with the new enchanting system
-Renaming items will now only cost 1 level
-Repairing cost now increases exponentially (1, 2, 4, 8, etc.)
-Repairing costs can no longer be kept down by renaming items
-		 * 
-		 * TODO BANNER 
-		 * 
-		 * TODO ARMOR STAND
-		 *  
-		 * 
-		 * MAYBE
-		 * New achievement Overpowered
-Obtained by crafting an enchanted golden apple
-Requires first obtaining Getting an Upgrade
-
-gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
-		 * 
-		 * WONTDO Water Temples in Oceans
-		 * 
-		 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
-		 * 
-		 * Rabbit Stew, 
-		 * 
-		 *  Potions: Potion of Leaping
-		 * Enchantment: Depth Strider (up to 3)
-		 * 
-		 * COMMAND /clone
-		 * COMMAND /fill
-		 * 
-		 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
-		 */	
-		
-		initNewStones();
-		 
-		initPrismarine();
-
-		initBirchDoor();
-		 
-		initSpruceDoor();
-		 
-		initJungleDoor();
-		
-		
-		initAcaciaDoor();
-        
-		initDarkoakDoor();
-		
-		initFencesGates();
-
-		initIronTrapdoor();
-
-		initRedSandstone();
-
-		initMutton();
- 
-		initSlimeBlock();
+		if(ModSamsContent.settings.incompSlime)
+		{
+			initSlimeBlock();
+		}
 	}
 	
 	private void initAcaciaDoor()
@@ -390,8 +331,6 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 		
 	}
 	
-	
-
 	private void initIronTrapdoor()
 	{
 		// Iron Trapdoor, Armor Stand
@@ -675,5 +614,72 @@ gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
 	}
 
 	 
-	
+
+	/*http://minecraft.gamepedia.com/1.8
+
+
+
+Mob head
+Made creeper, skeleton and zombie heads available in survival
+Creepers, skeletons, wither skeletons, and zombies drop their heads when killed by charged creepers. Wither skeletons continue to have heads as rare drops.
+Note that a charged creeper explosions will not yield more than one mob head
+Skulls worn on heads are now bigger so the 2nd skin layer no longer peaks through
+Player and mob heads in inventories and held by mobs/players now display the actual head
+Placed mob heads now show the 2nd skin layer
+
+
+
+Tamed Ocelots and Tamed Wolves
+Now display a death message if named with a name tag
+
+
+Monster spawner
+Can be right-clicked with a spawn egg in hand to change what the spawner produces
+
+
+
+Button
+Can now be placed on ceiling and on the ground
+
+	 *
+	 *
+	 * 
+	 *
+	 *TODO ??SPONGE
+
+	 * 
+	 *  ??barrier
+	 *  
+	 *  ANVIL COSTS?
+	 *  Costs reduced to balance out with the new enchanting system
+Renaming items will now only cost 1 level
+Repairing cost now increases exponentially (1, 2, 4, 8, etc.)
+Repairing costs can no longer be kept down by renaming items
+	 * 
+	 * TODO BANNER 
+	 * 
+	 * TODO ARMOR STAND
+	 *  
+	 * 
+	 * MAYBE
+	 * New achievement Overpowered
+Obtained by crafting an enchanted golden apple
+Requires first obtaining Getting an Upgrade
+
+gamemode Only can be acessed via /gamemode, either using spectator, sp, or 3
+	 * 
+	 * WONTDO Water Temples in Oceans
+	 * 
+	 * Items: Rabbit's Foot, Armor Stand Food: Raw Rabbit, Cooked Rabbit
+	 * 
+	 * Rabbit Stew, 
+	 * 
+	 *  Potions: Potion of Leaping
+	 * Enchantment: Depth Strider (up to 3)
+	 * 
+	 * COMMAND /clone
+	 * COMMAND /fill
+	 * 
+	 * Mobs: Endermites, Guardians, Elder Guardians, Rabbit
+	 */	
 }

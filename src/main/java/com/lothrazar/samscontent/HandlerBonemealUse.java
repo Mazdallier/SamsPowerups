@@ -29,6 +29,8 @@ public class HandlerBonemealUse
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)
   	{    
+  		if(ModSamsContent.settings.betterBonemeal == false) { return; }
+  		
 		if(event.action == event.action.LEFT_CLICK_BLOCK) {return;}
 		 
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();

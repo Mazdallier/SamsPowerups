@@ -146,7 +146,6 @@ public class ModSamsContent
   		
 		initStackSizes();
 	  
-
 		ExtraCraftingMod.onInit(event);
 
 		ItemWandMaster.onInit(event);
@@ -163,7 +162,6 @@ public class ModSamsContent
 		
 		ItemRunestone.initRunestones(); 
 		 
-		
 		//HandlerBountifulUpdate h = ;
 		(new HandlerBountifulUpdate()).Init();
  
@@ -213,10 +211,8 @@ public class ModSamsContent
 		{
 			item.setMaxStackSize(64 + 64);
 		}
-	
 	}
 
- 
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{
@@ -245,7 +241,6 @@ public class ModSamsContent
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
-
 		if (event.entityLiving instanceof EntitySheep
 				&& HandlerBountifulUpdate.mutton_cooked != null
 				&& HandlerBountifulUpdate.mutton_raw != null)
@@ -259,10 +254,7 @@ public class ModSamsContent
 			// item for enchants. or meh
 
 			// so now we have 1-2
-			int drops = 1 + event.entity.worldObj.rand.nextInt(2);// this gets
-																	// num in
-																	// range
-																	// [0,1]
+			int drops = 1 + event.entity.worldObj.rand.nextInt(2);// this gets num in range [0,1]
 
 			if (event.entityLiving.isBurning())
 				event.entityLiving.dropItem(HandlerBountifulUpdate.mutton_cooked, drops);
@@ -276,16 +268,13 @@ public class ModSamsContent
 	{
 		ItemStack runestone = event.player.inventory.getStackInSlot(ItemRunestone.SLOT_RUNESTONE);
 		
-		
 		if (runestone != null
 				&& (runestone.getItem() instanceof ItemRunestone) == false)
 		{
-
 			//ItemRunestone itemRunestone = (ItemRunestone) runestone.getItem();
 
 			//the player tick event 
 			ItemRunestone.applyRunestoneToPlayer(event.player, runestone);
 		} 
 	}// end player tick event
- 
 }
