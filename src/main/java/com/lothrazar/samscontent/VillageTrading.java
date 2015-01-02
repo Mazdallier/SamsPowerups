@@ -23,7 +23,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 
 //@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class HandlerVillageTrading  implements IVillageTradeHandler
+public class VillageTrading  implements IVillageTradeHandler
 {   
 	final int BROWN = 0;
 	final int WHITE = 1;

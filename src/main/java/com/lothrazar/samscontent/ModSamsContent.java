@@ -93,27 +93,28 @@ public class ModSamsContent
 		
 		config = new Configuration(event.getSuggestedConfigurationFile());
  
-     	HandlerConfigFile.setupConfig();
+     	ConfigFile.setupConfig();
      	
+     	Object[] handlers = new Object[]
+     	{
+     		 new HandlerBonemealUse()
+     		,new HandlerBountifulUpdate()
+     		,new HandlerEnderChestHit()
+      		,new HandlerMasterWand()
+      		,new HandlerScreenText()
+     		,new HandlerSkullSignNames()
+      		,new HandlerSurvivalFlying()
+      		,new HandlerSwiftDeposit()
+     		,instance
+     	};
+     		
+     	//TODO: we could use an interface, and flag each one according to what BUS it goes to
      	
- 
-    	MinecraftForge.EVENT_BUS.register(new HandlerSkullSignNames()); 
-    	MinecraftForge.EVENT_BUS.register(new HandlerBonemealUse()); 
-		MinecraftForge.EVENT_BUS.register(new HandlerScreenText()); 
-		MinecraftForge.EVENT_BUS.register(new HandlerMasterWand());
-		MinecraftForge.EVENT_BUS.register(new HandlerEnderChestHit());//??
-		MinecraftForge.EVENT_BUS.register(instance);// ???is this still used/needed
-		
-
-
-		
-
-		FMLCommonHandler.instance().bus().register(new HandlerEnderChestHit());//??
-		FMLCommonHandler.instance().bus().register(new HandlerSurvivalFlying()); //player events
-		FMLCommonHandler.instance().bus().register(instance);// ???is this still used/needed
-		
-		
-		
+     	for(Object o : handlers)
+     	{
+    		MinecraftForge.EVENT_BUS.register(o);
+    		FMLCommonHandler.instance().bus().register(o);
+     	}
 	}
 
 
@@ -137,7 +138,7 @@ public class ModSamsContent
 	{     
   		if(moreFutureTrades)
   		{
-	  		HandlerVillageTrading v = new HandlerVillageTrading();
+	  		VillageTrading v = new VillageTrading();
 			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
@@ -149,7 +150,7 @@ public class ModSamsContent
   		
   		if(moreFuel)
   		{
-  			GameRegistry.registerFuelHandler(new HandlerFurnaceFuel());
+  			GameRegistry.registerFuelHandler(new FurnaceFuel());
   		}
   		
 		initStackSizes();

@@ -5,10 +5,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 
-import com.lothrazar.samscontent.HandlerFurnaceFuel.FurnaceBurnTime;
+import com.lothrazar.samscontent.FurnaceFuel.FurnaceBurnTime;
 import com.lothrazar.samscrafting.ExtraCraftingMod;
 
-public class HandlerConfigFile
+public class ConfigFile
 {
 
 	//to go between main and sub levels nested in the json style cfg file

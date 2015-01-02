@@ -23,7 +23,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
  
-public class HandlerFurnaceFuel    implements IFuelHandler
+public class FurnaceFuel    implements IFuelHandler
 {    
 	@Override
 	public int getBurnTime(ItemStack fuel) 
