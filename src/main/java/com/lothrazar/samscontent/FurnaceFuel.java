@@ -52,12 +52,25 @@ public class FurnaceFuel    implements IFuelHandler
 		{
 			return FurnaceBurnTime.Sticks;
 		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.tallgrass)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.red_flower)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.yellow_flower)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
 		if(fuel.getItem().equals(Items.paper))
 		{
 			return FurnaceBurnTime.Sticks;
 		}
 		return 0;
 	}	
+	
 	public class FurnaceBurnTime // inner class
 	{
 		public static final int Sticks = 100;
