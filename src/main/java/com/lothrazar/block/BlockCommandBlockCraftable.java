@@ -155,12 +155,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static void initCommand()
 	{
 
-		BlockCommandBlockCraftable regen_command_block;
-		regen_command_block = new BlockCommandBlockCraftable( CommandType.Gamerule, "naturalRegeneration");
+		BlockCommandBlockCraftable command_block_regen;
+		command_block_regen = new BlockCommandBlockCraftable( CommandType.Gamerule, "naturalRegeneration");
 	 
-		ModSamsContent.registerBlockHelper(regen_command_block,"regen_command_block");
+		ModSamsContent.registerBlockHelper(command_block_regen,"command_block_regen");
 		
-		GameRegistry.addRecipe(new ItemStack(regen_command_block)
+		GameRegistry.addRecipe(new ItemStack(command_block_regen)
 				, "rcr"
 				, "tet"
 				, "rcr", 
@@ -170,32 +170,32 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				't', Items.ghast_tear
 		);
 //the vanilla texture is called simply "command_block"
-		BlockCommandBlockCraftable mobgrief_command_block;
-		mobgrief_command_block = new BlockCommandBlockCraftable(
+		BlockCommandBlockCraftable command_block_mobgrief;
+		command_block_mobgrief = new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "mobGriefing");
 	 
-		ModSamsContent.registerBlockHelper(mobgrief_command_block,"mobgrief_command_block");
+		ModSamsContent.registerBlockHelper(command_block_mobgrief,"command_block_mobgrief");
 
-		GameRegistry.addRecipe(new ItemStack(mobgrief_command_block), "rcr",
+		GameRegistry.addRecipe(new ItemStack(command_block_mobgrief), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Blocks.tnt, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 
-		BlockCommandBlockCraftable firetick_command_block;
-		firetick_command_block = new BlockCommandBlockCraftable(
+		BlockCommandBlockCraftable command_block_firetick;
+		command_block_firetick = new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "doFireTick"); 
-		ModSamsContent.registerBlockHelper(firetick_command_block,"firetick_command_block");
+		ModSamsContent.registerBlockHelper(command_block_firetick,"command_block_firetick");
  
-		GameRegistry.addRecipe(new ItemStack(firetick_command_block), "rcr",
+		GameRegistry.addRecipe(new ItemStack(command_block_firetick), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Items.lava_bucket,
 				'r', Blocks.redstone_block, 't', Items.ghast_tear);
 
-		BlockCommandBlockCraftable daycycle_command_block;
-		daycycle_command_block = new BlockCommandBlockCraftable(CommandType.Gamerule,
+		BlockCommandBlockCraftable command_block_daycycle;
+		command_block_daycycle = new BlockCommandBlockCraftable(CommandType.Gamerule,
 				"doDaylightCycle");
  
-		ModSamsContent.registerBlockHelper(daycycle_command_block,"daycycle_command_block");
+		ModSamsContent.registerBlockHelper(command_block_daycycle,"command_block_daycycle");
 
-		GameRegistry.addRecipe(new ItemStack(daycycle_command_block), "rcr", "tet", "rcr", 'c',
+		GameRegistry.addRecipe(new ItemStack(command_block_daycycle), "rcr", "tet", "rcr", 'c',
 				Items.comparator, 'e', Blocks.glowstone, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 
@@ -203,12 +203,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
 	public static void initWeatherBlock()
 	{
-		BlockCommandBlockCraftable weather_command_block;
-		weather_command_block = new BlockCommandBlockCraftable(CommandType.Weather);
+		BlockCommandBlockCraftable command_block_weather;
+		command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
  
-		ModSamsContent.registerBlockHelper(weather_command_block,"weather_command_block");
+		ModSamsContent.registerBlockHelper(command_block_weather,"command_block_weather");
 
-		GameRegistry.addRecipe(new ItemStack(weather_command_block), "rcr", "tet",
+		GameRegistry.addRecipe(new ItemStack(command_block_weather), "rcr", "tet",
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 	}
