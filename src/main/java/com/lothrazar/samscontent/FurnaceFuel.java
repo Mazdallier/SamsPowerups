@@ -27,7 +27,7 @@ public class FurnaceFuel    implements IFuelHandler
 {    
 	@Override
 	public int getBurnTime(ItemStack fuel) 
-	{ 
+	{  
 		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.deadbush)))
 		{
 			return FurnaceBurnTime.Sticks;
@@ -64,6 +64,27 @@ public class FurnaceFuel    implements IFuelHandler
 		{
 			return FurnaceBurnTime.Sticks;
 		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.reeds)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.red_mushroom)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.brown_mushroom)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.red_mushroom_block)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+		if(fuel.getItem().equals(Item.getItemFromBlock(Blocks.brown_mushroom_block)))
+		{
+			return FurnaceBurnTime.Sticks;
+		} 
+//todo: do mushrooms currently burn?
 		if(fuel.getItem().equals(Items.paper))
 		{
 			return FurnaceBurnTime.Sticks;

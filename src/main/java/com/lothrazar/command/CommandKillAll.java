@@ -260,5 +260,4 @@ public class CommandKillAll implements ICommand
 	{
 		return false;
 	}
-
 }
