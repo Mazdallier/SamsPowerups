@@ -87,7 +87,7 @@ public class BlockFishing extends Block
     	 
     	worldObj.spawnEntityInWorld(entityItem);
     	
-    	worldObj.playSoundAtEntity(entityItem,"liquid.splash1",1F,1F);//??game.neutral.swim.splash
+    	worldObj.playSoundAtEntity(entityItem,"game.neutral.swim.splash",1F,1F); 
     }
 
 	public static boolean isEnabled() 
