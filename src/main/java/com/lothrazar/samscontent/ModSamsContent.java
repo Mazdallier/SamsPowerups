@@ -194,7 +194,7 @@ public class ModSamsContent
 
 		if(ModSamsContent.settings.mutton) { HandlerBountifulUpdate.initMutton(); }
 		
-		if(ModSamsContent.settings.incompSlime) { HandlerBountifulUpdate.initSlimeBlock(); }
+	//	if(ModSamsContent.settings.incompSlime) { HandlerBountifulUpdate.initSlimeBlock(); }
  
 
 		//SaplingStickAxe();

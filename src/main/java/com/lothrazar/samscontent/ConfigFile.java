@@ -32,7 +32,7 @@ public class ConfigFile
 	public boolean decorativeBlocks;
 	public boolean mutton;
 	public boolean recipes;
-	boolean incompSlime;
+	//boolean incompSlime;
 	public boolean uncraftGeneral;
 	public boolean runestones;
 	public boolean magicApples;
@@ -72,10 +72,10 @@ public class ConfigFile
     		);
 		
 		// partially working slime block (craftable, bouncy, does not interact with pistons the same way)
-		incompSlime = ModSamsContent.config.getBoolean("slimeBlock",category, true,
+	/*	incompSlime = ModSamsContent.config.getBoolean("slimeBlock",category, true,
     			"Adds the 1.8 Slime block.  It is craftable, and it bounces entites that land on it, but it does not interact with pistons the same way"
-    		);
-		 
+    		);*/
+		
 		//MUTTON
 		mutton = ModSamsContent.config.getBoolean("mutton",category, true,
     			"Mutton from sheep"
