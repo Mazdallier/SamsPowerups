@@ -15,13 +15,7 @@ import com.lothrazar.block.BlockRedSandStoneStairs;
 import com.lothrazar.block.BlockSimple;
 import com.lothrazar.block.BlockSlime;
 import com.lothrazar.block.BlockXRay;
-import com.lothrazar.command.CommandEnderChest;
-import com.lothrazar.command.CommandFlyHelp;
-import com.lothrazar.command.CommandKillAll;
-import com.lothrazar.command.CommandSearchItem;
-import com.lothrazar.command.CommandSearchTrades;
-import com.lothrazar.command.CommandSimpleWaypoints;
-import com.lothrazar.command.CommandTodoList;
+import com.lothrazar.command.*; 
 import com.lothrazar.config.ConfigFile;
 import com.lothrazar.item.ItemDoorSimple;
 import com.lothrazar.item.ItemEnderBook;
@@ -82,10 +76,7 @@ public class ModSamsContent
 	public static Configuration config;
 	public static ConfigFile settings;
 	
-	public static void ASMTEST()
-	{
-		System.out.println("ASMTEST GOOD");
-	}
+	
 	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
 
 	@EventHandler
@@ -131,6 +122,12 @@ public class ModSamsContent
 		if(ModSamsContent.settings.enderchest) { event.registerServerCommand(new CommandEnderChest()); }
 		 
 		if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
+		
+		
+		//todo: config entries for these two
+		
+		event.registerServerCommand(new CommandWorldHome());
+		event.registerServerCommand(new CommandHome());
 	}
  
 	@EventHandler
