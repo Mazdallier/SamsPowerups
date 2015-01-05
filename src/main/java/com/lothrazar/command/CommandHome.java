@@ -2,10 +2,13 @@ package com.lothrazar.command;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
@@ -49,37 +52,32 @@ public class CommandHome implements ICommand
 			 return;
 		}
 		
-		//go to my beds spawn point
-		//in the player class there is a
-		//var c = entityPlayer.getBedLocation(0);//0 is overworld
-		
-		//this might be null
-		
-		//then we say, is a bed really there
-		//Block block = world.getBlock(c.posX, c.posY, c.posZ);
-		//if (block.equals(Blocks.bed) || block.isBed(world, c.posX, c.posY, c.posZ, null))
-		//then we ask the bed where we should spawn near it /
-		//TP TO:  block.getBedSpawnPosition(world, c.posX, c.posY, c.posZ, null);
-		
-		
-		//and for block.getMaterial().isSolid;
-		//if its solid then go up by y+1
-		
-		
-		
-		//or an alternate way, check if stuck in wall
-		/*
-		 while (!world.getCollidingBoundingBoxes(p, p.boundingBox).isEmpty())
+		 ChunkCoordinates coords = player.getBedLocation(0);
+		 
+		 if(coords == null)
 		 {
-			 entityPlayer.setPositionAndUpdate(p.posX, p.posY + 1.0D, p.posZ);
-		 }
-		 */
-		
-		
-		
-		
-		
 
+			 player.addChatMessage(new ChatComponentTranslation("Home not found, try sleeping in a bed first."));
+			 return;
+		 }
+		
+		 Block block = world.getBlock(coords.posX, coords.posY, coords.posZ);
+		 if (block.equals(Blocks.bed) || block.isBed(world, coords.posX, coords.posY, coords.posZ, null))
+		 {
+			 //then move over according to how/where the bed wants me to spawn
+			 coords = block.getBedSpawnPosition(world, coords.posX, coords.posY, coords.posZ, null);
+		 }
+		 
+		 
+		 //TODO: make global/shared teleportPlayer class or function
+		 //since this is copied from WorldHome
+		 
+		player.setPositionAndUpdate(coords.posX, coords.posY, coords.posZ); 
+		while (!world.getCollidingBoundingBoxes(player, player.boundingBox).isEmpty())
+		{
+			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
+		}
+		 
 		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
 	}
 
