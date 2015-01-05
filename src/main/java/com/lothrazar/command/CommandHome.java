@@ -57,7 +57,7 @@ public class CommandHome implements ICommand
 		 if(coords == null)
 		 {
 
-			 player.addChatMessage(new ChatComponentTranslation("Home not found, try sleeping in a bed first."));
+			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed"));
 			 return;
 		 }
 		
@@ -67,7 +67,12 @@ public class CommandHome implements ICommand
 			 //then move over according to how/where the bed wants me to spawn
 			 coords = block.getBedSpawnPosition(world, coords.posX, coords.posY, coords.posZ, null);
 		 }
-		 
+		 else
+		 {
+
+			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed."));
+			 return;
+		 }
 		 
 		 //TODO: make global/shared teleportPlayer class or function
 		 //since this is copied from WorldHome
