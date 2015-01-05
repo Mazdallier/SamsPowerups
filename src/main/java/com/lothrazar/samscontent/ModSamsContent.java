@@ -81,6 +81,9 @@ public class ModSamsContent
 
 	public static Configuration config;
 	public static ConfigFile settings;
+	
+	
+	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
 
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
