@@ -82,7 +82,10 @@ public class ModSamsContent
 	public static Configuration config;
 	public static ConfigFile settings;
 	
-	
+	public static void ASMTEST()
+	{
+		System.out.println("ASMTEST GOOD");
+	}
 	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
 
 	@EventHandler
