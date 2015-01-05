@@ -100,6 +100,7 @@ public class ModSamsContent
      		,new HandlerSkullSignNames()
       		,new HandlerSurvivalFlying()
       		,new HandlerSwiftDeposit()
+     		,new HandlerPlayerDeath()
      		,instance
      	};
      		
