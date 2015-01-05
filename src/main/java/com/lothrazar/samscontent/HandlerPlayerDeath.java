@@ -14,6 +14,7 @@ public class HandlerPlayerDeath
 	@SubscribeEvent
 	public void onPlayerDrops(PlayerDropsEvent event) 
 	{
+		if(ModSamsContent.settings.deathItemsChest == false) { return; }
 		////im not sure if this fires anytime when you dont die, but check anyway
 	//	System.out.println(" dead ? " + event.entityPlayer.isDead);
 		//turns out this is false even when a player dies in the game, so this event just fires right before death then
@@ -28,6 +29,8 @@ public class HandlerPlayerDeath
 		int x = MathHelper.floor_double(event.entityPlayer.posX);
 		int y = MathHelper.floor_double(event.entityPlayer.posY);
 		int z = MathHelper.floor_double(event.entityPlayer.posZ);
+		
+		//todo: check if air: if not air move up by one and loop?
 		
 		event.entityPlayer.worldObj.setBlock(x, y, z, Blocks.chest, 0, 2);
 		TileEntityChest chest = (TileEntityChest) event.entityPlayer.worldObj.getTileEntity(x, y, z);

@@ -49,6 +49,7 @@ public class ConfigFile
 	public boolean enderchest;
 	public boolean simplewaypoint;
 	public boolean todo;
+	public boolean deathItemsChest;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -264,6 +265,9 @@ public class ConfigFile
     			"Improves the debug screen.  Removes lots of rarely used info, and adds info on slime chunks, day counter, ridden horse info (speed/jump height) "
     		);
 		
+		deathItemsChest = ModSamsContent.config.getBoolean("deathItemsChest",category, true,
+    			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."
+    		);
 		 
 		//bonemeal
 		betterBonemeal = ModSamsContent.config.getBoolean("betterBonemeal",category, true,
