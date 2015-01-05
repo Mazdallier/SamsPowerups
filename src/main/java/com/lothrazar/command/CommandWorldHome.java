@@ -8,6 +8,8 @@ import net.minecraft.command.ICommandSender;
 public class CommandWorldHome  implements ICommand
 {
 
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+	
 	@Override
 	public int compareTo(Object o)
 	{ 
@@ -45,21 +47,19 @@ public class CommandWorldHome  implements ICommand
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender ic)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		//if we dont require OP, then it always returns true
+		return (REQUIRES_OP) ? ic.canCommandSenderUseCommand(2, "") : true; 
 	}
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender ic, String[] args)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return null;
 	}
 
 	@Override
 	public boolean isUsernameIndex(String[] ic, int args)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return false;
 	}
 

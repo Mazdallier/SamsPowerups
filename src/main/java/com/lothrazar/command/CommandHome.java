@@ -7,6 +7,7 @@ import net.minecraft.command.ICommandSender;
 
 public class CommandHome implements ICommand
 {
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 
 	@Override
 	public int compareTo(Object arg0)
@@ -76,8 +77,7 @@ public class CommandHome implements ICommand
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender ic)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return (REQUIRES_OP) ? ic.canCommandSenderUseCommand(2, "") : true; 
 	}
 
 	@Override
