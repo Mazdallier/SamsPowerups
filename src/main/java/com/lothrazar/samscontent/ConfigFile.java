@@ -177,13 +177,20 @@ public class ConfigFile
 		HandlerSurvivalFlying.StartFlyingHunger = ModSamsContent.config.getInt( "minHunger",category, 5,1,20,
 				"Minimum hunger required to fly.  Each number is one half hunger, so 20 means full hunger.");
 		 
-		HandlerSurvivalFlying.doesDrainLevels = ModSamsContent.config.getBoolean( "doesDrainLevels",category,true,
-			"When this is true, your XP Levels will drain while flying."); 
+		HandlerSurvivalFlying.doesDrainHunger = ModSamsContent.config.getBoolean( "doesDrainHunger",category,true,
+			"When this is true, your hunger Levels will drain while flying in survival."); 
 		 
+		HandlerSurvivalFlying.doesWeaknessFatigue = ModSamsContent.config.getBoolean( "doesWeaknessFatigue",category,true,
+				"When this is true, survival flying will cause Weakness IV and Mining Fatigue IV."); 
+			 
+		
+		
+		/*
+		
 		HandlerSurvivalFlying.flyDamageCounterLimit = ModSamsContent.config.getInt( "countdownSpeed",category, 300,5,999
 			,"Affects how fast you lose XP levels while flying.  Larger numbers is slower drain.  Minimum 5."
 			);
- 
+ */
 
 /*********************************************************************************************/  
 		category = "new_blocks_items";
