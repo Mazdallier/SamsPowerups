@@ -22,6 +22,7 @@ import com.lothrazar.command.CommandSearchItem;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
+import com.lothrazar.config.ConfigFile;
 import com.lothrazar.item.ItemDoorSimple;
 import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
