@@ -14,16 +14,16 @@ public class HandlerPlayerDeath
 	@SubscribeEvent
 	public void onPlayerDrops(PlayerDropsEvent event) 
 	{
-		//im not sure if this fires anytime when you dont die, but check anyway
-		System.out.println(" dead ? " + event.entityPlayer.isDead);
+		////im not sure if this fires anytime when you dont die, but check anyway
+	//	System.out.println(" dead ? " + event.entityPlayer.isDead);
+		//turns out this is false even when a player dies in the game, so this event just fires right before death then
 	
-		ItemStack itemStack;
 		
 		//if gamerule keepInventory is true, drops is just an empty array so this does nothing anyway
 		//or maybe you died holding nothing at all
 		if(event.drops.size() == 0) { return; }
 		
-		//TODO: find a chest in their inventory and use that, minus it by one. or else dont do this?
+		//TODO: find a chest in their inventory and use that, minus it by one.? or toggle this from config?
 		
 		int x = MathHelper.floor_double(event.entityPlayer.posX);
 		int y = MathHelper.floor_double(event.entityPlayer.posY);
@@ -31,15 +31,17 @@ public class HandlerPlayerDeath
 		
 		event.entityPlayer.worldObj.setBlock(x, y, z, Blocks.chest, 0, 2);
 		TileEntityChest chest = (TileEntityChest) event.entityPlayer.worldObj.getTileEntity(x, y, z);
-		
+
+		ItemStack itemStack;
 		int slot = 0;
 		for(EntityItem dropped : event.drops) 
 		{
+			//i dont think these are ever null in runtime, but it makes sense to keep the nullchecks
 			if(dropped == null) { continue; }
 			itemStack = dropped.getEntityItem();
 			if(itemStack == null) { continue; }
 			
-			System.out.println(itemStack.getUnlocalizedName());
+			//System.out.println(itemStack.getUnlocalizedName());
 			
 			if(slot <= chest.getSizeInventory())
 			{ 
@@ -49,7 +51,8 @@ public class HandlerPlayerDeath
 				
 				dropped.setDead();//kills the entity, meaning it wont be spawning in the world to get picked up
 			}
-			else System.out.println("out of room");
+			//seems like it always does the armor slots last, which is fine. or maybe the order is arbitrary?
+			//else System.out.println("out of room");
 		}
 	}
 }
