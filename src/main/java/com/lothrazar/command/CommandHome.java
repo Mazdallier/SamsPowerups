@@ -56,8 +56,9 @@ public class CommandHome implements ICommand
 		 
 		 if(coords == null)
 		 {
-
-			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed"));
+			 //has not been sent in a bed
+			 //TODO: get the ID for this chat for translation purposes
+			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed."));
 			 return;
 		 }
 		
@@ -69,7 +70,7 @@ public class CommandHome implements ICommand
 		 }
 		 else
 		 {
-
+			 //spawn point was set, so the coords were not null, but player broke the bed (probably recently)
 			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed."));
 			 return;
 		 }
