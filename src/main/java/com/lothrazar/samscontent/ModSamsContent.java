@@ -16,7 +16,6 @@ import com.lothrazar.block.BlockSimple;
 import com.lothrazar.block.BlockSlime;
 import com.lothrazar.block.BlockXRay;
 import com.lothrazar.command.*; 
-import com.lothrazar.config.ConfigFile;
 import com.lothrazar.item.ItemDoorSimple;
 import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
@@ -123,11 +122,11 @@ public class ModSamsContent
 		 
 		if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
 		
-		
+		 
 		//todo: config entries for these two
 		
-		event.registerServerCommand(new CommandWorldHome());
-		event.registerServerCommand(new CommandHome());
+		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
+		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
 	}
  
 	@EventHandler
