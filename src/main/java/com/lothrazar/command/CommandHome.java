@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
@@ -41,7 +42,12 @@ public class CommandHome implements ICommand
 		EntityPlayer player = ((EntityPlayer)ic); 
 		World world = player.worldObj;
 
-		
+
+		if(player.dimension != 0)
+		{
+			 player.addChatMessage(new ChatComponentTranslation("Can only teleport to your home in the overworld"));
+			 return;
+		}
 		
 		//go to my beds spawn point
 		//in the player class there is a
