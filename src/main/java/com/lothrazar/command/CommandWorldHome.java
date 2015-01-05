@@ -4,6 +4,9 @@ import java.util.List;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
 
 public class CommandWorldHome  implements ICommand
 {
@@ -36,12 +39,16 @@ public class CommandWorldHome  implements ICommand
 
 	@Override
 	public void processCommand(ICommandSender ic, String[] args)
-	{ 
-
-		//worldhome to go to the worlds spawnpoint
+	{
+		EntityPlayer player = ((EntityPlayer)ic); 
+		World world = player.worldObj; 
 		
-		//world.getSpawnPoint();
-	//
+		ChunkCoordinates coords = world.getSpawnPoint();
+		
+		//up a little bit so we get that landing
+		player.setPositionAndUpdate(coords.posX, coords.posY + 0.005D, coords.posZ);
+		
+		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
 	}
 
 	@Override

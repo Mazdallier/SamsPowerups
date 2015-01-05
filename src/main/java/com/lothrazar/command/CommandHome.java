@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
 {
@@ -36,6 +38,8 @@ public class CommandHome implements ICommand
 	@Override
 	public void processCommand(ICommandSender ic, String[] args)
 	{
+		EntityPlayer player = ((EntityPlayer)ic); 
+		World world = player.worldObj;
 
 		
 		
@@ -69,9 +73,8 @@ public class CommandHome implements ICommand
 		
 		
 		
-		
-		
-		
+
+		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
 	}
 
 	@Override
