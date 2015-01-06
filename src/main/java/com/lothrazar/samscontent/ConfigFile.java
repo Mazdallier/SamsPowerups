@@ -55,6 +55,8 @@ public class ConfigFile
 	public boolean worldhome;
 	public boolean lootObsidian;
 	public boolean lootAllRecords;
+	public boolean lootGlowstone;
+	public boolean lootQuartz;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -306,6 +308,16 @@ public class ConfigFile
     		);
  
 		
+
+		lootGlowstone = ModSamsContent.config.getBoolean("lootGlowstone",category, true,
+    			"Add glowstone dust as a random treasure from naturally spawned chests "
+    		);
+ 
+
+		lootQuartz = ModSamsContent.config.getBoolean("lootQuartz",category, true,
+    			"Add quartz as a random treasure from naturally spawned chests "
+    		);
+ 
 		
 
 /*********************************************************************************************/

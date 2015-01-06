@@ -40,11 +40,27 @@ public class ChestGen
 		{ 
 			ItemStack[] allRecords = new ItemStack[] 
 			{
-				//verified this is random up to 16, but not always sixteen.
-				//in one test i had a stack of 10 and 14
 				new ItemStack(Blocks.obsidian,64)
 			}; 
-			 //testing only obs
+
+			addToAllChests(allRecords,16,64); //each stack in this range
+		} 
+		if(ModSamsContent.settings.lootQuartz)
+		{ 
+			ItemStack[] allRecords = new ItemStack[] 
+			{
+				new ItemStack(Items.quartz ,64)
+			}; 
+
+			addToAllChests(allRecords,16,64); //each stack in this range
+		} 
+		if(ModSamsContent.settings.lootGlowstone)
+		{ 
+			ItemStack[] allRecords = new ItemStack[] 
+			{
+				new ItemStack(Items.glowstone_dust ,64)
+			}; 
+
 			addToAllChests(allRecords,16,64); //each stack in this range
 		} 
 	}
