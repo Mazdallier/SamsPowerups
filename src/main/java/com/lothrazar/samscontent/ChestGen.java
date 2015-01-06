@@ -17,20 +17,20 @@ public class ChestGen
 		
 		if(ModSamsContent.settings.lootAllRecords)
 		{ 
-			Item[] allRecords = new Item[] 
+			ItemStack[] allRecords = new ItemStack[] 
 			{
-				Items.record_11 , 
-				Items.record_13 ,
-				Items.record_blocks,
-				Items.record_cat,
-				Items.record_chirp,
-				Items.record_far,
-				Items.record_mall,
-				Items.record_mellohi,
-				Items.record_stal,
-				Items.record_strad,
-				Items.record_wait,
-				Items.record_ward
+				new ItemStack(Items.record_11 ,     1),
+				new ItemStack(Items.record_13 ,     1),
+				new ItemStack(Items.record_blocks,  1),
+				new ItemStack(Items.record_cat,     1),
+				new ItemStack(Items.record_chirp,   1),
+				new ItemStack(Items.record_far,     1),
+				new ItemStack(Items.record_mall,    1),
+				new ItemStack(Items.record_mellohi, 1),
+				new ItemStack(Items.record_stal,    1),
+				new ItemStack(Items.record_strad,   1),
+				new ItemStack(Items.record_wait,    1),
+				new ItemStack(Items.record_ward  ,  1)
 			};// all the records
 			 
 			addToAllChests(allRecords); 
@@ -38,17 +38,18 @@ public class ChestGen
 		
 		if(ModSamsContent.settings.lootObsidian)
 		{ 
-			Item[] allRecords = new Item[] 
+			ItemStack[] allRecords = new ItemStack[] 
 			{
-				Item.getItemFromBlock(Blocks.obsidian)  
+				//verified this is random up to 16, but not always sixteen.
+				//in one test i had a stack of 10 and 14
+				new ItemStack(Blocks.obsidian,16)
 			}; 
-			 
+			 //testing only obs
 			addToAllChests(allRecords); 
-		}
-	 
+		} 
 	}
 
-	private static void addToAllChests(Item[] items)
+	private static void addToAllChests(ItemStack[] items)
 	{
 		int stackSize = 1;
 		int min = 1;
@@ -56,21 +57,21 @@ public class ChestGen
 		int weight = 3;
 		for(int i = 0; i < items.length; i++)
 		{
-			
+			max = items[i].stackSize;//will this upp the obsidian size to 1?
 			//args are item, min, max, ?odds
-			ChestGenHooks.addItem(PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
-			ChestGenHooks.addItem(PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight)); 
-			ChestGenHooks.addItem(VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
-			ChestGenHooks.addItem(DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
-			ChestGenHooks.addItem(MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
-			ChestGenHooks.addItem(STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
-			ChestGenHooks.addItem(STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
-			ChestGenHooks.addItem(STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(items[i], min, max, weight));
+			ChestGenHooks.addItem(PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(items[i], min, max, weight)); 
+			ChestGenHooks.addItem(VILLAGE_BLACKSMITH, new WeightedRandomChestContent(  items[i], min, max, weight));
+			ChestGenHooks.addItem(DUNGEON_CHEST, new WeightedRandomChestContent(       items[i], min, max, weight));
+			ChestGenHooks.addItem(MINESHAFT_CORRIDOR, new WeightedRandomChestContent(  items[i], min, max, weight));
+			ChestGenHooks.addItem(STRONGHOLD_CORRIDOR, new WeightedRandomChestContent( items[i], min, max, weight));
+			ChestGenHooks.addItem(STRONGHOLD_CROSSING, new WeightedRandomChestContent (items[i], min, max, weight));
+			ChestGenHooks.addItem(STRONGHOLD_LIBRARY, new WeightedRandomChestContent(  items[i], min, max, weight));
 			 
 			
 			//this was for testing. on a new world we got 4 records right away
-			//weight=8;
-			//ChestGenHooks.addItem(BONUS_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			//weight=9;
+			//ChestGenHooks.addItem(BONUS_CHEST, new WeightedRandomChestContent(items[i], min, max, weight));
 		}
 	}
 }
