@@ -42,19 +42,28 @@ public class ChestGen
 			{
 				//verified this is random up to 16, but not always sixteen.
 				//in one test i had a stack of 10 and 14
-				new ItemStack(Blocks.obsidian,16)
+				new ItemStack(Blocks.obsidian,64)
 			}; 
 			 //testing only obs
-			addToAllChests(allRecords); 
+			addToAllChests(allRecords,16,64); //each stack in this range
 		} 
 	}
+	
 
 	private static void addToAllChests(ItemStack[] items)
 	{
-		int stackSize = 1;
-		int min = 1;
-		int max = 1;
-		int weight = 3;
+		addToAllChests(items,1,1,3); //defaults
+	}
+	private static void addToAllChests(ItemStack[] items,int min,int max)
+	{
+		addToAllChests(items,min,max,3); //default of 3 weight
+	}
+	private static void addToAllChests(ItemStack[] items,int min,int max,int weight)
+	{
+		//int stackSize = 1;
+		//int min = 1;
+		//int max = 1;
+		//int weight = 3;
 		for(int i = 0; i < items.length; i++)
 		{
 			max = items[i].stackSize;//will this upp the obsidian size to 1?
