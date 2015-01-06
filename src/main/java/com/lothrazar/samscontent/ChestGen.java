@@ -1,5 +1,6 @@
 package com.lothrazar.samscontent;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,41 @@ public class ChestGen
 	{
 		//TODO: all records; and config file hooks
 		
-		Item[] items = new Item[] {Items.record_11 , Items.record_13};//and so on for all the records
+		if(ModSamsContent.settings.lootAllRecords)
+		{ 
+			Item[] allRecords = new Item[] 
+			{
+				Items.record_11 , 
+				Items.record_13 ,
+				Items.record_blocks,
+				Items.record_cat,
+				Items.record_chirp,
+				Items.record_far,
+				Items.record_mall,
+				Items.record_mellohi,
+				Items.record_stal,
+				Items.record_strad,
+				Items.record_wait,
+				Items.record_ward
+			};// all the records
+			 
+			addToAllChests(allRecords); 
+		}
 		
+		if(ModSamsContent.settings.lootObsidian)
+		{ 
+			Item[] allRecords = new Item[] 
+			{
+				Item.getItemFromBlock(Blocks.obsidian)  
+			}; 
+			 
+			addToAllChests(allRecords); 
+		}
+	 
+	}
+
+	private static void addToAllChests(Item[] items)
+	{
 		int stackSize = 1;
 		int min = 1;
 		int max = 1;
@@ -38,6 +72,5 @@ public class ChestGen
 			//weight=8;
 			//ChestGenHooks.addItem(BONUS_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
 		}
-	 
 	}
 }

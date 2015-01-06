@@ -53,6 +53,8 @@ public class ConfigFile
 	public boolean deathItemsChest;
 	public boolean home;
 	public boolean worldhome;
+	public boolean lootObsidian;
+	public boolean lootAllRecords;
  
 
 	//to go between main and sub levels nested in the json style cfg file
@@ -293,6 +295,18 @@ public class ConfigFile
     			"Bonemeal grows more things: lilypads, all flowers "
     		);
  
+ 
+		lootObsidian = ModSamsContent.config.getBoolean("lootObsidian",category, true,
+    			"Add obsidian as a random treasure from naturally spawned chests "
+    		);
+ 
+
+		lootAllRecords = ModSamsContent.config.getBoolean("lootAllRecords",category, true,
+    			"Add all record types as a random treasure from naturally spawned chests "
+    		);
+ 
+		
+		
 
 /*********************************************************************************************/
 		 
