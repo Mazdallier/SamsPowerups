@@ -132,6 +132,8 @@ public class ModSamsContent
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     
+		ChestGen.AddHooks();
+		
   		if(ModSamsContent.settings.moreFutureTrades)
   		{
 	  		VillageTrading v = new VillageTrading();

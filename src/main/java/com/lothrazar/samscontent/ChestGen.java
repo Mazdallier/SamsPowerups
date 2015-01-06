@@ -12,20 +12,31 @@ public class ChestGen
 
 	public static void AddHooks()
 	{
+		//TODO: all records; and config file hooks
 		
-		Item[] items = new Item[] {Items.record_11 , Items.record_13};
+		Item[] items = new Item[] {Items.record_11 , Items.record_13};//and so on for all the records
 		
+		int stackSize = 1;
+		int min = 1;
+		int max = 1;
+		int weight = 3;
 		for(int i = 0; i < items.length; i++)
 		{
-			ChestGenHooks.addItem(PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
-			ChestGenHooks.addItem(PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3)); 
-			ChestGenHooks.addItem(VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
-			ChestGenHooks.addItem(DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
-			ChestGenHooks.addItem(MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
-			ChestGenHooks.addItem(STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
-			ChestGenHooks.addItem(STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
-			ChestGenHooks.addItem(STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(items[i], 1), 1, 1, 3));
+			
+			//args are item, min, max, ?odds
+			ChestGenHooks.addItem(PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight)); 
+			ChestGenHooks.addItem(VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(DUNGEON_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(MINESHAFT_CORRIDOR, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
+			ChestGenHooks.addItem(STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
 			 
+			
+			//this was for testing. on a new world we got 4 records right away
+			//weight=8;
+			//ChestGenHooks.addItem(BONUS_CHEST, new WeightedRandomChestContent(new ItemStack(items[i], stackSize), min, max, weight));
 		}
 	 
 	}
