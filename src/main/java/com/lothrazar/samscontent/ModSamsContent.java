@@ -266,7 +266,7 @@ public class ModSamsContent
 		 
 		for(Item item : to64)
 		{
-			item.setMaxStackSize(64 + 64);
+			item.setMaxStackSize(64);
 		}
 	}
 
