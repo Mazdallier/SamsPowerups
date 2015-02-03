@@ -18,6 +18,7 @@ gradle/
 *.properties
 *.gradle
 .gradle/
+screenshots/
 .settings/
 .classpath
 .project
