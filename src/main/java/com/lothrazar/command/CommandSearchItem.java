@@ -16,6 +16,7 @@ import net.minecraftforge.common.config.Property;
 
 public class CommandSearchItem  implements ICommand
 {
+	private ArrayList<String> aliases = new ArrayList<String>();
 	private static int RADIUS = 32;
 
 	public CommandSearchItem()
@@ -31,8 +32,7 @@ public class CommandSearchItem  implements ICommand
 	{
 		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
-	
-	public static final ArrayList<String>	aliases		= new ArrayList<String>();
+	 
 	
 	@Override
 	public List getAliases() 

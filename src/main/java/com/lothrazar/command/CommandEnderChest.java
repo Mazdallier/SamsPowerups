@@ -18,11 +18,10 @@ import net.minecraft.util.BlockPos;
 
 public class CommandEnderChest implements ICommand
 {
-	private ArrayList<String> aliases;
+	private ArrayList<String> aliases = new ArrayList<String>();
 
 	public CommandEnderChest()
-	{
-		this.aliases = new ArrayList<String>();
+	{ 
 		this.aliases.add("ec");
 		this.aliases.add("enderchest");
 	}

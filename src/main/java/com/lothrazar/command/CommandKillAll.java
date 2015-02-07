@@ -1,5 +1,6 @@
 package com.lothrazar.command;
 
+import java.util.ArrayList;
 import java.util.List;  
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -16,6 +17,8 @@ import net.minecraft.util.DamageSource;
 
 public class CommandKillAll implements ICommand
 {
+	private ArrayList<String> aliases = new ArrayList<String>();
+	
 	private static final String ZOMBIE = "zombie";
 	private static final String ENDERMAN = "enderman";
 	private static final String SLIME = "slime";
@@ -256,7 +259,7 @@ public class CommandKillAll implements ICommand
 	@Override
 	public List getAliases()
 	{ 
-		return null;
+		return aliases;
 	}
 
 	@Override

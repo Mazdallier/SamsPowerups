@@ -21,11 +21,10 @@ import net.minecraftforge.common.DimensionManager;
 
 public class CommandSimpleWaypoints  implements ICommand
 {
-	private ArrayList<String> aliases;
+	private ArrayList<String> aliases = new ArrayList<String>();
 
 	public CommandSimpleWaypoints()
-	{ 
-		this.aliases = new ArrayList<String>();
+	{  
 		this.aliases.add("wp");
 		this.aliases.add("simplewp");
 	}

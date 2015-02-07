@@ -12,10 +12,9 @@ import net.minecraft.util.ChatComponentTranslation;
 
 public class CommandFlyHelp implements ICommand
 { 
-	  private ArrayList<String> aliases;
+	private ArrayList<String> aliases = new ArrayList<String>();
 	  public CommandFlyHelp()
-	  {
-	      this.aliases = new ArrayList<String>();
+	  { 
 	      this.aliases.add("fh");
 	      this.aliases.add("flyhelp"); 
 	      this.aliases.add("flyhelp");  

@@ -37,13 +37,12 @@ import net.minecraftforge.common.config.Property;
 
 public class CommandTodoList implements ICommand
 {   
-	private ArrayList<String> aliases;  
+	private ArrayList<String> aliases = new ArrayList<String>(); 
 	
 	public static String KEY_LIST = "todo_list";
 	  
 	public CommandTodoList()
-	{ 
-	    this.aliases = new ArrayList<String>(); 
+	{  
 	    this.aliases.add("todo");   
 	}
   

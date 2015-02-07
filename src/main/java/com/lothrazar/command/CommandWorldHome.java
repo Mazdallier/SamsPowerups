@@ -1,5 +1,6 @@
 package com.lothrazar.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.command.ICommand;
@@ -12,7 +13,7 @@ import net.minecraft.world.World;
 
 public class CommandWorldHome  implements ICommand
 {
-
+	private ArrayList<String> aliases = new ArrayList<String>();
 	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 	
 	@Override
@@ -36,7 +37,7 @@ public class CommandWorldHome  implements ICommand
 	@Override
 	public List getAliases()
 	{ 
-		return null;
+		return aliases;
 	}
 
 	@Override

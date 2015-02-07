@@ -16,6 +16,7 @@ import net.minecraft.village.MerchantRecipeList;
 
 public class CommandSearchTrades  implements ICommand
 {
+	private ArrayList<String> aliases = new ArrayList<String>();
 	@Override
 	public int compareTo(Object arg0) 
 	{ 
@@ -37,7 +38,7 @@ public class CommandSearchTrades  implements ICommand
 	@Override
 	public List getAliases() 
 	{ 
-		return null;
+		return aliases;
 	}
 
 	@Override

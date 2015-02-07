@@ -1,5 +1,6 @@
 package com.lothrazar.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -16,6 +17,7 @@ import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
 {
+	private ArrayList<String> aliases = new ArrayList<String>();
 	@Override
 	public int compareTo(Object arg0)
 	{ 
@@ -37,7 +39,7 @@ public class CommandHome implements ICommand
 	@Override
 	public List getAliases()
 	{ 
-		return null;
+		return aliases;
 	}
 
 	@Override

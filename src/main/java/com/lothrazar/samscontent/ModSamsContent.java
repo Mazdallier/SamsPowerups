@@ -60,7 +60,9 @@ public class ModSamsContent
 
 	public static Configuration config;
 	public static ConfigFile settings;
-	
+
+
+	public boolean PASSESTEST = false;
 	
 	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
 
@@ -72,7 +74,9 @@ public class ModSamsContent
 		config = new Configuration(event.getSuggestedConfigurationFile());
  
 		settings = new ConfigFile();
-     	
+		
+		
+     	 
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse()
@@ -89,17 +93,24 @@ public class ModSamsContent
      		
      	//TODO: we could use an interface, and flag each one according to what BUS it goes to
      	
-     	for(Object o : handlers)
+     	if(PASSESTEST) for(Object o : handlers)
      	{
     		MinecraftForge.EVENT_BUS.register(o);
     		FMLCommonHandler.instance().bus().register(o);
-     	}
+     	} 
 	}
 
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
+
+		System.out.println("onServerLoad");
+		
+		System.out.println(ModSamsContent.settings.searchtrade);
+		
 		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
+		
+		
 		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
 		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
 		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
@@ -113,11 +124,23 @@ public class ModSamsContent
 		
 		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
 		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
+		
+		
+		
 	}
  
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     
+
+		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
+		
+
+  		if(ModSamsContent.settings.increasedStackSizes ) { initStackSizes(); }
+		if(PASSESTEST)  {
+			
+			
+			
 		ChestGen.AddHooks();
 		
 		//TODO: find out how Forge 1.8 does trading
@@ -131,9 +154,10 @@ public class ModSamsContent
   		}
   		*/
 		
+		
+		
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
   	 
-  		if(ModSamsContent.settings.increasedStackSizes ) { initStackSizes(); }
 	   
 		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
 		 
@@ -143,7 +167,6 @@ public class ModSamsContent
 		
 		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
 		
-		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
 		
 		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
 		
@@ -185,6 +208,10 @@ public class ModSamsContent
 		
 		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
 		//etc for other minecarts too
+   		
+   		
+
+		}
 		
 	}
 
@@ -263,7 +290,8 @@ public class ModSamsContent
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{
-		ItemRunestone.applyHeldRunestones(event.player); 
+		if(PASSESTEST)
+			ItemRunestone.applyHeldRunestones(event.player); 
 	} 
 	
 /*
