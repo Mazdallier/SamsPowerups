@@ -62,7 +62,7 @@ public class ModSamsContent
 	public static ConfigFile settings;
 
 
-	public boolean PASSESTEST = false;
+//	public boolean PASSESTEST = false;
 	
 	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
 
@@ -93,7 +93,8 @@ public class ModSamsContent
      		
      	//TODO: we could use an interface, and flag each one according to what BUS it goes to
      	
-     	if(PASSESTEST) for(Object o : handlers)
+     	//if(PASSESTEST) 
+     	for(Object o : handlers)
      	{
     		MinecraftForge.EVENT_BUS.register(o);
     		FMLCommonHandler.instance().bus().register(o);
@@ -104,9 +105,7 @@ public class ModSamsContent
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
 
-		System.out.println("onServerLoad");
-		
-		System.out.println(ModSamsContent.settings.searchtrade);
+ 
 		
 		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
 		
@@ -137,8 +136,6 @@ public class ModSamsContent
 		
 
   		if(ModSamsContent.settings.increasedStackSizes ) { initStackSizes(); }
-		if(PASSESTEST)  {
-			
 			
 			
 		ChestGen.AddHooks();
@@ -209,9 +206,7 @@ public class ModSamsContent
 		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
 		//etc for other minecarts too
    		
-   		
-
-		}
+   		 
 		
 	}
 
@@ -289,9 +284,8 @@ public class ModSamsContent
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
-	{
-		if(PASSESTEST)
-			ItemRunestone.applyHeldRunestones(event.player); 
+	{ 
+		ItemRunestone.applyHeldRunestones(event.player); 
 	} 
 	
 /*
