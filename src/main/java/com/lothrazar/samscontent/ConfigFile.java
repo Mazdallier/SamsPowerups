@@ -21,7 +21,7 @@ public class ConfigFile
 	public boolean smartEnderchest = true;
 	public boolean increasedStackSizes = true;
 	public boolean moreFuel = true;
-	public boolean moreFutureTrades = true;
+	//public boolean moreFutureTrades = true;//TODO: FIX THIS
 	public boolean skullSignNames;
 	public boolean betterDebugScreen; 
 	
@@ -67,7 +67,8 @@ public class ConfigFile
 		String category;
 		
 
-		/*********************************************************************************************/
+		/*
+		 * *******************************************************************************************
 		category = "bountiful_update";
     
 		moreFutureTrades = ModSamsContent.config.getBoolean("moreFutureTrades",category, true,
@@ -78,11 +79,7 @@ public class ConfigFile
 		decorativeBlocks = ModSamsContent.config.getBoolean("decorativeBlocks",category, true,
     			"Adds decorative blocks from 1.8: wooden doors, wooden fences and gates, iron trapdoor,  red sandstone, new stone types (do not generate naturally but they are craftable), prismarine (without ocean temples, so instead we smelt lapis)"
     		);
-		
-		// partially working slime block (craftable, bouncy, does not interact with pistons the same way)
-	/*	incompSlime = ModSamsContent.config.getBoolean("slimeBlock",category, true,
-    			"Adds the 1.8 Slime block.  It is craftable, and it bounces entites that land on it, but it does not interact with pistons the same way"
-    		);*/
+ 
 		
 		//MUTTON
 		mutton = ModSamsContent.config.getBoolean("mutton",category, true,
@@ -93,7 +90,7 @@ public class ConfigFile
 		recipes = ModSamsContent.config.getBoolean("recipes",category, true,
     			"Adds the 1.8 recipes such as crafting mossy cobblestone, cracked stone brick, coarse dirt (which isn't texutred yet but it wont get grass)"
     		);
-		
+		*/
 
 		/*********************************************************************************************/
 		category = "commands";

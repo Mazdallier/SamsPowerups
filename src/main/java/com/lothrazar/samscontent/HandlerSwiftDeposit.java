@@ -35,7 +35,7 @@ public class HandlerSwiftDeposit
 		
 		//so we are sneaking
 		
-  	  	TileEntity te =	event.entity.worldObj.getTileEntity(event.x, event.y, event.z);
+  	  	TileEntity te =	event.entity.worldObj.getTileEntity(event.pos);
  
 	  	//no tile entity found for this chest?
   	  	if(te == null || !(te instanceof TileEntityChest)){return;}

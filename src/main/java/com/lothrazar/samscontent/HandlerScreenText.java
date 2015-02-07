@@ -16,8 +16,9 @@ import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+//import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
 import net.minecraft.world.GameRules;
@@ -135,8 +136,9 @@ public class HandlerScreenText
 		
 			//only show this part if we are hiding the vanilla
 		//since Y and biome are already in that part
-		 
-		BiomeGenBase biome = world.getBiomeGenForCoords((int)player.posX, (int)player.posZ); 
+		BlockPos playerPos = new BlockPos( player.posX ,player.posY  ,player.posZ);
+ 
+		BiomeGenBase biome = world.getBiomeGenForCoords(playerPos); 
 	 
 		side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
 		
@@ -147,8 +149,8 @@ public class HandlerScreenText
 	 	if(showSlimeChunk && player.dimension == 0)
 	 	{ 
 	    	long seed =  world.getSeed();
-	  	
-	    	Chunk in = world.getChunkFromBlockCoords(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posZ));
+	     
+	    	Chunk in = world.getChunkFromBlockCoords(playerPos);
 
 			//formula source : http://minecraft.gamepedia.com/Slime
 	    	Random rnd = new Random(seed +
@@ -175,7 +177,8 @@ public class HandlerScreenText
 			 int dX,dZ;
 			 
 			 int range = 10;
-			 Village closest = world.villageCollectionObj.findNearestVillage(playerX, playerY, playerZ, range);
+
+			 Village closest = world.villageCollectionObj.getNearestVillage(playerPos, range);
 		     
 			 if(closest != null)
 			 { 

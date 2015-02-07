@@ -119,12 +119,20 @@ public class ExtraCraftingMod
 		GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_acacia), "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1,Reference.planks_acacia));
 		GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_darkoak),"x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_darkoak));
  		 
+		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");
+		/*
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),
 				new ItemStack(Blocks.fence));
 		 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8),
 				new ItemStack(Blocks.fence_gate));
-		
+		*/
 		//6 planks => 3 doors. therefore 1 door = 2 planks
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_acacia),
 				new ItemStack(Blocks.acacia_door));

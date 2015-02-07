@@ -55,7 +55,7 @@ public class HandlerSurvivalFlying
 		
  
 		//use the players display name as the hashmap key for the flyCountdown
-		String pname = event.player.getDisplayName();
+		String pname = event.player.getName();
 	 
 		//start at zero, of course. it counts up to the limit (from config)
 	//	if(playerFlyDamageCounters.containsKey(pname) == false) { playerFlyDamageCounters.put(pname, 0); }
@@ -66,7 +66,7 @@ public class HandlerSurvivalFlying
 		
 		World world = event.player.worldObj;
 	
-		int difficultyCurrent = world.difficultySetting.ordinal();//this.world.difficultySetting.ordinal();
+		int difficultyCurrent = world.getDifficulty().ordinal();//this.world.difficultySetting.ordinal();
 		
 		//ex: if current is peaceful, required is easy, then disabled is true
 		//but, if current and required and both peaceful (equal) or if current > required then disabled false

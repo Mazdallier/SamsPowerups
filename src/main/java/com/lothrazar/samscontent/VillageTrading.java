@@ -20,17 +20,20 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
+//import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
-//@Mod(modid = MissingTradeMod.MODID, version = MissingTradeMod.VERSION) //,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
-public class VillageTrading  implements IVillageTradeHandler
+// http://www.minecraftforge.net/forum/index.php?topic=27580.0 
+//TODO: this wasd removed from forge.  Either still in progress orchanged?
+public class VillageTrading  //implements IVillageTradeHandler
 {   
 	final int BROWN = 0;
 	final int WHITE = 1;
 	final int PURPLE = 2;
 	final int BLACK = 3;
 	final int WHITEAPRON = 4;
-	  
+
+/*
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
 	{  	
@@ -87,4 +90,5 @@ public class VillageTrading  implements IVillageTradeHandler
 			break;
 		} 
 	} 
+	*/
 }

@@ -3,25 +3,9 @@ package com.lothrazar.samscontent;
 import java.util.ArrayList;
 
 import org.apache.logging.log4j.Logger; 
-import com.lothrazar.block.BlockCommandBlockCraftable;
-import com.lothrazar.block.BlockDoorSimple;
-import com.lothrazar.block.BlockFenceGateSimple;
-import com.lothrazar.block.BlockFenceSimple;
-import com.lothrazar.block.BlockFishing;
-import com.lothrazar.block.BlockIronTrapdoor;
-import com.lothrazar.block.BlockRedSandStone;
-import com.lothrazar.block.BlockRedSandStoneSlab;
-import com.lothrazar.block.BlockRedSandStoneStairs;
-import com.lothrazar.block.BlockSimple;
-import com.lothrazar.block.BlockSlime;
-import com.lothrazar.block.BlockXRay;
+import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
-import com.lothrazar.item.ItemDoorSimple;
-import com.lothrazar.item.ItemEnderBook;
-import com.lothrazar.item.ItemFoodAppleMagic;
-import com.lothrazar.item.ItemRunestone;
-import com.lothrazar.item.ItemSlabRedSandstone;
-import com.lothrazar.item.ItemWandMaster;
+import com.lothrazar.item.*; 
 import com.lothrazar.samscrafting.ExtraCraftingMod;
 import com.lothrazar.util.Reference;
 import net.minecraft.block.Block;
@@ -34,6 +18,8 @@ import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
@@ -90,7 +76,7 @@ public class ModSamsContent
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse()
-     		,new HandlerBountifulUpdate()
+     	//	,new HandlerBountifulUpdate()
      		,new HandlerEnderChestHit()
       		,new HandlerMasterWand()
       		,new HandlerScreenText()
@@ -134,7 +120,8 @@ public class ModSamsContent
 	{     
 		ChestGen.AddHooks();
 		
-		
+		//TODO: find out how Forge 1.8 does trading
+		/*
   		if(ModSamsContent.settings.moreFutureTrades)
   		{
 	  		VillageTrading v = new VillageTrading();
@@ -142,7 +129,7 @@ public class ModSamsContent
 			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
-  		
+  		*/
 		
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
   	 
@@ -175,35 +162,7 @@ public class ModSamsContent
 		if(ModSamsContent.settings.craftableFlatDoubleSlab) { ExtraCraftingMod.doubleSlabsFlat();}
 		 
    		if(ModSamsContent.settings.uncraftGeneral) { ExtraCraftingMod.uncrafting();}
-   		  
-   		if(ModSamsContent.settings.recipes) { HandlerBountifulUpdate.initRecipes();  } 
-		
-		if(ModSamsContent.settings.decorativeBlocks)
-		{
-			HandlerBountifulUpdate.initNewStones();
-			 
-			HandlerBountifulUpdate.initPrismarine();
-	
-			HandlerBountifulUpdate.initBirchDoor();
-			 
-			HandlerBountifulUpdate.initSpruceDoor();
-			 
-			HandlerBountifulUpdate.initJungleDoor();
-			
-			HandlerBountifulUpdate.initAcaciaDoor();
-	        
-			HandlerBountifulUpdate.initDarkoakDoor();
-			
-			HandlerBountifulUpdate.initFencesGates();
-	
-			HandlerBountifulUpdate.initIronTrapdoor();
-	
-			HandlerBountifulUpdate.initRedSandstone();
-		}
-
-		if(ModSamsContent.settings.mutton) { HandlerBountifulUpdate.initMutton(); }
-		
-	//	if(ModSamsContent.settings.incompSlime) { HandlerBountifulUpdate.initSlimeBlock(); }
+    
  
 
 		//SaplingStickAxe();
@@ -242,7 +201,12 @@ public class ModSamsContent
 		to64.add(Items.boat);
 		to64.add(Items.minecart);
 		to64.add(Items.iron_door);
-		to64.add(Items.wooden_door);
+		to64.add(Items.acacia_door);
+		to64.add(Items.jungle_door);
+		to64.add(Items.spruce_door);
+		to64.add(Items.oak_door);
+		to64.add(Items.dark_oak_door);
+		to64.add(Items.birch_door);
 		to64.add(Items.cake);
 		to64.add(Items.saddle);
 		to64.add(Items.bucket);
@@ -297,6 +261,13 @@ public class ModSamsContent
 	}
 
 	@SubscribeEvent
+	public void onPlayerTick(PlayerTickEvent event)
+	{
+		ItemRunestone.applyHeldRunestones(event.player); 
+	} 
+	
+/*
+	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
 		if (event.entityLiving instanceof EntitySheep
@@ -314,24 +285,28 @@ public class ModSamsContent
 				event.entityLiving.dropItem(HandlerBountifulUpdate.mutton_raw, drops);
 		}
 	}
-
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event)
-	{
-		ItemRunestone.applyHeldRunestones(event.player); 
-	} 
-	 
+*/
+	
+ 
 	 public static String TEXTURE_LOCATION = "samspowerups:";
 	 public static void registerBlockHelper(Block s, String name)
-	 {
-		 s.setBlockName(name).setBlockTextureName(TEXTURE_LOCATION + name);
+	 {  
+		 //??
+		 
+		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0
+	 
+		 s.setUnlocalizedName(name);//.setBlockTextureName(TEXTURE_LOCATION + name);
 		 GameRegistry.registerBlock(s, name);
 		 
 	 }
 	 public static void registerItemHelper(Item s, String name)
 	 {
-		 s.setUnlocalizedName(name).setTextureName(TEXTURE_LOCATION + name);
+		 
+		 s.setUnlocalizedName(name);//.setTextureName(TEXTURE_LOCATION + name);
 		 GameRegistry.registerItem(s, name);
+		 
+		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));
+		 
 	 }
-	 
+ 
 }

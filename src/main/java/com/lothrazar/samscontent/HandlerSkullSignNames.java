@@ -69,24 +69,27 @@ public class HandlerSkullSignNames
 				//&& ExtraCrafting.skullSignNames
 			)
 		{
-			TileEntity maybesign = event.world.getTileEntity(event.x, event.y, event.z);
+			TileEntity maybesign = event.world.getTileEntity(event.pos);
 			if(maybesign != null && maybesign instanceof TileEntitySign)
 			{
 				TileEntitySign sign = (TileEntitySign)maybesign;
 				if(sign != null) //does a tile entity exist here and is it a sign
-				{
-					String firstLine = sign.signText[0];
+				{ 
+					
+					String firstLine = sign.signText[0].getUnformattedText();
 					if(firstLine == null) firstLine = "";
 					if(firstLine.isEmpty() || firstLine.split(" ").length == 0)
 					{
-						held.stackTagCompound = null;
+						held.setTagCompound(null);// = null;
 					}
 					else
 					{
 						//get the first word
 						firstLine = firstLine.split(" ")[0];
-						if(held.getTagCompound() == null) held.stackTagCompound = new NBTTagCompound();
-						held.stackTagCompound.setString("SkullOwner",firstLine);
+						
+						if(held.getTagCompound() == null) held.setTagCompound(new NBTTagCompound());
+						
+						held.getTagCompound().setString("SkullOwner",firstLine);
 					}
 				}
 			}
