@@ -2,13 +2,14 @@ package com.lothrazar.command;
 
 import java.util.ArrayList;
 import java.util.List;   
-import cpw.mods.fml.common.FMLCommonHandler; 
+import net.minecraftforge.fml.common.FMLCommonHandler; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -22,34 +23,25 @@ public class CommandSearchItem  implements ICommand
 		aliases.add("is");
 	}
 	
-	@Override
-	public int compareTo(Object arg0) 
-	{ 
-		return 0;
-	}
+ 
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender arg0, String[] arg1) 
-	{ 
-		return null;
-	}
-
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender arg0) 
-	{ 
-		return true;
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
 	
 	public static final ArrayList<String>	aliases		= new ArrayList<String>();
 	
 	@Override
-	public List getCommandAliases() 
+	public List getAliases() 
 	{  
 		return aliases;
 	}
 
 	@Override
-	public String getCommandName() 
+	public String getName() 
 	{ 
 		return "searchitem";
 	}
@@ -67,9 +59,10 @@ public class CommandSearchItem  implements ICommand
 	}
   
 	@Override
-	public void processCommand(ICommandSender sender, String[] args) 
+	public void execute(ICommandSender sender, String[] args) 
 	{
-		if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {return;}
+		// TODO ??
+		//if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {return;}
 			
 		if (!(sender instanceof EntityPlayerMP)) {return;}
 			
@@ -106,7 +99,8 @@ public class CommandSearchItem  implements ICommand
 			{
 				for (int zLoop = zMin; zLoop <= zMax; zLoop++)
 				{
-					TileEntity tile = player.worldObj.getTileEntity(xLoop, yLoop, zLoop);
+					
+					TileEntity tile = player.worldObj.getTileEntity(new BlockPos(xLoop, yLoop, zLoop));
 					
 					if(tile == null || !(tile instanceof IInventory) ) {continue;}
 					 
@@ -203,5 +197,23 @@ public class CommandSearchItem  implements ICommand
 		String totalsStr = foundStacks + " stack"+s+"; ("+foundQty + " total).";
 		 
 		return xStr +  yStr +  zStr +": "+ totalsStr;
+	}
+
+
+
+	@Override
+	public int compareTo(Object arg0)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

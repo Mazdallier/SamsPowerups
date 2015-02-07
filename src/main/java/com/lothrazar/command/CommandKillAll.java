@@ -1,6 +1,7 @@
 package com.lothrazar.command;
 
 import java.util.List;  
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.EntityLiving;
@@ -9,6 +10,7 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 
@@ -26,7 +28,7 @@ public class CommandKillAll implements ICommand
 	}
 
 	@Override
-	public String getCommandName() 
+	public String getName() 
 	{ 
 		return "killall";
 	}
@@ -36,16 +38,11 @@ public class CommandKillAll implements ICommand
 	{ 
 		return "killall <entity> <range>";
 	}
-
-	@Override
-	public List getCommandAliases() 
-	{ 
-		return null;
-	}
+ 
 	
 	private int killed = 0;
 	@Override
-	public void processCommand(ICommandSender ic, String[] args) 
+	public void execute(ICommandSender ic, String[] args) throws CommandException
 	{ 
 		EntityPlayer p = (EntityPlayer)ic;
 		double px = p.posX;
@@ -78,7 +75,8 @@ public class CommandKillAll implements ICommand
 			return;
 		}
 
-		AxisAlignedBB rangeBox = AxisAlignedBB.getBoundingBox(px - range, py - range, pz - range,
+		 
+		AxisAlignedBB rangeBox = AxisAlignedBB.fromBounds(px - range, py - range, pz - range,
 				 px + range, py + range, pz + range);
 
 		this.killed = 0;
@@ -240,24 +238,30 @@ public class CommandKillAll implements ICommand
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender ic) 
+	public boolean canCommandSenderUse(ICommandSender ic) 
 	{ 
 		//removed from 172 : MinecraftServer.getServer().getConfigurationManager().isPlayerOpped()
 		
 		//http://www.minecraftforge.net/forum/index.php?topic=22907.0
 		//for some magic reason, 2 means op. and "" is ?? but it works.
-		return ic.canCommandSenderUseCommand(2, "");
+		return ic.canUseCommand(2, this.getName());
+	}
+ 
+	@Override
+	public boolean isUsernameIndex(String[] args, int i) 
+	{
+		return false;
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender ic, String[] args) 
+	public List getAliases()
 	{ 
 		return null;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] args, int i) 
-	{
-		return false;
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	{ 
+		return null;
 	}
 }

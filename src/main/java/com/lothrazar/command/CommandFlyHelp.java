@@ -7,6 +7,7 @@ import com.lothrazar.samscontent.HandlerSurvivalFlying;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer; 
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 
 public class CommandFlyHelp implements ICommand
@@ -21,7 +22,7 @@ public class CommandFlyHelp implements ICommand
 	  }
  
 	  @Override
-	  public String getCommandName()
+	  public String getName()
 	  {
 	    return "flyhelp";
 	  }
@@ -33,13 +34,13 @@ public class CommandFlyHelp implements ICommand
 	  }
 
 	  @Override
-	  public ArrayList<String> getCommandAliases()
+	  public ArrayList<String> getAliases()
 	  {
 	    return this.aliases;
 	  }
 
 	  @Override
-	  public void processCommand(ICommandSender icommandsender, String[] astring)
+	  public void execute(ICommandSender icommandsender, String[] astring)
 	  { 
 		  EntityPlayer p = (EntityPlayer)icommandsender;
 
@@ -76,13 +77,13 @@ public class CommandFlyHelp implements ICommand
 	  }
 	   
 	  @Override
-	  public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
+	  public boolean canCommandSenderUse(ICommandSender icommandsender)
 	  { 
 	     return true;
 	  }
 
 	  @Override
-	  public ArrayList<String> addTabCompletionOptions(ICommandSender icommandsender,  String[] astring)
+	  public ArrayList<String> addTabCompletionOptions(ICommandSender icommandsender,  String[] astring, BlockPos pos)
 	  {
 	    return null;
 	  }

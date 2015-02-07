@@ -1,4 +1,5 @@
 package com.lothrazar.command;
+
 /*
  * 
  * imported from my 
@@ -8,69 +9,80 @@ package com.lothrazar.command;
  * 
  * */
 import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+
 public class CommandEnderChest implements ICommand
 {
 	private ArrayList<String> aliases;
+
 	public CommandEnderChest()
 	{
 		this.aliases = new ArrayList<String>();
 		this.aliases.add("ec");
 		this.aliases.add("enderchest");
 	}
-	
+
 	@Override
-	public String getCommandName()
+	public String getName()
 	{
 		return "enderchest";
 	}
-	
+
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
 		return "enderchest";
 	}
-	
+ 
+
+	//@Override
+	//public void processCommand(ICommandSender icommandsender, String[] astring)
+///	{
 	@Override
-	public ArrayList<String> getCommandAliases()
+	public void execute(ICommandSender sender, String[] args)			throws CommandException
 	{
-		return this.aliases;
-	}
-	
-	@Override
-	public void processCommand(ICommandSender icommandsender, String[] astring)
-	{
-		EntityPlayer p = (EntityPlayer)icommandsender;
+		EntityPlayer p = (EntityPlayer) sender;
 		p.displayGUIChest(p.getInventoryEnderChest());
 	}
-	
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender ic)
-	{
-		//removed from 172 : MinecraftServer.getServer().getConfigurationManager().isPlayerOpped()
-		//instead we do:
-		//http://www.minecraftforge.net/forum/index.php?topic=22907.0
-		//for some magic reason, 2 means op. and "" is ?? but it works.
-		return ic.canCommandSenderUseCommand(2, "");
-	}
-	
-	@Override
-	public ArrayList<String> addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
-	{
-		return null;
-	}
-	
+
+
 	@Override
 	public boolean isUsernameIndex(String[] astring, int i)
 	{
 		return false;
 	}
-	
+
 	@Override
 	public int compareTo(Object o)
 	{
 		return 0;
+	}
+ 
+
+	@Override
+	public List getAliases()
+	{
+		return this.aliases;
+	}
+
+ 
+
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+
+	@Override
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	{ 
+		return null;
 	}
 }

@@ -5,7 +5,7 @@ import com.google.common.collect.Sets;
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Location;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

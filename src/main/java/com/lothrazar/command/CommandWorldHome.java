@@ -5,8 +5,9 @@ import java.util.List;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
+//import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
 public class CommandWorldHome  implements ICommand
@@ -21,7 +22,7 @@ public class CommandWorldHome  implements ICommand
 	}
 
 	@Override
-	public String getCommandName()
+	public String getName()
 	{ 
 		return "worldhome";
 	}
@@ -33,13 +34,13 @@ public class CommandWorldHome  implements ICommand
 	}
 
 	@Override
-	public List getCommandAliases()
+	public List getAliases()
 	{ 
 		return null;
 	}
 
 	@Override
-	public void processCommand(ICommandSender ic, String[] args)
+	public void execute(ICommandSender ic, String[] args)
 	{
 		EntityPlayer player = ((EntityPlayer)ic); 
 		World world = player.worldObj; 
@@ -51,11 +52,12 @@ public class CommandWorldHome  implements ICommand
 		}
 		
 		//this tends to always get something at y=64, regardless if there is AIR or not
-		ChunkCoordinates coords = world.getSpawnPoint();
-		 
+		BlockPos coords = world.getSpawnPoint();
+		 //ChunkCoordinates
 		//so we keep moving up until we no longer intersect with the world
-		player.setPositionAndUpdate(coords.posX, coords.posY, coords.posZ); 
-		while (!world.getCollidingBoundingBoxes(player, player.boundingBox).isEmpty())
+		player.setPositionAndUpdate(coords.getX(), coords.getY(), coords.getZ()); 
+		
+		while (!world.getCollidingBoundingBoxes(player, player.getBoundingBox()).isEmpty())
 		{
 			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
 		}
@@ -63,23 +65,26 @@ public class CommandWorldHome  implements ICommand
 		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
 	}
 
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender ic)
-	{
-		//if we dont require OP, then it always returns true
-		return (REQUIRES_OP) ? ic.canCommandSenderUseCommand(2, "") : true; 
-	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender ic, String[] args)
-	{ 
-		return null;
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
+
+	 
 
 	@Override
 	public boolean isUsernameIndex(String[] ic, int args)
 	{ 
 		return false;
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

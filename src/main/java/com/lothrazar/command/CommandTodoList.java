@@ -10,10 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
-  
- 
-
+import java.util.Random; 
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -27,7 +24,8 @@ import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.BlockPos;
+//import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
@@ -111,13 +109,13 @@ public class CommandTodoList implements ICommand
 	}
 	
 	@Override
-	public void processCommand(ICommandSender icommandsender, String[] args)
+	public void execute(ICommandSender icommandsender, String[] args)
 	{ 
 		EntityPlayer p = (EntityPlayer)icommandsender;//
 
 		String fileName = "todo_"+ p.getDisplayName() +".dat";
  
-		String todoCurrent = GetTodoForPlayerName(p.getDisplayName() );
+		String todoCurrent = GetTodoForPlayerName(p.getDisplayName().getUnformattedText() );
  
 		 //is the first argument empty
 		 if(args == null || args.length == 0 || args[0] == null || args[0].isEmpty())
@@ -162,45 +160,47 @@ public class CommandTodoList implements ICommand
 			 todoCurrent = message;//so replace
 		 }
  
-		 SetTodoForPlayerName(p.getDisplayName(),todoCurrent); 
+		 SetTodoForPlayerName(p.getDisplayName().getUnformattedText(),todoCurrent); 
 	}
 	 
+ 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) 
-	{  
-		//doesnt matter if OP or not. its for everyone.
-		return true;
-	}
-	
-	@Override
-	public List getCommandAliases() 
+	public List getAliases() 
 	{ 
 		return aliases;
 	}
-	
+	 
+
 	@Override
-	public List addTabCompletionOptions(ICommandSender ic,	String[] args) 
+	public String getName() 
 	{ 
-		//http://www.minecraftforge.net/forum/index.php?topic=21754.0
-		return null;
+		return "todo";
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) 
-	{ 
-		return false;
-	}
-	
-	@Override 
-	public int compareTo(Object arg0) 
+	public int compareTo(Object arg0)
 	{ 
 		return 0;
 	}
 
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+
 	@Override
-	public String getCommandName() 
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
 	{ 
-		return "todo";
+		return null;
+	}
+
+	@Override
+	public boolean isUsernameIndex(String[] args, int index)
+	{ 
+		return false;
 	}
 }
 

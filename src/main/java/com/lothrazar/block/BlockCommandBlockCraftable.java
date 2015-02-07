@@ -2,9 +2,10 @@ package com.lothrazar.block;
 
 import java.util.Random; 
 import com.lothrazar.samscontent.ModSamsContent;
-import cpw.mods.fml.common.registry.GameRegistry; 
+import net.minecraftforge.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.server.CommandBlockLogic;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +15,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityCommandBlock;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -48,18 +51,20 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		this.rule = rl;
 		setConstructorDefaults();
 	}
-	 
+/*
 	@Override
 	public void onBlockClicked(World w, int x, int y, int z, EntityPlayer p) 
-	{  
+	{   
 		super.onBlockClicked( w,  x,  y,  z,  p) ;
 	}
-
+*/
 	@Override
-	public void updateTick(World w, int x, int y, int z, Random r)
-    {  
+	public void updateTick(World w, BlockPos pos, IBlockState state, Random r)
+    { 
+	//	int x, int y, int z
 		//this fires on redstone power 
-        TileEntity tileentity = w.getTileEntity(x, y, z); 
+	
+        TileEntity tileentity = w.getTileEntity(pos); 
         if (tileentity == null ) {return;}
         if(!(tileentity instanceof TileEntityCommandBlock)) {return;}
      
@@ -77,7 +82,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	    		Block current;
 	    		while(inWall && _y < 200)
 	    		{
-	    			current = w.getBlock(_x, _y, _z); 
+	    			current = w.getBlockState(new BlockPos(_x, _y, _z)).getBlock(); 
 	    			
 	    			if(current == Blocks.air) 
 	    			{
@@ -116,20 +121,19 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
          
         if(command != null)
         {
-	        CommandBlockLogic commandblocklogic = ((TileEntityCommandBlock)tileentity).func_145993_a();
+	        CommandBlockLogic commandblocklogic = ((TileEntityCommandBlock)tileentity).getCommandBlockLogic();
 	         
-	        commandblocklogic.func_145752_a(command); //set current command into this CommandClock
+	        commandblocklogic.setCommand(command); //set current command into this CommandClock
 	        
 	        //execute my current command in the World
-	        commandblocklogic.func_145755_a(w);
-	        w.func_147453_f(x, y, z, this);
+	        commandblocklogic.trigger(w);
         }
     }
 	  
 	@Override
-	public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     { 
-		//disables the player from opening the edit screen to alter the command
+		 //disables the player from opening the edit screen to alter the command
 		return false;
     }
 	
@@ -141,14 +145,15 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
     }
 	
 	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {    
        return Item.getItemFromBlock(Blocks.diamond_block);//force them to use silk touch to get it back
     }
 	
 	@Override
-	public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+	public boolean canSilkHarvest(World world,BlockPos pos, IBlockState state, EntityPlayer player)
     {
+		this.canSilkHarvest(world, pos, state, player);
 		return true;
     }
 	 

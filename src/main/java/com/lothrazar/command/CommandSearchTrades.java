@@ -9,6 +9,7 @@ import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
@@ -22,7 +23,7 @@ public class CommandSearchTrades  implements ICommand
 	}
 
 	@Override
-	public String getCommandName() 
+	public String getName() 
 	{ 
 		return "searchtrade";
 	}
@@ -34,13 +35,13 @@ public class CommandSearchTrades  implements ICommand
 	}
 
 	@Override
-	public List getCommandAliases() 
+	public List getAliases() 
 	{ 
 		return null;
 	}
 
 	@Override
-	public void processCommand(ICommandSender ic, String[] args) 
+	public void execute(ICommandSender ic, String[] args) 
 	{
 		EntityPlayer p = (EntityPlayer)ic;
 		if(args.length == 0)
@@ -58,11 +59,13 @@ public class CommandSearchTrades  implements ICommand
 			if(searchingQty < 0) {searchingQty  = 0;}
 		}
 		//step 1: get list of nearby villagers, seearch entities nearby in world
-		double X = ic.getPlayerCoordinates().posX;
-		double Z = ic.getPlayerCoordinates().posZ;
+		
+		double X = ic.getPosition().getX();//ic.getPlayerCoordinates().posX;
+		double Z = ic.getPosition().getZ();//ic.getPlayerCoordinates().posZ;
+		
 		double range = 64;
 		
-		AxisAlignedBB searchRange = AxisAlignedBB.getBoundingBox(
+		AxisAlignedBB searchRange = AxisAlignedBB.fromBounds(
 				X + 0.5D - range, 0.0D, 
 				Z + 0.5D - range, 
 				X + 0.5D + range, 255.0D, 
@@ -145,22 +148,25 @@ public class CommandSearchTrades  implements ICommand
 			p.addChatMessage(new ChatComponentTranslation("No matching trades found in nearby villagers ("+range+"m).")); 
 		 } 
 	}
-
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender ic) 
-	{ 
-		return true;
-	}
-
-	@Override
-	public List addTabCompletionOptions(ICommandSender ic,	String[] args) 
-	{ 
-		return null;
-	}
-
+ 
 	@Override
 	public boolean isUsernameIndex(String[] args, int i) 
 	{ 
 		return false;
+	}
+
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+
+	@Override
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	} 
 }

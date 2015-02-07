@@ -3,8 +3,8 @@ package com.lothrazar.item;
 import com.lothrazar.samscontent.HandlerBountifulUpdate;
 import com.lothrazar.samscontent.ModSamsContent;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.entity.player.EntityPlayer;

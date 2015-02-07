@@ -4,15 +4,17 @@ import java.util.Random;
 
 import com.lothrazar.samscontent.ModSamsContent;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -32,14 +34,20 @@ public class BlockFishing extends Block
     }
 	    
 	@Override
-	public void updateTick(World worldObj, int xCoord, int yCoord, int zCoord, Random rand)
+	public void updateTick(World worldObj,  BlockPos pos, IBlockState state,  Random rand)
     {  
-		 if(worldObj.getBlock(xCoord+1, yCoord, zCoord).equals(Blocks.water) == false
-		 || worldObj.getBlock(xCoord-1, yCoord, zCoord).equals(Blocks.water) == false 
-		 || worldObj.getBlock(xCoord, yCoord, zCoord+1).equals(Blocks.water) == false
-		 || worldObj.getBlock(xCoord, yCoord, zCoord-1).equals(Blocks.water) == false //these 4 lines cover the four direct sides horiz
-		 || worldObj.getBlock(xCoord, yCoord-1, zCoord).equals(Blocks.water) == false 
-		 || worldObj.getBlock(xCoord, yCoord-2, zCoord).equals(Blocks.water) == false //also go 2 deep
+		int xCoord = pos.getX();
+		int yCoord = pos.getY();
+		int zCoord = pos.getZ();
+		
+		//worldObj.getBlockState(new BlockPos(xCoord+1, yCoord, zCoord));
+		//int xCoord, int yCoord, int zCoord
+		 if(worldObj.getBlockState(new BlockPos(xCoord+1, yCoord, zCoord)).equals(Blocks.water) == false
+		 || worldObj.getBlockState(new BlockPos(xCoord-1, yCoord, zCoord)).equals(Blocks.water) == false 
+		 || worldObj.getBlockState(new BlockPos(xCoord, yCoord, zCoord+1)).equals(Blocks.water) == false
+		 || worldObj.getBlockState(new BlockPos(xCoord, yCoord, zCoord-1)).equals(Blocks.water) == false //these 4 lines cover the four direct sides horiz
+		 || worldObj.getBlockState(new BlockPos(xCoord, yCoord-1, zCoord)).equals(Blocks.water) == false 
+		 || worldObj.getBlockState(new BlockPos(xCoord, yCoord-2, zCoord)).equals(Blocks.water) == false //also go 2 deep
 		 
 		)
 		 {

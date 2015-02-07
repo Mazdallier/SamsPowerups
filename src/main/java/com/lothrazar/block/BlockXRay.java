@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.lothrazar.samscontent.ModSamsContent;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -32,7 +32,7 @@ public class BlockXRay extends Block
 		this.setResistance(5F); 
 		this.setTickRandomly(true);
     }
-	    
+  /*
 	@Override
     public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
     {
@@ -48,7 +48,7 @@ public class BlockXRay extends Block
  
 	 	return ret;
 	} 
-	
+	*/
 	public static void initXray()
 	{
 		BlockXRay block_xray = new BlockXRay();

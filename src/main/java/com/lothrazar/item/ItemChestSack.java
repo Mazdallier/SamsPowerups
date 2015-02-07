@@ -2,12 +2,14 @@ package com.lothrazar.item;
 
 import java.util.ArrayList;
 import java.util.List; 
-import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly; 
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -19,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent; 
@@ -39,7 +42,7 @@ public class ItemChestSack extends Item
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) 
 	{
 		//http://www.minecraftforge.net/wiki/Creating_NBT_for_items
-	    if(itemStack.stackTagCompound==null) {itemStack.stackTagCompound = new NBTTagCompound();}	     
+	  //  if(itemStack.stackTagCompound==null) {itemStack.stackTagCompound = new NBTTagCompound();}	     
 	}
 	
 	@Override
@@ -64,11 +67,11 @@ public class ItemChestSack extends Item
 	@SuppressWarnings("unused")
 	public void sortFromSackToChestEntity(TileEntityChest chest, ItemStack held, PlayerInteractEvent event)
   	{
-		if(held.stackTagCompound==null){return;}
+		if(held.getTagCompound()==null){return;}
 	  
-		int[] itemids = held.stackTagCompound.getIntArray(KEY_ITEMIDS);
-		int[] itemdmg = held.stackTagCompound.getIntArray(KEY_ITEMDMG);
-		int[] itemqty = held.stackTagCompound.getIntArray(KEY_ITEMQTY);
+		int[] itemids = held.getTagCompound().getIntArray(KEY_ITEMIDS);
+		int[] itemdmg = held.getTagCompound().getIntArray(KEY_ITEMDMG);
+		int[] itemqty = held.getTagCompound().getIntArray(KEY_ITEMQTY);
 		
 		if(itemids == null)
 		{
@@ -190,17 +193,17 @@ public class ItemChestSack extends Item
 			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
 	 
-		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMIDS,itemids);
-		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMDMG,itemdmg);
-		event.entityPlayer.getCurrentEquippedItem().stackTagCompound.setIntArray(KEY_ITEMQTY,itemqty);
+		event.entityPlayer.getCurrentEquippedItem().getTagCompound().setIntArray(KEY_ITEMIDS,itemids);
+		event.entityPlayer.getCurrentEquippedItem().getTagCompound().setIntArray(KEY_ITEMDMG,itemdmg);
+		event.entityPlayer.getCurrentEquippedItem().getTagCompound().setIntArray(KEY_ITEMQTY,itemqty);
  
   	}
 	 
 	public void createAndFillChest(EntityPlayer entityPlayer, ItemStack heldChestSack, int x, int y, int z)
 	{
-		int[] itemids = heldChestSack.stackTagCompound.getIntArray("itemids");
-		int[] itemdmg = heldChestSack.stackTagCompound.getIntArray("itemdmg");
-		int[] itemqty = heldChestSack.stackTagCompound.getIntArray("itemqty");
+		int[] itemids = heldChestSack.getTagCompound().getIntArray("itemids");
+		int[] itemdmg = heldChestSack.getTagCompound().getIntArray("itemdmg");
+		int[] itemqty = heldChestSack.getTagCompound().getIntArray("itemqty");
 		
 		if(itemids==null)
 		{
@@ -208,9 +211,10 @@ public class ItemChestSack extends Item
 			return;
 		}
 		//entityPlayer.worldObj.setBlock(event.x, event.y+1, event.z, Blocks.chest, 0,2); 
-		entityPlayer.worldObj.setBlock(x, y, z, Blocks.chest, 0,2);
+		//entityPlayer.worldObj.setBlock(x, y, z, Blocks.chest, 0,2);
+		entityPlayer.worldObj.setBlockState(new BlockPos(x, y, z), (IBlockState) new BlockState(Blocks.chest));
 		
-		TileEntity container = entityPlayer.worldObj.getTileEntity(x, y, z); 
+		TileEntity container = entityPlayer.worldObj.getTileEntity(new BlockPos(x, y, z)); 
 		TileEntityChest chest = (TileEntityChest)container ;
 	
 		int item;

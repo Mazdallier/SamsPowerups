@@ -4,8 +4,8 @@ import com.google.common.collect.Sets;
 import com.lothrazar.samscontent.HandlerMasterWand;
 import com.lothrazar.samscontent.ModSamsContent;
 
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.creativetab.CreativeTabs;

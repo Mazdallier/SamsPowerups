@@ -7,11 +7,13 @@ import java.util.List;
 import com.lothrazar.util.Location;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
+//import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -35,7 +37,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	}
 
 	@Override
-	public String getCommandName() 
+	public String getName() 
 	{ 
 		return "simplewp";
 	}
@@ -47,7 +49,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	}
 
 	@Override
-	public List getCommandAliases() 
+	public List getAliases() 
 	{ 
 		return this.aliases;
 	}
@@ -61,7 +63,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	public static String KEY_CURRENT = "simplewp_current";
 	
 	@Override
-	public void processCommand(ICommandSender icommandsender, String[] args) 
+	public void execute(ICommandSender icommandsender, String[] args) 
 	{  
 		EntityPlayer p = (EntityPlayer)icommandsender;
 		
@@ -133,7 +135,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	private void executeSave(EntityPlayer p, String name) 
 	{ 
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = GetForPlayerName(p.getDisplayName().getUnformattedText());
 		
 		if(name == null) name = "";
 		
@@ -145,21 +147,21 @@ public class CommandSimpleWaypoints  implements ICommand
 		
 		lines.add( here.toCSV());
 		 
-		OverwriteForPlayerName(p.getDisplayName(),lines);
+		OverwriteForPlayerName(p.getDisplayName().getUnformattedText(),lines);
 	} 
 
 	private void executeHide(EntityPlayer p) 
 	{
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = GetForPlayerName(p.getDisplayName().getUnformattedText());
 		
 		if(lines.size() < 1){return;}
 		lines.set(0,"0");
-		OverwriteForPlayerName(p.getDisplayName(),lines); 
+		OverwriteForPlayerName(p.getDisplayName().getUnformattedText(),lines); 
 	}
 	
 	private void executeClear(EntityPlayer p) 
 	{
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = GetForPlayerName(p.getDisplayName().getUnformattedText());
 		
 		if(lines.size() <= 1){return;}
 		
@@ -186,18 +188,18 @@ public class CommandSimpleWaypoints  implements ICommand
 		}
 	 
 		newLines.set(0,"0");
-		OverwriteForPlayerName(p.getDisplayName(),newLines);
+		OverwriteForPlayerName(p.getDisplayName().getUnformattedText(),newLines);
 		
 	}
 	
 	private void executeDisplay(EntityPlayer p, int index) 
 	{  
-		SetCurrentForPlayerName(p.getDisplayName(),index);
+		SetCurrentForPlayerName(p.getDisplayName().getUnformattedText(),index);
 	}
 	
 	private void executeList(EntityPlayer p) 
 	{ 
-		ArrayList<String> lines = GetForPlayerName(p.getDisplayName());
+		ArrayList<String> lines = GetForPlayerName(p.getDisplayName().getUnformattedText());
 		
 		int i = 0;
 		String d;
@@ -214,18 +216,7 @@ public class CommandSimpleWaypoints  implements ICommand
 			i++;
 		}
 	}
-	
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_) 
-	{ 
-		return true;
-	}
-
-	@Override
-	public List addTabCompletionOptions(ICommandSender p_71516_1_,	String[] p_71516_2_) 
-	{ 
-		return null;
-	}
+	 
 
 	@Override
 	public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) 
@@ -313,9 +304,9 @@ public class CommandSimpleWaypoints  implements ICommand
 	
 	public static void AddWaypointInfo(RenderGameOverlayEvent.Text event) 
 	{
-		EntityClientPlayerMP p = Minecraft.getMinecraft().thePlayer;
+		EntityPlayerSP p = Minecraft.getMinecraft().thePlayer;
 	 
-    	ArrayList<String> saved = GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName());
+    	ArrayList<String> saved = GetForPlayerName(Minecraft.getMinecraft().thePlayer.getDisplayName().getUnformattedText());
 
     	if(saved.size() > 0 && saved.get(0) != null)
     	{ 
@@ -360,5 +351,19 @@ public class CommandSimpleWaypoints  implements ICommand
     				event.left.add(showName);
     		} 
     	}
+	}
+
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+
+	@Override
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+	{ 
+		return null;
 	}
 }

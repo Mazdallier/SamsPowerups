@@ -3,18 +3,19 @@ package com.lothrazar.command;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
+//import net.minecraft.util.ChunkCoordinates;
+
 import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
 {
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
-
 	@Override
 	public int compareTo(Object arg0)
 	{ 
@@ -22,7 +23,7 @@ public class CommandHome implements ICommand
 	}
 
 	@Override
-	public String getCommandName()
+	public String getName()
 	{ 
 		return "home";
 	}
@@ -34,17 +35,16 @@ public class CommandHome implements ICommand
 	}
 
 	@Override
-	public List getCommandAliases()
+	public List getAliases()
 	{ 
 		return null;
 	}
 
 	@Override
-	public void processCommand(ICommandSender ic, String[] args)
+	public void execute(ICommandSender ic, String[] args) 	throws CommandException
 	{
 		EntityPlayer player = ((EntityPlayer)ic); 
 		World world = player.worldObj;
-
 
 		if(player.dimension != 0)
 		{
@@ -52,7 +52,7 @@ public class CommandHome implements ICommand
 			 return;
 		}
 		
-		 ChunkCoordinates coords = player.getBedLocation(0);
+		 BlockPos coords = player.getBedLocation(0);
 		 
 		 if(coords == null)
 		 {
@@ -61,12 +61,13 @@ public class CommandHome implements ICommand
 			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed."));
 			 return;
 		 }
-		
-		 Block block = world.getBlock(coords.posX, coords.posY, coords.posZ);
-		 if (block.equals(Blocks.bed) || block.isBed(world, coords.posX, coords.posY, coords.posZ, null))
+ 
+		 Block block = world.getBlockState(coords).getBlock();
+		 
+		 if (block.equals(Blocks.bed) || block.isBed(world, coords, player))
 		 {
 			 //then move over according to how/where the bed wants me to spawn
-			 coords = block.getBedSpawnPosition(world, coords.posX, coords.posY, coords.posZ, null);
+			 coords = block.getBedSpawnPosition(world, coords, player);
 		 }
 		 else
 		 {
@@ -78,8 +79,9 @@ public class CommandHome implements ICommand
 		 //TODO: make global/shared teleportPlayer class or function
 		 //since this is copied from WorldHome
 		 
-		player.setPositionAndUpdate(coords.posX, coords.posY, coords.posZ); 
-		while (!world.getCollidingBoundingBoxes(player, player.boundingBox).isEmpty())
+		player.setPositionAndUpdate(coords.getX(), coords.getY(), coords.getZ()); 
+
+		while (!world.getCollidingBoundingBoxes(player, player.getBoundingBox()).isEmpty())
 		{
 			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
 		}
@@ -87,14 +89,16 @@ public class CommandHome implements ICommand
 		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
 	}
 
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender ic)
+	public boolean canCommandSenderUse(ICommandSender ic)
 	{
-		return (REQUIRES_OP) ? ic.canCommandSenderUseCommand(2, "") : true; 
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender ic, String[] args)
+	public List addTabCompletionOptions(ICommandSender ic, String[] args, BlockPos pos)
 	{
 		// TODO Auto-generated method stub
 		return null;
@@ -106,6 +110,5 @@ public class CommandHome implements ICommand
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }
