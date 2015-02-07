@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import com.lothrazar.util.Reference;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerBonemealUse
 {
@@ -37,10 +37,17 @@ public class HandlerBonemealUse
 		if(isUsingBonemeal(held)  ) 
 		{ 
 		 
-			Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
+			//was event.x, event.y, event.z
+			Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
+			
 			if(blockClicked == null || blockClicked == Blocks.air ){return;}
 			
-			int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
+			//event.entityPlayer.worldObj.getBlockState(event.pos)
+			//new method: the Block itself tells what number to return, not the world.  
+			//the world wraps up the state of the block that we can query, and the 
+			//block class translates
+			int blockClickedDamage = Blocks.red_flower.getMetaFromState(event.entityPlayer.worldObj.getBlockState(event.pos)); 
+			
 			
 		 	if ( blockClicked.equals(Blocks.yellow_flower))//yellow flowers have no damage variations
 		 	{  

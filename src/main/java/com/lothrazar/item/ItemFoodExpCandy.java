@@ -22,9 +22,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
+/*
 public class ItemFoodExpCandy extends ItemFood
 { 
+
+
 	public ItemFoodExpCandy(int fillsHunger,boolean has_effect)
 	{  
 		super(fillsHunger,false);// fills 1 hunger (very small i know), and is not edible by wolf
@@ -136,4 +138,4 @@ public class ItemFoodExpCandy extends ItemFood
        
     	 list.add(String.format("Eating will set your level to "+EnumChatFormatting.RED+"%d",food_exp));    
 	 }  
-}
+}*/

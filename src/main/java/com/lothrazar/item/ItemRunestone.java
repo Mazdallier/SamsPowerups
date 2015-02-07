@@ -67,7 +67,7 @@ public class ItemRunestone extends ItemTool
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{ 
-		return EnumRarity.epic;  //give it the purple text similar to goldapple
+		return EnumRarity.EPIC;  //give it the purple text similar to goldapple
 	}
 	
 	/**

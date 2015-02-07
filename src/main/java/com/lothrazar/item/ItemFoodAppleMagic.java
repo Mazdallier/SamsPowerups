@@ -3,6 +3,7 @@ package com.lothrazar.item;
 import java.util.ArrayList; 
 
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -79,13 +80,14 @@ public class ItemFoodAppleMagic extends ItemFood
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
 		 if(_hasEffect)
-			 return EnumRarity.epic; //dynamic text to match the two apple colours
+			 return EnumRarity.EPIC; //dynamic text to match the two apple colours
 		 else 
-			 return EnumRarity.rare;
+			 return EnumRarity.RARE;
 	} 
 	  
 	public static void initApples()
 	{ 
+		/*
 		// the potion effect ids listed at
 		// http://minecraft.gamepedia.com/Potion_Effects
 		int SPEED = 1;
@@ -103,7 +105,7 @@ public class ItemFoodAppleMagic extends ItemFood
 		int HEALTH_BOOST = 21;
 		int ABSORP = 22;// same as regular gold apple
 		// int SATURATION = 23;
-
+*/
 		int potionTimeSeconds = 300 * 4;// 300 is five minutes.
 
 		// for the record, the gold BLOCKS apple is 2min absorp, 5minute
@@ -123,11 +125,13 @@ public class ItemFoodAppleMagic extends ItemFood
 		int III = 2;
 		int IV = 3;
 		int V = 4;
-
+ 
+		
+		
 		apple_emerald = new ItemFoodAppleMagic(1, false);
-		apple_emerald.addEffect(HASTE, potionTimeSeconds, II)
-				.addEffect(SPEED, potionTimeSeconds, I)
-				.addEffect(ABSORP, potionTimeSeconds, II);
+		apple_emerald.addEffect(Reference.potion_HASTE, potionTimeSeconds, II)
+				.addEffect(Reference.potion_SPEED, potionTimeSeconds, I)
+				.addEffect(Reference.potion_absorption, potionTimeSeconds, II);
 		ModSamsContent.registerItemHelper(apple_emerald, "apple_emerald");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_emerald),
 				Items.emerald, Items.golden_apple);
@@ -136,12 +140,12 @@ public class ItemFoodAppleMagic extends ItemFood
  
 		// only diamond is getting the shiny effect
 		apple_diamond = new ItemFoodAppleMagic(1, true);  
-		apple_diamond.addEffect(HEALTH_BOOST, potionTimeSeconds, V)
+		apple_diamond.addEffect(Reference.potion_HEALTH_BOOST, potionTimeSeconds, V)
 				// ten extra hearts
-				.addEffect(FIRE_RESIST, potionTimeSeconds, II)
+				.addEffect(Reference.potion_FIRERESIST, potionTimeSeconds, II)
 				// resist and fire so it is same as the NOTCH apple
-				.addEffect(RESISTANCE, potionTimeSeconds, II)
-				.addEffect(REGEN, 20, II);
+				.addEffect(Reference.potion_RESISTANCE, potionTimeSeconds, II)
+				.addEffect(Reference.potion_REGEN, 20, II);
 		ModSamsContent.registerItemHelper(apple_diamond, "apple_diamond");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_diamond),
 				Items.diamond, Items.golden_apple);
@@ -151,11 +155,11 @@ public class ItemFoodAppleMagic extends ItemFood
 		// woo night vision
 		apple_lapis = new ItemFoodAppleMagic(1, false);
 		apple_lapis
-				.addEffect(NIGHT_VISION, potionTimeSeconds, II)
+				.addEffect(Reference.potion_NIGHT_VISION, potionTimeSeconds, II)
 				// night vision potion uses gold carrots maybe cheaper?
-				.addEffect(WATER_BREATHING, potionTimeSeconds, II)
+				.addEffect(Reference.potion_WATER_BREATHING, potionTimeSeconds, II)
 				// puffer fish are way too rare
-				.addEffect(ABSORP, potionTimeSeconds, II);
+				.addEffect(Reference.potion_absorption, potionTimeSeconds, II);
 		ModSamsContent.registerItemHelper(apple_lapis, "apple_lapis");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_lapis),
 				new ItemStack(Items.dye, 1, 4), Items.golden_apple);
@@ -168,9 +172,9 @@ public class ItemFoodAppleMagic extends ItemFood
 		apple_chocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger
 															// points it gives
 															// you
-		apple_chocolate.addEffect(SPEED, 30, II)
+		apple_chocolate.addEffect(Reference.potion_SPEED, 30, II)
 				// just a short burst of speed. mini speed potion
-				.addEffect(HASTE, 30, II);
+				.addEffect(Reference.potion_HASTE, 30, II);
 		
 		ModSamsContent.registerItemHelper(apple_chocolate, "apple_chocolate");
 		GameRegistry.addRecipe(new ItemStack(apple_chocolate), "eee", "eae",

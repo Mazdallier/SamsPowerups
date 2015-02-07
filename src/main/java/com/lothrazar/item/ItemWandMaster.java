@@ -216,12 +216,14 @@ public class ItemWandMaster extends ItemTool
 			chestTarget.setInventorySlotContents(islotChest, null);	
 		}
 		 
-		drop.stackTagCompound.setIntArray("itemids", itemids);
-		drop.stackTagCompound.setIntArray("itemdmg", itemdmg);
-		drop.stackTagCompound.setIntArray("itemqty", itemqty);
+		if(drop.getTagCompound() == null) drop.setTagCompound(new NBTTagCompound());
+		
+		drop.getTagCompound().setIntArray("itemids", itemids);
+		drop.getTagCompound().setIntArray("itemdmg", itemdmg);
+		drop.getTagCompound().setIntArray("itemqty", itemqty);
 		 
-		drop.stackTagCompound.setString("count",""+count);
-		drop.stackTagCompound.setString("stacks",""+stacks);
+		drop.getTagCompound().setString("count",""+count);
+		drop.getTagCompound().setString("stacks",""+stacks);
 	 	 
 		entityPlayer.entityDropItem(drop, 1);//quantity = 1
 			 
