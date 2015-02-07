@@ -121,11 +121,23 @@ public class ExtraCraftingMod
  		 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),
 				new ItemStack(Blocks.fence));
+		 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8),
 				new ItemStack(Blocks.fence_gate));
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 12),
-				new ItemStack(Blocks.wooden_door));
+		//6 planks => 3 doors. therefore 1 door = 2 planks
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_acacia),
+				new ItemStack(Blocks.acacia_door));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_birch),
+				new ItemStack(Blocks.birch_door));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_spruce),
+				new ItemStack(Blocks.spruce_door));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_darkoak),
+				new ItemStack(Blocks.dark_oak_door));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_oak),
+				new ItemStack(Blocks.oak_door));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_jungle),
+				new ItemStack(Blocks.jungle_door));
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),	new ItemStack(Items.bowl), new ItemStack(Items.bowl));
  		

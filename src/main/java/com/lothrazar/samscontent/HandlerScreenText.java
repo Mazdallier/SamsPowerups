@@ -17,6 +17,7 @@ import com.lothrazar.util.Reference;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
 import net.minecraft.world.GameRules;
@@ -69,11 +70,11 @@ public class HandlerScreenText
  
 	private void AddLeftInfo(ArrayList<String> side)
 	{  
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 
+		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 
 		//couldnt find game version as a variable
-		side.add("Minecraft 1.7.10 ["+world.difficultySetting.toString()+"]");
+		side.add("Minecraft 1.7.10 ["+world.getDifficulty().toString()+"]");
 		 
 		long time = world.getWorldTime(); 
 	 
@@ -180,7 +181,8 @@ public class HandlerScreenText
 			 { 
 			    int doors = closest.getNumVillageDoors();
 			    int villagers = closest.getNumVillagers();
-			    int rep = closest.getReputationForPlayer(player.getCommandSenderName());
+			     
+			    int rep = closest.getReputationForPlayer(player.getName());
 	 
 			    //int golem_limit = MathHelper.floor_double(villagers / 10); 
 			    //boolean mating = closest.isMatingSeason();
@@ -193,8 +195,8 @@ public class HandlerScreenText
 
 			   // side.add(String.format("center coords: %d  %d",closest.getCenter().posX,closest.getCenter().posZ));
 			    
-			    dX = playerX - closest.getCenter().posX;
-			    dZ = playerZ - closest.getCenter().posZ;
+			    dX = playerX - closest.getCenter().getX();
+			    dZ = playerZ - closest.getCenter().getZ();
 			    
 			    int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
 
@@ -294,7 +296,7 @@ public class HandlerScreenText
 	private void AddRightInfo(ArrayList<String> side)
 	{ 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer; 
+		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
  
 		if(showGameRules)
 		{ 
@@ -324,7 +326,7 @@ public class HandlerScreenText
 			} 
 		} 
 		  
-		String todoCurrent = CommandTodoList.GetTodoForPlayerName(player.getDisplayName());
+		String todoCurrent = CommandTodoList.GetTodoForPlayerName(player.getName());
 		
 		if(todoCurrent != null && todoCurrent.isEmpty() == false)
 		{
@@ -332,7 +334,5 @@ public class HandlerScreenText
 			side.add("TODO : "+todoCurrent); 
 		}  
 	} 
-
-
-	 
+  
 }

@@ -199,7 +199,7 @@ public class ItemChestSack extends Item
  
   	}
 	 
-	public void createAndFillChest(EntityPlayer entityPlayer, ItemStack heldChestSack, int x, int y, int z)
+	public void createAndFillChest(EntityPlayer entityPlayer, ItemStack heldChestSack, BlockPos pos)
 	{
 		int[] itemids = heldChestSack.getTagCompound().getIntArray("itemids");
 		int[] itemdmg = heldChestSack.getTagCompound().getIntArray("itemdmg");
@@ -212,9 +212,9 @@ public class ItemChestSack extends Item
 		}
 		//entityPlayer.worldObj.setBlock(event.x, event.y+1, event.z, Blocks.chest, 0,2); 
 		//entityPlayer.worldObj.setBlock(x, y, z, Blocks.chest, 0,2);
-		entityPlayer.worldObj.setBlockState(new BlockPos(x, y, z), (IBlockState) new BlockState(Blocks.chest));
+		entityPlayer.worldObj.setBlockState(pos, (IBlockState) new BlockState(Blocks.chest));
 		
-		TileEntity container = entityPlayer.worldObj.getTileEntity(new BlockPos(x, y, z)); 
+		TileEntity container = entityPlayer.worldObj.getTileEntity(pos); 
 		TileEntityChest chest = (TileEntityChest)container ;
 	
 		int item;

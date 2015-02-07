@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
@@ -24,6 +26,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper; 
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -49,7 +52,7 @@ public class ItemWandMaster extends ItemTool
     	return true; //give it shimmer
     }
 	
-	public void searchProspect(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
+	public void searchProspect(EntityPlayer entityPlayer, ItemStack heldWand, BlockPos pos)
 	{
 	//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}
 		//Chat.addMessage(event.entityPlayer, "Searching for diamond ore"+event.face);
@@ -84,7 +87,8 @@ public class ItemWandMaster extends ItemTool
 		{
 			for (int zLoop = zMin; zLoop <= zMax; zLoop++)
 			{ 
-				if(entityPlayer.worldObj.getBlock(xLoop, y, zLoop).equals(Blocks.diamond_ore))
+				
+				if(entityPlayer.worldObj.getBlockState(new BlockPos(xLoop, y, zLoop)).getBlock().equals(Blocks.diamond_ore))
 				{ 
 					xDistance = Math.abs(xLoop - x);
 					zDistance = Math.abs(zLoop - z);
@@ -105,7 +109,7 @@ public class ItemWandMaster extends ItemTool
 		onSuccess(entityPlayer);
 	}
 	
-	public void searchSpawner(EntityPlayer player, ItemStack heldWand, int eventx, int eventy, int eventz)
+	public void searchSpawner(EntityPlayer player, ItemStack heldWand, BlockPos pos)
 	{
 	//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}
  
@@ -135,7 +139,7 @@ public class ItemWandMaster extends ItemTool
 			{
 				for (int zLoop = zMin; zLoop <= zMax; zLoop++)
 				{ 
-					if(player.worldObj.getBlock(xLoop, yLoop, zLoop).equals(Blocks.mob_spawner))
+					if(player.worldObj.getBlockState(new BlockPos(xLoop, yLoop, zLoop) ).getBlock().equals(Blocks.mob_spawner))
 					{ 
 						xDistance = Math.abs(xLoop - x);
 						zDistance = Math.abs(zLoop - z);
@@ -160,7 +164,7 @@ public class ItemWandMaster extends ItemTool
 		onSuccess(player);
 	}
 	
-	public void convertChestToSack(EntityPlayer entityPlayer, ItemStack heldWand, TileEntityChest chestTarget, int eventx, int eventy, int eventz)
+	public void convertChestToSack(EntityPlayer entityPlayer, ItemStack heldWand, TileEntityChest chestTarget, BlockPos pos)
 	{
 		//private void convertChestToSack(PlayerInteractEvent event,TileEntityChest chest)
 		//{
@@ -178,7 +182,7 @@ public class ItemWandMaster extends ItemTool
 
 		ItemStack drop = new ItemStack(ItemWandMaster.itemChestSack ,1,0); 
 		
-		if(drop.stackTagCompound == null)  drop.stackTagCompound = new NBTTagCompound();
+		if(drop.getTagCompound() == null)  drop.setTagCompound(new NBTTagCompound());
  
 		int stacks = 0;
 		int count = 0;
@@ -229,12 +233,12 @@ public class ItemWandMaster extends ItemTool
 			 
 		 //the 2 here is just a magic flag it passes to the world to propogate the event
 	
-		entityPlayer.worldObj.setBlock(eventx, eventy, eventz, Blocks.air, 0,2);	 
+		entityPlayer.worldObj.setBlockToAir(pos);//, Blocks.air, 0,2);	 
 
 		onSuccess(entityPlayer); 
 	}
 
-	public void replantField(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
+	public void replantField(EntityPlayer entityPlayer, ItemStack heldWand, BlockPos pos)
 	{
 		int isFullyGrown = 7; //certain this is full for wheat. applies to other plants as well
 		 
@@ -252,36 +256,41 @@ public class ItemWandMaster extends ItemTool
 		int zMin = z - radius;
 		int zMax = z + radius;
 		
+		int eventy = pos.getY();
+		
 		for (int xLoop = xMin; xLoop <= x + radius; xLoop++)
 		{ 
 			for (int zLoop = zMin; zLoop <= zMax; zLoop++)
 			{
-				Block blockCheck = entityPlayer.worldObj.getBlock(xLoop, eventy, zLoop); 
-				int blockDamage = entityPlayer.worldObj.getBlockMetadata(xLoop,eventy,zLoop);
+				IBlockState bs = entityPlayer.worldObj.getBlockState(new BlockPos(xLoop, eventy, zLoop));
+				Block blockCheck = bs.getBlock(); 
+				//int blockDamage = -1;
+				//int blockDamage = entityPlayer.worldObj.getBlockMetadata(xLoop,eventy,zLoop);
 				
-				if(blockDamage == isFullyGrown)
-				{
+				//if(blockDamage == isFullyGrown)
+				//{
 					//everything always drops 1 thing. which in a way is 2 things
 					//because we replant for free, so a full grown carrot becomes a fresh planted carrot but also drops one
-					if(blockCheck == Blocks.wheat )
+					if(blockCheck == Blocks.wheat && Blocks.wheat.getMetaFromState(bs) == isFullyGrown)
 					{ 
-						entityPlayer.worldObj.setBlock(xLoop,eventy,zLoop, Blocks.wheat);//this plants a seed. it is not 'hay_block'
+					//	blockDamage = ;
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop),(IBlockState) new BlockState(Blocks.wheat));//this plants a seed. it is not 'hay_block'
 						 
 						entityPlayer.dropItem(Items.wheat, 1); //no seeds, they got replanted
 					}
-					if( blockCheck == Blocks.carrots)
+					if( blockCheck == Blocks.carrots && Blocks.carrots.getMetaFromState(bs) == isFullyGrown)
 					{
-						entityPlayer.worldObj.setBlock(xLoop,eventy,zLoop, Blocks.carrots);
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop), (IBlockState) new BlockState(Blocks.carrots));
 						 
 						entityPlayer.dropItem(Items.carrot, 1); 
 					}
-					if( blockCheck == Blocks.potatoes)
+					if( blockCheck == Blocks.potatoes && Blocks.potatoes.getMetaFromState(bs) == isFullyGrown)
 					{
-						entityPlayer.worldObj.setBlock(xLoop,eventy,zLoop, Blocks.potatoes);
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop), (IBlockState) new BlockState(Blocks.potatoes));
 						 
 						entityPlayer.dropItem(Items.potato, 1); 
 					}
-				} 
+				//} 
 			}  
 		} //end of the outer loop
 		
@@ -293,6 +302,7 @@ public class ItemWandMaster extends ItemTool
 	{
 		player.swingItem();
 		//drain some hunger
+		//TODO : CONFIG FILE TO DRAIN HUNGER
 		/*
 		if(player.getFoodStats().getFoodLevel() > 0)
 		{
