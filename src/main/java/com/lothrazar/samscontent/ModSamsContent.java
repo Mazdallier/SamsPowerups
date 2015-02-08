@@ -321,33 +321,32 @@ public class ModSamsContent
 				event.entityLiving.dropItem(HandlerBountifulUpdate.mutton_raw, drops);
 		}
 	}
-*/
-	
+*/ 
  
 	 public static String TEXTURE_LOCATION = MODID + ":";
 	 public static void registerBlockHelper(Block s, String name)
-	 {  
-		 //??command_block_daycycle
-		 
+	 {   
 		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0
 	 
-		 s.setUnlocalizedName(name);//.setBlockTextureName(TEXTURE_LOCATION + name);
+		 s.setUnlocalizedName(name); 
+		 
 		 GameRegistry.registerBlock(s, name);
-		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION  + name, "inventory"));
-
-		// Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));
-			 
+		 
+		 setTextureNameForItem(Item.getItemFromBlock(s), name); 
 	 }
 	 
 	 public static void registerItemHelper(Item s, String name)
-	 {
-		        
-		 s.setUnlocalizedName(name);//.setTextureName(TEXTURE_LOCATION + name);
+	 { 
+		 s.setUnlocalizedName(name);
+		 
 		 GameRegistry.registerItem(s, name);
 		 
-		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));
-	  // Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(MercenaryModItems.potato , 0 , new ModelResourceLocation("modmercenario:"+"potato" , "inventory"));
-		 
+		 setTextureNameForItem(s, name); 
 	 }
  
+	 private static void setTextureNameForItem(Item s, String name)
+	 {
+		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));			
+	 }
+	 
 }
