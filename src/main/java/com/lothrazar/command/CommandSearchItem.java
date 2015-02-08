@@ -18,14 +18,16 @@ public class CommandSearchItem  implements ICommand
 {
 	private ArrayList<String> aliases = new ArrayList<String>();
 	private static int RADIUS = 32;
+	public static boolean showCoords = true;
 
+	 
+	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+	
 	public CommandSearchItem()
 	{
 		aliases.add("is");
 	}
 	
- 
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)
@@ -61,6 +63,12 @@ public class CommandSearchItem  implements ICommand
 	@Override
 	public void execute(ICommandSender sender, String[] args) 
 	{
+		// TODO ??
+		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
+		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
+		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
+		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
+		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
 		// TODO ??
 		//if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {return;}
 			
@@ -159,6 +167,18 @@ public class CommandSearchItem  implements ICommand
 	
 	private static String itemLocDisplay(	EntityPlayerMP player, int xLoop, int yLoop, int zLoop ,int foundQty, int foundStacks)
 	{  
+		String s = (foundStacks == 1) ? "" : "s";
+		String totalsStr = foundStacks + " stack"+s+", ("+foundQty + " total)";
+		
+		if(showCoords ) // TODO FROM CONFIG FILE
+		{
+			
+			
+			
+			return "(" + xLoop + ", " + yLoop + ", " + zLoop + ")" + " : "+ totalsStr;
+		}
+		//else do this other thing
+		
 		int xDist,yDist,zDist;
 		
 		xDist = (int) player.posX - xLoop;
@@ -193,8 +213,6 @@ public class CommandSearchItem  implements ICommand
 		if(isUp)   yStr = Math.abs(yDist) + " up ";
 		if(isDown) yStr = Math.abs(yDist) + " down ";
 		
-		String s = (foundStacks == 1) ? "" : "s";
-		String totalsStr = foundStacks + " stack"+s+"; ("+foundQty + " total).";
 		 
 		return xStr +  yStr +  zStr +": "+ totalsStr;
 	}
