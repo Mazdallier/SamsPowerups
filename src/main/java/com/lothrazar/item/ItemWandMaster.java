@@ -36,6 +36,8 @@ public class ItemWandMaster extends ItemTool
 	private static int RADIUS = 128;
 	private static int DURABILITY = 50;
  
+	//TODO: tooltip to show uses or something?
+	//mayber only shows while shifting>...>>???
 	public ItemWandMaster( )
 	{   
 		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 

@@ -40,18 +40,19 @@ public class HandlerBonemealUse
 			//was event.x, event.y, event.z
 			Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 			
+			//if(blockClicked != Blocks.yellow_flower && blockClicked != Blocks.red_flower) {return;}
 			if(blockClicked == null || blockClicked == Blocks.air ){return;}
 			
 			//event.entityPlayer.worldObj.getBlockState(event.pos)
 			//new method: the Block itself tells what number to return, not the world.  
 			//the world wraps up the state of the block that we can query, and the 
 			//block class translates
-			int blockClickedDamage = Blocks.red_flower.getMetaFromState(event.entityPlayer.worldObj.getBlockState(event.pos)); 
-			
-			
+	 
+			  
 		 	if ( blockClicked.equals(Blocks.yellow_flower))//yellow flowers have no damage variations
 		 	{  
-		 		held.stackSize--;
+		 		if(event.entityPlayer.capabilities.isCreativeMode == false)
+		 			held.stackSize--;
 		 		
 		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
@@ -59,7 +60,10 @@ public class HandlerBonemealUse
 		 	}
 		 	if ( blockClicked.equals(Blocks.red_flower)) 	//the red flower is ALL the flowers
 		 	{   
-		 		held.stackSize--;
+				int blockClickedDamage = Blocks.red_flower.getMetaFromState(event.entityPlayer.worldObj.getBlockState(event.pos)); 
+
+		 		if(event.entityPlayer.capabilities.isCreativeMode == false)
+		 			held.stackSize--;
 		 		
 		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
@@ -67,7 +71,8 @@ public class HandlerBonemealUse
 		 	}
 		 	if ( blockClicked.equals(Blocks.waterlily))
 		 	{
-		 		held.stackSize--;
+		 		if(event.entityPlayer.capabilities.isCreativeMode == false)
+		 			held.stackSize--;
 		 		
 		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
