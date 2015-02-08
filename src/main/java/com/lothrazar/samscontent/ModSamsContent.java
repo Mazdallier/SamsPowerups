@@ -165,7 +165,8 @@ public class ModSamsContent
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
   		*/
-		
+
+		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
 		
 		
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
@@ -181,7 +182,6 @@ public class ModSamsContent
 		
 		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
 		
-		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
 		
 		if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
@@ -332,7 +332,7 @@ public class ModSamsContent
 		 
 		 GameRegistry.registerBlock(s, name);
 		 
-		 setTextureNameForItem(Item.getItemFromBlock(s), name); 
+		// setTextureNameForItem(Item.getItemFromBlock(s), name); 
 	 }
 	 
 	 public static void registerItemHelper(Item s, String name)

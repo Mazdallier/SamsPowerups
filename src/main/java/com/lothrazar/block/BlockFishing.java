@@ -103,7 +103,7 @@ public class BlockFishing extends Block
     	
     	worldObj.playSoundAtEntity(entityItem,"game.neutral.swim.splash",1F,1F); 
     }
-
+/*
 	public static boolean isEnabled() 
 	{
 		return isEnabled;
@@ -113,7 +113,7 @@ public class BlockFishing extends Block
 	{
 		BlockFishing.isEnabled = isEnabled;
 	}
-  
+  */
 	@Override
 	public boolean isOpaqueCube() 
 	{
