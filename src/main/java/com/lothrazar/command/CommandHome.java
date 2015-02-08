@@ -2,6 +2,7 @@ package com.lothrazar.command;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandException;
@@ -70,26 +71,16 @@ public class CommandHome implements ICommand
 		 {
 			 //then move over according to how/where the bed wants me to spawn
 			 coords = block.getBedSpawnPosition(world, coords, player);
+
+			 SamsUtilities.teleportWallSafe(player, world, coords); 
 		 }
 		 else
 		 {
 			 //spawn point was set, so the coords were not null, but player broke the bed (probably recently)
-			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed."));
-			 return;
-		 }
-		 
-		 //TODO: make global/shared teleportPlayer class or function
-		 //since this is copied from WorldHome
-		 
-		player.setPositionAndUpdate(coords.getX(), coords.getY(), coords.getZ()); 
-
-		while (!world.getCollidingBoundingBoxes(player, player.getEntityBoundingBox()).isEmpty())
-		{
-			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
-		}
-		 
-		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
+			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed.")); 
+		 } 
 	}
+ 
 
 	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 

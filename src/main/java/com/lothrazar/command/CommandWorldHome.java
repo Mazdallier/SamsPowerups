@@ -2,6 +2,7 @@ package com.lothrazar.command;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -53,30 +54,10 @@ public class CommandWorldHome  implements ICommand
 			 return;
 		}
 		
-		//this tends to always get something at y=64, regardless if there is AIR or not
-		BlockPos coords = world.getSpawnPoint();
-		 //ChunkCoordinates
-		//so we keep moving up until we no longer intersect with the world
-		player.setPositionAndUpdate(coords.getX(), coords.getY(), coords.getZ()); 
-
-
-
-		//THIS IS WHAT I USED IN 1.7
-		AxisAlignedBB ISALWAYSNULLIDONTKNOWWHY = player.getBoundingBox();
+		//this tends to always get something at y=64, regardless if there is AIR or not 
+		//so we need to safely push the player up out of any blocks they are in
 		
-		
-		AxisAlignedBB playerBox = player.getEntityBoundingBox();
-		
-		//do i collide with the world?
-		while (playerBox != null //was never null in 1.7
-				&& world.getCollidingBoundingBoxes(player, playerBox).isEmpty() == false)
-		{
-			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
-
-			playerBox = player.getEntityBoundingBox();//where am i now?
-		}
-		
-		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
+		SamsUtilities.teleportWallSafe(player, world, world.getSpawnPoint()); 
 	}
 
 
