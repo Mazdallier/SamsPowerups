@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IMerchant;
+import net.minecraft.entity.INpc;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -72,14 +75,29 @@ public class CommandSearchTrades  implements ICommand
 				X + 0.5D + range, 255.0D, 
 				Z + 0.5D + range);
 		
-		 List merchants = ic.getEntityWorld().getEntitiesWithinAABB(IMerchant.class, searchRange);
+		
+		
+		/*java.lang.IllegalArgumentException: Don't know how to search for interface net.minecraft.entity.IMerchant
+	at net.minecraft.util.ClassInheritanceMultiMap.func_180212_a(ClassInheritanceMultiMap.java:53) ~[ClassInheritanceMultiMap.class:?]
+	at net.minecraft.util.ClassInheritanceMultiMap$1.iterator(ClassInheritanceMultiMap.java:111) ~[ClassInheritanceMultiMap$1.class:?]
+	at net.minecraft.world.chunk.Chunk.getEntitiesOfTypeWithinAAAB(Chunk.java:1026) ~[Chunk.class:?]
+	at net.minecraft.world.World.getEntitiesWithinAABB(World.java:3037) ~[World.class:?]
+	at net.minecraft.world.World.getEntitiesWithinAABB(World.java:3020) ~[World.class:?]
+	at com.lothrazar.command.CommandSearchTrades.execute(CommandSearchTrades.java:75) ~[CommandSear*/
+
+
+		 List merchants = ic.getEntityWorld().getEntitiesWithinAABB(EntityVillager.class, searchRange);
+
+		 //List merchants = ic.getEntityWorld().getEntitiesWithinAABB(IMerchant.class, searchRange);
 		 List<IMerchant> villagers = new ArrayList();
 		 
 		 //double check that it should be an adult villager
+		 //recall that 
+		 // public class EntityVillager extends EntityAgeable implements INpc, IMerchant
 		 for (Object m : merchants) 
 		 {
 		     if(m instanceof EntityLiving && ((EntityLiving)m).isChild() == false && (IMerchant)m != null)
-		     {
+		     { 
 		    	 villagers.add((IMerchant)m);
 		     }
 		 }
