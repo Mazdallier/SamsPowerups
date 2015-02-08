@@ -28,6 +28,8 @@ public class HandlerBonemealUse
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)
   	{    
+  		if(event.world.isRemote){return;}//stop it from doing a secod ghost item drop
+  		
   		if(ModSamsContent.settings.betterBonemeal == false) { return; }
   		
 		if(event.action == event.action.LEFT_CLICK_BLOCK) {return;}
