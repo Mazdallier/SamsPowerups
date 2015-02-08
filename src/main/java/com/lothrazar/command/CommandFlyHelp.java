@@ -29,7 +29,7 @@ public class CommandFlyHelp implements ICommand
 	  @Override
 	  public String getCommandUsage(ICommandSender icommandsender)
 	  {
-	    return "flyhelp";
+			return "/" + getName();
 	  }
 
 	  @Override

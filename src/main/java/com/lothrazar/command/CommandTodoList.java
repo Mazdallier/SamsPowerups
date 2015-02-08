@@ -49,7 +49,7 @@ public class CommandTodoList implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender s) 
 	{ 
-		return "/todo <+|-> <text>";
+		return "/" + getName()+" <+|-> <text>";
 	}
    
 	public static String GetTodoForPlayerName(String playerName)

@@ -39,7 +39,7 @@ public class CommandKillAll implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender ic) 
 	{ 
-		return "killall <entity> <range>";
+		return "/" + getName() + "<entity> <range>";
 	}
  
 	

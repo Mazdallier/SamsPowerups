@@ -44,7 +44,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender p_71518_1_) 
 	{ 
-		return "simplewp <"+MODE_LIST + "|" + MODE_SAVE + "|"+MODE_CLEAR + "|" + MODE_HIDEDISPLAY + "|" + MODE_DISPLAY+"> [savename | displayindex]";
+		return "/" + getName()+" <"+MODE_LIST + "|" + MODE_SAVE + "|"+MODE_CLEAR + "|" + MODE_HIDEDISPLAY + "|" + MODE_DISPLAY+"> [savename | displayindex]";
 	}
 
 	@Override

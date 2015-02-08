@@ -33,7 +33,7 @@ public class CommandHome implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender ic)
 	{ 
-		return "home";
+		return "/" + getName();
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class CommandSearchItem  implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender arg0) 
 	{ 
-		return "/searchitem <itemname>";
+		return "/" + getName()+" <itemname>";
 	}
 
 	@Override

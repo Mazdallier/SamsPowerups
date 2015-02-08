@@ -31,7 +31,7 @@ public class CommandWorldHome  implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender ic)
 	{ 
-		return "worldhome";
+		return "/" + getName();
 	}
 
 	@Override
