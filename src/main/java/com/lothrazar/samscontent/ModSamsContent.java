@@ -39,6 +39,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -55,11 +56,22 @@ public class ModSamsContent
 	public static ModSamsContent instance;
 	public static Logger logger;
 	public final static String MODID = "samscontent";
-	public static final String VERSION = "1";
+	public static final String VERSION = "1.8.1_1.0-dev";
 	public static final String NAME = "Sam's Content";
 
 	public static Configuration config;
 	public static ConfigFile settings;
+
+	private void initModInfo(ModMetadata mcinfo)
+	{ 
+		mcinfo.modId = MODID;
+		mcinfo.name = NAME;
+		mcinfo.version = VERSION;
+		mcinfo.description = "Sam's content.";
+		ArrayList<String> authorList = new ArrayList<String>();
+		authorList.add("Lothrazar");
+		mcinfo.authorList = authorList;
+	}
 
 
 //	public boolean PASSESTEST = false;
@@ -75,8 +87,12 @@ public class ModSamsContent
  
 		settings = new ConfigFile();
 		
+		initModInfo(event.getModMetadata());
 		
-     	 
+		//TODO: version checker
+		//FMLInterModComms.sendRuntimeMessage(MODID, "VersionChecker", "addVersionCheck", "http://www.lothrazar.net/api/mc/samscontent/version.json");
+
+		
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse()
@@ -92,8 +108,7 @@ public class ModSamsContent
      	};
      		
      	//TODO: we could use an interface, and flag each one according to what BUS it goes to
-     	
-     	//if(PASSESTEST) 
+     	 
      	for(Object o : handlers)
      	{
     		MinecraftForge.EVENT_BUS.register(o);
