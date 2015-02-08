@@ -324,16 +324,16 @@ public class ModSamsContent
 */
 	
  
-	 public static String TEXTURE_LOCATION = "samscontent:";
+	 public static String TEXTURE_LOCATION = MODID + ":";
 	 public static void registerBlockHelper(Block s, String name)
 	 {  
-		 //??
+		 //??command_block_daycycle
 		 
 		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0
 	 
 		 s.setUnlocalizedName(name);//.setBlockTextureName(TEXTURE_LOCATION + name);
 		 GameRegistry.registerBlock(s, name);
-		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION + ":" + name, "inventory"));
+		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION  + name, "inventory"));
 
 		// Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));
 			 
@@ -346,6 +346,7 @@ public class ModSamsContent
 		 GameRegistry.registerItem(s, name);
 		 
 		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));
+	  // Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(MercenaryModItems.potato , 0 , new ModelResourceLocation("modmercenario:"+"potato" , "inventory"));
 		 
 	 }
  
