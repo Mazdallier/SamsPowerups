@@ -164,7 +164,6 @@ public class ModSamsContent
 		
 		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
 		
-		
 		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
 		
 		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
@@ -310,7 +309,7 @@ public class ModSamsContent
 */
 	
  
-	 public static String TEXTURE_LOCATION = "samspowerups:";
+	 public static String TEXTURE_LOCATION = "samscontent:";
 	 public static void registerBlockHelper(Block s, String name)
 	 {  
 		 //??
@@ -319,11 +318,15 @@ public class ModSamsContent
 	 
 		 s.setUnlocalizedName(name);//.setBlockTextureName(TEXTURE_LOCATION + name);
 		 GameRegistry.registerBlock(s, name);
-		 
+		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION + ":" + name, "inventory"));
+
+		// Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(s), 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));
+			 
 	 }
+	 
 	 public static void registerItemHelper(Item s, String name)
 	 {
-		 
+		        
 		 s.setUnlocalizedName(name);//.setTextureName(TEXTURE_LOCATION + name);
 		 GameRegistry.registerItem(s, name);
 		 
