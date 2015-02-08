@@ -83,7 +83,7 @@ public class CommandHome implements ICommand
 		 
 		player.setPositionAndUpdate(coords.getX(), coords.getY(), coords.getZ()); 
 
-		while (!world.getCollidingBoundingBoxes(player, player.getBoundingBox()).isEmpty())
+		while (!world.getCollidingBoundingBoxes(player, player.getEntityBoundingBox()).isEmpty())
 		{
 			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
 		}

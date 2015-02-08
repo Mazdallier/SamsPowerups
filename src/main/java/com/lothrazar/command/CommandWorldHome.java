@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 //import net.minecraft.util.ChunkCoordinates;
@@ -57,10 +58,22 @@ public class CommandWorldHome  implements ICommand
 		 //ChunkCoordinates
 		//so we keep moving up until we no longer intersect with the world
 		player.setPositionAndUpdate(coords.getX(), coords.getY(), coords.getZ()); 
+
+
+
+		//THIS IS WHAT I USED IN 1.7
+		AxisAlignedBB ISALWAYSNULLIDONTKNOWWHY = player.getBoundingBox();
 		
-		while (!world.getCollidingBoundingBoxes(player, player.getBoundingBox()).isEmpty())
+		
+		AxisAlignedBB playerBox = player.getEntityBoundingBox();
+		
+		//do i collide with the world?
+		while (playerBox != null //was never null in 1.7
+				&& world.getCollidingBoundingBoxes(player, playerBox).isEmpty() == false)
 		{
 			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
+
+			playerBox = player.getEntityBoundingBox();//where am i now?
 		}
 		
 		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F); 
