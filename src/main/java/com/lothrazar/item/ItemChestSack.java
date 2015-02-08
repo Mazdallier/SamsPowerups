@@ -210,9 +210,8 @@ public class ItemChestSack extends Item
 			//Chat.addMessage(event.entityPlayer, "null nbt problem in itemchestsack");
 			return;
 		}
-		//entityPlayer.worldObj.setBlock(event.x, event.y+1, event.z, Blocks.chest, 0,2); 
-		//entityPlayer.worldObj.setBlock(x, y, z, Blocks.chest, 0,2);
-		entityPlayer.worldObj.setBlockState(pos, (IBlockState) new BlockState(Blocks.chest));
+	 
+		entityPlayer.worldObj.setBlockState(pos,  Blocks.chest.getDefaultState());
 		
 		TileEntity container = entityPlayer.worldObj.getTileEntity(pos); 
 		TileEntityChest chest = (TileEntityChest)container ;
@@ -238,4 +237,6 @@ public class ItemChestSack extends Item
 		//make the player slot empty
 		entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem,null); 
   	}
+	
+	 
 }
