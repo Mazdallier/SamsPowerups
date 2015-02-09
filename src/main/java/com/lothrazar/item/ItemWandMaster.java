@@ -3,6 +3,7 @@ package com.lothrazar.item;
 import com.google.common.collect.Sets; 
 import com.lothrazar.samscontent.HandlerMasterWand;
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -332,7 +333,7 @@ public class ItemWandMaster extends ItemTool
 	{  
 		itemWand = new ItemWandMaster();
   
-		ModSamsContent.registerItemHelper(itemWand, "wand_master");
+		SamsRegistry.registerItem(itemWand, "wand_master");
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "
@@ -342,6 +343,6 @@ public class ItemWandMaster extends ItemTool
 		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
 
 		itemChestSack = new ItemChestSack();   
-		ModSamsContent.registerItemHelper(itemChestSack, "chest_sack");
+		SamsRegistry.registerItem(itemChestSack, "chest_sack");
 	}
 }

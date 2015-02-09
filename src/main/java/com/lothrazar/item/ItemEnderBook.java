@@ -4,6 +4,7 @@ import java.util.List;
 import com.google.common.collect.Sets;   
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Location;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -132,7 +133,7 @@ public class ItemEnderBook extends ItemTool
 	{
 		itemEnderBook = new ItemEnderBook();
 
-		ModSamsContent.registerItemHelper(itemEnderBook, "book_ender");
+		SamsRegistry.registerItem(itemEnderBook, "book_ender");
 
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
 				"eee", 'e', Items.ender_pearl, 'b', Items.book);

@@ -12,8 +12,7 @@ import com.lothrazar.command.CommandSearchItem;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
-import com.lothrazar.command.CommandWorldHome;
-import com.lothrazar.samscrafting.ExtraCraftingMod;
+import com.lothrazar.command.CommandWorldHome; 
 
 public class ConfigFile
 {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.google.common.collect.Sets;  
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -199,7 +200,7 @@ public class ItemRunestone extends ItemTool
 
 		rune_jump = new ItemRunestone(new int[] { Reference.potion_JUMP },		new int[] { V }, not_shiny);
 		
-		ModSamsContent.registerItemHelper(rune_jump, "rune_jump");
+		SamsRegistry.registerItem(rune_jump, "rune_jump");
 		
 		GameRegistry.addRecipe(new ItemStack(rune_jump), "eee", "eae", "eee",
 				'e', Items.emerald // could be slime ball/block?
@@ -209,7 +210,7 @@ public class ItemRunestone extends ItemTool
 		rune_resistance = new ItemRunestone(
 				new int[] { Reference.potion_RESISTANCE }, new int[] { II },				shiny);
 	 
-		ModSamsContent.registerItemHelper(rune_resistance, "rune_resistance");
+		SamsRegistry.registerItem(rune_resistance, "rune_resistance");
  
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae",
 				"eee", 'e', Items.diamond, 'a', Items.nether_star);
@@ -220,7 +221,7 @@ public class ItemRunestone extends ItemTool
 				new int[] { Reference.potion_HEALTH_BOOST }, new int[] { V },
 				not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_goldheart, "rune_goldheart"); 
+		SamsRegistry.registerItem(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
 				"eee", 
 				'e', Blocks.gold_block, 
@@ -230,7 +231,7 @@ public class ItemRunestone extends ItemTool
 
 		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE }, new int[] { II  }, not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_haste, "rune_haste");
+		SamsRegistry.registerItem(rune_haste, "rune_haste");
  
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
 				'e', Blocks.redstone_block, 
@@ -243,7 +244,7 @@ public class ItemRunestone extends ItemTool
 						Reference.potion_NIGHT_VISION }, new int[] { V, II },
 				not_shiny);
 	
-		ModSamsContent.registerItemHelper(rune_water, "rune_water");
+		SamsRegistry.registerItem(rune_water, "rune_water");
 		GameRegistry.addRecipe(new ItemStack(rune_water), "eee", "eae", "eee",
 				'e', Blocks.lapis_block , 
 				'a', Items.nether_star);
@@ -253,7 +254,7 @@ public class ItemRunestone extends ItemTool
 		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED
 				 }, new int[] { II }, not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_speed, "rune_speed"); 
+		SamsRegistry.registerItem(rune_speed, "rune_speed"); 
 		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae", "eee",
 				'e', Items.sugar, 
 				'a', Items.nether_star);
@@ -263,7 +264,7 @@ public class ItemRunestone extends ItemTool
 		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST },
 				new int[] { I  }, shiny);
  
-		ModSamsContent.registerItemHelper(rune_fire, "rune_fire"); 
+		SamsRegistry.registerItem(rune_fire, "rune_fire"); 
 		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae", "eee",
 				'e', Items.blaze_rod, 
 				'a', Items.nether_star);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random; 
 
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -60,12 +61,12 @@ public class BlockXRay extends Block
         return EnumWorldBlockLayer.CUTOUT;
     }
 	
-		
+	public static BlockXRay block_xray ;
 	public static void initXray()
 	{
-		BlockXRay block_xray = new BlockXRay();
+		block_xray = new BlockXRay();
  
-		ModSamsContent.registerBlockHelper(block_xray,"block_xray");
+		SamsRegistry.registerBlock(block_xray,"block_xray");
 
 		GameRegistry.addRecipe(new ItemStack(block_xray), "owo", "wgw", "owo",
 				'w', Blocks.web, 'g', Blocks.glass, 'o', Blocks.obsidian);

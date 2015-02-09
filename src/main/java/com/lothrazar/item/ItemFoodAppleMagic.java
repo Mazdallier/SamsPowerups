@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -132,7 +133,7 @@ public class ItemFoodAppleMagic extends ItemFood
 		apple_emerald.addEffect(Reference.potion_HASTE, potionTimeSeconds, II)
 				.addEffect(Reference.potion_SPEED, potionTimeSeconds, I)
 				.addEffect(Reference.potion_absorption, potionTimeSeconds, II);
-		ModSamsContent.registerItemHelper(apple_emerald, "apple_emerald");
+		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_emerald),
 				Items.emerald, Items.golden_apple);
 		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),
@@ -146,7 +147,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				// resist and fire so it is same as the NOTCH apple
 				.addEffect(Reference.potion_RESISTANCE, potionTimeSeconds, II)
 				.addEffect(Reference.potion_REGEN, 20, II);
-		ModSamsContent.registerItemHelper(apple_diamond, "apple_diamond");
+		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_diamond),
 				Items.diamond, Items.golden_apple);
 		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 1),
@@ -160,7 +161,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				.addEffect(Reference.potion_WATER_BREATHING, potionTimeSeconds, II)
 				// puffer fish are way too rare
 				.addEffect(Reference.potion_absorption, potionTimeSeconds, II);
-		ModSamsContent.registerItemHelper(apple_lapis, "apple_lapis");
+		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_lapis),
 				new ItemStack(Items.dye, 1, 4), Items.golden_apple);
 		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, 4), 0);// uncraft
@@ -176,7 +177,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				// just a short burst of speed. mini speed potion
 				.addEffect(Reference.potion_HASTE, 30, II);
 		
-		ModSamsContent.registerItemHelper(apple_chocolate, "apple_chocolate");
+		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
 		GameRegistry.addRecipe(new ItemStack(apple_chocolate), "eee", "eae",
 				"eee", 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
 				, 'a', Items.apple);

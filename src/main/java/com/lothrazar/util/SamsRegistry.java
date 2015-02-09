@@ -1,5 +1,6 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.util;
 
+import com.lothrazar.samscontent.ModSamsContent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -10,7 +11,7 @@ public class SamsRegistry
 {
  
 	 public static String TEXTURE_LOCATION = ModSamsContent.MODID + ":";
-	 public static void registerBlockHelper(Block s, String name)
+	 public static void registerBlock(Block s, String name)
 	 {   
 		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0
 	 
@@ -21,7 +22,7 @@ public class SamsRegistry
 		// setTextureNameForItem(Item.getItemFromBlock(s), name); 
 	 }
 	 
-	 public static void registerItemHelper(Item s, String name)
+	 public static void registerItem(Item s, String name)
 	 { 
 		 s.setUnlocalizedName(name);
 		 

@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.Logger; 
 import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
-import com.lothrazar.item.*; 
-import com.lothrazar.samscrafting.ExtraCraftingMod;
+import com.lothrazar.item.*;  
 import com.lothrazar.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -156,17 +155,17 @@ public class ModSamsContent
 		
 		if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
-		if(ModSamsContent.settings.craftableMushroomBlocks)  { ExtraCraftingMod.mushroomBlocks(); }
+		if(ModSamsContent.settings.craftableMushroomBlocks)  { ExtraCrafting.mushroomBlocks(); }
 		  
-		if(ModSamsContent.settings.craftableMobHeads) 	{ExtraCraftingMod.mobHeads();	}
+		if(ModSamsContent.settings.craftableMobHeads) 	{ExtraCrafting.mobHeads();	}
   
-		if(ModSamsContent.settings.craftableBonemealColouredWool)  {ExtraCraftingMod.bonemealWool();}
+		if(ModSamsContent.settings.craftableBonemealColouredWool)  {ExtraCrafting.bonemealWool();}
 	  
-		if(ModSamsContent.settings.craftableTransmuteRecords)   { ExtraCraftingMod.records();}
+		if(ModSamsContent.settings.craftableTransmuteRecords)   { ExtraCrafting.records();}
 		  
-		if(ModSamsContent.settings.craftableFlatDoubleSlab) { ExtraCraftingMod.doubleSlabsFlat();}
+		if(ModSamsContent.settings.craftableFlatDoubleSlab) { ExtraCrafting.doubleSlabsFlat();}
 		 
-   		if(ModSamsContent.settings.uncraftGeneral) { ExtraCraftingMod.uncrafting();}
+   		if(ModSamsContent.settings.uncraftGeneral) { ExtraCrafting.uncrafting();}
     
 
 		//TODO: find out how Forge 1.8 does trading
@@ -233,32 +232,6 @@ public class ModSamsContent
 		ItemRunestone.applyHeldRunestones(event.player); 
 	} 
 	 
-	 public static String TEXTURE_LOCATION = MODID + ":";
-	 public static void registerBlockHelper(Block s, String name)
-	 {   
-		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0
-	 
-		 s.setUnlocalizedName(name); 
-		 
-		 GameRegistry.registerBlock(s, name);
-		 
-		// setTextureNameForItem(Item.getItemFromBlock(s), name); 
-	 }
-	 
-	 public static void registerItemHelper(Item s, String name)
-	 { 
-		 s.setUnlocalizedName(name);
-		 
-		 GameRegistry.registerItem(s, name);
-		 
-		 setTextureNameForItem(s, name); 
-	 }
- 
-	 private static void setTextureNameForItem(Item s, String name)
-	 {
-		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));			
-	 }
-
 /*
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)

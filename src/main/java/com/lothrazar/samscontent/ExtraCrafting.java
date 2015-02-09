@@ -1,9 +1,8 @@
-package com.lothrazar.samscrafting;
+package com.lothrazar.samscontent;
 
 import java.util.ArrayList;  
 import org.apache.logging.log4j.Logger;  
 
-import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
 
 import net.minecraft.block.Block;
@@ -24,10 +23,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class ExtraCraftingMod  
-{ 	 
-    public static Logger logger;  
-  
+public class ExtraCrafting  
+{  
 	public static void mushroomBlocks()
 	{
 		int otherSide = 0;
@@ -532,12 +529,7 @@ public class ExtraCraftingMod
 	public static void doubleSlabsFlat()
 	{
 		int islab_sandstone = 1;
-
-		// special: get the magic ones
-
-		//Block stone_slab = Blocks.stone_slab;// Block.getBlockFromName("minecraft:stone_slab");
-		//Block dbl = Blocks.double_stone_slab;//Block.getBlockFromName("minecraft:double_stone_slab");
-
+ //TODO: REFERENCE
 		int i_stone_magic = 8;
 		int i_sand_magic = 9;
 		

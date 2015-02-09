@@ -2,6 +2,7 @@ package com.lothrazar.block;
 
 import java.util.Random; 
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.SamsRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
@@ -170,7 +171,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		
 		command_block_regen = new BlockCommandBlockCraftable( CommandType.Gamerule, "naturalRegeneration");
 	 
-		ModSamsContent.registerBlockHelper(command_block_regen,"command_block_regen");
+		SamsRegistry.registerBlock(command_block_regen,"command_block_regen");
 		
 		GameRegistry.addRecipe(new ItemStack(command_block_regen)
 				, "rcr"
@@ -186,7 +187,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		command_block_mobgrief = new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "mobGriefing");
 	 
-		ModSamsContent.registerBlockHelper(command_block_mobgrief,"command_block_mobgrief");
+		SamsRegistry.registerBlock(command_block_mobgrief,"command_block_mobgrief");
 
 		GameRegistry.addRecipe(new ItemStack(command_block_mobgrief), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Blocks.tnt, 'r',
@@ -195,7 +196,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		
 		command_block_firetick = new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "doFireTick"); 
-		ModSamsContent.registerBlockHelper(command_block_firetick,"command_block_firetick");
+		SamsRegistry.registerBlock(command_block_firetick,"command_block_firetick");
  
 		GameRegistry.addRecipe(new ItemStack(command_block_firetick), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Items.lava_bucket,
@@ -205,7 +206,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		command_block_daycycle = new BlockCommandBlockCraftable(CommandType.Gamerule,
 				"doDaylightCycle");
  
-		ModSamsContent.registerBlockHelper(command_block_daycycle,"command_block_daycycle");
+		SamsRegistry.registerBlock(command_block_daycycle,"command_block_daycycle");
 
 		GameRegistry.addRecipe(new ItemStack(command_block_daycycle), "rcr", "tet", "rcr", 'c',
 				Items.comparator, 'e', Blocks.glowstone, 'r',
@@ -223,7 +224,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	{ 
 		command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
  
-		ModSamsContent.registerBlockHelper(command_block_weather,"block_weather");
+		SamsRegistry.registerBlock(command_block_weather,"block_weather");
 
 		GameRegistry.addRecipe(new ItemStack(command_block_weather), "rcr", "tet",
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',

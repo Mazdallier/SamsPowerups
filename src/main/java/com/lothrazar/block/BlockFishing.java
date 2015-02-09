@@ -3,6 +3,7 @@ package com.lothrazar.block;
 import java.util.Random;  
 
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -133,11 +134,11 @@ public class BlockFishing extends Block
         return EnumWorldBlockLayer.CUTOUT;
     }
 	
-
+	public static BlockFishing block_fishing ;
 	public static void initFishing()
 	{
-		BlockFishing block_fishing = new BlockFishing(); 
-		ModSamsContent.registerBlockHelper(block_fishing,"block_fishing");
+		block_fishing = new BlockFishing(); 
+		SamsRegistry.registerBlock(block_fishing,"block_fishing");
 
 		GameRegistry.addRecipe(new ItemStack(block_fishing), "pwp", "wfw", "pwp", 'w',
 				Blocks.web, 'f', new ItemStack(Items.fishing_rod, 1, 0), 'p',

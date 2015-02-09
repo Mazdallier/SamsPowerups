@@ -22,6 +22,7 @@ public class Location
 		name = pname;
 		if(name == null) name = "";
 	}
+	
 	public Location(int idx,EntityPlayer p, String pname)
 	{
 		X = p.posX;
@@ -32,6 +33,7 @@ public class Location
 		name = pname;
 		if(name == null) { name = ""; }
 	}
+	
 	public Location(String csv)
 	{
 		String[] pts = csv.split(",");
@@ -46,7 +48,7 @@ public class Location
 	public String toCSV()
 	{
 		if(name == null) name = "";
-		return X+","+Y+","+Z + ","+dimension + ","+name;		
+		return X + "," + Y + "," + Z + "," + dimension + ","+name;		
 	}
 	
 	public String toDisplay()//different from toCSV, since we round off the numbers and format 
@@ -55,20 +57,20 @@ public class Location
 		String showName = " ";
 		if(name != null && name.isEmpty() == false) showName = "  :  "+name;
 		
-		return "["+index + "] "+Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) + showName;		
+		return "[" + index + "] " + Math.round(X) + ", " + Math.round(Y) + ", " + Math.round(Z) + showName;		
 	} 
 	
 	public String toDisplayShort() 
 	{
 		if(name == null) name = "";
 		String showName = " ";
-		if(name != null && name.isEmpty() == false) showName = "  :  "+name;
+		if(name != null && name.isEmpty() == false) showName = "  :  " + name;
 		
-		return Math.round(X)+", "+Math.round(Y)+", "+Math.round(Z) ;		
+		return Math.round(X) + ", " + Math.round(Y) + ", " + Math.round(Z) ;		
 	} 
 	
 	public String toDisplayNoCoords()
 	{
-		return name+" (Height "+MathHelper.floor_double(Y)+")";
+		return name + " (Height " + MathHelper.floor_double(Y) + ")";
 	}
 }
