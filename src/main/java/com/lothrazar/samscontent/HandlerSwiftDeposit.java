@@ -27,7 +27,7 @@ public class HandlerSwiftDeposit
 	 
 		if(event.entityPlayer.isSneaking() == false){ return; }
 		
-		
+		System.out.println("HandlerSwift deposit - does this even fire:???");
 
 		//if(event.entityPlayer.getItemInUse() != null){ return; }
 		if(event.entityPlayer.getCurrentEquippedItem() != null){ return; }
@@ -77,6 +77,8 @@ public class HandlerSwiftDeposit
  
   	private void sortFromPlayerToChestEntity(TileEntityChest chest, EntityPlayer entityPlayer)
   	{
+		System.out.println("sortFromPlayerToChestEntity deposit - does this even fire:???");
+		//gYES YES YES this pri nts
   		int totalItemsMoved = 0;
   		//int totalTypesMoved = 0;
   		int totalSlotsFreed = 0;
@@ -99,15 +101,19 @@ public class HandlerSwiftDeposit
 		//inventory and chest has 9 rows by 3 columns, never changes. same as 64 max stack size
 		for(int islotChest = START_CHEST; islotChest < END_CHEST; islotChest++)
 		{
+			if(debug)System.out.println("c "+islotChest);
+			
 			chestItem = chest.getStackInSlot(islotChest);
 		
 			if(chestItem == null)
 			{ 
+				if(debug)System.out.println("c null");
 				continue;
 			}//not an error; empty chest slot
 			 
 			for(int islotInv = Reference.PlayerInventory.START; islotInv < Reference.PlayerInventory.END; islotInv++)
   			{
+				if(debug)System.out.println("p "+islotInv);
 				invItem = entityPlayer.inventory.getStackInSlot(islotInv);
 				
 				if(invItem == null) 
@@ -166,7 +172,11 @@ public class HandlerSwiftDeposit
 		
 		if( totalSlotsFreed > 0/*  && isChatEnabled() */) 
 		{
-			//String msg = "Magic Sort deposited "+totalItemsMoved+" items.";
+			String msg = "Magic Sort deposited "+totalItemsMoved+" items.";
+
+
+			if(debug)System.out.println(msg);//usd to go to chat
+			//TODO: config file
 	  		//Relay.addChatMessage(event.entityPlayer, msg);
 			
 			//doesnt fing work anyway

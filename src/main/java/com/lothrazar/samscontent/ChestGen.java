@@ -64,16 +64,17 @@ public class ChestGen
 			addToAllChests(allRecords,16,64); //each stack in this range
 		} 
 	}
-	
 
 	private static void addToAllChests(ItemStack[] items)
 	{
 		addToAllChests(items,1,1,3); //defaults
 	}
+	
 	private static void addToAllChests(ItemStack[] items,int min,int max)
 	{
 		addToAllChests(items,min,max,3); //default of 3 weight
 	}
+	
 	private static void addToAllChests(ItemStack[] items,int min,int max,int weight)
 	{
 		//int stackSize = 1;
