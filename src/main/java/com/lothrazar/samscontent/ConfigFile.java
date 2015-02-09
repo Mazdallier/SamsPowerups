@@ -96,40 +96,47 @@ public class ConfigFile
 		
 
 		home = ModSamsContent.config.getBoolean("home",category, true,
-    			"Use /home to go to the players spawn point, as defined by a bed.");
-		
-
+    			"Use /home to go to the players spawn point, as defined by a bed."); 
 		CommandHome.REQUIRES_OP = ModSamsContent.config.getBoolean("home_needs_op",category, false,
-    			"Using /home is restricted to players with OP (or single player worlds with cheats enabled).");
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 
 		worldhome = ModSamsContent.config.getBoolean("worldhome",category, true,
-    			"Use /worldhome to go to the worlds global spawn point."); 
-		
-
+    			"Use /worldhome to go to the worlds global spawn point.");  
 		CommandWorldHome.REQUIRES_OP = ModSamsContent.config.getBoolean("worldhomehome_needs_op",category, false,
-    			"Using /worldhome is restricted to players with OP (or single player worlds with cheats enabled).");
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		
 		searchtrade = ModSamsContent.config.getBoolean("searchtrade",category, true,
-    			"Command that lets players search the trades of nearby villagers.  Result is only chat output."
-    		);
-		
+    			"Players can search the trades of nearby villagers.  Result is only chat output.");
+		CommandSearchTrades.REQUIRES_OP = ModSamsContent.config.getBoolean("searchtrade_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 
 		searchitem = ModSamsContent.config.getBoolean("searchitem",category, true,
-    			"Command that lets players search nearby chests for items.   Result is only chat output."
-    		);
+    			"Players can search nearby chests for items.   Result is only chat output."    		); 
+		CommandSearchItem.REQUIRES_OP = ModSamsContent.config.getBoolean("searchitem_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		
 		killall = ModSamsContent.config.getBoolean("killall",category, true,
-    			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."
-    		);
+    			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."    		);
+		CommandKillAll.REQUIRES_OP = ModSamsContent.config.getBoolean("killall_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
+		
+		
 		enderchest = ModSamsContent.config.getBoolean("enderchest",category, true,
-    			"Command that lets players open their enderchest with a command, no item needed."
-    		);
+    			"Players can open their enderchest with a command, no item needed."    		); 
+		CommandEnderChest.REQUIRES_OP = ModSamsContent.config.getBoolean("enderchest_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
+		
+		
 		simplewaypoint = ModSamsContent.config.getBoolean("simplewaypoint",category, true,
-    			"Command that lets players save waypoints that then show up in the F3 debug screen, so we can navigate back to it (no tp)."
-    		);
+    			"Command that lets players save waypoints that then show up in the F3 debug screen, so we can navigate back to it (no tp)."    		); 
+		CommandSimpleWaypoints.REQUIRES_OP = ModSamsContent.config.getBoolean("simplewaypoint_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
+		
 		todo = ModSamsContent.config.getBoolean("todo",category, true,
     			"Command that lets players use /todo myreminder text, which will then show whatever text they put on the F3 debug screen."
-    		);
+    		); 
+		CommandTodoList.REQUIRES_OP = ModSamsContent.config.getBoolean("todo_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 	 
 		
 		/*********************************************************************************************/
@@ -165,9 +172,7 @@ public class ConfigFile
 /*********************************************************************************************/	
 		
 		category = "flyingInSurvival";
-
-		
-		
+ 
 
 		HandlerSurvivalFlying.canFlySurvival = ModSamsContent.config.getBoolean("all_canFlySurvival",category, true
 				,"Set to false to disable this whole area.  If true, players can fly in survival mode, with restrictions and costs as listed here.  Also has a /flyhelp command for more info."); 

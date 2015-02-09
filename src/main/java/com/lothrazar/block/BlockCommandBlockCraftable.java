@@ -214,11 +214,11 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
 	}
 	
-	static BlockCommandBlockCraftable command_block_regen;
-	static BlockCommandBlockCraftable command_block_mobgrief;
-	static BlockCommandBlockCraftable command_block_firetick;
-	static BlockCommandBlockCraftable command_block_daycycle;
-	static BlockCommandBlockCraftable  command_block_weather = null;
+	public static BlockCommandBlockCraftable command_block_regen;
+	public static BlockCommandBlockCraftable command_block_mobgrief;
+	public static BlockCommandBlockCraftable command_block_firetick;
+	public static BlockCommandBlockCraftable command_block_daycycle;
+	public static BlockCommandBlockCraftable command_block_weather ;
 	
 	public static void initWeatherBlock()
 	{ 

@@ -17,6 +17,8 @@ import net.minecraft.util.DamageSource;
 
 public class CommandKillAll implements ICommand
 {
+	public static boolean REQUIRES_OP;
+
 	private ArrayList<String> aliases = new ArrayList<String>();
 	
 	private static final String ZOMBIE = "zombie";

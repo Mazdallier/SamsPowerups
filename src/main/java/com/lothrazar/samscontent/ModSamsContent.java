@@ -1,7 +1,6 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList;
-
 import org.apache.logging.log4j.Logger; 
 import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
