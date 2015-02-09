@@ -307,7 +307,7 @@ public class ConfigFile
 		lootAllRecords = ModSamsContent.config.getBoolean("lootAllRecords",category, true,
     			"Add all record types as a random treasure from naturally spawned chests "
     		);
- 
+ //TODO: own category for chest gen
 		
 
 		lootGlowstone = ModSamsContent.config.getBoolean("lootGlowstone",category, true,
