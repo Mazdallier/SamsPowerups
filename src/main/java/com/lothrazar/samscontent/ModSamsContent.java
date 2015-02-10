@@ -99,6 +99,7 @@ public class ModSamsContent
       		,new HandlerSurvivalFlying()
       		,new HandlerSwiftDeposit()
      		,new HandlerPlayerDeath()
+     		,new HandlerFoodEaten()
      		,instance
      	};
      		
@@ -120,7 +121,7 @@ public class ModSamsContent
 		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
 		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
 		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
-		if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
+		//if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
 		
 		//TODO : config entries for these two
 		
@@ -152,7 +153,7 @@ public class ModSamsContent
 		
 		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
 		
-		if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
+		//if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
 		if(ModSamsContent.settings.craftableMushroomBlocks)  { ExtraCrafting.mushroomBlocks(); }
 		  
@@ -224,13 +225,15 @@ public class ModSamsContent
 			}
 		}
 	}
-
+/*
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{ 
 		ItemRunestone.applyHeldRunestones(event.player); 
 	} 
-	 
+*/
+	
+	
 /*
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)

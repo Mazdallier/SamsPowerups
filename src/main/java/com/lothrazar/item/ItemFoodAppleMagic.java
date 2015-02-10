@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -58,11 +59,13 @@ public class ItemFoodAppleMagic extends ItemFood
 	
 	@Override
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    { 
+    {  
 		//by default the food (such as gold apple) such only has a SINGLe potion effect.
 		//we override to do multiple
 	  	if (!par2World.isRemote  )
         { 
+			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName()); 
+			
 	  		for(int i = 0; i < _potionIds.size(); i++) //for(PotionEffect p : effects)
 	  		{ 
 	  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
@@ -85,102 +88,87 @@ public class ItemFoodAppleMagic extends ItemFood
 		 else 
 			 return EnumRarity.RARE;
 	} 
-	  
+	
+	static int I = 0;
+	static int II = 1;
+	static int III = 2;
+	static int IV = 3;
+	static int V = 4;
+	
 	public static void initApples()
-	{ 
-		/*
-		// the potion effect ids listed at
-		// http://minecraft.gamepedia.com/Potion_Effects
-		int SPEED = 1;
-		int HASTE = 3;
-		// int JUMP = 8; // .addEffect(SATURATION,FIVE_MINUTES,1)
-		int NAUSEA = 9;
-		int REGEN = 10;
-		int RESISTANCE = 11;
-		int FIRE_RESIST = 12;
-		int WATER_BREATHING = 13;
-		int BLINDNESS = 15;
-		int NIGHT_VISION = 16;
-		int HUNGER = 17;
-		int WEAKNESS = 18;
-		int HEALTH_BOOST = 21;
-		int ABSORP = 22;// same as regular gold apple
-		// int SATURATION = 23;
-*/
-		int potionTimeSeconds = 300 * 4;// 300 is five minutes.
-
-		// for the record, the gold BLOCKS apple is 2min absorp, 5minute
-		// resistance, 5 minute fire resist. and 30 seconds of REGENH
-		// so if any of these get something like 5 minute of resist or fire
-		// resist, it is not OP
-
-		// the addEffect takes in (effectID, seconds , level)
-
-		// this seems to be a good balance, haste for speed mining,
-		// which is an advantage since you can do it without making / moving a
-		// beacon.
-		// draw back is the weakness
-
-		int I = 0;
-		int II = 1;
-		int III = 2;
-		int IV = 3;
-		int V = 4;
- 
+	{   
 		
+		// there is no potion of health boost PERMANENT, UNTIL DEATH 
+		initEmerald(); 
+ 
+		// we want to fly (PERMANENT, UNTIL DEATH - also put on F3 !!!)
+		initDiamond();
+ 
+		// BIG haste potion
+		initLapis();
+
+		//baby haste potion
+		initChocolate();
+
+
+		//there is no Potion of resistance-only beacon. so. could do that? chocolate shiny?
+	}
+
+	private static void initChocolate()
+	{
+		// this one is less powerful, no gold required
+		//MINI potion
+		apple_chocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger 
+		apple_chocolate.addEffect(Reference.potion_SPEED, 45, II); 
+		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
+		GameRegistry.addRecipe(new ItemStack(apple_chocolate)
+				, "eee", "eae",	"eee"
+				, 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
+				, 'a', Items.apple);
+	}
+
+	private static void initLapis()
+	{ 
+		int potionTimeSeconds = 60 * 8; 
+
+		apple_lapis = new ItemFoodAppleMagic(1, false);
+		apple_lapis.addEffect(Reference.potion_HASTE, potionTimeSeconds, II);
+  
+		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
+		GameRegistry.addRecipe(new ItemStack(apple_lapis)
+				, "lll","lal","lll"  
+				,'l', new ItemStack(Items.dye, 1, Reference.dye_lapis)  
+				,'a', Items.apple); 
+		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
+	}
+
+	private static void initDiamond()
+	{
+		//WHEN WE EAT APPLE_DIAMOND we want to fly (PERMANENT, UNTIL DEATH - also put on F3 !!!)
+		 
+		apple_diamond = new ItemFoodAppleMagic(1, true);  
+
+		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
+		GameRegistry.addRecipe(new ItemStack(apple_diamond)
+				, "lll","lal","lll"  
+				,'l', Items.diamond
+				,'a', Items.apple); 
+		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),
+				0);// getcha that diamond back
+	}
+
+	private static void initEmerald()
+	{ 
+		//PERMANENT HEALTH B OOST when we eat apple_emerald
 		
 		apple_emerald = new ItemFoodAppleMagic(1, false);
-		apple_emerald.addEffect(Reference.potion_HASTE, potionTimeSeconds, II)
-				.addEffect(Reference.potion_SPEED, potionTimeSeconds, I)
-				.addEffect(Reference.potion_absorption, potionTimeSeconds, II);
+	 
 		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
-		GameRegistry.addShapelessRecipe(new ItemStack(apple_emerald),
-				Items.emerald, Items.golden_apple);
+		GameRegistry.addRecipe(new ItemStack(apple_emerald)
+				, "lll","lal","lll"  
+				,'l', Items.emerald
+				,'a', Items.apple);
 		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),
 				0);
- 
-		// only diamond is getting the shiny effect
-		apple_diamond = new ItemFoodAppleMagic(1, true);  
-		apple_diamond.addEffect(Reference.potion_HEALTH_BOOST, potionTimeSeconds, V)
-				// ten extra hearts
-				.addEffect(Reference.potion_FIRERESIST, potionTimeSeconds, II)
-				// resist and fire so it is same as the NOTCH apple
-				.addEffect(Reference.potion_RESISTANCE, potionTimeSeconds, II)
-				.addEffect(Reference.potion_REGEN, 20, II);
-		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
-		GameRegistry.addShapelessRecipe(new ItemStack(apple_diamond),
-				Items.diamond, Items.golden_apple);
-		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 1),
-				0);// getcha that diamond back
-
-		// woo night vision
-		apple_lapis = new ItemFoodAppleMagic(1, false);
-		apple_lapis
-				.addEffect(Reference.potion_NIGHT_VISION, potionTimeSeconds, II)
-				// night vision potion uses gold carrots maybe cheaper?
-				.addEffect(Reference.potion_WATER_BREATHING, potionTimeSeconds, II)
-				// puffer fish are way too rare
-				.addEffect(Reference.potion_absorption, potionTimeSeconds, II);
-		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
-		GameRegistry.addShapelessRecipe(new ItemStack(apple_lapis),
-				new ItemStack(Items.dye, 1, 4), Items.golden_apple);
-		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, 4), 0);// uncraft
-
-		// diamond should hvae health boost, speed strength and regen? all
-		// together?
-
-		// this one is less powerful, no gold required
-		apple_chocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger
-															// points it gives
-															// you
-		apple_chocolate.addEffect(Reference.potion_SPEED, 30, II)
-				// just a short burst of speed. mini speed potion
-				.addEffect(Reference.potion_HASTE, 30, II);
-		
-		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
-		GameRegistry.addRecipe(new ItemStack(apple_chocolate), "eee", "eae",
-				"eee", 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
-				, 'a', Items.apple);
-
 	} 
 }

@@ -173,7 +173,7 @@ public class ConfigFile
 		
 		category = "flyingInSurvival";
  
-
+/*
 		HandlerSurvivalFlying.canFlySurvival = ModSamsContent.config.getBoolean("all_canFlySurvival",category, true
 				,"Set to false to disable this whole area.  If true, players can fly in survival mode, with restrictions and costs as listed here.  Also has a /flyhelp command for more info."); 
 		
@@ -208,7 +208,7 @@ public class ConfigFile
 		HandlerSurvivalFlying.doesWeaknessFatigue = ModSamsContent.config.getBoolean( "doesWeaknessFatigue",category,true,
 				"When this is true, survival flying will cause Weakness IV and Mining Fatigue IV."); 
 			 
-		
+		*/
 		
 		/*
 		

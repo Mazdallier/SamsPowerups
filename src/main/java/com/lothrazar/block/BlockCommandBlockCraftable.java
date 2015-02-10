@@ -224,7 +224,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	{ 
 		command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
  
-		SamsRegistry.registerBlock(command_block_weather,"block_weather");
+		SamsRegistry.registerBlock(command_block_weather,"command_block_weather");
 
 		GameRegistry.addRecipe(new ItemStack(command_block_weather), "rcr", "tet",
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',

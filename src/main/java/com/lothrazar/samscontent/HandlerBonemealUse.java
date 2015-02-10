@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 import com.lothrazar.util.Reference;
 
@@ -24,6 +25,8 @@ public class HandlerBonemealUse
 		else
 			return false;
 	}
+	
+	
 	 
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)

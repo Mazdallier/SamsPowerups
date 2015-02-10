@@ -48,6 +48,7 @@ public class CommandFlyHelp implements ICommand
 					)); 
 		  
 		  String strdiff = "";
+		  /*
 		  switch(HandlerSurvivalFlying.difficultyRequiredToFly)//iknow i know, there is a better way maybe with EnumDifficulty ....
 		  {
 		  	case 0: strdiff = "Peaceful";break;
@@ -55,7 +56,9 @@ public class CommandFlyHelp implements ICommand
 		  	case 2: strdiff = "Normal"; break;
 		  	case 3: strdiff = "Hard"; break;
 		  }
+		  */
 		  
+		  /*
 		  p.addChatMessage(new ChatComponentTranslation(  "- Your world difficulty is "+strdiff+" ("+
 				  	HandlerSurvivalFlying.difficultyRequiredToFly+") or greater")); 
 		   
@@ -67,10 +70,10 @@ public class CommandFlyHelp implements ICommand
 		  
 		  double hearts = HandlerSurvivalFlying.StartFlyingHealth / 2;
 		  double hunger = HandlerSurvivalFlying.StartFlyingHunger / 2;
-		  
-		  p.addChatMessage(new ChatComponentTranslation( "- You have at least "+hearts+" hearts , and at least "+hunger+" hunger"));
+		  */
+		//  p.addChatMessage(new ChatComponentTranslation( "- You have at least "+hearts+" hearts , and at least "+hunger+" hunger"));
   
-		  p.addChatMessage(new ChatComponentTranslation( "- You have at least "+HandlerSurvivalFlying.StartFlyingLevel+" levels"));  
+		 // p.addChatMessage(new ChatComponentTranslation( "- You have at least "+HandlerSurvivalFlying.StartFlyingLevel+" levels"));  
 		  
 		  //no message needed for xp drain
 	  }
