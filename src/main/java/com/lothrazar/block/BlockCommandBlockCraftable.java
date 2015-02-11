@@ -2,6 +2,7 @@ package com.lothrazar.block;
 
 import java.util.Random; 
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
@@ -24,6 +25,9 @@ import net.minecraftforge.common.config.Property;
 
 public class BlockCommandBlockCraftable extends BlockCommandBlock
 { 
+	
+	//TODO http://minecraft.gamepedia.com/Commands#gamerule
+	//TODO: just go ahead might as well add one for every rule. each one will be in the config file to turn off
 	public static enum CommandType
 	{
 		Teleport, Gamerule, Weather
@@ -164,7 +168,26 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		this.canSilkHarvest(world, pos, state, player);
 		return true;
     }
-	 
+	
+	private static void _command(String rule, String textureid, ItemStack rec)
+	{
+		BlockCommandBlockCraftable c = new BlockCommandBlockCraftable(CommandType.Gamerule, rule);
+		 
+		SamsRegistry.registerBlock(c, textureid);
+		
+		GameRegistry.addRecipe(new ItemStack(c)
+				, "rcr"
+				, "tet"
+				, "rcr"              ,
+				'c', Items.comparator, 
+				'e', rec, 
+				'r', Items.ghast_tear, 
+				't', rec
+		);		
+		//GameRegistry.addSmelting(c, rec , 0);// uncraft
+		
+	}
+	
 	public static void initCommand()
 	{
 
