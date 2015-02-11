@@ -1,5 +1,6 @@
 package com.lothrazar.util;
 
+import java.util.ArrayList;
 import com.lothrazar.samscontent.ModSamsContent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -30,12 +31,32 @@ public class SamsRegistry
 		 
 		 setTextureNameForItem(s, name); 
 	 }
+	 
+	 private static ArrayList<Item> delay = new ArrayList<Item>();
+	 private static ArrayList<String> delayNames = new ArrayList<String>();
 
 	 private static void setTextureNameForItem(Item s, String name)
 	 {
-		 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));			
+		 delay.add(s);
+		 delayNames.add(name);
+		 //if i do everything all at once in INIT: inventoryh doesnt render.
+		 //but if i do this in preinit it c rashes
+		 
+		 //so theattempt is to do the block regular in preinit but delay this shit here
+		 
+		// java.lang.NullPointerException: Initializing game
+		//	at com.lothrazar.util.SamsRegistry.setTextureNameForItem(SamsRegistry.java:36)
+		// Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));			
 	 }
-
+//http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2272349-lessons-from-my-first-mc-1-8-mod
+	 public static void doAllDelays()
+	 {
+		 for(int i = 0; i < delay.size(); i++)
+		 {
+			 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(delay.get(i), 0, new ModelResourceLocation(TEXTURE_LOCATION + delayNames.get(i), "inventory"));			
+				
+		 }
+	 }
 	 
 	 
 }

@@ -6,6 +6,7 @@ import com.lothrazar.block.*;
 import com.lothrazar.command.*; 
 import com.lothrazar.item.*;  
 import com.lothrazar.util.Reference;
+import com.lothrazar.util.SamsRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockFence;
@@ -110,6 +111,15 @@ public class ModSamsContent
     		MinecraftForge.EVENT_BUS.register(o);
     		FMLCommonHandler.instance().bus().register(o);
      	} 
+     	
+
+		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
+		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
+		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
+		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
+		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
+		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
 	}
 
 	@EventHandler
@@ -135,23 +145,13 @@ public class ModSamsContent
 	{     
 		ChestGen.AddHooks();//internally it has several segments that check the config file
 		
-		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
 		
   		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
 
-		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
 		
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
   	 
-		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
 		 
-		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
-  
-		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
-		
-		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
-		
-		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
 		
 		//if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
@@ -167,7 +167,10 @@ public class ModSamsContent
 		 
    		if(ModSamsContent.settings.uncraftGeneral) { ExtraCrafting.uncrafting();}
     
-
+//stupid proxy bullshit?
+   		//http://www.minecraftforge.net/forum/index.php?topic=27684.0
+   		SamsRegistry.doAllDelays();
+   		
 		//TODO: find out how Forge 1.8 does trading
 		/*
   		if(ModSamsContent.settings.moreFutureTrades)

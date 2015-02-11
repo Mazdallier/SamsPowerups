@@ -63,17 +63,10 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		this.rule = rl;
 		setConstructorDefaults();
 	}
-/*
-	@Override
-	public void onBlockClicked(World w, int x, int y, int z, EntityPlayer p) 
-	{   
-		super.onBlockClicked( w,  x,  y,  z,  p) ;
-	}
-*/
+ 
 	@Override
 	public void updateTick(World w, BlockPos pos, IBlockState state, Random r)
-    { 
-	//	int x, int y, int z
+    {  
 		//this fires on redstone power 
 	
         TileEntity tileentity = w.getTileEntity(pos); 
@@ -169,7 +162,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		return true;
     }
 	
-	private static void _command(String rule, String textureid, ItemStack rec)
+	private static BlockCommandBlockCraftable _command(String rule, String textureid, ItemStack rec)
 	{
 		BlockCommandBlockCraftable c = new BlockCommandBlockCraftable(CommandType.Gamerule, rule);
 		 
@@ -185,14 +178,16 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				't', rec
 		);		
 		//GameRegistry.addSmelting(c, rec , 0);// uncraft
-		
+	
+		return c;
 	}
 	
 	public static void initCommand()
 	{
 
 		
-		command_block_regen = new BlockCommandBlockCraftable( CommandType.Gamerule, "naturalRegeneration");
+		command_block_regen = _command("naturalRegeneration", "command_block_regen",new ItemStack(Items.golden_apple) );
+				/*new BlockCommandBlockCraftable( CommandType.Gamerule, "naturalRegeneration");
 	 
 		SamsRegistry.registerBlock(command_block_regen,"command_block_regen");
 		
@@ -201,13 +196,14 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				, "tet"
 				, "rcr", 
 				'c', Items.comparator, 
-				'e', Items.golden_apple, 
+				'e', , 
 				'r', Blocks.redstone_block, 
 				't', Items.ghast_tear
-		);
+		);*/
 //the vanilla texture is called simply "command_block"
 		
-		command_block_mobgrief = new BlockCommandBlockCraftable(
+		command_block_mobgrief = _command("mobGriefing", "command_block_mobgrief",new ItemStack( Blocks.tnt) );
+		/*new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "mobGriefing");
 	 
 		SamsRegistry.registerBlock(command_block_mobgrief,"command_block_mobgrief");
@@ -215,18 +211,20 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		GameRegistry.addRecipe(new ItemStack(command_block_mobgrief), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Blocks.tnt, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
-
+*/
 		
-		command_block_firetick = new BlockCommandBlockCraftable(
+		command_block_firetick = _command("doFireTick", "command_block_firetick",new ItemStack( Items.lava_bucket) ); 
+				/*new BlockCommandBlockCraftable(
 				CommandType.Gamerule, "doFireTick"); 
 		SamsRegistry.registerBlock(command_block_firetick,"command_block_firetick");
  
 		GameRegistry.addRecipe(new ItemStack(command_block_firetick), "rcr",
 				"tet", "rcr", 'c', Items.comparator, 'e', Items.lava_bucket,
 				'r', Blocks.redstone_block, 't', Items.ghast_tear);
-
+*/
 		
-		command_block_daycycle = new BlockCommandBlockCraftable(CommandType.Gamerule,
+		command_block_daycycle = _command("doDaylightCycle", "command_block_daycycle",new ItemStack( Blocks.glowstone) ); 
+		/*new BlockCommandBlockCraftable(CommandType.Gamerule,
 				"doDaylightCycle");
  
 		SamsRegistry.registerBlock(command_block_daycycle,"command_block_daycycle");
@@ -234,6 +232,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		GameRegistry.addRecipe(new ItemStack(command_block_daycycle), "rcr", "tet", "rcr", 'c',
 				Items.comparator, 'e', Blocks.glowstone, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
+				*/
 
 	}
 	
