@@ -35,7 +35,7 @@ public class HandlerPlayerDeath
 		
 		//todo: check if air: if not air move up by one and loop?
 		//event.entityPlayer.worldObj.setblock
-		event.entityPlayer.worldObj.setBlockState(new BlockPos(x, y, z), (IBlockState)new BlockState(Blocks.chest));/// 0,2
+		event.entityPlayer.worldObj.setBlockState(new BlockPos(x, y, z),Blocks.chest.getDefaultState());/// 0,2
 		TileEntityChest chest = (TileEntityChest) event.entityPlayer.worldObj.getTileEntity(new BlockPos(x, y, z));
 
 		ItemStack itemStack;

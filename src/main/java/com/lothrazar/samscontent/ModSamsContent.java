@@ -92,7 +92,7 @@ public class ModSamsContent
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse()
-     	//	,new HandlerBountifulUpdate()
+     		 //	,new HandlerBountifulUpdate()
      		,new HandlerEnderChestHit()
       		,new HandlerMasterWand()
       		,new HandlerScreenText()
@@ -132,6 +132,10 @@ public class ModSamsContent
 		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
 		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
 		//if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
+
+
+event.registerServerCommand(new CommandPlayerKit()); 
+
 		
 		//TODO : config entries for these two
 		
