@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
 import com.lothrazar.item.*;  
+import com.lothrazar.samskeyslider.KeySliderMod;
+import com.lothrazar.samskeyslider.MessageKeyPressed;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
 import net.minecraft.block.Block;
@@ -36,6 +38,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
@@ -43,9 +46,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import net.minecraftforge.fml.relauncher.Side;
  
 //TODO: fix // ,guiFactory = "com.lothrazar.samspowerups.gui.ConfigGuiFactory"
 @Mod(modid = ModSamsContent.MODID, version = ModSamsContent.VERSION	, canBeDeactivated = false, name = ModSamsContent.NAME, useMetadata = true) 
@@ -60,7 +67,20 @@ public class ModSamsContent
 
 	public static Configuration config;
 	public static ConfigFile settings;
-
+	
+	
+  	
+	@SidedProxy(clientSide="com.lothrazar.samscontent.ClientProxy", serverSide="com.lothrazar.samscontent.CommonProxy")
+	public static CommonProxy proxy;  
+	public static final String keyMenuUpName = "key.columnshiftup";
+	public static final String keyMenuDownName = "key.columnshiftdown";
+	//TODO: left and right swaps
+	public static final String keyMenuLeftName = "key.columnshiftleft";
+	public static final String keyMenuRightName = "key.columnshiftright";
+	public static final String keyCategory = "key.categories.inventory";
+	public static SimpleNetworkWrapper network; 
+ 
+	  
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
 		mcinfo.modId = MODID;
@@ -85,6 +105,10 @@ public class ModSamsContent
 		settings = new ConfigFile();
 		
 		initModInfo(event.getModMetadata());
+		
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID );     	
+    	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
+     
 		
 		//TODO: version checker
 		//FMLInterModComms.sendRuntimeMessage(MODID, "VersionChecker", "addVersionCheck", "http://www.lothrazar.net/api/mc/samscontent/version.json");
@@ -147,6 +171,7 @@ event.registerServerCommand(new CommandPlayerKit());
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     
+		
 		ChestGen.AddHooks();//internally it has several segments that check the config file
 		
 		
@@ -173,8 +198,9 @@ event.registerServerCommand(new CommandPlayerKit());
     
 //stupid proxy bullshit?
    		//http://www.minecraftforge.net/forum/index.php?topic=27684.0
-   		SamsRegistry.doAllDelays();
-   		
+   	//	SamsRegistry.doAllDelays();
+
+		proxy.registerRenderers();
 		//TODO: find out how Forge 1.8 does trading
 		/*
   		if(ModSamsContent.settings.moreFutureTrades)
@@ -208,8 +234,20 @@ event.registerServerCommand(new CommandPlayerKit());
 		//etc for other minecarts too
    		
 	}
-
-
+	
+	@SubscribeEvent
+    public void onKeyInput(InputEvent.KeyInputEvent event) 
+    {   
+        if(ClientProxy.keyShiftUp.isPressed() )
+        { 	     
+        	 network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
+        }        
+        else if(ClientProxy.keyShiftDown.isPressed() )
+        { 	      
+        	network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
+        }  
+    } 
+ 
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
 	{

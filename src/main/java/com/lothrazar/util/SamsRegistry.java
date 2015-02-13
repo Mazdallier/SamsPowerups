@@ -31,9 +31,9 @@ public class SamsRegistry
 		 
 		 setTextureNameForItem(s, name); 
 	 }
-	 
-	 private static ArrayList<Item> delay = new ArrayList<Item>();
-	 private static ArrayList<String> delayNames = new ArrayList<String>();
+
+	    public static ArrayList<Item> delay = new ArrayList<Item>();
+	    public static ArrayList<String> delayNames = new ArrayList<String>();
 
 	 private static void setTextureNameForItem(Item s, String name)
 	 {
@@ -48,15 +48,5 @@ public class SamsRegistry
 		//	at com.lothrazar.util.SamsRegistry.setTextureNameForItem(SamsRegistry.java:36)
 		// Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(s, 0, new ModelResourceLocation(TEXTURE_LOCATION + name, "inventory"));			
 	 }
-//http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2272349-lessons-from-my-first-mc-1-8-mod
-	 public static void doAllDelays()
-	 {
-		 for(int i = 0; i < delay.size(); i++)
-		 {
-			 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(delay.get(i), 0, new ModelResourceLocation(TEXTURE_LOCATION + delayNames.get(i), "inventory"));			
-				
-		 }
-	 }
-	 
-	 
+
 }
