@@ -71,9 +71,8 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 			player.inventory.setInventorySlotContents(topNumber, null);
 			player.inventory.setInventorySlotContents(topNumber, bar);
 	  
-		}
-		
-		if( message.keyPressed == ClientProxy.keyShiftDown.getKeyCode())
+		} 
+		else if( message.keyPressed == ClientProxy.keyShiftDown.getKeyCode())
 	 	{  
 			ItemStack held = player.inventory.getCurrentItem();
 			 
@@ -103,6 +102,18 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 			player.inventory.setInventorySlotContents(lowNumber, bar);
 	   
 		} 
+		else if( message.keyPressed == ClientProxy.keyShiftLeft.getKeyCode())
+		{
+			
+			
+			
+		}
+		else if( message.keyPressed == ClientProxy.keyShiftRight.getKeyCode())
+		{
+			
+			
+			
+		}
 		
 		return null;
 	}

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.Logger; 
 import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
-import com.lothrazar.item.*;  
-import com.lothrazar.samskeyslider.KeySliderMod;
+import com.lothrazar.item.*;   
 import com.lothrazar.samskeyslider.MessageKeyPressed;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -72,11 +71,11 @@ public class ModSamsContent
   	
 	@SidedProxy(clientSide="com.lothrazar.samscontent.ClientProxy", serverSide="com.lothrazar.samscontent.CommonProxy")
 	public static CommonProxy proxy;  
-	public static final String keyMenuUpName = "key.columnshiftup";
-	public static final String keyMenuDownName = "key.columnshiftdown";
+	public static final String keyUpName = "key.columnshiftup";
+	public static final String keyDownName = "key.columnshiftdown";
 	//TODO: left and right swaps
-	public static final String keyMenuLeftName = "key.columnshiftleft";
-	public static final String keyMenuRightName = "key.columnshiftright";
+	public static final String keyLeftName = "key.columnshiftleft";
+	public static final String keyRightName = "key.columnshiftright";
 	public static final String keyCategory = "key.categories.inventory";
 	public static SimpleNetworkWrapper network; 
  

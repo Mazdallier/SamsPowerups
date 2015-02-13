@@ -1,8 +1,7 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList;
-import org.lwjgl.input.Keyboard;  
-import com.lothrazar.samskeyslider.KeySliderMod;
+import org.lwjgl.input.Keyboard;   
 import com.lothrazar.util.SamsRegistry;
 
 
@@ -16,16 +15,23 @@ public class ClientProxy extends CommonProxy
 {  
 	public static KeyBinding keyShiftUp;
 	public static KeyBinding keyShiftDown;
+	public static KeyBinding keyShiftLeft;
+	public static KeyBinding keyShiftRight;
 
     @Override
     public void registerRenderers() 
     {  
-		keyShiftUp = new KeyBinding(ModSamsContent.keyMenuUpName, Keyboard.KEY_V, ModSamsContent.keyCategory);
+		keyShiftUp = new KeyBinding(ModSamsContent.keyUpName, Keyboard.KEY_UP, ModSamsContent.keyCategory);
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftUp);
          
-		keyShiftDown = new KeyBinding(ModSamsContent.keyMenuDownName, Keyboard.KEY_C, ModSamsContent.keyCategory); 
+		keyShiftDown = new KeyBinding(ModSamsContent.keyDownName, Keyboard.KEY_DOWN, ModSamsContent.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
-        
+
+        keyShiftLeft = new KeyBinding(ModSamsContent.keyLeftName, Keyboard.KEY_LEFT, ModSamsContent.keyCategory); 
+        ClientRegistry.registerKeyBinding(ClientProxy.keyShiftLeft); 
+
+        keyShiftRight = new KeyBinding(ModSamsContent.keyRightName, Keyboard.KEY_RIGHT, ModSamsContent.keyCategory); 
+        ClientRegistry.registerKeyBinding(ClientProxy.keyShiftRight); 
 
         //stupid proxy bullshit?
            		//http://www.minecraftforge.net/forum/index.php?topic=27684.0
