@@ -178,8 +178,11 @@ event.registerServerCommand(new CommandPlayerKit());
 
 		
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
-  	 
+
+		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
 		 
+  		
+  		
 		
 		//if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 

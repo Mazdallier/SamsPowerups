@@ -653,5 +653,15 @@ public class Recipes
 				, 's', new ItemStack(Items.skull,1,Reference.skull_wither));		
 
 		GameRegistry.addSmelting(Items.skull ,new ItemStack(Items.skull,1,Reference.skull_wither), 0);
+	}
+
+	public static void bookNoLeather()
+	{ 
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.book,1)
+				,new ItemStack(Items.paper)
+				,new ItemStack(Items.paper)
+				,new ItemStack(Items.paper) 
+				); 
+		
 	} 
 }

@@ -24,9 +24,10 @@ public class ConfigFile
 	public boolean skullSignNames;
 	public boolean betterDebugScreen; 
 	
-	public boolean craftableTransmuteRecords = true;  
-	public boolean craftableFlatDoubleSlab = true; 
+	public boolean craftableTransmuteRecords;  
+	public boolean craftableFlatDoubleSlab; 
 	public boolean craftableBonemealColouredWool;   
+	public boolean craftBooksWithoutLeather;
 	public boolean craftableMobHeads;
 	public boolean betterBonemeal;
 	public boolean decorativeBlocks;
@@ -141,6 +142,12 @@ public class ConfigFile
 		
 		/*********************************************************************************************/
 		category = "crafting";
+		
+		
+		
+		craftBooksWithoutLeather = ModSamsContent.config.getBoolean( "craftBooksWithoutLeather",category,true,
+				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed."
+					);
 		
 		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record."
