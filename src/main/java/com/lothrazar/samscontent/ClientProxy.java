@@ -15,8 +15,8 @@ public class ClientProxy extends CommonProxy
 {  
 	public static KeyBinding keyShiftUp;
 	public static KeyBinding keyShiftDown;
-	public static KeyBinding keyShiftLeft;
-	public static KeyBinding keyShiftRight;
+	//public static KeyBinding keyShiftLeft;
+	//public static KeyBinding keyShiftRight;
 
     @Override
     public void registerRenderers() 
@@ -26,24 +26,23 @@ public class ClientProxy extends CommonProxy
          
 		keyShiftDown = new KeyBinding(ModSamsContent.keyDownName, Keyboard.KEY_DOWN, ModSamsContent.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
-
+/*
         keyShiftLeft = new KeyBinding(ModSamsContent.keyLeftName, Keyboard.KEY_LEFT, ModSamsContent.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftLeft); 
 
         keyShiftRight = new KeyBinding(ModSamsContent.keyRightName, Keyboard.KEY_RIGHT, ModSamsContent.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftRight); 
-
+*/
         //stupid proxy bullshit?
            		//http://www.minecraftforge.net/forum/index.php?topic=27684.0
       //http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2272349-lessons-from-my-first-mc-1-8-mod
    
+         String str;
    		 for(int i = 0; i < SamsRegistry.delay.size(); i++)
    		 {
-   			 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(SamsRegistry.delay.get(i), 0, new ModelResourceLocation(SamsRegistry.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i), "inventory"));					
+   			 str = SamsRegistry.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i);
+   			 System.out.println("MODEL??   " + str);//looks just like "samscontent:wand_master"
+   			 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(SamsRegistry.delay.get(i), 0, new ModelResourceLocation( str , "inventory"));					
    		 } 
-    }
-
-
-	 
-	 
+    } 
 }

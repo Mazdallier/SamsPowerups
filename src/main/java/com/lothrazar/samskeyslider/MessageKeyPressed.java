@@ -41,6 +41,7 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 		EntityPlayer player = ctx.getServerHandler().playerEntity; 
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html
+		int barNumber = player.inventory.currentItem;
  
 		if( message.keyPressed == ClientProxy.keyShiftUp.getKeyCode())
  	    {   
@@ -48,7 +49,6 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 			 
 			//so we move each up by nine
 
-			int barNumber = player.inventory.currentItem;
 			int topNumber = barNumber + 9;
 			int midNumber = topNumber + 9;
 			int lowNumber = midNumber + 9;
@@ -77,8 +77,7 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 			ItemStack held = player.inventory.getCurrentItem();
 			 
 			//so we move each up by nine
-
-			int barNumber = player.inventory.currentItem;
+ 
 			int topNumber = barNumber + 9;
 			int midNumber = topNumber + 9;
 			int lowNumber = midNumber + 9;
@@ -102,19 +101,22 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 			player.inventory.setInventorySlotContents(lowNumber, bar);
 	   
 		} 
+		/*
 		else if( message.keyPressed == ClientProxy.keyShiftLeft.getKeyCode())
-		{
+		{ 
+			int leftMost = 0, rightMost = 8;
 			
 			
 			
 		}
 		else if( message.keyPressed == ClientProxy.keyShiftRight.getKeyCode())
 		{
+			int leftMost = 0, rightMost = 8;
 			
 			
 			
 		}
-		
+		*/
 		return null;
 	}
 }

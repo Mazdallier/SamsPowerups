@@ -20,7 +20,7 @@ public class SamsRegistry
 		 
 		 GameRegistry.registerBlock(s, name);
 		 
-		// setTextureNameForItem(Item.getItemFromBlock(s), name); 
+		 setTextureNameForItem(Item.getItemFromBlock(s), name); 
 	 }
 	 
 	 public static void registerItem(Item s, String name)

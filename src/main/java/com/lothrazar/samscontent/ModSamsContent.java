@@ -73,9 +73,9 @@ public class ModSamsContent
 	public static CommonProxy proxy;  
 	public static final String keyUpName = "key.columnshiftup";
 	public static final String keyDownName = "key.columnshiftdown";
-	//TODO: left and right swaps
-	public static final String keyLeftName = "key.columnshiftleft";
-	public static final String keyRightName = "key.columnshiftright";
+	//TODO: ??left and right swaps
+	//public static final String keyLeftName = "key.columnshiftleft";
+	//public static final String keyRightName = "key.columnshiftright";
 	public static final String keyCategory = "key.categories.inventory";
 	public static SimpleNetworkWrapper network; 
  
@@ -141,8 +141,8 @@ public class ModSamsContent
 		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
 		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
 		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
-		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
-		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
+		//if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
+		//if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
 	}
 
 	@EventHandler
