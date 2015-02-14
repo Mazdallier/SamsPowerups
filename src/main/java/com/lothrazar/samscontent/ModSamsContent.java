@@ -134,15 +134,14 @@ public class ModSamsContent
     		MinecraftForge.EVENT_BUS.register(o);
     		FMLCommonHandler.instance().bus().register(o);
      	} 
-     	
-
+ 
 		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
 		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
 		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
 		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
 		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
-		//if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
-		//if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
+		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
 	}
 
 	@EventHandler
