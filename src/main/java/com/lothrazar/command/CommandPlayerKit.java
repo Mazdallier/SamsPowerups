@@ -1,8 +1,11 @@
 package com.lothrazar.command;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List; 
+import org.apache.logging.log4j.Level;
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.SamsUtilities;
+import net.minecraft.block.Block;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -47,13 +50,17 @@ public class CommandPlayerKit implements ICommand
 	{ 
 		EntityPlayer p = (EntityPlayer)sender;
 		 
+		//has the player used this already (in this life)
 		int kitsUsed = SamsUtilities.getPlayerIntegerNBT(p, getName());
-		
-		 
 		
 		if(kitsUsed == 0)
 		{
-			p.dropItem(new ItemStack( Item.getByNameOrId("minecraft:wooden_pickaxe") ), true, false);
+			for(Item item : giveItems) //these were decided by the config file
+			{
+				p.dropItem(new ItemStack( item ), true, false);
+			}
+			
+			//set the flag so we cannot run this again (unless we die)
 			SamsUtilities.incrementPlayerIntegerNBT(p, getName());
 		}
 		else
@@ -78,5 +85,36 @@ public class CommandPlayerKit implements ICommand
 	public boolean isUsernameIndex(String[] args, int index)
 	{ 
 		return false;
+	}
+
+	private static ArrayList<Item> giveItems = new ArrayList<Item>();
+	public static void setItemsFromString(String csv)
+	{ 
+		String[] ids = csv.split(",");
+		
+		Item isItNull = null;
+		Block b;
+		
+		for(int i = 0; i < ids.length; i++)
+		{
+			isItNull = Item.getByNameOrId(ids[i]);
+			if(isItNull == null)
+			{
+				//try to get block version 
+				b = Block.getBlockFromName(ids[i]);
+				if(b != null)	isItNull = Item.getItemFromBlock(b);
+				
+			} 
+			
+			
+			if(isItNull == null)
+			{
+				ModSamsContent.logger.log(Level.WARN, "Item not found for Command /kit : "+ ids[i]);
+			}
+			else
+			{
+				giveItems.add(isItNull);
+			} 
+		} //end for
 	} 
 }

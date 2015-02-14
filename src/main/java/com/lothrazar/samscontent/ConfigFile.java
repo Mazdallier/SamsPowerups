@@ -8,6 +8,7 @@ import net.minecraftforge.common.config.Configuration;
 import com.lothrazar.command.CommandEnderChest;
 import com.lothrazar.command.CommandHome;
 import com.lothrazar.command.CommandKillAll;
+import com.lothrazar.command.CommandPlayerKit;
 import com.lothrazar.command.CommandSearchItem;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
@@ -50,6 +51,7 @@ public class ConfigFile
 	public boolean enderchest;
 	public boolean simplewaypoint;
 	public boolean todo;
+	public boolean kit;
 	public boolean deathItemsChest;
 	public boolean home;
 	public boolean worldhome;
@@ -94,7 +96,18 @@ public class ConfigFile
 
 		/*********************************************************************************************/
 		category = "commands";
+
+		kit = ModSamsContent.config.getBoolean("kit",category, true,
+    			"Use /kit to give yourself kit items.  Can only be done once each time you die.");
+
+		String csv = ModSamsContent.config.getString("kit.items",category, "minecraft:wooden_pickaxe,minecraft:wooden_sword",
+    			"Using /kit gives the following item.  Each must have minecraft:item or modname:item, no spaces and split by commas.");
 		
+		CommandPlayerKit.setItemsFromString(csv);
+		
+		
+		CommandHome.REQUIRES_OP = ModSamsContent.config.getBoolean("home_needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 
 		home = ModSamsContent.config.getBoolean("home",category, true,
     			"Use /home to go to the players spawn point, as defined by a bed."); 

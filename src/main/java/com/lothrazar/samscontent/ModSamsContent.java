@@ -151,13 +151,15 @@ public class ModSamsContent
 		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
 		
 		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
+		
 		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
+		
 		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
+		
 		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
-		//if(HandlerSurvivalFlying.canFlySurvival) {event.registerServerCommand(new CommandFlyHelp());}
+		 
+		if(ModSamsContent.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
 
-
-event.registerServerCommand(new CommandPlayerKit()); 
 
 		
 		//TODO : config entries for these two
@@ -181,9 +183,6 @@ event.registerServerCommand(new CommandPlayerKit());
 
 		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
 		 
-  		
-  		
-		
 		//if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
 		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
