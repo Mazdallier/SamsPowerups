@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

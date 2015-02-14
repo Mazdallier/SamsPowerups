@@ -1,5 +1,6 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
+import com.lothrazar.samscontent.ModSamsContent;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.Logger; 
 import com.lothrazar.block.*; 
 import com.lothrazar.command.*; 
+import com.lothrazar.event.*; 
 import com.lothrazar.item.*;   
 import com.lothrazar.samskeyslider.MessageKeyPressed;
 import com.lothrazar.util.Reference;
@@ -182,17 +183,17 @@ event.registerServerCommand(new CommandPlayerKit());
 		
 		//if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
-		if(ModSamsContent.settings.craftableMushroomBlocks)  { ExtraCrafting.mushroomBlocks(); }
+		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
 		  
-		if(ModSamsContent.settings.craftableMobHeads) 	{ExtraCrafting.mobHeads();	}
+		if(ModSamsContent.settings.craftableMobHeads) 	{Recipes.mobHeads();	}
   
-		if(ModSamsContent.settings.craftableBonemealColouredWool)  {ExtraCrafting.bonemealWool();}
+		if(ModSamsContent.settings.craftableBonemealColouredWool)  {Recipes.bonemealWool();}
 	  
-		if(ModSamsContent.settings.craftableTransmuteRecords)   { ExtraCrafting.records();}
+		if(ModSamsContent.settings.craftableTransmuteRecords)   { Recipes.records();}
 		  
-		if(ModSamsContent.settings.craftableFlatDoubleSlab) { ExtraCrafting.doubleSlabsFlat();}
+		if(ModSamsContent.settings.craftableFlatDoubleSlab) { Recipes.doubleSlabsFlat();}
 		 
-   		if(ModSamsContent.settings.uncraftGeneral) { ExtraCrafting.uncrafting();}
+   		if(ModSamsContent.settings.uncraftGeneral) { Recipes.uncrafting();}
     
 //stupid proxy bullshit?
    		//http://www.minecraftforge.net/forum/index.php?topic=27684.0

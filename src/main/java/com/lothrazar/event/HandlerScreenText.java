@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
 

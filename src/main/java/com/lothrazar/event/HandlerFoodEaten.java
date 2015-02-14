@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
 import com.lothrazar.util.SamsUtilities;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;

@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
 import java.util.HashMap; 
 import org.apache.logging.log4j.Logger; 

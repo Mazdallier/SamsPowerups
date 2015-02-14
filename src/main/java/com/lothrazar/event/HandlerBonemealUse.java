@@ -1,4 +1,4 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

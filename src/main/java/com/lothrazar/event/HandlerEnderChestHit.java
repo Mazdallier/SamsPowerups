@@ -1,5 +1,6 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
+import com.lothrazar.samscontent.ModSamsContent;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;

@@ -1,7 +1,7 @@
 package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
-import com.lothrazar.samscontent.HandlerMasterWand;
+import com.lothrazar.event.HandlerMasterWand;
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.SamsRegistry;
 

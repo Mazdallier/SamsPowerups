@@ -1,8 +1,9 @@
-package com.lothrazar.samscontent;
+package com.lothrazar.event;
 
 import java.util.ArrayList;   
 import org.apache.logging.log4j.Logger;  
 
+import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;

@@ -2,7 +2,7 @@ package com.lothrazar.command;
  
 import java.util.ArrayList;   
 
-import com.lothrazar.samscontent.HandlerSurvivalFlying;
+import com.lothrazar.event.HandlerSurvivalFlying;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

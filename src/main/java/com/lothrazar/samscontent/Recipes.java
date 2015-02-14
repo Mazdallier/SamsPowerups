@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class ExtraCrafting  
+public class Recipes  
 {  
 	public static void mushroomBlocks()
 	{
