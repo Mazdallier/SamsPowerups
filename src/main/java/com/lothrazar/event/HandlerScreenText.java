@@ -55,7 +55,7 @@ public class HandlerScreenText
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{
-		if(ModSamsContent.settings.betterDebugScreen == false){ return; }
+		if(ModSamsContent.settings.minifiedDebugScreen == false){ return; }
 		
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
 		 

@@ -40,8 +40,7 @@ public class ClientProxy extends CommonProxy
          String str;
    		 for(int i = 0; i < SamsRegistry.delay.size(); i++)
    		 {
-   			 str = SamsRegistry.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i);
-   			 System.out.println("MODEL??   " + str);//looks just like "samscontent:wand_master"
+   			 str = SamsRegistry.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i); 
    			 Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(SamsRegistry.delay.get(i), 0, new ModelResourceLocation( str , "inventory"));					
    		 } 
     } 

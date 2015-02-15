@@ -139,9 +139,21 @@ public class ModSamsContent
 		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
 		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
 		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
-		if(ModSamsContent.settings.magicApples) {ItemFoodAppleMagic.initApples();}
+		if(ModSamsContent.settings.appleEmerald) {ItemFoodAppleMagic.initEmerald();}
+
+		if(ModSamsContent.settings.appleDiamond) {ItemFoodAppleMagic.initDiamond();}
+
+		if(ModSamsContent.settings.appleLapis) {ItemFoodAppleMagic.initLapis();}
+
+		if(ModSamsContent.settings.appleChocolate) {ItemFoodAppleMagic.initChocolate();}
+  
 		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
-		if(ModSamsContent.settings.gameruleBlocks){ BlockCommandBlockCraftable.initCommand();}
+		if(ModSamsContent.settings.gameruleBlockRegen){ BlockCommandBlockCraftable.initRegen();} 
+		if(ModSamsContent.settings.gameruleBlockDaylight){ BlockCommandBlockCraftable.initDaylight();}
+		if(ModSamsContent.settings.gameruleBlockFiretick){ BlockCommandBlockCraftable.initFiretick();}
+		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
+		
+		
 		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
 	}
 
@@ -183,7 +195,7 @@ public class ModSamsContent
 
 		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
 		 
-		//if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
+	//	if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
 		 
 		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
 		  

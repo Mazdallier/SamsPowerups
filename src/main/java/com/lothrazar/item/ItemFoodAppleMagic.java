@@ -95,26 +95,11 @@ public class ItemFoodAppleMagic extends ItemFood
 	static int IV = 3;
 	static int V = 4;
 	
-	public static void initApples()
-	{   
-		
-		// there is no potion of health boost PERMANENT, UNTIL DEATH 
-		initEmerald(); 
- 
-		// we want to fly (PERMANENT, UNTIL DEATH - also put on F3 !!!)
-		initDiamond();
- 
-		// BIG haste potion
-		initLapis();
-
-		//baby haste potion
-		initChocolate();
-
 
 		//there is no Potion of resistance-only beacon. so. could do that? chocolate shiny?
-	}
+ 
 
-	private static void initChocolate()
+	public static void initChocolate()
 	{
 		// this one is less powerful, no gold required
 		//MINI potion
@@ -127,7 +112,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				, 'a', Items.apple);
 	}
 
-	private static void initLapis()
+	public static void initLapis()
 	{ 
 		int potionTimeSeconds = 60 * 8; 
 
@@ -142,7 +127,7 @@ public class ItemFoodAppleMagic extends ItemFood
 		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
 	}
 
-	private static void initDiamond()
+	public static void initDiamond()
 	{
 		//WHEN WE EAT APPLE_DIAMOND we want to fly (PERMANENT, UNTIL DEATH - also put on F3 !!!)
 		 
@@ -157,7 +142,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				0);// getcha that diamond back
 	}
 
-	private static void initEmerald()
+	public static void initEmerald()
 	{ 
 		//PERMANENT HEALTH B OOST when we eat apple_emerald
 		
