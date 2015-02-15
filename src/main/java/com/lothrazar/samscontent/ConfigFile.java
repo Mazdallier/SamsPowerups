@@ -60,9 +60,10 @@ public class ConfigFile
 	public boolean gameruleBlockDaylight;
 	public boolean gameruleBlockFiretick;
 	public boolean gameruleBlockMobgrief;
-	public boolean slimeDebugScreen;
-	public boolean horseInfoDebug;
-	public boolean minifiedDebugScreen;
+	public boolean debugSlime;
+	public boolean debugHorseInfo;
+	public boolean debugMinified;
+	public boolean debugVillageInfo;
 
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
@@ -239,15 +240,19 @@ public class ConfigFile
     		);
 		
 		//debug screen
-		minifiedDebugScreen = ModSamsContent.config.getBoolean("debugScreen.minified",category, false,
-    			"Changes the debug screen: Removes lots of rarely used info, and adds info on slime chunks, day counter, ridden horse info (speed/jump height) "
+		//todo: minified.disableCoords??
+		debugMinified = ModSamsContent.config.getBoolean("debugScreen.minified",category, false,
+    			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
     		);
-		slimeDebugScreen = ModSamsContent.config.getBoolean("debugScreen.slimeChunk",category, false,
-    			"Changes the debug screen: Removes lots of rarely used info, and adds info on slime chunks, day counter, ridden horse info (speed/jump height) "
+		debugSlime = ModSamsContent.config.getBoolean("debugScreen.slimeChunk",category, false,
+    			"Screen will show if you are standing in a slime chunk."
     		);
-		horseInfoDebug = ModSamsContent.config.getBoolean("debugScreen.horseInfo",category, false,
-    			"Changes the debug screen: Removes lots of rarely used info, and adds info on slime chunks, day counter, ridden horse info (speed/jump height) "
-    		);
+		debugHorseInfo = ModSamsContent.config.getBoolean("debugScreen.horse",category, false,
+    			"Screen will show info on any horse ridden including speed, jump height, species.");
+		
+		debugVillageInfo = ModSamsContent.config.getBoolean("debugScreen.village",category, false,
+    			"Screen will show info on any village you are standing in.");
+		
 		
 		deathItemsChest = ModSamsContent.config.getBoolean("deathItemsChest",category, true,
     			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."

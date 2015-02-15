@@ -45,39 +45,31 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  
 public class HandlerScreenText
 { 
-    private boolean clearLeft = true ;
-    private boolean clearRight = true ;
-	private boolean showGameRules = false;
-	private boolean showSlimeChunk = true;
-	private boolean showVillageInfo = true; 
-	private boolean showHorseInfo = true;
+
+	//private boolean showGameRules = false;
+	//private boolean showSlimeChunk = true;
+	//private boolean showVillageInfo = true; 
+//	private boolean showHorseInfo = true;
 
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
-	{
-		if(ModSamsContent.settings.minifiedDebugScreen == false){ return; }
-		
+	{ 
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
-		 
-		//config file can disable all this, which keeps the original screen un-cleared
-		if(clearLeft  )event.left.clear();
-		
-		if(clearRight) event.right.clear();
 
-		AddLeftInfo(event.left);
-		AddRightInfo(event.right); 
+		if(ModSamsContent.settings.debugMinified )
+		{
+			event.left.clear();
+			
+			event.right.clear();
+		}
 		
-		CommandSimpleWaypoints.AddWaypointInfo(event); 
-	}
+		 
  
-	private void AddLeftInfo(ArrayList<String> side)
-	{  
+		ArrayList<String> side = event.left;
+  
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
-
-		//couldnt find game version as a variable
-		side.add("Minecraft 1.7.10 ["+world.getDifficulty().toString()+"]");
-		 
+  
 		long time = world.getWorldTime(); 
 	 
 		int days = MathHelper.floor_double( time / Reference.ticksPerDay);
@@ -91,6 +83,8 @@ public class HandlerScreenText
 		else if(remainder < 12000) detail = "Afternoon";
 		else detail = "Moon Phase " + world.getMoonPhase();
 	  
+		
+		
 		side.add("Day "+days +" ("+detail+")");  
   
 		side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
@@ -147,7 +141,9 @@ public class HandlerScreenText
 		//side.add("");
 	 
   
-	 	if(showSlimeChunk && player.dimension == 0)
+		
+	 	if(ModSamsContent.settings.debugSlime
+	 			&& player.dimension == 0)
 	 	{ 
 	    	long seed =  world.getSeed();
 	     
@@ -168,7 +164,7 @@ public class HandlerScreenText
 			} 
 	 	}
 	 	
-	 	if(showVillageInfo && world.villageCollectionObj != null)
+	 	if(ModSamsContent.settings.debugVillageInfo && world.villageCollectionObj != null)
 	 	{  
 	 
 			 int playerX = MathHelper.floor_double(player.posX);
@@ -209,14 +205,12 @@ public class HandlerScreenText
 			 }	 
 		 }
 	 	
-	 	if(showHorseInfo && player.ridingEntity != null)
+	 	if(ModSamsContent.settings.debugHorseInfo && player.ridingEntity != null)
 	 	{
 	 		if(player.ridingEntity instanceof EntityHorse)
 	 		{
 	 			EntityHorse horse = (EntityHorse)player.ridingEntity;
-	 			
-	 			//horse.getCreatureAttribute().values()[0].
-	 			
+	 			 
 	 			//int type = horse.getHorseType();
 	 			//type 0 is horse, type 1 is donkey, type 2 is mule
 	 			
@@ -295,13 +289,9 @@ public class HandlerScreenText
 	 			
 	 		}
 	 	} 
-	}
-
-	private void AddRightInfo(ArrayList<String> side)
-	{ 
-		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
-		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
- 
+	 
+		 
+		/*
 		if(showGameRules)
 		{ 
 			side.add("Enabled Gamerules:");
@@ -329,7 +319,7 @@ public class HandlerScreenText
 				}
 			} 
 		} 
-		  
+		  */
 		String todoCurrent = CommandTodoList.GetTodoForPlayerName(player.getName());
 		
 		if(todoCurrent != null && todoCurrent.isEmpty() == false)
@@ -337,6 +327,7 @@ public class HandlerScreenText
 			side.add("");
 			side.add("TODO : "+todoCurrent); 
 		}  
-	} 
-  
+
+		CommandSimpleWaypoints.AddWaypointInfo(event); 
+	}
 }
