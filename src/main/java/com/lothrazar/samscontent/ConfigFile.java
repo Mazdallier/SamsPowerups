@@ -238,22 +238,6 @@ public class ConfigFile
 		skullSignNames = ModSamsContent.config.getBoolean("skullSignNames",category, true,
     			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign"
     		);
-		
-		//debug screen
-		//todo: minified.disableCoords??
-		debugMinified = ModSamsContent.config.getBoolean("debugScreen.minified",category, false,
-    			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
-    		);
-		debugSlime = ModSamsContent.config.getBoolean("debugScreen.slimeChunk",category, true,
-    			"Screen will show if you are standing in a slime chunk."
-    		);
-		debugHorseInfo = ModSamsContent.config.getBoolean("debugScreen.horse",category, true,
-    			"Screen will show info on any horse ridden including speed, jump height, species.");
-		
-		debugVillageInfo = ModSamsContent.config.getBoolean("debugScreen.village",category, true,
-    			"Screen will show info on any village you are standing in.");
-		
-		
 		deathItemsChest = ModSamsContent.config.getBoolean("deathItemsChest",category, true,
     			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."
     		);
@@ -262,27 +246,53 @@ public class ConfigFile
 		betterBonemeal = ModSamsContent.config.getBoolean("betterBonemeal",category, true,
     			"Bonemeal grows more things: lilypads, all flowers "
     		);
+		
+		/*********************************************************************************************/   
+		
+		
+		category = "lootMore";
  
- 
-		lootObsidian = ModSamsContent.config.getBoolean("lootObsidian",category, true,
+		lootObsidian = ModSamsContent.config.getBoolean("obsidian",category, true,
     			"Add obsidian as a random treasure from naturally spawned chests "
     		);
  
 
-		lootAllRecords = ModSamsContent.config.getBoolean("lootAllRecords",category, true,
+		lootAllRecords = ModSamsContent.config.getBoolean("allRecords",category, true,
     			"Add all record types as a random treasure from naturally spawned chests "
     		);
  //TODO: own category for chest gen
 		
 
-		lootGlowstone = ModSamsContent.config.getBoolean("lootGlowstone",category, true,
+		lootGlowstone = ModSamsContent.config.getBoolean("glowstone",category, true,
     			"Add glowstone dust as a random treasure from naturally spawned chests "
     		);
  
 
-		lootQuartz = ModSamsContent.config.getBoolean("lootQuartz",category, true,
+		lootQuartz = ModSamsContent.config.getBoolean("quartz",category, true,
     			"Add quartz as a random treasure from naturally spawned chests "
     		);
+		
+		/*********************************************************************************************/   
+		
+			
+		category = "debugScreen";
+		
+		//debug screen
+		//todo: minified.disableCoords??
+		debugMinified = ModSamsContent.config.getBoolean("minified",category, false,
+    			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
+    		);
+		debugSlime = ModSamsContent.config.getBoolean("slimeChunk",category, true,
+    			"Screen will show if you are standing in a slime chunk."
+    		);
+		debugHorseInfo = ModSamsContent.config.getBoolean("horse",category, true,
+    			"Screen will show info on any horse ridden including speed, jump height, species.");
+		
+		debugVillageInfo = ModSamsContent.config.getBoolean("village",category, true,
+    			"Screen will show info on any village you are standing in.");
+		
+		
+		
  
 		
 
