@@ -244,13 +244,13 @@ public class ConfigFile
 		debugMinified = ModSamsContent.config.getBoolean("debugScreen.minified",category, false,
     			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
     		);
-		debugSlime = ModSamsContent.config.getBoolean("debugScreen.slimeChunk",category, false,
+		debugSlime = ModSamsContent.config.getBoolean("debugScreen.slimeChunk",category, true,
     			"Screen will show if you are standing in a slime chunk."
     		);
-		debugHorseInfo = ModSamsContent.config.getBoolean("debugScreen.horse",category, false,
+		debugHorseInfo = ModSamsContent.config.getBoolean("debugScreen.horse",category, true,
     			"Screen will show info on any horse ridden including speed, jump height, species.");
 		
-		debugVillageInfo = ModSamsContent.config.getBoolean("debugScreen.village",category, false,
+		debugVillageInfo = ModSamsContent.config.getBoolean("debugScreen.village",category, true,
     			"Screen will show info on any village you are standing in.");
 		
 		
