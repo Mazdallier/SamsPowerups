@@ -161,8 +161,7 @@ public class ModSamsContent
 		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
  
 		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
-		
-		ItemRunestone.initRunestones();
+		 
 	}
 
 	@EventHandler
