@@ -197,7 +197,8 @@ public class ModSamsContent
 
 		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
 		 
-	//	if(ModSamsContent.settings.runestones) { ItemRunestone.initRunestones(); }
+	//ModSamsContent.settings.runestones//TODO
+		if(true) { ItemRunestone.initRunestones(); }
 		 
 		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
 		  
@@ -210,11 +211,7 @@ public class ModSamsContent
 		if(ModSamsContent.settings.craftableFlatDoubleSlab) { Recipes.doubleSlabsFlat();}
 		 
    		if(ModSamsContent.settings.uncraftGeneral) { Recipes.uncrafting();}
-    
-//stupid proxy bullshit?
-   		//http://www.minecraftforge.net/forum/index.php?topic=27684.0
-   	//	SamsRegistry.doAllDelays();
-
+   
 		proxy.registerRenderers();
 		//TODO: find out how Forge 1.8 does trading
 		/*
@@ -226,10 +223,8 @@ public class ModSamsContent
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
   		*/
-
-		//SaplingStickAxe();
-		
-		//SmoothstoneRequired();
+ 
+		Recipes.smoothstoneRequired();
 		
 		//MobSpawnExtras();
 		//mushroom???
@@ -238,13 +233,14 @@ public class ModSamsContent
 		
  
 		//recipe shortcuts:
-		
+		Recipes.woolDyeSavings();
 		//dye wool by 8 blocks instead of 1
 		
+		Recipes.repeaterSimple();
 		
 		//easier redstone repeater recipe, to use sticks nad redstone instead of torches
 		 //https://i.imgur.com/UqthR4k.png
-		
+		Recipes.minecartsSimple();
 		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
 		//etc for other minecarts too
    		
@@ -284,34 +280,5 @@ public class ModSamsContent
 				ItemEnderBook.itemEnderBook.saveCurrentLocation( event.entityPlayer, itemStack);
 			}
 		}
-	}
-/*
-	@SubscribeEvent
-	public void onPlayerTick(PlayerTickEvent event)
-	{ 
-		ItemRunestone.applyHeldRunestones(event.player); 
 	} 
-*/
-	
-	
-/*
-	@SubscribeEvent
-	public void onLivingDrops(LivingDropsEvent event)
-	{
-		if (event.entityLiving instanceof EntitySheep
-				&& HandlerBountifulUpdate.mutton_cooked != null
-				&& HandlerBountifulUpdate.mutton_raw != null)
-		{ 
-			// 50/50 drop 1-2 
-			// TODO. more with looting 
- 
-			int drops = 1 + event.entity.worldObj.rand.nextInt(2);// this gets num in range [0,1]
-
-			if (event.entityLiving.isBurning())
-				event.entityLiving.dropItem(HandlerBountifulUpdate.mutton_cooked, drops);
-			else
-				event.entityLiving.dropItem(HandlerBountifulUpdate.mutton_raw, drops);
-		}
-	}
-*/ 
 }

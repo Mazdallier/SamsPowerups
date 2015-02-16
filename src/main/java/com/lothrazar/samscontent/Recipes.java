@@ -663,5 +663,29 @@ public class Recipes
 				,new ItemStack(Items.paper) 
 				); 
 		
+	}
+
+	public static void repeaterSimple()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void minecartsSimple()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void woolDyeSavings()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void smoothstoneRequired()
+	{
+		// TODO Auto-generated method stub
+		
 	} 
 }
