@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random; 
 import com.google.common.collect.Sets; 
+import com.lothrazar.samscontent.ModSamsContent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +27,8 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class ItemWandBuilding //extends ItemTool
-{ 
-	/*
+public class ItemWandBuilding extends ItemTool
+{  
 	public ItemWandBuilding( )
 	{   
 		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 
@@ -44,7 +45,7 @@ public class ItemWandBuilding //extends ItemTool
 	
 	public static void loadConfig(Configuration config)
 	{ 
-		String category = Config.ITEMS + ".buildersWand";
+		String category = "buildersWand";
 		 
 		isEnabled = config.get(category, "isEnabled",true,
 			"Enable the Replacer Wand.  Left click to do actions extract, replace, or drop.  " +
@@ -69,7 +70,7 @@ public class ItemWandBuilding //extends ItemTool
 	public static void Init()
 	{ 
 		itemWand = new ItemWandBuilding();
-		itemWand.setUnlocalizedName("wand_building").setTextureName(ModBuildersUnity.MODID+":wand_building");
+		itemWand.setUnlocalizedName("wand_building");//.setTextureName(ModSamsContent.MODID+":wand_building");
 		GameRegistry.registerItem(itemWand, "wand_building" );   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
@@ -82,10 +83,10 @@ public class ItemWandBuilding //extends ItemTool
 	 
 	private static void setCompoundIfNull(ItemStack held)
 	{
-		if( held.stackTagCompound == null)
+		if( held.getTagCompound() == null)
 		{
-			held.stackTagCompound = new NBTTagCompound(); 
-			held.stackTagCompound.setString(KEY_MODE, MODE_PICK); 
+			held.setTagCompound(new NBTTagCompound()); 
+			held.getTagCompound().setString(KEY_MODE, MODE_PICK); 
 		} 
 	}
 	
@@ -100,12 +101,12 @@ public class ItemWandBuilding //extends ItemTool
 	 {  
 		setCompoundIfNull(held);
       
-        String mode = held.stackTagCompound.getString(KEY_MODE); 
+        String mode = held.getTagCompound().getString(KEY_MODE); 
         list.add("Mode: " + EnumChatFormatting.GREEN +mode); 
           
-		int item =	held.stackTagCompound.getInteger(KEY_ITEM); 
-		int qty  =	held.stackTagCompound.getInteger(KEY_QTY);
-		int dmg  =	held.stackTagCompound.getInteger(KEY_DMG);
+		int item =	held.getTagCompound().getInteger(KEY_ITEM); 
+		int qty  =	held.getTagCompound().getInteger(KEY_QTY);
+		int dmg  =	held.getTagCompound().getInteger(KEY_DMG);
 
 		//int filter  =	held.stackTagCompound.getInteger(KEY_ITEMFILTER);
           
@@ -135,14 +136,14 @@ public class ItemWandBuilding //extends ItemTool
 	{ 
 		setCompoundIfNull(held);
 		
-		String currentMode = held.stackTagCompound.getString(KEY_MODE);
+		String currentMode = held.getTagCompound().getString(KEY_MODE);
 		
 		
 		String newMode = "";
 		
 		//now here we should wait. 
 		 
-		boolean wandIsEmpty = (held.stackTagCompound.getInteger(KEY_ITEM) == 0);
+		boolean wandIsEmpty = (held.getTagCompound().getInteger(KEY_ITEM) == 0);
 		
 		
 		if(wandIsEmpty)
@@ -168,9 +169,9 @@ public class ItemWandBuilding //extends ItemTool
 			}
 		}
 		 
-		held.stackTagCompound.setString(KEY_MODE,newMode);	
+		held.getTagCompound().setString(KEY_MODE,newMode);	
 		
-		held.stackTagCompound.setInteger(KEY_TIMEOUT,20);//cannot do for another twenty ticks 
+		held.getTagCompound().setInteger(KEY_TIMEOUT,20);//cannot do for another twenty ticks 
 		return newMode;
 	}
 	
@@ -182,10 +183,10 @@ public class ItemWandBuilding //extends ItemTool
 
 		setCompoundIfNull(held); 
 		
-		int timeout = held.stackTagCompound.getInteger(KEY_TIMEOUT);
+		int timeout = held.getTagCompound().getInteger(KEY_TIMEOUT);
 		if(timeout > 0)
 		{
-			 held.stackTagCompound.setInteger(KEY_TIMEOUT, (timeout-1));
+			 held.getTagCompound().setInteger(KEY_TIMEOUT, (timeout-1));
 		} 
 	}
 		 
@@ -196,7 +197,7 @@ public class ItemWandBuilding //extends ItemTool
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		setCompoundIfNull(held);
 
-		String currentMode = held.stackTagCompound.getString(KEY_MODE);
+		String currentMode = held.getTagCompound().getString(KEY_MODE);
 		 
   		if(currentMode.equals(MODE_REPLACE))
 		{ 
@@ -219,43 +220,44 @@ public class ItemWandBuilding //extends ItemTool
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		setCompoundIfNull(held);
 		
-		int timeout = held.stackTagCompound.getInteger(KEY_TIMEOUT);
+		int timeout = held.getTagCompound().getInteger(KEY_TIMEOUT);
  
 		if(timeout > 0)
 		{
 			timeout--;
-			held.stackTagCompound.setInteger(KEY_TIMEOUT,timeout); 
+			held.getTagCompound().setInteger(KEY_TIMEOUT,timeout); 
 			return;//cant swap that fast go away . avoids user dobule clicks and the odd event that fires twice because of  hitting 
 			//two air blocks on the same click etc
 		} 
 		else
 		{
 			//it was zero. so reset it and allow continue
-			held.stackTagCompound.setInteger(KEY_TIMEOUT,60);
+			held.getTagCompound().setInteger(KEY_TIMEOUT,60);
 		}
 		 
-		String currentMode = held.stackTagCompound.getString(KEY_MODE);
+		String currentMode = held.getTagCompound().getString(KEY_MODE);
 		 
 		String newMode = toggleNextMode(held);
 		 //if the mode changed, send a message
 		
 		if(newMode != null && currentMode.equals(newMode) == false)
 		{
-			Chat.addMessage(event.entityPlayer, "Wand mode : "+newMode);
+			//Chat.addMessage(event.entityPlayer, "Wand mode : "+newMode);
 		} 
   	}
 	 
 	private static void doReplace(PlayerInteractEvent event, ItemStack held ) 
 	{ 
-		int item =	held.stackTagCompound.getInteger(KEY_ITEM); 
-		int qty  =	held.stackTagCompound.getInteger(KEY_QTY);
-		int dmg  =	held.stackTagCompound.getInteger(KEY_DMG);
+		int item =	held.getTagCompound().getInteger(KEY_ITEM); 
+		int qty  =	held.getTagCompound().getInteger(KEY_QTY);
+		int dmg  =	held.getTagCompound().getInteger(KEY_DMG);
 		
 		if(item == 0){return;}//wand is empty. user needs to pick up / refill
-		
-		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
+
+		IBlockState bs = event.entityPlayer.worldObj.getBlockState(event.pos); 
+		Block blockClicked = bs.getBlock();
 		if(blockClicked == null || blockClicked == Blocks.air ){return;}
-		int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z); 
+		int blockClickedDamage = blockClicked.getMetaFromState(bs);
 		  
 		ArrayList<Block> unReplaceableBlocks = new ArrayList<Block>();
 		
@@ -263,7 +265,8 @@ public class ItemWandBuilding //extends ItemTool
 		if(replaceObsidian == false) {unReplaceableBlocks.add(Blocks.obsidian);}
 
 		if(unReplaceableBlocks.contains(blockClicked)) {return; }//not allowed
-		if(blockClicked.hasTileEntity(blockClickedDamage) && replaceTileEntities == false){return; }
+		 
+		if(blockClicked.hasTileEntity(bs) && replaceTileEntities == false){return; }
 		 
 		
 		if(Block.getIdFromBlock(blockClicked) == item 
@@ -278,26 +281,28 @@ public class ItemWandBuilding //extends ItemTool
 		
 		//	future feature:: listen to filter held.stackTagCompound.setInteger(KEY_ITEMFILTER,Block.getIdFromBlock(blockClicked));
 		//the 2 here is just a magic flag it passes to the world to propogate the event
-		event.entityPlayer.worldObj.setBlock(event.x, event.y, event.z, Block.getBlockById(item), dmg,2);
-		
+		event.entityPlayer.worldObj.setBlockState(event.pos, Block.getBlockById(item).getStateFromMeta(dmg));//, dmg,2
+
  
 		qty--; // now we have placed it
-		held.stackTagCompound.setInteger(KEY_QTY, qty);
+		held.getTagCompound().setInteger(KEY_QTY, qty);
 		
 		if(qty == 0)
 		{
 			//then its all gone, wipe it all out
-			held.stackTagCompound.setInteger(KEY_ITEM,0);
-			held.stackTagCompound.setInteger(KEY_DMG,0);
+			held.getTagCompound().setInteger(KEY_ITEM,0);
+			held.getTagCompound().setInteger(KEY_DMG,0);
 		}
 		
 		//spawn out the block that we replaced
-		ItemStack drop = new ItemStack(blockClicked ,1,  blockClicked.damageDropped(blockClickedDamage)); 
+		ItemStack drop = new ItemStack(blockClicked ,1, blockClickedDamage); //.damageDropped(blockClickedDamage)
 		
 		if(drop != null) 
 		{  
-			EntityItem entityitemDrop = new EntityItem(event.entityPlayer.worldObj, event.x,event.y,event.x, drop);
-			entityitemDrop.delayBeforeCanPickup = 10;
+			EntityItem entityitemDrop = new EntityItem(event.entityPlayer.worldObj,event.pos.getX(),event.pos.getY(),event.pos.getZ(), drop);
+ 
+			//entityitemDrop.delayBeforeCanPickup = 10;
+			entityitemDrop.setPickupDelay(10);
 		   // Relay.addChatMessage(event.entityPlayer,"drop one "+blockClicked.getUnlocalizedName());
 			//drop item pops it out at my location
 			event.entity.entityDropItem(drop, 1);//quantity = 1
@@ -313,15 +318,15 @@ public class ItemWandBuilding //extends ItemTool
 	{
 		ItemStack drop = getWandDataItem(held);
 		 
-		EntityItem entityitemDrop = new EntityItem(event.entityPlayer.worldObj, event.x,event.y,event.x, drop);
-		entityitemDrop.delayBeforeCanPickup = 10;
+		EntityItem entityitemDrop = new EntityItem(event.entityPlayer.worldObj, event.pos.getX(),event.pos.getY(),event.pos.getZ(), drop);
+		entityitemDrop.setPickupDelay(10);
    
 		//drop item pops it out at my location
 		event.entity.entityDropItem(drop, 1);
 		 
-		held.stackTagCompound.setInteger(KEY_ITEM, 0); 
-		held.stackTagCompound.setInteger(KEY_QTY, 0);
-		held.stackTagCompound.setInteger(KEY_DMG, 0);	
+		held.getTagCompound().setInteger(KEY_ITEM, 0); 
+		held.getTagCompound().setInteger(KEY_QTY, 0);
+		held.getTagCompound().setInteger(KEY_DMG, 0);	
 		
 		//clear filter on dump
 		//held.stackTagCompound.setInteger(KEY_ITEMFILTER, 0);
@@ -330,9 +335,9 @@ public class ItemWandBuilding //extends ItemTool
 
 	private static ItemStack getWandDataItem(ItemStack held) 
 	{
-		int item =	held.stackTagCompound.getInteger(KEY_ITEM); 
-		int qty  =	held.stackTagCompound.getInteger(KEY_QTY);
-		int dmg  =	held.stackTagCompound.getInteger(KEY_DMG);
+		int item =	held.getTagCompound().getInteger(KEY_ITEM); 
+		int qty  =	held.getTagCompound().getInteger(KEY_QTY);
+		int dmg  =	held.getTagCompound().getInteger(KEY_DMG);
  
 		ItemStack drop = new ItemStack(Block.getBlockById(item) ,qty,dmg);
 		return drop;
@@ -340,11 +345,11 @@ public class ItemWandBuilding //extends ItemTool
 
 	private static void doPick(PlayerInteractEvent event,ItemStack held) 
 	{ 
-		Block blockClicked = event.entityPlayer.worldObj.getBlock(event.x, event.y, event.z); 
+		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock(); 
 		
 		if(!(blockClicked instanceof BlockChest)){return;}//only on chest  
 	 
-		TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z);
+		TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.pos);
  
 		TileEntityChest chest = (TileEntityChest)container ;
 		
@@ -402,10 +407,10 @@ public class ItemWandBuilding //extends ItemTool
 		
 		if(SavedID > 0)
 		{ 
-			Chat.addMessage(event.entityPlayer, "Wand extracted "+SavedQTY+" blocks");
-			held.stackTagCompound.setInteger(KEY_ITEM, SavedID); 
-			held.stackTagCompound.setInteger(KEY_QTY, SavedQTY);
-			held.stackTagCompound.setInteger(KEY_DMG, SavedDMG); 
+			//Chat.addMessage(event.entityPlayer, "Wand extracted "+SavedQTY+" blocks");
+			held.getTagCompound().setInteger(KEY_ITEM, SavedID); 
+			held.getTagCompound().setInteger(KEY_QTY, SavedQTY);
+			held.getTagCompound().setInteger(KEY_DMG, SavedDMG); 
 		} 
 		
 		toggleNextMode(held);//dont stay on extract
@@ -425,6 +430,5 @@ public class ItemWandBuilding //extends ItemTool
     public boolean hasEffect(ItemStack par1ItemStack)
     {
     	return true;
-    } 
-    */
+    }  
 }
