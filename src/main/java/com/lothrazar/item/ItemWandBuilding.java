@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random; 
 import com.google.common.collect.Sets; 
 import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.util.SamsRegistry;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -21,6 +22,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
@@ -69,9 +71,8 @@ public class ItemWandBuilding extends ItemTool
 	
 	public static void Init()
 	{ 
-		itemWand = new ItemWandBuilding();
-		itemWand.setUnlocalizedName("wand_building");//.setTextureName(ModSamsContent.MODID+":wand_building");
-		GameRegistry.registerItem(itemWand, "wand_building" );   
+		itemWand = new ItemWandBuilding(); 
+		SamsRegistry.registerItem(itemWand, "wand_building" );   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "
@@ -191,9 +192,7 @@ public class ItemWandBuilding extends ItemTool
 	}
 		 
 	public static void onPlayerLeftClick(PlayerInteractEvent event)
-  	{   
-		//Relay.addChatMessage(event.entityPlayer, "buildnig wand left click");
-
+  	{    
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		setCompoundIfNull(held);
 
@@ -242,7 +241,7 @@ public class ItemWandBuilding extends ItemTool
 		
 		if(newMode != null && currentMode.equals(newMode) == false)
 		{
-			//Chat.addMessage(event.entityPlayer, "Wand mode : "+newMode);
+			event.entityPlayer.addChatMessage(new ChatComponentTranslation( "Wand mode : "+newMode)); 
 		} 
   	}
 	 
@@ -300,18 +299,15 @@ public class ItemWandBuilding extends ItemTool
 		if(drop != null) 
 		{  
 			EntityItem entityitemDrop = new EntityItem(event.entityPlayer.worldObj,event.pos.getX(),event.pos.getY(),event.pos.getZ(), drop);
- 
-			//entityitemDrop.delayBeforeCanPickup = 10;
+  
 			entityitemDrop.setPickupDelay(10);
-		   // Relay.addChatMessage(event.entityPlayer,"drop one "+blockClicked.getUnlocalizedName());
-			//drop item pops it out at my location
+
+	//drop item pops it out at my location
 			event.entity.entityDropItem(drop, 1);//quantity = 1
 			
 			//something ws done. do the thing.
 			 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
-		} 
-		
-		
+		}  
 	}
 
 	private static void doDump(PlayerInteractEvent event, ItemStack held) 
@@ -407,7 +403,8 @@ public class ItemWandBuilding extends ItemTool
 		
 		if(SavedID > 0)
 		{ 
-			//Chat.addMessage(event.entityPlayer, "Wand extracted "+SavedQTY+" blocks");
+
+			event.entityPlayer.addChatMessage(new ChatComponentTranslation( "Wand extracted "+SavedQTY+" blocks"));  
 			held.getTagCompound().setInteger(KEY_ITEM, SavedID); 
 			held.getTagCompound().setInteger(KEY_QTY, SavedQTY);
 			held.getTagCompound().setInteger(KEY_DMG, SavedDMG); 
