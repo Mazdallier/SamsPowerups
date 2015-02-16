@@ -25,16 +25,9 @@ import net.minecraftforge.common.config.Property;
 
 public class ItemRunestone extends ItemFood // was previously ItemTool, and durability declined as you held it 
 {   
-	private static ItemRunestone rune_resistance;
-	private static ItemRunestone rune_jump;
+	private static ItemRunestone rune_resistance; 
 	private static ItemRunestone rune_goldheart;
-	private static ItemRunestone rune_haste;
-	private static ItemRunestone rune_water;
-	private static ItemRunestone rune_speed;
-	private static ItemRunestone rune_fire;
-	//private static 	int FLYING = -99;//this key identifier tells me its not a built in potion effect
-	//private static 	int HORSE = -50;//this key identifier tells me its not a built in potion effect
-
+	private static ItemRunestone rune_haste; 
  
 	private boolean shimmerEffect = true; 
 
@@ -97,20 +90,15 @@ public class ItemRunestone extends ItemFood // was previously ItemTool, and dura
 				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_haste,
 				new ItemStack(Items.nether_star, 1), 0);
-		
-		/*
-		rune_goldheart = new ItemRunestone(
-				new int[] { Reference.potion_HEALTH_BOOST }, new int[] { V },
-				not_shiny); 
+		 
+		rune_goldheart = new ItemRunestone(Reference.potion_HEALTH_BOOST , V ,	not_shiny); 
 		SamsRegistry.registerItem(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
 				"eee", 
 				'e', Blocks.gold_block, 
 				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_goldheart, new ItemStack(
-				Items.nether_star, 1), 0);
-*/
- 
+				Items.nether_star, 1), 0); 
 	} 
 }
 
