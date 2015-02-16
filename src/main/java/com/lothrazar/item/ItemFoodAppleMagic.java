@@ -31,7 +31,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
 	private ArrayList<Integer> _potionIds;
 	private ArrayList<Integer> _potionDurations;
-	private ArrayList<Integer> _potionAmplifiers;
+	private ArrayList<Integer> _potionAmplifiers;;
 	 
 	public ItemFoodAppleMagic(int fillsHunger,boolean has_effect)
 	{  
@@ -39,8 +39,8 @@ public class ItemFoodAppleMagic extends ItemFood
  
 		_hasEffect = has_effect;//true gives it enchantment shine
 
-		//can eat even if full hunger
-		this.setAlwaysEdible(); 
+		
+		this.setAlwaysEdible(); //can eat even if full hunger
 		_potionIds = new ArrayList<Integer>();
 		_potionDurations = new ArrayList<Integer>();
 		_potionAmplifiers = new ArrayList<Integer>();
@@ -101,7 +101,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
 	public static void initChocolate()
 	{
-		// this one is less powerful, no gold required
+		// this one is less powerful, no gold required.,
 		//MINI potion
 		apple_chocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger 
 		apple_chocolate.addEffect(Reference.potion_SPEED, 45, II); 

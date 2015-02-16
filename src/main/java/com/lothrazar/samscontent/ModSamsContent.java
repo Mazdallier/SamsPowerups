@@ -161,6 +161,8 @@ public class ModSamsContent
 		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
  
 		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+		
+		ItemRunestone.initRunestones();
 	}
 
 	@EventHandler
@@ -177,26 +179,20 @@ public class ModSamsContent
 		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
 		 
 		if(ModSamsContent.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
-
-
-		
-		//TODO : config entries for these two
-		
+  
 		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
+		
 		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
 		
 	}
  
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
-	{     
-		
+	{      
 		ChestGen.AddHooks();//internally it has several segments that check the config file
-		
-		
+		 
   		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
-
-		
+ 
   		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
 
 		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
