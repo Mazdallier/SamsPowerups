@@ -1,11 +1,10 @@
-/*
 package com.lothrazar.item;
 
 import java.util.ArrayList; 
 import com.google.common.collect.Sets;  
 import com.lothrazar.samscontent.ModSamsContent;
-import com.lothrazar.util.Reference;
-
+import com.lothrazar.util.Reference; 
+import com.lothrazar.util.SamsRegistry;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,13 +16,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-public class ItemRunestone extends ItemTool 
+public class ItemRunestone extends ItemFood // was previously ItemTool, and durability declined as you held it 
 {   
 	private static ItemRunestone rune_resistance;
 	private static ItemRunestone rune_jump;
@@ -35,7 +35,7 @@ public class ItemRunestone extends ItemTool
 	//private static 	int FLYING = -99;//this key identifier tells me its not a built in potion effect
 	//private static 	int HORSE = -50;//this key identifier tells me its not a built in potion effect
 
-	public static boolean DurabilityTicksDown = false;
+	//public static boolean DurabilityTicksDown = false;
 	//public static int SLOT_RUNESTONE = 17;// TOP RIGHT
 
 	public static int RUNESTONE_DURABILITY = 90000;// 90 thousand ticks is 4500
@@ -45,15 +45,18 @@ public class ItemRunestone extends ItemTool
 	private boolean shimmerEffect = true; 
 	public int[] effects; 
 	public int[] amplifiers;
+	static int fillsHunger = 2;
+	static boolean forWolf = false;
 	
     public ItemRunestone(  int[] _effects, int[] _amplifiers,boolean shimmer)
     {
-		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 
+		super(fillsHunger,forWolf);
+
     	this.setMaxDamage(RUNESTONE_DURABILITY);
     	setMaxStackSize(1);
     	setCreativeTab(CreativeTabs.tabCombat) ; 
   
-        effects = _effects;
+        effects = _effects;   
         amplifiers = _amplifiers; 
         shimmerEffect = shimmer;
     } 
@@ -70,7 +73,7 @@ public class ItemRunestone extends ItemTool
 	{ 
 		return EnumRarity.EPIC;  //give it the purple text similar to goldapple
 	}
-	
+	/*
  
 	public static void applyRunestoneToPlayer(EntityPlayer player,	ItemStack runestone, int SLOT) 
 	{ 
@@ -125,7 +128,7 @@ public class ItemRunestone extends ItemTool
 	
  
 	 
-	 
+	 */
 
 	
 	public static void initRunestones()
@@ -145,7 +148,7 @@ public class ItemRunestone extends ItemTool
 
 		rune_jump = new ItemRunestone(new int[] { Reference.potion_JUMP },		new int[] { V }, not_shiny);
 		
-		ModSamsContent.registerItemHelper(rune_jump, "rune_jump");
+		SamsRegistry.registerItem(rune_jump, "rune_jump");
 		
 		GameRegistry.addRecipe(new ItemStack(rune_jump), "eee", "eae", "eee",
 				'e', Items.emerald // could be slime ball/block?
@@ -155,7 +158,7 @@ public class ItemRunestone extends ItemTool
 		rune_resistance = new ItemRunestone(
 				new int[] { Reference.potion_RESISTANCE }, new int[] { II },				shiny);
 	 
-		ModSamsContent.registerItemHelper(rune_resistance, "rune_resistance");
+		SamsRegistry.registerItem(rune_resistance, "rune_resistance");
  
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae",
 				"eee", 'e', Items.diamond, 'a', Items.nether_star);
@@ -166,7 +169,7 @@ public class ItemRunestone extends ItemTool
 				new int[] { Reference.potion_HEALTH_BOOST }, new int[] { V },
 				not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_goldheart, "rune_goldheart"); 
+		SamsRegistry.registerItem(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
 				"eee", 
 				'e', Blocks.gold_block, 
@@ -176,7 +179,7 @@ public class ItemRunestone extends ItemTool
 
 		rune_haste = new ItemRunestone(new int[] { Reference.potion_HASTE }, new int[] { II  }, not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_haste, "rune_haste");
+		SamsRegistry.registerItem(rune_haste, "rune_haste");
  
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
 				'e', Blocks.redstone_block, 
@@ -189,7 +192,7 @@ public class ItemRunestone extends ItemTool
 						Reference.potion_NIGHT_VISION }, new int[] { V, II },
 				not_shiny);
 	
-		ModSamsContent.registerItemHelper(rune_water, "rune_water");
+		SamsRegistry.registerItem(rune_water, "rune_water");
 		GameRegistry.addRecipe(new ItemStack(rune_water), "eee", "eae", "eee",
 				'e', Blocks.lapis_block , 
 				'a', Items.nether_star);
@@ -199,7 +202,7 @@ public class ItemRunestone extends ItemTool
 		rune_speed = new ItemRunestone(new int[] { Reference.potion_SPEED
 				 }, new int[] { II }, not_shiny);
  
-		ModSamsContent.registerItemHelper(rune_speed, "rune_speed"); 
+		SamsRegistry.registerItem(rune_speed, "rune_speed"); 
 		GameRegistry.addRecipe(new ItemStack(rune_speed), "eee", "eae", "eee",
 				'e', Items.sugar, 
 				'a', Items.nether_star);
@@ -209,14 +212,14 @@ public class ItemRunestone extends ItemTool
 		rune_fire = new ItemRunestone(new int[] { Reference.potion_FIRERESIST },
 				new int[] { I  }, shiny);
  
-		ModSamsContent.registerItemHelper(rune_fire, "rune_fire"); 
+		SamsRegistry.registerItem(rune_fire, "rune_fire"); 
 		GameRegistry.addRecipe(new ItemStack(rune_fire), "eee", "eae", "eee",
 				'e', Items.blaze_rod, 
 				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_fire,
 				new ItemStack(Items.nether_star, 1), 0);
 	}
-
+/*
 	public static void applyHeldRunestones(EntityPlayer player)
 	{
 		//can be anywhere in the inventory except hotbar
@@ -230,6 +233,6 @@ public class ItemRunestone extends ItemTool
 			} 
 		} 
 	}
+	*/
 }
 
-*/

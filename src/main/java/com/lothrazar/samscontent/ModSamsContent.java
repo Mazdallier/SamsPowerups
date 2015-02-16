@@ -137,8 +137,11 @@ public class ModSamsContent
      	} 
  
 		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
+		
 		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
+		
 		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
+		
 		if(ModSamsContent.settings.appleEmerald) {ItemFoodAppleMagic.initEmerald();}
 
 		if(ModSamsContent.settings.appleDiamond) {ItemFoodAppleMagic.initDiamond();}
@@ -148,12 +151,15 @@ public class ModSamsContent
 		if(ModSamsContent.settings.appleChocolate) {ItemFoodAppleMagic.initChocolate();}
   
 		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
+		
 		if(ModSamsContent.settings.gameruleBlockRegen){ BlockCommandBlockCraftable.initRegen();} 
+		
 		if(ModSamsContent.settings.gameruleBlockDaylight){ BlockCommandBlockCraftable.initDaylight();}
+		
 		if(ModSamsContent.settings.gameruleBlockFiretick){ BlockCommandBlockCraftable.initFiretick();}
+		
 		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
-		
-		
+ 
 		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
 	}
 
