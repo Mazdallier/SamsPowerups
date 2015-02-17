@@ -31,6 +31,16 @@ public class SamsRegistry
 		 
 		 setTextureNameForItem(s, name); 
 	 }
+	 
+	 //in case texture and id do not match````````````
+	 public static void registerItem(Item s, String name, String diffTexture)
+	 {  
+		 s.setUnlocalizedName(name);
+		 
+		 GameRegistry.registerItem(s, name);
+		 
+		 setTextureNameForItem(s, diffTexture); 
+	 }
 
 	    public static ArrayList<Item> delay = new ArrayList<Item>();
 	    public static ArrayList<String> delayNames = new ArrayList<String>();

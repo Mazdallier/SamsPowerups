@@ -25,20 +25,20 @@ import net.minecraftforge.common.config.Property;
 
 public class ItemRunestone extends ItemFood // was previously ItemTool, and durability declined as you held it 
 {   
-	private static ItemRunestone rune_resistance; 
-	private static ItemRunestone rune_goldheart;
-	private static ItemRunestone rune_haste; 
+	private static ItemRunestone rune_all;
  
 	private boolean shimmerEffect = true; 
 
 	static int fillsHunger = 2;
 	static boolean forWolf = false;
 	
-    public ItemRunestone(  int effect, int amplifier, boolean shimmer)
+    public ItemRunestone(  int effect, int timeInSeconds, int amplifier, boolean shimmer)
     {
 		super(fillsHunger,forWolf);
 		
-		this.setPotionEffect(effect, 6000, amplifier, 1);
+		int percentChance = 1;//on scale of [0,1]
+		
+		this.setPotionEffect(effect, timeInSeconds, amplifier, percentChance);
 
 		this.setAlwaysEdible(); //can eat even if full hunger 
     	setMaxStackSize(64);
@@ -74,8 +74,11 @@ public class ItemRunestone extends ItemFood // was previously ItemTool, and dura
 		//the only thing i want to do is positive effects that are in a beacon but not in potion form at all
 		//so, there is no potion for haste or resistance
  
-		
-		rune_resistance = new ItemRunestone(Reference.potion_RESISTANCE ,  II ,				shiny); 
+		int MINUTE = 60;
+
+		int ONE_HOUR = 60 * MINUTE;
+		/*
+		rune_resistance = new ItemRunestone(Reference.potion_RESISTANCE ,ONE_HOUR,  II ,				shiny); 
 		SamsRegistry.registerItem(rune_resistance, "rune_resistance"); 
 		GameRegistry.addRecipe(new ItemStack(rune_resistance), "eee", "eae",
 				"eee", 'e', Items.diamond, 'a', Items.nether_star);
@@ -83,7 +86,7 @@ public class ItemRunestone extends ItemFood // was previously ItemTool, and dura
 				Items.nether_star, 1), 0);
 
 		
-		rune_haste = new ItemRunestone(Reference.potion_HASTE ,  II  , not_shiny);
+		rune_haste = new ItemRunestone(Reference.potion_HASTE ,ONE_HOUR,  II  , not_shiny);
 		SamsRegistry.registerItem(rune_haste, "rune_haste");
 		GameRegistry.addRecipe(new ItemStack(rune_haste), "eee", "eae", "eee",
 				'e', Blocks.redstone_block, 
@@ -91,7 +94,7 @@ public class ItemRunestone extends ItemFood // was previously ItemTool, and dura
 		GameRegistry.addSmelting(rune_haste,
 				new ItemStack(Items.nether_star, 1), 0);
 		 
-		rune_goldheart = new ItemRunestone(Reference.potion_HEALTH_BOOST , V ,	not_shiny); 
+		rune_goldheart = new ItemRunestone(Reference.potion_HEALTH_BOOST ,5 * MINUTE, V ,	not_shiny); 
 		SamsRegistry.registerItem(rune_goldheart, "rune_goldheart"); 
 		GameRegistry.addRecipe(new ItemStack(rune_goldheart), "eee", "eae",
 				"eee", 
@@ -99,6 +102,7 @@ public class ItemRunestone extends ItemFood // was previously ItemTool, and dura
 				'a', Items.nether_star);
 		GameRegistry.addSmelting(rune_goldheart, new ItemStack(
 				Items.nether_star, 1), 0); 
+				*/
 	} 
 }
 

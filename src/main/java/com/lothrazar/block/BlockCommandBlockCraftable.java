@@ -24,10 +24,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class BlockCommandBlockCraftable extends BlockCommandBlock
-{ 
-	
-	//TODO http://minecraft.gamepedia.com/Commands#gamerule
-	//TODO: just go ahead might as well add one for every rule. each one will be in the config file to turn off
+{  
 	public static enum CommandType
 	{
 		Teleport, Gamerule, Weather
@@ -108,9 +105,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	
 	        	//toggle it based on previous value
 				lastVal = (lastVal.equals("false")) ? "true" : "false";  
-	
-				//Chat.addMessage(w, rule+" = "+lastVal);  
-		        
+	 
 	            command = "/gamerule "+ rule +" "+lastVal;
 	            
 	        	break;
@@ -218,9 +213,5 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 		GameRegistry.addRecipe(new ItemStack(command_block_weather), "rcr", "tet",
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
-	}
-	
-	 
-	
-	 
+	} 
 }

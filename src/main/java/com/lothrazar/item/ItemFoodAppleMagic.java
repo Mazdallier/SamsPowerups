@@ -11,32 +11,42 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class ItemFoodAppleMagic extends ItemFood
 {  
+	public static enum MagicType
+	{
+		Potion, Flying, Hearts
+	}
 	private static ItemFoodAppleMagic apple_emerald;
+	private static ItemFoodAppleMagic apple_emerald_rich;
 	private static ItemFoodAppleMagic apple_diamond;
+	private static ItemFoodAppleMagic apple_diamond_rich;
 	private static ItemFoodAppleMagic apple_lapis;
+	private static ItemFoodAppleMagic apple_lapis_rich;
 	private static ItemFoodAppleMagic apple_chocolate;
-  
+	private static ItemFoodAppleMagic apple_chocolate_rich;
+	private static ItemFoodAppleMagic apple_nether_star;
 	private boolean _hasEffect = false;
 
 	private ArrayList<Integer> _potionIds;
 	private ArrayList<Integer> _potionDurations;
 	private ArrayList<Integer> _potionAmplifiers;;
-	 
-	public ItemFoodAppleMagic(int fillsHunger,boolean has_effect)
+	private MagicType type;
+	public ItemFoodAppleMagic(MagicType ptype, int fillsHunger,boolean has_effect)
 	{  
 		super(fillsHunger,false);// fills 1 hunger (very small i know), and is not edible by wolf
- 
+		type = ptype;
 		_hasEffect = has_effect;//true gives it enchantment shine
 
 		
@@ -59,16 +69,34 @@ public class ItemFoodAppleMagic extends ItemFood
 	
 	@Override
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {  
-		//by default the food (such as gold apple) such only has a SINGLe potion effect.
-		//we override to do multiple
+    {   
 	  	if (!par2World.isRemote  )
         { 
-			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName()); 
-			
-	  		for(int i = 0; i < _potionIds.size(); i++) //for(PotionEffect p : effects)
+	  		if(MagicType.Potion == this.type)
 	  		{ 
-	  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
+				SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName()); 
+				
+		  		for(int i = 0; i < _potionIds.size(); i++)  
+		  		{ 
+		  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
+		  		} 
+	  		}
+	  		else if(MagicType.Flying == this.type)
+	  		{
+	  			par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("TODOFLY"));
+	  			//TOGGLE NBT here, up to max of 4, that gets read in on player tick for 
+//the fly logic, same as the old blanket buff for all players
+	  		
+	  		}
+	  		else if(MagicType.Hearts == this.type)
+	  		{
+	  			par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("TODOFLY"));
+	  		
+	  			//increment NBT here, up to max of 4, that gets read in on player tick for the persisting buff
+	  		}
+	  		else  
+	  		{
+	  			par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("UNKNOWNTYPE"));
 	  		}
         } 
     }
@@ -95,65 +123,101 @@ public class ItemFoodAppleMagic extends ItemFood
 	static int IV = 3;
 	static int V = 4;
 	
+	static int timeShort = 90; // 1:30
+	static int timeLong = 8 * 60;// 8:00
 
-		//there is no Potion of resistance-only beacon. so. could do that? chocolate shiny?
- 
-
+	static int hungerSmall = 1;
+	static int hungerLarge = 4; //how much it fills us up
+	 
+	//static int id_horse = -1;
+	 
 	public static void initChocolate()
 	{
 		// this one is less powerful, no gold required.,
 		//MINI potion
-		apple_chocolate = new ItemFoodAppleMagic(4, false); // 4 is the hunger 
-		apple_chocolate.addEffect(Reference.potion_SPEED, 45, II); 
+		apple_chocolate = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, false); // 4 is the hunger 
+		apple_chocolate.addEffect(Reference.potion_HASTE, timeShort, II); 
 		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
 		GameRegistry.addRecipe(new ItemStack(apple_chocolate)
 				, "eee", "eae",	"eee"
 				, 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
 				, 'a', Items.apple);
+		
+
+		apple_chocolate_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, true); // 4 is the hunger 
+		apple_chocolate_rich.addEffect(Reference.potion_HASTE, timeLong, I); 
+		SamsRegistry.registerItem(apple_chocolate_rich, "apple_chocolate_rich", "apple_chocolate");
+		GameRegistry.addRecipe(new ItemStack(apple_chocolate_rich)
+				, "eee", "eae",	"eee"
+				, 'e', new ItemStack(Items.cookie)  
+				, 'a', Items.apple);
 	}
 
 	public static void initLapis()
-	{ 
-		int potionTimeSeconds = 60 * 8; 
-
-		apple_lapis = new ItemFoodAppleMagic(1, false);
-		apple_lapis.addEffect(Reference.potion_HASTE, potionTimeSeconds, II);
-  
+	{  
+		apple_lapis = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
+		apple_lapis.addEffect(Reference.potion_RESISTANCE, timeShort, II); 
 		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
 		GameRegistry.addRecipe(new ItemStack(apple_lapis)
 				, "lll","lal","lll"  
 				,'l', new ItemStack(Items.dye, 1, Reference.dye_lapis)  
 				,'a', Items.apple); 
 		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
+	
+		apple_lapis_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
+		apple_lapis_rich.addEffect(Reference.potion_RESISTANCE, timeLong, I); 
+		SamsRegistry.registerItem(apple_lapis_rich, "apple_lapis_rich", "apple_lapis");
+		GameRegistry.addRecipe(new ItemStack(apple_lapis_rich)
+				, "lll","lal","lll"  
+				,'l', Blocks.lapis_block
+				,'a', Items.apple); 
+		GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft
+	 
 	}
+ 
+	public static void initEmerald()
+	{  
+		apple_emerald = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
+		apple_emerald.addEffect(Reference.potion_absorption, timeShort, IV); 
+		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
+		GameRegistry.addRecipe(new ItemStack(apple_emerald)
+				, "lll","lal","lll"  
+				,'l', Items.emerald
+				,'a', Items.apple);
+		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),	0);
+		 
+		apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
+		apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, IV); 
+		SamsRegistry.registerItem(apple_emerald_rich, "apple_emerald_rich", "apple_emerald");
+		GameRegistry.addRecipe(new ItemStack(apple_emerald_rich)
+				, "lll","lal","lll"  
+				,'l', Blocks.emerald_block
+				,'a', Items.apple);
+		GameRegistry.addSmelting(apple_emerald_rich, new ItemStack(Blocks.emerald_block, 8),	0);
+	} 
 
 	public static void initDiamond()
-	{
-		//WHEN WE EAT APPLE_DIAMOND we want to fly (PERMANENT, UNTIL DEATH - also put on F3 !!!)
-		 
-		apple_diamond = new ItemFoodAppleMagic(1, true);  
+	{ 
+		apple_diamond = new ItemFoodAppleMagic(MagicType.Hearts,hungerSmall, true);  
 
 		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
 		GameRegistry.addRecipe(new ItemStack(apple_diamond)
 				, "lll","lal","lll"  
 				,'l', Items.diamond
 				,'a', Items.apple); 
-		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),
-				0);// getcha that diamond back
+		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),	0); 
 	}
 
-	public static void initEmerald()
-	{ 
-		//PERMANENT HEALTH B OOST when we eat apple_emerald
-		
-		apple_emerald = new ItemFoodAppleMagic(1, false);
-	 
-		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
-		GameRegistry.addRecipe(new ItemStack(apple_emerald)
-				, "lll","lal","lll"  
-				,'l', Items.emerald
-				,'a', Items.apple);
-		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),
-				0);
+	public static void initNether()
+	{  
+		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
+
+		SamsRegistry.registerItem(apple_nether_star, "rune_fire");
+		GameRegistry.addShapelessRecipe(new ItemStack(apple_nether_star)
+				 
+				, Items.nether_star
+				, Items.apple); 
+		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.nether_star, 1),	0); 
+	
 	} 
 }
