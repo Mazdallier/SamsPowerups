@@ -5,7 +5,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -26,13 +28,13 @@ public class HandlerRichAnimals
 		if(isPet(event.entity))
 		{
 			System.out.println(event.entity.getCustomNameTag());
-			System.out.println(event.entity.getCustomNameTag());
+			System.out.println(event.entity.getName());
 			System.out.println(event.entity.getCustomNameTag());
 			
 			if(event.entity.getCustomNameTag() != event.entity.getName())
 			{
 				ItemStack nt = new ItemStack(Items.name_tag);
-				nt.getTagCompound().setString("test", "test");
+				nt.getTagCompound().setString("test", "test");//TODO?ID?TAG OF ITEM?
 				
 				EntityItem tag = new EntityItem(event.entity.worldObj, event.entity.posX, event.entity.posY, event.entity.posZ, nt);
 				 
@@ -56,10 +58,7 @@ public class HandlerRichAnimals
 				//nope, was not killed by player
 				event.drops.clear();//so the cow/whatever drops nothing.
 			}
-		}
-		 
-		
-	
+		} 
 	}
 
 	@SubscribeEvent
@@ -78,6 +77,22 @@ public class HandlerRichAnimals
 					System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
 					System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
 					System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
+					
+					if(sheep.getSheared() == false)
+					{
+						EnumDyeColor dye = sheep.getFleeceColor();
+						
+						int dc=0;
+						if(dye == EnumDyeColor.BLACK) dc = 15;//TODO: all colors , 
+						//if this works
+						//and if we want to keep the feature at all
+						
+						
+						event.entityPlayer.dropItem(new ItemStack(Blocks.wool,5,dc), true, true);
+
+
+					}
+					
 				}
 			}
 		}

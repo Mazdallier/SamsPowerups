@@ -27,6 +27,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -36,6 +38,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -55,6 +58,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -83,7 +87,7 @@ public class ModSamsContent
 		authorList.add("Lothrazar");
 		mcinfo.authorList = authorList;
 	}
- 
+
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
@@ -106,6 +110,62 @@ public class ModSamsContent
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{      
+		//just an example list of valid values
+	 /*
+		public static BiomeGenBase[] biomes = new BiomeGenBase[]{BiomeGenBase.plains, BiomeGenBase.extremeHills, BiomeGenBase.beach, BiomeGenBase.desert,
+		BiomeGenBase.desertHills, BiomeGenBase.extremeHillsEdge, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.icePlains, BiomeGenBase.iceMountains, BiomeGenBase.river,
+		BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, BiomeGenBase.coldBeach, BiomeGenBase.coldTaiga, BiomeGenBase.coldTaigaHills, BiomeGenBase.deepOcean,
+		BiomeGenBase.extremeHillsPlus, BiomeGenBase.jungleEdge, BiomeGenBase.megaTaiga, BiomeGenBase.megaTaigaHills, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.mesaPlateau_F
+		, BiomeGenBase.roofedForest, BiomeGenBase.savanna, BiomeGenBase.savannaPlateau, BiomeGenBase.stoneBeach}; 
+*/
+		int group = 3;
+		int min = 1;
+		int max = 4; 
+		//TODO : Config file entries for these. and submethod...
+		EntityRegistry.addSpawn(EntityBlaze.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desertHills} );
+
+		max = 1; 
+		EntityRegistry.addSpawn(EntityMagmaCube.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desert} );
+		
+		//cave spider - MESA 
+		//cave spider and the dark oak mushroom forest 
+		// snowman -  icePlains
+		//golem - rare in jungle/??
+		//   villager maybe in extreme hills? like he is hunting for emeralds? yes yes! will probably die anyway- no problem. same risk happens in villagey ones
+		//ghast in DEEP ocean
+		//horse in -  ?roofedForest ?? (Horses and donkeys only spawn in plains and savannas.  )
+		
+		
+		//EnumCreatureType.AMBIENT//TODO: more bas:??
+		
+		
+		//TODO: can we spawn zombie horse?
+		//yeah i think we can in the sapwn event and roll a dice and check the biome
+		//http://www.minecraftforge.net/forum/index.php?topic=8937.0
+		//and then just tag all biome horses as the undead type
+		//LivingSpawnEvent
+		
+		//TODO: also feature:
+		//make villagers/dogs/cats immune to FALL DAMAGE.
+		//possibly drowning and cactus?
+		/*
+		 * LivingFallEvent
+		A LivingFallEvent is triggered when an entity has fallen.
+		Fields:
+		float distance - the distance an entity fell
+		LivingHurtEvent
+		A LivingHurtEvent is triggered when an entity is hurt by any valid DamageSource. Such sources include; fire, lava, drowing, starvation, touching a cactus, falling, etc. For a full list of damage sources see the class net.minecraft.src.DamageSource.
+		Fields:
+		DamageSource source
+		the source of the damage(type)
+		int amount
+		the amount of damage inflicted*/
+		
+		
+		/*Tamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3,Tame:1}
+Untamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3}
+Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
+Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		ChestGen.AddHooks();//internally it has several segments that check the config file
 		 
   		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
