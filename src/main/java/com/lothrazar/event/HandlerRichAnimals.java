@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -27,13 +28,15 @@ public class HandlerRichAnimals
 	{
 		if(isPet(event.entity))
 		{
-			System.out.println(event.entity.getCustomNameTag());
-			System.out.println(event.entity.getName());
-			System.out.println(event.entity.getCustomNameTag());
+			System.out.println(event.entity.getCustomNameTag());//blank if no nametag
+			System.out.println(event.entity.getName());// "Wolf"
 			
-			if(event.entity.getCustomNameTag() != event.entity.getName())
+			if(event.entity.getCustomNameTag() != null && 
+			   event.entity.getCustomNameTag() != ""   //so it HAS a nametag
+			   )// nah// event.entity.getCustomNameTag() != event.entity.getName()
 			{
 				ItemStack nt = new ItemStack(Items.name_tag);
+				if(nt.getTagCompound()==null){nt.setTagCompound(new NBTTagCompound());}
 				nt.getTagCompound().setString("test", "test");//TODO?ID?TAG OF ITEM?
 				
 				EntityItem tag = new EntityItem(event.entity.worldObj, event.entity.posX, event.entity.posY, event.entity.posZ, nt);
