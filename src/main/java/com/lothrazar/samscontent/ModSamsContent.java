@@ -29,7 +29,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.*; 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -112,11 +112,21 @@ public class ModSamsContent
 	{      
 		//just an example list of valid values
 	 /*
-		public static BiomeGenBase[] biomes = new BiomeGenBase[]{BiomeGenBase.plains, BiomeGenBase.extremeHills, BiomeGenBase.beach, BiomeGenBase.desert,
-		BiomeGenBase.desertHills, BiomeGenBase.extremeHillsEdge, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.icePlains, BiomeGenBase.iceMountains, BiomeGenBase.river,
-		BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, BiomeGenBase.coldBeach, BiomeGenBase.coldTaiga, BiomeGenBase.coldTaigaHills, BiomeGenBase.deepOcean,
-		BiomeGenBase.extremeHillsPlus, BiomeGenBase.jungleEdge, BiomeGenBase.megaTaiga, BiomeGenBase.megaTaigaHills, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.mesaPlateau_F
-		, BiomeGenBase.roofedForest, BiomeGenBase.savanna, BiomeGenBase.savannaPlateau, BiomeGenBase.stoneBeach}; 
+	
+
+		BiomeGenBase.plains, BiomeGenBase.extremeHills, BiomeGenBase.beach, BiomeGenBase.desert,
+		BiomeGenBase.desertHills, BiomeGenBase.extremeHillsEdge, 
+		BiomeGenBase.forest, BiomeGenBase.forestHills, 
+		BiomeGenBase.icePlains, BiomeGenBase.iceMountains, BiomeGenBase.river,
+		BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, 
+		BiomeGenBase.coldBeach, BiomeGenBase.coldTaiga, 
+		BiomeGenBase.coldTaigaHills, BiomeGenBase.deepOcean,
+		BiomeGenBase.extremeHillsPlus, BiomeGenBase.jungleEdge, 
+		BiomeGenBase.megaTaiga, BiomeGenBase.megaTaigaHills, 
+		BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, 
+		BiomeGenBase.mesaPlateau_F
+		, BiomeGenBase.roofedForest, BiomeGenBase.savanna, 
+		BiomeGenBase.savannaPlateau, BiomeGenBase.stoneBeach}; 
 */
 		int group = 3;
 		int min = 1;
@@ -126,18 +136,31 @@ public class ModSamsContent
 
 		max = 1; 
 		EntityRegistry.addSpawn(EntityMagmaCube.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desert} );
+		 
+		EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.mesa} );
+		EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.roofedForest} );
 		
-		//cave spider - MESA 
-		//cave spider and the dark oak mushroom forest 
-		// snowman -  icePlains
+ 
+		EntityRegistry.addSpawn(EntitySnowman.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.iceMountains} );
+		
 		//golem - rare in jungle/??
 		//   villager maybe in extreme hills? like he is hunting for emeralds? yes yes! will probably die anyway- no problem. same risk happens in villagey ones
-		//ghast in DEEP ocean
-		//horse in -  ?roofedForest ?? (Horses and donkeys only spawn in plains and savannas.  )
+ 
 		
+		
+		EntityRegistry.addSpawn(EntityGhast.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.deepOcean} );
+
+		//existing horses only spawn in plains and savanah
+		//horses dont like trees, so biomes without them makes sense. ocean means those little islands
+		EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.icePlains} );
+		EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.deepOcean} );
+		
+		//WOLVES only spawn naturally in forest, taiga, mega taiga, cold taiga, and cold taiga M
+		
+		//i feel like i should add something to extreme hills, but what. not ghasts again
 		
 		//EnumCreatureType.AMBIENT//TODO: more bas:??
-		
+ 
 		
 		//TODO: can we spawn zombie horse?
 		//yeah i think we can in the sapwn event and roll a dice and check the biome

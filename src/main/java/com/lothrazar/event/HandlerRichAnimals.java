@@ -47,9 +47,11 @@ public class HandlerRichAnimals
 		
 		if(isLivestock(event.entity))
 		{
+			System.out.println("livestock death");
 			if(event.source.getSourceOfDamage() != null 
 					&& event.source.getSourceOfDamage() instanceof EntityPlayer ) 
 			{ 
+				System.out.println("player drops");
 				for(EntityItem ei : event.drops)
 				{
 					//its all the same, just mult up the size
@@ -58,6 +60,7 @@ public class HandlerRichAnimals
 			}
 			else
 			{
+				//System.out.println("not from player");
 				//nope, was not killed by player
 				event.drops.clear();//so the cow/whatever drops nothing.
 			}
@@ -69,17 +72,18 @@ public class HandlerRichAnimals
 	{
 		if(event.entity instanceof EntitySheep)
 		{ 
+			System.out.println("entity interact sheep");
+		
 			if(event.entityPlayer.getCurrentEquippedItem() != null)
 			{
 				ItemStack h = event.entityPlayer.getCurrentEquippedItem();
 				
 				if(h.getItem() == Items.shears)
 				{
+					System.out.println("shears detected");
 					EntitySheep sheep = (EntitySheep)event.entity;
 					
-					System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
-					System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
-					System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
+					 System.out.println("YOu sheared sheep. TODO is to double wool output == "+ sheep.getSheared());
 					
 					if(sheep.getSheared() == false)
 					{
