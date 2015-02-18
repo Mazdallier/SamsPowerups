@@ -110,6 +110,105 @@ public class ModSamsContent
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{      
+		initExtraMobSpawning();
+
+		initExtraVillagerTrading();
+		
+		ChestGen.AddHooks();//internally it has several segments that check the config file
+		 
+  		initExtraRecipes(); 
+  		
+		proxy.registerRenderers();
+		//TODO: can we spawn zombie horse?
+		//yeah i think we can in the sapwn event and roll a dice and check the biome
+		//http://www.minecraftforge.net/forum/index.php?topic=8937.0
+		//and then just tag all biome horses as the undead type 
+		/*Tamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3,Tame:1}
+Untamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3}
+Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
+Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
+		//LivingSpawnEvent
+		
+		//TODO: also feature:
+		//make villagers/dogs/cats immune to FALL DAMAGE.
+		//possibly drowning and cactus?
+		/*
+		 * LivingFallEvent
+		A LivingFallEvent is triggered when an entity has fallen.
+		Fields:
+		float distance - the distance an entity fell
+		LivingHurtEvent
+		A LivingHurtEvent is triggered when an entity is hurt by any valid DamageSource. Such sources include; fire, lava, drowing, starvation, touching a cactus, falling, etc. For a full list of damage sources see the class net.minecraft.src.DamageSource.
+		Fields:
+		DamageSource source
+		the source of the damage(type)
+		int amount
+		the amount of damage inflicted*/
+		
+		
+   		
+	}
+
+	private void initExtraRecipes() {
+		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
+ 
+  		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
+
+		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
+		 
+	//ModSamsContent.settings.runestones//TODO
+		//if(true) { ItemRunestone.initRunestones(); }
+		 
+		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
+		  
+		if(ModSamsContent.settings.craftableMobHeads) 	{Recipes.mobHeads();	}
+  
+		if(ModSamsContent.settings.craftableBonemealColouredWool)  {Recipes.bonemealWool();}
+	  
+		if(ModSamsContent.settings.craftableTransmuteRecords)   { Recipes.records();}
+		  
+		if(ModSamsContent.settings.craftableFlatDoubleSlab) { Recipes.doubleSlabsFlat();}
+		 
+   		if(ModSamsContent.settings.uncraftGeneral) { Recipes.uncrafting();}
+
+		
+ 
+		Recipes.smoothstoneRequired();
+		
+		//MobSpawnExtras();
+		//mushroom???
+		//blocks
+		//rotate damage value 1 by 1
+		
+ 
+		//recipe shortcuts:
+		Recipes.woolDyeSavings();
+		//dye wool by 8 blocks instead of 1
+		
+		Recipes.repeaterSimple();
+		
+		//easier redstone repeater recipe, to use sticks nad redstone instead of torches
+		 //https://i.imgur.com/UqthR4k.png
+		Recipes.minecartsSimple();
+		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
+		//etc for other minecarts too
+	}
+
+	private void initExtraVillagerTrading() {
+		//TODO: find out how Forge 1.8 does trading
+		int x=0;
+		/*
+  		if(ModSamsContent.settings.moreFutureTrades)
+  		{
+	  		VillageTrading v = new VillageTrading();
+	  		
+			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
+			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
+  		}
+  		*/
+	}
+
+	private void initExtraMobSpawning() {
 		//just an example list of valid values
 	 /*
 	
@@ -174,90 +273,6 @@ public class ModSamsContent
 		//i feel like i should add something to extreme hills, but what. not ghasts again
 		
 		//EnumCreatureType.AMBIENT//TODO: more bas:??
- 
-		
-		//TODO: can we spawn zombie horse?
-		//yeah i think we can in the sapwn event and roll a dice and check the biome
-		//http://www.minecraftforge.net/forum/index.php?topic=8937.0
-		//and then just tag all biome horses as the undead type
-		//LivingSpawnEvent
-		
-		//TODO: also feature:
-		//make villagers/dogs/cats immune to FALL DAMAGE.
-		//possibly drowning and cactus?
-		/*
-		 * LivingFallEvent
-		A LivingFallEvent is triggered when an entity has fallen.
-		Fields:
-		float distance - the distance an entity fell
-		LivingHurtEvent
-		A LivingHurtEvent is triggered when an entity is hurt by any valid DamageSource. Such sources include; fire, lava, drowing, starvation, touching a cactus, falling, etc. For a full list of damage sources see the class net.minecraft.src.DamageSource.
-		Fields:
-		DamageSource source
-		the source of the damage(type)
-		int amount
-		the amount of damage inflicted*/
-		
-		
-		/*Tamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3,Tame:1}
-Untamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3}
-Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
-Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
-		ChestGen.AddHooks();//internally it has several segments that check the config file
-		 
-  		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
- 
-  		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
-
-		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
-		 
-	//ModSamsContent.settings.runestones//TODO
-		if(true) { ItemRunestone.initRunestones(); }
-		 
-		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
-		  
-		if(ModSamsContent.settings.craftableMobHeads) 	{Recipes.mobHeads();	}
-  
-		if(ModSamsContent.settings.craftableBonemealColouredWool)  {Recipes.bonemealWool();}
-	  
-		if(ModSamsContent.settings.craftableTransmuteRecords)   { Recipes.records();}
-		  
-		if(ModSamsContent.settings.craftableFlatDoubleSlab) { Recipes.doubleSlabsFlat();}
-		 
-   		if(ModSamsContent.settings.uncraftGeneral) { Recipes.uncrafting();}
-   
-		proxy.registerRenderers();
-		//TODO: find out how Forge 1.8 does trading
-		/*
-  		if(ModSamsContent.settings.moreFutureTrades)
-  		{
-	  		VillageTrading v = new VillageTrading();
-	  		
-			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
-			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
-  		}
-  		*/
- 
-		Recipes.smoothstoneRequired();
-		
-		//MobSpawnExtras();
-		//mushroom???
-		//blocks
-		//rotate damage value 1 by 1
-		
- 
-		//recipe shortcuts:
-		Recipes.woolDyeSavings();
-		//dye wool by 8 blocks instead of 1
-		
-		Recipes.repeaterSimple();
-		
-		//easier redstone repeater recipe, to use sticks nad redstone instead of torches
-		 //https://i.imgur.com/UqthR4k.png
-		Recipes.minecartsSimple();
-		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
-		//etc for other minecarts too
-   		
 	}
 
 	@EventHandler
