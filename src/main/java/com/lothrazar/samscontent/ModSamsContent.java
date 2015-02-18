@@ -225,6 +225,12 @@ public class ModSamsContent
 	
 	private void registerItemsBlocks() 
 	{
+		
+		//IDEAS ABOUND:
+		//using public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
+		//blocks that do things to players/mobs . such as
+		//spikes-damage/shear sheep/milk cow/breed or feed animals/etc?
+		
 		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
 		
 		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
