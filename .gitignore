@@ -10,13 +10,9 @@ config/
 .settings/
 gradlew
 gradlew.bat
-server.properties
-*.txt
-*.json
-*.bat
+server.properties 
 gradle/
-*.properties
-*.gradle
+*.properties 
 .gradle/
 screenshots/
 .settings/
