@@ -64,6 +64,15 @@ public class ConfigFile
 	public boolean debugHorseInfo;
 	public boolean debugMinified;
 	public boolean debugVillageInfo;
+	public boolean spawnBlazeDesertHills;
+	public boolean spawnMagmaCubeDesert;
+	public boolean spawnCaveSpiderMesa;
+	public boolean spawnCaveSpiderRoofedForest;
+	public boolean spawnSnowgolemsIceMountains;
+	public boolean spawnGhastDeepOcean;
+	public boolean spawnHorseIcePlains;
+	public boolean spawnHorseOceanIslands;
+	public boolean spawnHorseExtremeHills;
 
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
@@ -297,7 +306,38 @@ public class ConfigFile
 		
 
 /*********************************************************************************************/
-		 
+
+		category = "spawning";
+
+		spawnBlazeDesertHills = ModSamsContent.config.getBoolean("spawn.BlazeDesertHills",category, true,
+    			". "
+    		);
+		spawnMagmaCubeDesert = ModSamsContent.config.getBoolean("spawn.MagmaCubeDesert",category, true,
+    			". "
+    		);
+		spawnCaveSpiderMesa = ModSamsContent.config.getBoolean("spawn.CaveSpiderMesa",category, true,
+    			". "
+    		);
+		spawnCaveSpiderRoofedForest = ModSamsContent.config.getBoolean("spawn.CaveSpiderRoofedForest",category, true,
+    			". "
+    		);
+		spawnSnowgolemsIceMountains = ModSamsContent.config.getBoolean("spawn.SnowgolemsIceMountains",category, true,
+    			". "
+    		);
+		spawnGhastDeepOcean = ModSamsContent.config.getBoolean("spawn.GhastDeepOcean",category, true,
+    			". "
+    		);
+		spawnHorseIcePlains = ModSamsContent.config.getBoolean("spawn.HorseIcePlains",category, true,
+    			". "
+    		);
+		spawnHorseOceanIslands = ModSamsContent.config.getBoolean("spawn.HorseOceanIslands",category, true,
+    			". "
+    		);
+		spawnHorseExtremeHills = ModSamsContent.config.getBoolean("spawn.HorseExtremeHills",category, true,
+    			". "
+    		); 
+		
+		
 		
 		if(ModSamsContent.config.hasChanged()){ ModSamsContent.config.save(); }
 	}

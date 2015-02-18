@@ -132,31 +132,45 @@ public class ModSamsContent
 		int min = 1;
 		int max = 4; 
 		//TODO : Config file entries for these. and submethod...
-		EntityRegistry.addSpawn(EntityBlaze.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desertHills} );
+		
+		if(settings.spawnBlazeDesertHills) 
+			EntityRegistry.addSpawn(EntityBlaze.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desertHills} );
+ 
+		if(settings.spawnMagmaCubeDesert) 
+			EntityRegistry.addSpawn(EntityMagmaCube.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desert} );
 
-		max = 1; 
-		EntityRegistry.addSpawn(EntityMagmaCube.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desert} );
-		 
-		EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.mesa} );
-		EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.roofedForest} );
+		if(settings.spawnCaveSpiderMesa)
+			EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.mesa} );
+
+		if(settings.spawnCaveSpiderRoofedForest)
+			EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.roofedForest} );
 		
- 
-		EntityRegistry.addSpawn(EntitySnowman.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.iceMountains} );
+
+		if(settings.spawnSnowgolemsIceMountains) 
+			EntityRegistry.addSpawn(EntitySnowman.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.iceMountains} );
 		
-		//golem - rare in jungle/??
-		//   villager maybe in extreme hills? like he is hunting for emeralds? yes yes! will probably die anyway- no problem. same risk happens in villagey ones
- 
-		
-		
-		EntityRegistry.addSpawn(EntityGhast.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.deepOcean} );
+		if(settings.spawnGhastDeepOcean) 
+			EntityRegistry.addSpawn(EntityGhast.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.deepOcean} );
 
 		//existing horses only spawn in plains and savanah
 		//horses dont like trees, so biomes without them makes sense. ocean means those little islands
-		EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.icePlains} );
-		EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.deepOcean} );
+
+		if(settings.spawnHorseIcePlains) 
+			EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.icePlains} );
+
+		if(settings.spawnHorseOceanIslands) 
+			EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.deepOcean} );
+		
+		if(settings.spawnHorseExtremeHills) 
+			EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.extremeHills} );
 		
 		//WOLVES only spawn naturally in forest, taiga, mega taiga, cold taiga, and cold taiga M
+
+		//irongolem - rare in jungle/??
+		//   villager maybe in extreme hills? like he is hunting for emeralds? yes yes! will probably die anyway- no problem. same risk happens in villagey ones
+ 
 		
+
 		//i feel like i should add something to extreme hills, but what. not ghasts again
 		
 		//EnumCreatureType.AMBIENT//TODO: more bas:??
