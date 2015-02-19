@@ -82,7 +82,8 @@ public class ConfigFile
 	private static String LevelSep = ".";
 	String category = "";
 	public boolean spawnVillagerExtremeHills;
-	public boolean teleportBlock;
+	public boolean teleportBedBlock;
+	public boolean teleportSpawnBlock;
 	public ConfigFile()
 	{
 		commands();
@@ -257,8 +258,11 @@ public class ConfigFile
 		weatherBlock = ModSamsContent.config.getBoolean( "weatherBlock",category,true,
 				"Craft block that will run /toggledownfall whenever it gets a redstone signal."); 
 		
-		teleportBlock = ModSamsContent.config.getBoolean( "teleportBlock",category,true,
-				"teleportBlock teleportBlock"); 
+		teleportBedBlock = ModSamsContent.config.getBoolean( "teleportBedBlock",category,true,
+				"Command block that teleports you to the world spawn");
+		
+		teleportSpawnBlock = ModSamsContent.config.getBoolean( "teleportSpawnBlock",category,true,
+				"Command block that teleports you to your bed"); 
 		
 		
 		gameruleBlockRegen = ModSamsContent.config.getBoolean( "gameruleBlock.Regen",category,true,

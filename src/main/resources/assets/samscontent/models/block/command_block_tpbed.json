@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "samscontent:blocks/command_block_tpbed",
+        "triggered=true": "samscontent:blocks/command_block_tpbed",
+        "triggered=false": "samscontent:blocks/command_block_tpbed"
+    }
+}

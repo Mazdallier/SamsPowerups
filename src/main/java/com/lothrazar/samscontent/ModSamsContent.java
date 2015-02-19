@@ -338,6 +338,8 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		BlockCommandBlockCraftable.initWeatherBlock();
 		
 		BlockCommandBlockCraftable.initTeleportBlock();
+
+		BlockCommandBlockCraftable.initTeleportBedBlock();
 		
 		BlockCommandBlockCraftable.initRegen(); 
 		

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "normal": { "model": "samscontent:command_block_tpspawn" },
+        "triggered=true": { "model": "samscontent:command_block_tpspawn" },
+        "triggered=false": { "model": "samscontent:command_block_tpspawn" } 
+    }
+}

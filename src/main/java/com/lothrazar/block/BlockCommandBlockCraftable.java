@@ -27,7 +27,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 {  
 	public static enum CommandType
 	{
-		Gamerule, Weather, Teleport 
+		Gamerule, Weather, TeleportSpawn, TeleportBed 
 	}
 	
 	private CommandType type;
@@ -73,7 +73,8 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
         switch(type)
         {
-	        case Teleport:
+        	case TeleportBed://TODO: its own thing, to players bed location, if possible
+	        case TeleportSpawn:
 	        	int _x = w.getWorldInfo().getSpawnX();
 	    		int _y = w.getWorldInfo().getSpawnY();
 	    		int _z = w.getWorldInfo().getSpawnZ();
@@ -207,7 +208,8 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static BlockCommandBlockCraftable command_block_firetick;
 	public static BlockCommandBlockCraftable command_block_daycycle;
 	public static BlockCommandBlockCraftable command_block_weather ;
-	public static BlockCommandBlockCraftable command_block_worldspawn;
+	public static BlockCommandBlockCraftable command_block_tpspawn;
+	public static BlockCommandBlockCraftable command_block_tpbed;
 	
 	public static void initWeatherBlock()
 	{ 
@@ -216,20 +218,47 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
  
 		SamsRegistry.registerBlock(command_block_weather,"command_block_weather");
 
-		GameRegistry.addRecipe(new ItemStack(command_block_weather), "rcr", "tet",
-				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear);
+		GameRegistry.addRecipe(new ItemStack(command_block_weather), 
+				"rcr", 
+				"tet",
+				"rcr", 
+				'c', Items.comparator, 
+				'e', Items.water_bucket, 
+				'r', Blocks.redstone_block, 
+				't', Items.ghast_tear);
 	} 
 	
 	public static void initTeleportBlock()
 	{ 
-		if(!ModSamsContent.settings.teleportBlock) {return;}
-		command_block_worldspawn = new BlockCommandBlockCraftable(CommandType.Teleport);
+		if(!ModSamsContent.settings.teleportSpawnBlock) {return;}
+		command_block_tpspawn = new BlockCommandBlockCraftable(CommandType.TeleportSpawn);
  
-		SamsRegistry.registerBlock(command_block_worldspawn,"command_block_worldspawn");
+		SamsRegistry.registerBlock(command_block_tpspawn,"command_block_tpspawn");
 
-		GameRegistry.addRecipe(new ItemStack(command_block_worldspawn), "rcr", "tet",
-				"rcr", 'c', Items.comparator, 'e', Items.ender_eye, 'r',
-				Blocks.redstone_block, 't', Items.ghast_tear);
+		GameRegistry.addRecipe(new ItemStack(command_block_tpspawn), 
+				"rcr", 
+				"tet",
+				"rcr", 
+				'c', Items.comparator, 
+				'e', Items.ender_eye, 
+				'r', Blocks.redstone_block, 
+				't', Items.ghast_tear);
+	}
+	
+	public static void initTeleportBedBlock()
+	{ 
+		if(!ModSamsContent.settings.teleportBedBlock) {return;}
+		command_block_tpbed = new BlockCommandBlockCraftable(CommandType.TeleportBed);
+ 
+		SamsRegistry.registerBlock(command_block_tpbed,"command_block_tpbed");
+
+		GameRegistry.addRecipe(new ItemStack(command_block_tpbed), 
+				"rcr", 
+				"tet",
+				"rcr", 
+				'c', Items.comparator, 
+				'e', Items.ender_pearl, 
+				'r', Blocks.redstone_block, 
+				't', Items.ghast_tear);
 	}
 }
