@@ -10,11 +10,49 @@ import static net.minecraftforge.common.ChestGenHooks.*;
 
 public class ChestGen
 {
+ 
 
-	public static void AddHooks()
+	public static void lootGlowstone() 
 	{
-		//TODO: all records; and config file hooks
-		
+		if(ModSamsContent.settings.lootGlowstone)
+		{ 
+			ItemStack[] allRecords = new ItemStack[] 
+			{
+				new ItemStack(Items.glowstone_dust ,64)
+			}; 
+
+			addToAllChests(allRecords,16,64); //each stack in this range
+		}
+	}
+
+	public static void lootQuartz() 
+	{
+		if(ModSamsContent.settings.lootQuartz)
+		{ 
+			ItemStack[] allRecords = new ItemStack[] 
+			{
+				new ItemStack(Items.quartz ,64)
+			}; 
+
+			addToAllChests(allRecords,16,64); //each stack in this range
+		}
+	}
+
+	public static void lootObsidian() 
+	{
+		if(ModSamsContent.settings.lootObsidian)
+		{ 
+			ItemStack[] allRecords = new ItemStack[] 
+			{
+				new ItemStack(Blocks.obsidian,64)
+			}; 
+
+			addToAllChests(allRecords,16,64); //each stack in this range
+		}
+	}
+
+	public static void lootAllRecords() 
+	{
 		if(ModSamsContent.settings.lootAllRecords)
 		{ 
 			ItemStack[] allRecords = new ItemStack[] 
@@ -35,34 +73,6 @@ public class ChestGen
 			 
 			addToAllChests(allRecords); 
 		}
-		
-		if(ModSamsContent.settings.lootObsidian)
-		{ 
-			ItemStack[] allRecords = new ItemStack[] 
-			{
-				new ItemStack(Blocks.obsidian,64)
-			}; 
-
-			addToAllChests(allRecords,16,64); //each stack in this range
-		} 
-		if(ModSamsContent.settings.lootQuartz)
-		{ 
-			ItemStack[] allRecords = new ItemStack[] 
-			{
-				new ItemStack(Items.quartz ,64)
-			}; 
-
-			addToAllChests(allRecords,16,64); //each stack in this range
-		} 
-		if(ModSamsContent.settings.lootGlowstone)
-		{ 
-			ItemStack[] allRecords = new ItemStack[] 
-			{
-				new ItemStack(Items.glowstone_dust ,64)
-			}; 
-
-			addToAllChests(allRecords,16,64); //each stack in this range
-		} 
 	}
 
 	private static void addToAllChests(ItemStack[] items)

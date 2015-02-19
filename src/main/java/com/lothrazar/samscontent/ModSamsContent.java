@@ -114,10 +114,20 @@ public class ModSamsContent
 
 		initExtraVillagerTrading();
 		
-		ChestGen.AddHooks();//internally it has several segments that check the config file
-		 
-  		initExtraRecipes(); 
-  		
+		ChestGen.lootAllRecords();
+		
+		ChestGen.lootObsidian(); 
+		
+		ChestGen.lootQuartz(); 
+		
+		ChestGen.lootGlowstone(); 
+		
+  		initExtraRecipes();
+
+		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
+ 
+  		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
+ 
 		proxy.registerRenderers();
 		//TODO: can we spawn zombie horse?
 		//yeah i think we can in the sapwn event and roll a dice and check the biome
@@ -129,7 +139,7 @@ Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
 Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		//LivingSpawnEvent
 		
-		//TODO: also feature:
+		// : also feature:
 		//make villagers/dogs/cats immune to FALL DAMAGE.
 		//possibly drowning and cactus?
 		/*
@@ -149,52 +159,33 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
    		
 	}
 
-	private void initExtraRecipes() {
-		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
- 
-  		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
-
-		if(ModSamsContent.settings.craftBooksWithoutLeather)  { Recipes.bookNoLeather(); }
-		 
-	//ModSamsContent.settings.runestones//TODO
-		//if(true) { ItemRunestone.initRunestones(); }
-		 
-		if(ModSamsContent.settings.craftableMushroomBlocks)  { Recipes.mushroomBlocks(); }
+	private void initExtraRecipes() 
+	{
+		Recipes.bookNoLeather(); 
 		  
-		if(ModSamsContent.settings.craftableMobHeads) 	{Recipes.mobHeads();	}
+		Recipes.mushroomBlocks(); 
+		  
+		Recipes.mobHeads();	
   
-		if(ModSamsContent.settings.craftableBonemealColouredWool)  {Recipes.bonemealWool();}
-	  
-		if(ModSamsContent.settings.craftableTransmuteRecords)   { Recipes.records();}
+		Recipes.bonemealWool();
+		
+		Recipes.records();
 		  
-		if(ModSamsContent.settings.craftableFlatDoubleSlab) { Recipes.doubleSlabsFlat();}
+		Recipes.doubleSlabsFlat();
 		 
-   		if(ModSamsContent.settings.uncraftGeneral) { Recipes.uncrafting();}
-
-		
+   		Recipes.uncrafting();
  
-		Recipes.smoothstoneRequired();
+   		Recipes.smoothstoneRequired();
+		  
+   		Recipes.woolDyeSavings();
+		  
+   		Recipes.repeaterSimple();
 		
-		//MobSpawnExtras();
-		//mushroom???
-		//blocks
-		//rotate damage value 1 by 1
-		
- 
-		//recipe shortcuts:
-		Recipes.woolDyeSavings();
-		//dye wool by 8 blocks instead of 1
-		
-		Recipes.repeaterSimple();
-		
-		//easier redstone repeater recipe, to use sticks nad redstone instead of torches
-		 //https://i.imgur.com/UqthR4k.png
-		Recipes.minecartsSimple();
-		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
-		//etc for other minecarts too
+   		Recipes.minecartsSimple();
 	}
 
-	private void initExtraVillagerTrading() {
+	private void initExtraVillagerTrading() 
+	{
 		//TODO: find out how Forge 1.8 does trading
 		int x=0;
 		/*

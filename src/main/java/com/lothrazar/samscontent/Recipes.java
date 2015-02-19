@@ -1,6 +1,7 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList;  
+
 import org.apache.logging.log4j.Logger;  
 
 import com.lothrazar.util.Reference;
@@ -27,6 +28,8 @@ public class Recipes
 {  
 	public static void mushroomBlocks()
 	{
+		if(!ModSamsContent.settings.craftableMushroomBlocks)  {return;}
+		
 		int otherSide = 0;
 		for (int side = 0; side < 16; side++)
 		{
@@ -43,9 +46,11 @@ public class Recipes
 		}
 	}
 
+	static int EXP=0;
 	public static void uncrafting()
 	{
-		int EXP=0;
+		if(!ModSamsContent.settings.uncraftGeneral) {return;}
+			
 		GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), "xx", "xx",
 				'x', Blocks.sandstone_stairs);
 
@@ -528,6 +533,7 @@ public class Recipes
 
 	public static void doubleSlabsFlat()
 	{
+		if(!ModSamsContent.settings.craftableFlatDoubleSlab){return;}
 		int islab_sandstone = 1;
  //TODO: REFERENCE
 		int i_stone_magic = 8;
@@ -550,6 +556,7 @@ public class Recipes
 
 	public static void records()
 	{
+		if(!ModSamsContent.settings.craftableTransmuteRecords) {return;}
 		// iterate down the list, 8 emeralds each time
 		
 		GameRegistry.addRecipe(new ItemStack(Items.record_13), "xxx", "xsx","xxx"
@@ -596,6 +603,7 @@ public class Recipes
 
 	public static void bonemealWool()
 	{
+		if(!ModSamsContent.settings.craftableBonemealColouredWool){return;}
 		//use bonemeal to bleach colored wool back to white
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 1, 0),
 				new ItemStack(Blocks.wool, 1, 1), new ItemStack(Items.dye, 1,				Reference.dye_bonemeal)); 
@@ -631,6 +639,7 @@ public class Recipes
 
 	public static void mobHeads()
 	{
+		if(!ModSamsContent.settings.craftableMobHeads) 	{return;}
 		//skeleton 0
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_skeleton), "xxx", "xsx","xxx"
 				, 'x', Items.bone
@@ -657,6 +666,8 @@ public class Recipes
 
 	public static void bookNoLeather()
 	{ 
+		if(!ModSamsContent.settings.craftBooksWithoutLeather)  {return;}
+			
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.book,1)
 				,new ItemStack(Items.paper)
 				,new ItemStack(Items.paper)
@@ -666,19 +677,27 @@ public class Recipes
 	}
 
 	public static void repeaterSimple()
-	{
-		// TODO Auto-generated method stub
+	{ 
+		if(!ModSamsContent.settings.craftRepeaterSimple) {return;}
 		
+		GameRegistry.addRecipe(new ItemStack(Items.repeater), "r r", "srs","ttt"
+				, 't', new ItemStack(Blocks.stone)
+				, 's', new ItemStack(Items.stick)
+				, 'r', new ItemStack(Items.redstone) );
 	}
 
 	public static void minecartsSimple()
 	{
-		// TODO Auto-generated method stub
+		if(!ModSamsContent.settings.craftMinecartsSimple){return;}
+
+		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
+		//etc for other minecarts too
 		
 	}
 
 	public static void woolDyeSavings()
 	{
+		if(!ModSamsContent.settings.craftWoolDye8) {return;}
 		// TODO Auto-generated method stub
 		
 	}
