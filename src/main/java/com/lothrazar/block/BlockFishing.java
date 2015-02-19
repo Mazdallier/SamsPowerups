@@ -104,30 +104,13 @@ public class BlockFishing extends Block
     	
     	worldObj.playSoundAtEntity(entityItem,"game.neutral.swim.splash",1F,1F); 
     }
-/*
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
 
-	private static void setEnabled(boolean isEnabled) 
-	{
-		BlockFishing.isEnabled = isEnabled;
-	}
-  */
 	@Override
 	public boolean isOpaqueCube() 
 	{
 		return false;//transparency stuff
 	}
-/*
-	@Override
-	public boolean renderAsNormalBlock() 
-	{
-		return false;
-	} 
-	*/
-	//???????transparency????
+ 
 	@SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
@@ -137,6 +120,7 @@ public class BlockFishing extends Block
 	public static BlockFishing block_fishing ;
 	public static void initFishing()
 	{
+		if(!ModSamsContent.settings.fishingNetBlock){return;}
 		block_fishing = new BlockFishing(); 
 		SamsRegistry.registerBlock(block_fishing,"block_fishing");
 

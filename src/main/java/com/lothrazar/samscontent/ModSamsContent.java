@@ -337,31 +337,31 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		//blocks that do things to players/mobs . such as
 		//spikes-damage/shear sheep/milk cow/breed or feed animals/etc?
 		
-		if(ModSamsContent.settings.masterWand) { ItemWandMaster.onInit();}
+		ItemWandMaster.onInit();
 		
-		if(ModSamsContent.settings.fishingNetBlock) {BlockFishing.initFishing();}
+		ItemEnderBook.initEnderbook();
 		
-		if(ModSamsContent.settings.enderBook) { ItemEnderBook.initEnderbook();}
+		ItemFoodAppleMagic.initEmerald();
+
+		ItemFoodAppleMagic.initDiamond();
+
+		ItemFoodAppleMagic.initLapis();
+
+		ItemFoodAppleMagic.initChocolate();
 		
-		if(ModSamsContent.settings.appleEmerald) {ItemFoodAppleMagic.initEmerald();}
-
-		if(ModSamsContent.settings.appleDiamond) {ItemFoodAppleMagic.initDiamond();}
-
-		if(ModSamsContent.settings.appleLapis) {ItemFoodAppleMagic.initLapis();}
-
-		if(ModSamsContent.settings.appleChocolate) {ItemFoodAppleMagic.initChocolate();}
+		BlockFishing.initFishing();
   
-		if(ModSamsContent.settings.weatherBlock)   { BlockCommandBlockCraftable.initWeatherBlock();}
+		BlockCommandBlockCraftable.initWeatherBlock();
 		
-		if(ModSamsContent.settings.gameruleBlockRegen){ BlockCommandBlockCraftable.initRegen();} 
+		BlockCommandBlockCraftable.initRegen(); 
 		
-		if(ModSamsContent.settings.gameruleBlockDaylight){ BlockCommandBlockCraftable.initDaylight();}
+		BlockCommandBlockCraftable.initDaylight();
 		
-		if(ModSamsContent.settings.gameruleBlockFiretick){ BlockCommandBlockCraftable.initFiretick();}
+		BlockCommandBlockCraftable.initFiretick();
 		
-		if(ModSamsContent.settings.gameruleBlockMobgrief){ BlockCommandBlockCraftable.initMobgrief();}
+		BlockCommandBlockCraftable.initMobgrief();
  
-		if(ModSamsContent.settings.xRayBlock){ BlockXRay.initXray();}
+		BlockXRay.initXray();
 	}
 
 	private void registerEventHandlers() 

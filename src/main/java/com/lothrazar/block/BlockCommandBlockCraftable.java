@@ -180,21 +180,26 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
 	public static void initDaylight()
 	{ 
+		if(!ModSamsContent.settings.gameruleBlockDaylight){return;}
 		command_block_daycycle = _command(Reference.gamerule.doDaylightCycle, "command_block_daycycle",new ItemStack( Blocks.glowstone) );
 	}
 
 	public static void initFiretick()
 	{
+		if(!ModSamsContent.settings.gameruleBlockFiretick){return;}
 		command_block_firetick = _command(Reference.gamerule.doFireTick, "command_block_firetick",new ItemStack( Items.lava_bucket) );
 	}
 
 	public static void initMobgrief()
 	{
+		if(!ModSamsContent.settings.gameruleBlockMobgrief){return;}
 		command_block_mobgrief = _command(Reference.gamerule.mobGriefing, "command_block_mobgrief",new ItemStack( Blocks.tnt) );
 	}
 
 	public static void initRegen()
 	{
+		if(!ModSamsContent.settings.gameruleBlockRegen){return;}
+		
 		command_block_regen = _command(Reference.gamerule.naturalRegeneration, "command_block_regen",new ItemStack(Items.golden_apple) );
 	}
 	
@@ -206,6 +211,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	
 	public static void initWeatherBlock()
 	{ 
+		if(!ModSamsContent.settings.weatherBlock) {return;}
 		command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
  
 		SamsRegistry.registerBlock(command_block_weather,"command_block_weather");

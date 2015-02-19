@@ -64,8 +64,9 @@ public class BlockXRay extends Block
 	public static BlockXRay block_xray ;
 	public static void initXray()
 	{
-		block_xray = new BlockXRay();
- 
+		if(!ModSamsContent.settings.xRayBlock){return;}
+		
+		block_xray = new BlockXRay(); 
 		SamsRegistry.registerBlock(block_xray,"block_xray");
 
 		GameRegistry.addRecipe(new ItemStack(block_xray), "owo", "wgw", "owo",

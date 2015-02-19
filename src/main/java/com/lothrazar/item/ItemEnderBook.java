@@ -131,6 +131,7 @@ public class ItemEnderBook extends ItemTool
 	 
 	public static void initEnderbook()
 	{
+		if(!ModSamsContent.settings.enderBook) {return;}
 		itemEnderBook = new ItemEnderBook();
 
 		SamsRegistry.registerItem(itemEnderBook, "book_ender");

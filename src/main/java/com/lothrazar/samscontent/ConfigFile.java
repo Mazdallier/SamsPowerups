@@ -224,6 +224,8 @@ public class ConfigFile
 				"s."); 
 		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
 				""); 
+		appleChocolate = ModSamsContent.config.getBoolean( "appleChocolate",category,true,
+				"appleChocolate" ); 
 		 
 		/*
 		//runestones

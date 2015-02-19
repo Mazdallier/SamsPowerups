@@ -331,6 +331,8 @@ public class ItemWandMaster extends ItemTool
 	
 	public static void onInit() 
 	{  
+		if(!ModSamsContent.settings.masterWand){return;}
+			
 		itemWand = new ItemWandMaster();
   
 		SamsRegistry.registerItem(itemWand, "wand_master");

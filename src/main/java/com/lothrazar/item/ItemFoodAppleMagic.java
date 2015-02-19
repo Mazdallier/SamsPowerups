@@ -134,14 +134,14 @@ public class ItemFoodAppleMagic extends ItemFood
 	 
 	public static void initChocolate()
 	{
-		// this one is less powerful, no gold required.,
-		//MINI potion
+		if(!ModSamsContent.settings.appleChocolate){return;}
+		// this one is less powerful, no gold required., 
 		apple_chocolate = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, false); // 4 is the hunger 
 		apple_chocolate.addEffect(Reference.potion_HASTE, timeShort, II); 
 		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
 		GameRegistry.addRecipe(new ItemStack(apple_chocolate)
 				, "eee", "eae",	"eee"
-				, 'e', new ItemStack(Items.dye, 1, 3) // 3 for cocoa
+				, 'e', new ItemStack(Items.dye, 1, Reference.dye_cocoa)  
 				, 'a', Items.apple);
 		
 
@@ -156,6 +156,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
 	public static void initLapis()
 	{  
+		if(!ModSamsContent.settings.appleLapis){return;}
 		apple_lapis = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
 		apple_lapis.addEffect(Reference.potion_RESISTANCE, timeShort, II); 
 		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
@@ -178,6 +179,7 @@ public class ItemFoodAppleMagic extends ItemFood
  
 	public static void initEmerald()
 	{  
+		if(!ModSamsContent.settings.appleEmerald) {return;}
 		apple_emerald = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
 		apple_emerald.addEffect(Reference.potion_absorption, timeShort, V); 
 		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
@@ -199,6 +201,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
 	public static void initDiamond()
 	{ 
+		if(!ModSamsContent.settings.appleDiamond) {return;}
 		apple_diamond = new ItemFoodAppleMagic(MagicType.Hearts,hungerSmall, true);  
 
 		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
