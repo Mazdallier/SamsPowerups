@@ -81,6 +81,7 @@ public class ConfigFile
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
 	String category = "";
+	public boolean spawnVillagerExtremeHills;
 	public ConfigFile()
 	{
 		commands();
@@ -164,6 +165,10 @@ public class ConfigFile
     			". "
     		);
 		spawnHorseExtremeHills = ModSamsContent.config.getBoolean("spawn.HorseExtremeHills",category, true,
+    			". "
+    		);
+		
+		spawnVillagerExtremeHills = ModSamsContent.config.getBoolean("spawn.VillagerExtremeHills",category, true,
     			". "
     		);
 	}

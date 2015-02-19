@@ -257,6 +257,9 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		if(settings.spawnHorseExtremeHills) 
 			EntityRegistry.addSpawn(EntityHorse.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.extremeHills} );
 		
+		if(settings.spawnVillagerExtremeHills) 
+			EntityRegistry.addSpawn(EntityVillager.class, group, min, max, EnumCreatureType.CREATURE, new BiomeGenBase[]{ BiomeGenBase.extremeHills} );
+		
 		//WOLVES only spawn naturally in forest, taiga, mega taiga, cold taiga, and cold taiga M
 
 		//irongolem - rare in jungle/??
