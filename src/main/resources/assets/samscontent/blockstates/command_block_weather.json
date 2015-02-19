@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "samscontent:block_fishing" }
+        "normal": { "model": "samscontent:command_block_weather" }
     }
 }

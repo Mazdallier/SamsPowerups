@@ -77,6 +77,8 @@ public class ModSamsContent
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
 	
+	//todo; shape/conic/circle drawing in game
+	//http://i.imgur.com/t3N1U8p.png
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
 		mcinfo.modId = Reference.MODID;

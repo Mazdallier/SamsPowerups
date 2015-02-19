@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "samscontent:block_fishing" }
+        "normal": { "model": "samscontent:block_xray" }
     }
 }
