@@ -80,13 +80,221 @@ public class ConfigFile
 
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
-	
+	String category = "";
 	public ConfigFile()
 	{
-		String category;
+		commands();
 		
+	    crafting();  
+		 
+		new_blocks_items(); 
+
+		loot_chests();
+		 
+		debug_info();
+		 
+		spawning(); 
+		
+/**********uncategorizzzed******************************************************************************/   
+		
+		category = "tweaks"; 	
+    	
+		increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
+			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
+			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
+			"horse armor, empty bucket, bed, all records."
+		); 
+		
+		moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
+    			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
+    		); 
+	 
+		swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
+    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."	
+    		); 
+		
+		smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
+    			"Attack with the ender chest to open it without placing it."
+    		);
+		
+		skullSignNames = ModSamsContent.config.getBoolean("skullSignNames",category, true,
+    			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign"
+    		);
+		deathItemsChest = ModSamsContent.config.getBoolean("deathItemsChest",category, true,
+    			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."
+    		);
+		 
+		//bonemeal
+		betterBonemeal = ModSamsContent.config.getBoolean("betterBonemeal",category, true,
+    			"Bonemeal grows more things: lilypads, all flowers "
+    		);
+		 
+		
+		
+		
+		if(ModSamsContent.config.hasChanged()){ ModSamsContent.config.save(); }
+	}
+	
+	private void spawning() 
+	{
+		category = "spawning";
+
+		spawnBlazeDesertHills = ModSamsContent.config.getBoolean("spawn.BlazeDesertHills",category, true,
+    			". "
+    		);
+		spawnMagmaCubeDesert = ModSamsContent.config.getBoolean("spawn.MagmaCubeDesert",category, true,
+    			". "
+    		);
+		spawnCaveSpiderMesa = ModSamsContent.config.getBoolean("spawn.CaveSpiderMesa",category, true,
+    			". "
+    		);
+		spawnCaveSpiderRoofedForest = ModSamsContent.config.getBoolean("spawn.CaveSpiderRoofedForest",category, true,
+    			". "
+    		);
+		spawnSnowgolemsIceMountains = ModSamsContent.config.getBoolean("spawn.SnowgolemsIceMountains",category, true,
+    			". "
+    		);
+		spawnGhastDeepOcean = ModSamsContent.config.getBoolean("spawn.GhastDeepOcean",category, true,
+    			". "
+    		);
+		spawnHorseIcePlains = ModSamsContent.config.getBoolean("spawn.HorseIcePlains",category, true,
+    			". "
+    		);
+		spawnHorseOceanIslands = ModSamsContent.config.getBoolean("spawn.HorseOceanIslands",category, true,
+    			". "
+    		);
+		spawnHorseExtremeHills = ModSamsContent.config.getBoolean("spawn.HorseExtremeHills",category, true,
+    			". "
+    		);
+	}
+	private void debug_info() 
+	{
+		category = "debugScreen";
+		
+		//debug screen
+		//todo: minified.disableCoords??
+		debugMinified = ModSamsContent.config.getBoolean("minified",category, false,
+    			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
+    		);
+		debugSlime = ModSamsContent.config.getBoolean("slimeChunk",category, true,
+    			"Screen will show if you are standing in a slime chunk."
+    		);
+		debugHorseInfo = ModSamsContent.config.getBoolean("horse",category, true,
+    			"Screen will show info on any horse ridden including speed, jump height, species.");
+		
+		debugVillageInfo = ModSamsContent.config.getBoolean("village",category, true,
+    			"Screen will show info on any village you are standing in.");
+	}
+	private void loot_chests() 
+	{
+		category = "lootMore";
  
-		/*********************************************************************************************/
+		lootObsidian = ModSamsContent.config.getBoolean("obsidian",category, true,
+    			"Add obsidian as a random treasure from naturally spawned chests "
+    		);
+ 
+
+		lootAllRecords = ModSamsContent.config.getBoolean("allRecords",category, true,
+    			"Add all record types as a random treasure from naturally spawned chests "
+    		);
+ //TODO: own category for chest gen
+		
+
+		lootGlowstone = ModSamsContent.config.getBoolean("glowstone",category, true,
+    			"Add glowstone dust as a random treasure from naturally spawned chests "
+    		);
+ 
+
+		lootQuartz = ModSamsContent.config.getBoolean("quartz",category, true,
+    			"Add quartz as a random treasure from naturally spawned chests "
+    		);
+	}
+	private void new_blocks_items() 
+	{
+		category = "new_blocks_items";
+		
+		
+		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
+			"appleEmerald" ); 
+		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
+				"appleDiamonds."); 
+		appleLapis = ModSamsContent.config.getBoolean( "appleLapis",category,true,
+				""); 
+		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
+				"s."); 
+		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
+				""); 
+		 
+		/*
+		//runestones
+		runestones = ModSamsContent.config.getBoolean( "runestones",category,true,
+				" Create runestones out of nether stars that give you beacon-like effects wherever you go, as long as you carry them.  Inspired by Diablo II runestones."); 
+			 
+		*/
+		
+		//fishing net block
+		fishingNetBlock = ModSamsContent.config.getBoolean( "fishingNetBlock",category,true,
+				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 
+		
+		//xray block
+		xRayBlock = ModSamsContent.config.getBoolean( "xRayBlock",category,true,
+				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
+		
+		masterWand = ModSamsContent.config.getBoolean( "masterWand",category,true,
+				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
+		
+		enderBook = ModSamsContent.config.getBoolean( "enderBook",category,true,
+				" Craft an ender book that lets you save waypoints, and then teleport to them later (only in the overworld)."); 
+		
+		weatherBlock = ModSamsContent.config.getBoolean( "weatherBlock",category,true,
+				"Craft block that will run /toggledownfall whenever it gets a redstone signal."); 
+		
+		gameruleBlockRegen = ModSamsContent.config.getBoolean( "gameruleBlock.Regen",category,true,
+				"Craft blocks that toggle '/gamerule naturalRegenration' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
+		gameruleBlockDaylight = ModSamsContent.config.getBoolean( "gameruleBlock.Daylight",category,true,
+				"Craft blocks that toggle '/gamerule doDaylightCycle' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
+		gameruleBlockFiretick = ModSamsContent.config.getBoolean( "gameruleBlock.Firetick",category,true,
+				"Craft blocks that toggle '/gamerule doFireTick' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
+		gameruleBlockMobgrief = ModSamsContent.config.getBoolean( "gameruleBlock.Mobgrief",category,true,
+				"Craft blocks that toggle '/gamerule doMobGriefing' on redstone signal.  (Can never be opened or edited like a regular command block).");
+	}
+	private void crafting() 
+	{
+		category = "crafting";
+		
+		craftBooksWithoutLeather = ModSamsContent.config.getBoolean( "craftBooksWithoutLeather",category,true,
+				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed."
+					);
+		
+		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
+			"This allows you to surround any record in emeralds to transmute it into a different record."
+				);
+   
+		craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
+			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."
+				);
+
+		craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
+				,"Allows you to dye coloured wool back to white using bonemeal"
+				); 
+  
+		craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
+				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
+				"TNT, flesh, cake, or bones. "
+						);  
+ 
+		uncraftGeneral = ModSamsContent.config.getBoolean( "uncrafting",category,true,
+				"uncrafting: craft or smelt blocks back into their ingredients.  Often it is not a perfect trade.  " +
+				"Example: Craft stairs back into blocks using a 4x4 pattern."
+			); 
+		
+		
+		craftableMushroomBlocks =  ModSamsContent.config.getBoolean( "craftableMushroomBlocks",category,true
+				,"Craft mushroom blocks. "
+						);
+	}
+	private void commands() 
+	{
 		category = "commands";
 
 		kit = ModSamsContent.config.getBoolean("kit",category, true,
@@ -141,208 +349,5 @@ public class ConfigFile
     		); 
 		CommandTodoList.REQUIRES_OP = ModSamsContent.config.getBoolean("todo.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
-	 
-		
-		/*********************************************************************************************/
-		category = "crafting";
-		
-		craftBooksWithoutLeather = ModSamsContent.config.getBoolean( "craftBooksWithoutLeather",category,true,
-				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed."
-					);
-		
-		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
-			"This allows you to surround any record in emeralds to transmute it into a different record."
-				);
-   
-		craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
-			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."
-				);
-
-		craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
-				,"Allows you to dye coloured wool back to white using bonemeal"
-				); 
-  
-		craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
-				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
-				"TNT, flesh, cake, or bones. "
-						);  
- 
-		uncraftGeneral = ModSamsContent.config.getBoolean( "uncrafting",category,true,
-				"uncrafting: craft or smelt blocks back into their ingredients.  Often it is not a perfect trade.  " +
-				"Example: Craft stairs back into blocks using a 4x4 pattern."
-			); 
-		
-		
-		craftableMushroomBlocks =  ModSamsContent.config.getBoolean( "craftableMushroomBlocks",category,true
-				,"Craft mushroom blocks. "
-						);  
-		
-/*********************************************************************************************/	
-
-		category = "new_blocks_items";
-		
-		
-		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
-			"appleEmerald" ); 
-		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
-				"appleDiamonds."); 
-		appleLapis = ModSamsContent.config.getBoolean( "appleLapis",category,true,
-				""); 
-		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
-				"s."); 
-		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
-				""); 
-		 
-		/*
-		//runestones
-		runestones = ModSamsContent.config.getBoolean( "runestones",category,true,
-				" Create runestones out of nether stars that give you beacon-like effects wherever you go, as long as you carry them.  Inspired by Diablo II runestones."); 
-			 
-		*/
-		
-		//fishing net block
-		fishingNetBlock = ModSamsContent.config.getBoolean( "fishingNetBlock",category,true,
-				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 
-		
-		//xray block
-		xRayBlock = ModSamsContent.config.getBoolean( "xRayBlock",category,true,
-				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
-		
-		masterWand = ModSamsContent.config.getBoolean( "masterWand",category,true,
-				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
-		
-		enderBook = ModSamsContent.config.getBoolean( "enderBook",category,true,
-				" Craft an ender book that lets you save waypoints, and then teleport to them later (only in the overworld)."); 
-		
-		weatherBlock = ModSamsContent.config.getBoolean( "weatherBlock",category,true,
-				"Craft block that will run /toggledownfall whenever it gets a redstone signal."); 
-		
-		gameruleBlockRegen = ModSamsContent.config.getBoolean( "gameruleBlock.Regen",category,true,
-				"Craft blocks that toggle '/gamerule naturalRegenration' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
-		gameruleBlockDaylight = ModSamsContent.config.getBoolean( "gameruleBlock.Daylight",category,true,
-				"Craft blocks that toggle '/gamerule doDaylightCycle' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
-		gameruleBlockFiretick = ModSamsContent.config.getBoolean( "gameruleBlock.Firetick",category,true,
-				"Craft blocks that toggle '/gamerule doFireTick' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
-		gameruleBlockMobgrief = ModSamsContent.config.getBoolean( "gameruleBlock.Mobgrief",category,true,
-				"Craft blocks that toggle '/gamerule doMobGriefing' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
-		
-/*********************************************************************************************/   
-		
-		category = "tweaks"; 	
-    	
-		increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
-			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
-			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
-			"horse armor, empty bucket, bed, all records."
-		); 
-		
-		moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
-    			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"
-    		); 
-	 
-		swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
-    			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."	
-    		); 
-		
-		smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
-    			"Attack with the ender chest to open it without placing it."
-    		);
-		
-		skullSignNames = ModSamsContent.config.getBoolean("skullSignNames",category, true,
-    			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign"
-    		);
-		deathItemsChest = ModSamsContent.config.getBoolean("deathItemsChest",category, true,
-    			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."
-    		);
-		 
-		//bonemeal
-		betterBonemeal = ModSamsContent.config.getBoolean("betterBonemeal",category, true,
-    			"Bonemeal grows more things: lilypads, all flowers "
-    		);
-		
-		/*********************************************************************************************/   
-		
-		
-		category = "lootMore";
- 
-		lootObsidian = ModSamsContent.config.getBoolean("obsidian",category, true,
-    			"Add obsidian as a random treasure from naturally spawned chests "
-    		);
- 
-
-		lootAllRecords = ModSamsContent.config.getBoolean("allRecords",category, true,
-    			"Add all record types as a random treasure from naturally spawned chests "
-    		);
- //TODO: own category for chest gen
-		
-
-		lootGlowstone = ModSamsContent.config.getBoolean("glowstone",category, true,
-    			"Add glowstone dust as a random treasure from naturally spawned chests "
-    		);
- 
-
-		lootQuartz = ModSamsContent.config.getBoolean("quartz",category, true,
-    			"Add quartz as a random treasure from naturally spawned chests "
-    		);
-		
-		/*********************************************************************************************/   
-		
-			
-		category = "debugScreen";
-		
-		//debug screen
-		//todo: minified.disableCoords??
-		debugMinified = ModSamsContent.config.getBoolean("minified",category, false,
-    			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
-    		);
-		debugSlime = ModSamsContent.config.getBoolean("slimeChunk",category, true,
-    			"Screen will show if you are standing in a slime chunk."
-    		);
-		debugHorseInfo = ModSamsContent.config.getBoolean("horse",category, true,
-    			"Screen will show info on any horse ridden including speed, jump height, species.");
-		
-		debugVillageInfo = ModSamsContent.config.getBoolean("village",category, true,
-    			"Screen will show info on any village you are standing in.");
-		
-		
-		
- 
-		
-
-/*********************************************************************************************/
-
-		category = "spawning";
-
-		spawnBlazeDesertHills = ModSamsContent.config.getBoolean("spawn.BlazeDesertHills",category, true,
-    			". "
-    		);
-		spawnMagmaCubeDesert = ModSamsContent.config.getBoolean("spawn.MagmaCubeDesert",category, true,
-    			". "
-    		);
-		spawnCaveSpiderMesa = ModSamsContent.config.getBoolean("spawn.CaveSpiderMesa",category, true,
-    			". "
-    		);
-		spawnCaveSpiderRoofedForest = ModSamsContent.config.getBoolean("spawn.CaveSpiderRoofedForest",category, true,
-    			". "
-    		);
-		spawnSnowgolemsIceMountains = ModSamsContent.config.getBoolean("spawn.SnowgolemsIceMountains",category, true,
-    			". "
-    		);
-		spawnGhastDeepOcean = ModSamsContent.config.getBoolean("spawn.GhastDeepOcean",category, true,
-    			". "
-    		);
-		spawnHorseIcePlains = ModSamsContent.config.getBoolean("spawn.HorseIcePlains",category, true,
-    			". "
-    		);
-		spawnHorseOceanIslands = ModSamsContent.config.getBoolean("spawn.HorseOceanIslands",category, true,
-    			". "
-    		);
-		spawnHorseExtremeHills = ModSamsContent.config.getBoolean("spawn.HorseExtremeHills",category, true,
-    			". "
-    		); 
-		
-		
-		
-		if(ModSamsContent.config.hasChanged()){ ModSamsContent.config.save(); }
 	}
 }
