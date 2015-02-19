@@ -1,5 +1,7 @@
 {
     "variants": {
-        "normal": { "model": "samscontent:command_block_daycycle" }
+        "normal": { "model": "samscontent:command_block_daycycle" },
+        "triggered=true": { "model": "samscontent:command_block_daycycle" },
+        "triggered=false": { "model": "samscontent:command_block_daycycle" } 
     }
 }

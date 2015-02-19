@@ -147,7 +147,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
 		apple_chocolate_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, true); // 4 is the hunger 
 		apple_chocolate_rich.addEffect(Reference.potion_HASTE, timeLong, I); 
-		SamsRegistry.registerItem(apple_chocolate_rich, "apple_chocolate_rich", "apple_chocolate");
+		SamsRegistry.registerItem(apple_chocolate_rich, "apple_chocolate_rich");
 		GameRegistry.addRecipe(new ItemStack(apple_chocolate_rich)
 				, "eee", "eae",	"eee"
 				, 'e', new ItemStack(Items.cookie)  
@@ -168,7 +168,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	
 		apple_lapis_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
 		apple_lapis_rich.addEffect(Reference.potion_RESISTANCE, timeLong, I); 
-		SamsRegistry.registerItem(apple_lapis_rich, "apple_lapis_rich", "apple_lapis");
+		SamsRegistry.registerItem(apple_lapis_rich, "apple_lapis_rich");
 		GameRegistry.addRecipe(new ItemStack(apple_lapis_rich)
 				, "lll","lal","lll"  
 				,'l', Blocks.lapis_block
@@ -191,7 +191,7 @@ public class ItemFoodAppleMagic extends ItemFood
 		 
 		apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
 		apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, V); 
-		SamsRegistry.registerItem(apple_emerald_rich, "apple_emerald_rich", "apple_emerald");
+		SamsRegistry.registerItem(apple_emerald_rich, "apple_emerald_rich");
 		GameRegistry.addRecipe(new ItemStack(apple_emerald_rich)
 				, "lll","lal","lll"  
 				,'l', Blocks.emerald_block

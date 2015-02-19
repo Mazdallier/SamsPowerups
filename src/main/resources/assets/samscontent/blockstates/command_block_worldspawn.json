@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "normal": { "model": "samscontent:command_block_worldspawn" },
+        "triggered=true": { "model": "samscontent:command_block_worldspawn" },
+        "triggered=false": { "model": "samscontent:command_block_worldspawn" } 
+    }
+}

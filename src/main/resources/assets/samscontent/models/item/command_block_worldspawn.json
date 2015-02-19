@@ -1,5 +1,5 @@
  {
-     "parent": "samscontent:block/block_fishing",
+     "parent": "samscontent:block/command_block_worldspawn",
      "display": {
          "thirdperson": {
              "rotation": [ 10, -45, 170 ],
