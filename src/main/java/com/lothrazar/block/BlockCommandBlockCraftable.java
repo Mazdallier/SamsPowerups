@@ -27,12 +27,11 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 {  
 	public static enum CommandType
 	{
-		Teleport, Gamerule, Weather
+		Gamerule, Weather, Teleport 
 	}
 	
 	private CommandType type;
 	private String rule = null;
-	
 	
 	@Override
 	public boolean isOpaqueCube() 
@@ -208,6 +207,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static BlockCommandBlockCraftable command_block_firetick;
 	public static BlockCommandBlockCraftable command_block_daycycle;
 	public static BlockCommandBlockCraftable command_block_weather ;
+	public static BlockCommandBlockCraftable command_block_worldspawn;
 	
 	public static void initWeatherBlock()
 	{ 
@@ -220,4 +220,16 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				"rcr", 'c', Items.comparator, 'e', Items.water_bucket, 'r',
 				Blocks.redstone_block, 't', Items.ghast_tear);
 	} 
+	
+	public static void initTeleportBlock()
+	{ 
+		if(!ModSamsContent.settings.teleportBlock) {return;}
+		command_block_worldspawn = new BlockCommandBlockCraftable(CommandType.Teleport);
+ 
+		SamsRegistry.registerBlock(command_block_worldspawn,"command_block_worldspawn");
+
+		GameRegistry.addRecipe(new ItemStack(command_block_worldspawn), "rcr", "tet",
+				"rcr", 'c', Items.comparator, 'e', Items.ender_eye, 'r',
+				Blocks.redstone_block, 't', Items.ghast_tear);
+	}
 }

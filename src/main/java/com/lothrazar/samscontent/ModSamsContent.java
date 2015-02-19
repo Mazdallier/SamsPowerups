@@ -202,30 +202,11 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 	}
 
 	private void initExtraMobSpawning() 
-	{
-		//just an example list of valid values
-	 /*
-	
-
-		BiomeGenBase.plains, BiomeGenBase.extremeHills, BiomeGenBase.beach, BiomeGenBase.desert,
-		BiomeGenBase.desertHills, BiomeGenBase.extremeHillsEdge, 
-		BiomeGenBase.forest, BiomeGenBase.forestHills, 
-		BiomeGenBase.icePlains, BiomeGenBase.iceMountains, BiomeGenBase.river,
-		BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, 
-		BiomeGenBase.coldBeach, BiomeGenBase.coldTaiga, 
-		BiomeGenBase.coldTaigaHills, BiomeGenBase.deepOcean,
-		BiomeGenBase.extremeHillsPlus, BiomeGenBase.jungleEdge, 
-		BiomeGenBase.megaTaiga, BiomeGenBase.megaTaigaHills, 
-		BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, 
-		BiomeGenBase.mesaPlateau_F
-		, BiomeGenBase.roofedForest, BiomeGenBase.savanna, 
-		BiomeGenBase.savannaPlateau, BiomeGenBase.stoneBeach}; 
-*/
+	{ 
 		int group = 3;
 		int min = 1;
 		int max = 4; 
-		//TODO : Config file entries for these. and submethod...
-		
+ 
 		if(settings.spawnBlazeDesertHills) 
 			EntityRegistry.addSpawn(EntityBlaze.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desertHills} );
  
@@ -355,6 +336,8 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		BlockFishing.initFishing();
   
 		BlockCommandBlockCraftable.initWeatherBlock();
+		
+		BlockCommandBlockCraftable.initTeleportBlock();
 		
 		BlockCommandBlockCraftable.initRegen(); 
 		
