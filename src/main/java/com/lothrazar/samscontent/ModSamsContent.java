@@ -199,7 +199,8 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
   		*/
 	}
 
-	private void initExtraMobSpawning() {
+	private void initExtraMobSpawning() 
+	{
 		//just an example list of valid values
 	 /*
 	
