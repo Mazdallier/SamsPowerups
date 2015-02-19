@@ -76,6 +76,7 @@ public class ConfigFile
 	public boolean craftWoolDye8;
 	public boolean craftRepeaterSimple;
 	public boolean craftMinecartsSimple;
+	public boolean petNametagDrops;
 
 	//to go between main and sub levels nested in the json style cfg file
 	private static String LevelSep = ".";
