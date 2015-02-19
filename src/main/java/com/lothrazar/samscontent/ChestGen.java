@@ -9,9 +9,7 @@ import net.minecraftforge.common.ChestGenHooks;
 import static net.minecraftforge.common.ChestGenHooks.*;
 
 public class ChestGen
-{
- 
-
+{ 
 	public static void lootGlowstone() 
 	{
 		if(ModSamsContent.settings.lootGlowstone)
@@ -74,23 +72,21 @@ public class ChestGen
 			addToAllChests(allRecords); 
 		}
 	}
+	
+	static int weightDefault = 3;
 
 	private static void addToAllChests(ItemStack[] items)
 	{
-		addToAllChests(items,1,1,3); //defaults
+		addToAllChests(items,1,1,weightDefault); //defaults
 	}
 	
 	private static void addToAllChests(ItemStack[] items,int min,int max)
 	{
-		addToAllChests(items,min,max,3); //default of 3 weight
+		addToAllChests(items,min,max,weightDefault); //default of 3 weight
 	}
 	
 	private static void addToAllChests(ItemStack[] items,int min,int max,int weight)
-	{
-		//int stackSize = 1;
-		//int min = 1;
-		//int max = 1;
-		//int weight = 3;
+	{ 
 		for(int i = 0; i < items.length; i++)
 		{
 			max = items[i].stackSize;//will this upp the obsidian size to 1?
@@ -104,6 +100,10 @@ public class ChestGen
 			ChestGenHooks.addItem(STRONGHOLD_CROSSING, new WeightedRandomChestContent (items[i], min, max, weight));
 			ChestGenHooks.addItem(STRONGHOLD_LIBRARY, new WeightedRandomChestContent(  items[i], min, max, weight));
 			 
+			//brainstorm what would make sense, be Fun, and Not overpowered in bonus chests
+			// if food then not too much
+			//stack of fun potions
+			//
 			
 			//this was for testing. on a new world we got 4 records right away
 			//weight=9;

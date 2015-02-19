@@ -103,8 +103,7 @@ public class ModSamsContent
      
 		registerEventHandlers(); 
  
-		registerItemsBlocks();
-		 
+		registerItemsBlocks(); 
 	}
 	
 	@EventHandler
@@ -124,9 +123,10 @@ public class ModSamsContent
 		
   		initExtraRecipes();
 
-		if(ModSamsContent.settings.increasedStackSizes ) { StackSizeIncreaser.init64(); }
+		StackSizeIncreaser.init64(); 
  
-  		if(ModSamsContent.settings.moreFuel) {  GameRegistry.registerFuelHandler(new FurnaceFuel()); }
+  		if(ModSamsContent.settings.moreFuel) 
+  			GameRegistry.registerFuelHandler(new FurnaceFuel()); 
  
 		proxy.registerRenderers();
 		//TODO: can we spawn zombie horse?
