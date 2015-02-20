@@ -866,5 +866,42 @@ public class Recipes
 				'i', Items.iron_ingot,  
 				'x', Items.leather_helmet);
 		
+		
+		
+		
+		removeRecipe(Items.diamond_chestplate);
+		removeRecipe(Items.diamond_boots);
+		removeRecipe(Items.diamond_leggings);
+		removeRecipe(Items.diamond_helmet);
+		
+		GameRegistry.addRecipe(new ItemStack(Items.diamond_chestplate), 
+				"ixi",
+				"iii", 
+				"iii", 
+				'i', Items.diamond,  
+				'x', Items.chainmail_chestplate );
+
+		GameRegistry.addRecipe(new ItemStack(Items.diamond_boots), 
+				"   ",
+				"i i", 
+				"ixi", 
+				'i', Items.diamond,  
+				'x', Items.chainmail_boots );
+
+		GameRegistry.addRecipe(new ItemStack(Items.diamond_leggings), 
+				"iii",
+				"ixi", 
+				"i i", 
+				'i', Items.diamond,  
+				'x', Items.chainmail_leggings );
+
+		GameRegistry.addRecipe(new ItemStack(Items.diamond_helmet), 
+				"iii",
+				"ixi", 
+				"   ", 
+				'i', Items.diamond,  
+				'x', Items.chainmail_helmet);
+		
+		
 	}
 }
