@@ -3,7 +3,7 @@ package com.lothrazar.event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.samscontent.proxy.ClientProxy;
 import com.lothrazar.samskeyslider.MessageKeyPressed;
 
@@ -14,11 +14,11 @@ public class HandlerKeyInput
     {   
         if(ClientProxy.keyShiftUp.isPressed() )
         { 	     
-        	 ModSamsContent.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
+        	 ModLoader.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
         }        
         else if(ClientProxy.keyShiftDown.isPressed() )
         { 	      
-        	 ModSamsContent.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
+        	 ModLoader.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
         }  
     } 
 }

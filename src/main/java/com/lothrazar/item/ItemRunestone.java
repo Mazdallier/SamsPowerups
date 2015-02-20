@@ -2,7 +2,7 @@ package com.lothrazar.item;
 
 import java.util.ArrayList; 
 import com.google.common.collect.Sets;  
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference; 
 import com.lothrazar.util.SamsRegistry;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;

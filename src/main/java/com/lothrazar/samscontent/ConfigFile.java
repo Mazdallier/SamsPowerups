@@ -103,67 +103,67 @@ public class ConfigFile
 		 
 		category = "tweaks"; 		//TODO: any category improvements here?
 	
-		increasedStackSizes = ModSamsContent.config.getBoolean("increasedStackSizes",category, true,
+		increasedStackSizes = ModLoader.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
 			"horse armor, empty bucket, bed, all records."); 
 		
-		moreFuel = ModSamsContent.config.getBoolean("moreFuel",category, true,
+		moreFuel = ModLoader.config.getBoolean("moreFuel",category, true,
     			"More can be used as furnace fuel: seeds, leaves, paper, shrubs"); 
 	 
-		swiftDeposit = ModSamsContent.config.getBoolean("swiftDeposit",category, true,
+		swiftDeposit = ModLoader.config.getBoolean("swiftDeposit",category, true,
     			"Punch a chest while sneaking to merge items from your inventory into existing item stacks in the chest."	); 
 		
-		smartEnderchest = ModSamsContent.config.getBoolean("smartEnderchest",category, true,
+		smartEnderchest = ModLoader.config.getBoolean("smartEnderchest",category, true,
     			"Attack with the ender chest to open it without placing it."	);
 		
-		skullSignNames = ModSamsContent.config.getBoolean("skullSignNames",category, true,
+		skullSignNames = ModLoader.config.getBoolean("skullSignNames",category, true,
     			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign");
 		
-		deathItemsChest = ModSamsContent.config.getBoolean("deathItemsChest",category, true,
+		deathItemsChest = ModLoader.config.getBoolean("deathItemsChest",category, true,
     			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."	);
 		  
-		betterBonemeal = ModSamsContent.config.getBoolean("betterBonemeal",category, true,
+		betterBonemeal = ModLoader.config.getBoolean("betterBonemeal",category, true,
     			"Bonemeal grows more things: lilypads, all flowers ");
 		  
-		if(ModSamsContent.config.hasChanged()){ ModSamsContent.config.save(); }
+		if(ModLoader.config.hasChanged()){ ModLoader.config.save(); }
 	}
 	
 	private void spawning() 
 	{
 		category = "spawning";
 
-		spawnBlazeDesertHills = ModSamsContent.config.getBoolean("spawn.BlazeDesertHills",category, true,
+		spawnBlazeDesertHills = ModLoader.config.getBoolean("spawn.BlazeDesertHills",category, true,
     			". ");//TODO: description content
     		
-		spawnMagmaCubeDesert = ModSamsContent.config.getBoolean("spawn.MagmaCubeDesert",category, true,
+		spawnMagmaCubeDesert = ModLoader.config.getBoolean("spawn.MagmaCubeDesert",category, true,
     			". ");//TODO: description content
     		
-		spawnCaveSpiderMesa = ModSamsContent.config.getBoolean("spawn.CaveSpiderMesa",category, true,
+		spawnCaveSpiderMesa = ModLoader.config.getBoolean("spawn.CaveSpiderMesa",category, true,
     			". ");//TODO: description content
     		
-		spawnCaveSpiderRoofedForest = ModSamsContent.config.getBoolean("spawn.CaveSpiderRoofedForest",category, true,
+		spawnCaveSpiderRoofedForest = ModLoader.config.getBoolean("spawn.CaveSpiderRoofedForest",category, true,
     			". ");//TODO: description content
     		
-		spawnSnowgolemsIceMountains = ModSamsContent.config.getBoolean("spawn.SnowgolemsIceMountains",category, true,
+		spawnSnowgolemsIceMountains = ModLoader.config.getBoolean("spawn.SnowgolemsIceMountains",category, true,
     			". ");//TODO: description content
     		
-		spawnGhastDeepOcean = ModSamsContent.config.getBoolean("spawn.GhastDeepOcean",category, true,
+		spawnGhastDeepOcean = ModLoader.config.getBoolean("spawn.GhastDeepOcean",category, true,
     			". ");//TODO: description content
     		
-		spawnHorseIcePlains = ModSamsContent.config.getBoolean("spawn.HorseIcePlains",category, true,
+		spawnHorseIcePlains = ModLoader.config.getBoolean("spawn.HorseIcePlains",category, true,
     			". ");//TODO: description content
     		
-		spawnHorseOceanIslands = ModSamsContent.config.getBoolean("spawn.HorseOceanIslands",category, true,
+		spawnHorseOceanIslands = ModLoader.config.getBoolean("spawn.HorseOceanIslands",category, true,
     			". ");//TODO: description content
     		
-		spawnHorseExtremeHills = ModSamsContent.config.getBoolean("spawn.HorseExtremeHills",category, true,
+		spawnHorseExtremeHills = ModLoader.config.getBoolean("spawn.HorseExtremeHills",category, true,
     			". ");//TODO: description content
     		
-		spawnVillagerExtremeHills = ModSamsContent.config.getBoolean("spawn.VillagerExtremeHills",category, true,
+		spawnVillagerExtremeHills = ModLoader.config.getBoolean("spawn.VillagerExtremeHills",category, true,
     			". ");//TODO: description content
     
-		spawnCaveSpiderJungle = ModSamsContent.config.getBoolean("spawn.CaveSpiderJungle",category, true,
+		spawnCaveSpiderJungle = ModLoader.config.getBoolean("spawn.CaveSpiderJungle",category, true,
     			". ");//TODO: description content
 	}
 	private void debug_info() 
@@ -171,16 +171,16 @@ public class ConfigFile
 		category = "debugScreen";
 		 
 		//TODO: minified.disableCoords??
-		debugMinified = ModSamsContent.config.getBoolean("minified",category, false,
+		debugMinified = ModLoader.config.getBoolean("minified",category, false,
     			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
     		);
-		debugSlime = ModSamsContent.config.getBoolean("slimeChunk",category, true,
+		debugSlime = ModLoader.config.getBoolean("slimeChunk",category, true,
     			"Screen will show if you are standing in a slime chunk."
     		);
-		debugHorseInfo = ModSamsContent.config.getBoolean("horse",category, true,
+		debugHorseInfo = ModLoader.config.getBoolean("horse",category, true,
     			"Screen will show info on any horse ridden including speed, jump height, species.");
 		
-		debugVillageInfo = ModSamsContent.config.getBoolean("village",category, true,
+		debugVillageInfo = ModLoader.config.getBoolean("village",category, true,
     			"Screen will show info on any village you are standing in.");
 	}
 	
@@ -188,16 +188,16 @@ public class ConfigFile
 	{
 		category = "lootMore";
  
-		lootObsidian = ModSamsContent.config.getBoolean("obsidian",category, true,
+		lootObsidian = ModLoader.config.getBoolean("obsidian",category, true,
     			"Add obsidian as a random treasure from naturally spawned chests "	);
   
-		lootAllRecords = ModSamsContent.config.getBoolean("allRecords",category, true,
+		lootAllRecords = ModLoader.config.getBoolean("allRecords",category, true,
     			"Add all record types as a random treasure from naturally spawned chests ");
  
-		lootGlowstone = ModSamsContent.config.getBoolean("glowstone",category, true,
+		lootGlowstone = ModLoader.config.getBoolean("glowstone",category, true,
     			"Add glowstone dust as a random treasure from naturally spawned chests ");
  
-		lootQuartz = ModSamsContent.config.getBoolean("quartz",category, true,
+		lootQuartz = ModLoader.config.getBoolean("quartz",category, true,
     			"Add quartz as a random treasure from naturally spawned chests ");
 	}
 	
@@ -205,52 +205,52 @@ public class ConfigFile
 	{
 		category = "new_blocks_items";
 
-		appleChocolate = ModSamsContent.config.getBoolean( "appleChocolate",category,true,
+		appleChocolate = ModLoader.config.getBoolean( "appleChocolate",category,true,
 				"appleChocolate" ); //TODO: text content
 		
-		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
+		appleEmerald = ModLoader.config.getBoolean( "appleEmerald",category,true,
 			"appleEmerald" ); //TODO: text content
 		
-		appleLapis = ModSamsContent.config.getBoolean( "appleLapis",category,true,
+		appleLapis = ModLoader.config.getBoolean( "appleLapis",category,true,
 				""); //TODO: text content
 		
-		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
+		appleDiamond = ModLoader.config.getBoolean( "appleDiamond",category,true,
 				"appleDiamonds."); //TODO: text content
 		 
-		appleNetherStar = ModSamsContent.config.getBoolean( "appleNetherStar",category,true,
+		appleNetherStar = ModLoader.config.getBoolean( "appleNetherStar",category,true,
 				""); //TODO: text content
 		 
-		fishingNetBlock = ModSamsContent.config.getBoolean( "fishingNetBlock",category,true,
+		fishingNetBlock = ModLoader.config.getBoolean( "fishingNetBlock",category,true,
 				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 
 		 
-		xRayBlock = ModSamsContent.config.getBoolean( "xRayBlock",category,true,
+		xRayBlock = ModLoader.config.getBoolean( "xRayBlock",category,true,
 				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
 		
-		masterWand = ModSamsContent.config.getBoolean( "masterWand",category,true,
+		masterWand = ModLoader.config.getBoolean( "masterWand",category,true,
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
 		
-		enderBook = ModSamsContent.config.getBoolean( "enderBook",category,true,
+		enderBook = ModLoader.config.getBoolean( "enderBook",category,true,
 				" Craft an ender book that lets you save waypoints, and then teleport to them later (only in the overworld)."); 
 		
-		weatherBlock = ModSamsContent.config.getBoolean( "weatherBlock",category,true,
+		weatherBlock = ModLoader.config.getBoolean( "weatherBlock",category,true,
 				"Craft block that will run /toggledownfall whenever it gets a redstone signal."); 
 		
-		teleportBedBlock = ModSamsContent.config.getBoolean( "teleportBedBlock",category,true,
+		teleportBedBlock = ModLoader.config.getBoolean( "teleportBedBlock",category,true,
 				"Command block that teleports you to the world spawn");
 		
-		teleportSpawnBlock = ModSamsContent.config.getBoolean( "teleportSpawnBlock",category,true,
+		teleportSpawnBlock = ModLoader.config.getBoolean( "teleportSpawnBlock",category,true,
 				"Command block that teleports you to your bed"); 
 		 
-		gameruleBlockRegen = ModSamsContent.config.getBoolean( "gameruleBlock.Regen",category,true,
+		gameruleBlockRegen = ModLoader.config.getBoolean( "gameruleBlock.Regen",category,true,
 				"Craft blocks that toggle '/gamerule naturalRegenration' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
 		
-		gameruleBlockDaylight = ModSamsContent.config.getBoolean( "gameruleBlock.Daylight",category,true,
+		gameruleBlockDaylight = ModLoader.config.getBoolean( "gameruleBlock.Daylight",category,true,
 				"Craft blocks that toggle '/gamerule doDaylightCycle' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
 		
-		gameruleBlockFiretick = ModSamsContent.config.getBoolean( "gameruleBlock.Firetick",category,true,
+		gameruleBlockFiretick = ModLoader.config.getBoolean( "gameruleBlock.Firetick",category,true,
 				"Craft blocks that toggle '/gamerule doFireTick' on redstone signal.  (Can never be opened or edited like a regular command block)."); 
 		
-		gameruleBlockMobgrief = ModSamsContent.config.getBoolean( "gameruleBlock.Mobgrief",category,true,
+		gameruleBlockMobgrief = ModLoader.config.getBoolean( "gameruleBlock.Mobgrief",category,true,
 				"Craft blocks that toggle '/gamerule doMobGriefing' on redstone signal.  (Can never be opened or edited like a regular command block).");
 	}
 	
@@ -258,27 +258,27 @@ public class ConfigFile
 	{
 		category = "crafting";
 		
-		craftBooksWithoutLeather = ModSamsContent.config.getBoolean( "craftBooksWithoutLeather",category,true,
+		craftBooksWithoutLeather = ModLoader.config.getBoolean( "craftBooksWithoutLeather",category,true,
 				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed.");
 		
-		craftableTransmuteRecords = ModSamsContent.config.getBoolean( "transmuteRecords",category,true,
+		craftableTransmuteRecords = ModLoader.config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record.");
    
-		craftableFlatDoubleSlab = ModSamsContent.config.getBoolean( "craftableFlatDoubleSlab",category,true,
+		craftableFlatDoubleSlab = ModLoader.config.getBoolean( "craftableFlatDoubleSlab",category,true,
 			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."		);
 
-		craftableBonemealColouredWool =  ModSamsContent.config.getBoolean( "craftableBonemealColouredWool",category,true
+		craftableBonemealColouredWool =  ModLoader.config.getBoolean( "craftableBonemealColouredWool",category,true
 				,"Allows you to dye coloured wool back to white using bonemeal"			); 
   
-		craftableMobHeads =  ModSamsContent.config.getBoolean( "craftableMobHeads",category,true
+		craftableMobHeads =  ModLoader.config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. "		);  
  
-		uncraftGeneral = ModSamsContent.config.getBoolean( "uncrafting",category,true,
+		uncraftGeneral = ModLoader.config.getBoolean( "uncrafting",category,true,
 				"uncrafting: craft or smelt blocks back into their ingredients.  Often it is not a perfect trade.  " +
 				"Example: Craft stairs back into blocks using a 4x4 pattern."	); 
 		
-		craftableMushroomBlocks =  ModSamsContent.config.getBoolean( "craftableMushroomBlocks",category,true
+		craftableMushroomBlocks =  ModLoader.config.getBoolean( "craftableMushroomBlocks",category,true
 				,"Craft mushroom blocks. ");
 	}
 	
@@ -286,62 +286,62 @@ public class ConfigFile
 	{
 		category = "commands";
 
-		kit = ModSamsContent.config.getBoolean("kit",category, true,
+		kit = ModLoader.config.getBoolean("kit",category, true,
     			"Use /kit to give yourself kit items.  Can only be done once each time you die.");
 
-		String csv = ModSamsContent.config.getString("kit.items",category, "minecraft:wooden_pickaxe,minecraft:wooden_sword",
+		String csv = ModLoader.config.getString("kit.items",category, "minecraft:wooden_pickaxe,minecraft:wooden_sword",
     			"Using /kit gives the following item.  Each must have minecraft:item or modname:item, no spaces and split by commas.");
 		CommandPlayerKit.setItemsFromString(csv);
 		
-		CommandHome.REQUIRES_OP = ModSamsContent.config.getBoolean("home.needs_op",category, false,
+		CommandHome.REQUIRES_OP = ModLoader.config.getBoolean("home.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 
-		home = ModSamsContent.config.getBoolean("home",category, true,
+		home = ModLoader.config.getBoolean("home",category, true,
     			"Use /home to go to the players spawn point, as defined by a bed."); 
 		
-		CommandHome.REQUIRES_OP = ModSamsContent.config.getBoolean("home.needs_op",category, false,
+		CommandHome.REQUIRES_OP = ModLoader.config.getBoolean("home.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 
-		worldhome = ModSamsContent.config.getBoolean("worldhome",category, true,
+		worldhome = ModLoader.config.getBoolean("worldhome",category, true,
     			"Use /worldhome to go to the worlds global spawn point.");  
 		
-		CommandWorldHome.REQUIRES_OP = ModSamsContent.config.getBoolean("worldhomehome.needs_op",category, false,
+		CommandWorldHome.REQUIRES_OP = ModLoader.config.getBoolean("worldhomehome.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		
-		searchtrade = ModSamsContent.config.getBoolean("searchtrade",category, true,
+		searchtrade = ModLoader.config.getBoolean("searchtrade",category, true,
     			"Players can search the trades of nearby villagers.  Result is only chat output.");
 		
-		CommandSearchTrades.REQUIRES_OP = ModSamsContent.config.getBoolean("searchtrade.needs_op",category, false,
+		CommandSearchTrades.REQUIRES_OP = ModLoader.config.getBoolean("searchtrade.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 
-		searchitem = ModSamsContent.config.getBoolean("searchitem",category, true,
+		searchitem = ModLoader.config.getBoolean("searchitem",category, true,
     			"Players can search nearby chests for items.   Result is only chat output."    		); 
 		
-		CommandSearchItem.REQUIRES_OP = ModSamsContent.config.getBoolean("searchitem_needs_op",category, false,
+		CommandSearchItem.REQUIRES_OP = ModLoader.config.getBoolean("searchitem_needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		
-		killall = ModSamsContent.config.getBoolean("killall",category, true,
+		killall = ModLoader.config.getBoolean("killall",category, true,
     			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."    		);
 		
-		CommandKillAll.REQUIRES_OP = ModSamsContent.config.getBoolean("killall.needs_op",category, false,
+		CommandKillAll.REQUIRES_OP = ModLoader.config.getBoolean("killall.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		 
-		enderchest = ModSamsContent.config.getBoolean("enderchest",category, true,
+		enderchest = ModLoader.config.getBoolean("enderchest",category, true,
     			"Players can open their enderchest with a command, no item needed."    		); 
 		
-		CommandEnderChest.REQUIRES_OP = ModSamsContent.config.getBoolean("enderchest.needs_op",category, false,
+		CommandEnderChest.REQUIRES_OP = ModLoader.config.getBoolean("enderchest.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		 
-		simplewaypoint = ModSamsContent.config.getBoolean("simplewaypoint",category, true,
+		simplewaypoint = ModLoader.config.getBoolean("simplewaypoint",category, true,
     			"Command that lets players save waypoints that then show up in the F3 debug screen, so we can navigate back to it (no tp)."    		); 
 		
-		CommandSimpleWaypoints.REQUIRES_OP = ModSamsContent.config.getBoolean("simplewaypoint.needs_op",category, false,
+		CommandSimpleWaypoints.REQUIRES_OP = ModLoader.config.getBoolean("simplewaypoint.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		
-		todo = ModSamsContent.config.getBoolean("todo",category, true,
+		todo = ModLoader.config.getBoolean("todo",category, true,
     			"Command that lets players use /todo myreminder text, which will then show whatever text they put on the F3 debug screen."); 
 		
-		CommandTodoList.REQUIRES_OP = ModSamsContent.config.getBoolean("todo.needs_op",category, false,
+		CommandTodoList.REQUIRES_OP = ModLoader.config.getBoolean("todo.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 	}
 }

@@ -9,7 +9,7 @@ public class StackSizeIncreaser
 { 
 	public static void init64()
 	{ 
-		if(!ModSamsContent.settings.increasedStackSizes ) {return;}
+		if(!ModLoader.settings.increasedStackSizes ) {return;}
 		
 		ArrayList<Item> to64 = new ArrayList<Item>();
  

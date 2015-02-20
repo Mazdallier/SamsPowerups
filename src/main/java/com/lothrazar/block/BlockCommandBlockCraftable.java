@@ -2,7 +2,7 @@ package com.lothrazar.block;
 
 import java.util.Random; 
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
 import com.lothrazar.util.SamsUtilities;
@@ -157,7 +157,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				't', rec
 		);		
 		
-		if(ModSamsContent.settings.uncraftGeneral) 
+		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addSmelting(c, rec , 0); 
 	
 		return c;
@@ -166,25 +166,25 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
 	public static void initDaylight()
 	{ 
-		if(!ModSamsContent.settings.gameruleBlockDaylight){return;}
+		if(!ModLoader.settings.gameruleBlockDaylight){return;}
 		command_block_daycycle = _command(Reference.gamerule.doDaylightCycle, "command_block_daycycle",new ItemStack( Blocks.glowstone) );
 	}
 
 	public static void initFiretick()
 	{
-		if(!ModSamsContent.settings.gameruleBlockFiretick){return;}
+		if(!ModLoader.settings.gameruleBlockFiretick){return;}
 		command_block_firetick = _command(Reference.gamerule.doFireTick, "command_block_firetick",new ItemStack( Items.lava_bucket) );
 	}
 
 	public static void initMobgrief()
 	{
-		if(!ModSamsContent.settings.gameruleBlockMobgrief){return;}
+		if(!ModLoader.settings.gameruleBlockMobgrief){return;}
 		command_block_mobgrief = _command(Reference.gamerule.mobGriefing, "command_block_mobgrief",new ItemStack( Blocks.tnt) );
 	}
 
 	public static void initRegen()
 	{
-		if(!ModSamsContent.settings.gameruleBlockRegen){return;}
+		if(!ModLoader.settings.gameruleBlockRegen){return;}
 		
 		command_block_regen = _command(Reference.gamerule.naturalRegeneration, "command_block_regen",new ItemStack(Items.golden_apple) );
 	}
@@ -199,12 +199,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	
 	public static void initWeatherBlock()
 	{ 
-		if(!ModSamsContent.settings.weatherBlock) {return;}
+		if(!ModLoader.settings.weatherBlock) {return;}
 		command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
  
 		SamsRegistry.registerBlock(command_block_weather,"command_block_weather");
 
-		if(ModSamsContent.settings.uncraftGeneral) 
+		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addRecipe(new ItemStack(command_block_weather), 
 					"rcr", 
 					"tet",
@@ -217,12 +217,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	
 	public static void initTeleportBlock()
 	{ 
-		if(!ModSamsContent.settings.teleportSpawnBlock) {return;}
+		if(!ModLoader.settings.teleportSpawnBlock) {return;}
 		command_block_tpspawn = new BlockCommandBlockCraftable(CommandType.TeleportSpawn);
  
 		SamsRegistry.registerBlock(command_block_tpspawn,"command_block_tpspawn");
 
-		if(ModSamsContent.settings.uncraftGeneral) 
+		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addRecipe(new ItemStack(command_block_tpspawn), 
 					"rcr", 
 					"tet",
@@ -235,12 +235,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	 
 	public static void initTeleportBedBlock()
 	{ 
-		if(!ModSamsContent.settings.teleportBedBlock) {return;}
+		if(!ModLoader.settings.teleportBedBlock) {return;}
 		command_block_tpbed = new BlockCommandBlockCraftable(CommandType.TeleportBed);
  
 		SamsRegistry.registerBlock(command_block_tpbed,"command_block_tpbed");
 
-		if(ModSamsContent.settings.uncraftGeneral) 
+		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addRecipe(new ItemStack(command_block_tpbed), 
 					"rcr", 
 					"tet",

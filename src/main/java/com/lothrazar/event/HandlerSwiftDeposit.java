@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,7 +19,7 @@ public class HandlerSwiftDeposit
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(ModSamsContent.settings.swiftDeposit == false){ return; }
+		if(ModLoader.settings.swiftDeposit == false){ return; }
 		
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 

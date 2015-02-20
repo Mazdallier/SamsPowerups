@@ -33,28 +33,21 @@ public class ItemChestSack extends Item
 	private static final String KEY_ITEMDMG = "itemdmg";
 	private static final String KEY_ITEMIDS = "itemids";
 
-	public ItemChestSack( )
+	public ItemChestSack()
 	{  
-		super( );  
+		super();  
 	}
    
 	@Override
-	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) 
-	{
-		//http://www.minecraftforge.net/wiki/Creating_NBT_for_items
-	  //  if(itemStack.stackTagCompound==null) {itemStack.stackTagCompound = new NBTTagCompound();}	     
-	}
-	
-	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) 
 	{
-		if(itemStack.hasTagCompound() == false)
+		if(itemStack.getTagCompound() == null)
 		{
 			itemStack.setTagCompound(new NBTTagCompound());
 		}
 	  
 		String count = itemStack.getTagCompound().getString("count"); 
-		if(count == null ) {count =   "0";}
+		if(count == null ) {count = "0";}
         		 
         list.add("Items: " + EnumChatFormatting.GREEN +count);
  
@@ -74,8 +67,7 @@ public class ItemChestSack extends Item
 		int[] itemqty = held.getTagCompound().getIntArray(KEY_ITEMQTY);
 		
 		if(itemids == null)
-		{
-			//Chat.addMessage(event.entityPlayer, "null nbt problem in itemchestsack");
+		{ 
 			return;
 		}
  
@@ -91,6 +83,7 @@ public class ItemChestSack extends Item
 		int toDeposit;
 		int chestMax;
 		
+		//TODO: Reference class use here
 		//player inventory and the small chest have the same dimensions 
 		int ROWS = 3;
 		int COLS = 9;
@@ -108,23 +101,18 @@ public class ItemChestSack extends Item
 		{
 			chestItem = chest.getStackInSlot(islotChest);
 		
-			if(chestItem == null) 
-			{ 
-				continue;
-			}//not an error; empty chest slot
+			if(chestItem == null) { continue; } // empty chest slot
 			 
 			for(int i = 0; i < itemids.length ; i++)
 			{
 				item = itemids[i];
-				if(item == 0){continue;}//empty slot 
+				if(item == 0){continue;}//empty inventory slot 
 				
 				meta = itemdmg[i];
 				qty = itemqty[i];
 				
 				invItem = new ItemStack(Item.getItemById(item),qty,meta);
-		
-			//	chest.setInventorySlotContents(i, chestItem); 
-			
+		 
 				if(invItem == null) 
 				{
 					if(debug)System.out.println(i+" invItem : EMPTY");

@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
 
@@ -50,7 +50,7 @@ public class HandlerScreenText
 	{ 
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
 
-		if(ModSamsContent.settings.debugMinified )
+		if(ModLoader.settings.debugMinified )
 		{
 			event.left.clear();
 			//TODO: i want to clear right side only. change config file around
@@ -100,7 +100,7 @@ public class HandlerScreenText
 	 
   
 		
-	 	if(ModSamsContent.settings.debugSlime
+	 	if(ModLoader.settings.debugSlime
 	 			&& player.dimension == 0)
 	 	{ 
 	    	long seed =  world.getSeed();
@@ -122,7 +122,7 @@ public class HandlerScreenText
 			} 
 	 	}
 	 	
-	 	if(ModSamsContent.settings.debugVillageInfo && world.villageCollectionObj != null)
+	 	if(ModLoader.settings.debugVillageInfo && world.villageCollectionObj != null)
 	 	{  
 	 
 			 int playerX = MathHelper.floor_double(player.posX);
@@ -163,7 +163,7 @@ public class HandlerScreenText
 			 }	 
 		 }
 	 	
-	 	if(ModSamsContent.settings.debugHorseInfo && player.ridingEntity != null)
+	 	if(ModLoader.settings.debugHorseInfo && player.ridingEntity != null)
 	 	{
 	 		if(player.ridingEntity instanceof EntityHorse)
 	 		{

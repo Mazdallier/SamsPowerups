@@ -3,7 +3,7 @@ package com.lothrazar.event;
 import java.util.ArrayList;   
 import org.apache.logging.log4j.Logger;  
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -58,7 +58,7 @@ public class HandlerSkullSignNames
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(ModSamsContent.settings.skullSignNames == false){ return; }
+		if(ModLoader.settings.skullSignNames == false){ return; }
 		
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 

@@ -1,6 +1,6 @@
 package com.lothrazar.event;
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -18,7 +18,7 @@ public class HandlerPlayerDeath
 	@SubscribeEvent
 	public void onPlayerDrops(PlayerDropsEvent event) 
 	{
-		if(ModSamsContent.settings.deathItemsChest == false) { return; }
+		if(ModLoader.settings.deathItemsChest == false) { return; }
 		////im not sure if this fires anytime when you dont die, but check anyway
 	//	System.out.println(" dead ? " + event.entityPlayer.isDead);
 		//turns out this is false even when a player dies in the game, so this event just fires right before death then

@@ -30,7 +30,7 @@ public class Recipes
 	
 	public static void mushroomBlocks()
 	{
-		if(!ModSamsContent.settings.craftableMushroomBlocks)  {return;}
+		if(!ModLoader.settings.craftableMushroomBlocks)  {return;}
 		
 		int otherSide = 0;
 		for (int side = 0; side < 16; side++)
@@ -49,7 +49,7 @@ public class Recipes
 
 	public static void uncrafting()
 	{
-		if(!ModSamsContent.settings.uncraftGeneral) {return;}
+		if(!ModLoader.settings.uncraftGeneral) {return;}
 			
 		GameRegistry.addRecipe(new ItemStack(Blocks.sandstone, 6), "xx", "xx",
 				'x', Blocks.sandstone_stairs);
@@ -533,7 +533,7 @@ public class Recipes
 
 	public static void doubleSlabsFlat()
 	{
-		if(!ModSamsContent.settings.craftableFlatDoubleSlab){return;}
+		if(!ModLoader.settings.craftableFlatDoubleSlab){return;}
 		int islab_sandstone = 1;
  //TODO: REFERENCE
 		int i_stone_magic = 8;
@@ -556,7 +556,7 @@ public class Recipes
 
 	public static void records()
 	{
-		if(!ModSamsContent.settings.craftableTransmuteRecords) {return;}
+		if(!ModLoader.settings.craftableTransmuteRecords) {return;}
 		// iterate down the list, 8 emeralds each time
 		
 		GameRegistry.addRecipe(new ItemStack(Items.record_13), "xxx", "xsx","xxx"
@@ -603,7 +603,7 @@ public class Recipes
 
 	public static void bonemealWool()
 	{
-		if(!ModSamsContent.settings.craftableBonemealColouredWool){return;}
+		if(!ModLoader.settings.craftableBonemealColouredWool){return;}
 		//use bonemeal to bleach colored wool back to white
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 1, 0),
 				new ItemStack(Blocks.wool, 1, 1), new ItemStack(Items.dye, 1,				Reference.dye_bonemeal)); 
@@ -639,7 +639,7 @@ public class Recipes
 
 	public static void mobHeads()
 	{
-		if(!ModSamsContent.settings.craftableMobHeads) 	{return;}
+		if(!ModLoader.settings.craftableMobHeads) 	{return;}
 	 
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_skeleton), "xxx", "xsx","xxx"
 				, 'x', Items.bone
@@ -662,7 +662,7 @@ public class Recipes
 
 	public static void bookNoLeather()
 	{ 
-		if(!ModSamsContent.settings.craftBooksWithoutLeather)  {return;}
+		if(!ModLoader.settings.craftBooksWithoutLeather)  {return;}
 			
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.book,1)
 				,new ItemStack(Items.paper)
@@ -672,7 +672,7 @@ public class Recipes
 
 	public static void repeaterSimple()
 	{ 
-		if(!ModSamsContent.settings.craftRepeaterSimple) {return;}
+		if(!ModLoader.settings.craftRepeaterSimple) {return;}
 		
 		GameRegistry.addRecipe(new ItemStack(Items.repeater), "r r", "srs","ttt"
 				, 't', new ItemStack(Blocks.stone)
@@ -682,7 +682,7 @@ public class Recipes
 
 	public static void minecartsSimple()
 	{
-		if(!ModSamsContent.settings.craftMinecartsSimple){return;}
+		if(!ModLoader.settings.craftMinecartsSimple){return;}
 
 		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
 		//etc for other minecarts too
@@ -712,7 +712,7 @@ public class Recipes
 
 	public static void woolDyeSavings()
 	{
-		if(!ModSamsContent.settings.craftWoolDye8) {return;}
+		if(!ModLoader.settings.craftWoolDye8) {return;}
 		// TODO Auto-generated method stub
 		
 		//do we remove the single recipe....!! YES!

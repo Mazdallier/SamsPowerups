@@ -2,7 +2,7 @@ package com.lothrazar.block;
 
 import java.util.Random;  
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -117,7 +117,7 @@ public class BlockFishing extends Block
 	public static BlockFishing block_fishing ;
 	public static void initFishing()
 	{
-		if(!ModSamsContent.settings.fishingNetBlock){return;}
+		if(!ModLoader.settings.fishingNetBlock){return;}
 		
 		block_fishing = new BlockFishing(); 
 		SamsRegistry.registerBlock(block_fishing,"block_fishing");
@@ -130,7 +130,7 @@ public class BlockFishing extends Block
 				'f', new ItemStack(Items.fishing_rod, 1, 0), 
 				'p', Blocks.planks);
 
-		if(ModSamsContent.settings.uncraftGeneral)
+		if(ModLoader.settings.uncraftGeneral)
 		{
 			GameRegistry.addSmelting(new ItemStack(block_fishing)
 			, new ItemStack(Blocks.web, 4), 0); 

@@ -2,7 +2,7 @@ package com.lothrazar.item;
 
 import java.util.List; 
 import com.google.common.collect.Sets;   
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.SamsRegistry;
 
@@ -131,7 +131,7 @@ public class ItemEnderBook extends ItemTool
 	 
 	public static void initEnderbook()
 	{
-		if(!ModSamsContent.settings.enderBook) {return;}
+		if(!ModLoader.settings.enderBook) {return;}
 		itemEnderBook = new ItemEnderBook();
 
 		SamsRegistry.registerItem(itemEnderBook, "book_ender");
@@ -139,7 +139,7 @@ public class ItemEnderBook extends ItemTool
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
 				"eee", 'e', Items.ender_pearl, 'b', Items.book);
 
-		if(ModSamsContent.settings.uncraftGeneral) 
+		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addSmelting(itemEnderBook, new ItemStack(
 					Items.ender_pearl, 8), 0);
 	}

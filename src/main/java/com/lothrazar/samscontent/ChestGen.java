@@ -12,7 +12,7 @@ public class ChestGen
 { 
 	public static void lootGlowstone() 
 	{
-		if(ModSamsContent.settings.lootGlowstone)
+		if(ModLoader.settings.lootGlowstone)
 		{ 
 			ItemStack[] allRecords = new ItemStack[] 
 			{
@@ -25,7 +25,7 @@ public class ChestGen
 
 	public static void lootQuartz() 
 	{
-		if(ModSamsContent.settings.lootQuartz)
+		if(ModLoader.settings.lootQuartz)
 		{ 
 			ItemStack[] allRecords = new ItemStack[] 
 			{
@@ -38,7 +38,7 @@ public class ChestGen
 
 	public static void lootObsidian() 
 	{
-		if(ModSamsContent.settings.lootObsidian)
+		if(ModLoader.settings.lootObsidian)
 		{ 
 			ItemStack[] allRecords = new ItemStack[] 
 			{
@@ -51,7 +51,7 @@ public class ChestGen
 
 	public static void lootAllRecords() 
 	{
-		if(ModSamsContent.settings.lootAllRecords)
+		if(ModLoader.settings.lootAllRecords)
 		{ 
 			ItemStack[] allRecords = new ItemStack[] 
 			{

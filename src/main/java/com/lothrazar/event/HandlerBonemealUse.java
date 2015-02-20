@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,7 +32,7 @@ public class HandlerBonemealUse
   	{    
   		if(event.world.isRemote){return;}//stop it from doing a secod ghost item drop
   		
-  		if(ModSamsContent.settings.betterBonemeal == false) { return; }
+  		if(ModLoader.settings.betterBonemeal == false) { return; }
   		
 		if(event.action == event.action.LEFT_CLICK_BLOCK) {return;}
 		 

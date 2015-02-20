@@ -1,6 +1,6 @@
 package com.lothrazar.event;
 
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -25,7 +25,7 @@ public class HandlerRichAnimals
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDropsEvent event)
 	{ 
-		if(ModSamsContent.settings.petNametagDrops && 
+		if(ModLoader.settings.petNametagDrops && 
 				isPet(event.entity) )
 		{ 
 			if(event.entity.getCustomNameTag() != null && //'custom' is blank if no nametag

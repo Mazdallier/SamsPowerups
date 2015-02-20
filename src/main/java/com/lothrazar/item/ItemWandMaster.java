@@ -2,7 +2,7 @@ package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerMasterWand;
-import com.lothrazar.samscontent.ModSamsContent;
+import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -331,7 +331,7 @@ public class ItemWandMaster extends ItemTool
 	
 	public static void onInit() 
 	{  
-		if(!ModSamsContent.settings.masterWand){return;}
+		if(!ModLoader.settings.masterWand){return;}
 			
 		itemWand = new ItemWandMaster();
   
@@ -343,7 +343,7 @@ public class ItemWandMaster extends ItemTool
 			, 'd', Blocks.emerald_block 
 			, 'b', Items.blaze_rod  );
 		
-		if(ModSamsContent.settings.uncraftGeneral) 
+		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
 
 		itemChestSack = new ItemChestSack();   
