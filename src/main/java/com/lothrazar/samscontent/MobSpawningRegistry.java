@@ -1,5 +1,7 @@
 package com.lothrazar.samscontent;
 
+import org.apache.logging.log4j.Level;
+
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
@@ -13,12 +15,12 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class MobSpawningRegistry 
 {
+	static int group = 3;
+	static int min = 1;
+	static int max = 4; 
 	public static void registerSpawns()
 	{ 
-		int group = 3;
-		int min = 1;
-		int max = 4; 
- 
+		
 		if(ModSamsContent.settings.spawnBlazeDesertHills) 
 			EntityRegistry.addSpawn(EntityBlaze.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desertHills} );
  

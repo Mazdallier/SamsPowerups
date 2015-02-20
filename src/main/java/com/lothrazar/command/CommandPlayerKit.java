@@ -109,7 +109,7 @@ public class CommandPlayerKit implements ICommand
 			
 			if(isItNull == null)
 			{
-				ModSamsContent.logger.log(Level.WARN, "Item not found for Command /kit : "+ ids[i]);
+			//	ModSamsContent.logger.log(Level.WARN, "Item not found for Command /kit : "+ ids[i]);
 			}
 			else
 			{

@@ -2,6 +2,7 @@ package com.lothrazar.samscontent;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger; 
 
 import com.lothrazar.block.*; 
@@ -72,7 +73,7 @@ public class ModSamsContent
 	@SidedProxy(clientSide="com.lothrazar.samscontent.proxy.ClientProxy", serverSide="com.lothrazar.samscontent.proxy.CommonProxy")
 	public static CommonProxy proxy;  
 	
-	public static Logger logger;
+	private static Logger logger;
 	public static Configuration config;
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
@@ -111,10 +112,9 @@ public class ModSamsContent
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{      
+		ModSamsContent.logger.log(Level.INFO, "MobSpawningRegistry.registerSpawns");
 		MobSpawningRegistry.registerSpawns();
-
-		initExtraVillagerTrading();
-		
+ 
 		ChestGen.lootAllRecords();
 		
 		ChestGen.lootObsidian(); 
@@ -123,7 +123,27 @@ public class ModSamsContent
 		
 		ChestGen.lootGlowstone(); 
 		
-  		initExtraRecipes();
+		Recipes.bookNoLeather(); 
+		  
+		Recipes.mushroomBlocks(); 
+		  
+		Recipes.mobHeads();	
+  
+		Recipes.bonemealWool();
+		
+		Recipes.records();
+		  
+		Recipes.doubleSlabsFlat();
+		 
+   		Recipes.uncrafting();
+ 
+   		Recipes.smoothstoneRequired();
+		  
+   		Recipes.woolDyeSavings();
+		  
+   		Recipes.repeaterSimple();
+		
+   		Recipes.minecartsSimple();
 
 		StackSizeIncreaser.init64(); 
  
@@ -131,6 +151,19 @@ public class ModSamsContent
   			GameRegistry.registerFuelHandler(new FurnaceFuel()); 
  
 		proxy.registerRenderers();
+		
+	 
+		//TODO: find out how Forge 1.8 does trading 
+		//this worked in 1.7, adding trades to villagers
+		/*
+  		if(ModSamsContent.settings.moreFutureTrades)
+  		{
+	  		VillageTrading v = new VillageTrading();
+	  		
+			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
+			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
+  		}
+  		*/ 
 	}
 	
 	@EventHandler
@@ -153,52 +186,8 @@ public class ModSamsContent
 		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
 		
 	}
-
  
 
-	///
-	
-	
-
-	private void initExtraRecipes() 
-	{
-		Recipes.bookNoLeather(); 
-		  
-		Recipes.mushroomBlocks(); 
-		  
-		Recipes.mobHeads();	
-  
-		Recipes.bonemealWool();
-		
-		Recipes.records();
-		  
-		Recipes.doubleSlabsFlat();
-		 
-   		Recipes.uncrafting();
- 
-   		Recipes.smoothstoneRequired();
-		  
-   		Recipes.woolDyeSavings();
-		  
-   		Recipes.repeaterSimple();
-		
-   		Recipes.minecartsSimple();
-	}
-
-	private void initExtraVillagerTrading() 
-	{
-		//TODO: find out how Forge 1.8 does trading
-		int x=0;
-		/*
-  		if(ModSamsContent.settings.moreFutureTrades)
-  		{
-	  		VillageTrading v = new VillageTrading();
-	  		
-			VillagerRegistry.instance().registerVillageTradeHandler(1, v);
-			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
-  		}
-  		*/
-	}
 
 	
  
