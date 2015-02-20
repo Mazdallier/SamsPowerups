@@ -101,22 +101,7 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 			player.inventory.setInventorySlotContents(lowNumber, bar);
 	   
 		} 
-		/*
-		else if( message.keyPressed == ClientProxy.keyShiftLeft.getKeyCode())
-		{ 
-			int leftMost = 0, rightMost = 8;
-			
-			
-			
-		}
-		else if( message.keyPressed == ClientProxy.keyShiftRight.getKeyCode())
-		{
-			int leftMost = 0, rightMost = 8;
-			
-			
-			
-		}
-		*/
+ 
 		return null;
 	}
 }

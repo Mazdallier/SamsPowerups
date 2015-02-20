@@ -26,6 +26,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class Recipes  
 {  
+	static int EXP=0;
+	
 	public static void mushroomBlocks()
 	{
 		if(!ModSamsContent.settings.craftableMushroomBlocks)  {return;}
@@ -39,14 +41,12 @@ public class Recipes
 			// reverse here
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.red_mushroom_block, 1, side),
 					new ItemStack(Blocks.red_mushroom_block, 1,  otherSide));
-			
-
+			 
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.brown_mushroom_block, 1, side),
 					new ItemStack(Blocks.brown_mushroom_block, 1,  otherSide));
 		}
 	}
 
-	static int EXP=0;
 	public static void uncrafting()
 	{
 		if(!ModSamsContent.settings.uncraftGeneral) {return;}
@@ -640,23 +640,19 @@ public class Recipes
 	public static void mobHeads()
 	{
 		if(!ModSamsContent.settings.craftableMobHeads) 	{return;}
-		//skeleton 0
+	 
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_skeleton), "xxx", "xsx","xxx"
 				, 'x', Items.bone
 				, 's',new ItemStack(Items.skull,1,Reference.skull_wither) );
-				
-		//zombie 2
+				 
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_zombie), "xxx", "xsx","xxx"
 				, 'x', new ItemStack(Items.rotten_flesh)
 				, 's', new ItemStack(Items.skull,1,Reference.skull_wither));
-		
-		
-		//player 3		
+		 
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_player), "xxx", "xsx","xxx"
 				, 'x', new ItemStack(Items.cake)
 				, 's',new ItemStack(Items.skull,1,Reference.skull_wither));		
-				
-		//creeper 4
+				 
 		GameRegistry.addRecipe(new ItemStack(Items.skull,1,Reference.skull_creeper), "xxx", "xsx","xxx"
 				, 'x', new ItemStack(Blocks.tnt)
 				, 's', new ItemStack(Items.skull,1,Reference.skull_wither));		
@@ -671,9 +667,7 @@ public class Recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.book,1)
 				,new ItemStack(Items.paper)
 				,new ItemStack(Items.paper)
-				,new ItemStack(Items.paper) 
-				); 
-		
+				,new ItemStack(Items.paper)  	);  
 	}
 
 	public static void repeaterSimple()
@@ -692,7 +686,8 @@ public class Recipes
 
 		//minecart stuffs: use five iron plus chest for it, instead of making the  cart first
 		//etc for other minecarts too
-		
+		//normally you would need the minecart created in a different step. this is better
+
 	}
 
 	public static void woolDyeSavings()

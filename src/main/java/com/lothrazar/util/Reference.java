@@ -22,26 +22,21 @@ public class Reference
 	public static final String keyCategory = "key.categories.inventory";
 	
 	public static final int TICKS_PER_SEC = 20;
-	
-
-
- 
+	public static long ticksPerDay = 24000 ;
+	 
 	public static final int face_bottom = 0;	
 	public static final int face_top = 1;
 	public static final int face_north = 2;
 	public static final int face_south = 3;
 	public static final int face_west = 4;
 	public static final int face_east = 5;
-	
-	
-		// Items.skull
+	  
 	public static final int skull_skeleton = 0;	
 	public static final int skull_wither = 1;
 	public static final int skull_zombie = 2;
 	public static final int skull_player = 3;
 	public static final int skull_creeper = 4;
-	
-
+	 
 	public static final int dye_incsac = 0;
 	public static final int dye_red = 1;
 	public static final int dye_cactus = 2;
@@ -64,8 +59,7 @@ public class Reference
 	public static final int CHEST_RARITY_REDSTONE = 50;
 	public static final int CHEST_RARITY_RECORD = 5;
 	public static final int CHEST_RARITY_GAPPLE = 1;
-	 
- 
+	  
 	//import net.minecraftforge.common.ChestGenHooks;
 	public static String chest_mineshaftCorridor = "mineshaftCorridor"; 
 	public static String chest_pyramidJungleChest= "pyramidJungleChest"; 
@@ -77,39 +71,7 @@ public class Reference
 	public static String chest_villageBlacksmith= "villageBlacksmith"; 
 	public static String chest_bonusChest= "bonusChest"; 
 	public static String chest_dungeonChest= "dungeonChest";
-
-
-
-
-	public static long ticksPerDay = 24000 ;
  
-	/*s:
-
-    MHF_Blaze
-    MHF_CaveSpider
-    MHF_Chicken
-    MHF_Cow
-    MHF_Enderman
-    MHF_Ghast
-    MHF_Golem
-    MHF_Herobrine
-    MHF_LavaSlime
-    MHF_MushroomCow
-    MHF_Ocelot
-    MHF_Pig
-    MHF_PigZombie
-    MHF_Sheep
-    MHF_Slime
-    MHF_Spider
-    MHF_Squid
-    MHF_Villager
-*/
-	//TODO:
-	//	player inv slots
-	//zero o 8 is the hotbar
-	//9 to 35 is the main inventory
-	
-	//100 to 103 is the armor
  
  
 	public static final int stone_slab_stone = 0;
@@ -184,8 +146,18 @@ public class Reference
 	public static final int entity_chicken = 93;
 	public static final int entity_mooshroom = 96;
 	public static final int entity_bat = 65;
+
+	public static final int BROWN = 0;
+	public static final int WHITE = 1;
+	public static final int PURPLE = 2;
+	public static final int BLACK = 3;
+	public static final int WHITEAPRON = 4;
+	//TODO:
+	//	player inv slots
+	//zero o 8 is the hotbar
+	//9 to 35 is the main inventory
 	
-	
+	//100 to 103 is the armor
 	public class PlayerInventory
 	{
 		public static final int ROWS = 3;
@@ -194,8 +166,7 @@ public class Reference
 		public static final int START = 9;//top left
 		public static final int END = START + SIZE;
 	}
- 
-//	public static final String gamerule_commandBlockOutput = "commandBlockOutput";
+  
 	public class FurnaceBurnTime // inner class
 	{
 		public static final int Sticks = 100;
@@ -220,7 +191,6 @@ public class Reference
 		public static final String mobGriefing = "mobGriefing";
 		public static final String naturalRegeneration = "naturalRegeneration";
 	}
-	//public static struct tallgrass{
  
 	public static class grassplant
 	{
@@ -228,9 +198,7 @@ public class Reference
 		public final static int grass=1;
 		public final static int fern=2;
 	} 
- 
-
-	//is struct
+  
 	public static class tallgrass
 	{
 		public final static int sunflower = 0;
@@ -238,7 +206,6 @@ public class Reference
 		public final static int grass=2;
 		public final static int fern=3;
 		public final static int rosebush=4;
-		public final static int peony=5;
-		
+		public final static int peony=5; 
 	}  
 }//ends class reference

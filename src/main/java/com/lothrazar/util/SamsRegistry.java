@@ -9,12 +9,9 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class SamsRegistry
-{
-  
+{ 
 	 public static void registerBlock(Block s, String name)
-	 {   
-		 // http://www.minecraftforge.net/forum/index.php?topic=24263.0
-	 
+	 {    
 		 s.setUnlocalizedName(name); 
 		 
 		 GameRegistry.registerBlock(s, name);
@@ -30,19 +27,9 @@ public class SamsRegistry
 		 
 		 setTextureNameForItem(s, name); 
 	 }
-	 
-	 //in case texture and id do not match````````````
-	 public static void registerItem(Item s, String name, String diffTexture)
-	 {  
-		 s.setUnlocalizedName(name);
-		 
-		 GameRegistry.registerItem(s, name);
-		 
-		 setTextureNameForItem(s, diffTexture); 
-	 }
 
-	    public static ArrayList<Item> delay = new ArrayList<Item>();
-	    public static ArrayList<String> delayNames = new ArrayList<String>();
+     public static ArrayList<Item> delay = new ArrayList<Item>();
+     public static ArrayList<String> delayNames = new ArrayList<String>();
 
 	 private static void setTextureNameForItem(Item s, String name)
 	 {

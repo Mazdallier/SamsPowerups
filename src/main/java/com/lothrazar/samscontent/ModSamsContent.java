@@ -188,12 +188,7 @@ public class ModSamsContent
 		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
 		
 		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
-		
 	}
- 
-
-
-	
  
 	private void registerItemsBlocks() 
 	{ 

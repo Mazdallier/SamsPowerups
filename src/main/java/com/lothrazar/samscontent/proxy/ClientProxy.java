@@ -20,19 +20,19 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerRenderers() 
     {  
-		keyShiftUp = new KeyBinding(Reference.keyUpName, Keyboard.KEY_C, Reference.keyCategory);
+    	keyShiftUp = new KeyBinding(Reference.keyUpName, Keyboard.KEY_C, Reference.keyCategory);
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftUp);
          
 		keyShiftDown = new KeyBinding(Reference.keyDownName, Keyboard.KEY_V, Reference.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
 
-         String item;
-         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-   		 for(int i = 0; i < SamsRegistry.delay.size(); i++)
-   		 {
+        String item;
+        ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+   		for(int i = 0; i < SamsRegistry.delay.size(); i++)
+   		{
    			item = Reference.TEXTURE_LOCATION + SamsRegistry.delayNames.get(i); 
    			mesher.register(SamsRegistry.delay.get(i), 0, new ModelResourceLocation( item , "inventory"));					
-   		 } 
+   		} 
 
          //More info on proxy rendering
          //http://www.minecraftforge.net/forum/index.php?topic=27684.0

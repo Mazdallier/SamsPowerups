@@ -26,9 +26,7 @@ public class SamsUtilities
 		{
 			player.setPositionAndUpdate(player.posX, player.posY + 1.0D, player.posZ);
 		}
-		 
-		
+		  
 		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
 	}
-	
 }
