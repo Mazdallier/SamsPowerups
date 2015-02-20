@@ -27,12 +27,11 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static enum MagicType
 	{
 		Potion, Flying, Hearts
-		//, Horse//TODO : lock players stepheight to 1.0 instead of 0.5
+		//, Horse/??/TODO : lock players stepheight to 1.0 instead of 0.5
 	}
 	public static ItemFoodAppleMagic apple_emerald;
 	public static ItemFoodAppleMagic apple_emerald_rich;
-	public static ItemFoodAppleMagic apple_diamond;
-	//public static ItemFoodAppleMagic apple_diamond_rich;
+	public static ItemFoodAppleMagic apple_diamond; 
 	public static ItemFoodAppleMagic apple_lapis;
 	public static ItemFoodAppleMagic apple_lapis_rich;
 	public static ItemFoodAppleMagic apple_chocolate;
@@ -44,6 +43,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	private ArrayList<Integer> _potionDurations;
 	private ArrayList<Integer> _potionAmplifiers;;
 	private MagicType type;
+	
 	public ItemFoodAppleMagic(MagicType ptype, int fillsHunger,boolean has_effect)
 	{  
 		super(fillsHunger,false);// fills 1 hunger (very small i know), and is not edible by wolf
@@ -101,8 +101,7 @@ public class ItemFoodAppleMagic extends ItemFood
   		if(MagicType.Hearts == this.type && par2World.isRemote == false)
   		{ 
   			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString());
-  		} 
-      
+  		}  
     }
 	
 	@Override
@@ -178,8 +177,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				,'l', Blocks.lapis_block
 				,'a', Items.apple); 
 		if(ModLoader.settings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft
-	 
+			GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft 
 	}
  
 	public static void initEmerald()
@@ -225,12 +223,11 @@ public class ItemFoodAppleMagic extends ItemFood
 		if(!ModLoader.settings.appleNetherStar) {return;}
 		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
 		//no potion effect, this just gives flying
-		SamsRegistry.registerItem(apple_nether_star, "rune_fire");
+		SamsRegistry.registerItem(apple_nether_star, "apple_nether_star");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_nether_star) 
 				, Items.nether_star
 				, Items.apple); 
 		if(ModLoader.settings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.nether_star, 1),	0); 
-	
+			GameRegistry.addSmelting(apple_nether_star, new ItemStack(Items.nether_star, 1),	0); 
 	} 
 }
