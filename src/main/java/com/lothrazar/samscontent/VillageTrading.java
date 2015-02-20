@@ -27,11 +27,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 //TODO: this wasd removed from forge.  Either still in progress orchanged?
 public class VillageTrading  //implements IVillageTradeHandler
 {   
-	final int BROWN = 0;
-	final int WHITE = 1;
-	final int PURPLE = 2;
-	final int BLACK = 3;
-	final int WHITEAPRON = 4;
+
 
 /*
 	@Override

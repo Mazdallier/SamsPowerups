@@ -30,6 +30,40 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class Recipes  
 {  
 	static int EXP=0;
+	private static void removeRecipe(Item resultItem)
+	{     
+		removeRecipe(new ItemStack(resultItem));
+	}
+	private static void removeRecipe(Block resultItem)
+	{     
+		removeRecipe(new ItemStack(resultItem));
+	}
+	private static void removeRecipe(ItemStack resultItem)
+	{     
+		//REFERENCES
+		//http://www.minecraftforge.net/forum/index.php/topic,7146.0.html
+		//http://stackoverflow.com/questions/27459815/minecraft-forge-1-7-10-removing-recipes-from-id
+	
+	    List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+	    IRecipe tmpRecipe;
+	    ItemStack recipeResult;
+	    for (int i = 0; i < recipes.size(); i++)
+	    {
+	        tmpRecipe = recipes.get(i);
+
+	        recipeResult = tmpRecipe.getRecipeOutput();
+	        if(recipeResult != null) 
+	        {
+	            recipeResult.stackSize = 1;
+	            //recipeResult.setItemDamage(0);
+	        }
+
+	        if (ItemStack.areItemStacksEqual(resultItem, recipeResult))
+	        {
+	            recipes.remove(i--);
+	        }
+	    }
+	}
 	
 	public static void mushroomBlocks()
 	{
@@ -730,6 +764,8 @@ public class Recipes
 
 	public static void smoothstoneRequired()
 	{ 
+		if(!ModLoader.settings.smoothstoneToolsRequired) {return;}
+		
 		removeRecipe(Blocks.furnace);
 
 		GameRegistry.addRecipe(new ItemStack(Items.stone_pickaxe), 
@@ -738,10 +774,8 @@ public class Recipes
 				"bbb", 
 				'b', Blocks.cobblestone,  
 				'c', Items.coal );
-		
-		
-		
-		
+
+
 		removeRecipe(Items.stone_pickaxe);
 		removeRecipe(Items.stone_sword);
 		removeRecipe(Items.stone_axe);
@@ -793,38 +827,44 @@ public class Recipes
 				't', Items.stick );
 	} 
 
-	private static void removeRecipe(Item resultItem)
-	{     
-		removeRecipe(new ItemStack(resultItem));
-	}
-	private static void removeRecipe(Block resultItem)
-	{     
-		removeRecipe(new ItemStack(resultItem));
-	}
-	private static void removeRecipe(ItemStack resultItem)
-	{     
-		//REFERENCES
-		//http://www.minecraftforge.net/forum/index.php/topic,7146.0.html
-		//http://stackoverflow.com/questions/27459815/minecraft-forge-1-7-10-removing-recipes-from-id
 	
-	    List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
-	    IRecipe tmpRecipe;
-	    ItemStack recipeResult;
-	    for (int i = 0; i < recipes.size(); i++)
-	    {
-	        tmpRecipe = recipes.get(i);
 
-	        recipeResult = tmpRecipe.getRecipeOutput();
-	        if(recipeResult != null) 
-	        {
-	            recipeResult.stackSize = 1;
-	            //recipeResult.setItemDamage(0);
-	        }
+	public static void tieredArmor() 
+	{
+		if(!ModLoader.settings.tieredArmor) {return;}
 
-	        if (ItemStack.areItemStacksEqual(resultItem, recipeResult))
-	        {
-	            recipes.remove(i--);
-	        }
-	    }
+		removeRecipe(Items.iron_chestplate);
+		removeRecipe(Items.iron_boots);
+		removeRecipe(Items.iron_leggings);
+		removeRecipe(Items.iron_helmet);
+		
+		GameRegistry.addRecipe(new ItemStack(Items.iron_chestplate), 
+				"ixi",
+				"iii", 
+				"iii", 
+				'i', Items.iron_ingot,  
+				'x', Items.leather_chestplate );
+
+		GameRegistry.addRecipe(new ItemStack(Items.iron_boots), 
+				"   ",
+				"i i", 
+				"ixi", 
+				'i', Items.iron_ingot,  
+				'x', Items.leather_boots );
+
+		GameRegistry.addRecipe(new ItemStack(Items.iron_leggings), 
+				"iii",
+				"ixi", 
+				"i i", 
+				'i', Items.iron_ingot,  
+				'x', Items.leather_leggings );
+
+		GameRegistry.addRecipe(new ItemStack(Items.iron_helmet), 
+				"iii",
+				"ixi", 
+				"   ", 
+				'i', Items.iron_ingot,  
+				'x', Items.leather_helmet);
+		
 	}
 }

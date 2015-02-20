@@ -173,6 +173,8 @@ public class ModLoader
    		Recipes.uncrafting();
  
    		Recipes.smoothstoneRequired();
+   		
+   		Recipes.tieredArmor();
 		  
    		Recipes.woolDyeSavings();
 		  

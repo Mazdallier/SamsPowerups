@@ -86,6 +86,8 @@ public class ConfigFile
 	public boolean teleportSpawnBlock;
 	public boolean spawnCaveSpiderJungle;
 	public boolean appleNetherStar;
+	public boolean smoothstoneToolsRequired;
+	public boolean tieredArmor;
 	
 	public ConfigFile()
 	{
@@ -103,6 +105,12 @@ public class ConfigFile
 		 
 		category = "tweaks"; 		//TODO: any category improvements here?
 	
+		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
+				"W."); //TODO text
+					
+		tieredArmor = ModLoader.config.getBoolean("tieredArmor",category, true,
+				"tieredArmor."); //TODO text
+		
 		increasedStackSizes = ModLoader.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
