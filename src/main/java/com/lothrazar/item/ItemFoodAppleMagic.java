@@ -29,15 +29,15 @@ public class ItemFoodAppleMagic extends ItemFood
 		Potion, Flying, Hearts
 		//, Horse//TODO : lock players stepheight to 1.0 instead of 0.5
 	}
-	private static ItemFoodAppleMagic apple_emerald;
-	private static ItemFoodAppleMagic apple_emerald_rich;
-	private static ItemFoodAppleMagic apple_diamond;
-	private static ItemFoodAppleMagic apple_diamond_rich;
-	private static ItemFoodAppleMagic apple_lapis;
-	private static ItemFoodAppleMagic apple_lapis_rich;
-	private static ItemFoodAppleMagic apple_chocolate;
-	private static ItemFoodAppleMagic apple_chocolate_rich;
-	private static ItemFoodAppleMagic apple_nether_star;
+	public static ItemFoodAppleMagic apple_emerald;
+	public static ItemFoodAppleMagic apple_emerald_rich;
+	public static ItemFoodAppleMagic apple_diamond;
+	//public static ItemFoodAppleMagic apple_diamond_rich;
+	public static ItemFoodAppleMagic apple_lapis;
+	public static ItemFoodAppleMagic apple_lapis_rich;
+	public static ItemFoodAppleMagic apple_chocolate;
+	public static ItemFoodAppleMagic apple_chocolate_rich;
+	public static ItemFoodAppleMagic apple_nether_star;
 	private boolean _hasEffect = false;
 
 	private ArrayList<Integer> _potionIds;
@@ -207,7 +207,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	{ 
 		if(!ModSamsContent.settings.appleDiamond) {return;}
 		apple_diamond = new ItemFoodAppleMagic(MagicType.Hearts,hungerSmall, true);  
-
+		//no potion effect, this just does heath boost + 1
 		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
 		GameRegistry.addRecipe(new ItemStack(apple_diamond)
 				, "lll","lal","lll"  
@@ -219,8 +219,9 @@ public class ItemFoodAppleMagic extends ItemFood
 
 	public static void initNether()
 	{  
+		if(!ModSamsContent.settings.appleNetherStar) {return;}
 		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
-
+		//no potion effect, this just gives flying
 		SamsRegistry.registerItem(apple_nether_star, "rune_fire");
 		GameRegistry.addShapelessRecipe(new ItemStack(apple_nether_star) 
 				, Items.nether_star

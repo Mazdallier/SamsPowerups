@@ -34,8 +34,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class HandlerMasterWand  
-{ 
- 
+{  
 	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
@@ -44,6 +43,7 @@ public class HandlerMasterWand
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
 		
+		//TODO: food drain? config file? durability? etc?
 		//if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}//required??
 	
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
@@ -121,12 +121,10 @@ public class HandlerMasterWand
 			}
 			else if(held.getItem() == ItemWandMaster.itemChestSack)
 			{ 	
-				if(  held.getTagCompound() ==null){return;}
+				if(  held.getTagCompound() == null){return;}
 			   
 				//int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.pos); 
-				  
-				 
-				
+				   
 				// : is y+1 actually air?
 				if(event.entityPlayer.worldObj.isAirBlock(event.pos.add(0,1,0)) == false
 						|| event.entityPlayer.worldObj.getActualHeight() < event.pos.getY() + 1)//do not place above world height
@@ -137,7 +135,7 @@ public class HandlerMasterWand
 				
 				ItemWandMaster.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.add(0,1,0));
 			}
-		}
+		}// end of is right click (else)
   	}
   
 	@SubscribeEvent
@@ -187,6 +185,7 @@ public class HandlerMasterWand
 			event.entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.spawn_egg,1,entity_id),true);
 			event.entityPlayer.worldObj.removeEntity(event.target);
 			 
+			//TODO: durability? config file?
 		//	 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
 			//onSuccess(event.entityPlayer);
 		}

@@ -78,8 +78,13 @@ public class ModSamsContent
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
 	
+	/****ideas region**/
 	//todo; shape/conic/circle drawing in game
 	//http://i.imgur.com/t3N1U8p.png
+	//MILKER: recipe uses tons of iron. each use pulls milk from a cow, drops the actual bucket.
+	//durability/number of uses is related to how many buckets it makes
+	//so its not 'free buckets'. its just transformed iron
+	
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
 		mcinfo.modId = Reference.MODID;
@@ -208,6 +213,8 @@ public class ModSamsContent
 		ItemFoodAppleMagic.initLapis();
 
 		ItemFoodAppleMagic.initChocolate();
+
+		ItemFoodAppleMagic.initNether();
 		
 		BlockFishing.initFishing();
   
@@ -245,7 +252,7 @@ public class ModSamsContent
       		,new HandlerRichAnimals()
       		,new HandlerScreenText()
      		,new HandlerSkullSignNames()
-      		,new HandlerSurvivalFlying()
+      		,new HandlerPlayerTickApplesEaten()
       		,new HandlerSwiftDeposit()
      		,new HandlerPlayerDeath()
      		,instance

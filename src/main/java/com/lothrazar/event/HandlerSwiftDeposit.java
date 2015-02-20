@@ -15,10 +15,7 @@ import com.lothrazar.util.Reference;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerSwiftDeposit
-{
-
-
-	@SuppressWarnings("unused")
+{  
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
@@ -29,8 +26,7 @@ public class HandlerSwiftDeposit
 		if(event.entityPlayer.isSneaking() == false){ return; }
 		
 		System.out.println("HandlerSwift deposit - does this even fire:???");
-
-		//if(event.entityPlayer.getItemInUse() != null){ return; }
+ 
 		if(event.entityPlayer.getCurrentEquippedItem() != null){ return; }
 		//ok so we have an empty hand
 		
@@ -49,7 +45,7 @@ public class HandlerSwiftDeposit
   	  	//to check for joined doublechests!!
   	  	//now we have access to both the chest inventory and the player inventory
   	  	
-  	   TileEntityChest teAdjacent = null;
+  	    TileEntityChest teAdjacent = null;
   	  	
   	  	if(chest.adjacentChestXNeg != null)
   	  	{

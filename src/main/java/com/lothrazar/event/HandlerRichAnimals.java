@@ -18,28 +18,24 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerRichAnimals 
-{
-	
-	
+{ 
 	//if livestock is killed by player, buff the loot by this factor
 	private static int LivestockLootScaleFactor = 4;//TODO: attach to config file
 
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDropsEvent event)
-	{
-		
+	{ 
 		if(ModSamsContent.settings.petNametagDrops && 
 				isPet(event.entity) )
-		{
-			//System.out.println(event.entity.getCustomNameTag());//blank if no nametag
-			//System.out.println(event.entity.getName());// "Wolf"
-			
-			if(event.entity.getCustomNameTag() != null && 
-			   event.entity.getCustomNameTag() != ""   //so it HAS a nametag
-			   )// nah// event.entity.getCustomNameTag() != event.entity.getName()
+		{ 
+			if(event.entity.getCustomNameTag() != null && //'custom' is blank if no nametag
+			   event.entity.getCustomNameTag() != ""   
+			   ) 
 			{
+				//so it HAS a nametag applied
 				ItemStack nt = new ItemStack(Items.name_tag);
 				if(nt.getTagCompound()==null){nt.setTagCompound(new NBTTagCompound());}
+				
 				//nt.getTagCompound().setString("test", "test");
 				//TODO? pass old name along into the new name/??
 				
@@ -63,17 +59,12 @@ public class HandlerRichAnimals
 				}
 			}
 			else
-			{
-				//System.out.println("not from player");
-				//nope, was not killed by player
-				event.drops.clear();//so the cow/whatever drops nothing.
+			{  
+				event.drops.clear();////nope, was not killed by playerso the cow/whatever drops nothing.
 			}
 		} 
 	}
- //TODO: maybe do a shear sheep event and double it or something. entity interact event? didnt seem to work
-	
-	//3. milk as world liquid  - is it in open blocks? or do we do it yourself
-
+ 
 	public boolean isLivestock(Entity entity)
 	{
 		return  (entity instanceof EntityPig) || 

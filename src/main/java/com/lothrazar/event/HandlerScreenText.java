@@ -44,13 +44,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  
 public class HandlerScreenText
-{ 
-
-	//private boolean showGameRules = false;
-	//private boolean showSlimeChunk = true;
-	//private boolean showVillageInfo = true; 
-//	private boolean showHorseInfo = true;
-
+{  
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{ 
@@ -59,14 +53,13 @@ public class HandlerScreenText
 		if(ModSamsContent.settings.debugMinified )
 		{
 			event.left.clear();
-			
+			//TODO: i want to clear right side only. change config file around
 			event.right.clear();
 		}
-		
 		 
- 
 		ArrayList<String> side = event.left;
-  
+		side.add("");
+		
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
   
@@ -82,48 +75,13 @@ public class HandlerScreenText
 		else if(remainder < 7000) detail = "Mid-day";//midd ay is exactly 6k, so go one on each side
 		else if(remainder < 12000) detail = "Afternoon";
 		else detail = "Moon Phase " + world.getMoonPhase();
-	  
-		
-		
+	   
+		//TODO: do a 365 day calendar. Day Zero is January 1st of year zero?``
 		side.add("Day "+days +" ("+detail+")");  
   
-		side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
-	 
-		
-		
-		/*
-		 * 	 	int yaw = (int)player.rotationYaw ;
-		int f = Math.abs( (yaw %= 360) /45);
-		 //doesnt work ,and is not needed anyway
-		//inspired by : http://www.minecraftforge.net/forum/index.php?topic=6514.0
-	 	if(yaw < 360) yaw += 360;//this SEEMS LIKE it doesnt matter, since we do Math.abs
-	 	//BUT, by doing that then adding the 22, it fixes th half widths
-		yaw += 22;//  magic fix number so SE and SW are balanced for example
-		//if we dont do this 22 fix, then south east and south west will NOT be at 45 deg, they will 
-		//not be equidistant from SOUTH 
-		
-	 	   //  360degrees divided by 45 == 8 zones
-	
-		 
-		String facing = "";
-		switch(f)
-		{
-			case 0: facing = "South";break;
-			case 1: facing = "South-East";break; 
-			case 2: facing = "East";break;
-			case 3: facing = "North-East";break;
-			case 4: facing = "North";break;
-			case 5: facing = "North-West";break;
-			case 6: facing = "West";break;
-			case 7: facing = "South-West";break;
-			default: facing = ""+f;//debug any mistakes
-		}
-			  
-		side.add(facing); 
-		 */
-		
-		
-		side.add("XYZ: "+(int)player.posX +" / "+  (int)player.posY  +" / "+ (int)player.posZ); 
+		//side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
+	  
+		//side.add("XYZ: "+(int)player.posX +" / "+  (int)player.posY  +" / "+ (int)player.posZ); 
 		//side.add("f:"+  f); 
 		
 		 

@@ -26,8 +26,6 @@ public class HandlerBonemealUse
 		else
 			return false;
 	}
-	
-	
 	 
   	@SubscribeEvent
 	public void onPlayerLeftClick(PlayerInteractEvent event)
@@ -41,9 +39,7 @@ public class HandlerBonemealUse
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
 		
 		if(isUsingBonemeal(held)  ) 
-		{ 
-		 
-			//was event.x, event.y, event.z
+		{   
 			Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 			
 			//if(blockClicked != Blocks.yellow_flower && blockClicked != Blocks.red_flower) {return;}
@@ -53,8 +49,7 @@ public class HandlerBonemealUse
 			//new method: the Block itself tells what number to return, not the world.  
 			//the world wraps up the state of the block that we can query, and the 
 			//block class translates
-	 
-			  
+	  
 		 	if ( blockClicked.equals(Blocks.yellow_flower))//yellow flowers have no damage variations
 		 	{  
 		 		if(event.entityPlayer.capabilities.isCreativeMode == false)

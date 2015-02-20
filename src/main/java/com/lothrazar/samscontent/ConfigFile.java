@@ -85,6 +85,7 @@ public class ConfigFile
 	public boolean teleportBedBlock;
 	public boolean teleportSpawnBlock;
 	public boolean spawnCaveSpiderJungle;
+	public boolean appleNetherStar;
 	
 	public ConfigFile()
 	{
@@ -203,24 +204,22 @@ public class ConfigFile
 	private void new_blocks_items() 
 	{
 		category = "new_blocks_items";
-		 
+
+		appleChocolate = ModSamsContent.config.getBoolean( "appleChocolate",category,true,
+				"appleChocolate" ); //TODO: text content
+		
 		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
 			"appleEmerald" ); //TODO: text content
 		
-		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
-				"appleDiamonds."); //TODO: text content
 		appleLapis = ModSamsContent.config.getBoolean( "appleLapis",category,true,
 				""); //TODO: text content
 		
-		appleEmerald = ModSamsContent.config.getBoolean( "appleEmerald",category,true,
-				"s."); //TODO: text content
-		
 		appleDiamond = ModSamsContent.config.getBoolean( "appleDiamond",category,true,
+				"appleDiamonds."); //TODO: text content
+		 
+		appleNetherStar = ModSamsContent.config.getBoolean( "appleNetherStar",category,true,
 				""); //TODO: text content
-		
-		appleChocolate = ModSamsContent.config.getBoolean( "appleChocolate",category,true,
-				"appleChocolate" ); //TODO: text content
-	
+		 
 		fishingNetBlock = ModSamsContent.config.getBoolean( "fishingNetBlock",category,true,
 				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 
 		 

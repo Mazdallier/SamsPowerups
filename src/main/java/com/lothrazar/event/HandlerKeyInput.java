@@ -8,8 +8,7 @@ import com.lothrazar.samscontent.proxy.ClientProxy;
 import com.lothrazar.samskeyslider.MessageKeyPressed;
 
 public class HandlerKeyInput 
-{
-	
+{ 
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
     {   
