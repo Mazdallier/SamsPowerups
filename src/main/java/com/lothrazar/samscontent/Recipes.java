@@ -715,11 +715,20 @@ public class Recipes
 		if(!ModSamsContent.settings.craftWoolDye8) {return;}
 		// TODO Auto-generated method stub
 		
+		//do we remove the single recipe....!! YES!
+		//wait, does clay and stuff let you dye any number 1-8 or is it only 8
+		
+		///do teh same thing as that
+		GameRegistry.addRecipe(new ItemStack(Items.dye,8,Reference.dye_bonemeal), 
+				"www","wdw", "www", 
+				'w', Blocks.wool, //color not specified, could be anything
+				'd', new ItemStack(Items.dye,1,Reference.dye_bonemeal));
 	}
 
 	public static void smoothstoneRequired()
 	{
 		// TODO Auto-generated method stub
-		
+//		http://www.minecraftforge.net/forum/index.php/topic,7146.0.html
+			//http://stackoverflow.com/questions/27459815/minecraft-forge-1-7-10-removing-recipes-from-id
 	} 
 }
