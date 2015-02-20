@@ -1,9 +1,12 @@
 package com.lothrazar.block;
 
 import java.util.Random; 
+
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
+
 import net.minecraftforge.fml.common.registry.GameRegistry; 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
@@ -18,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityCommandBlock;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
@@ -62,9 +66,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
  
 	@Override
 	public void updateTick(World w, BlockPos pos, IBlockState state, Random r)
-    {  
-		//this fires on redstone power 
-	
+    {   
         TileEntity tileentity = w.getTileEntity(pos); 
         if (tileentity == null ) {return;}
         if(!(tileentity instanceof TileEntityCommandBlock)) {return;}
@@ -73,8 +75,15 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 
         switch(type)
         {
-        	case TeleportBed://TODO: its own thing, to players bed location, if possible
+        	
 	        case TeleportSpawn:
+	        //	if(pos.dimension != 0)
+	    		//{
+	    			// player.addChatMessage(new ChatComponentTranslation("Can only teleport to your home in the overworld"));
+	    		//	 return;
+	    		//}
+	    		
+	        	 /*
 	        	int _x = w.getWorldInfo().getSpawnX();
 	    		int _y = w.getWorldInfo().getSpawnY();
 	    		int _z = w.getWorldInfo().getSpawnZ();
@@ -96,9 +105,17 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	    			}
 	    			//either we are out in open air, or we have moved up one block so loop again
 	    		}
-	    		
-	    		command = "/tp @p " + _x +  " "+_y+" "+_z;
+	    		*/
+	    		command = "/execute @p ~ ~ ~ worldhome";//"/tp @p " + _x +  " "+_y+" "+_z;
 	        break; 
+	        case TeleportBed://TODO: 
+	        	//cant do this without the player, how do we get player?
+
+
+	    		command = "/execute @p ~ ~ ~ home";
+	        	
+	        	
+        	break;
 	        case Gamerule:
 	        	
 	        	String lastVal = w.getGameRules().getGameRuleStringValue(rule); 
@@ -244,7 +261,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				'r', Blocks.redstone_block, 
 				't', Items.ghast_tear);
 	}
-	
+	 
 	public static void initTeleportBedBlock()
 	{ 
 		if(!ModSamsContent.settings.teleportBedBlock) {return;}
@@ -261,4 +278,5 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				'r', Blocks.redstone_block, 
 				't', Items.ghast_tear);
 	}
+	 
 }

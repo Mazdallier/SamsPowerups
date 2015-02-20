@@ -3,7 +3,6 @@ package com.lothrazar.command;
 import java.util.ArrayList;
 import java.util.List;
 import com.lothrazar.util.SamsUtilities;
-
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -11,14 +10,13 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
-//import net.minecraft.util.ChunkCoordinates;
-
+import net.minecraft.util.ChatComponentTranslation;  
 import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
 {
 	private ArrayList<String> aliases = new ArrayList<String>();
+	
 	@Override
 	public int compareTo(Object arg0)
 	{ 
@@ -46,8 +44,11 @@ public class CommandHome implements ICommand
 	@Override
 	public void execute(ICommandSender ic, String[] args) 	throws CommandException
 	{
-		EntityPlayer player = ((EntityPlayer)ic); 
-		World world = player.worldObj;
+		//ic.getCommandSenderEntity().wo
+	//	EntityPlayer player = ((EntityPlayer)ic); 
+		World world = ic.getCommandSenderEntity().worldObj;
+		 
+		EntityPlayer player = world.getClosestPlayer(ic.getPosition().getX(), ic.getPosition().getY(), ic.getPosition().getZ(), 5);
 
 		if(player.dimension != 0)
 		{

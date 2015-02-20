@@ -45,8 +45,12 @@ public class CommandWorldHome  implements ICommand
 	@Override
 	public void execute(ICommandSender ic, String[] args)
 	{
-		EntityPlayer player = ((EntityPlayer)ic); 
-		World world = player.worldObj; 
+		//EntityPlayer player = ((EntityPlayer)ic); 
+		//World world = player.worldObj; 
+		
+		World world = ic.getCommandSenderEntity().worldObj; 
+		EntityPlayer player = world.getClosestPlayer(ic.getPosition().getX(), ic.getPosition().getY(), ic.getPosition().getZ(), 5);
+
 		
 		if(player.dimension != 0)
 		{
