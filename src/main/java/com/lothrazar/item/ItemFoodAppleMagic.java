@@ -224,9 +224,13 @@ public class ItemFoodAppleMagic extends ItemFood
 		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
 		//no potion effect, this just gives flying
 		SamsRegistry.registerItem(apple_nether_star, "apple_nether_star");
-		GameRegistry.addShapelessRecipe(new ItemStack(apple_nether_star) 
-				, Items.nether_star
-				, Items.apple); 
+		
+		GameRegistry.addRecipe(new ItemStack(apple_nether_star),
+			"lll",
+			"lnl",
+			"lll", 
+			'l', Items.apple,
+			'n', Items.nether_star); 
 		if(ModLoader.settings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_nether_star, new ItemStack(Items.nether_star, 1),	0); 
 	} 
