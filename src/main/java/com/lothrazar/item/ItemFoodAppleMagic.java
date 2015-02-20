@@ -71,41 +71,38 @@ public class ItemFoodAppleMagic extends ItemFood
 	@Override
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {   
-	  	if (!par2World.isRemote  )
-        { 
-	  		if(MagicType.Potion == this.type)
+	  ////	if (!par2World.isRemote  )
+   
+  		if(MagicType.Potion == this.type && par2World.isRemote == false)
+  		{ 
+			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName()); 
+			
+	  		for(int i = 0; i < _potionIds.size(); i++)  
 	  		{ 
-				SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName()); 
-				
-		  		for(int i = 0; i < _potionIds.size(); i++)  
-		  		{ 
-		  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
-		  		} 
-	  		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
-	  		else if(MagicType.Flying == this.type)
-	  		{  
-	  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
-	  			
+	  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
+	  		} 
+  		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
 
-	  			
-	  			int countFlying = SamsUtilities.getPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
+ if(MagicType.Flying == this.type &&  par2World.isRemote == true)//!par2World.isRemote
+  		{  
+  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
+  			
 
-	  			System.out.println("**************************************" );
-	  			System.out.println(par3EntityPlayer.getName() );
-	  			System.out.println(par3EntityPlayer.getClass().getName());//THIS IS er.EntityPlayerMP
-	  			System.out.println("INCREMENT countFlying "+ MagicType.Flying.toString() + " = " +countFlying );
-	  			
-	  			
-	  		}
-	  		else if(MagicType.Hearts == this.type)
-	  		{ 
-	  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString());
-	  		}
-	  	//	else  
-	  	//	{
-	  	//		par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("UNKNOWNTYPE"));
-	  		//}
-        } 
+  			
+  			int countFlying = SamsUtilities.getPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
+
+  			//System.out.println("**************************************" );
+  			//System.out.println(par3EntityPlayer.getName() );
+  			//System.out.println(par3EntityPlayer.getClass().getName());//THIS IS er.EntityPlayerMP
+  			//System.out.println("INCREMENT countFlying "+ MagicType.Flying.toString() + " = " +countFlying );
+  			
+  			
+  		}
+  		if(MagicType.Hearts == this.type && par2World.isRemote == false)
+  		{ 
+  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString());
+  		} 
+      
     }
 	
 	@Override

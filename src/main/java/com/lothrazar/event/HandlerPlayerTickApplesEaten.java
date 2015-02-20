@@ -42,11 +42,11 @@ public class HandlerPlayerTickApplesEaten
 
 		
  //THIS IS .EntityPlayerSP.EntityPlayerSP.EntityPlayerSP.EntityPlayerSP.EntityPlayerSP
-	System.out.println(event.player.getName() );
-	System.out.println(event.player.getClass().getName());
+	//System.out.println(event.player.getName() );
+	//System.out.println(event.player.getClass().getName());
 		
-		System.out.println(Reference.MODID + MagicType.Flying.toString()+" = "+countFlying);
-		System.out.println(Reference.MODID + MagicType.Hearts.toString()+" = "+countHearts);
+	//	System.out.println(Reference.MODID + MagicType.Flying.toString()+" = "+countFlying);
+	//	System.out.println(Reference.MODID + MagicType.Hearts.toString()+" = "+countHearts);
 		
 		if(countHearts > 0)
 		{ 
@@ -60,7 +60,7 @@ public class HandlerPlayerTickApplesEaten
 
 		if (canFlySurvival)
 		{
-  			System.out.println("canFlySurvival FLYING "+canFlySurvival);
+  		//	System.out.println("canFlySurvival FLYING "+canFlySurvival);
 			//okay, you have passed all the tests
 			event.player.capabilities.allowFlying = true;  
 		} 
