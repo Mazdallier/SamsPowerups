@@ -8,13 +8,16 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;  
 import java.util.Random; 
+
 import org.apache.logging.log4j.Logger; 
 
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
+import com.lothrazar.item.ItemFoodAppleMagic.MagicType;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.client.Minecraft;
 //import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -56,9 +59,8 @@ public class HandlerScreenText
 			//TODO: i want to clear right side only. change config file around
 			event.right.clear();
 		}
-		 
-		ArrayList<String> side = event.left;
-		side.add("");
+		  
+		event.left.add("");
 		
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
@@ -77,7 +79,7 @@ public class HandlerScreenText
 		else detail = "Moon Phase " + world.getMoonPhase();
 	   
 		//TODO: do a 365 day calendar. Day Zero is January 1st of year zero?``
-		side.add("Day "+days +" ("+detail+")");  
+		event.left.add("Day "+days +" ("+detail+")");  
   
 		//side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
 	  
@@ -89,15 +91,23 @@ public class HandlerScreenText
 		
 			//only show this part if we are hiding the vanilla
 		//since Y and biome are already in that part
-		BlockPos playerPos = new BlockPos( player.posX ,player.posY  ,player.posZ);
+		BlockPos playerPos = player.getPosition();//new BlockPos( player.posX ,player.posY  ,player.posZ);
  
-		BiomeGenBase biome = world.getBiomeGenForCoords(playerPos); 
+		
+	//	BiomeGenBase biome = world.getBiomeGenForCoords(playerPos); 
 	 
-		side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
+		//side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
 		
 		//side.add("Height " +MathHelper.floor_double(player.posY)); 
 		//side.add("");
 	 
+		
+		int countFlying = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
+		
+		if(countFlying > 0)
+		{
+			event.left.add("Can Fly (has eaten Nether Apple)");
+		}
   
 		
 	 	if(ModLoader.settings.debugSlime
@@ -118,7 +128,7 @@ public class HandlerScreenText
 	     
 			if(isSlimeChunk)
 			{
-	    		side.add("Slime Chunk"); 
+				event.left.add("Slime Chunk"); 
 			} 
 	 	}
 	 	
@@ -145,11 +155,11 @@ public class HandlerScreenText
 			    //int golem_limit = MathHelper.floor_double(villagers / 10); 
 			    //boolean mating = closest.isMatingSeason();
 
-			    side.add("");
-			    side.add("Village Data");
-			    side.add(String.format("# of Villagers: %d",villagers));
-			    side.add(String.format("Reputation: %d",rep));
-			    side.add(String.format("Valid Doors: %d",doors));
+			    event.left.add("");
+			    event.left.add("Village Data");
+			    event.left.add(String.format("# of Villagers: %d",villagers));
+			    event.left.add(String.format("Reputation: %d",rep));
+			    event.left.add(String.format("Valid Doors: %d",doors));
 
 			   // side.add(String.format("center coords: %d  %d",closest.getCenter().posX,closest.getCenter().posZ));
 			    
@@ -158,7 +168,7 @@ public class HandlerScreenText
 			    
 			    int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
 
-			    side.add(String.format("Distance from Center:  %d", dist));
+			    event.left.add(String.format("Distance from Center:  %d", dist));
 			    
 			 }	 
 		 }
@@ -234,16 +244,16 @@ public class HandlerScreenText
 
 	 			if(spots != null) type += " ("+spots+")";
 
-	 			side.add("");
-	 			side.add("Riding "+type); 
+	 			event.left.add("");
+	 			event.left.add("Riding "+type); 
 
 	 			DecimalFormat df = new DecimalFormat("0.0000");
 	 			
-	 			side.add("  "+ df.format(speed) + " Speed"  ); 
+	 			event.left.add("  "+ df.format(speed) + " Speed"  ); 
 	 			
 	 			df = new DecimalFormat("0.0");
 	 			
-	 			side.add("  "+ df.format(jumpHeight) + " Jump"  ); 
+	 			event.left.add("  "+ df.format(jumpHeight) + " Jump"  ); 
 	 			
 	 		}
 	 	} 
@@ -282,8 +292,8 @@ public class HandlerScreenText
 		
 		if(todoCurrent != null && todoCurrent.isEmpty() == false)
 		{
-			side.add("");
-			side.add("TODO : "+todoCurrent); 
+			event.left.add("");
+			event.left.add("TODO : "+todoCurrent); 
 		}  
 
 		CommandSimpleWaypoints.AddWaypointInfo(event); 
