@@ -73,7 +73,7 @@ public class ModSamsContent
 	@SidedProxy(clientSide="com.lothrazar.samscontent.proxy.ClientProxy", serverSide="com.lothrazar.samscontent.proxy.CommonProxy")
 	public static CommonProxy proxy;  
 	
-	private static Logger logger;
+	//private static Logger logger;
 	public static Configuration config;
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
@@ -94,7 +94,7 @@ public class ModSamsContent
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
-		logger = event.getModLog();
+		//logger = event.getModLog();//TODO: find a use for this?
 
 		initModInfo(event.getModMetadata());
 		
@@ -111,8 +111,7 @@ public class ModSamsContent
 	
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
-	{      
-		ModSamsContent.logger.log(Level.INFO, "MobSpawningRegistry.registerSpawns");
+	{       
 		MobSpawningRegistry.registerSpawns();
  
 		ChestGen.lootAllRecords();
