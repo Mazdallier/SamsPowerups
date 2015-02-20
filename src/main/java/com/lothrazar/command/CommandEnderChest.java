@@ -18,6 +18,7 @@ import net.minecraft.util.BlockPos;
 
 public class CommandEnderChest implements ICommand
 {
+	public static boolean REQUIRES_OP; 
 	private ArrayList<String> aliases = new ArrayList<String>();
 
 	public CommandEnderChest()
@@ -37,19 +38,14 @@ public class CommandEnderChest implements ICommand
 	{
 		return "/" + getName();
 	}
- 
-
-	//@Override
-	//public void processCommand(ICommandSender icommandsender, String[] astring)
-///	{
+  
 	@Override
-	public void execute(ICommandSender sender, String[] args)			throws CommandException
+	public void execute(ICommandSender sender, String[] args) throws CommandException
 	{
 		EntityPlayer p = (EntityPlayer) sender;
 		p.displayGUIChest(p.getInventoryEnderChest());
 	}
-
-
+ 
 	@Override
 	public boolean isUsernameIndex(String[] astring, int i)
 	{
@@ -61,18 +57,13 @@ public class CommandEnderChest implements ICommand
 	{
 		return 0;
 	}
- 
-
+  
 	@Override
 	public List getAliases()
 	{
 		return this.aliases;
 	}
-
- 
-
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
-
+  
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)
 	{

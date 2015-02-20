@@ -2,6 +2,7 @@ package com.lothrazar.command;
 
 import java.util.ArrayList;
 import java.util.List;  
+
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -242,14 +243,11 @@ public class CommandKillAll implements ICommand
 		} 
 	}
 
+
 	@Override
-	public boolean canCommandSenderUse(ICommandSender ic) 
-	{ 
-		//removed from 172 : MinecraftServer.getServer().getConfigurationManager().isPlayerOpped()
-		
-		//http://www.minecraftforge.net/forum/index.php?topic=22907.0
-		//for some magic reason, 2 means op. and "" is ?? but it works.
-		return ic.canUseCommand(2, this.getName());
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
  
 	@Override

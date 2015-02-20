@@ -19,6 +19,7 @@ import net.minecraft.village.MerchantRecipeList;
 
 public class CommandSearchTrades  implements ICommand
 {
+	public static boolean REQUIRES_OP; 
 	private ArrayList<String> aliases = new ArrayList<String>();
 	@Override
 	public int compareTo(Object arg0) 
@@ -174,8 +175,6 @@ public class CommandSearchTrades  implements ICommand
 	{ 
 		return false;
 	}
-
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)

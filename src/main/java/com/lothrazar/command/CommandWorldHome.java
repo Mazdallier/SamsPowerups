@@ -15,8 +15,9 @@ import net.minecraft.world.World;
 
 public class CommandWorldHome  implements ICommand
 {
+	public static boolean REQUIRES_OP; 
+	
 	private ArrayList<String> aliases = new ArrayList<String>();
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 	
 	@Override
 	public int compareTo(Object o)
@@ -63,16 +64,13 @@ public class CommandWorldHome  implements ICommand
 		
 		SamsUtilities.teleportWallSafe(player, world, world.getSpawnPoint()); 
 	}
-
-
+ 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)
 	{
 		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
-
-	 
-
+ 
 	@Override
 	public boolean isUsernameIndex(String[] ic, int args)
 	{ 
@@ -81,8 +79,7 @@ public class CommandWorldHome  implements ICommand
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return null;
 	}
 

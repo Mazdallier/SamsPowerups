@@ -21,6 +21,8 @@ import net.minecraftforge.common.DimensionManager;
 
 public class CommandSimpleWaypoints  implements ICommand
 {
+	public static boolean REQUIRES_OP; 
+
 	private ArrayList<String> aliases = new ArrayList<String>();
 
 	public CommandSimpleWaypoints()
@@ -351,8 +353,6 @@ public class CommandSimpleWaypoints  implements ICommand
     		} 
     	}
 	}
-
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)

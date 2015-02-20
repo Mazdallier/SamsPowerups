@@ -2,9 +2,12 @@ package com.lothrazar.command;
 
 import java.util.ArrayList;
 import java.util.List; 
+
 import org.apache.logging.log4j.Level;
+
 import com.lothrazar.samscontent.ModSamsContent;
 import com.lothrazar.util.SamsUtilities;
+
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
@@ -17,8 +20,9 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 
 public class CommandPlayerKit implements ICommand
-{
-
+{ 
+	public static boolean REQUIRES_OP;
+	
 	@Override
 	public int compareTo(Object arg0)
 	{ 
@@ -34,7 +38,7 @@ public class CommandPlayerKit implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender sender)
 	{ 
-		return "/"+getName();
+		return "/" + getName();
 	}
 
 	@Override
@@ -68,11 +72,11 @@ public class CommandPlayerKit implements ICommand
 			 p.addChatMessage(new ChatComponentTranslation("You can only get one kit each time you die."));
 		} 
 	}
-
+ 
 	@Override
-	public boolean canCommandSenderUse(ICommandSender sender)
-	{ 
-		return true;
+	public boolean canCommandSenderUse(ICommandSender ic)
+	{
+		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
 
 	@Override
@@ -105,8 +109,7 @@ public class CommandPlayerKit implements ICommand
 				if(b != null)	isItNull = Item.getItemFromBlock(b);
 				
 			} 
-			
-			
+			 
 			if(isItNull == null)
 			{
 			//	ModSamsContent.logger.log(Level.WARN, "Item not found for Command /kit : "+ ids[i]);

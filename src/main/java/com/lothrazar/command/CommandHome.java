@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 
 public class CommandHome implements ICommand
 {
+	public static boolean REQUIRES_OP; 
+
 	private ArrayList<String> aliases = new ArrayList<String>();
 	
 	@Override
@@ -43,9 +45,7 @@ public class CommandHome implements ICommand
 
 	@Override
 	public void execute(ICommandSender ic, String[] args) 	throws CommandException
-	{
-		//ic.getCommandSenderEntity().wo
-	//	EntityPlayer player = ((EntityPlayer)ic); 
+	{ 
 		World world = ic.getCommandSenderEntity().worldObj;
 		 
 		EntityPlayer player = world.getClosestPlayer(ic.getPosition().getX(), ic.getPosition().getY(), ic.getPosition().getZ(), 5);
@@ -59,9 +59,7 @@ public class CommandHome implements ICommand
 		 BlockPos coords = player.getBedLocation(0);
 		 
 		 if(coords == null)
-		 {
-			 //has not been sent in a bed
-			 //TODO: get the ID for this chat for translation purposes
+		 { 
 			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed."));
 			 return;
 		 }
@@ -81,10 +79,7 @@ public class CommandHome implements ICommand
 			 player.addChatMessage(new ChatComponentTranslation("Your home bed was missing or obstructed.")); 
 		 } 
 	}
- 
-
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
-
+  
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)
 	{
@@ -93,15 +88,13 @@ public class CommandHome implements ICommand
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender ic, String[] args, BlockPos pos)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return null;
 	}
 
 	@Override
 	public boolean isUsernameIndex(String[] args, int i)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return false;
 	}
 

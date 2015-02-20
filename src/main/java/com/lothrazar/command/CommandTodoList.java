@@ -37,6 +37,8 @@ import net.minecraftforge.common.config.Property;
 
 public class CommandTodoList implements ICommand
 {   
+	public static boolean REQUIRES_OP = false; 
+
 	private ArrayList<String> aliases = new ArrayList<String>(); 
 	
 	public static String KEY_LIST = "todo_list";
@@ -181,8 +183,6 @@ public class CommandTodoList implements ICommand
 	{ 
 		return 0;
 	}
-
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)

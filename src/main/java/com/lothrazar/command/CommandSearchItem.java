@@ -27,15 +27,13 @@ public class CommandSearchItem  implements ICommand
 	{
 		aliases.add("is");
 	}
-	
-
+	 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)
 	{
 		return (REQUIRES_OP) ? ic.canUseCommand(2, this.getName()) : true; 
 	}
-	 
-	
+	  
 	@Override
 	public List getAliases() 
 	{  
