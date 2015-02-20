@@ -74,75 +74,42 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
         String command = null;   //set the command of the block as a string, just as a player would type it
 
         switch(type)
-        {
-        	
-	        case TeleportSpawn:
-	        //	if(pos.dimension != 0)
-	    		//{
-	    			// player.addChatMessage(new ChatComponentTranslation("Can only teleport to your home in the overworld"));
-	    		//	 return;
-	    		//}
-	    		
-	        	 /*
-	        	int _x = w.getWorldInfo().getSpawnX();
-	    		int _y = w.getWorldInfo().getSpawnY();
-	    		int _z = w.getWorldInfo().getSpawnZ();
-	    		
-	    		//try to find air block up from 64. since world spawn is usually fixed at 64.
-	    		boolean inWall = true;
-	    		Block current;
-	    		while(inWall && _y < 200)
-	    		{
-	    			current = w.getBlockState(new BlockPos(_x, _y, _z)).getBlock(); 
-	    			
-	    			if(current == Blocks.air) 
-	    			{
-	    				inWall = false;
-	    			}
-	    			else 
-	    			{
-	    				_y++; 
-	    			}
-	    			//either we are out in open air, or we have moved up one block so loop again
-	    		}
-	    		*/
-	    		command = "/execute @p ~ ~ ~ worldhome";//"/tp @p " + _x +  " "+_y+" "+_z;
+        { 
+	        case TeleportSpawn: 
+	        	
+	    		command = "worldhome";
+
 	        break; 
-	        case TeleportBed://TODO: 
-	        	//cant do this without the player, how do we get player?
+	        case TeleportBed:
 
-
-	    		command = "/execute @p ~ ~ ~ home";
-	        	
-	        	
+	    		command = "home";
+	        	 
         	break;
+	        case Weather:
+	        	
+	        	command = "toggledownfall";
+	        	
+	        break;
 	        case Gamerule:
 	        	
 	        	String lastVal = w.getGameRules().getGameRuleStringValue(rule); 
 	
-	        	//toggle it based on previous value
-				lastVal = (lastVal.equals("false")) ? "true" : "false";  
+				lastVal = (lastVal.equals("false")) ? "true" : "false"; //toggle it based on previous value 
 	 
-	            command = "/gamerule "+ rule +" "+lastVal;
+	            command = "gamerule "+ rule +" "+lastVal;
 	            
-	        	break;
-	        case Weather:
-	        	
-	        	command = "/toggledownfall";
-	        	
 	        break;
         }
          
-        //in 1.8 snapshot, we will use execute possibly?
-       // commandblocklogic.func_145752_a("/execute @p "+x+" "+y+" "+z+" toggledownfall");
-         
+        //TODO: does the excecute respect op powers? can non op use toggledownfall from this
+        String pre = "execute @p ~ ~ ~ ";
+        //pre = "/"
         if(command != null)
         {
 	        CommandBlockLogic commandblocklogic = ((TileEntityCommandBlock)tileentity).getCommandBlockLogic();
 	         
-	        commandblocklogic.setCommand(command); //set current command into this CommandClock
+	        commandblocklogic.setCommand(pre + command);  
 	        
-	        //execute my current command in the World
 	        commandblocklogic.trigger(w);
         }
     }
