@@ -96,6 +96,5 @@ public class CommandHome implements ICommand
 	public boolean isUsernameIndex(String[] args, int i)
 	{ 
 		return false;
-	}
-
+	} 
 }

@@ -44,8 +44,7 @@ public class CommandKillAll implements ICommand
 	{ 
 		return "/" + getName() + "<entity> <range>";
 	}
- 
-	
+  
 	private int killed = 0;
 	@Override
 	public void execute(ICommandSender ic, String[] args) throws CommandException
@@ -86,9 +85,8 @@ public class CommandKillAll implements ICommand
 				 px + range, py + range, pz + range);
 
 		this.killed = 0;
-		
-		// generic way so we dont have to copy,paste for each one
-		if(CREEPER.contains(args[0]))
+		 
+		if(CREEPER.contains(args[0])) // generic way so we dont have to copy,paste for each one
 		{  
 			this.killAll( p.worldObj.getEntitiesWithinAABB(
 					EntityCreeper.class, rangeBox)); 
@@ -236,14 +234,13 @@ public class CommandKillAll implements ICommand
 	{
 		for(EntityLivingBase e : list)
 		{
-		  if(e.isDead) {continue;}
+			if(e.isDead) {continue;}
 	  
-		  e.attackEntityFrom(DamageSource.magic, 33); 
-		  killed++;
+			e.attackEntityFrom(DamageSource.magic, 33); 
+			killed++;
 		} 
 	}
-
-
+ 
 	@Override
 	public boolean canCommandSenderUse(ICommandSender ic)
 	{

@@ -53,11 +53,10 @@ public class CommandPlayerKit implements ICommand
 	public void execute(ICommandSender sender, String[] args) throws CommandException
 	{ 
 		EntityPlayer p = (EntityPlayer)sender;
-		 
-		//has the player used this already (in this life)
+		  
 		int kitsUsed = SamsUtilities.getPlayerIntegerNBT(p, getName());
-		
-		if(kitsUsed == 0)
+		 
+		if(kitsUsed == 0) //has the player used this already (in this life)
 		{
 			for(Item item : giveItems) //these were decided by the config file
 			{
@@ -102,12 +101,10 @@ public class CommandPlayerKit implements ICommand
 		for(int i = 0; i < ids.length; i++)
 		{
 			isItNull = Item.getByNameOrId(ids[i]);
-			if(isItNull == null)
+			if(isItNull == null)  //try to get block version  
 			{
-				//try to get block version 
 				b = Block.getBlockFromName(ids[i]);
-				if(b != null)	isItNull = Item.getItemFromBlock(b);
-				
+				if(b != null)	isItNull = Item.getItemFromBlock(b); 
 			} 
 			 
 			if(isItNull == null)
