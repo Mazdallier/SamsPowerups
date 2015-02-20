@@ -29,7 +29,7 @@ import net.minecraft.util.MathHelper;
 public class ItemEnderBook extends ItemTool
 { 
 	public static String KEY_LOC = "location"; 
-	public static ItemEnderBook itemEnderBook;
+	public static ItemEnderBook itemEnderBook = null;
 	private static int DURABILITY = 50;
 	
 	public ItemEnderBook( )

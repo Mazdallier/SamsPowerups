@@ -347,14 +347,12 @@ public class ConfigFile
     			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."    		);
 		CommandKillAll.REQUIRES_OP = ModSamsContent.config.getBoolean("killall.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
-		
-		
+		 
 		enderchest = ModSamsContent.config.getBoolean("enderchest",category, true,
     			"Players can open their enderchest with a command, no item needed."    		); 
 		CommandEnderChest.REQUIRES_OP = ModSamsContent.config.getBoolean("enderchest.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
-		
-		
+		 
 		simplewaypoint = ModSamsContent.config.getBoolean("simplewaypoint",category, true,
     			"Command that lets players save waypoints that then show up in the F3 debug screen, so we can navigate back to it (no tp)."    		); 
 		CommandSimpleWaypoints.REQUIRES_OP = ModSamsContent.config.getBoolean("simplewaypoint.needs_op",category, false,

@@ -287,29 +287,7 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
         }  
     } 
  
-	@SubscribeEvent
-	public void onPlayerInteract(PlayerInteractEvent event)
-	{
-		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem();
 
-		if (itemStack == null || itemStack.getItem() == null ) { return; }
-
-		if (event.action.LEFT_CLICK_BLOCK == event.action)
-		{ 
-			if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
-			{
-				ItemEnderBook.teleport(event.entityPlayer, itemStack);
-			} 
-		} 
-		else
-		{
-			if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
-			{
-				ItemEnderBook.itemEnderBook.saveCurrentLocation( event.entityPlayer, itemStack);
-			}
-		}
-	} 
-	
 	
 	
 	
@@ -360,8 +338,8 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
     	//they are just Objects, because i have not yet found a reason to add an interface/superclass 
      	Object[] handlers = new Object[]
      	{
-     		 new HandlerBonemealUse()
-     		 //	,new HandlerBountifulUpdate()
+     		 new HandlerBonemealUse() 
+     		,new HandlerEnderBookClick()
      		,new HandlerEnderChestHit()
       		,new HandlerFoodEaten()
       		,new HandlerMasterWand()
