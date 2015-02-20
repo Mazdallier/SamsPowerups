@@ -138,8 +138,10 @@ public class ItemEnderBook extends ItemTool
 
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
 				"eee", 'e', Items.ender_pearl, 'b', Items.book);
-		GameRegistry.addSmelting(itemEnderBook, new ItemStack(
-				Items.ender_pearl, 8), 0);
+
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(itemEnderBook, new ItemStack(
+					Items.ender_pearl, 8), 0);
 	}
 }
  

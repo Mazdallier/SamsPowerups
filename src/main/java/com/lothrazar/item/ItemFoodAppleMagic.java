@@ -164,7 +164,8 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', new ItemStack(Items.dye, 1, Reference.dye_lapis)  
 				,'a', Items.apple); 
-		GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
 	
 		apple_lapis_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
 		apple_lapis_rich.addEffect(Reference.potion_RESISTANCE, timeLong, I); 
@@ -173,7 +174,8 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Blocks.lapis_block
 				,'a', Items.apple); 
-		GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft
 	 
 	}
  
@@ -187,7 +189,8 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Items.emerald
 				,'a', Items.apple);
-		GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),	0);
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),	0);
 		 
 		apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
 		apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, V); 
@@ -196,7 +199,8 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Blocks.emerald_block
 				,'a', Items.apple);
-		GameRegistry.addSmelting(apple_emerald_rich, new ItemStack(Blocks.emerald_block, 8),	0);
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(apple_emerald_rich, new ItemStack(Blocks.emerald_block, 8),	0);
 	} 
 
 	public static void initDiamond()
@@ -209,7 +213,8 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Items.diamond
 				,'a', Items.apple); 
-		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),	0); 
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),	0); 
 	}
 
 	public static void initNether()
@@ -217,11 +222,11 @@ public class ItemFoodAppleMagic extends ItemFood
 		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
 
 		SamsRegistry.registerItem(apple_nether_star, "rune_fire");
-		GameRegistry.addShapelessRecipe(new ItemStack(apple_nether_star)
-				 
+		GameRegistry.addShapelessRecipe(new ItemStack(apple_nether_star) 
 				, Items.nether_star
 				, Items.apple); 
-		GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.nether_star, 1),	0); 
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.nether_star, 1),	0); 
 	
 	} 
 }

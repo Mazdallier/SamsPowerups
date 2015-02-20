@@ -156,7 +156,9 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 				'r', Items.ghast_tear, 
 				't', rec
 		);		
-		GameRegistry.addSmelting(c, rec , 0);// uncraft
+		
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(c, rec , 0); 
 	
 		return c;
 	}
@@ -202,14 +204,15 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
  
 		SamsRegistry.registerBlock(command_block_weather,"command_block_weather");
 
-		GameRegistry.addRecipe(new ItemStack(command_block_weather), 
-				"rcr", 
-				"tet",
-				"rcr", 
-				'c', Items.comparator, 
-				'e', Items.water_bucket, 
-				'r', Blocks.redstone_block, 
-				't', Items.ghast_tear);
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addRecipe(new ItemStack(command_block_weather), 
+					"rcr", 
+					"tet",
+					"rcr", 
+					'c', Items.comparator, 
+					'e', Items.water_bucket, 
+					'r', Blocks.redstone_block, 
+					't', Items.ghast_tear);
 	} 
 	
 	public static void initTeleportBlock()
@@ -219,14 +222,15 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
  
 		SamsRegistry.registerBlock(command_block_tpspawn,"command_block_tpspawn");
 
-		GameRegistry.addRecipe(new ItemStack(command_block_tpspawn), 
-				"rcr", 
-				"tet",
-				"rcr", 
-				'c', Items.comparator, 
-				'e', Items.ender_eye, 
-				'r', Blocks.redstone_block, 
-				't', Items.ghast_tear);
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addRecipe(new ItemStack(command_block_tpspawn), 
+					"rcr", 
+					"tet",
+					"rcr", 
+					'c', Items.comparator, 
+					'e', Items.ender_eye, 
+					'r', Blocks.redstone_block, 
+					't', Items.ghast_tear);
 	}
 	 
 	public static void initTeleportBedBlock()
@@ -236,14 +240,15 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
  
 		SamsRegistry.registerBlock(command_block_tpbed,"command_block_tpbed");
 
-		GameRegistry.addRecipe(new ItemStack(command_block_tpbed), 
-				"rcr", 
-				"tet",
-				"rcr", 
-				'c', Items.comparator, 
-				'e', Items.ender_pearl, 
-				'r', Blocks.redstone_block, 
-				't', Items.ghast_tear);
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addRecipe(new ItemStack(command_block_tpbed), 
+					"rcr", 
+					"tet",
+					"rcr", 
+					'c', Items.comparator, 
+					'e', Items.ender_pearl, 
+					'r', Blocks.redstone_block, 
+					't', Items.ghast_tear);
 	}
 	 
 }

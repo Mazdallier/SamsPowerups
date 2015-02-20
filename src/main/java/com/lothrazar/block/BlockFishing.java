@@ -29,8 +29,7 @@ public class BlockFishing extends Block
 	  
 	public BlockFishing()
 	{
-		super(Material.wood); 
-		
+		super(Material.wood);  
 		this.setCreativeTab(CreativeTabs.tabRedstone);
 		this.setHardness(3F);
 		this.setResistance(5F); 
@@ -43,9 +42,7 @@ public class BlockFishing extends Block
 		int xCoord = pos.getX();
 		int yCoord = pos.getY();
 		int zCoord = pos.getZ();
-		
-		//worldObj.getBlockState(new BlockPos(xCoord+1, yCoord, zCoord));
-		//int xCoord, int yCoord, int zCoord
+		 
 		 if(worldObj.getBlockState(new BlockPos(xCoord+1, yCoord, zCoord)).equals(Blocks.water) == false
 		 || worldObj.getBlockState(new BlockPos(xCoord-1, yCoord, zCoord)).equals(Blocks.water) == false 
 		 || worldObj.getBlockState(new BlockPos(xCoord, yCoord, zCoord+1)).equals(Blocks.water) == false
@@ -121,15 +118,22 @@ public class BlockFishing extends Block
 	public static void initFishing()
 	{
 		if(!ModSamsContent.settings.fishingNetBlock){return;}
+		
 		block_fishing = new BlockFishing(); 
 		SamsRegistry.registerBlock(block_fishing,"block_fishing");
 
-		GameRegistry.addRecipe(new ItemStack(block_fishing), "pwp", "wfw", "pwp", 'w',
-				Blocks.web, 'f', new ItemStack(Items.fishing_rod, 1, 0), 'p',
-				Blocks.planks);
+		GameRegistry.addRecipe(new ItemStack(block_fishing), 
+				"pwp", 
+				"wfw", 
+				"pwp", 
+				'w', Blocks.web, 
+				'f', new ItemStack(Items.fishing_rod, 1, 0), 
+				'p', Blocks.planks);
 
-		GameRegistry.addSmelting(new ItemStack(block_fishing), new ItemStack(
-				Blocks.web, 4), 0);
-	}
-	
+		if(ModSamsContent.settings.uncraftGeneral)
+		{
+			GameRegistry.addSmelting(new ItemStack(block_fishing)
+			, new ItemStack(Blocks.web, 4), 0); 
+		}
+	} 
 }

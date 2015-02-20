@@ -342,7 +342,9 @@ public class ItemWandMaster extends ItemTool
 			," b "
 			, 'd', Blocks.emerald_block 
 			, 'b', Items.blaze_rod  );
-		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
+		
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.emerald_block,1,0),0);	//recycling	 
 
 		itemChestSack = new ItemChestSack();   
 		SamsRegistry.registerItem(itemChestSack, "chest_sack");

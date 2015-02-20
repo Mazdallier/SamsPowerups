@@ -36,7 +36,7 @@ public class BlockXRay extends Block
 		this.setResistance(5F); 
 		this.setTickRandomly(true);
     }
-  /*
+  /*//TODO: revisit and/or fix silk touch harvest. the getdrops had a bug?
 	@Override
     public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
     {
@@ -53,12 +53,11 @@ public class BlockXRay extends Block
 	 	return ret;
 	} 
 	*/
-	
-	//???????transparency????
+	 
 	@SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT;
+        return EnumWorldBlockLayer.CUTOUT; // transparency
     }
 	
 	public static BlockXRay block_xray ;
@@ -69,10 +68,16 @@ public class BlockXRay extends Block
 		block_xray = new BlockXRay(); 
 		SamsRegistry.registerBlock(block_xray,"block_xray");
 
-		GameRegistry.addRecipe(new ItemStack(block_xray), "owo", "wgw", "owo",
-				'w', Blocks.web, 'g', Blocks.glass, 'o', Blocks.obsidian);
+		GameRegistry.addRecipe(new ItemStack(block_xray), 
+				"owo", 
+				"wgw", 
+				"owo",
+				'w', Blocks.web, 
+				'g', Blocks.glass, 
+				'o', Blocks.obsidian);
 
-		GameRegistry.addSmelting(new ItemStack(block_xray), new ItemStack(
-				Blocks.web, 4), 0);
+		if(ModSamsContent.settings.uncraftGeneral) 
+			GameRegistry.addSmelting(new ItemStack(block_xray)
+			, new ItemStack(Blocks.web, 4), 0);
 	}
 }
