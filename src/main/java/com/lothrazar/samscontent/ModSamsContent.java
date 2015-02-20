@@ -249,6 +249,9 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		if(settings.spawnCaveSpiderRoofedForest)
 			EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.roofedForest} );
 		
+		if(settings.spawnCaveSpiderJungle)
+			EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.jungle} );
+
 
 		if(settings.spawnSnowgolemsIceMountains) 
 			EntityRegistry.addSpawn(EntitySnowman.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.iceMountains} );
@@ -282,14 +285,9 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		
 		//EnumCreatureType.AMBIENT//TODO: more bas:??
 	}
-
-
-	
-	
-	
+ 
 	private void registerItemsBlocks() 
-	{
-		
+	{ 
 		//IDEAS ABOUND:
 		//using public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
 		//blocks that do things to players/mobs . such as
@@ -355,9 +353,7 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
     		FMLCommonHandler.instance().bus().register(o);
      	}
 	}
-
-
-	
-	//TODO: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
+  
+	//if we need to: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
 	//my old ideas such as altering explosions, pumpkins, fence gates, 3x3 inventory, would need this
 }
