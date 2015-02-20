@@ -160,6 +160,36 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		
    		
 	}
+	
+	
+	
+	
+	@EventHandler
+	public void onServerLoad(FMLServerStartingEvent event)
+	{
+		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
+		
+		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
+		
+		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
+		
+		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
+		
+		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
+		 
+		if(ModSamsContent.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
+  
+		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
+		
+		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
+		
+	}
+
+ 
+
+	///
+	
+	
 
 	private void initExtraRecipes() 
 	{
@@ -253,40 +283,6 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
 		//EnumCreatureType.AMBIENT//TODO: more bas:??
 	}
 
-	@EventHandler
-	public void onServerLoad(FMLServerStartingEvent event)
-	{
-		if(ModSamsContent.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
-		
-		if(ModSamsContent.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
-		
-		if(ModSamsContent.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
-		
-		if(ModSamsContent.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
-		
-		if(ModSamsContent.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
-		 
-		if(ModSamsContent.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
-  
-		if(ModSamsContent.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
-		
-		if(ModSamsContent.settings.worldhome) { event.registerServerCommand(new CommandHome());}
-		
-	}
-	
-	@SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) 
-    {   
-        if(ClientProxy.keyShiftUp.isPressed() )
-        { 	     
-        	 network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftUp.getKeyCode()));  
-        }        
-        else if(ClientProxy.keyShiftDown.isPressed() )
-        { 	      
-        	network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
-        }  
-    } 
- 
 
 	
 	
@@ -342,6 +338,7 @@ Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
      		,new HandlerEnderBookClick()
      		,new HandlerEnderChestHit()
       		,new HandlerFoodEaten()
+     		,new HandlerKeyInput()
       		,new HandlerMasterWand()
       		,new HandlerRichAnimals()
       		,new HandlerScreenText()
