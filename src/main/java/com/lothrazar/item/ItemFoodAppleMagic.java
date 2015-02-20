@@ -83,8 +83,16 @@ public class ItemFoodAppleMagic extends ItemFood
 		  		} 
 	  		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
 	  		else if(MagicType.Flying == this.type)
-	  		{ 
+	  		{  
 	  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
+	  			
+
+	  			
+	  			int countFlying = SamsUtilities.getPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
+
+	  			System.out.println("INCREMENT countFlying "+ MagicType.Flying.toString() + " = " +countFlying );
+	  			
+	  			
 	  		}
 	  		else if(MagicType.Hearts == this.type)
 	  		{ 

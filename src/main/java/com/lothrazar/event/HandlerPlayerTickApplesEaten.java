@@ -39,7 +39,10 @@ public class HandlerPlayerTickApplesEaten
   
 		int countFlying = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString());
 		int countHearts = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
-			  
+
+		System.out.println(Reference.MODID + MagicType.Flying.toString()+" = "+countFlying);
+		System.out.println(Reference.MODID + MagicType.Hearts.toString()+" = "+countHearts);
+		
 		if(countHearts > 0)
 		{ 
 			//health boost 
@@ -52,6 +55,7 @@ public class HandlerPlayerTickApplesEaten
 
 		if (canFlySurvival)
 		{
+  			System.out.println("canFlySurvival FLYING "+canFlySurvival);
 			//okay, you have passed all the tests
 			event.player.capabilities.allowFlying = true;  
 		} 
