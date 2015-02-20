@@ -688,6 +688,26 @@ public class Recipes
 		//etc for other minecarts too
 		//normally you would need the minecart created in a different step. this is better
 
+
+		GameRegistry.addRecipe(new ItemStack(Items.chest_minecart), 
+				"   ","ici", "iii", 
+				'i', Items.iron_ingot,
+				'c', Blocks.chest);
+		 
+		GameRegistry.addRecipe(new ItemStack(Items.tnt_minecart), 
+				"   ","ici", "iii", 
+				'i', Items.iron_ingot,
+				'c', Blocks.tnt);
+
+		GameRegistry.addRecipe(new ItemStack(Items.hopper_minecart), 
+				"   ","ici", "iii", 
+				'i', Items.iron_ingot,
+				'c', Blocks.hopper);
+
+		GameRegistry.addRecipe(new ItemStack(Items.furnace_minecart), 
+				"   ","ici", "iii", 
+				'i', Items.iron_ingot,
+				'c', Blocks.furnace);
 	}
 
 	public static void woolDyeSavings()
