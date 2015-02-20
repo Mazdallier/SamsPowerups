@@ -1,6 +1,7 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList;  
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;  
 
@@ -12,6 +13,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -730,5 +733,31 @@ public class Recipes
 		// TODO Auto-generated method stub
 //		http://www.minecraftforge.net/forum/index.php/topic,7146.0.html
 			//http://stackoverflow.com/questions/27459815/minecraft-forge-1-7-10-removing-recipes-from-id
+	
+		
+		removeRecipe(new ItemStack(Items.stone_pickaxe));
 	} 
+	
+	private static void removeRecipe(ItemStack resultItem)
+	{     
+		//test out code from stackoverflow
+	    List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+
+	    for (int i = 0; i < recipes.size(); i++)
+	    {
+	        IRecipe tmpRecipe = recipes.get(i);
+
+	        ItemStack recipeResult = tmpRecipe.getRecipeOutput();
+	        if(recipeResult != null) 
+	        {
+	            recipeResult.stackSize = 1;
+	            //recipeResult.setItemDamage(0);
+	        }
+
+	        if (ItemStack.areItemStacksEqual(resultItem, recipeResult))
+	        {
+	            recipes.remove(i--);
+	        }
+	    }
+	}
 }

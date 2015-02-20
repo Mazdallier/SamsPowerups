@@ -95,7 +95,38 @@ public class ModLoader
 		authorList.add("Lothrazar");
 		mcinfo.authorList = authorList;
 	}
-
+/*	Property locked = config.get(MODID, "survivalLocked", false);
+		locked.comment = "When true, this forces creative mode players into survival.  This must be false to allow creative mode.  The purpose of this is "
+				+ "to remove the temptation to go creative in LAN mode or while cheats are turned on to change the game rules.";
+		LockedInSurvival = locked.getBoolean(false);
+ 
+		
+		Property _canHarvestMelonAxe = config.get(MODID, "canHarvestMelonAxe",true);
+		_canHarvestMelonAxe.comment = "This sets melons to harvest the same speed as pumpkins when using an axe.";
+		canHarvestMelonAxe = _canHarvestMelonAxe.getBoolean(true);
+			//TODO: look for more little tweaks like this melon one
+		if(canHarvestMelonAxe)
+		{
+		//set harvest level of more things for shears/swords/whatever ??
+			Blocks.melon_block.setHarvestLevel("axe", 0);
+			
+				@SubscribeEvent 
+	public void onPlayerTick(PlayerTickEvent event)
+	{      
+		if (event.player instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP mp = (EntityPlayerMP) event.player;
+ 
+			// lock them in
+			if (LockedInSurvival && mp.theItemInWorldManager.getGameType() != GameType.SURVIVAL)
+			{
+				mp.setGameType(GameType.SURVIVAL);
+			}
+		} 
+	}// end player tick event
+ 
+	
+		} */
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
