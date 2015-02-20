@@ -81,24 +81,19 @@ public class ItemFoodAppleMagic extends ItemFood
 		  		{ 
 		  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
 		  		} 
-	  		}
+	  		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
 	  		else if(MagicType.Flying == this.type)
-	  		{
-	  			par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("TODOFLY"));
-	  			//TOGGLE NBT here, up to max of 4, that gets read in on player tick for 
-//the fly logic, same as the old blanket buff for all players
-	  		
+	  		{ 
+	  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
 	  		}
 	  		else if(MagicType.Hearts == this.type)
-	  		{
-	  			par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("TODOFLY"));
-	  		
-	  			//increment NBT here, up to max of 4, that gets read in on player tick for the persisting buff
+	  		{ 
+	  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString());
 	  		}
-	  		else  
-	  		{
-	  			par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("UNKNOWNTYPE"));
-	  		}
+	  	//	else  
+	  	//	{
+	  	//		par3EntityPlayer.addChatComponentMessage(new ChatComponentTranslation("UNKNOWNTYPE"));
+	  		//}
         } 
     }
 	

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.apache.logging.log4j.Logger; 
 
 import com.lothrazar.item.ItemFoodAppleMagic;
+import com.lothrazar.item.ItemFoodAppleMagic.MagicType;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities; 
 
@@ -36,24 +37,18 @@ public class HandlerPlayerTickApplesEaten
 		if( !event.player.worldObj.isRemote  ){ return; }//server vs client
 		if( event.player.capabilities.isCreativeMode){return;}//leave flying alone
   
-		int diamondEaten = SamsUtilities.getPlayerIntegerNBT(event.player, ItemFoodAppleMagic.apple_diamond.getUnlocalizedName());
-		int netherEaten = SamsUtilities.getPlayerIntegerNBT(event.player, ItemFoodAppleMagic.apple_nether_star.getUnlocalizedName());
+		int countFlying = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString());
+		int countHearts = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
 			  
-		if(diamondEaten > 0)
+		if(countHearts > 0)
 		{ 
 			//health boost 
-			System.out.println("item.apple_diamond :"+diamondEaten);	
-			event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, diamondEaten - 1)); 
+			countHearts--;//eaten one means level zero
+			event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, countHearts)); 
 			
 		}
-		
-		if(netherEaten > 0)
-		{ 
-			System.out.println("netherEaten :"+netherEaten);
-		}
- 
-
-		boolean canFlySurvival = (netherEaten > 0);
+		 
+		boolean canFlySurvival = (countFlying > 0);
 
 		if (canFlySurvival)
 		{

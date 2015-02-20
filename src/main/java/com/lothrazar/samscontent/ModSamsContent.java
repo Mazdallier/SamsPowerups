@@ -245,14 +245,14 @@ public class ModSamsContent
      	{
      		 new HandlerBonemealUse() 
      		,new HandlerEnderBookClick()
-     		,new HandlerEnderChestHit()
-      		,new HandlerFoodEaten()
+     		,new HandlerEnderChestHit() 
      		,new HandlerKeyInput()
       		,new HandlerMasterWand()
       		,new HandlerRichAnimals()
       		,new HandlerScreenText()
      		,new HandlerSkullSignNames()
-      		,new HandlerPlayerTickApplesEaten()
+      		//,new HandlerPlayerDeath()
+       		,new HandlerPlayerTickApplesEaten()
       		,new HandlerSwiftDeposit()
      		,new HandlerPlayerDeath()
      		,instance
