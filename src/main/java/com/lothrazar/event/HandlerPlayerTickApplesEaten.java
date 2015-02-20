@@ -40,6 +40,11 @@ public class HandlerPlayerTickApplesEaten
 		int countFlying = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString());
 		int countHearts = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
 
+		
+ //THIS IS .EntityPlayerSP.EntityPlayerSP.EntityPlayerSP.EntityPlayerSP.EntityPlayerSP
+	System.out.println(event.player.getName() );
+	System.out.println(event.player.getClass().getName());
+		
 		System.out.println(Reference.MODID + MagicType.Flying.toString()+" = "+countFlying);
 		System.out.println(Reference.MODID + MagicType.Hearts.toString()+" = "+countHearts);
 		

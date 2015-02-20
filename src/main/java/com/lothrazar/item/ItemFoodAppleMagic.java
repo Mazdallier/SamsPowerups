@@ -90,6 +90,9 @@ public class ItemFoodAppleMagic extends ItemFood
 	  			
 	  			int countFlying = SamsUtilities.getPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
 
+	  			System.out.println("**************************************" );
+	  			System.out.println(par3EntityPlayer.getName() );
+	  			System.out.println(par3EntityPlayer.getClass().getName());//THIS IS er.EntityPlayerMP
 	  			System.out.println("INCREMENT countFlying "+ MagicType.Flying.toString() + " = " +countFlying );
 	  			
 	  			
