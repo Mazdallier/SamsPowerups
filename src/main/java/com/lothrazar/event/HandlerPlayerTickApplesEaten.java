@@ -26,7 +26,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class HandlerPlayerTickApplesEaten  
 {  
 	private static boolean doesDrainHunger = true;
-	private static boolean doesWeaknessFatigue = true; 
+	private static boolean doesWeakness = true; 
+	private static boolean doesFatigue = true; 
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
@@ -72,37 +73,34 @@ public class HandlerPlayerTickApplesEaten
 
 				int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
 				int duration = 2 * Reference.TICKS_PER_SEC;  //2 seconds
-				if(doesWeaknessFatigue)
-				{
-					event.player.addPotionEffect(new PotionEffect(Reference.potion_FATIGUE, duration, level));
-					event.player.addPotionEffect(new PotionEffect(Reference.potion_WEAKNESS, duration, level)); 
-				}
 				
-				if(doesDrainHunger) 
-				{
+				if(doesWeakness) 
+					event.player.addPotionEffect(new PotionEffect(Reference.potion_FATIGUE, duration, level));
+				 
+				if(doesFatigue) 
+					event.player.addPotionEffect(new PotionEffect(Reference.potion_WEAKNESS, duration, level)); 
+				  
+				if(doesDrainHunger)  
 					event.player.addPotionEffect(new PotionEffect(Reference.potion_HUNGER, duration, 0));
-				}
+				 
 				    
 			} // end if isFlying
 			else //so therefore isFlying is false
 			{  
-				if (event.player.posY < event.player.prevPosY)
-				{
-					// i am not flying so do the fall damage thing
-					// we are falling  
+				if (event.player.posY < event.player.prevPosY) // we are falling 
+				{  
 					event.player.capabilities.allowFlying = false;// to enable  fall distance
 	
-					//dont leave them lingering with 0:00 potions forever (in case it bugs out)
-					if(doesWeaknessFatigue)
-					{ 
+					//erase the potion effects , dont just let them tick down
+					//(in case it bugs out-  leave them lingering with 0:00 potions forever )
+					if(doesWeakness)
 						 event.player.removePotionEffect(Reference.potion_FATIGUE);
-						 event.player.removePotionEffect(Reference.potion_WEAKNESS);
-					}
 					
+					if(doesFatigue)
+						 event.player.removePotionEffect(Reference.potion_WEAKNESS);
+					 
 					if(doesDrainHunger) 
-					{
-						event.player.removePotionEffect(Reference.potion_HUNGER);
-					}
+						event.player.removePotionEffect(Reference.potion_HUNGER); 
 				} 
 			}  
 		} //end if else branch on isRemote
