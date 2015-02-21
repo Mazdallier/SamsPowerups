@@ -103,17 +103,9 @@ public class ConfigFile
 		debug_info();
 		 
 		spawning(); 
-		 
-		category = "tweaks"; 		//TODO: any category improvements here?
-	
-		furnaceNeedsCoal = ModLoader.config.getBoolean("furnaceNeedsCoal",category, true,
-				"W."); //TODO text
-		
-		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
-				"W."); //TODO text
-					
-		tieredArmor = ModLoader.config.getBoolean("tieredArmor",category, true,
-				"tieredArmor."); //TODO text
+		  
+		category = "convenience"; 	
+		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		
 		increasedStackSizes = ModLoader.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
@@ -128,7 +120,7 @@ public class ConfigFile
 		
 		smartEnderchest = ModLoader.config.getBoolean("smartEnderchest",category, true,
     			"Attack with the ender chest to open it without placing it."	);
-		
+		 
 		skullSignNames = ModLoader.config.getBoolean("skullSignNames",category, true,
     			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign");
 		
@@ -269,6 +261,15 @@ public class ConfigFile
 	private void crafting() 
 	{
 		category = "crafting";
+		
+		furnaceNeedsCoal = ModLoader.config.getBoolean("furnaceNeedsCoal",category, true,
+				"W."); //TODO text
+		
+		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
+				"W."); //TODO text
+					
+		tieredArmor = ModLoader.config.getBoolean("tieredArmor",category, true,
+				"tieredArmor."); //TODO text 
 		
 		craftBooksWithoutLeather = ModLoader.config.getBoolean( "craftBooksWithoutLeather",category,true,
 				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed.");
