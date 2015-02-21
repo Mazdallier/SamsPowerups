@@ -90,7 +90,8 @@ public class HandlerScreenText
 		//side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
  
 		int countFlying = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString())
-				/ 20;//turn ticks into seconds
+				/ 20;
+		//turn ticks into seconds
 		
 		 if(countFlying > 0)
 	 	{

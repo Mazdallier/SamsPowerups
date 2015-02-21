@@ -37,22 +37,35 @@ public class HandlerPlayerTickApplesEaten
 		
 		if( event.player.capabilities.isCreativeMode){return;}//leave flying and hearts and stuff alone
 		if( event.player.worldObj.isRemote  == false )
-		{
-					
+		{ 	
 			int countHearts = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
-			 
-		 
+			  
 			if(countHearts > 0 )
 			{  
-				countHearts--;//eaten one means level zero
-//				CANT ADD SP
-			 //System.out.println(Reference.potion_HEALTH_BOOST, duration, countHearts));
-				
+				countHearts--;//eaten one means level zero which gives 2 hearts. level 4 is ten hearts
+ 
 				if(event.player.isPotionActive(Reference.potion_HEALTH_BOOST) == false)
+				{
 					event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, countHearts)); 
-			}
-			
-
+				} 
+				else 
+				{   
+					//the whole reason for doing a combine instead of a re-apply, is for the health boost one,
+					//it would hurt us(erase the extra hearts) and put it back on
+					//but with combine, it seems to just takes the MAX of the duration and amplifier of each, and updates
+					
+					for (Object s : event.player.getActivePotionEffects())  
+					{
+						PotionEffect p = (PotionEffect)s;
+					 
+						if( p.getPotionID() == Reference.potion_HEALTH_BOOST)
+						{  
+							p.combine(new PotionEffect(Reference.potion_HEALTH_BOOST,  duration, countHearts));
+							break;//end loop
+						} 
+					}  
+				}
+			} 
 		}
 		else //isRemote == true
 		{ 	
