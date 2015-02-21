@@ -750,16 +750,20 @@ public class Recipes
 	public static void woolDyeSavings()
 	{
 		if(!ModLoader.settings.craftWoolDye8) {return;}
-		// TODO Auto-generated method stub
-		
-		//do we remove the single recipe....!! YES!
-		//wait, does clay and stuff let you dye any number 1-8 or is it only 8
-		
-		///do the same thing as that
-		GameRegistry.addRecipe(new ItemStack(Items.dye,8,Reference.dye_bonemeal), 
-				"www","wdw", "www", 
-				'w', Blocks.wool, //color not specified, could be anything
-				'd', new ItemStack(Items.dye,1,Reference.dye_bonemeal));
+		 
+		//so any color that is not white, add the new recipe with all 8 blocks
+		for(int dye = 0; dye < 15; dye++)//only since we know that the dyes are these numbers
+		{ 
+			if(dye != Reference.dye_bonemeal)
+			{
+				removeRecipe(new ItemStack(Blocks.wool,1,dye));				
+			
+				GameRegistry.addRecipe(new ItemStack(Blocks.wool,8,dye), 
+						"www","wdw", "www", 
+						'w', new ItemStack(Blocks.wool,1,Reference.dye_bonemeal),
+						'd', new ItemStack(Items.dye,1, dye));
+			}
+		} 
 	}
 
 	public static void smoothstoneRequired()
