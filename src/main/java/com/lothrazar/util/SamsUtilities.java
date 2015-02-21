@@ -7,10 +7,11 @@ import net.minecraft.world.World;
 public class SamsUtilities
 {
 
-	public static void incrementPlayerIntegerNBT(EntityPlayer player, String prop)
+	public static void incrementPlayerIntegerNBT(EntityPlayer player, String prop, int inc)
 	{
 		int prev = getPlayerIntegerNBT(player,prop);
-		prev++;
+		prev += inc;//can be negative
+		if(prev < 0) {prev = 0;}
 		player.getEntityData().setInteger(prop, prev);
 	}
 	

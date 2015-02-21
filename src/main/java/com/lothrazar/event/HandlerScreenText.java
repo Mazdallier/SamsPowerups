@@ -61,6 +61,7 @@ public class HandlerScreenText
 		event.left.add("");
 		
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
+	
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
   
 		long time = world.getWorldTime(); 
@@ -79,35 +80,23 @@ public class HandlerScreenText
 		//TODO: do a 365 day calendar. Day Zero is January 1st of year zero?``
 		event.left.add("Day "+days +" ("+detail+")");  
   
-		//side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities());
-	  
+		//side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities()); 
 		//side.add("XYZ: "+(int)player.posX +" / "+  (int)player.posY  +" / "+ (int)player.posZ); 
 		//side.add("f:"+  f); 
-		
 		 
-		
-		
-			//only show this part if we are hiding the vanilla
-		//since Y and biome are already in that part
 		BlockPos playerPos = player.getPosition();//new BlockPos( player.posX ,player.posY  ,player.posZ);
- 
-		
-	//	BiomeGenBase biome = world.getBiomeGenForCoords(playerPos); 
-	 
-		//side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
-		
-		//side.add("Height " +MathHelper.floor_double(player.posY)); 
-		//side.add("");
-	 
-		
-		int countFlying = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
-		
-		if(countFlying > 0)
-		{
-			event.left.add("Can Fly (has eaten Nether Apple)");
-		}
   
+		//	BiomeGenBase biome = world.getBiomeGenForCoords(playerPos);  
+		//side.add(biome.biomeName +" (Temperature "+biome.temperature+")");
+ 
+		int countFlying = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString())
+				/ 20;//turn ticks into seconds
 		
+		 if(countFlying > 0)
+	 	{
+			event.left.add("Can Fly ["+countFlying+" seconds]");
+		 }
+   
 	 	if(ModLoader.settings.debugSlime
 	 			&& player.dimension == 0)
 	 	{ 
@@ -131,8 +120,7 @@ public class HandlerScreenText
 	 	}
 	 	
 	 	if(ModLoader.settings.debugVillageInfo && world.villageCollectionObj != null)
-	 	{  
-	 
+	 	{   
 			 int playerX = MathHelper.floor_double(player.posX);
 			 int playerY = MathHelper.floor_double(player.posY);
 			 int playerZ = MathHelper.floor_double(player.posZ);
@@ -149,10 +137,7 @@ public class HandlerScreenText
 			    int villagers = closest.getNumVillagers();
 			     
 			    int rep = closest.getReputationForPlayer(player.getName());
-	 
-			    //int golem_limit = MathHelper.floor_double(villagers / 10); 
-			    //boolean mating = closest.isMatingSeason();
-
+	  
 			    event.left.add("");
 			    event.left.add("Village Data");
 			    event.left.add(String.format("# of Villagers: %d",villagers));
@@ -166,8 +151,7 @@ public class HandlerScreenText
 			    
 			    int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
 
-			    event.left.add(String.format("Distance from Center:  %d", dist));
-			    
+			    event.left.add(String.format("Distance from Center:  %d", dist)); 
 			 }	 
 		 }
 	 	
@@ -251,12 +235,10 @@ public class HandlerScreenText
 	 			
 	 			df = new DecimalFormat("0.0");
 	 			
-	 			event.left.add("  "+ df.format(jumpHeight) + " Jump"  ); 
-	 			
+	 			event.left.add("  "+ df.format(jumpHeight) + " Jump"  );  
 	 		}
 	 	} 
-	 
-		 
+	  
 		/*
 		if(showGameRules)
 		{ 

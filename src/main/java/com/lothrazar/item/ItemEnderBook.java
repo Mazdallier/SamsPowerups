@@ -57,8 +57,7 @@ public class ItemEnderBook extends ItemTool
 	     Location loc;
 	     String display;
 	     for(int i = 1; i <= 9; i++)
-	     {
-
+	     { 
 	     	 KEY = KEY_LOC + "_" + i;
 
 	 		String csv = itemStack.getTagCompound().getString(KEY);
@@ -70,8 +69,7 @@ public class ItemEnderBook extends ItemTool
 				display = EnumChatFormatting.GRAY+ "["+ EnumChatFormatting.RED + i +EnumChatFormatting.GRAY+ "] " ;
 			else
 				display = EnumChatFormatting.GRAY+ "["+ i + "] " ;
-			
-				 
+			 
 	    	 list.add(display+EnumChatFormatting.DARK_GREEN + loc.toDisplayNoCoords());
 	     } 
 	 }

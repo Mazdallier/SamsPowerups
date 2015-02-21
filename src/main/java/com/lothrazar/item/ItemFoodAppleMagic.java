@@ -26,8 +26,7 @@ public class ItemFoodAppleMagic extends ItemFood
 {  
 	public static enum MagicType
 	{
-		Potion, Flying, Hearts
-		//, Horse/??/TODO : lock players stepheight to 1.0 instead of 0.5
+		Potion, Flying, Hearts 
 	}
 	public static ItemFoodAppleMagic apple_emerald;
 	public static ItemFoodAppleMagic apple_emerald_rich;
@@ -37,84 +36,70 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static ItemFoodAppleMagic apple_chocolate;
 	public static ItemFoodAppleMagic apple_chocolate_rich;
 	public static ItemFoodAppleMagic apple_nether_star;
-	private boolean _hasEffect = false;
-
-	private ArrayList<Integer> _potionIds;
-	private ArrayList<Integer> _potionDurations;
-	private ArrayList<Integer> _potionAmplifiers;;
+	private boolean hasEffect = false;
+	private static int FLYING_COUNT_PER_EAT = 10000;//num of ticks
+	private ArrayList<Integer> potionIds;
+	private ArrayList<Integer> potionDurations;
+	private ArrayList<Integer> potionAmplifiers;;
 	private MagicType type;
 	
 	public ItemFoodAppleMagic(MagicType ptype, int fillsHunger,boolean has_effect)
 	{  
 		super(fillsHunger,false);// fills 1 hunger (very small i know), and is not edible by wolf
 		type = ptype;
-		_hasEffect = has_effect;//true gives it enchantment shine
-
-		
+		hasEffect = has_effect;//true gives it enchantment shine
+ 
 		this.setAlwaysEdible(); //can eat even if full hunger
-		_potionIds = new ArrayList<Integer>();
-		_potionDurations = new ArrayList<Integer>();
-		_potionAmplifiers = new ArrayList<Integer>();
+		potionIds = new ArrayList<Integer>();
+		potionDurations = new ArrayList<Integer>();
+		potionAmplifiers = new ArrayList<Integer>();
 	}
 	 
 	public ItemFoodAppleMagic addEffect(int potionId,int potionDuration,int potionAmplifier)
 	{
 		int TICKS_PER_SEC = 20;
 		
-		_potionIds.add(potionId);
-		_potionDurations.add(potionDuration * TICKS_PER_SEC);
-		_potionAmplifiers.add(potionAmplifier);
+		potionIds.add(potionId);
+		potionDurations.add(potionDuration * TICKS_PER_SEC);
+		potionAmplifiers.add(potionAmplifier);
 		 
 		return this;//to chain together
 	}
 	
 	@Override
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {   
-	  ////	if (!par2World.isRemote  )
-   
-  		if(MagicType.Potion == this.type && par2World.isRemote == false)
+    {    
+  		if(MagicType.Potion == this.type && par2World.isRemote == false)///false means serverside
   		{ 
-			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName()); 
+			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName(),1); 
 			
-	  		for(int i = 0; i < _potionIds.size(); i++)  
+	  		for(int i = 0; i < potionIds.size(); i++)  
 	  		{ 
-	  			par3EntityPlayer.addPotionEffect(new PotionEffect(_potionIds.get(i) ,_potionDurations.get(i),_potionAmplifiers.get(i)));
+	  			par3EntityPlayer.addPotionEffect(new PotionEffect(potionIds.get(i) ,potionDurations.get(i),potionAmplifiers.get(i)));
 	  		} 
   		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
 
- if(MagicType.Flying == this.type &&  par2World.isRemote == true)//!par2World.isRemote
+  		if(MagicType.Flying == this.type &&  par2World.isRemote == true) 
   		{  
-  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
-  			
-
-  			
-  			int countFlying = SamsUtilities.getPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString());
-
-  			//System.out.println("**************************************" );
-  			//System.out.println(par3EntityPlayer.getName() );
-  			//System.out.println(par3EntityPlayer.getClass().getName());//THIS IS er.EntityPlayerMP
-  			//System.out.println("INCREMENT countFlying "+ MagicType.Flying.toString() + " = " +countFlying );
-  			
-  			
+  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
   		}
   		if(MagicType.Hearts == this.type && par2World.isRemote == false)
   		{ 
-  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString());
+  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString(),1);
   		}  
     }
 	
 	@Override
     public boolean hasEffect(ItemStack par1ItemStack)
     {
-    	return _hasEffect; //give it shimmer, depending on if this was set in constructor
+    	return hasEffect; //give it shimmer, depending on if this was set in constructor
     }
 	 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack par1ItemStack)
 	{
-		 if(_hasEffect)
+		 if(hasEffect)
 			 return EnumRarity.EPIC; //dynamic text to match the two apple colours
 		 else 
 			 return EnumRarity.RARE;
@@ -137,7 +122,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static void initChocolate()
 	{
 		if(!ModLoader.settings.appleChocolate){return;}
-		// this one is less powerful, no gold required., 
+
 		apple_chocolate = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, false); // 4 is the hunger 
 		apple_chocolate.addEffect(Reference.potion_HASTE, timeShort, II); 
 		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
@@ -146,7 +131,6 @@ public class ItemFoodAppleMagic extends ItemFood
 				, 'e', new ItemStack(Items.dye, 1, Reference.dye_cocoa)  
 				, 'a', Items.apple);
 		
-
 		apple_chocolate_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, true); // 4 is the hunger 
 		apple_chocolate_rich.addEffect(Reference.potion_HASTE, timeLong, I); 
 		SamsRegistry.registerItem(apple_chocolate_rich, "apple_chocolate_rich");

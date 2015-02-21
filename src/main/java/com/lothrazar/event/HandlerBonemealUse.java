@@ -21,10 +21,8 @@ public class HandlerBonemealUse
 		
 		if(heldItem == null){return false;}
 	 
-		if(heldItem.equals(Items.dye)  && held.getItemDamage() == Reference.dye_bonemeal)
-			return true;
-		else
-			return false;
+		return (heldItem.equals(Items.dye)  && held.getItemDamage() == Reference.dye_bonemeal);
+	 
 	}
 	 
   	@SubscribeEvent
@@ -55,7 +53,8 @@ public class HandlerBonemealUse
 		 		if(event.entityPlayer.capabilities.isCreativeMode == false)
 		 			held.stackSize--;
 		 		
-		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
+		 		if(held.stackSize == 0) 
+		 			event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
 			  	event.entity.entityDropItem( new ItemStack(Blocks.yellow_flower ,1), 1); 
 		 	}
@@ -66,7 +65,8 @@ public class HandlerBonemealUse
 		 		if(event.entityPlayer.capabilities.isCreativeMode == false)
 		 			held.stackSize--;
 		 		
-		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
+		 		if(held.stackSize == 0) 
+		 			event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
 			  	event.entity.entityDropItem( new ItemStack(Blocks.red_flower ,1,blockClickedDamage), 1);//quantity = 1
 		 	}
@@ -75,7 +75,8 @@ public class HandlerBonemealUse
 		 		if(event.entityPlayer.capabilities.isCreativeMode == false)
 		 			held.stackSize--;
 		 		
-		 		if(held.stackSize == 0) event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
+		 		if(held.stackSize == 0) 
+		 			event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, null);
 		 		 
 			  	event.entity.entityDropItem( new ItemStack(Blocks.waterlily ,1), 1);
 		 	} 

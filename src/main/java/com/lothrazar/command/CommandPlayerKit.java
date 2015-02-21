@@ -64,7 +64,7 @@ public class CommandPlayerKit implements ICommand
 			}
 			
 			//set the flag so we cannot run this again (unless we die)
-			SamsUtilities.incrementPlayerIntegerNBT(p, getName());
+			SamsUtilities.incrementPlayerIntegerNBT(p, getName(),1);
 		}
 		else
 		{

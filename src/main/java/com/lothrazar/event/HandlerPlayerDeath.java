@@ -13,8 +13,7 @@ import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerPlayerDeath
-{
-
+{ 
 	@SubscribeEvent
 	public void onPlayerDrops(PlayerDropsEvent event) 
 	{

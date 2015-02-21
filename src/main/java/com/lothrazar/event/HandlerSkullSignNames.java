@@ -73,13 +73,13 @@ public class HandlerSkullSignNames
 			{
 				TileEntitySign sign = (TileEntitySign)maybesign;
 				if(sign != null) //does a tile entity exist here and is it a sign
-				{ 
-					
+				{  
 					String firstLine = sign.signText[0].getUnformattedText();
-					if(firstLine == null) firstLine = "";
+					
+					if(firstLine == null) { firstLine = ""; }
 					if(firstLine.isEmpty() || firstLine.split(" ").length == 0)
 					{
-						held.setTagCompound(null);// = null;
+						held.setTagCompound(null); 
 					}
 					else
 					{

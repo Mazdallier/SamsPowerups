@@ -35,10 +35,7 @@ public class HandlerRichAnimals
 				//so it HAS a nametag applied
 				ItemStack nt = new ItemStack(Items.name_tag);
 				if(nt.getTagCompound()==null){nt.setTagCompound(new NBTTagCompound());}
-				
-				//nt.getTagCompound().setString("test", "test");
-				//TODO? pass old name along into the new name/??
-				
+				 
 				EntityItem tag = new EntityItem(event.entity.worldObj, event.entity.posX, event.entity.posY, event.entity.posZ, nt);
 				 
 				event.drops.add(tag); //drop nametag along with the mobs current loot

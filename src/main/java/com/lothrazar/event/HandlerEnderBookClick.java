@@ -14,8 +14,8 @@ public class HandlerEnderBookClick
 		ItemStack itemStack = event.entityPlayer.getCurrentEquippedItem();
 
 		if (itemStack == null || 
-				itemStack.getItem() == null || 
-				ItemEnderBook.itemEnderBook == null) 
+			itemStack.getItem() == null || 
+			ItemEnderBook.itemEnderBook == null) 
 		{ 
 			return; 
 		}
