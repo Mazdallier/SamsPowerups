@@ -53,13 +53,11 @@ public class HandlerScreenText
 	{ 
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
 
-		if(ModLoader.settings.debugMinified )
-		{
-			event.left.clear();
-			//TODO: i want to clear right side only. change config file around
+		if(ModLoader.settings.debugClearRight )
+		{ 
 			event.right.clear();
 		}
-		  
+		 //ok add left content
 		event.left.add("");
 		
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 

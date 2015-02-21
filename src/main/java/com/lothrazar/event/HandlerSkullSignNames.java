@@ -66,9 +66,7 @@ public class HandlerSkullSignNames
 		
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();
 		
-		if(held != null && held.getItem() == Items.skull && held.getItemDamage() == Reference.skull_player
-				//&& ExtraCrafting.skullSignNames
-			)
+		if(held != null && held.getItem() == Items.skull && held.getItemDamage() == Reference.skull_player	)
 		{
 			TileEntity maybesign = event.world.getTileEntity(event.pos);
 			if(maybesign != null && maybesign instanceof TileEntitySign)

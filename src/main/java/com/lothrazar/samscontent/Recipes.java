@@ -1,12 +1,9 @@
 package com.lothrazar.samscontent;
 
 import java.util.ArrayList;  
-import java.util.List;
-
-import org.apache.logging.log4j.Logger;  
-
-import com.lothrazar.util.Reference;
-
+import java.util.List; 
+import org.apache.logging.log4j.Logger;   
+import com.lothrazar.util.Reference; 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.init.Blocks;
@@ -778,8 +775,7 @@ public class Recipes
 				"bbb", 
 				'b', Blocks.cobblestone,  
 				'c', Items.coal );
-
-
+ 
 		removeRecipe(Items.stone_pickaxe);
 		removeRecipe(Items.stone_sword);
 		removeRecipe(Items.stone_axe);
@@ -830,9 +826,7 @@ public class Recipes
 				's', Blocks.stone,  
 				't', Items.stick );
 	} 
-
-	
-
+ 
 	public static void tieredArmor() 
 	{
 		if(!ModLoader.settings.tieredArmor) {return;}
@@ -869,10 +863,7 @@ public class Recipes
 				"   ", 
 				'i', Items.iron_ingot,  
 				'x', Items.leather_helmet);
-		
-		
-		
-		
+		 
 		removeRecipe(Items.diamond_chestplate);
 		removeRecipe(Items.diamond_boots);
 		removeRecipe(Items.diamond_leggings);
@@ -904,8 +895,6 @@ public class Recipes
 				"ixi", 
 				"   ", 
 				'i', Items.diamond,  
-				'x', Items.chainmail_helmet);
-		
-		
+				'x', Items.chainmail_helmet); 
 	}
 }

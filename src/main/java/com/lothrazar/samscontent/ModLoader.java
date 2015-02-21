@@ -95,6 +95,7 @@ public class ModLoader
 		authorList.add("Lothrazar");
 		mcinfo.authorList = authorList;
 	}
+ 
 /*	Property locked = config.get(MODID, "survivalLocked", false);
 		locked.comment = "When true, this forces creative mode players into survival.  This must be false to allow creative mode.  The purpose of this is "
 				+ "to remove the temptation to go creative in LAN mode or while cheats are turned on to change the game rules.";

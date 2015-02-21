@@ -51,8 +51,7 @@ public class CommandWorldHome  implements ICommand
 		
 		World world = ic.getCommandSenderEntity().worldObj; 
 		EntityPlayer player = world.getClosestPlayer(ic.getPosition().getX(), ic.getPosition().getY(), ic.getPosition().getZ(), 5);
-
-		
+ 
 		if(player.dimension != 0)
 		{
 			 player.addChatMessage(new ChatComponentTranslation("Can only teleport to worldhome in the overworld"));
@@ -81,6 +80,5 @@ public class CommandWorldHome  implements ICommand
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
 	{ 
 		return null;
-	}
-
+	} 
 }

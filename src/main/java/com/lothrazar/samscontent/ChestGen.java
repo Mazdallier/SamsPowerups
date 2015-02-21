@@ -75,16 +75,20 @@ public class ChestGen
 	
 	static int weightDefault = 3;
 
+	private static void addToAllChests(ItemStack item)
+	{
+		ItemStack[] items = new ItemStack[]  {	item  };
+		
+		addToAllChests(items,1,1,weightDefault); 
+	} 
 	private static void addToAllChests(ItemStack[] items)
 	{
 		addToAllChests(items,1,1,weightDefault); //defaults
-	}
-	
+	} 
 	private static void addToAllChests(ItemStack[] items,int min,int max)
 	{
 		addToAllChests(items,min,max,weightDefault); //default of 3 weight
-	}
-	
+	} 
 	private static void addToAllChests(ItemStack[] items,int min,int max,int weight)
 	{ 
 		for(int i = 0; i < items.length; i++)

@@ -66,7 +66,7 @@ public class ConfigFile
 	public boolean gameruleBlockMobgrief;
 	public boolean debugSlime;
 	public boolean debugHorseInfo;
-	public boolean debugMinified;
+	public boolean debugClearRight;
 	public boolean debugVillageInfo;
 	public boolean spawnBlazeDesertHills;
 	public boolean spawnMagmaCubeDesert;
@@ -179,8 +179,8 @@ public class ConfigFile
 		category = "debugScreen";
 		 
 		//TODO: minified.disableCoords??
-		debugMinified = ModLoader.config.getBoolean("minified",category, false,
-    			"Shrinks the debug screen: Clears the right side completely, and reduces the left side to show the bare minimum. "
+		debugClearRight = ModLoader.config.getBoolean("debugClearRight",category, false,
+    			"Clears the right side of F3 completely. "
     		);
 		debugSlime = ModLoader.config.getBoolean("slimeChunk",category, true,
     			"Screen will show if you are standing in a slime chunk."
