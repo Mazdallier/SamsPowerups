@@ -26,28 +26,29 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class HandlerPlayerTickApplesEaten  
 {  
 	private static boolean doesDrainHunger = true;
-	private static boolean doesWeaknessFatigue = true;
+	private static boolean doesWeaknessFatigue = true; 
 
-	private int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
-	int duration = 20 * Reference.TICKS_PER_SEC ;//20 ticks = 1 second
-		
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
-	{    	
-		
+	{    	 
 		if( event.player.capabilities.isCreativeMode){return;}//leave flying and hearts and stuff alone
 		if( event.player.worldObj.isRemote  == false )
 		{ 	
-			int countHearts = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
-			  
-			if(countHearts > 0 )
-			{  
-				countHearts--;//eaten one means level zero which gives 2 hearts. level 4 is ten hearts
- 
+			int countApplesEaten = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
+			
+			int countHearts = countApplesEaten - 1;
+			
+			if(countHearts >= 0 )
+			{   
+				
+				
 				if(event.player.isPotionActive(Reference.potion_HEALTH_BOOST) == false)
-				{
-					event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, countHearts)); 
-				} 
+				{ 
+					int duration = 60 * 60 * Reference.TICKS_PER_SEC;
+					event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, countHearts,false,false)); 
+				}
+				 
+				/*
 				else 
 				{   
 					//the whole reason for doing a combine instead of a re-apply, is for the health boost one,
@@ -59,12 +60,15 @@ public class HandlerPlayerTickApplesEaten
 						PotionEffect p = (PotionEffect)s;
 					 
 						if( p.getPotionID() == Reference.potion_HEALTH_BOOST)
-						{  
-							p.combine(new PotionEffect(Reference.potion_HEALTH_BOOST,  duration, countHearts));
-							break;//end loop
+						{ 
+							//System.out.println("Merge potion eff"+p.getDuration());
+							
+							p.combine(new PotionEffect(Reference.potion_HEALTH_BOOST,  duration, countHearts,false,false));
+							break;
 						} 
 					}  
 				}
+				*/
 			} 
 		}
 		else //isRemote == true
@@ -89,7 +93,9 @@ public class HandlerPlayerTickApplesEaten
 			if (event.player.capabilities.isFlying)
 			{   
 				SamsUtilities.incrementPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString(), -1);
-	  		
+
+				int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
+				int duration = 2 * Reference.TICKS_PER_SEC;  //2 seconds
 				if(doesWeaknessFatigue)
 				{
 					event.player.addPotionEffect(new PotionEffect(Reference.potion_FATIGUE, duration, level));

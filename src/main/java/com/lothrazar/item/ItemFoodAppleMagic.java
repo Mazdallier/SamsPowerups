@@ -84,7 +84,8 @@ public class ItemFoodAppleMagic extends ItemFood
   			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
   		}
   		if(MagicType.Hearts == this.type && par2World.isRemote == false)
-  		{ 
+  		{
+  			par3EntityPlayer.removePotionEffectClient(Reference.potion_HEALTH_BOOST);//reset it so it gets reapplied 
   			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString(),1);
   		}  
     }
