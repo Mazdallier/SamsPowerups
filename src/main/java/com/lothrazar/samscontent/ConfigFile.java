@@ -88,6 +88,7 @@ public class ConfigFile
 	public boolean appleNetherStar;
 	public boolean smoothstoneToolsRequired;
 	public boolean tieredArmor;
+	public boolean furnaceNeedsCoal;
 	
 	public ConfigFile()
 	{
@@ -105,6 +106,9 @@ public class ConfigFile
 		 
 		category = "tweaks"; 		//TODO: any category improvements here?
 	
+		furnaceNeedsCoal = ModLoader.config.getBoolean("furnaceNeedsCoal",category, true,
+				"W."); //TODO text
+		
 		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
 				"W."); //TODO text
 					

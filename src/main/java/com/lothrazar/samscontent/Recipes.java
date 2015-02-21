@@ -762,39 +762,45 @@ public class Recipes
 			}
 		} 
 	}
-
-	public static void smoothstoneRequired()
+	
+	public static void furnaceNeedsCoal()
 	{ 
-		if(!ModLoader.settings.smoothstoneToolsRequired) {return;}
+		if(!ModLoader.settings.furnaceNeedsCoal) {return;}
 		
 		removeRecipe(Blocks.furnace);
 
-		GameRegistry.addRecipe(new ItemStack(Items.stone_pickaxe), 
+		GameRegistry.addRecipe(new ItemStack(Blocks.furnace), 
 				"bbb",
 				"bcb", 
 				"bbb", 
 				'b', Blocks.cobblestone,  
 				'c', Items.coal );
- 
-		removeRecipe(Items.stone_pickaxe);
-		removeRecipe(Items.stone_sword);
-		removeRecipe(Items.stone_axe);
-		removeRecipe(Items.stone_hoe);
-		removeRecipe(Items.stone_shovel);
+	}
 
+	public static void smoothstoneRequired()
+	{ 
+		if(!ModLoader.settings.smoothstoneToolsRequired) {return;}
+		   
+		removeRecipe(Items.stone_pickaxe);
+		
 		GameRegistry.addRecipe(new ItemStack(Items.stone_pickaxe), 
 				"sss",
 				" t ", 
 				" t ", 
 				's', Blocks.stone,  
 				't', Items.stick );
+
+		removeRecipe(Items.stone_sword);
+		
 		GameRegistry.addRecipe(new ItemStack(Items.stone_sword), 
 				" s ",
 				" s ", 
 				" t ", 
 				's', Blocks.stone,  
 				't', Items.stick );
-
+ 
+		removeRecipe(Items.stone_axe);
+		
 		GameRegistry.addRecipe(new ItemStack(Items.stone_axe), 
 				"ss ",
 				"st ", 
@@ -807,18 +813,25 @@ public class Recipes
 				" t ", 
 				's', Blocks.stone,  
 				't', Items.stick );
+
+		removeRecipe(Items.stone_hoe);
+		
 		GameRegistry.addRecipe(new ItemStack(Items.stone_hoe), 
 				"ss ",
 				" t ", 
 				" t ", 
 				's', Blocks.stone,  
 				't', Items.stick );
+		
 		GameRegistry.addRecipe(new ItemStack(Items.stone_hoe), 
 				" ss",//i dont think forge does the horizonal mirrored version so adding
 				" t ", 
 				" t ", 
 				's', Blocks.stone,  
 				't', Items.stick );
+
+		removeRecipe(Items.stone_shovel);
+		
 		GameRegistry.addRecipe(new ItemStack(Items.stone_shovel), 
 				" s ",
 				" t ", 
