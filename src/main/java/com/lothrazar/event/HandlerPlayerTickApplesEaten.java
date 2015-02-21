@@ -36,16 +36,16 @@ public class HandlerPlayerTickApplesEaten
 		{ 	
 			int countApplesEaten = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Hearts.toString());
 			
-			int countHearts = countApplesEaten - 1;
+			int healthBoostLevel = countApplesEaten - 1; //you get 2 red hearts per level
 			
-			if(countHearts >= 0 )
+			if(healthBoostLevel >= 0 )
 			{   
 				
 				
 				if(event.player.isPotionActive(Reference.potion_HEALTH_BOOST) == false)
 				{ 
 					int duration = 60 * 60 * Reference.TICKS_PER_SEC;
-					event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, countHearts,false,false)); 
+					event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, healthBoostLevel,false,false)); 
 				}
 				 
 				/*
