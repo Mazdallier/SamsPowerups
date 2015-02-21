@@ -38,49 +38,22 @@ public class HandlerPlayerTickApplesEaten
 			
 			int healthBoostLevel = countApplesEaten - 1; //you get 2 red hearts per level
 			
-			if(healthBoostLevel >= 0 )
-			{   
-				
-				
-				if(event.player.isPotionActive(Reference.potion_HEALTH_BOOST) == false)
-				{ 
-					int duration = 60 * 60 * Reference.TICKS_PER_SEC;
-					event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, healthBoostLevel,false,false)); 
-				}
-				 
-				/*
-				else 
-				{   
-					//the whole reason for doing a combine instead of a re-apply, is for the health boost one,
-					//it would hurt us(erase the extra hearts) and put it back on
-					//but with combine, it seems to just takes the MAX of the duration and amplifier of each, and updates
-					
-					for (Object s : event.player.getActivePotionEffects())  
-					{
-						PotionEffect p = (PotionEffect)s;
-					 
-						if( p.getPotionID() == Reference.potion_HEALTH_BOOST)
-						{ 
-							//System.out.println("Merge potion eff"+p.getDuration());
-							
-							p.combine(new PotionEffect(Reference.potion_HEALTH_BOOST,  duration, countHearts,false,false));
-							break;
-						} 
-					}  
-				}
-				*/
-			} 
+			if(healthBoostLevel >= 0  && 
+			   event.player.isPotionActive(Reference.potion_HEALTH_BOOST) == false)
+			{ 
+				//so we have eaten at least one apple, and the potion effect has been cleared, so we apply it
+				int duration = 60 * 60 * Reference.TICKS_PER_SEC;
+				event.player.addPotionEffect(new PotionEffect(Reference.potion_HEALTH_BOOST, duration, healthBoostLevel,false,false)); 
+			}
+			 
 		}
 		else //isRemote == true
 		{ 	
-			
-			int countFlying = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString());
-			
- 
+			//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
+			int countAppleTicks = SamsUtilities.getPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString());
 			 
-			boolean canFlySurvival = (countFlying > 0);
-	
-			if (canFlySurvival)
+			//first, check are we allowed to fly
+			if (countAppleTicks > 0)
 			{ 
 				event.player.capabilities.allowFlying = true;   
 			} 
@@ -90,8 +63,11 @@ public class HandlerPlayerTickApplesEaten
 				event.player.capabilities.allowFlying = false;  
 				event.player.capabilities.isFlying = false;  
 			}
+			
+			//now check, are we currently flying right now
 			if (event.player.capabilities.isFlying)
 			{   
+				//every tick that we fly uses up one resource tick that was given by the apple (hence the -1_
 				SamsUtilities.incrementPlayerIntegerNBT(event.player, Reference.MODID + MagicType.Flying.toString(), -1);
 
 				int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
@@ -109,30 +85,26 @@ public class HandlerPlayerTickApplesEaten
 				    
 			} // end if isFlying
 			else //so therefore isFlying is false
-			{ 
-				// i am not flying so do the fall damage thing
+			{  
 				if (event.player.posY < event.player.prevPosY)
 				{
-					// we are falling 
-					//double fallen = Math.max(	(event.player.prevPosY - event.player.posY), 0);
-						//dont add the number, it doubles (ish) our fall damage
-					//event.player.fallDistance += (fallen * 0.5);
-					
-						 
+					// i am not flying so do the fall damage thing
+					// we are falling  
 					event.player.capabilities.allowFlying = false;// to enable  fall distance
 	
-					//dont leave them lingering with 0:00 potions forever 
+					//dont leave them lingering with 0:00 potions forever (in case it bugs out)
 					if(doesWeaknessFatigue)
-					{
-					
-						
+					{ 
 						 event.player.removePotionEffect(Reference.potion_FATIGUE);
 						 event.player.removePotionEffect(Reference.potion_WEAKNESS);
 					}
 					
-					if(doesDrainHunger) {event.player.removePotionEffect(Reference.potion_HUNGER);}
+					if(doesDrainHunger) 
+					{
+						event.player.removePotionEffect(Reference.potion_HUNGER);
+					}
 				} 
 			}  
-		}// end player tick event
-	}//end if else branch on isRemote
+		} //end if else branch on isRemote
+	}
 }
