@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntitySheep;
 
 public class Reference 
 { 
+	
 
 	public static final String MODID = "samscontent";
 	public static final String TEXTURE_LOCATION = Reference.MODID + ":";
@@ -157,6 +158,12 @@ public class Reference
 	//zero o 8 is the hotbar
 	//9 to 35 is the main inventory
 	
+	public class Dimension
+	{
+		public static final int overworld = 0;
+		public static final int end = 1;
+		public static final int nether = -1;
+	}
 	//100 to 103 is the armor
 	public class PlayerInventory
 	{

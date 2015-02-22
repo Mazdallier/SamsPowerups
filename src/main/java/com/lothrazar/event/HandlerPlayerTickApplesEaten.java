@@ -33,6 +33,18 @@ public class HandlerPlayerTickApplesEaten
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{    	 
+		 /*
+		if(event.player.dimension == Reference.Dimension.end && event.player.posY < 0
+				//&& event.player.worldObj.isRemote  == false
+				)
+		{//seems to work
+System.out.println("TRY TO TELEPORT");
+			///testing: fall of world end, go to overworld?
+			event.player.travelToDimension(Reference.Dimension.overworld);
+			SamsUtilities.teleportWallSafe(event.player, event.player.worldObj, event.player.worldObj.getSpawnPoint()); 
+		//	event.player.setPositionAndUpdate(0, 99, 0);
+		}
+		*/
 		if( event.player.capabilities.isCreativeMode){return;}//leave flying and hearts and stuff alone
 		
 		if( event.player.worldObj.isRemote  == false )
@@ -43,6 +55,10 @@ public class HandlerPlayerTickApplesEaten
 		{ 	
 			tickFlying(event.player);  
 		}  
+		
+		
+		/*************TESTING*/
+
 	}
 
 	private void tickFlying(EntityPlayer player) 
