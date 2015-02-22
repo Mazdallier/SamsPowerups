@@ -36,6 +36,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.IBlockAccess;
@@ -52,6 +53,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -62,6 +64,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
   
 @Mod(modid = Reference.MODID, version = Reference.VERSION	, canBeDeactivated = false, name = Reference.NAME, useMetadata = true ,guiFactory = "com.lothrazar.gui.ConfigGuiFactory") 
@@ -94,6 +97,8 @@ public class ModLoader
 		authorList.add("Lothrazar");
 		mcinfo.authorList = authorList;
 	}
+	//TODO: is there a use for this? ReflectionHelper.getPrivateValue(ItemSpade.class, null, 0);
+	
  
 /*	Property locked = config.get(MODID, "survivalLocked", false);
 		locked.comment = "When true, this forces creative mode players into survival.  This must be false to allow creative mode.  The purpose of this is "
@@ -105,6 +110,20 @@ public class ModLoader
 		_canHarvestMelonAxe.comment = "This sets melons to harvest the same speed as pumpkins when using an axe.";
 		canHarvestMelonAxe = _canHarvestMelonAxe.getBoolean(true);
 			//TODO: look for more little tweaks like this melon one
+ 
+ ??
+
+ Blocks.iron_ore.setHarvestLevel("pickaxe", 1);
+ Blocks.iron_block.setHarvestLevel("pickaxe", 1);
+ Blocks.lapis_ore.setHarvestLevel("pickaxe", 1);
+ Blocks.lapis_block.setHarvestLevel("pickaxe", 1);
+ Blocks.quartz_ore.setHarvestLevel("pickaxe", 0);
+     *     Wood:    0
+     *     Stone:   1
+     *     Iron:    2
+     *     Diamond: 3
+     *     Gold:    0
+ 
 		if(canHarvestMelonAxe)
 		{
 		//set harvest level of more things for shears/swords/whatever ??
@@ -130,7 +149,7 @@ public class ModLoader
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
-		//logger = event.getModLog();//TODO: find a use for this?
+		//logger = event.getModLog();//TODO: find a use for logging?
 
 		initModInfo(event.getModMetadata());
 		
@@ -148,6 +167,8 @@ public class ModLoader
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{       
+	//	
+		 
 		MobSpawningRegistry.registerSpawns();
  
 		ChestGen.lootAllRecords();
@@ -201,6 +222,14 @@ public class ModLoader
 			VillagerRegistry.instance().registerVillageTradeHandler(2, v);
   		}
   		*/ 
+	}
+	
+	@EventHandler 
+	public void onPostInit(FMLPostInitializationEvent event)
+	{
+		//NOPE this does nothing
+	//	Blocks.dirt.setHarvestLevel("shovel", 2);
+		 
 	}
 	
 	@EventHandler

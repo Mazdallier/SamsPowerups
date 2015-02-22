@@ -102,8 +102,8 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
         }
          
         //TODO: does the excecute respect op powers? can non op use toggledownfall from this
-        String pre = "execute @p ~ ~ ~ ";
-        //pre = "/"
+        String pre = "execute @p ~ ~ ~ ";//pre = "/"
+        
         if(command != null)
         {
 	        CommandBlockLogic commandblocklogic = ((TileEntityCommandBlock)tileentity).getCommandBlockLogic();
