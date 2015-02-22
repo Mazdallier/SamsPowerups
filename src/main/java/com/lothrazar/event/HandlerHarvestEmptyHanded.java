@@ -32,20 +32,30 @@ public class HandlerHarvestEmptyHanded
 //		event.harvester
 		
 		ItemStack held = event.harvester.getHeldItem();
-		boolean isShovel = false;
+		boolean harvestToolClass = false;
+	  
 		
 		if(held != null)
 		{
 			//see Commandplayerkit for more details
-			Set<String> s = held.getItem().getToolClasses(held);
+			Set<String> classes = held.getItem().getToolClasses(held);
 			
-			//this means its not a tool at all??
-			if(s.size() == 0)System.out.println("emptyset");
+			//this means its not a tool at all, it has no tool classes
+			//if(s.size() == 0) System.out.println("emptyset");
 			
-			for(String test : s)
+			for(String toolClass : classes)
 			{ 
-				System.out.println(s);
-					
+				System.out.println(toolClass ); 
+				System.out.println(toolClass ); 
+				System.out.println(toolClass ); 
+				System.out.println(toolClass ); 
+				System.out.println(toolClass ); 
+				if( toolClass == "[shovel]"  || 
+					toolClass == "[pickaxe]" ) 
+				{
+					harvestToolClass = true;
+					break; 
+				} 
 			}
 		}
 
@@ -55,9 +65,13 @@ public class HandlerHarvestEmptyHanded
 		{ 
 			bh = Block.getBlockFromItem(event.drops.get(i).getItem());
 			
-			if(bh != null && notEmptyHanded.contains(bh)) 
+			if(bh != null && notEmptyHanded.contains(bh) && 
+					harvestToolClass == false) 
 			{
-				System.out.println("removedirt");
+				//item is in the restricted list, and its not a matching tool
+				System.out.println("remove");
+				System.out.println("remove");
+				System.out.println("remove");
 				event.drops.remove(i);
 			} 
 			bh = null;
