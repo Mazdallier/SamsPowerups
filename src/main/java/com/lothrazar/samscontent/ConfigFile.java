@@ -14,6 +14,7 @@ import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.command.CommandWorldHome; 
+import com.lothrazar.item.ItemWandMaster;
 
 public class ConfigFile
 { 
@@ -234,7 +235,11 @@ public class ConfigFile
 				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
 		
 		masterWand = ModLoader.config.getBoolean( "masterWand",category,true,
+				
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
+		ItemWandMaster.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
+				"Each use costs hunger."); 
+		
 		
 		enderBook = ModLoader.config.getBoolean( "enderBook",category,true,
 				" Craft an ender book that lets you save waypoints, and then teleport to them later (only in the overworld)."); 

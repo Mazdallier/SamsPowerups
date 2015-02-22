@@ -35,6 +35,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class HandlerMasterWand  
 {  
+	
 	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
@@ -43,6 +44,7 @@ public class HandlerMasterWand
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
 		
+		 
 		//TODO: food drain? config file? durability? etc?
 		//if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}//required??
 	
@@ -135,6 +137,15 @@ public class HandlerMasterWand
 				
 				ItemWandMaster.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.add(0,1,0));
 			}
+			
+			
+			if(ItemWandMaster.drainsHunger)
+			{
+				
+			}
+			
+			event.entityPlayer.swingItem();
+			
 		}// end of is right click (else)
   	}
   
@@ -188,7 +199,16 @@ public class HandlerMasterWand
 			//TODO: durability? config file?
 		//	 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
 			//onSuccess(event.entityPlayer);
+			
+			if(ItemWandMaster.drainsHunger)
+			{
+				
+			}
+			
+			event.entityPlayer.swingItem();
 		}
   	}
+	
+	
 	
 }

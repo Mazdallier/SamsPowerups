@@ -22,6 +22,7 @@ public class HandlerEnderBookClick
 
 		//left or right click with the book does the corresponding action
 		if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
+		{
 			if (event.action.LEFT_CLICK_BLOCK == event.action)
 			{ 			 
 				ItemEnderBook.teleport(event.entityPlayer, itemStack);			 
@@ -30,5 +31,8 @@ public class HandlerEnderBookClick
 			{ 
 				ItemEnderBook.itemEnderBook.saveCurrentLocation( event.entityPlayer, itemStack);
 			}
+			
+			event.entityPlayer.swingItem();
+		}
 	}  
 }

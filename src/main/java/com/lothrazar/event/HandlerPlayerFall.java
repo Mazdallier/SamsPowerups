@@ -18,12 +18,9 @@ public class HandlerPlayerFall
 		if( event.player.capabilities.isCreativeMode){return;} 
 
 		EntityPlayer player = event.player;
-		 
-		//player.func_175145_a(p_175145_1_);
-		//TODO: achievement finder , check if dragonslayer
-		//or at least check something to gain this pwer
- 
-		
+		  
+		//TODO: achievement finder , check if dragonslayer//or at least check something to gain this pwer
+  
 		if(player.dimension == Reference.Dimension.end && 
 				 player.posY < -50 && 
 				 player.worldObj.isRemote  == false && 
