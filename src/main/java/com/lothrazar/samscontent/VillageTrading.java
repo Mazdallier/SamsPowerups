@@ -51,7 +51,7 @@ public class VillageTrading  //implements IVillageTradeHandler
 			//15-19 potato
 			//15-19 carrotos
 			//7-12 full melons
-			//TODO: how to randomize the range ??
+			// : how to randomize the range ??
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.pumpkin, 8), new ItemStack(Items.emerald,1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.melon_block, 7), new ItemStack(Items.emerald,1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Blocks.potatoes, 15), new ItemStack(Items.emerald,1)));

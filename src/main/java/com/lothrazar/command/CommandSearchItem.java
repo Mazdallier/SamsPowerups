@@ -18,10 +18,10 @@ public class CommandSearchItem  implements ICommand
 {
 	private ArrayList<String> aliases = new ArrayList<String>();
 	private static int RADIUS = 32;
-	public static boolean showCoords = true;
+	public static boolean showCoords = true;  // TODO FROM CONFIG FILE
 
 	 
-	public static boolean REQUIRES_OP = false;//TODO: alter this from config file
+	public static boolean REQUIRES_OP; 
 	
 	public CommandSearchItem()
 	{
@@ -60,16 +60,7 @@ public class CommandSearchItem  implements ICommand
   
 	@Override
 	public void execute(ICommandSender sender, String[] args) 
-	{
-		// TODO ??
-		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
-		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
-		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
-		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
-		System.out.println("CONFIG FILE ENTRY: TO SHOW COORDS OR TO GIVE DIRECTIONS...orboth?");
-		// TODO ??
-		//if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {return;}
-			
+	{ 
 		if (!(sender instanceof EntityPlayerMP)) {return;}
 			
 		EntityPlayerMP player = (EntityPlayerMP) sender;
@@ -127,7 +118,7 @@ public class CommandSearchItem  implements ICommand
 								|| search.contains(invItemName)
 								|| invItemName.contains(search))
 						{ 
-							System.out.println("SLOT " +slot);//TODO: can we say like.., chest column 4 row 3?
+							//System.out.println("SLOT " +slot);//  can we say like.., chest column 4 row 3?
 							foundStacks++;
 							foundQty += invItem.stackSize; 
 						} 
@@ -153,9 +144,7 @@ public class CommandSearchItem  implements ICommand
 			player.addChatMessage(new ChatComponentTranslation("No items found within "+RADIUS+" blocks of you."));
 		}
 		else
-		{
-			//Relay.addChatMessage(sender.getEntityWorld(),"Found at the following locations:");
-			
+		{ 
 			for (int i = 0; i < found; i++) 
 			{  
 				player.addChatMessage(new ChatComponentTranslation(foundMessages.get(i)));
@@ -168,14 +157,11 @@ public class CommandSearchItem  implements ICommand
 		String s = (foundStacks == 1) ? "" : "s";
 		String totalsStr = foundStacks + " stack"+s+", ("+foundQty + " total)";
 		
-		if(showCoords ) // TODO FROM CONFIG FILE
-		{
-			
-			
-			
+		if(showCoords )
+		{ 
 			return "(" + xLoop + ", " + yLoop + ", " + zLoop + ")" + " : "+ totalsStr;
 		}
-		//else do this other thing
+		//else do this other thing with directions
 		
 		int xDist,yDist,zDist;
 		
@@ -214,22 +200,16 @@ public class CommandSearchItem  implements ICommand
 		 
 		return xStr +  yStr +  zStr +": "+ totalsStr;
 	}
-
-
-
+ 
 	@Override
 	public int compareTo(Object arg0)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return 0;
 	}
-
-
-
+ 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return null;
 	}
 }

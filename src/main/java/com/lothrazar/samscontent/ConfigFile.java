@@ -22,7 +22,7 @@ public class ConfigFile
 	private static String LevelSep = ".";
 	String category = "";
 	
-	//public boolean moreFutureTrades = true;//TODO: FIX THIS
+	//public boolean moreFutureTrades = true;//TODO: FIX THIS villager trading
 	public boolean swiftDeposit;
 	public boolean smartEnderchest;
 	public boolean increasedStackSizes;

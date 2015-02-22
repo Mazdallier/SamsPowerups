@@ -67,7 +67,7 @@ public class MobSpawningRegistry
 
 		//i feel like i should add something to extreme hills, but what. not ghasts again
 		
-		//EnumCreatureType.AMBIENT//TODO: more bas:??
+		//EnumCreatureType.AMBIENT 
 		//TODO: can we spawn zombie horse?
 				//yeah i think we can in the sapwn event and roll a dice and check the biome
 				//http://www.minecraftforge.net/forum/index.php?topic=8937.0

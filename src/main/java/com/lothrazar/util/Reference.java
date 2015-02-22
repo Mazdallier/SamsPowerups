@@ -153,11 +153,7 @@ public class Reference
 	public static final int PURPLE = 2;
 	public static final int BLACK = 3;
 	public static final int WHITEAPRON = 4;
-	//TODO:
-	//	player inv slots
-	//zero o 8 is the hotbar
-	//9 to 35 is the main inventory
-	
+  
 	public class Dimension
 	{
 		public static final int overworld = 0;

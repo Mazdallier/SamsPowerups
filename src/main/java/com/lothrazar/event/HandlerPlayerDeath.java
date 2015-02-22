@@ -1,6 +1,7 @@
 package com.lothrazar.event;
 
 import com.lothrazar.samscontent.ModLoader;
+
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -29,36 +31,38 @@ public class HandlerPlayerDeath
 		
 		//TODO: find a chest in their inventory and use that, minus it by one.? or toggle this from config?
 		
+		World world = event.entityPlayer.worldObj;
+		
 		int x = MathHelper.floor_double(event.entityPlayer.posX);
 		int y = MathHelper.floor_double(event.entityPlayer.posY);
 		int z = MathHelper.floor_double(event.entityPlayer.posZ);
 		
-		//todo: check if air: if not air move up by one and loop?
-		//event.entityPlayer.worldObj.setblock
-		event.entityPlayer.worldObj.setBlockState(new BlockPos(x, y, z),Blocks.chest.getDefaultState());/// 0,2
-		TileEntityChest chest = (TileEntityChest) event.entityPlayer.worldObj.getTileEntity(new BlockPos(x, y, z));
+		BlockPos chestPos = event.entityPlayer.getPosition();
+		while(world.isAirBlock(chestPos) == false) //keep going up until we find something that is air
+		{
+			chestPos = chestPos.up();
+		}
+		 
+		world.setBlockState(chestPos,Blocks.chest.getDefaultState()); 
+		TileEntityChest chest = (TileEntityChest) world.getTileEntity(chestPos);
 
 		ItemStack itemStack;
 		int slot = 0;
 		for(EntityItem dropped : event.drops) 
-		{
-			//i dont think these are ever null in runtime, but it makes sense to keep the nullchecks
-			if(dropped == null) { continue; }
-			itemStack = dropped.getEntityItem();
-			if(itemStack == null) { continue; }
+		{ 
+			if(dropped == null) { continue; }//i dont think these are ever null in runtime, but it makes sense to keep the nullchecks
 			
-			//System.out.println(itemStack.getUnlocalizedName());
-			
-			if(slot <= chest.getSizeInventory())
+			itemStack = dropped.getEntityItem(); 
+			 
+			if(itemStack != null && slot <= chest.getSizeInventory())
 			{ 
 				chest.setInventorySlotContents(slot, itemStack);
 				
 				slot++;
 				
 				dropped.setDead();//kills the entity, meaning it wont be spawning in the world to get picked up
-			}
-			//seems like it always does the armor slots last, which is fine. or maybe the order is arbitrary?
-			//else System.out.println("out of room");
+			} 
+			//else out of room 
 		}
 	}
 }

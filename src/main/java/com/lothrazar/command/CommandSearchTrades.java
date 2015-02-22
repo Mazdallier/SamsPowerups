@@ -184,8 +184,7 @@ public class CommandSearchTrades  implements ICommand
 
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
-	{
-		// TODO Auto-generated method stub
+	{ 
 		return null;
 	} 
 }

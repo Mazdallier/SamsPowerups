@@ -569,7 +569,7 @@ public class Recipes
 	{
 		if(!ModLoader.settings.craftableFlatDoubleSlab){return;}
 		int islab_sandstone = 1;
- //TODO: REFERENCE
+ //TODO: add magic numbers to class REFERENCE
 		int i_stone_magic = 8;
 		int i_sand_magic = 9;
 		

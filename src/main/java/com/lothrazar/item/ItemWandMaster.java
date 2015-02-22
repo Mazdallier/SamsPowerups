@@ -40,9 +40,7 @@ public class ItemWandMaster extends ItemTool
 	private static int DURABILITY = 80;
 	public static boolean drainsHunger = true;
 	public static boolean drainsDurability = true;
- 
-	//TODO: tooltip to show uses /abilities or something?	//mayber only shows while shifting>...>>???
-
+  
 	public ItemWandMaster( )
 	{   
 		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 

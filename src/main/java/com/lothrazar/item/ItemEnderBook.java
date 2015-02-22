@@ -1,9 +1,11 @@
 package com.lothrazar.item;
 
 import java.util.List; 
+
 import com.google.common.collect.Sets;   
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Location;
+import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -106,22 +108,21 @@ public class ItemEnderBook extends ItemTool
 		}
 		
 		Location loc = new Location(csv);
-		
-		if(entityPlayer.dimension != 0)// TODO: Reference dim nums
-		{
-			//Chat.addMessage(event.entityPlayer, "Only useable in the overworld");
-			return;
-		}
-	
-		if(loc.dimension == 1) // TODO: Reference dim nums
+		 
+		if(loc.dimension == Reference.Dimension.end) 
 		{
 			entityPlayer.setFire(4);
 		} 
-		else if(loc.dimension == -1)// TODO: Reference dim nums
+		else if(loc.dimension == Reference.Dimension.nether) 
 		{
 			entityPlayer.heal(-15);
 		}
-  
+		
+		if(entityPlayer.dimension != Reference.Dimension.overworld) 
+		{ 
+			return;//if its end, nether, or anything else such as from another mod
+		}
+		
 	    entityPlayer.setPositionAndUpdate(loc.X,loc.Y,loc.Z); 
 
 		entityPlayer.getCurrentEquippedItem().damageItem(1, entityPlayer);
