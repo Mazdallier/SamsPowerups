@@ -296,11 +296,14 @@ public class ModLoader
 	{
 		//TODO: version checker
 		//FMLInterModComms.sendRuntimeMessage(MODID, "VersionChecker", "addVersionCheck", "http://www.lothrazar.net/api/mc/samscontent/version.json");
-    	
+
+		HandlerHarvestEmptyHanded.notEmptyHandedCSV.add("minecraft:dirt");
+		HandlerHarvestEmptyHanded.notEmptyHanded.add(Block.getBlockFromName("minecraft:dirt"));
     	//they are just Objects, because i have not yet found a reason to add an interface/superclass 
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse() 
+      		,new HandlerHarvestEmptyHanded()
      		,new HandlerEnderBookClick()
      		,new HandlerEnderChestHit() 
      		,new HandlerKeyInput()
