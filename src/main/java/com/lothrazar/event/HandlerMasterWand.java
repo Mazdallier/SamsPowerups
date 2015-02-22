@@ -170,13 +170,19 @@ public class HandlerMasterWand
 		if(SamsUtilities.isShiftKeyDown() && 
 				item == ItemWandMaster.itemWand
 				)
-		{
-
+		{ 
 			 //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0
+			  
+			event.toolTip.add("Turn chest into a sack for transport");
+			event.toolTip.add("Attack crops to harvest the whole field");
+			event.toolTip.add("Livestock Transport");
+			event.toolTip.add("Attack Smoothstone");
+			event.toolTip.add("Attack Diamond Block");
 			
-			
-			
-			event.toolTip.add("test");
+		}
+		else
+		{
+			event.toolTip.add("[Hold Shift for details]");
 		}
 		  
 	 
