@@ -140,15 +140,7 @@ public class HandlerMasterWand
 			}
 			
 			
-		}// end of is right click (else)
-		
- 
-		if(ItemWandMaster.drainsHunger)
-		{ 
-			event.entityPlayer.getFoodStats().setFoodLevel(event.entityPlayer.getFoodStats().getFoodLevel()-1);
-		}
-		 
-		event.entityPlayer.swingItem(); 
+		}// end of is right click (else) 
   	}
   
 	@SubscribeEvent
@@ -161,52 +153,8 @@ public class HandlerMasterWand
 		
 		if(event.entityPlayer.worldObj.isRemote ){ return;}
  
-		int entity_id = 0;
- 
-		if(event.target instanceof EntityCow
-			&& ((EntityCow) event.target).isChild() == false)
-		{ 
-			entity_id = Reference.entity_cow; 
-		}
-		if(event.target instanceof EntityPig
-				&& ((EntityPig) event.target).isChild() == false)
-		{ 
-			entity_id = Reference.entity_pig; 
-		}
-		if(event.target instanceof EntitySheep
-				&& ((EntitySheep) event.target).isChild() == false)
-		{ 
-			entity_id = Reference.entity_sheep; 
-		} 
-		if(event.target instanceof EntityChicken
-				&& ((EntityChicken) event.target).isChild() == false)
-		{ 
-			entity_id = Reference.entity_chicken; 
-		} 
-		if(event.target instanceof EntityMooshroom
-				&& ((EntityMooshroom) event.target).isChild() == false)
-		{ 
-			entity_id = Reference.entity_mooshroom; 
-		} 
-		if(event.target instanceof EntityBat)
-		{  
-			entity_id = Reference.entity_bat; 
-		}
+
+		ItemWandMaster.itemWand.entitySpawnEgg(event.entityPlayer, event.target);
 		
-		if(entity_id > 0)
-		{
-			event.entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.spawn_egg,1,entity_id),true);
-			event.entityPlayer.worldObj.removeEntity(event.target);
-			  
-			if(ItemWandMaster.drainsHunger)
-			{ 
-				event.entityPlayer.getFoodStats().setFoodLevel(event.entityPlayer.getFoodStats().getFoodLevel()-1);
-			}
-			
-			event.entityPlayer.swingItem();
-		}
-  	}
-	
-	
-	
+  	} 
 }

@@ -3,6 +3,7 @@ package com.lothrazar.item;
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerMasterWand;
 import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,6 +13,7 @@ import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -35,8 +37,9 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 public class ItemWandMaster extends ItemTool
 {
 	private static int RADIUS = 128;
-	private static int DURABILITY = 50;
+	private static int DURABILITY = 80;
 	public static boolean drainsHunger = true;
+	public static boolean drainsDurability = true;
  
 	//TODO: tooltip to show uses or something?
 	//mayber only shows while shifting>...>>???
@@ -57,9 +60,7 @@ public class ItemWandMaster extends ItemTool
     }
 	
 	public void searchProspect(EntityPlayer entityPlayer, ItemStack heldWand, BlockPos pos)
-	{
-	//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}
-		//Chat.addMessage(event.entityPlayer, "Searching for diamond ore"+event.face);
+	{  
 		//0 bottom, 1 top
 		//5 east 3 south
 		//4 west 2 north
@@ -114,11 +115,7 @@ public class ItemWandMaster extends ItemTool
 	}
 	
 	public void searchSpawner(EntityPlayer player, ItemStack heldWand, BlockPos pos)
-	{
-	//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}
- 
-		//Chat.addMessage(player, "Searching for spawners...");
- //private static int RADIUS = 128;
+	{ 
 	    //changed to only show ONE message, for closest spawner
 		String foundMessage = "No Spawner found in nearby chunks";
 		
@@ -305,26 +302,24 @@ public class ItemWandMaster extends ItemTool
 	private void onSuccess(EntityPlayer player)
 	{
 		player.swingItem();
-		//drain some hunger
-		//TODO : CONFIG FILE TO DRAIN HUNGER
-		/*
-		if(player.getFoodStats().getFoodLevel() > 0)
+		 
+		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
 		{
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() -1);
+			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
 		}
-		*/
+		
 		//make it take damage, or get destroyed
- 
+  
 		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandMaster.DURABILITY - 1)//if about to die
 		{
 			player.getCurrentEquippedItem().damageItem(1, player);
 		}
 		else
-		{
-			//TODO playsound tool break
+		{ 
 			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		}
-
+ 
+			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
+		} 
 	}
 	
 	public static ItemWandMaster itemWand;
@@ -349,5 +344,48 @@ public class ItemWandMaster extends ItemTool
 
 		itemChestSack = new ItemChestSack();   
 		SamsRegistry.registerItem(itemChestSack, "chest_sack");
+	}
+
+	public void entitySpawnEgg(EntityPlayer entityPlayer, Entity target) 
+	{
+		int entity_id = 0;
+		 
+		if(target instanceof EntityCow
+			&& ((EntityCow) target).isChild() == false)
+		{ 
+			entity_id = Reference.entity_cow; 
+		}
+		if(target instanceof EntityPig
+				&& ((EntityPig) target).isChild() == false)
+		{ 
+			entity_id = Reference.entity_pig; 
+		}
+		if(target instanceof EntitySheep
+				&& ((EntitySheep) target).isChild() == false)
+		{ 
+			entity_id = Reference.entity_sheep; 
+		} 
+		if(target instanceof EntityChicken
+				&& ((EntityChicken) target).isChild() == false)
+		{ 
+			entity_id = Reference.entity_chicken; 
+		} 
+		if(target instanceof EntityMooshroom
+				&& ((EntityMooshroom) target).isChild() == false)
+		{ 
+			entity_id = Reference.entity_mooshroom; 
+		} 
+		if(target instanceof EntityBat)
+		{  
+			entity_id = Reference.entity_bat; 
+		}
+		
+		if(entity_id > 0)
+		{
+			entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.spawn_egg,1,entity_id),true);
+			entityPlayer.worldObj.removeEntity(target); 
+			
+			onSuccess(entityPlayer);
+		} 
 	}
 }
