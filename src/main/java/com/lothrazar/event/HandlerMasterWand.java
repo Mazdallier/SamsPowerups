@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.lothrazar.item.ItemChestSack;
 import com.lothrazar.item.ItemWandMaster;
 import com.lothrazar.util.Reference;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -16,12 +17,14 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;   
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,12 +33,12 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class HandlerMasterWand  
-{  
-	
+{   
 	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
@@ -43,11 +46,10 @@ public class HandlerMasterWand
 		if(event.entity.worldObj.isRemote || event.world.isRemote){ return ;}//server side only!
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
-		
-		  
+		 
 		//if it drains hunnger, we cant use it when food is empty
 		if(ItemWandMaster.drainsHunger)
-			if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}//required??
+			if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;} 
 	
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 		 
@@ -67,8 +69,7 @@ public class HandlerMasterWand
 				} 
 				else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
 				{ 
-					//	public static void replantField(EntityPlayer entityPlayer, ItemStack heldWand, int eventx, int eventy, int eventz)
-					ItemWandMaster.itemWand.replantField(event.entityPlayer,held,event.pos); 
+					 ItemWandMaster.itemWand.replantField(event.entityPlayer,held,event.pos); 
 				}
 			}
 			else if(held.getItem() == ItemWandMaster.itemChestSack)
@@ -137,9 +138,7 @@ public class HandlerMasterWand
 				}
 				
 				ItemWandMaster.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.add(0,1,0));
-			}
-			
-			
+			} 
 		}// end of is right click (else) 
   	}
   
@@ -148,13 +147,38 @@ public class HandlerMasterWand
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
 		if(held == null || held.getItem() != ItemWandMaster.itemWand ){ return;}
-  
-		if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){ return;}
-		
 		if(event.entityPlayer.worldObj.isRemote ){ return;}
- 
-
-		ItemWandMaster.itemWand.entitySpawnEgg(event.entityPlayer, event.target);
-		
+   
+		//if it drains hunnger, we cant use it when food is empty
+		if(ItemWandMaster.drainsHunger)
+			if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;} 
+		 
+		ItemWandMaster.itemWand.entitySpawnEgg(event.entityPlayer, event.target); 
   	} 
+	
+	
+	
+	
+	@SubscribeEvent
+	public void onItemTooltip(ItemTooltipEvent event)
+	{
+		if (event.entityPlayer == null || event.itemStack == null || event.itemStack.getItem() == null) { return; }
+
+		if (event.getResult() == Result.DENY) { return; }
+
+		Item item = event.itemStack.getItem();
+		if(SamsUtilities.isShiftKeyDown() && 
+				item == ItemWandMaster.itemWand
+				)
+		{
+
+			 //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0
+			
+			
+			
+			event.toolTip.add("test");
+		}
+		  
+	 
+	}
 }

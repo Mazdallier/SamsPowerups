@@ -3,6 +3,7 @@ package com.lothrazar.util;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 
 public class SamsUtilities
 {
@@ -31,4 +32,11 @@ public class SamsUtilities
 		  
 		world.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
 	}
+	
+	public static boolean isShiftKeyDown()
+	{
+		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+		
+	}
+	
 }
