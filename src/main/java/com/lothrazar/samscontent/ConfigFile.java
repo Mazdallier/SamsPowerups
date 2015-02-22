@@ -89,6 +89,7 @@ public class ConfigFile
 	public boolean smoothstoneToolsRequired;
 	public boolean tieredArmor;
 	public boolean furnaceNeedsCoal;
+	public boolean theEndSafeFallDragonslayer;
 	
 	public ConfigFile()
 	{
@@ -106,6 +107,8 @@ public class ConfigFile
 		  
 		category = "convenience"; 	
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
+		theEndSafeFallDragonslayer = ModLoader.config.getBoolean("theEndSafeFallDragonslayer",category, true,
+    			"");//falling end means u get debuff and sent to worldheight 
 		
 		increasedStackSizes = ModLoader.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
