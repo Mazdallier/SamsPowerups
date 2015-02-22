@@ -88,8 +88,8 @@ public class ConfigFile
 	public boolean appleNetherStar;
 	public boolean smoothstoneToolsRequired;
 	public boolean tieredArmor;
-	public boolean furnaceNeedsCoal;
-	public boolean theEndSafeFallDragonslayer;
+	public boolean furnaceNeedsCoal; 
+	public boolean theEndSafeFall;
 	
 	public ConfigFile()
 	{
@@ -107,7 +107,7 @@ public class ConfigFile
 		  
 		category = "convenience"; 	
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
-		theEndSafeFallDragonslayer = ModLoader.config.getBoolean("theEndSafeFallDragonslayer",category, true,
+		theEndSafeFall = ModLoader.config.getBoolean("theEndSafeFall",category, true,
     			"");//falling end means u get debuff and sent to worldheight 
 		
 		increasedStackSizes = ModLoader.config.getBoolean("increasedStackSizes",category, true,

@@ -14,23 +14,22 @@ public class HandlerPlayerFall
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{    	 
+		if(!ModLoader.settings.theEndSafeFall){return;}
 		if( event.player.capabilities.isCreativeMode){return;} 
-		if(!ModLoader.settings.theEndSafeFallDragonslayer){return;}
+
+		EntityPlayer player = event.player;
 		 
-		//TODO: CONFIG FILE DISABVLE
+		//player.func_175145_a(p_175145_1_);
 		//TODO: achievement finder , check if dragonslayer
 		//or at least check something to gain this pwer
-		
-		if(event.player.dimension == Reference.Dimension.end && 
-				 event.player.posY < -50 && 
-				 event.player.worldObj.isRemote  == false && 
-				 event.player.capabilities.isCreativeMode == false
-				)
-		{ 
-			//System.out.println("TRY TO TELEPORT");//yep this only fires once now
  
-			EntityPlayer player = event.player;
-			 
+		
+		if(player.dimension == Reference.Dimension.end && 
+				 player.posY < -50 && 
+				 player.worldObj.isRemote  == false && 
+				 player.capabilities.isCreativeMode == false
+				)
+		{  
 			SamsUtilities.teleportWallSafe(event.player, event.player.worldObj, event.player.getPosition().up(256)); 
 					
 			int duration = 20 * Reference.TICKS_PER_SEC;
@@ -38,9 +37,6 @@ public class HandlerPlayerFall
 			event.player.addPotionEffect(new PotionEffect(Reference.potion_WITHER, duration, 0));
 			event.player.addPotionEffect(new PotionEffect(Reference.potion_NAUSEA, duration, 0));
 			event.player.addPotionEffect(new PotionEffect(Reference.potion_HUNGER, duration, 0)); 
-		}
-		
-		
-	}
-
+		} 
+	} 
 }
