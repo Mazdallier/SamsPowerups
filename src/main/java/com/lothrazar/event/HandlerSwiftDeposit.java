@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerSwiftDeposit
 {  
+	@SuppressWarnings("unused")
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
@@ -24,27 +25,16 @@ public class HandlerSwiftDeposit
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 
 		if(event.entityPlayer.isSneaking() == false){ return; }
-		
-		System.out.println("HandlerSwift deposit - does this even fire:???");
- 
-		if(event.entityPlayer.getCurrentEquippedItem() != null){ return; }
-		//ok so we have an empty hand
-		
-		//so we are sneaking
-		
+		  
+		if(event.entityPlayer.getCurrentEquippedItem() != null){ return; }//empty hand
+	 
   	  	TileEntity te =	event.entity.worldObj.getTileEntity(event.pos);
- 
-	  	//no tile entity found for this chest?
-  	  	if(te == null || !(te instanceof TileEntityChest)){return;}
-   
-		TileEntityChest chest = (TileEntityChest)te ;
-		
+  
+  	  	if(te == null || !(te instanceof TileEntityChest)){return;} 
+		TileEntityChest chest = (TileEntityChest)te ; 
   	  	if(chest==null){return;}//some of these is null shouldn't happen
-  	  	
-  	  	// ?? : use the four adjacentChestXNeg
-  	  	//to check for joined doublechests!!
-  	  	//now we have access to both the chest inventory and the player inventory
-  	  	
+  	  	 
+  	  	//check for double chest
   	    TileEntityChest teAdjacent = null;
   	  	
   	  	if(chest.adjacentChestXNeg != null)
@@ -73,14 +63,11 @@ public class HandlerSwiftDeposit
    	}//end player interact event  
  
   	private void sortFromPlayerToChestEntity(TileEntityChest chest, EntityPlayer entityPlayer)
-  	{
-		System.out.println("sortFromPlayerToChestEntity deposit - does this even fire:???");
-		//gYES YES YES this pri nts
-  		int totalItemsMoved = 0;
-  		//int totalTypesMoved = 0;
+  	{ 
+  		int totalItemsMoved = 0; 
   		int totalSlotsFreed = 0;
   		
-  		boolean debug = false;
+  		//boolean debug = false;
   	  	
 		ItemStack chestItem;
 		ItemStack invItem;
@@ -90,32 +77,30 @@ public class HandlerSwiftDeposit
 		
 		//player inventory and the small chest have the same dimensions 
 		
-		int START_CHEST = 0;
-	//	int START_INV = 9;//because we are ignoring the item hotbar, we skip the first row this way
-		int END_CHEST =  START_CHEST + Reference.PlayerInventory.SIZE;
-	//	int END_INV = Reference.PlayerInventory.START + Reference.PlayerInventory.SIZE;
+		int START_CHEST = 0; 
+		int END_CHEST =  START_CHEST + Reference.PlayerInventory.SIZE; 
 		
 		//inventory and chest has 9 rows by 3 columns, never changes. same as 64 max stack size
 		for(int islotChest = START_CHEST; islotChest < END_CHEST; islotChest++)
 		{
-			if(debug)System.out.println("c "+islotChest);
+			//if(debug)System.out.println("c "+islotChest);
 			
 			chestItem = chest.getStackInSlot(islotChest);
 		
 			if(chestItem == null)
 			{ 
-				if(debug)System.out.println("c null");
+				//if(debug)System.out.println("c null");
 				continue;
 			}//not an error; empty chest slot
 			 
 			for(int islotInv = Reference.PlayerInventory.START; islotInv < Reference.PlayerInventory.END; islotInv++)
   			{
-				if(debug)System.out.println("p "+islotInv);
+				//if(debug)System.out.println("p "+islotInv);
 				invItem = entityPlayer.inventory.getStackInSlot(islotInv);
 				
 				if(invItem == null) 
 				{
-					if(debug)System.out.println(islotInv+" invItem : EMPTY");
+					//if(debug)System.out.println(islotInv+" invItem : EMPTY");
 					continue;
 			    }//empty inventory slot
 				//if(debug)Relay.addChatMessage(event.entityPlayer,islotInv+"    invItem : "+invItem.getDisplayName());
@@ -129,8 +114,8 @@ public class HandlerSwiftDeposit
   					 
   					if(room <= 0) {continue;} // no room, check the next spot
   					
-				    if(debug)System.out.println(" chestSlot="+islotChest+   " stackSize / MAX = "+chestItem.stackSize+" / "+chestMax);
-				    if(debug)System.out.println(" islotInv="+islotInv+"  wants to deposit invItem.stackSize =  "+invItem.stackSize);
+				   // if(debug)System.out.println(" chestSlot="+islotChest+   " stackSize / MAX = "+chestItem.stackSize+" / "+chestMax);
+				   // if(debug)System.out.println(" islotInv="+islotInv+"  wants to deposit invItem.stackSize =  "+invItem.stackSize);
   	  				 
   					//so if i have 30 room, and 28 items, i deposit 28.
   					//or if i have 30 room and 38 items, i deposit 30
@@ -159,25 +144,19 @@ public class HandlerSwiftDeposit
   	  					entityPlayer.inventory.setInventorySlotContents(islotInv, invItem); 
   					}
   					 
-  	  				if(debug)System.out.println("NEW chestItem.stackSize="+chestItem.stackSize + " Increased By toDeposit = "+toDeposit);
-	  	  			if(debug)System.out.println("NEW invItem.stackSize="+invItem.stackSize + " Decreased By toDeposit = "+toDeposit);
+  	  			//	if(debug)System.out.println("NEW chestItem.stackSize="+chestItem.stackSize + " Increased By toDeposit = "+toDeposit);
+	  	  			//if(debug)System.out.println("NEW invItem.stackSize="+invItem.stackSize + " Decreased By toDeposit = "+toDeposit);
 	  	  			 
   				}//end if items match   
   			}//close loop on player inventory items
 			
 		}//close loop on chest items
 		
-		if( totalSlotsFreed > 0/*  && isChatEnabled() */) 
+		if( totalSlotsFreed > 0) 
 		{
-			String msg = "Magic Sort deposited "+totalItemsMoved+" items.";
-
-
-			if(debug)System.out.println(msg);//usd to go to chat
-			//TODO: config file
-	  		//Relay.addChatMessage(event.entityPlayer, msg);
+			//String msg = "Magic Sort deposited "+totalItemsMoved+" items.";
+//we used to send chat message here, no longer
 			
-			//doesnt fing work anyway
-			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
   	}
 }
