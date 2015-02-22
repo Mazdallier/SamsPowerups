@@ -282,6 +282,7 @@ public class ModLoader
      		,new HandlerSkullSignNames()
       		//,new HandlerPlayerDeath()
        		,new HandlerPlayerTickApplesEaten()
+        	,new HandlerPlayerFall()
       		,new HandlerSwiftDeposit()
      		,new HandlerPlayerDeath()
      		,instance
