@@ -36,7 +36,7 @@ public class ItemWandMaster extends ItemTool
 {
 	private static int RADIUS = 128;
 	private static int DURABILITY = 50;
-	public static boolean drainsHunger;
+	public static boolean drainsHunger = true;
  
 	//TODO: tooltip to show uses or something?
 	//mayber only shows while shifting>...>>???

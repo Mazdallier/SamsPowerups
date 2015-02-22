@@ -44,9 +44,10 @@ public class HandlerMasterWand
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
 		
-		 
-		//TODO: food drain? config file? durability? etc?
-		//if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}//required??
+		  
+		//if it drains hunnger, we cant use it when food is empty
+		if(ItemWandMaster.drainsHunger)
+			if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;}//required??
 	
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 		 
@@ -139,14 +140,15 @@ public class HandlerMasterWand
 			}
 			
 			
-			if(ItemWandMaster.drainsHunger)
-			{
-				
-			}
-			
-			event.entityPlayer.swingItem();
-			
 		}// end of is right click (else)
+		
+ 
+		if(ItemWandMaster.drainsHunger)
+		{ 
+			event.entityPlayer.getFoodStats().setFoodLevel(event.entityPlayer.getFoodStats().getFoodLevel()-1);
+		}
+		 
+		event.entityPlayer.swingItem(); 
   	}
   
 	@SubscribeEvent
@@ -195,14 +197,10 @@ public class HandlerMasterWand
 		{
 			event.entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.spawn_egg,1,entity_id),true);
 			event.entityPlayer.worldObj.removeEntity(event.target);
-			 
-			//TODO: durability? config file?
-		//	 event.entityPlayer.getCurrentEquippedItem().damageItem(1, event.entityPlayer);
-			//onSuccess(event.entityPlayer);
-			
+			  
 			if(ItemWandMaster.drainsHunger)
-			{
-				
+			{ 
+				event.entityPlayer.getFoodStats().setFoodLevel(event.entityPlayer.getFoodStats().getFoodLevel()-1);
 			}
 			
 			event.entityPlayer.swingItem();
