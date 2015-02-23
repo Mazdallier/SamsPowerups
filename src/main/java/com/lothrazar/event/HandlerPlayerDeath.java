@@ -15,7 +15,8 @@ import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerPlayerDeath
-{ 
+{ /*
+//TODO: find a way to fix this? gravestones? 
 	@SubscribeEvent
 	public void onPlayerDrops(PlayerDropsEvent event) 
 	{
@@ -62,7 +63,8 @@ public class HandlerPlayerDeath
 				
 				dropped.setDead();//kills the entity, meaning it wont be spawning in the world to get picked up
 			} 
-			//else out of room 
+			//el se out of room 
 		}
 	}
+	*/
 }

@@ -50,8 +50,7 @@ public class ConfigFile
 	public boolean enderchest;
 	public boolean simplewaypoint;
 	public boolean todo;
-	public boolean kit;
-	public boolean deathItemsChest;
+	public boolean kit; 
 	public boolean home;
 	public boolean worldhome;
 	public boolean lootObsidian;
@@ -139,10 +138,7 @@ public class ConfigFile
 		 
 		skullSignNames = ModLoader.config.getBoolean("skullSignNames",category, true,
     			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign");
-		
-		deathItemsChest = ModLoader.config.getBoolean("deathItemsChest",category, true,
-    			"When someone dies, any items dropping from the player will be placed in a chest instead of in the world.  Saves most items from despawning."	);
-		  
+		 
 		betterBonemeal = ModLoader.config.getBoolean("betterBonemeal",category, true,
     			"Bonemeal grows more things: lilypads, all flowers ");
 	}
