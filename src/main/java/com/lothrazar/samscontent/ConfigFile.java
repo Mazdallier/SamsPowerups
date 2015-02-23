@@ -14,6 +14,7 @@ import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.command.CommandWorldHome; 
+import com.lothrazar.event.HandlerHarvestEmptyHanded;
 import com.lothrazar.item.ItemWandMaster;
 
 public class ConfigFile
@@ -106,7 +107,17 @@ public class ConfigFile
 		 
 		spawning(); 
 		  
+
+		category = "tweaks";
+		
+		String csv = ModLoader.config.getString("harvestOnlyShovel",category, "minecraft:dirt,minecraft:sand",
+    			"If these blocks are not harvested by a shovel, they will break but have no drops.");
+		
+		HandlerHarvestEmptyHanded.setRestrictedFromCSV(csv);
+		
+
 		category = "convenience"; 	
+		
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		theEndSafeFall = ModLoader.config.getBoolean("theEndSafeFall",category, true,
     			"");//falling end means u get debuff and sent to worldheight 

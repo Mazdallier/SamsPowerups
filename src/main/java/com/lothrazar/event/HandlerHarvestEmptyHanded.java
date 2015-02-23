@@ -16,46 +16,55 @@ public class HandlerHarvestEmptyHanded
 	
 	//get a csv item list
 	
-	public static ArrayList<String> notEmptyHandedCSV = new 	 ArrayList<String> ();
-	public static ArrayList<Block> notEmptyHanded = new 	 ArrayList<Block> ();
-	//on player harvest, compare list and drops and strip them out if empty handed.
-//break event also exists
+	public static void setRestrictedFromCSV(String csv)
+	{
+		 String[] csvOnlyShovelPickaxe = csv.split(",");//ArrayList<String>
+		 
+		 Block found = null; 
+		 for(String id : csvOnlyShovelPickaxe)
+		 {
+			 found = Block.getBlockFromName(id);
+			 if(found != null)
+			 {
+				 blocksOnlyShovel.add(found);
+			 }
+			 else 
+			 {
+				 //TODO LOG FILE
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+				 System.out.println("NOT FOUND :: "+id);
+			 }
+		 } 
+	}
 	
-	
-	
+	public static ArrayList<Block> blocksOnlyShovel = new 	 ArrayList<Block> ();
+ 
 	@SubscribeEvent
     public void onHarvestDrops(BlockEvent.HarvestDropsEvent event)
     { 
 		if(event.world.isRemote){return;}
-		
-		
-//		event.harvester
-		
+		 
 		ItemStack held = event.harvester.getHeldItem();
-		boolean harvestToolClass = false;
-	  
-		
+		boolean playerUsingShovel = false;
+		boolean playerUsingPickaxe = false;//TODO:maybe do pickaxe toolclass  one day
+	   
 		if(held != null)
-		{
-			//see Commandplayerkit for more details
+		{ 
 			Set<String> classes = held.getItem().getToolClasses(held);
-			
-			//this means its not a tool at all, it has no tool classes
-			//if(s.size() == 0) System.out.println("emptyset");
-			
-			for(String toolClass : classes)
-			{ 
-				System.out.println(toolClass ); 
-				System.out.println(toolClass ); 
-				System.out.println(toolClass ); 
-				System.out.println(toolClass ); 
-				System.out.println(toolClass ); 
-				if( toolClass == "shovel"  || //TODO: Reference.ToolClass.shovel
-					toolClass == "pickaxe" )  //TODO: Reference.ToolClass.pickaxe
-				{
-					harvestToolClass = true;
-					break; 
-				} 
+			 
+			for(String toolClass : classes)//can be empty, it has no tool classes
+			{  
+				if( toolClass == "shovel" ) playerUsingShovel = true;
+				//TODO: Reference.ToolClass.shovel
+				//TODO: Reference.ToolClass.pickaxe
+
+				if( toolClass == "pickaxe" ) playerUsingPickaxe = true;
 			}
 		}
 
@@ -64,13 +73,11 @@ public class HandlerHarvestEmptyHanded
 		{ 
 			bh = Block.getBlockFromItem(event.drops.get(i).getItem());
 			
-			if(bh != null && notEmptyHanded.contains(bh) && 
-					harvestToolClass == false) 
+			if(bh != null && 
+					blocksOnlyShovel.contains(bh) && 
+					playerUsingShovel == false) 
 			{
-				//item is in the restricted list, and its not a matching tool
-				System.out.println("remove");
-				System.out.println("remove");
-				System.out.println("remove");
+				//item is in the restricted list, and its not a matching tool  
 				event.drops.remove(i);
 			} 
 			bh = null;
