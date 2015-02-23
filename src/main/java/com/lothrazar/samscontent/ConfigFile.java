@@ -91,6 +91,7 @@ public class ConfigFile
 	public boolean tieredArmor;
 	public boolean furnaceNeedsCoal; 
 	public boolean theEndSafeFall;
+	public boolean plantDespawningSaplings;
 	
 	public ConfigFile()
 	{
@@ -117,6 +118,9 @@ public class ConfigFile
 	private void convenience() 
 	{
 		category = "convenience"; 	
+		
+		plantDespawningSaplings = ModLoader.config.getBoolean("plantDespawningSaplings",category, true,
+    			"plantDespawningSaplings");//TODO
 		
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		theEndSafeFall = ModLoader.config.getBoolean("theEndSafeFall",category, true,
