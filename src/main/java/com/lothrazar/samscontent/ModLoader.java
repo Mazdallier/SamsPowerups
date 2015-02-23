@@ -313,7 +313,7 @@ public class ModLoader
        		,new HandlerPlayerTickApplesEaten()
         	,new HandlerPlayerFall()
       		,new HandlerSwiftDeposit()
-     		,new HandlerPlayerDeath()
+     		,new EXPERIMENTAL()
      		,instance
      	};
      	
