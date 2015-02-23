@@ -6,7 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;  
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random; 
 
 import org.apache.logging.log4j.Logger; 
@@ -48,6 +51,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  
 public class HandlerScreenText
 {  
+	
+	 public Date addDays(Date baseDate, int daysToAdd) 
+	 {
+	        Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(baseDate);
+	        calendar.add(Calendar.DAY_OF_YEAR, daysToAdd);
+	        return calendar.getTime();
+	    }
+	 
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{ 
@@ -78,8 +90,22 @@ public class HandlerScreenText
 		else detail = "Moon Phase " + world.getMoonPhase();
 	   
 		//TODO: do a 365 day calendar. Day Zero is January 1st of year zero?``
+		 //http://stackoverflow.com/questions/8263220/calendar-set-year-issue
 		event.left.add("Day "+days +" ("+detail+")");  
-  
+		 
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy");
+		
+		Calendar c1 = Calendar.getInstance(); // TODAY AD
+		c1.set(Calendar.YEAR, 0);             // August  16th,    0 AD
+		c1.set(Calendar.DAY_OF_YEAR, 1);      // January  1st,    0 AD
+		c1.set(Calendar.YEAR, 1000);          // January  1st, 2001 AD
+		Date start = c1.getTime();     // prints the expected date
+		 
+		Date curr = addDays(start,days);
+ 
+		
+		event.left.add(sdf.format(curr)  + " ("+detail+")" );
+		
 		//side.add(Minecraft.getMinecraft().renderGlobal.getDebugInfoEntities()); 
 		//side.add("XYZ: "+(int)player.posX +" / "+  (int)player.posY  +" / "+ (int)player.posZ); 
 		//side.add("f:"+  f); 
