@@ -82,8 +82,7 @@ public class HandlerPlayerHarvest
   	 
 		ItemStack held = event.harvester.getHeldItem();
 		boolean playerUsingShovel = false;
-		boolean playerUsingAxe = false;
-	//	boolean playerUsingPickaxe = false;//TODO:maybe do pickaxe toolclass  one day
+		boolean playerUsingAxe = false; 
 	   
 		if(held != null)
 		{ 

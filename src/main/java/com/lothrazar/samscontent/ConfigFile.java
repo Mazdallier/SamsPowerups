@@ -253,19 +253,19 @@ public class ConfigFile
 		category = "new_blocks_items";
 
 		appleChocolate = ModLoader.config.getBoolean( "appleChocolate",category,true,
-				"appleChocolate" ); //TODO: text content
+			"appleChocolate" ); //TODO: text content
 		
 		appleEmerald = ModLoader.config.getBoolean( "appleEmerald",category,true,
 			"appleEmerald" ); //TODO: text content
 		
 		appleLapis = ModLoader.config.getBoolean( "appleLapis",category,true,
-				""); //TODO: text content
+			""); //TODO: text content
 		
 		appleDiamond = ModLoader.config.getBoolean( "appleDiamond",category,true,
-				"appleDiamonds."); //TODO: text content
+				"Eating a diamond apple gives you two extra persistant hearts (until you die)."); 
 		 
 		appleNetherStar = ModLoader.config.getBoolean( "appleNetherStar",category,true,
-				""); //TODO: text content
+				"A nether star surrounded by apples.  Eating this gives you the power of flight for a number of seconds (visible in the debug screen)."); //TODO: text content
 		 
 		fishingNetBlock = ModLoader.config.getBoolean( "fishingNetBlock",category,true,
 				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 

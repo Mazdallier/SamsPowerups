@@ -12,13 +12,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -36,15 +39,15 @@ public class BlockXRay extends Block
 		this.setResistance(5F); 
 		this.setTickRandomly(true);
     }
-  /*//TODO: revisit and/or fix silk touch harvest. the getdrops had a bug?
+
 	@Override
-    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
 	   return true;   
     }
   
 	@Override
-	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+	public ArrayList<ItemStack> getDrops(IBlockAccess world,BlockPos pos, IBlockState state, int fortune)
 	{
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		ret.add(new ItemStack( Blocks.web, 4, 0));
@@ -52,7 +55,7 @@ public class BlockXRay extends Block
  
 	 	return ret;
 	} 
-	*/
+	
 	 
 	@SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
