@@ -3,6 +3,8 @@ package com.lothrazar.event;
 import java.util.ArrayList;
 import java.util.Set;
 
+import com.lothrazar.samscontent.ModLoader;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,12 +18,12 @@ public class HandlerHarvestEmptyHanded
 	
 	//get a csv item list
 	
-	public static void setRestrictedFromCSV(String csv)
+	public static void setShovelFromCSV(String csv)
 	{
-		 String[] csvOnlyShovelPickaxe = csv.split(",");//ArrayList<String>
+		 String[] items = csv.split(","); 
 		 
 		 Block found = null; 
-		 for(String id : csvOnlyShovelPickaxe)
+		 for(String id : items)
 		 {
 			 found = Block.getBlockFromName(id);
 			 if(found != null)
@@ -30,29 +32,45 @@ public class HandlerHarvestEmptyHanded
 			 }
 			 else 
 			 {
-				 //TODO LOG FILE
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
-				 System.out.println("NOT FOUND :: "+id);
+				 //TODO LOG FILE 
+				 System.out.println("for ShovelNOT FOUND :: "+id);
 			 }
 		 } 
 	}
+	public static void seAxeFromCSV(String csv)
+	{
+		 String[] items = csv.split(","); 
+		 
+		 Block found = null; 
+		 for(String id : items)
+		 {
+			 found = Block.getBlockFromName(id);
+			 if(found != null)
+			 {
+				 blocksOnlyAxe.add(found);
+			 }
+			 else 
+			 {
+				 //TODO LOG FILE 
+				 System.out.println("for Axe NOT FOUND :: "+id);
+			 }
+		 } 
+	}
+	public static ArrayList<Block> blocksOnlyShovel = new ArrayList<Block> ();
+	public static ArrayList<Block> blocksOnlyAxe    = new ArrayList<Block> ();
 	
-	public static ArrayList<Block> blocksOnlyShovel = new 	 ArrayList<Block> ();
- 
 	@SubscribeEvent
     public void onHarvestDrops(BlockEvent.HarvestDropsEvent event)
     { 
 		if(event.world.isRemote){return;}
-		 
+		if(event.harvester == null){return;}
+		//
+ 
+			 
 		ItemStack held = event.harvester.getHeldItem();
 		boolean playerUsingShovel = false;
-		boolean playerUsingPickaxe = false;//TODO:maybe do pickaxe toolclass  one day
+		boolean playerUsingAxe = false;
+	//	boolean playerUsingPickaxe = false;//TODO:maybe do pickaxe toolclass  one day
 	   
 		if(held != null)
 		{ 
@@ -64,7 +82,8 @@ public class HandlerHarvestEmptyHanded
 				//TODO: Reference.ToolClass.shovel
 				//TODO: Reference.ToolClass.pickaxe
 
-				if( toolClass == "pickaxe" ) playerUsingPickaxe = true;
+				//if( toolClass == "pickaxe" ) playerUsingPickaxe = true;
+				if( toolClass == "axe" ) playerUsingAxe = true;
 			}
 		}
 
@@ -72,14 +91,22 @@ public class HandlerHarvestEmptyHanded
 		for(int i = 0; i < event.drops.size(); i++)
 		{ 
 			bh = Block.getBlockFromItem(event.drops.get(i).getItem());
+			if(bh == null) {continue;}
 			
-			if(bh != null && 
-					blocksOnlyShovel.contains(bh) && 
+			if(		blocksOnlyShovel.contains(bh) && 
 					playerUsingShovel == false) 
 			{
 				//item is in the restricted list, and its not a matching tool  
 				event.drops.remove(i);
+			} 	
+			else if(		blocksOnlyAxe.contains(bh) && 
+					playerUsingAxe == false) 
+			{
+				//item is in the restricted list, and its not a matching tool  
+				event.drops.remove(i);
 			} 
+			
+			
 			bh = null;
 		}
     } 

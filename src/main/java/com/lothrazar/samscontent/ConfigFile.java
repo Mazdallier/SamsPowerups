@@ -91,7 +91,7 @@ public class ConfigFile
 	public boolean tieredArmor;
 	public boolean furnaceNeedsCoal; 
 	public boolean theEndSafeFall;
-	public boolean plantDespawningSaplings;
+	public boolean plantDespawningSaplings; 
 	
 	public ConfigFile()
 	{
@@ -106,12 +106,13 @@ public class ConfigFile
 		debug_info();
 		 
 		spawning(); 
-		  
-
+		
 		toolChanges();
 		 
 		convenience();
-		  
+
+		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
+		
 		if(ModLoader.config.hasChanged()){ ModLoader.config.save(); }
 	}
 
@@ -122,7 +123,6 @@ public class ConfigFile
 		plantDespawningSaplings = ModLoader.config.getBoolean("plantDespawningSaplings",category, true,
     			"plantDespawningSaplings");//TODO
 		
-		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		theEndSafeFall = ModLoader.config.getBoolean("theEndSafeFall",category, true,
     			"");//falling end means u get debuff and sent to worldheight 
 		
@@ -152,17 +152,22 @@ public class ConfigFile
 		category = "tools_armor";
 		
 		furnaceNeedsCoal = ModLoader.config.getBoolean("furnaceNeedsCoal",category, true,
-				"W."); //TODO text
+				"Crafting a furnace now requires one coal in the center.");  
 		
 		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
-				"W."); //TODO text
+				"Stone tools will require smoothstone instead of cobble.");  
 
 		tieredArmor = ModLoader.config.getBoolean("tieredArmor",category, true,
-				"tieredArmor."); //TODO text 
+				"Crafting Iron armor requires repaired leather armor as part of the recipe.  Diamond armor requires chain mail.");  
 		
 		String csv = ModLoader.config.getString("harvestOnlyShovel",category, "minecraft:dirt,minecraft:sand",
-    			"If these blocks are not harvested by a shovel, they will break but have no drops."); 
-		HandlerHarvestEmptyHanded.setRestrictedFromCSV(csv);
+    			"If these blocks are not harvested by a shovel, they will break but have no drops (the same way that breaking stone by hand gives no drops)."); 
+		HandlerHarvestEmptyHanded.setShovelFromCSV(csv);
+	 
+		String csvaxe = ModLoader.config.getString("harvestOnlyAxe",category, "minecraft:log,minecraft:log2",
+    			"harvestOnlyAxeharvestOnlyAxeharvestOnlyAxeharvestOnlyAxeharvestOnlyAxeno drops)."); 
+		HandlerHarvestEmptyHanded.seAxeFromCSV(csvaxe);
+		 
 	}
 	
 	private void spawning() 
