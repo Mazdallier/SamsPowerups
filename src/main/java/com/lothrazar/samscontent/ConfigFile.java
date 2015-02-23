@@ -14,7 +14,7 @@ import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.command.CommandWorldHome; 
-import com.lothrazar.event.HandlerHarvestEmptyHanded;
+import com.lothrazar.event.HandlerPlayerHarvest;
 import com.lothrazar.item.ItemWandMaster;
 
 public class ConfigFile
@@ -91,7 +91,8 @@ public class ConfigFile
 	public boolean tieredArmor;
 	public boolean furnaceNeedsCoal; 
 	public boolean theEndSafeFall;
-	public boolean plantDespawningSaplings; 
+	public boolean plantDespawningSaplings;
+	public boolean noDamageEnderPearl; 
 	
 	public ConfigFile()
 	{
@@ -120,8 +121,11 @@ public class ConfigFile
 	{
 		category = "convenience"; 	
 		
+		noDamageEnderPearl = ModLoader.config.getBoolean("noDamageEnderPearl",category, true,
+    			"noDamageEnderPearl");//TODOtext
+		
 		plantDespawningSaplings = ModLoader.config.getBoolean("plantDespawningSaplings",category, true,
-    			"plantDespawningSaplings");//TODO
+    			"plantDespawningSaplings");//TODOtext
 		
 		theEndSafeFall = ModLoader.config.getBoolean("theEndSafeFall",category, true,
     			"");//falling end means u get debuff and sent to worldheight 
@@ -162,11 +166,11 @@ public class ConfigFile
 		
 		String csv = ModLoader.config.getString("harvestOnlyShovel",category, "minecraft:dirt,minecraft:sand",
     			"If these blocks are not harvested by a shovel, they will break but have no drops (the same way that breaking stone by hand gives no drops)."); 
-		HandlerHarvestEmptyHanded.setShovelFromCSV(csv);
+		HandlerPlayerHarvest.setShovelFromCSV(csv);
 	 
 		String csvaxe = ModLoader.config.getString("harvestOnlyAxe",category, "minecraft:log,minecraft:log2",
     			"harvestOnlyAxeharvestOnlyAxeharvestOnlyAxeharvestOnlyAxeharvestOnlyAxeno drops)."); 
-		HandlerHarvestEmptyHanded.seAxeFromCSV(csvaxe);
+		HandlerPlayerHarvest.seAxeFromCSV(csvaxe);
 		 
 	}
 	

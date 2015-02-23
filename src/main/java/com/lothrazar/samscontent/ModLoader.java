@@ -301,7 +301,7 @@ public class ModLoader
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse() 
-      		,new HandlerHarvestEmptyHanded()
+      		,new HandlerPlayerHarvest()
      		,new HandlerEnderBookClick()
      		,new HandlerEnderChestHit() 
      		,new HandlerKeyInput()
