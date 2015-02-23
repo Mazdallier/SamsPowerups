@@ -108,14 +108,15 @@ public class ConfigFile
 		spawning(); 
 		  
 
-		category = "tweaks";
-		
-		String csv = ModLoader.config.getString("harvestOnlyShovel",category, "minecraft:dirt,minecraft:sand",
-    			"If these blocks are not harvested by a shovel, they will break but have no drops.");
-		
-		HandlerHarvestEmptyHanded.setRestrictedFromCSV(csv);
-		
+		toolChanges();
+		 
+		convenience();
+		  
+		if(ModLoader.config.hasChanged()){ ModLoader.config.save(); }
+	}
 
+	private void convenience() 
+	{
 		category = "convenience"; 	
 		
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
@@ -144,8 +145,24 @@ public class ConfigFile
 		  
 		betterBonemeal = ModLoader.config.getBoolean("betterBonemeal",category, true,
     			"Bonemeal grows more things: lilypads, all flowers ");
-		  
-		if(ModLoader.config.hasChanged()){ ModLoader.config.save(); }
+	}
+
+	private void toolChanges() 
+	{
+		category = "tools_armor";
+		
+		furnaceNeedsCoal = ModLoader.config.getBoolean("furnaceNeedsCoal",category, true,
+				"W."); //TODO text
+		
+		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
+				"W."); //TODO text
+
+		tieredArmor = ModLoader.config.getBoolean("tieredArmor",category, true,
+				"tieredArmor."); //TODO text 
+		
+		String csv = ModLoader.config.getString("harvestOnlyShovel",category, "minecraft:dirt,minecraft:sand",
+    			"If these blocks are not harvested by a shovel, they will break but have no drops."); 
+		HandlerHarvestEmptyHanded.setRestrictedFromCSV(csv);
 	}
 	
 	private void spawning() 
@@ -185,6 +202,8 @@ public class ConfigFile
 		spawnCaveSpiderJungle = ModLoader.config.getBoolean("spawn.CaveSpiderJungle",category, true,
     			". ");//TODO: description content
 	}
+	
+	
 	private void debug_info() 
 	{
 		category = "debugScreen";
@@ -279,17 +298,8 @@ public class ConfigFile
 	
 	private void crafting() 
 	{
-		category = "crafting";
-		
-		furnaceNeedsCoal = ModLoader.config.getBoolean("furnaceNeedsCoal",category, true,
-				"W."); //TODO text
-		
-		smoothstoneToolsRequired = ModLoader.config.getBoolean("smoothstoneToolsRequired",category, true,
-				"W."); //TODO text
-					
-		tieredArmor = ModLoader.config.getBoolean("tieredArmor",category, true,
-				"tieredArmor."); //TODO text 
-		
+		category = "morecrafting";
+		 	 
 		craftBooksWithoutLeather = ModLoader.config.getBoolean( "craftBooksWithoutLeather",category,true,
 				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed.");
 		
