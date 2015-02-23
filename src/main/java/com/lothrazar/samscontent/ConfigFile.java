@@ -365,13 +365,13 @@ public class ConfigFile
 		killall = ModLoader.config.getBoolean("killall",category, true,
     			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."    		);
 		
-		CommandKillAll.REQUIRES_OP = ModLoader.config.getBoolean("killall.needs_op",category, false,
+		CommandKillAll.REQUIRES_OP = ModLoader.config.getBoolean("killall.needs_op",category, true,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		 
 		enderchest = ModLoader.config.getBoolean("enderchest",category, true,
     			"Players can open their enderchest with a command, no item needed."    		); 
 		
-		CommandEnderChest.REQUIRES_OP = ModLoader.config.getBoolean("enderchest.needs_op",category, false,
+		CommandEnderChest.REQUIRES_OP = ModLoader.config.getBoolean("enderchest.needs_op",category, true,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		 
 		simplewaypoint = ModLoader.config.getBoolean("simplewaypoint",category, true,
