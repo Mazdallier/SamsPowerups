@@ -50,8 +50,8 @@ public class HandlerHarvestEmptyHanded
 				System.out.println(toolClass ); 
 				System.out.println(toolClass ); 
 				System.out.println(toolClass ); 
-				if( toolClass == "[shovel]"  || 
-					toolClass == "[pickaxe]" ) 
+				if( toolClass == "shovel"  || //TODO: Reference.ToolClass.shovel
+					toolClass == "pickaxe" )  //TODO: Reference.ToolClass.pickaxe
 				{
 					harvestToolClass = true;
 					break; 
@@ -59,7 +59,6 @@ public class HandlerHarvestEmptyHanded
 			}
 		}
 
-    	
 		Block bh = null;
 		for(int i = 0; i < event.drops.size(); i++)
 		{ 
