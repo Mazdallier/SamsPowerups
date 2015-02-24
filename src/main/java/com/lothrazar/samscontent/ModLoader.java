@@ -80,39 +80,6 @@ public class ModLoader
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
 	
-	/****ideas region**/
-	//Fork some open source stuff? 
-	// https://github.com/PrinceOfAmber/OpenBlocks 
-	
-	//todo; shape/conic/circle drawing in game
-	//http://i.imgur.com/t3N1U8p.png
-	//MILKER: recipe uses tons of iron. each use pulls milk from a cow, drops the actual bucket.
-	//durability/number of uses is related to how many buckets it makes
-	//so its not 'free buckets'. its just transformed iron
-	//  is there a use for this? ReflectionHelper.getPrivateValue(ItemSpade.class, null, 0);
-	// : achievement finder , check if dragonslayer//or at least check something to gain a power
-	//The Existing no falldamage enderpearl power: Do it from an ender apple?? 
-	//On Ender Teleport: Add percentage chance of getting the pearl back. Default 10% perhaps Config the number in range?
-	 // can we spawn zombie horse? 
-	//CommandSearch (and others?) set boolean showCoords = true;  
-		//else it does directoins
-	//BLOCK STATE TRANSFORMER: get the supersmooth stone/sandstone blocks and all the mushroom stuff
-	//IDEAS ABOUND:
-	//using public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
-	//blocks that do things to players/mobs . such as
-	//spikes-damage/shear sheep/milk cow/breed or feed animals/etc?
-				//yeah i think we can in the sapwn event and roll a dice and check the biome
-				//http://www.minecraftforge.net/forum/index.php?topic=8937.0
-				//and then just tag all biome horses as the undead type 
-				/*
-				 * Tamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3,Tame:1}
-			Untamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3}
-			Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
-			Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}
-			    */ 
-		//if we need to: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
-		//my old ideas such as altering explosions, pumpkins, fence gates, 3x3 inventory, would need this
-				
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
 		mcinfo.modId = Reference.MODID;
