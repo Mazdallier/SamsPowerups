@@ -567,23 +567,19 @@ public class Recipes
 
 	public static void doubleSlabsFlat()
 	{
-		if(!ModLoader.settings.craftableFlatDoubleSlab){return;}
-		int islab_sandstone = 1;
- //TODO: add magic numbers to class REFERENCE
-		int i_stone_magic = 8;
-		int i_sand_magic = 9;
+		if(!ModLoader.settings.craftableFlatDoubleSlab){return;} 
 		
-		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, i_stone_magic), 
+		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, Reference.stone_slab_flat), 
 				" xx"," xx", " xx", 
 				'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_stone));
-		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, i_stone_magic), 
+		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3,  Reference.stone_slab_flat), 
 				"xx ",	"xx ", "xx ", 
 				'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_stone)); 
 		
-		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, i_sand_magic), 
+		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, Reference.stone_slab_sandflat), 
 				" xx"," xx", " xx", 
 				'x', new ItemStack(Blocks.stone_slab, 1, 	Reference.stone_slab_sandstone));
-		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, i_sand_magic), 
+		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, Reference.stone_slab_sandflat), 
 				"xx ", "xx ", "xx ",
 				'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_sandstone));
 	}

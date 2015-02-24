@@ -179,45 +179,44 @@ public class ConfigFile
 		category = "spawning";
 
 		spawnBlazeDesertHills = ModLoader.config.getBoolean("spawn.BlazeDesertHills",category, true,
-    			". ");//TODO: description content
+    			"Blazes spawn naturally in Desert Hills."); 
     		
 		spawnMagmaCubeDesert = ModLoader.config.getBoolean("spawn.MagmaCubeDesert",category, true,
-    			". ");//TODO: description content
+    			"Magma cubes spawn naturally in Desert."); 
     		
 		spawnCaveSpiderMesa = ModLoader.config.getBoolean("spawn.CaveSpiderMesa",category, true,
-    			". ");//TODO: description content
+    			"Cave spiders spawn naturally in Mesa. "); 
     		
 		spawnCaveSpiderRoofedForest = ModLoader.config.getBoolean("spawn.CaveSpiderRoofedForest",category, true,
-    			". ");//TODO: description content
+    			"Cave Spiders spawn naturally in Roofed Forest."); 
     		
 		spawnSnowgolemsIceMountains = ModLoader.config.getBoolean("spawn.SnowgolemsIceMountains",category, true,
-    			". ");//TODO: description content
+    			"Snow Golems spawn naturally in Ice Mountains. "); 
     		
 		spawnGhastDeepOcean = ModLoader.config.getBoolean("spawn.GhastDeepOcean",category, true,
-    			". ");//TODO: description content
+    			"Ghasts spawn naturally in Deep Ocean (above). "); 
     		
 		spawnHorseIcePlains = ModLoader.config.getBoolean("spawn.HorseIcePlains",category, true,
-    			". ");//TODO: description content
+    			"Horses spawn naturally in Ice Plains. "); 
     		
 		spawnHorseOceanIslands = ModLoader.config.getBoolean("spawn.HorseOceanIslands",category, true,
-    			". ");//TODO: description content
+    			"Horses pawn naturally in Deep Ocean (islands). "); 
     		
 		spawnHorseExtremeHills = ModLoader.config.getBoolean("spawn.HorseExtremeHills",category, true,
-    			". ");//TODO: description content
+    			"Horses pawn naturally in Extreme Hills. "); 
     		
 		spawnVillagerExtremeHills = ModLoader.config.getBoolean("spawn.VillagerExtremeHills",category, true,
-    			". ");//TODO: description content
+    			"Villagers pawn naturally in Extreme Hills (not village buildings, it just rarely spawns a villager instead of another passive mob). "); 
     
 		spawnCaveSpiderJungle = ModLoader.config.getBoolean("spawn.CaveSpiderJungle",category, true,
-    			". ");//TODO: description content
+    			"Cave Spiderspawn naturally in Jungle. "); 
 	}
 	
 	
 	private void debug_info() 
 	{
 		category = "debugScreen";
-		 
-		//TODO: minified.disableCoords??
+		  
 		debugClearRight = ModLoader.config.getBoolean("debugClearRight",category, false,
     			"Clears the right side of F3 completely. "
     		);
@@ -253,19 +252,19 @@ public class ConfigFile
 		category = "new_blocks_items";
 
 		appleChocolate = ModLoader.config.getBoolean( "appleChocolate",category,true,
-			"appleChocolate" ); //TODO: text content
+			"An apple surrounded by either chocolate or cookies gives a short buff of Haste when eaten.  " );  
 		
 		appleEmerald = ModLoader.config.getBoolean( "appleEmerald",category,true,
-			"appleEmerald" ); //TODO: text content
+				"An apple surrounded by emeralds gives a short buff of Absorption V when eaten. " );  
 		
 		appleLapis = ModLoader.config.getBoolean( "appleLapis",category,true,
-			""); //TODO: text content
-		
+				"An apple surrounded by lapis gives a short buff of Resistance when eaten.  " );  
+		 
 		appleDiamond = ModLoader.config.getBoolean( "appleDiamond",category,true,
 				"Eating a diamond apple gives you two extra persistant hearts (until you die)."); 
 		 
 		appleNetherStar = ModLoader.config.getBoolean( "appleNetherStar",category,true,
-				"A nether star surrounded by apples.  Eating this gives you the power of flight for a number of seconds (visible in the debug screen)."); //TODO: text content
+				"A nether star surrounded by apples.  Eating this gives you the power of flight for a number of seconds (visible in the debug screen)."); 
 		 
 		fishingNetBlock = ModLoader.config.getBoolean( "fishingNetBlock",category,true,
 				" Place the fishing block in deep water and it will randomly spawn fish with the same odds as a pole (but no treasures or junk)."); 

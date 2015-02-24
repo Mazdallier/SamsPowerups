@@ -19,8 +19,7 @@ public class HandlerPlayerFall
 
 		EntityPlayer player = event.player;
 		  
-		//TODO: achievement finder , check if dragonslayer//or at least check something to gain this pwer
-  
+		
 		if(player.dimension == Reference.Dimension.end && 
 				 player.posY < -50 && 
 				 player.worldObj.isRemote  == false && 

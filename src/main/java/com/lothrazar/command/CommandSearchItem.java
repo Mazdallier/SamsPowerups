@@ -18,9 +18,8 @@ public class CommandSearchItem  implements ICommand
 {
 	private ArrayList<String> aliases = new ArrayList<String>();
 	private static int RADIUS = 32;
-	public static boolean showCoords = true;  // TODO FROM CONFIG FILE
-
-	 
+	public static boolean showCoords = true;   
+ 
 	public static boolean REQUIRES_OP; 
 	
 	public CommandSearchItem()
@@ -115,10 +114,9 @@ public class CommandSearchItem  implements ICommand
 						
 						//find any overlap: so if x ==y , or if x substring of y, or y substring of x 
 						if(search.equals(invItemName) 
-								|| search.contains(invItemName)
-								|| invItemName.contains(search))
-						{ 
-							//System.out.println("SLOT " +slot);//  can we say like.., chest column 4 row 3?
+							|| search.contains(invItemName)
+							|| invItemName.contains(search))
+						{  
 							foundStacks++;
 							foundQty += invItem.stackSize; 
 						} 
@@ -128,15 +126,12 @@ public class CommandSearchItem  implements ICommand
 					{
 						//something was found in this box?
 						foundMessages.add(itemLocDisplay(player,xLoop,yLoop,zLoop,foundQty,foundStacks));
-					}
-					
+					} 
 				}
 			}
 		}
  
-		//LOOP on foundItems and chat out so each line of chat will be an zyx of a chest that contains
-		// ? : we may also want to count number of items and item stacks found?
-		
+		//LOOP on foundItems and chat out so each line of chat will be an zyx of a chest that contains 
 		int found = foundMessages.size();
 		
 		if(found == 0)
@@ -196,7 +191,6 @@ public class CommandSearchItem  implements ICommand
 
 		if(isUp)   yStr = Math.abs(yDist) + " up ";
 		if(isDown) yStr = Math.abs(yDist) + " down ";
-		
 		 
 		return xStr +  yStr +  zStr +": "+ totalsStr;
 	}

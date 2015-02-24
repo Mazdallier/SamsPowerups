@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.block.Block;
@@ -15,22 +16,18 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerPlayerHarvest 
-{
-	//TODO: addback in the Disable harvest by hand feature, take in csv of items as the other feature
-	//default as dirt,sand,leaves,wool,logs,planks
-
+{ 
 	public static ArrayList<Block> blocksOnlyShovel = new ArrayList<Block> (); 
 	public static ArrayList<Block> blocksOnlyAxe    = new ArrayList<Block> ();
 
 	@SubscribeEvent
 	public void onEnderTeleportEvent(EnderTeleportEvent event)
 	{
-		//TODO: ENDER APPLE FOR THIS?? maybe?
 		if(ModLoader.settings.noDamageEnderPearl == false) {return;}
 		
 		if(event.entity instanceof EntityPlayer)
 		{
-			System.out.println("pearl dmg to zero "+ event.attackDamage);//starts 5.0 which is 2.5hearts
+			//System.out.println("pearl dmg to zero "+ event.attackDamage);//starts 5.0 which is 2.5hearts
 			event.attackDamage = 0;
 		}
 	}
@@ -61,12 +58,9 @@ public class HandlerPlayerHarvest
 			 
 			for(String toolClass : classes)//can be empty, it has no tool classes
 			{  
-				if( toolClass == "shovel" ) playerUsingShovel = true;
-				//TODO: Reference.ToolClass.shovel
-				//TODO: Reference.ToolClass.pickaxe
-
-				//if( toolClass == "pickaxe" ) playerUsingPickaxe = true;
-				if( toolClass == "axe" ) playerUsingAxe = true;
+				if(toolClass == Reference.toolClassShovel ) {playerUsingShovel = true;}
+				   
+				if(toolClass == Reference.toolClassAxe ) {playerUsingAxe = true;}
 			}
 		}
 

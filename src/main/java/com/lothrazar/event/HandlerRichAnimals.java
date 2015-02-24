@@ -18,9 +18,8 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerRichAnimals 
-{ 
-	//if livestock is killed by player, buff the loot by this factor
-	private static int LivestockLootScaleFactor = 4;//TODO: attach LivestockLootScaleFactor to config file ? maybe?
+{  
+	private static int LivestockLootScaleFactor = 4; //if livestock is killed by player, buff the loot by this factor
 
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDropsEvent event)

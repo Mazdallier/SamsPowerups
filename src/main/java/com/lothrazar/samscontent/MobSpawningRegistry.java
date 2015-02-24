@@ -68,14 +68,7 @@ public class MobSpawningRegistry
 		//i feel like i should add something to extreme hills, but what. not ghasts again
 		
 		//EnumCreatureType.AMBIENT 
-		//TODO: can we spawn zombie horse?
-				//yeah i think we can in the sapwn event and roll a dice and check the biome
-				//http://www.minecraftforge.net/forum/index.php?topic=8937.0
-				//and then just tag all biome horses as the undead type 
-				/*Tamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3,Tame:1}
-		Untamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3}
-		Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
-		Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}*/
+		
 				//LivingSpawnEvent
 				
 				// : also feature:

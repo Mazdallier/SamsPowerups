@@ -2,6 +2,12 @@ package com.lothrazar.item;
 
 import java.util.ArrayList;
 import java.util.List; 
+
+import org.apache.logging.log4j.Level;
+
+import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.util.Reference;
+
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -82,15 +88,13 @@ public class ItemChestSack extends Item
 		int room;
 		int toDeposit;
 		int chestMax;
-		
-		//TODO: Reference class use here
-		//player inventory and the small chest have the same dimensions 
-		int ROWS = 3;
-		int COLS = 9;
+		  
 		int START_CHEST = 0;
 		int START_INV = 9;//because we are ignoring the item hotbar, we skip the first row this way
-		int END_CHEST =  START_CHEST + ROWS * COLS;
-		int END_INV = START_INV + ROWS * COLS;
+		//player inventory and the small chest have the same dimensions 
+		int size = Reference.PlayerInventory.ROWS * Reference.PlayerInventory.COLS;
+		int END_CHEST =  START_CHEST + size;
+		int END_INV = START_INV + size;
 
 		int item;
 		int meta;
@@ -118,12 +122,9 @@ public class ItemChestSack extends Item
 					if(debug)System.out.println(i+" invItem : EMPTY");
 					continue;
 			    }//empty inventory slot
-				//if(debug)Relay.addChatMessage(event.entityPlayer,islotInv+"    invItem : "+invItem.getDisplayName());
-  	 
+	 
   				if( invItem.getItem().equals(chestItem.getItem()) && invItem.getItemDamage() ==  chestItem.getItemDamage() )
-  				{  
-  					//same item, including damage (block state)
-  					
+  				{   
   					chestMax = chestItem.getItem().getItemStackLimit(chestItem);
   					room = chestMax - chestItem.stackSize;
   					 
@@ -136,7 +137,6 @@ public class ItemChestSack extends Item
   					//or if i have 30 room and 38 items, i deposit 30
   					toDeposit = Math.min(invItem.stackSize,room);
 
-  					//System.out.println(" chestSlot="+islotChest+" islotInv="+islotInv+" MATCH "+invItem.getDisplayName()+ " ROOM / MAX = "+room+" / "+chestMax);
   					 //puttin stuffi n the c hest, ooh yeahhh
   					chestItem.stackSize += toDeposit;
   					chest.setInventorySlotContents(islotChest, chestItem);
@@ -144,22 +144,20 @@ public class ItemChestSack extends Item
   					invItem.stackSize -= toDeposit;
 
   					totalItemsMoved += toDeposit;
-  					//totalTypesMoved++;
-  					
+  					 
   					if(invItem.stackSize <= 0)//because of calculations above, should not be below zero
   					{
   						//item stacks with zero count do not destroy themselves, they show up and have unexpected behavior in game so set to empty
-  						//chest.setInventorySlotContents(i,null); 
-  						 itemids[i] = 0;
-  						 itemdmg[i] = 0;
-  						 itemqty[i] = 0;
+ 
+  						itemids[i] = 0;
+  						itemdmg[i] = 0;
+  						itemqty[i] = 0;
   						
   						totalSlotsFreed++;
   					}
   					else
   					{
-  						//set to new quantity in sack
-  						//chest.setInventorySlotContents(i, invItem); 
+  						//set to new quantity in sack 
   						itemqty[i] = invItem.stackSize; 
   					}
   					 
@@ -171,20 +169,18 @@ public class ItemChestSack extends Item
 			
 		}//close loop on chest items
 		
-		if( totalSlotsFreed > 0/*  && isChatEnabled() */) 
+		if( totalSlotsFreed > 0 ) 
 		{
-			String msg = "Sack Sort deposited "+totalItemsMoved+" items.";
-	  		//Relay.addChatMessage(event.entityPlayer, msg);
-			System.out.println(msg);
+			String msg = "Sack Sort deposited "+totalItemsMoved+" items."; 
+			//System.out.println(msg);
 	  			 
-			//doesnt fing work anyway
+			//do we want a sound here?
 			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
 	 
 		event.entityPlayer.getCurrentEquippedItem().getTagCompound().setIntArray(KEY_ITEMIDS,itemids);
 		event.entityPlayer.getCurrentEquippedItem().getTagCompound().setIntArray(KEY_ITEMDMG,itemdmg);
 		event.entityPlayer.getCurrentEquippedItem().getTagCompound().setIntArray(KEY_ITEMQTY,itemqty);
- 
   	}
 	 
 	public void createAndFillChest(EntityPlayer entityPlayer, ItemStack heldChestSack, BlockPos pos)
@@ -195,7 +191,7 @@ public class ItemChestSack extends Item
 		
 		if(itemids==null)
 		{
-			//Chat.addMessage(event.entityPlayer, "null nbt problem in itemchestsack");
+			ModLoader.logger.log(Level.WARN, "null nbt problem in itemchestsack");
 			return;
 		}
 	 
@@ -224,7 +220,5 @@ public class ItemChestSack extends Item
 		 
 		//make the player slot empty
 		entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem,null); 
-  	}
-	
-	 
+  	} 
 }

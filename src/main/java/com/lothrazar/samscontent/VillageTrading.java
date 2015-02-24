@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 // http://www.minecraftforge.net/forum/index.php?topic=27580.0 
-//TODO: this wasd removed from forge.  Either still in progress orchanged?
+//TODO: find out how Forge 1.8 does trading 
 public class VillageTrading  //implements IVillageTradeHandler
 {   
 
