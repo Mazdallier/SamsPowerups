@@ -65,7 +65,17 @@ public class Recipes
 	public static void mushroomBlocks()
 	{
 		if(!ModLoader.settings.craftableMushroomBlocks)  {return;}
-		
+
+		GameRegistry.addRecipe(new ItemStack(Blocks.red_mushroom_block),
+				"mm",
+				"mm",
+				'm', Blocks.red_mushroom);
+		GameRegistry.addRecipe(new ItemStack(Blocks.brown_mushroom_block),
+				"mm",
+				"mm",
+				'm', Blocks.brown_mushroom);
+		/*
+		//item model data for these does not exist sadly
 		int otherSide = 0;
 		for (int side = 0; side < 16; side++)
 		{
@@ -79,6 +89,7 @@ public class Recipes
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.brown_mushroom_block, 1, side),
 					new ItemStack(Blocks.brown_mushroom_block, 1,  otherSide));
 		}
+		*/
 	}
 
 	public static void uncrafting()
