@@ -90,10 +90,10 @@ public class ModLoader
 	// : achievement finder , check if dragonslayer//or at least check something to gain a power
 	//The Existing no falldamage enderpearl power: Do it from an ender apple?? 
 	//On Ender Teleport: Add percentage chance of getting the pearl back. Default 10% perhaps Config the number in range?
-	 // can we spawn zombie horse?
-	//DISPENSER:: CRAFT WITH STRING INSTEAD OF BOw: jsut extra dont rmove old
+	 // can we spawn zombie horse? 
 	//CommandSearch (and others?) set boolean showCoords = true;  
-	//else it does directoins
+		//else it does directoins
+	//BLOCK STATE TRANSFORMER: get the supersmooth stone/sandstone blocks and all the mushroom stuff
 	//IDEAS ABOUND:
 	//using public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
 	//blocks that do things to players/mobs . such as

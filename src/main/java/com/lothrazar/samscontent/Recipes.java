@@ -581,7 +581,9 @@ public class Recipes
 	public static void doubleSlabsFlat()
 	{
 		//if(!ModLoader.settings.craftableFlatDoubleSlab){return;} 
-		
+		//the ITEM version does not exist
+		//BLOCK version is valid for example /setblock ~ ~ ~ double_stone_slab 8
+		// /setblock ~ ~ ~ double_stone_slab
 		
 		//TODO: this causes
 		//net.minecraft.util.ReportedException: Rendering item
