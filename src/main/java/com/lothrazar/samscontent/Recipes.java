@@ -167,21 +167,59 @@ public class Recipes
 		GameRegistry.addRecipe(new ItemStack(Blocks.log, 1, Reference.log_jungle),  "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_jungle));
 		GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_acacia), "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1,Reference.planks_acacia));
 		GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_darkoak),"x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_darkoak));
- 		 
-		System.out.println("TODO: uncrafting fences and gates");//TODO 
-		System.out.println("TODO: uncrafting fences and gates");//TODO 
-		System.out.println("TODO: uncrafting fences and gates");//TODO 
-		System.out.println("TODO: uncrafting fences and gates");
-		System.out.println("TODO: uncrafting fences and gates");//TODO 
-		System.out.println("TODO: uncrafting fences and gates");//TODO 
-		System.out.println("TODO: uncrafting fences and gates");
-		/*
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),
-				new ItemStack(Blocks.fence));
-		 
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8),
-				new ItemStack(Blocks.fence_gate));
-		*/
+ 		  
+		
+		//four planks makes 3 fences
+		//so same in reverse
+		
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 4, Reference.planks_acacia)
+			,new ItemStack(Blocks.acacia_fence )
+			,new ItemStack(Blocks.acacia_fence )
+			,new ItemStack(Blocks.acacia_fence )); 
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 2, Reference.planks_acacia)
+			,new ItemStack(Blocks.acacia_fence_gate )
+			,new ItemStack(Blocks.acacia_fence_gate ) );
+
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 4, Reference.planks_jungle)
+			,new ItemStack(Blocks.jungle_fence )
+			,new ItemStack(Blocks.jungle_fence )
+			,new ItemStack(Blocks.jungle_fence )); 
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 2, Reference.planks_jungle)
+			,new ItemStack(Blocks.jungle_fence_gate )
+			,new ItemStack(Blocks.jungle_fence_gate ) );
+
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 4, Reference.planks_birch)
+			,new ItemStack(Blocks.birch_fence )
+			,new ItemStack(Blocks.birch_fence )
+			,new ItemStack(Blocks.birch_fence )); 
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 2, Reference.planks_birch)
+			,new ItemStack(Blocks.birch_fence_gate )
+			,new ItemStack(Blocks.birch_fence_gate ) );
+
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 4, Reference.planks_oak)
+			,new ItemStack(Blocks.oak_fence )
+			,new ItemStack(Blocks.oak_fence )
+			,new ItemStack(Blocks.oak_fence )); 
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 2, Reference.planks_oak)
+			,new ItemStack(Blocks.oak_fence_gate )
+			,new ItemStack(Blocks.oak_fence_gate ) );
+
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 4, Reference.planks_spruce)
+			,new ItemStack(Blocks.spruce_fence )
+			,new ItemStack(Blocks.spruce_fence )
+			,new ItemStack(Blocks.spruce_fence )); 
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 2, Reference.planks_spruce)
+			,new ItemStack(Blocks.spruce_fence_gate )
+			,new ItemStack(Blocks.spruce_fence_gate ) );
+
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 4, Reference.planks_darkoak)
+			,new ItemStack(Blocks.dark_oak_fence )
+			,new ItemStack(Blocks.dark_oak_fence )
+			,new ItemStack(Blocks.dark_oak_fence )); 
+		GameRegistry.addShapelessRecipe( new ItemStack(Blocks.planks, 2, Reference.planks_darkoak)
+			,new ItemStack(Blocks.dark_oak_fence_gate )
+			,new ItemStack(Blocks.dark_oak_fence_gate ) );
+	 
 		//6 planks => 3 doors. therefore 1 door = 2 planks
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_acacia),
 				new ItemStack(Blocks.acacia_door));
@@ -196,7 +234,9 @@ public class Recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 2,Reference.planks_jungle),
 				new ItemStack(Blocks.jungle_door));
 
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),	new ItemStack(Items.bowl), new ItemStack(Items.bowl));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3)
+			, new ItemStack(Items.bowl)
+			, new ItemStack(Items.bowl));
  		
 		// every two sticks is one plank. so 8 sticks plus one in the middle
 		// is five planks
