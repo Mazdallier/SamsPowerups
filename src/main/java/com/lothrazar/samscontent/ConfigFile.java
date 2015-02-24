@@ -31,7 +31,7 @@ public class ConfigFile
 	public boolean moreFuel;
 	public boolean skullSignNames; 
 	public boolean craftableTransmuteRecords;  
-	public boolean craftableFlatDoubleSlab; 
+	//public boolean craftableFlatDoubleSlab; 
 	public boolean craftableBonemealColouredWool;   
 	public boolean craftBooksWithoutLeather;
 	public boolean craftableMobHeads;
@@ -321,8 +321,8 @@ public class ConfigFile
 		craftableTransmuteRecords = ModLoader.config.getBoolean( "transmuteRecords",category,true,
 			"This allows you to surround any record in emeralds to transmute it into a different record.");
    
-		craftableFlatDoubleSlab = ModLoader.config.getBoolean( "craftableFlatDoubleSlab",category,true,
-			"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."		);
+	//	craftableFlatDoubleSlab = ModLoader.config.getBoolean( "craftableFlatDoubleSlab",category,true,
+		//	"Craft the stone and sandstone hidden double slabs - 43:8 and 43:9, by making a 'door' shape with the regular stone slabs."		);
 
 		craftableBonemealColouredWool =  ModLoader.config.getBoolean( "craftableBonemealColouredWool",category,true
 				,"Allows you to dye coloured wool back to white using bonemeal"			); 

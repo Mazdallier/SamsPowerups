@@ -83,8 +83,8 @@ public class Reference
 	public static final int stone_slab_stonebrick = 5;
 	public static final int stone_slab_netehrbrick = 6;
 	public static final int stone_slab_quartz = 7;
-	public static final int stone_slab_flat = 8;
-	public static final int stone_slab_sandflat = 9; 
+	//public static final int stone_slab_flat = 8;//WAS DELETED IN 1.8
+	//public static final int stone_slab_sandflat = 9; 
 	
 	public static final int stonebrick_stone = 0;
 	public static final int stonebrick_mossy = 1;

@@ -74,6 +74,8 @@ public class Recipes
 				"mm",
 				"mm",
 				'm', Blocks.brown_mushroom);
+		
+	//	http://minecraft.gamepedia.com/Mushroom_%28block%29#Block_state
 		/*
 		//item model data for these does not exist sadly
 		int otherSide = 0;
@@ -578,8 +580,15 @@ public class Recipes
 
 	public static void doubleSlabsFlat()
 	{
-		if(!ModLoader.settings.craftableFlatDoubleSlab){return;} 
+		//if(!ModLoader.settings.craftableFlatDoubleSlab){return;} 
 		
+		
+		//TODO: this causes
+		//net.minecraft.util.ReportedException: Rendering item
+		//at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1108) ~[EntityRenderer.class:?]
+			//	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1048) ~[Minecraft.class:?]
+			//	at net.minecraft.client.Minecraft.run(Minecraft.java:345) [Minecraft.class:?]
+		/*
 		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, Reference.stone_slab_flat), 
 				" xx"," xx", " xx", 
 				'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_stone));
@@ -593,6 +602,7 @@ public class Recipes
 		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, Reference.stone_slab_sandflat), 
 				"xx ", "xx ", "xx ",
 				'x', new ItemStack(Blocks.stone_slab, 1, Reference.stone_slab_sandstone));
+				*/
 	}
 
 	public static void records()
