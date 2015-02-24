@@ -1,9 +1,9 @@
-The "Software" refers to Sams Powerups - by Sam Bassett aka Lothrazar
+The "Software" refers to OpenBlocks.
 https://github.com/PrinceOfAmber/OpenBlocks
 ---
 The MIT License (MIT)
 
-Copyright (c) 2014 Sam Bassett
+Copyright (c) 2014 OpenMods Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

@@ -81,6 +81,9 @@ public class ModLoader
 	public static SimpleNetworkWrapper network; 
 	
 	/****ideas region**/
+	//Fork some open source stuff? 
+	// https://github.com/PrinceOfAmber/OpenBlocks 
+	
 	//todo; shape/conic/circle drawing in game
 	//http://i.imgur.com/t3N1U8p.png
 	//MILKER: recipe uses tons of iron. each use pulls milk from a cow, drops the actual bucket.
