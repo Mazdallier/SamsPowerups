@@ -16,7 +16,7 @@ import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.command.CommandWorldHome; 
 import com.lothrazar.event.HandlerPlayerHarvest;
 import com.lothrazar.item.ItemWandBuilding;
-import com.lothrazar.item.ItemWandMaster;
+import com.lothrazar.item.ItemWandHarvest;
 
 public class ConfigFile
 { 
@@ -115,7 +115,7 @@ public class ConfigFile
 		 
 		convenience();
 
-		 builderswand();//TODO: category fix for item wand master!?!? or many wands?
+		 builderswand(); 
 		 
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		
@@ -279,7 +279,7 @@ public class ConfigFile
 		
 		masterWand = ModLoader.config.getBoolean( "masterWand",category,true, 
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
-		ItemWandMaster.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
+		ItemWandHarvest.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
 				"Each use costs hunger."); 
 		
 		

@@ -624,12 +624,9 @@ public class Recipes
 		//the ITEM version does not exist
 		//BLOCK version is valid for example /setblock ~ ~ ~ double_stone_slab 8
 		// /setblock ~ ~ ~ double_stone_slab
-		
-		//TODO: this causes
-		//net.minecraft.util.ReportedException: Rendering item
-		//at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1108) ~[EntityRenderer.class:?]
-			//	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1048) ~[Minecraft.class:?]
-			//	at net.minecraft.client.Minecraft.run(Minecraft.java:345) [Minecraft.class:?]
+		//item is not valid so this is commented it out
+		//TODO: find a way to get these blocks in the world double_stone_slab 8,double_stone_slab 9?
+		//TODO: find a way to get mushroom blocks all types in game
 		/*
 		GameRegistry.addRecipe(new ItemStack(Blocks.double_stone_slab, 3, Reference.stone_slab_flat), 
 				" xx"," xx", " xx", 

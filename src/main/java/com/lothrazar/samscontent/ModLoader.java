@@ -111,9 +111,7 @@ public class ModLoader
 	
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
-	{       
-	//	
-		 
+	{        
 		MobSpawningRegistry.registerSpawns();
  
 		ChestGen.lootAllRecords();
@@ -173,37 +171,50 @@ public class ModLoader
 	
 	@EventHandler 
 	public void onPostInit(FMLPostInitializationEvent event)
-	{
-		//NOPE this does nothing
-	//	Blocks.dirt.setHarvestLevel("shovel", 2);
-		 
+	{ 
 	}
 	
 	@EventHandler
 	public void onServerLoad(FMLServerStartingEvent event)
 	{
-		if(ModLoader.settings.searchtrade) { event.registerServerCommand(new CommandSearchTrades()); }
+		if(ModLoader.settings.searchtrade) 
+			event.registerServerCommand(new CommandSearchTrades()); 
 		
-		if(ModLoader.settings.searchitem) { event.registerServerCommand(new CommandSearchItem()); }
+		if(ModLoader.settings.searchitem) 
+			event.registerServerCommand(new CommandSearchItem()); 
 		
-		if(ModLoader.settings.killall) { event.registerServerCommand(new CommandKillAll()); }
+		if(ModLoader.settings.killall) 
+			event.registerServerCommand(new CommandKillAll()); 
 		
-		if(ModLoader.settings.simplewaypoint) { event.registerServerCommand(new CommandSimpleWaypoints()); }
+		if(ModLoader.settings.simplewaypoint) 
+			event.registerServerCommand(new CommandSimpleWaypoints()); 
 		
-		if(ModLoader.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
+		if(ModLoader.settings.todo) 
+			event.registerServerCommand(new CommandTodoList());  
 		 
-		if(ModLoader.settings.kit) { event.registerServerCommand(new CommandKit()); }
+		if(ModLoader.settings.kit)  
+			event.registerServerCommand(new CommandKit()); 
   
-		if(ModLoader.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
+		if(ModLoader.settings.home) 
+			event.registerServerCommand(new CommandWorldHome()); 
 		
-		if(ModLoader.settings.worldhome) { event.registerServerCommand(new CommandHome());}
+		if(ModLoader.settings.worldhome) 
+			event.registerServerCommand(new CommandHome());
 	}
  
 	private void registerItemsBlocks() 
 	{ 
 		ItemWandBuilding.Init();
+		 
+		ItemWandChest.onInit();
+
+		ItemWandDungeon.onInit();
+
+		ItemWandHarvest.onInit();
 		
-		ItemWandMaster.onInit();
+		ItemWandLivestock.onInit();
+
+		ItemWandProspect.onInit();
 		
 		ItemEnderBook.initEnderbook();
 		
@@ -249,7 +260,7 @@ public class ModLoader
      		,new HandlerEnderBookClick()
      		,new HandlerEnderChestHit() 
      		,new HandlerKeyInput()
-      		,new HandlerMasterWand()
+      		,new HandlerWand()
      		,new HandlerWandBuilding()
       		,new HandlerRichAnimals()
       		,new HandlerScreenText()
