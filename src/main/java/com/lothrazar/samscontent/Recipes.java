@@ -906,4 +906,19 @@ public class Recipes
 				'i', Items.diamond,  
 				'x', Items.chainmail_helmet); 
 	}
+	
+	public static void simpleDispenser() 
+	{
+		if(!ModLoader.settings.simpleDispenser) {return;}
+
+		GameRegistry.addRecipe(new ItemStack(Blocks.dispenser), 
+				"ccc",
+				"csc", 
+				"crc", 
+				'c', Blocks.cobblestone,  
+				's', Items.string,
+				'r', Items.redstone ); 
+		
+		
+	}
 }

@@ -91,6 +91,7 @@ public class ModLoader
 	//The Existing no falldamage enderpearl power: Do it from an ender apple?? 
 	//On Ender Teleport: Add percentage chance of getting the pearl back. Default 10% perhaps Config the number in range?
 	 // can we spawn zombie horse?
+	//DISPENSER:: CRAFT WITH STRING INSTEAD OF BOw: jsut extra dont rmove old
 	//CommandSearch (and others?) set boolean showCoords = true;  
 	//else it does directoins
 	//IDEAS ABOUND:
@@ -160,6 +161,8 @@ public class ModLoader
 		Recipes.mobHeads();	
   
 		Recipes.bonemealWool();
+		
+		Recipes.simpleDispenser();
 		
 		Recipes.records();
 		  

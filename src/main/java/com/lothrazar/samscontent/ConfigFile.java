@@ -94,7 +94,8 @@ public class ConfigFile
 	public boolean theEndSafeFall;
 	public boolean plantDespawningSaplings;
 	public boolean noDamageEnderPearl;
-	public boolean buildingWand; 
+	public boolean buildingWand;
+	public boolean simpleDispenser; 
 	
 	public ConfigFile()
 	{
@@ -311,6 +312,9 @@ public class ConfigFile
 	{
 		category = "morecrafting";
 		 	 
+		simpleDispenser = ModLoader.config.getBoolean( "simpleDispenser",category,true,
+				"Craft a dispenser with string in the center instead of a bow.  (Since string is stackable, this makes crafting tons of them much faster and cheaper).");
+		 
 		craftBooksWithoutLeather = ModLoader.config.getBoolean( "craftBooksWithoutLeather",category,true,
 				"This allows use the old book crafting recipe from previous versions of the game; three paper but no leather needed.");
 		
