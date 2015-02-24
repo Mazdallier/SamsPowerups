@@ -155,12 +155,12 @@ public class Recipes
 		GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_acacia), "x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1,Reference.planks_acacia));
 		GameRegistry.addRecipe(new ItemStack(Blocks.log2,1, Reference.log2_darkoak),"x  ","x  ","xx ", 'x', new ItemStack(Blocks.planks, 1, Reference.planks_darkoak));
  		 
+		System.out.println("TODO: uncrafting fences and gates");//TODO 
+		System.out.println("TODO: uncrafting fences and gates");//TODO 
+		System.out.println("TODO: uncrafting fences and gates");//TODO 
 		System.out.println("TODO: uncrafting fences and gates");
-		System.out.println("TODO: uncrafting fences and gates");
-		System.out.println("TODO: uncrafting fences and gates");
-		System.out.println("TODO: uncrafting fences and gates");
-		System.out.println("TODO: uncrafting fences and gates");
-		System.out.println("TODO: uncrafting fences and gates");
+		System.out.println("TODO: uncrafting fences and gates");//TODO 
+		System.out.println("TODO: uncrafting fences and gates");//TODO 
 		System.out.println("TODO: uncrafting fences and gates");
 		/*
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 3),

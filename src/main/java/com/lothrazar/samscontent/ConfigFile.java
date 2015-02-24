@@ -114,6 +114,8 @@ public class ConfigFile
 		 
 		convenience();
 
+		 builderswand();//TODO: category fix for item wand master!?!? or many wands?
+		 
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		
 		if(ModLoader.config.hasChanged()){ ModLoader.config.save(); }
@@ -274,9 +276,6 @@ public class ConfigFile
 		xRayBlock = ModLoader.config.getBoolean( "xRayBlock",category,true,
 				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
 		
-		buildingWand = ModLoader.config.getBoolean( "buildingWand",category,true,
-				"buildingWand."); //TODO: text
-	 builderswand();//TODO: category fix for wands/
 		masterWand = ModLoader.config.getBoolean( "masterWand",category,true, 
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
 		ItemWandMaster.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
@@ -399,22 +398,23 @@ public class ConfigFile
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 	}
 	
-	public static void builderswand( )
+	public void builderswand( )
 	{ 
-		String category = "buildersWand";
-		 
-	 
-  
+		String category = "builders_wand";
+
+		buildingWand = ModLoader.config.getBoolean( "enabled",category,true,
+				"Can craft and use a building wand that can store many stacks of items, and replace blocks without mining.");  
+		
 		ItemWandBuilding.replaceBedrock = ModLoader.config.getBoolean(category, "replaceBedrock",true,
-			"Set true to allow the magic Replacer to affect bedrock.  "
+			"Set true to allow the building wand to affect bedrock.  "
 		);
 		
 		ItemWandBuilding.replaceObsidian = ModLoader.config.getBoolean(category, "replaceObsidian",true,
-			 "Set true to allow the magic Replacer to affect obsidian.  "
+			 "Set true to allow the building wand to affect obsidian.  "
 		);
 		 
 		ItemWandBuilding.replaceTileEntities = ModLoader.config.getBoolean(category, "replaceTileEntities",true,
-			 "Set true to allow the magic Replacer to affect Tile Entities - which is anything with an invnetory " +
+			 "Set true to allow the building wand to affect Tile Entities - which is anything with an invnetory " +
 			 "(such as chest or dispenser).   "
 		);
 	}

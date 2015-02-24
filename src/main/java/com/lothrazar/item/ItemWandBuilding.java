@@ -48,8 +48,7 @@ public class ItemWandBuilding extends ItemTool
 	public static void Init()
 	{  
 		if(!ModLoader.settings.buildingWand){return;}
-		
-		//TODO: test and finish entire class
+		 
 		itemWand = new ItemWandBuilding(); 
 		SamsRegistry.registerItem(itemWand, "wand_building" );   
 		GameRegistry.addRecipe(new ItemStack(itemWand)
@@ -58,7 +57,9 @@ public class ItemWandBuilding extends ItemTool
 			," b "
 			, 'd', Blocks.diamond_block
 			, 'b', Items.blaze_rod  );
-		GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.diamond_block,1,0),0);	//recycling	 
+		
+		if(ModLoader.settings.uncraftGeneral)
+			GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.diamond_block,1,0),0);	//recycling	 
 	}
 	 
 	private static void setCompoundIfNull(ItemStack held)
@@ -171,13 +172,12 @@ public class ItemWandBuilding extends ItemTool
 		setCompoundIfNull(held);
 
 		String currentMode = held.getTagCompound().getString(KEY_MODE);
-		 
+		 System.out.println("left : "+currentMode);
   		if(currentMode.equals(MODE_REPLACE))
 		{ 
 			doReplace(event, held); 
 		}
-	
-
+	 
 		else if(currentMode.equals(MODE_PICK)) 
 		{ 
 			doPick(event, held);  
@@ -209,7 +209,8 @@ public class ItemWandBuilding extends ItemTool
 		}
 		 
 		String currentMode = held.getTagCompound().getString(KEY_MODE);
-		 
+
+		 System.out.println("right : "+currentMode);
 		String newMode = toggleNextMode(held);
 		 //if the mode changed, send a message
 		
