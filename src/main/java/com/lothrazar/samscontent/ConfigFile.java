@@ -92,7 +92,8 @@ public class ConfigFile
 	public boolean furnaceNeedsCoal; 
 	public boolean theEndSafeFall;
 	public boolean plantDespawningSaplings;
-	public boolean noDamageEnderPearl; 
+	public boolean noDamageEnderPearl;
+	public boolean buildingWand; 
 	
 	public ConfigFile()
 	{
@@ -272,8 +273,10 @@ public class ConfigFile
 		xRayBlock = ModLoader.config.getBoolean( "xRayBlock",category,true,
 				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
 		
-		masterWand = ModLoader.config.getBoolean( "masterWand",category,true,
-				
+		buildingWand = ModLoader.config.getBoolean( "buildingWand",category,true,
+				"buildingWand."); //TODO: text
+		 
+		masterWand = ModLoader.config.getBoolean( "masterWand",category,true, 
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
 		ItemWandMaster.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
 				"Each use costs hunger."); 

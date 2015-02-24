@@ -105,7 +105,9 @@ public class ModLoader
 			Untamed Zombie Horse: /summon EntityHorse ~ ~ ~ {Type:3}
 			Tamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4,Tame:1}
 			Untamed Skeleton Horse: /summon EntityHorse ~ ~ ~ {Type:4}
-			    */
+			    */ 
+		//if we need to: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
+		//my old ideas such as altering explosions, pumpkins, fence gates, 3x3 inventory, would need this
 				
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
@@ -226,6 +228,7 @@ public class ModLoader
  
 	private void registerItemsBlocks() 
 	{ 
+		ItemWandBuilding.Init();
 		
 		ItemWandMaster.onInit();
 		
@@ -290,7 +293,4 @@ public class ModLoader
     		FMLCommonHandler.instance().bus().register(o);
      	}
 	}
-  
-	//if we need to: try asm out http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571568-tutorial-1-6-2-changing-vanilla-without-editing
-	//my old ideas such as altering explosions, pumpkins, fence gates, 3x3 inventory, would need this
 }

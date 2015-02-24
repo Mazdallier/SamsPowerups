@@ -19,8 +19,7 @@ public class MobSpawningRegistry
 	static int min = 1;
 	static int max = 4; 
 	public static void registerSpawns()
-	{ 
-		
+	{  
 		if(ModLoader.settings.spawnBlazeDesertHills) 
 			EntityRegistry.addSpawn(EntityBlaze.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.desertHills} );
  
@@ -35,8 +34,7 @@ public class MobSpawningRegistry
 		
 		if(ModLoader.settings.spawnCaveSpiderJungle)
 			EntityRegistry.addSpawn(EntityCaveSpider.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.jungle} );
-
-
+ 
 		if(ModLoader.settings.spawnSnowgolemsIceMountains) 
 			EntityRegistry.addSpawn(EntitySnowman.class, group, min, max, EnumCreatureType.MONSTER, new BiomeGenBase[]{ BiomeGenBase.iceMountains} );
 		
@@ -60,33 +58,6 @@ public class MobSpawningRegistry
 		
 		//WOLVES only spawn naturally in forest, taiga, mega taiga, cold taiga, and cold taiga M
 
-		//irongolem - rare in jungle/??
-		//   villager maybe in extreme hills? like he is hunting for emeralds? yes yes! will probably die anyway- no problem. same risk happens in villagey ones
- 
-		
-
-		//i feel like i should add something to extreme hills, but what. not ghasts again
-		
-		//EnumCreatureType.AMBIENT 
-		
-				//LivingSpawnEvent
-				
-				// : also feature:
-				//make villagers/dogs/cats immune to FALL DAMAGE.
-				//possibly drowning and cactus?
-				/*
-				 * LivingFallEvent
-				A LivingFallEvent is triggered when an entity has fallen.
-				Fields:
-				float distance - the distance an entity fell
-				LivingHurtEvent
-				A LivingHurtEvent is triggered when an entity is hurt by any valid DamageSource. Such sources include; fire, lava, drowing, starvation, touching a cactus, falling, etc. For a full list of damage sources see the class net.minecraft.src.DamageSource.
-				Fields:
-				DamageSource source
-				the source of the damage(type)
-				int amount
-				the amount of damage inflicted*/
-				
-				
+		//irongolem - rare in jungle/?? 
 	}
 }

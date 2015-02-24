@@ -70,7 +70,10 @@ public class ItemWandBuilding extends ItemTool
 	}
 	
 	public static void Init()
-	{ 
+	{  
+		if(!ModLoader.settings.buildingWand){return;}
+		
+		//TODO: test and finish entire class
 		itemWand = new ItemWandBuilding(); 
 		SamsRegistry.registerItem(itemWand, "wand_building" );   
 		GameRegistry.addRecipe(new ItemStack(itemWand)

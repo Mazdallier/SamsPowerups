@@ -22,13 +22,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 //import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
-
-// http://www.minecraftforge.net/forum/index.php?topic=27580.0 
+ 
 //TODO: find out how Forge 1.8 does trading 
+//developer knows this is an issue as of Feb 22, 2015 
+// http://www.minecraftforge.net/forum/index.php?topic=27580.0
 public class VillageTrading  //implements IVillageTradeHandler
 {   
-
-
+ 
 /*
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) 
