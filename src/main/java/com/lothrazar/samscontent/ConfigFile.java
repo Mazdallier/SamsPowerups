@@ -8,7 +8,7 @@ import net.minecraftforge.common.config.Configuration;
 import com.lothrazar.command.CommandEnderChest;
 import com.lothrazar.command.CommandHome;
 import com.lothrazar.command.CommandKillAll;
-import com.lothrazar.command.CommandPlayerKit;
+import com.lothrazar.command.CommandKit;
 import com.lothrazar.command.CommandSearchItem;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
@@ -342,7 +342,7 @@ public class ConfigFile
 
 		String csv = ModLoader.config.getString("kit.items",category, "minecraft:wooden_pickaxe,minecraft:wooden_sword",
     			"Using /kit gives the following item.  Each must have minecraft:item or modname:item, no spaces and split by commas.");
-		CommandPlayerKit.setItemsFromString(csv);
+		CommandKit.setItemsFromString(csv);
 		
 		CommandHome.REQUIRES_OP = ModLoader.config.getBoolean("home.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");

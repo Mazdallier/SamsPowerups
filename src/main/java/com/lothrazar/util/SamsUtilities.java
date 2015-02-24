@@ -1,9 +1,17 @@
 package com.lothrazar.util;
 
+import java.util.ArrayList;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+
+import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard;
+
+import com.lothrazar.samscontent.ModLoader;
 
 public class SamsUtilities
 {
@@ -14,6 +22,35 @@ public class SamsUtilities
 		prev += inc;//can be negative
 		if(prev < 0) {prev = 0;}
 		player.getEntityData().setInteger(prop, prev);
+	}
+	
+	public static ArrayList<Item> getItemListFromCSV(String csv)
+	{
+		ArrayList<Item> items = new ArrayList<Item>();
+		String[] ids = csv.split(","); 
+		Item isItNull = null;
+		Block b;
+		
+		for(int i = 0; i < ids.length; i++)
+		{
+			isItNull = Item.getByNameOrId(ids[i]);
+			if(isItNull == null)  //try to get block version  
+			{
+				b = Block.getBlockFromName(ids[i]);
+				if(b != null)	isItNull = Item.getItemFromBlock(b); 
+			} 
+			 
+			if(isItNull == null)
+			{
+				ModLoader.logger.log(Level.WARN, "Item not found : "+ ids[i]);
+			}
+			else
+			{
+				items.add(isItNull);
+			} 
+		}  
+		
+		return items;
 	}
 	
 	public static int getPlayerIntegerNBT(EntityPlayer player, String prop)

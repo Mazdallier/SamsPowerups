@@ -75,7 +75,7 @@ public class ModLoader
 	@SidedProxy(clientSide="com.lothrazar.samscontent.proxy.ClientProxy", serverSide="com.lothrazar.samscontent.proxy.CommonProxy")
 	public static CommonProxy proxy;  
 	
-	//private static Logger logger;
+	public static Logger logger;
 	public static Configuration config;
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
@@ -86,6 +86,7 @@ public class ModLoader
 	//MILKER: recipe uses tons of iron. each use pulls milk from a cow, drops the actual bucket.
 	//durability/number of uses is related to how many buckets it makes
 	//so its not 'free buckets'. its just transformed iron
+	//  is there a use for this? ReflectionHelper.getPrivateValue(ItemSpade.class, null, 0);
 	
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
@@ -97,59 +98,11 @@ public class ModLoader
 		authorList.add("Lothrazar");
 		mcinfo.authorList = authorList;
 	}
-	//TODO: is there a use for this? ReflectionHelper.getPrivateValue(ItemSpade.class, null, 0);
-	
  
-/*	Property locked = config.get(MODID, "survivalLocked", false);
-		locked.comment = "When true, this forces creative mode players into survival.  This must be false to allow creative mode.  The purpose of this is "
-				+ "to remove the temptation to go creative in LAN mode or while cheats are turned on to change the game rules.";
-		LockedInSurvival = locked.getBoolean(false);
- 
-		
-		Property _canHarvestMelonAxe = config.get(MODID, "canHarvestMelonAxe",true);
-		_canHarvestMelonAxe.comment = "This sets melons to harvest the same speed as pumpkins when using an axe.";
-		canHarvestMelonAxe = _canHarvestMelonAxe.getBoolean(true);
-			//TODO: look for more little tweaks like this melon one
- 
- ??
-
- Blocks.iron_ore.setHarvestLevel("pickaxe", 1);
- Blocks.iron_block.setHarvestLevel("pickaxe", 1);
- Blocks.lapis_ore.setHarvestLevel("pickaxe", 1);
- Blocks.lapis_block.setHarvestLevel("pickaxe", 1);
- Blocks.quartz_ore.setHarvestLevel("pickaxe", 0);
-     *     Wood:    0
-     *     Stone:   1
-     *     Iron:    2
-     *     Diamond: 3
-     *     Gold:    0
- 
-		if(canHarvestMelonAxe)
-		{
-		//set harvest level of more things for shears/swords/whatever ??
-			Blocks.melon_block.setHarvestLevel("axe", 0);
-			
-				@SubscribeEvent 
-	public void onPlayerTick(PlayerTickEvent event)
-	{      
-		if (event.player instanceof EntityPlayerMP)
-		{
-			EntityPlayerMP mp = (EntityPlayerMP) event.player;
- 
-			// lock them in
-			if (LockedInSurvival && mp.theItemInWorldManager.getGameType() != GameType.SURVIVAL)
-			{
-				mp.setGameType(GameType.SURVIVAL);
-			}
-		} 
-	}// end player tick event
- 
-	
-		} */
 	@EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{ 
-		//logger = event.getModLog();//TODO: find a use for logging?
+		logger = event.getModLog(); 
 
 		initModInfo(event.getModMetadata());
 		
@@ -245,7 +198,7 @@ public class ModLoader
 		
 		if(ModLoader.settings.todo) { event.registerServerCommand(new CommandTodoList());  }
 		 
-		if(ModLoader.settings.kit) { event.registerServerCommand(new CommandPlayerKit()); }
+		if(ModLoader.settings.kit) { event.registerServerCommand(new CommandKit()); }
   
 		if(ModLoader.settings.home) { event.registerServerCommand(new CommandWorldHome()); }
 		

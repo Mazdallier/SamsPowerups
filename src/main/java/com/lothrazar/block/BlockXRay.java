@@ -56,7 +56,6 @@ public class BlockXRay extends Block
 	 	return ret;
 	} 
 	
-	 
 	@SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
