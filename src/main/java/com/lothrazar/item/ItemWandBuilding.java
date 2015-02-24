@@ -39,36 +39,12 @@ public class ItemWandBuilding extends ItemTool
     	setCreativeTab(CreativeTabs.tabTools) ;  
 	}
 
-	private static int DURABILITY = 50;
+	private static int DURABILITY = 200;
 	public static ItemWandBuilding itemWand;
-	private static boolean replaceBedrock = false;
-	private static boolean replaceObsidian = false;
-	private static boolean replaceTileEntities = false;
-	
-	public static void loadConfig(Configuration config)
-	{ 
-		String category = "buildersWand";
-		 
-		isEnabled = config.get(category, "isEnabled",true,
-			"Enable the Replacer Wand.  Left click to do actions extract, replace, or drop.  " +
-			"Right click to change modes; left click to either extract blocks from a chest, drop the extracted items, " +
-			"or replace the block clicked on.  Use four blaze rods in a Y shape with a diamond block in the middle."
-			).getBoolean(true);
-  
-		replaceBedrock = config.get(category, "replaceBedrock",replaceBedrock,
-			"Set true to allow the magic Replacer to affect bedrock.  "
-		).getBoolean(replaceBedrock);
-		
-		replaceObsidian = config.get(category, "replaceObsidian",replaceObsidian,
-			 "Set true to allow the magic Replacer to affect obsidian.  "
-		).getBoolean(replaceObsidian);
-		 
-		replaceTileEntities = config.get(category, "replaceTileEntities",replaceTileEntities,
-			 "Set true to allow the magic Replacer to affect Tile Entities - which is anything with an invnetory " +
-			 "(such as chest or dispenser).   "
-		).getBoolean(replaceTileEntities);
-	}
-	
+	public static boolean replaceBedrock = false;
+	public static boolean replaceObsidian = false;
+	public static boolean replaceTileEntities = false;
+	 
 	public static void Init()
 	{  
 		if(!ModLoader.settings.buildingWand){return;}
@@ -122,10 +98,7 @@ public class ItemWandBuilding extends ItemTool
 		}   
 	 } 
 	
-	private static boolean isEnabled = true;
-
 	private static String MODE_REPLACE = "replace";
-	  
 	private static String MODE_PICK = "extract";  
 	private static String MODE_DUMP = "drop"; 
   
@@ -133,7 +106,6 @@ public class ItemWandBuilding extends ItemTool
 	private static String KEY_ITEM = "item"; 
 	private static String KEY_QTY = "qty"; 
 	private static String KEY_DMG = "dmg"; 
- 
 	private static String KEY_TIMEOUT = "timeout";
 	
 	private static String toggleNextMode(ItemStack held)
@@ -141,8 +113,7 @@ public class ItemWandBuilding extends ItemTool
 		setCompoundIfNull(held);
 		
 		String currentMode = held.getTagCompound().getString(KEY_MODE);
-		
-		
+		 
 		String newMode = "";
 		
 		//now here we should wait. 
@@ -415,17 +386,7 @@ public class ItemWandBuilding extends ItemTool
 		
 		toggleNextMode(held);//dont stay on extract
 	}
-
-	public static boolean isEnabled() 
-	{
-		return isEnabled;
-	}
-
-	private static void setEnabled(boolean isEnabled) 
-	{
-		ItemWandBuilding.isEnabled = isEnabled;
-	}
-
+  
     @Override
     public boolean hasEffect(ItemStack par1ItemStack)
     {

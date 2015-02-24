@@ -277,6 +277,7 @@ public class ModLoader
      		,new HandlerEnderChestHit() 
      		,new HandlerKeyInput()
       		,new HandlerMasterWand()
+     		,new HandlerWandBuilding()
       		,new HandlerRichAnimals()
       		,new HandlerScreenText()
      		,new HandlerSkullSignNames() 

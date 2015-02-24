@@ -15,6 +15,7 @@ import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.command.CommandWorldHome; 
 import com.lothrazar.event.HandlerPlayerHarvest;
+import com.lothrazar.item.ItemWandBuilding;
 import com.lothrazar.item.ItemWandMaster;
 
 public class ConfigFile
@@ -275,7 +276,7 @@ public class ConfigFile
 		
 		buildingWand = ModLoader.config.getBoolean( "buildingWand",category,true,
 				"buildingWand."); //TODO: text
-		 
+	 builderswand();//TODO: category fix for wands/
 		masterWand = ModLoader.config.getBoolean( "masterWand",category,true, 
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
 		ItemWandMaster.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
@@ -396,5 +397,25 @@ public class ConfigFile
 		
 		CommandTodoList.REQUIRES_OP = ModLoader.config.getBoolean("todo.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
+	}
+	
+	public static void builderswand( )
+	{ 
+		String category = "buildersWand";
+		 
+	 
+  
+		ItemWandBuilding.replaceBedrock = ModLoader.config.getBoolean(category, "replaceBedrock",true,
+			"Set true to allow the magic Replacer to affect bedrock.  "
+		);
+		
+		ItemWandBuilding.replaceObsidian = ModLoader.config.getBoolean(category, "replaceObsidian",true,
+			 "Set true to allow the magic Replacer to affect obsidian.  "
+		);
+		 
+		ItemWandBuilding.replaceTileEntities = ModLoader.config.getBoolean(category, "replaceTileEntities",true,
+			 "Set true to allow the magic Replacer to affect Tile Entities - which is anything with an invnetory " +
+			 "(such as chest or dispenser).   "
+		);
 	}
 }
