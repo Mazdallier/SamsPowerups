@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,42 +37,12 @@ public class HandlerPlayerHarvest
 	 
 	public static void setShovelFromCSV(String csv)
 	{
-		 String[] items = csv.split(","); 
-		 
-		 Block found = null; 
-		 for(String id : items)
-		 {
-			 found = Block.getBlockFromName(id);
-			 if(found != null)
-			 {
-				 blocksOnlyShovel.add(found);
-			 }
-			 else 
-			 {
-				 //TODO LOG FILE 
-				 System.out.println("for ShovelNOT FOUND :: "+id);
-			 }
-		 } 
+		blocksOnlyShovel = SamsUtilities.getBlockListFromCSV(csv);
 	}
 	
 	public static void seAxeFromCSV(String csv)
 	{
-		 String[] items = csv.split(","); 
-		 
-		 Block found = null; 
-		 for(String id : items)
-		 {
-			 found = Block.getBlockFromName(id);
-			 if(found != null)
-			 {
-				 blocksOnlyAxe.add(found);
-			 }
-			 else 
-			 {
-				 //TODO LOG FILE 
-				 System.out.println("for Axe NOT FOUND :: "+id);
-			 }
-		 } 
+		blocksOnlyAxe = SamsUtilities.getBlockListFromCSV(csv); 
 	}
 	 
 	@SubscribeEvent

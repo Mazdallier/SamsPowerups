@@ -14,14 +14,36 @@ import org.lwjgl.input.Keyboard;
 import com.lothrazar.samscontent.ModLoader;
 
 public class SamsUtilities
-{
-
+{ 
 	public static void incrementPlayerIntegerNBT(EntityPlayer player, String prop, int inc)
 	{
 		int prev = getPlayerIntegerNBT(player,prop);
 		prev += inc;//can be negative
 		if(prev < 0) {prev = 0;}
 		player.getEntityData().setInteger(prop, prev);
+	}
+	 
+	public static ArrayList<Block> getBlockListFromCSV(String csv)
+	{
+		 ArrayList<Block> blocks = new ArrayList<Block>();
+		 String[] ids = csv.split(",");  
+		 Block b; 
+		 
+		 for(String id : ids)
+		 {
+			 b = Block.getBlockFromName(id);
+			 
+			 if(b == null)
+			 {
+				 System.out.println("Block not found : "+id);
+			 }
+			 else 
+			 {
+				 blocks.add(b);
+			 }
+		 } 
+		 
+		 return blocks;
 	}
 	
 	public static ArrayList<Item> getItemListFromCSV(String csv)
@@ -35,7 +57,7 @@ public class SamsUtilities
 		{
 			isItNull = Item.getByNameOrId(ids[i]);
 			if(isItNull == null)  //try to get block version  
-			{
+			{ 
 				b = Block.getBlockFromName(ids[i]);
 				if(b != null)	isItNull = Item.getItemFromBlock(b); 
 			} 
@@ -74,6 +96,5 @@ public class SamsUtilities
 	{
 		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
 		
-	}
-	
+	} 
 }
