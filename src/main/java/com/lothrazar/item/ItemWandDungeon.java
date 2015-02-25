@@ -60,7 +60,7 @@ public class ItemWandDungeon extends ItemTool
     }
  
 	//when an action is used
-	private void onSuccess(EntityPlayer player)
+	private void onSuccess(EntityPlayer player,ItemStack heldWand)
 	{
 		player.swingItem();
 		 
@@ -72,8 +72,13 @@ public class ItemWandDungeon extends ItemTool
 		//make it take damage, or get destroyed
   
 		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandDungeon.DURABILITY - 1)//if about to die
-		{
+		{ 
 			player.getCurrentEquippedItem().damageItem(1, player);
+			
+			//toss it on the ground after we use up one durability
+			player.dropItem(heldWand, false, true);
+		 
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
 		else
 		{ 
@@ -81,6 +86,10 @@ public class ItemWandDungeon extends ItemTool
  
 			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
 		} 
+		
+		player.worldObj.spawnParticle(EnumParticleTypes.FLAME, player.posX,player.posY,player.posZ,1,1,1,1); 
+		player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, player.posX,player.posY,player.posZ,1,1,1,1); 
+		player.worldObj.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
 	}
 	
 	public static ItemWandDungeon itemWand;
@@ -113,14 +122,9 @@ public class ItemWandDungeon extends ItemTool
 		int y = (int)player.posY;
 		int z = (int)player.posZ;
 
-		player.dropItem(heldWand, false, true);
-		//player.dropItem(itemWand, 1);
+	
 
-		player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x,y,z,1,1,1,1);
-
-		player.worldObj.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-		
+		onSuccess(player,heldWand);
 		
 		
 		int xMin = x - RADIUS;
@@ -162,7 +166,6 @@ public class ItemWandDungeon extends ItemTool
 		  
 		player.addChatMessage(new ChatComponentTranslation(  foundMessage ));
  
-		onSuccess(player);
  
 	}
 }
