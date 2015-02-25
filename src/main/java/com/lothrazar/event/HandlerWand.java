@@ -137,7 +137,7 @@ public class HandlerWand
 	public void onEntityInteractEvent(EntityInteractEvent event)
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-		if(held == null || held.getItem() != ItemWandHarvest.itemWand ){ return;}
+		if(held == null || held.getItem() != ItemWandLivestock.itemWand ){ return;}
 		if(event.entityPlayer.worldObj.isRemote ){ return;}
    
 		//if it drains hunnger, we cant use it when food is empty
