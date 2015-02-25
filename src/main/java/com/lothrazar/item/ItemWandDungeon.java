@@ -78,7 +78,7 @@ public class ItemWandDungeon extends ItemTool
 			//toss it on the ground after we use up one durability
 			player.dropItem(heldWand, false, true);
 		 
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+			//player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
 		else
 		{ 

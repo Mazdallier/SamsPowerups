@@ -1,9 +1,11 @@
 package com.lothrazar.event;
 
 import org.apache.logging.log4j.Logger;  
+
 import com.lothrazar.item.*;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities; 
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.passive.EntityBat;
@@ -20,6 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;   
@@ -171,5 +174,12 @@ public class HandlerWand
 			}
 		  */
 	 
+	}
+	
+	
+	@SubscribeEvent
+	public void onItemToss(ItemTossEvent event)
+	{
+		//TODO: make dungeon wand/searching stuff consumables?
 	}
 }
