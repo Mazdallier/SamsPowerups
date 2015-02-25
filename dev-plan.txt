@@ -1,4 +1,9 @@
-
+//TODO: BUG: livestock wand stoppd making eggs. check entityinteract event
+//TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
+//TODO: should wands cause blindness/other costs?
+//TODO: harvesting crash : 
+Caused by: java.lang.ClassCastException: net.minecraft.block.state.BlockState cannot be cast to net.minecraft.block.state.IBlockState
+    at com.lothrazar.item.ItemWandHarvest.replantField(ItemWandHarvest.java:104) ~[ItemWandHarvest.class:?]
     /****ideas region**/
     //Fork some open source stuff?  // https://github.com/PrinceOfAmber/OpenBlocks 
     
