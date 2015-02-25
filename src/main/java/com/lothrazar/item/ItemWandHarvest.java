@@ -95,19 +95,19 @@ public class ItemWandHarvest extends ItemTool
 					if(blockCheck == Blocks.wheat && Blocks.wheat.getMetaFromState(bs) == isFullyGrown)
 					{ 
 					//	blockDamage = ;
-						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop),(IBlockState) new BlockState(Blocks.wheat));//this plants a seed. it is not 'hay_block'
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop),Blocks.wheat.getDefaultState());//this plants a seed. it is not 'hay_block'
 						 
 						entityPlayer.dropItem(Items.wheat, 1); //no seeds, they got replanted
 					}
 					if( blockCheck == Blocks.carrots && Blocks.carrots.getMetaFromState(bs) == isFullyGrown)
 					{
-						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop), (IBlockState) new BlockState(Blocks.carrots));
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop), Blocks.carrots.getDefaultState());
 						 
 						entityPlayer.dropItem(Items.carrot, 1); 
 					}
 					if( blockCheck == Blocks.potatoes && Blocks.potatoes.getMetaFromState(bs) == isFullyGrown)
 					{
-						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop), (IBlockState) new BlockState(Blocks.potatoes));
+						entityPlayer.worldObj.setBlockState(new BlockPos(xLoop,eventy,zLoop), Blocks.potatoes.getDefaultState());
 						 
 						entityPlayer.dropItem(Items.potato, 1); 
 					}
