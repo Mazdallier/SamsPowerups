@@ -41,7 +41,7 @@ public class ConfigFile
 	public boolean uncraftGeneral; 
 	public boolean fishingNetBlock;
 	public boolean xRayBlock;
-	public boolean masterWand;
+	//public boolean masterWand;
 	public boolean enderBook;
 	public boolean weatherBlock; 
 	public boolean craftableMushroomBlocks;
@@ -276,9 +276,10 @@ public class ConfigFile
 		 
 		xRayBlock = ModLoader.config.getBoolean( "xRayBlock",category,true,
 				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
-		
+		/*
 		masterWand = ModLoader.config.getBoolean( "masterWand",category,true, 
 				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
+		*/
 		ItemWandHarvest.drainsHunger = ModLoader.config.getBoolean( "masterWand.DrainsHunger",category,true,
 				"Each use costs hunger."); 
 		

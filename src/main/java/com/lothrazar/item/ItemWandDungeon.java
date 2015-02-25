@@ -76,7 +76,7 @@ public class ItemWandDungeon extends ItemTool
 			player.getCurrentEquippedItem().damageItem(1, player);
 			
 			//toss it on the ground after we use up one durability
-			player.dropItem(heldWand, false, true);
+			//player.dropItem(heldWand, false, true);
 		 
 			//player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 		}
@@ -96,7 +96,7 @@ public class ItemWandDungeon extends ItemTool
  
 	public static void onInit() 
 	{  
-		if(!ModLoader.settings.masterWand){return;}
+		//if(!ModLoader.settings.masterWand){return;}
 			
 		itemWand = new ItemWandDungeon();
   

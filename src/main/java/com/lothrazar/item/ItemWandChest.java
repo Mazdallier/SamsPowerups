@@ -141,7 +141,7 @@ public class ItemWandChest extends ItemTool
 	
 	public static void onInit() 
 	{  
-		if(!ModLoader.settings.masterWand){return;}
+	//	if(!ModLoader.settings.masterWand){return;}
 
 		itemChestSack = new ItemChestSack();   
 		SamsRegistry.registerItem(itemChestSack, "chest_sack");

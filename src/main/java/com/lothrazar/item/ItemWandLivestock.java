@@ -88,7 +88,7 @@ public class ItemWandLivestock extends ItemTool
 	
 	public static void onInit() 
 	{  
-		if(!ModLoader.settings.masterWand){return;}
+		//if(!ModLoader.settings.masterWand){return;}
 			
 		itemWand = new ItemWandLivestock();
   

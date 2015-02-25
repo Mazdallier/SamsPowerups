@@ -9,12 +9,14 @@ import com.lothrazar.item.ItemFoodAppleMagic.MagicType;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities; 
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration; 
 import net.minecraft.world.World;   
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.WorldSettings.GameType;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -34,16 +36,40 @@ public class HandlerPlayerTickApplesEaten
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
-	{    	  
-		if( event.player.capabilities.isCreativeMode){return;}//leave flying and hearts and stuff alone
-		
+	{    	    
+		 
 		if( event.player.worldObj.isRemote  == false )
 		{ 	
 			tickHearts(event.player); 
 		}
 		else //isRemote == true
 		{ 	
-			tickFlying(event.player);  
+			//??((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S39PacketPlayerAbilities(player.capabilities));
+			
+			if( Minecraft.getMinecraft().playerController.getCurrentGameType()
+					 != GameType.CREATIVE && 
+						Minecraft.getMinecraft().playerController.getCurrentGameType()!= GameType.SPECTATOR
+					 )
+			{
+				//System.out.println("tickFlying");
+				tickFlying(event.player);  
+			}
+			
+			/*//IF IT WSS server side
+			if (event.player instanceof EntityPlayerMP)
+			{
+				EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
+				if(playerMP.theItemInWorldManager.getGameType() != GameType.CREATIVE && playerMP.theItemInWorldManager.getGameType() != GameType.SPECTATOR) 
+				{
+					tickFlying(event.player);  
+				}
+			}
+			else
+			{
+				System.out.println("not a playerMP");
+			}
+			*/
+			
 		}  
 		
 		
