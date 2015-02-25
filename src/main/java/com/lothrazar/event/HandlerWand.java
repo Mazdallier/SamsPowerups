@@ -40,103 +40,97 @@ public class HandlerWand
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(event.entity.worldObj.isRemote || event.world.isRemote){ return ;}//server side only!
+		if(event.world.isRemote){ return ;}//server side only!
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
 		 
 		//if it drains hunnger, we cant use it when food is empty
-		if(ItemWandHarvest.drainsHunger)
-			if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;} 
+		//if(ItemWandHarvest.drainsHunger)
+		//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;} 
 	
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 		 
-		if(event.action.LEFT_CLICK_BLOCK == event.action)
-		{ 
-			if(held.getItem() == ItemWandHarvest.itemWand)
-			{ 
-				if(blockClicked == null || blockClicked == Blocks.air ){return;}
-				
-				if(blockClicked instanceof BlockChest && event.entityPlayer.isSneaking())
-				{   
-					TileEntity container = event.world.getTileEntity(event.pos);
-					if(container instanceof TileEntityChest)
-					{
-						ItemWandChest.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.pos);  
-					}
-				} 
-				else if(blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes)
-				{ 
-					 ItemWandHarvest.itemWand.replantField(event.entityPlayer,held,event.pos); 
-				}
-			}
-			else if(held.getItem() == ItemWandChest.itemChestSack)
-			{
-				TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.pos); 
-				
-				if(container == null){return;}
-				 
-				if((container instanceof TileEntityChest) == false){return;}
-				
-				TileEntityChest chest = (TileEntityChest)container ;
-
-				if(chest == null){return;}
-				 
-				TileEntityChest teAdjacent = null; 
-		  	  	if(chest.adjacentChestXNeg != null)
-		  	  	{
-		  	  		teAdjacent = chest.adjacentChestXNeg; 
-		  	  	}
-		  		if(chest.adjacentChestXPos != null)
-		  	  	{
-		  	  		teAdjacent = chest.adjacentChestXPos; 
-		  	  	}
-		  		if(chest.adjacentChestZNeg != null)
-		  	  	{
-		  	  		teAdjacent = chest.adjacentChestZNeg ; 
-		  	  	}
-		  		if(chest.adjacentChestZPos != null)
-		  	  	{
-		  	  		teAdjacent = chest.adjacentChestZPos; 
-		  	  	}
-		  		 
-		  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
-		  		
-		  		if(teAdjacent != null)
-		  		{
-		  			ItemWandChest.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
-		  		} 	
-			}
-		}
-		else // right click
+		if(event.action.LEFT_CLICK_BLOCK == event.action) {return;}
+		 
+		//only right clicks
+			
+		if(held.getItem() == ItemWandChest.itemChestSack)
 		{
-			if(held.getItem() == ItemWandHarvest.itemWand)
-			{
-				if( blockClicked.equals(Blocks.diamond_block))
+			TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.pos); 
+			
+			if(container == null){return;}
+			 
+			if((container instanceof TileEntityChest) == false){return;}
+			
+			TileEntityChest chest = (TileEntityChest)container ;
+
+			if(chest == null){return;}
+			 
+			TileEntityChest teAdjacent = null; 
+	  	  	if(chest.adjacentChestXNeg != null)
+	  	  	{
+	  	  		teAdjacent = chest.adjacentChestXNeg; 
+	  	  	}
+	  		if(chest.adjacentChestXPos != null)
+	  	  	{
+	  	  		teAdjacent = chest.adjacentChestXPos; 
+	  	  	}
+	  		if(chest.adjacentChestZNeg != null)
+	  	  	{
+	  	  		teAdjacent = chest.adjacentChestZNeg ; 
+	  	  	}
+	  		if(chest.adjacentChestZPos != null)
+	  	  	{
+	  	  		teAdjacent = chest.adjacentChestZPos; 
+	  	  	}
+	  		 
+	  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+	  		
+	  		if(teAdjacent != null)
+	  		{
+	  			ItemWandChest.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
+	  		} 	
+		} 
+		else if(held.getItem() == ItemWandDungeon.itemWand)
+		{ 
+			ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
+		}
+		else if(held.getItem() == ItemWandChest.itemWand)
+		{ 
+			if(blockClicked == null || blockClicked == Blocks.air ){return;}
+			
+			if(blockClicked instanceof BlockChest)// && event.entityPlayer.isSneaking()
+			{   
+				TileEntity container = event.world.getTileEntity(event.pos);
+				if(container instanceof TileEntityChest)
 				{
-					ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
+					ItemWandChest.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.pos);  
 				}
-				else if( blockClicked.equals(Blocks.stone))
-				{
-					ItemWandProspect.itemWand.searchProspect(event.entityPlayer,held,event.pos);  
-				} 
-			}
-			else if(held.getItem() == ItemWandChest.itemChestSack)
-			{ 	
-				if(  held.getTagCompound() == null){return;}
-			   
-				//int blockClickedDamage = event.entityPlayer.worldObj.getBlockMetadata(event.pos); 
-				   
-				// : is y+1 actually air?
-				if(event.entityPlayer.worldObj.isAirBlock(event.pos.add(0,1,0)) == false
-						|| event.entityPlayer.worldObj.getActualHeight() < event.pos.getY() + 1)//do not place above world height
-				{
-					//can only be placed on valid air location
-					return;
-				}
-				
-				ItemWandChest.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.add(0,1,0));
 			} 
-		}// end of is right click (else) 
+		}
+		else if(held.getItem() == ItemWandHarvest.itemWand && 
+		    (blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes))
+		{ 
+			 ItemWandHarvest.itemWand.replantField(event.entityPlayer,held,event.pos); 
+		}
+		else if(held.getItem() == ItemWandProspect.itemWand)
+		{ 
+			ItemWandProspect.itemWand.searchProspect(event.entityPlayer,held,event.pos);   
+		}
+		else if(held.getItem() == ItemWandChest.itemChestSack)
+		{ 	
+			if(  held.getTagCompound() == null){return;}
+		    
+			// : is y+1 actually air?
+			if(event.entityPlayer.worldObj.isAirBlock(event.pos.add(0,1,0)) == false
+					|| event.entityPlayer.worldObj.getActualHeight() < event.pos.getY() + 1)//do not place above world height
+			{
+				//can only be placed on valid air location
+				return;
+			}
+			
+			ItemWandChest.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.add(0,1,0));
+		}  
   	}
   
 	@SubscribeEvent
@@ -152,10 +146,7 @@ public class HandlerWand
 		 
 		ItemWandLivestock.itemWand.entitySpawnEgg(event.entityPlayer, event.target); 
   	} 
-	
-	
-	
-	
+	 
 	@SubscribeEvent
 	public void onItemTooltip(ItemTooltipEvent event)
 	{
