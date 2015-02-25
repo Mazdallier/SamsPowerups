@@ -93,6 +93,7 @@ public class HandlerWand
 		} 
 		else if(held.getItem() == ItemWandDungeon.itemWand)
 		{ 
+			if(event.action == event.action.RIGHT_CLICK_BLOCK){return;}
 			ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
 		}
 		else if(held.getItem() == ItemWandChest.itemWand)

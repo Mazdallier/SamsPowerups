@@ -5,6 +5,7 @@ import com.lothrazar.event.HandlerWand;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -31,13 +32,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper; 
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ItemWandDungeon extends ItemTool
 {
 	private static int RADIUS = 128;
-	private static int DURABILITY = 80;
+	private static int DURABILITY = 20;
 	public static boolean drainsHunger = true;
 	public static boolean drainsDurability = true;
   
@@ -104,13 +106,22 @@ public class ItemWandDungeon extends ItemTool
 	}
 
 	public void searchSpawner(EntityPlayer player, ItemStack heldWand, BlockPos pos)
-	{ 
+	{     
 	    //changed to only show ONE message, for closest spawner
-		String foundMessage = "No Spawner found in nearby chunks";
-		
+		String foundMessage = "No Spawner found in nearby chunks";//TODO: .lang file integration
 		int x = (int)player.posX;
 		int y = (int)player.posY;
 		int z = (int)player.posZ;
+
+		player.dropItem(heldWand, false, true);
+		//player.dropItem(itemWand, 1);
+
+		player.worldObj.spawnParticle(EnumParticleTypes.FLAME, x,y,z,1,1,1,1);
+
+		player.worldObj.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
+		player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+		
+		
 		
 		int xMin = x - RADIUS;
 		int xMax = x + RADIUS;
@@ -150,7 +161,8 @@ public class ItemWandDungeon extends ItemTool
 		}
 		  
 		player.addChatMessage(new ChatComponentTranslation(  foundMessage ));
-		
+ 
 		onSuccess(player);
+ 
 	}
 }

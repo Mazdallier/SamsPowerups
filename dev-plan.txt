@@ -1,4 +1,5 @@
 //TODO: BUG: livestock wand stoppd making eggs. check entityinteract event
+//TODO: cant fly in gamemode3, check flyapple bug
 //TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
 //TODO: should wands cause blindness/other costs?
 //TODO: harvesting crash : 

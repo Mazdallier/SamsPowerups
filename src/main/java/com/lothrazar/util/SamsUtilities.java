@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -15,6 +17,19 @@ import com.lothrazar.samscontent.ModLoader;
 
 public class SamsUtilities
 { 
+	public static void incrementItemStackIntegerNBT(ItemStack heldWand,	String prop, int inc) 
+	{
+		int prev = getItemStackIntegerNBT(heldWand,prop);
+
+		prev += inc;//can be negative
+		if(prev < 0) {prev = 0;}
+		heldWand.getTagCompound().setInteger(prop, prev);
+	} 
+	public static int getItemStackIntegerNBT(ItemStack heldWand, String prop) 
+	{
+		if(heldWand.getTagCompound() == null) heldWand.setTagCompound(new NBTTagCompound());
+		return heldWand.getTagCompound().getInteger(prop);
+	}
 	public static void incrementPlayerIntegerNBT(EntityPlayer player, String prop, int inc)
 	{
 		int prev = getPlayerIntegerNBT(player,prop);
@@ -95,5 +110,6 @@ public class SamsUtilities
 	public static boolean isShiftKeyDown()
 	{
 		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT); 
-	} 
+	}
+
 }
