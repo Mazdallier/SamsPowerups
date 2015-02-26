@@ -77,7 +77,7 @@ public class HandlerScreenText
   
 		addDateTimeInfo(event, world);
 		 
-		addFlyingAppleInfo(event, player);
+		//addFlyingAppleInfo(event, player);
  
 	 	if(ModLoader.settings.debugSlime && player.dimension == Reference.Dimension.overworld)
 	 	{ 

@@ -39,13 +39,14 @@ public class HandlerPlayerTickApplesEaten
 	{    	     
 		if( event.player.worldObj.isRemote  == false )
 		{ 	
+			System.out.println("event.player.worldObj.isRemote  "+event.player.worldObj.isRemote);
 			tickHearts(event.player); 
 		}
-		else //isRemote == true
+		else //isRemote == true //tickFlying if used in isRemote==false will not work at all
 		{ 	
 			if( Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.CREATIVE  && 
-				Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR
-			 )
+					Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR
+		 )
 			{ 
 				tickFlying(event.player);  //affects game modes 0,2 (survival,adventure)
 			} 
@@ -58,9 +59,13 @@ public class HandlerPlayerTickApplesEaten
 		int countAppleTicks = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
 		 
 		//first, check are we allowed to fly
+		countAppleTicks = 17777777;//fake tester
+		System.out.println("countAppleTicks  "+countAppleTicks);
+		
 		if (countAppleTicks > 0)
 		{ 
-			player.capabilities.allowFlying = true;   
+			if(player.capabilities.allowFlying == false)
+				player.capabilities.allowFlying = true;  
 		}
 		else
 		{  
@@ -87,25 +92,31 @@ public class HandlerPlayerTickApplesEaten
 			if(doesDrainHunger)  
 				player.addPotionEffect(new PotionEffect(Reference.potion_HUNGER, duration, 0));
 			 
-		} // end if isFlying
-		else //so therefore isFlying is false
+		}  
+		else //isFlying == false
 		{  
+
+			//erase the potion effects , dont just let them tick down
+			//(in case it bugs out-  leave them lingering with 0:00 potions forever )
+			if(doesWeakness)
+				 player.removePotionEffect(Reference.potion_FATIGUE);
+			
+			if(doesFatigue)
+				 player.removePotionEffect(Reference.potion_WEAKNESS);
+			 
+			if(doesDrainHunger) 
+				player.removePotionEffect(Reference.potion_HUNGER); 
+			/*
 			if (player.posY < player.prevPosY) // we are falling 
 			{  
 				player.capabilities.allowFlying = false;// to enable  fall distance
 
-				//erase the potion effects , dont just let them tick down
-				//(in case it bugs out-  leave them lingering with 0:00 potions forever )
-				if(doesWeakness)
-					 player.removePotionEffect(Reference.potion_FATIGUE);
-				
-				if(doesFatigue)
-					 player.removePotionEffect(Reference.potion_WEAKNESS);
-				 
-				if(doesDrainHunger) 
-					player.removePotionEffect(Reference.potion_HUNGER); 
 			} 
+			*/
 		}
+		System.out.println(player.getClass().getName());
+		System.out.println("player.capabilities.allowFlying = "+player.capabilities.allowFlying);
+		System.out.println("======");
 	}
 
 	private void tickHearts(EntityPlayer player) 
