@@ -56,9 +56,7 @@ public class ItemWandHarvest extends ItemTool
     {
     	return true; //give it shimmer
     }
-	
-	  
-
+	 
 	public void replantField(EntityPlayer entityPlayer, ItemStack heldWand, BlockPos pos)
 	{
 		int isFullyGrown = 7; //certain this is full for wheat. applies to other plants as well
@@ -118,7 +116,6 @@ public class ItemWandHarvest extends ItemTool
 		onSuccess(entityPlayer);
 	}
 
-	//when an action is used
 	private void onSuccess(EntityPlayer player)
 	{
 		player.swingItem();
@@ -128,8 +125,6 @@ public class ItemWandHarvest extends ItemTool
 			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
 		}
 		
-		//make it take damage, or get destroyed
-  
 		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandHarvest.DURABILITY - 1)//if about to die
 		{
 			player.getCurrentEquippedItem().damageItem(1, player);

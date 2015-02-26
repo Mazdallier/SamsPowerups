@@ -13,10 +13,34 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard;
 
+import com.lothrazar.item.ItemWandHarvest;
 import com.lothrazar.samscontent.ModLoader;
 
 public class SamsUtilities
 { 
+	private static void decrementPlayerHunger(EntityPlayer player)
+	{ 
+		if( player.getFoodStats().getFoodLevel() > 0)
+		{
+			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
+		}
+	}
+	private void onSuccess(EntityPlayer player)
+	{
+		player.swingItem();
+	 
+		if(player.getCurrentEquippedItem().getItemDamage() < player.getCurrentEquippedItem().getMaxDamage() - 1)//if about to die
+		{
+			player.getCurrentEquippedItem().damageItem(1, player);
+		}
+		else
+		{ 
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+ 
+			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
+		} 
+	}
+	
 	public static void incrementItemStackIntegerNBT(ItemStack heldWand,	String prop, int inc) 
 	{
 		int prev = getItemStackIntegerNBT(heldWand,prop);
