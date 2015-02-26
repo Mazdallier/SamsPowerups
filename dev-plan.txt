@@ -48,3 +48,6 @@ Caused by: java.lang.ClassCastException: net.minecraft.block.state.BlockState ca
         //my old ideas such as altering explosions, pumpkins, fence gates, 3x3 inventory, would need this
     //  is there a use for this? ReflectionHelper.getPrivateValue(ItemSpade.class, null, 0);
     // : achievement finder , check if dragonslayer//or at least check something to gain a power    
+    
+            //??((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S39PacketPlayerAbilities(player.capabilities));
+            

@@ -31,50 +31,25 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class HandlerPlayerTickApplesEaten  
 {  
 	private static boolean doesDrainHunger = false;
-	private static boolean doesWeakness = true; 
+	private static boolean doesWeakness = true; //TODO: hook more like this to config?
 	private static boolean doesFatigue = true; 
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
-	{    	    
-		 
+	{    	     
 		if( event.player.worldObj.isRemote  == false )
 		{ 	
 			tickHearts(event.player); 
 		}
 		else //isRemote == true
 		{ 	
-			//??((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S39PacketPlayerAbilities(player.capabilities));
-			
-			if( Minecraft.getMinecraft().playerController.getCurrentGameType()
-					 != GameType.CREATIVE && 
-						Minecraft.getMinecraft().playerController.getCurrentGameType()!= GameType.SPECTATOR
-					 )
-			{
-				//System.out.println("tickFlying");
-				tickFlying(event.player);  
-			}
-			
-			/*//IF IT WSS server side
-			if (event.player instanceof EntityPlayerMP)
-			{
-				EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
-				if(playerMP.theItemInWorldManager.getGameType() != GameType.CREATIVE && playerMP.theItemInWorldManager.getGameType() != GameType.SPECTATOR) 
-				{
-					tickFlying(event.player);  
-				}
-			}
-			else
-			{
-				System.out.println("not a playerMP");
-			}
-			*/
-			
-		}  
-		
-		
-		/*************TESTING*/
-
+			if( Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.CREATIVE  && 
+				Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR
+			 )
+			{ 
+				tickFlying(event.player);  //affects game modes 0,2 (survival,adventure)
+			} 
+		}   
 	}
 
 	private void tickFlying(EntityPlayer player) 
@@ -86,7 +61,7 @@ public class HandlerPlayerTickApplesEaten
 		if (countAppleTicks > 0)
 		{ 
 			player.capabilities.allowFlying = true;   
-		} 
+		}
 		else
 		{  
 			// disable flying now & in future
@@ -112,7 +87,6 @@ public class HandlerPlayerTickApplesEaten
 			if(doesDrainHunger)  
 				player.addPotionEffect(new PotionEffect(Reference.potion_HUNGER, duration, 0));
 			 
-			    
 		} // end if isFlying
 		else //so therefore isFlying is false
 		{  
