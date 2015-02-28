@@ -39,7 +39,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class HandlerWand  
 {   
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
@@ -57,42 +57,64 @@ public class HandlerWand
 		 
 		//only right clicks
 			
-		if(held.getItem() == ItemWandChest.itemChestSack)
+		if(held.getItem() == ItemWandChest.itemChestSack && event.action.RIGHT_CLICK_BLOCK == event.action)
 		{
-			TileEntity container = event.entityPlayer.worldObj.getTileEntity(event.pos); 
+			System.out.println("right click of chestsack");
 			
-			if(container == null){return;}
+		 
+			
+			//if(container == null){return;}
 			 
-			if((container instanceof TileEntityChest) == false){return;}
+			//if((container instanceof TileEntityChest) == false){return;}
 			
-			TileEntityChest chest = (TileEntityChest)container ;
+			//TileEntityChest chest = (TileEntityChest)container ;
+ 
+			//if(chest == null){return;}
+			 
+			if(blockClicked == Blocks.chest)
+			{
+				System.out.println("DEPOSIT");
+				TileEntityChest chest = (TileEntityChest)event.entityPlayer.worldObj.getTileEntity(event.pos.up()); 
+					 
+				 
+				TileEntityChest teAdjacent = null; 
+		  	  	if(chest.adjacentChestXNeg != null)
+		  	  	{
+		  	  		teAdjacent = chest.adjacentChestXNeg; 
+		  	  	}
+		  		if(chest.adjacentChestXPos != null)
+		  	  	{
+		  	  		teAdjacent = chest.adjacentChestXPos; 
+		  	  	}
+		  		if(chest.adjacentChestZNeg != null)
+		  	  	{
+		  	  		teAdjacent = chest.adjacentChestZNeg ; 
+		  	  	}
+		  		if(chest.adjacentChestZPos != null)
+		  	  	{
+		  	  		teAdjacent = chest.adjacentChestZPos; 
+		  	  	}
+		  		 
+		  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+		  		
+		  		if(teAdjacent != null)
+		  		{
+		  			ItemWandChest.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event); 
+		  		} 	
+			}
+			else
+			{
+				System.out.println("CREATE");
+				//if the up one is air, then build a chest at this spot
+				event.entityPlayer.worldObj.isAirBlock(event.pos.up()); 
+				event.entityPlayer.worldObj.setBlockState(event.pos.up(), Blocks.chest.getDefaultState());
 
-			if(chest == null){return;}
-			 
-			TileEntityChest teAdjacent = null; 
-	  	  	if(chest.adjacentChestXNeg != null)
-	  	  	{
-	  	  		teAdjacent = chest.adjacentChestXNeg; 
-	  	  	}
-	  		if(chest.adjacentChestXPos != null)
-	  	  	{
-	  	  		teAdjacent = chest.adjacentChestXPos; 
-	  	  	}
-	  		if(chest.adjacentChestZNeg != null)
-	  	  	{
-	  	  		teAdjacent = chest.adjacentChestZNeg ; 
-	  	  	}
-	  		if(chest.adjacentChestZPos != null)
-	  	  	{
-	  	  		teAdjacent = chest.adjacentChestZPos; 
-	  	  	}
-	  		 
-	  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
-	  		
-	  		if(teAdjacent != null)
-	  		{
-	  			ItemWandChest.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event);
-	  		} 	
+				TileEntityChest chest = (TileEntityChest)event.entityPlayer.worldObj.getTileEntity(event.pos.up());
+				 
+				//then dump everything into the created chest
+		  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+				
+			}
 		} 
 		else if(held.getItem() == ItemWandDungeon.itemWand)
 		{ 
