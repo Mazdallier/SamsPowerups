@@ -1,4 +1,6 @@
 //TODO: BUG: livestock wand stoppd making eggs. check entityinteract event
+//TODO: maybe: apple hearts and flying persist on death? perhaps minus 1
+//TODO: eat token that makes you keep inventory on eath but only ONE TIME, not like gamerule
 //TODO: cant fly in gamemode3, check flyapple bug
 //TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
 //TODO: should wands cause blindness/other costs?
