@@ -79,7 +79,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	  		} 
   		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
 
-  		if(MagicType.Flying == this.type &&  par2World.isRemote == false) 
+  		if(MagicType.Flying == this.type &&  par2World.isRemote == true) 
   		{  
   			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
   		}

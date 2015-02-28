@@ -3,6 +3,7 @@
 //TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
 //TODO: should wands cause blindness/other costs?
 //TODO: harvesting crash : 
+//TODO: player head on death drop
 //TODO: missing texture ex ception on master_wand: we arent using it???
 Caused by: java.lang.ClassCastException: net.minecraft.block.state.BlockState cannot be cast to net.minecraft.block.state.IBlockState
     at com.lothrazar.item.ItemWandHarvest.replantField(ItemWandHarvest.java:104) ~[ItemWandHarvest.class:?]

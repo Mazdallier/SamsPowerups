@@ -57,10 +57,10 @@ public class HandlerPlayerTickApplesEaten
 	{
 		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
 		int countAppleTicks = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
-		 
+
+		System.out.println("countAppleTicks  "+countAppleTicks);
 		//first, check are we allowed to fly
 		countAppleTicks = 17777777;//fake tester
-		System.out.println("countAppleTicks  "+countAppleTicks);
 		
 		if (countAppleTicks > 0)
 		{ 
