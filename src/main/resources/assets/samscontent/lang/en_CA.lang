@@ -14,6 +14,7 @@ item.chest_sack.name=Sack of Holding
 tile.block_fishing.name=Fishing Net
 item.wand_building.name=Wand of Building
 item.wand_chest.name=Wand of Holding
+item.wand_livestock.name=Wand of Livestock
 item.wand_dungeon.name=Wand of Justice
 item.wand_harvest.name=Wand of Harvesting
 item.wand_prospect.name=Wand of Prospecting
