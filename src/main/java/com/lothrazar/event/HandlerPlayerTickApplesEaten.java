@@ -39,10 +39,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class HandlerPlayerTickApplesEaten  
-{  
-
-	 
-	
+{   
 	private static boolean doesDrainHunger = false;
 	private static boolean doesWeakness = true; //TODO: hook more like this to config?
 	private static boolean doesFatigue = true; 

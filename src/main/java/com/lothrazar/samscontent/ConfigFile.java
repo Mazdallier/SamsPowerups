@@ -96,7 +96,8 @@ public class ConfigFile
 	public boolean noDamageEnderPearl;
 	public boolean buildingWand;
 	public boolean simpleDispenser;
-	public boolean craftObsidian; 
+	public boolean craftObsidian;
+	public boolean dropPlayerSkullOnDeath; 
 	
 	public ConfigFile()
 	{
@@ -127,15 +128,18 @@ public class ConfigFile
 	{
 		category = "convenience"; 	
 		
+		dropPlayerSkullOnDeath = ModLoader.config.getBoolean("dropPlayerSkullOnDeath",category, true,
+    			"Players will drop their skull when they die.");
+ 		
 		noDamageEnderPearl = ModLoader.config.getBoolean("noDamageEnderPearl",category, true,
-    			"noDamageEnderPearl");//TODOtext
-		
+    			"No damage taken from an ender pearl throw");
+
 		plantDespawningSaplings = ModLoader.config.getBoolean("plantDespawningSaplings",category, true,
-    			"plantDespawningSaplings");//TODOtext
-		
+    			"When a sapling despawns while sitting on grass or dirt, it will instead attempt to plant itself.");
+
 		theEndSafeFall = ModLoader.config.getBoolean("theEndSafeFall",category, true,
-    			"");//falling end means u get debuff and sent to worldheight 
-		
+    			"Falling off the world in the end will instead teleport you to the top, making a falling loop.");
+
 		increasedStackSizes = ModLoader.config.getBoolean("increasedStackSizes",category, true,
 			"While true, many items and blocks (not tools/armor/potions) have their max stack size increased to 64.  " +
 			"Included are: ender pearl, egg, snowball, cookie, mushroom stew, boat, all minecarts, all doors, cake, saddle, " +
