@@ -65,9 +65,13 @@ public class PlayerPowerups implements IExtendedEntityProperties
 	{
 		return this.player.getDataWatcher().getWatchableObjectInt(FLY_WATCHER);
 	}
+	public final void incrementCurrentFly(int amount)
+	{ 
+		this.player.getDataWatcher().updateObject(FLY_WATCHER, getCurrentFly() + amount);
+	}
 	public final void setCurrentFly(int amount)
 	{
-		if(amount < 0){amount = 0;}
+		if(amount < 0){ amount = 0; }
 		this.player.getDataWatcher().updateObject(FLY_WATCHER, amount);
 	}
 	//http://www.minecraftforum.net/forums/mapping-and-modding/mapping-and-modding-tutorials/1571567-forge-1-6-4-1-8-eventhandler-and

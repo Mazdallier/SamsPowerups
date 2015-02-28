@@ -85,7 +85,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
   			PlayerPowerups props = PlayerPowerups.get(par3EntityPlayer);
 
-  			props.setCurrentFly(FLYING_COUNT_PER_EAT);
+  			props.incrementCurrentFly(FLYING_COUNT_PER_EAT);
   			System.out.println("food eaten setCurrentFly ");
   			//SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
   		}

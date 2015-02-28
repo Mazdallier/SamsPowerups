@@ -51,20 +51,16 @@ public class HandlerPlayerTickApplesEaten
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
-	{    	     
-		PlayerPowerups props = PlayerPowerups.get(event.player);
-
-		System.out.println("playertick.getFly: "+props.getCurrentFly());
-		
+	{    	      
 		if( event.player.worldObj.isRemote  == false )
 		{ 	 
 			tickHearts(event.player); 
 		}
-		/*
+		
 		else //isRemote == true //tickFlying if used in isRemote==false will not work at all
 		{ 	   
 			tickFlying(event.player);  //affects game modes 0,2 (survival,adventure) 
-		}   */
+		}   
 	}
 
 	private void tickFlying(EntityPlayer player) 
@@ -74,13 +70,15 @@ public class HandlerPlayerTickApplesEaten
 		{
 			return;
 		}
-	 
-		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
-		int countAppleTicks = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
 
-		System.out.println("countAppleTicks  "+countAppleTicks);
-		//first, check are we allowed to fly
-		//countAppleTicks = 17777777;//fake tester
+		PlayerPowerups props = PlayerPowerups.get(player);
+
+		System.out.println("tickFlying   "+props.getCurrentFly());
+		
+		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
+		int countAppleTicks = props.getCurrentFly();
+		//SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
+ 
 		
 		if (countAppleTicks > 0)
 		{ 
@@ -98,8 +96,9 @@ public class HandlerPlayerTickApplesEaten
 		if (player.capabilities.isFlying)
 		{   
 			//every tick that we fly uses up one resource tick that was given by the apple (hence the -1_
-			SamsUtilities.incrementPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString(), -1);
-
+		//	SamsUtilities.incrementPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString(), -1);
+			props.setCurrentFly(countAppleTicks - 1);
+			
 			int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
 			int duration = 2 * Reference.TICKS_PER_SEC;  //2 seconds
 			
