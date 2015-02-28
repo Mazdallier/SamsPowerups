@@ -6,6 +6,7 @@ import com.lothrazar.util.Reference;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -16,20 +17,24 @@ public class HandlerPlayerDeath
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDropsEvent event)
 	{
-		System.out.println("onPlayerDeath");
-		if(ModLoader.settings.dropPlayerSkullOnDeath){return;}
+		//System.out.println("onPlayerDeath " + ModLoader.settings.dropPlayerSkullOnDeath);
+		if(ModLoader.settings.dropPlayerSkullOnDeath == false){return;}
 		
-		if(event.entity instanceof EntityPlayer == false){return;}
+		//System.out.println(event.entity.getClass().getName());
+		//System.out.println(event.entityLiving.getClass().getName());
+		
+		if(event.entity instanceof EntityPlayer == false){return;}//is EntityPlayerMP a subclass
 		
 		EntityPlayer player = (EntityPlayer)event.entity;
 		 
-		ItemStack skull =  new ItemStack(Blocks.skull,1,Reference.skull_player);
+		ItemStack skull =  new ItemStack(Items.skull,1,Reference.skull_player);
 		if(skull.getTagCompound() == null) skull.setTagCompound(new NBTTagCompound());
 		skull.getTagCompound().setString("SkullOwner",player.getDisplayNameString());
 		
-		EntityItem ei = new EntityItem(event.entity.worldObj, 0, 0, 0,skull);
+		EntityItem ei = new EntityItem(event.entity.worldObj, player.posX, player.posY, player.posZ,skull);
 		 
 		event.drops.add(ei);
+		System.out.println("skullskullskull");
 	
 	} 
 }
