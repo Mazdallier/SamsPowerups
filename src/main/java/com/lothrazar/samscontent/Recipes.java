@@ -2,12 +2,19 @@ package com.lothrazar.samscontent;
 
 import java.util.ArrayList;  
 import java.util.List; 
+
 import org.apache.logging.log4j.Logger;   
+
 import com.lothrazar.util.Reference; 
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -755,24 +762,25 @@ public class Recipes
 */
 	
 	
-/*
+ 
     //TODO: obsidian from lava bucket and ice, but in a way that keeps the bucket alive
     //TODO: obsidian back into lava bucket by crafting Obs + bucket + <redstone or flint?>  
 	public static void obsidianIceWater()
 	{
+		if(!ModLoader.settings.craftObsidian)  {return;}
+		
+		Items.lava_bucket.setContainerItem(Items.bucket); 
+		
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.lava_bucket)
 			,new ItemStack(Blocks.obsidian)
-			,new ItemStack(Items.flint)
+			,new ItemStack(Items.fire_charge)
 			,new ItemStack(Items.bucket)  	);  
-		
-		//TOOD: recipe keep bucket..>??
-
+		 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.obsidian)
-				,new ItemStack(Items.lava_bucket)
-				,new ItemStack(Blocks.ice)
-				,new ItemStack(Items.flint)  	);  
+			,new ItemStack(Items.lava_bucket) 
+			,new ItemStack(Blocks.ice)	);  
 	}
-	*/
+	 
 	
 	public static void bookNoLeather()
 	{ 

@@ -112,6 +112,10 @@ public class ModLoader
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{        
+		
+		
+		
+		
 		MobSpawningRegistry.registerSpawns();
  
 		ChestGen.lootAllRecords();
@@ -126,6 +130,7 @@ public class ModLoader
 		  
 		Recipes.mushroomBlocks(); 
 		   
+		Recipes.obsidianIceWater();
   
 		Recipes.bonemealWool();
 		

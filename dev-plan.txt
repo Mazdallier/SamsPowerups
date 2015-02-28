@@ -51,4 +51,55 @@ Caused by: java.lang.ClassCastException: net.minecraft.block.state.BlockState ca
     // : achievement finder , check if dragonslayer//or at least check something to gain a power    
     
             //??((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S39PacketPlayerAbilities(player.capabilities));
+       
+       
+       
+       
+       //RECIPES TO KEEP BUCKET IDEAS
+       
+       
+       
+       /*
+    @SubscribeEvent
+    public void onCraft(ItemCraftedEvent event)
+    {
+        //PlayerEvent.ItemCraftedEvent
+        ItemStack craftedItem = event.crafting;
+                
+        if (event.crafting.getItem() == Items.bucket)
+        {
+
+            System.out.println("Desired item has been crafted.");
+            for (int i=0; i< event.player.inventory.mainInventory.length; i++){
+                System.out.println(event.player.inventory.mainInventory[i]);
+                //Prints each slot out on a line.
+            }
             
+            if (event.player.inventory.hasItem(Items.bucket)){
+                System.out.println("Player has Item. Cleared to remove it");
+            }
+        }
+        
+        /*
+*This onCrafting Handle is for Sword and Coconut Recipe
+* 0-1-2
+* 3-4-5
+* 6-7-8
+ 
+ItemStack shouldBeSword = craftMatrix.getStackInSlot(1);
+ItemStack shouldBeCoconut = craftMatrix.getStackInSlot(4);
+
+if(shouldBeSword != null && shouldBeCoconut != null
+&& (shouldBeSword.getItem() == Item.swordWood || shouldBeSword.getItem() == Item.swordStone || shouldBeSword.getItem() == Item.swordSteel
+|| shouldBeSword.getItem() == Item.swordGold || shouldBeSword.getItem() == Item.swordDiamond)
+&& shouldBeCoconut.getItem() == mod_ProjectZulu.coconutItem){
+//Put Sword Back
+ItemStack tempItem1 = new ItemStack(shouldBeSword.getItem(), 2);
+craftMatrix.setInventorySlotContents(1, tempItem1);
+//Place Coconut Milk
+ItemStack tempItem2 = new ItemStack(mod_ProjectZulu.coconutMilkFragment, 2);
+craftMatrix.setInventorySlotContents(3, tempItem2);
+//Place Coconut Shell
+ItemStack tempItem3 = new ItemStack(mod_ProjectZulu.coconutShell, 2);
+craftMatrix.setInventorySlotContents(5, tempItem3);
+    }*/     
