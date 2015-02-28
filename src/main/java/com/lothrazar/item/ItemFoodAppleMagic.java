@@ -3,6 +3,7 @@ package com.lothrazar.item;
 import java.util.ArrayList; 
 
 import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.samscontent.PlayerPowerups;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
 import com.lothrazar.util.SamsUtilities;
@@ -79,9 +80,14 @@ public class ItemFoodAppleMagic extends ItemFood
 	  		} 
   		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
 
-  		if(MagicType.Flying == this.type &&  par2World.isRemote == true) 
+  		if(MagicType.Flying == this.type &&  par2World.isRemote == false) 
   		{  
-  			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
+
+  			PlayerPowerups props = PlayerPowerups.get(par3EntityPlayer);
+
+  			props.setCurrentFly(FLYING_COUNT_PER_EAT);
+  			System.out.println("food eaten setCurrentFly ");
+  			//SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
   		}
   		if(MagicType.Hearts == this.type && par2World.isRemote == false)
   		{

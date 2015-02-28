@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.lothrazar.item.ItemFoodAppleMagic;
 import com.lothrazar.item.ItemFoodAppleMagic.MagicType;
+import com.lothrazar.samscontent.PlayerPowerups;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities; 
 
@@ -17,6 +18,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraft.world.World;   
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldSettings.GameType;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -33,34 +35,52 @@ public class HandlerPlayerTickApplesEaten
 	private static boolean doesDrainHunger = false;
 	private static boolean doesWeakness = true; //TODO: hook more like this to config?
 	private static boolean doesFatigue = true; 
+	
+
+	
+	@SubscribeEvent
+	public void onEntityConstructing(EntityConstructing event)
+	{ 
+		if (event.entity instanceof EntityPlayer && PlayerPowerups.get((EntityPlayer) event.entity) == null)
+		{ 
+			PlayerPowerups.register((EntityPlayer) event.entity);
+		} 
+	}
+	
+	
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{    	     
+		PlayerPowerups props = PlayerPowerups.get(event.player);
+
+		System.out.println("playertick.getFly: "+props.getCurrentFly());
+		
 		if( event.player.worldObj.isRemote  == false )
-		{ 	
-			System.out.println("event.player.worldObj.isRemote  "+event.player.worldObj.isRemote);
+		{ 	 
 			tickHearts(event.player); 
 		}
+		/*
 		else //isRemote == true //tickFlying if used in isRemote==false will not work at all
-		{ 	
-			if( Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.CREATIVE  && 
-					Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR
-		 )
-			{ 
-				tickFlying(event.player);  //affects game modes 0,2 (survival,adventure)
-			} 
-		}   
+		{ 	   
+			tickFlying(event.player);  //affects game modes 0,2 (survival,adventure) 
+		}   */
 	}
 
 	private void tickFlying(EntityPlayer player) 
 	{
+		if( Minecraft.getMinecraft().playerController.getCurrentGameType() == GameType.CREATIVE  || 
+			Minecraft.getMinecraft().playerController.getCurrentGameType() == GameType.SPECTATOR )
+		{
+			return;
+		}
+	 
 		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
 		int countAppleTicks = SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
 
 		System.out.println("countAppleTicks  "+countAppleTicks);
 		//first, check are we allowed to fly
-		countAppleTicks = 17777777;//fake tester
+		//countAppleTicks = 17777777;//fake tester
 		
 		if (countAppleTicks > 0)
 		{ 
@@ -113,10 +133,9 @@ public class HandlerPlayerTickApplesEaten
 
 			} 
 			*/
-		}
-		System.out.println(player.getClass().getName());
-		System.out.println("player.capabilities.allowFlying = "+player.capabilities.allowFlying);
-		System.out.println("======");
+		} 
+		System.out.println(player.getClass().getName()+".allowFlying = "+player.capabilities.allowFlying);
+		 
 	}
 
 	private void tickHearts(EntityPlayer player) 

@@ -104,7 +104,7 @@ public class ModLoader
     	network = NetworkRegistry.INSTANCE.newSimpleChannel( Reference.MODID );     	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
      
-		registerEventHandlers(); 
+		registerEventHandlers(); //IEXTENDED properties sasy this goes in init?
  
 		registerItemsBlocks(); 
 	}
@@ -175,7 +175,7 @@ public class ModLoader
 	}
 	
 	@EventHandler
-	public void onServerLoad(FMLServerStartingEvent event)
+	public void onServerStarting(FMLServerStartingEvent event)
 	{
 		if(ModLoader.settings.searchtrade) 
 			event.registerServerCommand(new CommandSearchTrades()); 
