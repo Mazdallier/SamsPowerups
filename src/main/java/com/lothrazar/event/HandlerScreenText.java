@@ -18,6 +18,7 @@ import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
 import com.lothrazar.item.ItemFoodAppleMagic.MagicType;
 import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.samscontent.PlayerPowerups;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities;
@@ -72,7 +73,12 @@ public class HandlerScreenText
 		event.left.add("");
 		
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
-	
+		
+		PlayerPowerups props = PlayerPowerups.get(player); 
+		int countAppleTicks = props.getCurrentFly();
+		if(countAppleTicks > 0){event.left.add("Can Fly");}
+		
+		
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
   
 		addDateTimeInfo(event, world);

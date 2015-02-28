@@ -38,7 +38,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static ItemFoodAppleMagic apple_chocolate_rich;
 	public static ItemFoodAppleMagic apple_nether_star;
 	private boolean hasEffect = false;
-	private static int FLYING_COUNT_PER_EAT = 10000;//num of ticks
+	private static int FLYING_COUNT_PER_EAT = 1;//num of ticks
 	private ArrayList<Integer> potionIds;
 	private ArrayList<Integer> potionDurations;
 	private ArrayList<Integer> potionAmplifiers;;

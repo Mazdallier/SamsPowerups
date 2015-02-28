@@ -65,17 +65,24 @@ public class HandlerPlayerTickApplesEaten
 			tickHearts(event.player); 
 			
 			if( Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.CREATIVE   && 
-					Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR  &&
-					event.player.capabilities.isFlying 
+					Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR//  &&
+				
 					
 					)
 				{//
 				//then we are in either adventure or survival mode. and flying. 
-				PlayerPowerups props = PlayerPowerups.get(event.player);
-				//props.incrementCurrentFly(-1);//reduce it by 1 then eh
-				int countAppleTicks = props.getCurrentFly();
-				System.out.println("SERVERSIDE  -1?? " + countAppleTicks);
-					return;
+			//	System.out.println("SERVERSIDE   " + event.player.capabilities.isFlying);
+				//PlayerPowerups props = PlayerPowerups.get(event.player);
+			 
+				//int countAppleTicks = props.getCurrentFly();
+				
+				if(	event.player.capabilities.isFlying )//this never ever happens
+				{
+						//props.incrementCurrentFly(-1);//reduce it by 1 then eh
+
+				//	System.out.println("   -1?? " + countAppleTicks);
+				}
+				 
 				}
 			
 		} 
@@ -99,7 +106,7 @@ public class HandlerPlayerTickApplesEaten
 		
 		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
 		int countAppleTicks = props.getCurrentFly();
-		System.out.println("client.tickFlying   " + countAppleTicks);
+		//System.out.println("client.tickFlying   " + countAppleTicks);
 		//SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
  
 		
