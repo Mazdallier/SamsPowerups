@@ -69,8 +69,9 @@ public class ItemFoodAppleMagic extends ItemFood
 	
 	@Override
 	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {    
-  		if(MagicType.Potion == this.type && par2World.isRemote == false)///false means serverside
+    {     
+		if(par2World.isRemote == false)///false means serverside
+  		if(MagicType.Potion == this.type)
   		{ 
 			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, par1ItemStack.getItem().getUnlocalizedName(),1); 
 			
@@ -78,18 +79,17 @@ public class ItemFoodAppleMagic extends ItemFood
 	  		{ 
 	  			par3EntityPlayer.addPotionEffect(new PotionEffect(potionIds.get(i) ,potionDurations.get(i),potionAmplifiers.get(i)));
 	  		} 
-  		} //ottherwise we set an NBT data flag that we then listen to onplayertick 
-
-  		if(MagicType.Flying == this.type &&  par2World.isRemote == false) 
+  		} 
+  		else if(MagicType.Flying == this.type) 
   		{  
 
   			PlayerPowerups props = PlayerPowerups.get(par3EntityPlayer);
 
   			props.incrementCurrentFly(FLYING_COUNT_PER_EAT);
-  			System.out.println("food eaten setCurrentFly ");
+  		 
   			//SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Flying.toString(),FLYING_COUNT_PER_EAT);
   		}
-  		if(MagicType.Hearts == this.type && par2World.isRemote == false)
+  		else if(MagicType.Hearts == this.type)
   		{
   			par3EntityPlayer.removePotionEffectClient(Reference.potion_HEALTH_BOOST);//reset it so it gets reapplied 
   			SamsUtilities.incrementPlayerIntegerNBT(par3EntityPlayer, Reference.MODID + MagicType.Hearts.toString(),1);

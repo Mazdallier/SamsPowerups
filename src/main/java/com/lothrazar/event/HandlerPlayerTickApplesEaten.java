@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -35,9 +36,16 @@ public class HandlerPlayerTickApplesEaten
 	private static boolean doesDrainHunger = false;
 	private static boolean doesWeakness = true; //TODO: hook more like this to config?
 	private static boolean doesFatigue = true; 
-	
-
-	
+	/*
+	@SubscribeEvent
+	public void onEntityJoinWorld(EntityJoinWorldEvent event)
+	{
+		//Only need to synchronize when the world is remote (i.e. we're on the server side)
+		///this would be IF we were using packets instead of a datawatcher
+		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer)
+			PlayerPowerups.get((EntityPlayer) event.entity).sync();
+	}
+	*/
 	@SubscribeEvent
 	public void onEntityConstructing(EntityConstructing event)
 	{ 
@@ -55,10 +63,23 @@ public class HandlerPlayerTickApplesEaten
 		if( event.player.worldObj.isRemote  == false )
 		{ 	 
 			tickHearts(event.player); 
-		}
-		
+			
+			if( Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.CREATIVE   && 
+					Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.SPECTATOR  &&
+					event.player.capabilities.isFlying 
+					
+					)
+				{//
+				//then we are in either adventure or survival mode. and flying. 
+				PlayerPowerups props = PlayerPowerups.get(event.player);
+				props.incrementCurrentFly(-1);//reduce it by 1 then eh
+					return;
+				}
+			
+		} 
 		else //isRemote == true //tickFlying if used in isRemote==false will not work at all
 		{ 	   
+			//client side
 			tickFlying(event.player);  //affects game modes 0,2 (survival,adventure) 
 		}   
 	}
@@ -73,10 +94,10 @@ public class HandlerPlayerTickApplesEaten
 
 		PlayerPowerups props = PlayerPowerups.get(player);
 
-		System.out.println("tickFlying   "+props.getCurrentFly());
 		
 		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
 		int countAppleTicks = props.getCurrentFly();
+		System.out.println("tickFlying   " + countAppleTicks);
 		//SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
  
 		
@@ -86,7 +107,7 @@ public class HandlerPlayerTickApplesEaten
 				player.capabilities.allowFlying = true;  
 		}
 		else
-		{  
+		{   
 			// disable flying now & in future
 			player.capabilities.allowFlying = false;  
 			player.capabilities.isFlying = false;  
@@ -97,7 +118,7 @@ public class HandlerPlayerTickApplesEaten
 		{   
 			//every tick that we fly uses up one resource tick that was given by the apple (hence the -1_
 		//	SamsUtilities.incrementPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString(), -1);
-			props.setCurrentFly(countAppleTicks - 1);
+			//props.incrementCurrentFly(-1);
 			
 			int level = 4;//no number is actually default, so this makes potion effect 2 == III, 4 == V
 			int duration = 2 * Reference.TICKS_PER_SEC;  //2 seconds
@@ -133,7 +154,7 @@ public class HandlerPlayerTickApplesEaten
 			} 
 			*/
 		} 
-		System.out.println(player.getClass().getName()+".allowFlying = "+player.capabilities.allowFlying);
+		//System.out.println(player.getClass().getName()+".allowFlying = "+player.capabilities.allowFlying);
 		 
 	}
 
