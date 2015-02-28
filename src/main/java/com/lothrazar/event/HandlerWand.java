@@ -105,15 +105,11 @@ public class HandlerWand
 			else
 			{
 				System.out.println("CREATE");
-				//if the up one is air, then build a chest at this spot
-				event.entityPlayer.worldObj.isAirBlock(event.pos.up()); 
-				event.entityPlayer.worldObj.setBlockState(event.pos.up(), Blocks.chest.getDefaultState());
-
-				TileEntityChest chest = (TileEntityChest)event.entityPlayer.worldObj.getTileEntity(event.pos.up());
-				 
-				//then dump everything into the created chest
-		  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
-				
+				//if the up one is air, then build a chest at this spot 
+				if(event.entityPlayer.worldObj.isAirBlock(event.pos.up()))
+				{
+					ItemWandChest.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.up());
+				} 
 			}
 		} 
 		else if(held.getItem() == ItemWandDungeon.itemWand)
@@ -143,20 +139,6 @@ public class HandlerWand
 		{ 
 			ItemWandProspect.itemWand.searchProspect(event.entityPlayer,held,event.pos);   
 		}
-		else if(held.getItem() == ItemWandChest.itemChestSack)
-		{ 	
-			if(  held.getTagCompound() == null){return;}
-		    
-			// : is y+1 actually air?
-			if(event.entityPlayer.worldObj.isAirBlock(event.pos.add(0,1,0)) == false
-					|| event.entityPlayer.worldObj.getActualHeight() < event.pos.getY() + 1)//do not place above world height
-			{
-				//can only be placed on valid air location
-				return;
-			}
-			
-			ItemWandChest.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.add(0,1,0));
-		}  
   	}
   
 	@SubscribeEvent

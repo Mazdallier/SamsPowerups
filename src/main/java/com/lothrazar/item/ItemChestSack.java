@@ -197,8 +197,7 @@ public class ItemChestSack extends Item
 	 
 		entityPlayer.worldObj.setBlockState(pos,  Blocks.chest.getDefaultState());
 		
-		TileEntity container = entityPlayer.worldObj.getTileEntity(pos); 
-		TileEntityChest chest = (TileEntityChest)container ;
+		TileEntityChest chest = (TileEntityChest)entityPlayer.worldObj.getTileEntity(pos);  
 	
 		int item;
 		int meta;
