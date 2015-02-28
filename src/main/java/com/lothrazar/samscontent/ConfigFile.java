@@ -34,7 +34,7 @@ public class ConfigFile
 	//public boolean craftableFlatDoubleSlab; 
 	public boolean craftableBonemealColouredWool;   
 	public boolean craftBooksWithoutLeather;
-	public boolean craftableMobHeads;
+	//public boolean craftableMobHeads;
 	public boolean betterBonemeal;
 	public boolean decorativeBlocks; 
 	public boolean recipes; 
@@ -327,11 +327,11 @@ public class ConfigFile
 
 		craftableBonemealColouredWool =  ModLoader.config.getBoolean( "craftableBonemealColouredWool",category,true
 				,"Allows you to dye coloured wool back to white using bonemeal"			); 
-  
+  /*
 		craftableMobHeads =  ModLoader.config.getBoolean( "craftableMobHeads",category,true
 				,"Allows you to craft all mob heads out of wither skulls.  Surround the skull with "+
 				"TNT, flesh, cake, or bones. "		);  
- 
+ */
 		uncraftGeneral = ModLoader.config.getBoolean( "uncrafting",category,true,
 				"uncrafting: craft or smelt blocks back into their ingredients.  Often it is not a perfect trade.  " +
 				"Example: Craft stairs back into blocks using a 4x4 pattern."	); 

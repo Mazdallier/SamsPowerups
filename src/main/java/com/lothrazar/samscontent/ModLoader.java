@@ -125,8 +125,7 @@ public class ModLoader
 		Recipes.bookNoLeather(); 
 		  
 		Recipes.mushroomBlocks(); 
-		  
-		Recipes.mobHeads();	
+		   
   
 		Recipes.bonemealWool();
 		

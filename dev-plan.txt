@@ -1,7 +1,7 @@
 //TODO: BUG: livestock wand stoppd making eggs. check entityinteract event
 //TODO: maybe: apple hearts and flying persist on death? perhaps minus 1
 //TODO: eat token that makes you keep inventory on eath but only ONE TIME, not like gamerule
-//TODO: cant fly in gamemode3, check flyapple bug
+ 
 //TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
 //TODO: should wands cause blindness/other costs?
 //TODO: harvesting crash : 
@@ -14,8 +14,6 @@ Caused by: java.lang.ClassCastException: net.minecraft.block.state.BlockState ca
     
     //TODO: parachute item and/or slowfall ability
     //todo?? shape/conic/circle drawing in game//http://i.imgur.com/t3N1U8p.png
-    //TODO: obsidian from lava bucket and ice, but in a way that keeps the bucket alive
-    //TODO: obsidian back into lava bucket by crafting Obs + bucket + <redstone or flint?>  
     //TODO: MILKER: recipe uses tons of iron. each use pulls milk from a cow, drops the actual bucket.
     //durability/number of uses is related to how many buckets it makes
     //so its not 'free buckets'. its just transformed iron

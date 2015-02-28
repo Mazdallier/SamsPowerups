@@ -62,6 +62,9 @@ public class Recipes
 	    }
 	}
 	
+	
+	
+	
 	public static void mushroomBlocks()
 	{
 		if(!ModLoader.settings.craftableMushroomBlocks)  {return;}
@@ -726,7 +729,7 @@ public class Recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.wool, 1, 0),
 				new ItemStack(Blocks.wool, 1, 15), new ItemStack(Items.dye, 1,				Reference.dye_bonemeal));
 	}
-
+/*
 	public static void mobHeads()
 	{
 		if(!ModLoader.settings.craftableMobHeads) 	{return;}
@@ -749,7 +752,28 @@ public class Recipes
 
 		GameRegistry.addSmelting(Items.skull ,new ItemStack(Items.skull,1,Reference.skull_wither), 0);
 	}
+*/
+	
+	
+/*
+    //TODO: obsidian from lava bucket and ice, but in a way that keeps the bucket alive
+    //TODO: obsidian back into lava bucket by crafting Obs + bucket + <redstone or flint?>  
+	public static void obsidianIceWater()
+	{
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.lava_bucket)
+			,new ItemStack(Blocks.obsidian)
+			,new ItemStack(Items.flint)
+			,new ItemStack(Items.bucket)  	);  
+		
+		//TOOD: recipe keep bucket..>??
 
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.obsidian)
+				,new ItemStack(Items.lava_bucket)
+				,new ItemStack(Blocks.ice)
+				,new ItemStack(Items.flint)  	);  
+	}
+	*/
+	
 	public static void bookNoLeather()
 	{ 
 		if(!ModLoader.settings.craftBooksWithoutLeather)  {return;}
