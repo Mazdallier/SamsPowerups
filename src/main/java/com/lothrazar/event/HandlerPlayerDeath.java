@@ -16,25 +16,20 @@ public class HandlerPlayerDeath
 {
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDropsEvent event)
-	{
-		//System.out.println("onPlayerDeath " + ModLoader.settings.dropPlayerSkullOnDeath);
+	{ 
 		if(ModLoader.settings.dropPlayerSkullOnDeath == false){return;}
-		
-		//System.out.println(event.entity.getClass().getName());
-		//System.out.println(event.entityLiving.getClass().getName());
-		
-		if(event.entity instanceof EntityPlayer == false){return;}//is EntityPlayerMP a subclass
+		 
+		if(event.entity instanceof EntityPlayer == false){return;} 
 		
 		EntityPlayer player = (EntityPlayer)event.entity;
 		 
 		ItemStack skull =  new ItemStack(Items.skull,1,Reference.skull_player);
 		if(skull.getTagCompound() == null) skull.setTagCompound(new NBTTagCompound());
+		//TODO: magic string for tag name in reference file, with weblink source
 		skull.getTagCompound().setString("SkullOwner",player.getDisplayNameString());
 		
 		EntityItem ei = new EntityItem(event.entity.worldObj, player.posX, player.posY, player.posZ,skull);
 		 
-		event.drops.add(ei);
-		System.out.println("skullskullskull");
-	
+		event.drops.add(ei);  
 	} 
 }

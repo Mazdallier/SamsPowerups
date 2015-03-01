@@ -1,9 +1,11 @@
-//TODO: BUG: chest sack will not get placed
+ 
 //TODO: maybe: apple hearts and flying persist on death? perhaps minus 1
 //TODO: eat token that makes you keep inventory on eath but only ONE TIME, not like gamerule
-//TODO: ender pearl damage from apple power
+//TODO: ender pearl damage from apple power 
+//TODO: On Ender Teleport: Add percentage chance of getting the pearl back. Default 10% perhaps Config the number in range?
+
 //TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
-//TODO: should wands cause blindness/other costs?
+//idea?: should wands cause blindness/other costs?
 //TODO: harvesting crash :  
  
  //Fork some open source stuff?  // https://github.com/PrinceOfAmber/OpenBlocks 
@@ -14,8 +16,7 @@
     //durability/number of uses is related to how many buckets it makes
     //so its not 'free buckets'. its just transformed iron
     
-    //TODO: On Ender Teleport: Add percentage chance of getting the pearl back. Default 10% perhaps Config the number in range?
-
+   
     //TODO: CommandSearch (and others?) set boolean showCoords = true;  
         //else it does directoins
     //TODO: wand/BLOCK STATE TRANSFORMER: get the supersmooth stone/sandstone blocks and all the mushroom stuff
