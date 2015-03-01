@@ -3,9 +3,10 @@
 //TODO: eat token that makes you keep inventory on eath but only ONE TIME, not like gamerule
 //TODO: ender pearl damage from apple power 
 //TODO: On Ender Teleport: Add percentage chance of getting the pearl back. Default 10% perhaps Config the number in range?
-
+//TODO: program arguments? --username=Lothrazar --password=
 //TODO: the prospect and dungeon wands send duble chat msgs.  also look into a timer, and a "search starting" msg.
 //idea?: should wands cause blindness/other costs?
+//TODO: item wand tooltips
 //TODO: harvesting crash :  
  
  //Fork some open source stuff?  // https://github.com/PrinceOfAmber/OpenBlocks 

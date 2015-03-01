@@ -20,18 +20,7 @@ public class HandlerPlayerHarvest
 	public static ArrayList<Block> blocksOnlyShovel = new ArrayList<Block> (); 
 	public static ArrayList<Block> blocksOnlyAxe    = new ArrayList<Block> ();
 
-	@SubscribeEvent
-	public void onEnderTeleportEvent(EnderTeleportEvent event)
-	{
-		if(ModLoader.settings.noDamageEnderPearl == false) {return;}
-		
-		if(event.entity instanceof EntityPlayer)
-		{
-			//System.out.println("pearl dmg to zero "+ event.attackDamage);//starts 5.0 which is 2.5hearts
-			event.attackDamage = 0;
-		}
-	}
-	 
+
 	public static void setShovelFromCSV(String csv)
 	{
 		blocksOnlyShovel = SamsUtilities.getBlockListFromCSV(csv);

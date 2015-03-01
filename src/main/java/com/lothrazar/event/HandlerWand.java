@@ -146,12 +146,8 @@ public class HandlerWand
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
 		if(held == null || held.getItem() != ItemWandLivestock.itemWand ){ return;}
-		if(event.entityPlayer.worldObj.isRemote ){ return;}
-   
-		//if it drains hunnger, we cant use it when food is empty
-		if(ItemWandHarvest.drainsHunger)
-			if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;} 
-		 
+		if(event.entityPlayer.worldObj.isRemote ){ return;}//so do nothing on client side
+     
 		ItemWandLivestock.itemWand.entitySpawnEgg(event.entityPlayer, event.target); 
   	} 
 	 
@@ -162,6 +158,7 @@ public class HandlerWand
 
 		if (event.getResult() == Result.DENY) { return; }
 /*
+ //TODO: fix this and put it back in, make it accurate to each item/wand/whatever
 		Item item = event.itemStack.getItem();
 		if(item == ItemWandHarvest.itemWand)
 			if(SamsUtilities.isShiftKeyDown())  //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0 

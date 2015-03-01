@@ -271,7 +271,7 @@ public class ModLoader
       		,new HandlerScreenText()
      		,new HandlerSkullSignNames() 
        		,new HandlerPlayerTickApplesEaten()
-        	,new HandlerPlayerFall()
+        	,new HandlerPlayerFallTheEnd()
       		,new HandlerSwiftDeposit()
      		,new HandlerAutoPlantSapling()
      		,instance
