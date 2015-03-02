@@ -32,6 +32,43 @@ public class SamsUtilities
 		//ye olde pythagoras
 		return Math.sqrt(xDistance * xDistance + zDistance * zDistance + yDistance * yDistance);
 	}
+	public static ArrayList<BlockPos> findBlocks(EntityPlayer player, Block blockHunt, int RADIUS ) 
+	{        
+		ArrayList<BlockPos> found = new ArrayList<BlockPos>();
+		int xMin = (int) player.posX - RADIUS;
+		int xMax = (int) player.posX + RADIUS;
+
+		int yMin = (int) player.posY - RADIUS;
+		int yMax = (int) player.posY + RADIUS;
+
+		int zMin = (int) player.posZ - RADIUS;
+		int zMax = (int) player.posZ + RADIUS;
+		 
+		int xDistance, zDistance, distance , distanceClosest = RADIUS * RADIUS;
+		
+		BlockPos posCurrent = null; 
+		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
+		{
+			for (int yLoop = yMin; yLoop <= yMax; yLoop++)
+			{
+				for (int zLoop = zMin; zLoop <= zMax; zLoop++)
+				{  
+					posCurrent = new BlockPos(xLoop, yLoop, zLoop);
+					if(player.worldObj.getBlockState(posCurrent).getBlock().equals(blockHunt))
+					{ 
+						xDistance = (int) Math.abs(xLoop - player.posX );
+						zDistance = (int) Math.abs(zLoop - player.posZ );
+						
+						distance = (int) distanceBetweenHorizontal(player.getPosition(), posCurrent);
+						
+						found.add(posCurrent);
+					} 
+				}
+			}
+		}
+		
+		return found; 
+	}
 	public static BlockPos findClosestBlock(EntityPlayer player, Block blockHunt, int RADIUS )// Blocks.mob_spawner
 	{        
 		int xMin = (int) player.posX - RADIUS;

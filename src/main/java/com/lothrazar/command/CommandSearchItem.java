@@ -1,11 +1,17 @@
 package com.lothrazar.command;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;   
+
+import com.lothrazar.util.SamsUtilities;
+
 import net.minecraftforge.fml.common.FMLCommonHandler; 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -69,88 +75,98 @@ public class CommandSearchItem  implements ICommand
 			return;
 		}
 		
-		String search = args[0].trim().toLowerCase(); // args[0] is the command name or alias used such as "is"
- 
+		String searchQuery = args[0].trim().toLowerCase(); // args[0] is the command name or alias used such as "is"
+		ArrayList<IInventory> tilesToSearch = new ArrayList<IInventory>();
+		HashMap<IInventory,BlockPos> dictionary = new HashMap<IInventory,BlockPos> ();
+		
+		ArrayList<BlockPos> foundChests = SamsUtilities.findBlocks(player, Blocks.chest, RADIUS); 
+		for (BlockPos pos : foundChests)
+		{  	
+			TileEntity tile = player.worldObj.getTileEntity(pos); 
+			if(tile == null || !(tile instanceof IInventory) ) {continue;}  
+			tilesToSearch.add((IInventory) tile); 
+			dictionary.put((IInventory) tile,pos);
+		}
+		ArrayList<BlockPos> foundTrapChests = SamsUtilities.findBlocks(player, Blocks.trapped_chest, RADIUS); 
+		for (BlockPos pos : foundTrapChests)
+		{  	
+			TileEntity tile = player.worldObj.getTileEntity(pos); 
+			if(tile == null || !(tile instanceof IInventory) ) {continue;}  
+			tilesToSearch.add((IInventory) tile); 
+			dictionary.put((IInventory) tile,pos);
+		}
+		ArrayList<BlockPos> foundDisp = SamsUtilities.findBlocks(player, Blocks.dispenser, RADIUS); 
+		for (BlockPos pos : foundDisp)
+		{  	
+			TileEntity tile = player.worldObj.getTileEntity(pos); 
+			if(tile == null || !(tile instanceof IInventory) ) {continue;}  
+			tilesToSearch.add((IInventory) tile); 
+			dictionary.put((IInventory) tile,pos);
+		}
+		
+		int foundQtyTotal;
 		ArrayList<String> foundMessages = new ArrayList<String>();
-	  
-		int x = (int)player.posX;
-		int y = (int)player.posY;
-		int z = (int)player.posZ;
-		
-		int xMin = x - RADIUS;
-		int xMax = x + RADIUS;
-
-		int yMin = y - RADIUS;
-		int yMax = y + RADIUS;
-
-		int zMin = z - RADIUS;
-		int zMax = z + RADIUS;
-		
-		int foundQty;
-		int foundStacks;
-		 
-		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
-		{
-			for (int yLoop = yMin; yLoop <= yMax; yLoop++)
+	 
+		for(IInventory inventory : tilesToSearch)
+		{ 
+			foundQtyTotal = 0;
+			foundQtyTotal = searchTileInventory(searchQuery, inventory);
+			
+			if(foundQtyTotal > 0)
 			{
-				for (int zLoop = zMin; zLoop <= zMax; zLoop++)
-				{
-					
-					TileEntity tile = player.worldObj.getTileEntity(new BlockPos(xLoop, yLoop, zLoop));
-					
-					if(tile == null || !(tile instanceof IInventory) ) {continue;}
-					 
-					IInventory inventory = (IInventory) tile;
-					 
-					foundQty = 0;
-					foundStacks = 0;
-					
-					for (int slot = 0; slot < inventory.getSizeInventory(); slot++)//a break; will cancel this loop
-					{
-						ItemStack invItem = inventory.getStackInSlot(slot);
-						if(invItem == null){continue;} //empty slot in chest (or container)
-						 
-						String invItemName = invItem.getDisplayName().toLowerCase(); 
-						
-						//find any overlap: so if x ==y , or if x substring of y, or y substring of x 
-						if(search.equals(invItemName) 
-							|| search.contains(invItemName)
-							|| invItemName.contains(search))
-						{  
-							foundStacks++;
-							foundQty += invItem.stackSize; 
-						} 
-					} //end loop on current tile entity
-					
-					if(foundQty > 0)
-					{
-						//something was found in this box?
-						foundMessages.add(itemLocDisplay(player,xLoop,yLoop,zLoop,foundQty,foundStacks));
-					} 
-				}
-			}
+				//something was found in this box?
+				//
+				foundMessages.add(itemLocDisplay(player,dictionary.get(inventory),foundQtyTotal));
+			}  
 		}
  
 		//LOOP on foundItems and chat out so each line of chat will be an zyx of a chest that contains 
-		int found = foundMessages.size();
+		int ifound = foundMessages.size();
 		
-		if(found == 0)
+		if(ifound == 0)
 		{ 
 			player.addChatMessage(new ChatComponentTranslation("No items found within "+RADIUS+" blocks of you."));
 		}
 		else
 		{ 
-			for (int i = 0; i < found; i++) 
+			for (int i = 0; i < ifound; i++) 
 			{  
 				player.addChatMessage(new ChatComponentTranslation(foundMessages.get(i)));
 		    }
 		}
 	}
+
+	private int searchTileInventory(String search, IInventory inventory) {
+		int foundQty;
+		foundQty = 0;
+		//foundStacks = 0;
+		
+		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)//a break; will cancel this loop
+		{
+			ItemStack invItem = inventory.getStackInSlot(slot);
+			if(invItem == null){continue;} //empty slot in chest (or container)
+			 
+			String invItemName = invItem.getDisplayName().toLowerCase(); 
+			
+			//find any overlap: so if x ==y , or if x substring of y, or y substring of x 
+			if(search.equals(invItemName) 
+				|| search.contains(invItemName)
+				|| invItemName.contains(search))
+			{  
+				//foundStacks++;
+				foundQty += invItem.stackSize; 
+			} 
+		} //end loop on current tile entity
+		return foundQty;
+	}
 	
-	private static String itemLocDisplay(	EntityPlayerMP player, int xLoop, int yLoop, int zLoop ,int foundQty, int foundStacks)
-	{  
-		String s = (foundStacks == 1) ? "" : "s";
-		String totalsStr = foundStacks + " stack"+s+", ("+foundQty + " total)";
+	private static String itemLocDisplay(	EntityPlayerMP player, BlockPos pos ,int foundQty )
+	{   
+		int xLoop = pos.getX();
+		int yLoop = pos.getY();
+		int zLoop = pos.getZ();
+		
+		String totalsStr = foundQty + " found";
 		
 		if(showCoords )
 		{ 
