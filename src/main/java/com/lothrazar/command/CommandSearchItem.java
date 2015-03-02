@@ -78,30 +78,28 @@ public class CommandSearchItem  implements ICommand
 		String searchQuery = args[0].trim().toLowerCase(); // args[0] is the command name or alias used such as "is"
 		ArrayList<IInventory> tilesToSearch = new ArrayList<IInventory>();
 		HashMap<IInventory,BlockPos> dictionary = new HashMap<IInventory,BlockPos> ();
+		IInventory tile;
 		
 		ArrayList<BlockPos> foundChests = SamsUtilities.findBlocks(player, Blocks.chest, RADIUS); 
 		for (BlockPos pos : foundChests)
 		{  	
-			TileEntity tile = player.worldObj.getTileEntity(pos); 
-			if(tile == null || !(tile instanceof IInventory) ) {continue;}  
-			tilesToSearch.add((IInventory) tile); 
-			dictionary.put((IInventory) tile,pos);
+			tile = (IInventory)player.worldObj.getTileEntity(pos);  
+			tilesToSearch.add(tile); 
+			dictionary.put(tile, pos);
 		}
 		ArrayList<BlockPos> foundTrapChests = SamsUtilities.findBlocks(player, Blocks.trapped_chest, RADIUS); 
 		for (BlockPos pos : foundTrapChests)
 		{  	
-			TileEntity tile = player.worldObj.getTileEntity(pos); 
-			if(tile == null || !(tile instanceof IInventory) ) {continue;}  
-			tilesToSearch.add((IInventory) tile); 
-			dictionary.put((IInventory) tile,pos);
+			tile = (IInventory)player.worldObj.getTileEntity(pos);  
+			tilesToSearch.add(tile); 
+			dictionary.put(tile, pos);
 		}
 		ArrayList<BlockPos> foundDisp = SamsUtilities.findBlocks(player, Blocks.dispenser, RADIUS); 
 		for (BlockPos pos : foundDisp)
 		{  	
-			TileEntity tile = player.worldObj.getTileEntity(pos); 
-			if(tile == null || !(tile instanceof IInventory) ) {continue;}  
-			tilesToSearch.add((IInventory) tile); 
-			dictionary.put((IInventory) tile,pos);
+			tile = (IInventory)player.worldObj.getTileEntity(pos);  
+			tilesToSearch.add(tile); 
+			dictionary.put(tile, pos);
 		}
 		
 		int foundQtyTotal;
@@ -113,19 +111,16 @@ public class CommandSearchItem  implements ICommand
 			foundQtyTotal = searchTileInventory(searchQuery, inventory);
 			
 			if(foundQtyTotal > 0)
-			{
-				//something was found in this box?
-				//
+			{ 
 				foundMessages.add(itemLocDisplay(player,dictionary.get(inventory),foundQtyTotal));
 			}  
 		}
- 
-		//LOOP on foundItems and chat out so each line of chat will be an zyx of a chest that contains 
+  
 		int ifound = foundMessages.size();
 		
-		if(ifound == 0)
+		if(ifound == 0) //TODO: put that in .lang file
 		{ 
-			player.addChatMessage(new ChatComponentTranslation("No items found within "+RADIUS+" blocks of you."));
+			player.addChatMessage(new ChatComponentTranslation("No items found within " + RADIUS + " blocks of you."));
 		}
 		else
 		{ 
@@ -136,10 +131,10 @@ public class CommandSearchItem  implements ICommand
 		}
 	}
 
-	private int searchTileInventory(String search, IInventory inventory) {
+	private int searchTileInventory(String search, IInventory inventory) 
+	{
 		int foundQty;
-		foundQty = 0;
-		//foundStacks = 0;
+		foundQty = 0; 
 		
 		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)//a break; will cancel this loop
 		{
@@ -166,7 +161,7 @@ public class CommandSearchItem  implements ICommand
 		int yLoop = pos.getY();
 		int zLoop = pos.getZ();
 		
-		String totalsStr = foundQty + " found";
+		String totalsStr = foundQty + " found"; //TODO: put that in .lang file
 		
 		if(showCoords )
 		{ 
