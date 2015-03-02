@@ -38,7 +38,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ItemWandDungeon extends ItemTool
 {
-	private static int RADIUS = 128;
+	private static int RADIUS = 32;
 	private static int DURABILITY = 20;
 	public static boolean drainsHunger = true;
 	public static boolean drainsDurability = true;
@@ -73,12 +73,7 @@ public class ItemWandDungeon extends ItemTool
   
 		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandDungeon.DURABILITY - 1)//if about to die
 		{ 
-			player.getCurrentEquippedItem().damageItem(1, player);
-			
-			//toss it on the ground after we use up one durability
-			//player.dropItem(heldWand, false, true);
-		 
-			//player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+			player.getCurrentEquippedItem().damageItem(1, player); 
 		}
 		else
 		{ 
@@ -95,9 +90,7 @@ public class ItemWandDungeon extends ItemTool
 	public static ItemWandDungeon itemWand;
  
 	public static void onInit() 
-	{  
-		//if(!ModLoader.settings.masterWand){return;}
-			
+	{   
 		itemWand = new ItemWandDungeon();
   
 		SamsRegistry.registerItem(itemWand, "wand_dungeon");
@@ -121,12 +114,9 @@ public class ItemWandDungeon extends ItemTool
 		int x = (int)player.posX;
 		int y = (int)player.posY;
 		int z = (int)player.posZ;
-
-	
-
+ 
 		onSuccess(player,heldWand);
-		
-		
+		 
 		int xMin = x - RADIUS;
 		int xMax = x + RADIUS;
 
@@ -164,8 +154,6 @@ public class ItemWandDungeon extends ItemTool
 			}
 		}
 		  
-		player.addChatMessage(new ChatComponentTranslation(  foundMessage ));
- 
- 
+		player.addChatMessage(new ChatComponentTranslation(  foundMessage )); 
 	}
 }

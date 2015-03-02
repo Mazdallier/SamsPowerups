@@ -38,8 +38,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class HandlerWand  
-{   
-	//@SuppressWarnings("unused")
+{    
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
