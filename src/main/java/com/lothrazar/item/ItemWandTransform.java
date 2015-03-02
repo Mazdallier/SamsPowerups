@@ -111,15 +111,58 @@ public class ItemWandTransform extends ItemTool
 	{
 		IBlockState blockState = player.worldObj.getBlockState(pos);
 		Block block = blockState.getBlock();
-		int metaCurrent;
+		int metaCurrent, metaNew = -1;
+		IBlockState blockStateNew = null;
 		if(block == Blocks.red_mushroom_block)
 		{
 			metaCurrent = Blocks.red_mushroom_block.getMetaFromState(blockState);
 			
-			player.worldObj.setBlockState(pos, Blocks.red_mushroom_block.getStateFromMeta(metaCurrent+1));
+			//from wiki we know that [11-13] are unused
+			//meta 14 is only vanilla used one 	//OLD one was meta 0, all pores
+			// http://minecraft.gamepedia.com/Data_values#Brown_and_red_mushroom_blocks
+			if(0 <= metaCurrent && metaCurrent <= 9)
+				metaNew = metaCurrent+1;
+			else if(metaCurrent == 10)
+				metaNew = 14;
+			else if(metaCurrent == 14)
+				metaNew = 15;
+			else if(metaCurrent == 15)
+				metaNew = 0;
+
 			
+
+			System.out.println(metaCurrent+" -> "+metaNew);
+			blockStateNew =  Blocks.red_mushroom_block.getStateFromMeta(metaNew);
+		 
+		}
+		else if(block == Blocks.brown_mushroom_block)
+		{
+			metaCurrent = Blocks.brown_mushroom_block.getMetaFromState(blockState);
+
+
+			if(0 <= metaCurrent && metaCurrent <= 9)
+				metaNew = metaCurrent+1;
+			else if(metaCurrent == 10)
+				metaNew = 14;
+			else if(metaCurrent == 14)
+				metaNew = 15;
+			else if(metaCurrent == 15)
+				metaNew = 0;
+			
+			System.out.println(metaCurrent+" -> "+metaNew);
+			blockStateNew =  Blocks.brown_mushroom_block.getStateFromMeta(metaNew);
+		}
+//TODO: double stone slabs (Double Stone Slab,43) from meta 0 -> 8 -> 0
+//TODO: double red standstone: 0-8-0
+		//DOUBLE regular sandstone (SAME BLOCK AS STONE)  1-9-1
+		//MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
+		
+		
+		if(blockStateNew != null)
+		{
+			player.worldObj.setBlockState(pos,blockStateNew);
+			 
 			onSuccess(player);
 		}
-		
 	}
 }
