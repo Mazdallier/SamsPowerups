@@ -57,7 +57,7 @@ public class SamsUtilities
 						if(posFound == null || distance < distanceClosest)
 						{ 
 							distanceClosest = distance;
-							posFound = new BlockPos(xLoop, yLoop, zLoop); 
+							posFound = posCurrent;//new BlockPos(xLoop, yLoop, zLoop); 
 						} 
 					} 
 				}

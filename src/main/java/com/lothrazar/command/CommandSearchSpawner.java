@@ -38,7 +38,7 @@ public class CommandSearchSpawner implements ICommand
 	@Override
 	public String getCommandUsage(ICommandSender sender) 
 	{ 
-		return "/" + "searchspawner";
+		return "/" + getName() + " [radius]";
 	}
 
 	private ArrayList<String> aliases = new ArrayList<String>();
@@ -50,15 +50,24 @@ public class CommandSearchSpawner implements ICommand
 
 	@Override
 	public void execute(ICommandSender sender, String[] args) throws CommandException 
-	{
-		//TODO: radius as first args[0]	
-		int radius = 32;
+	{ 
+		int radius = 0;
+		if(args.length > 0)
+		{
+			radius = Integer.parseInt(args[0]);
+		}
+		
+		if(radius > 128) { radius = 128; }//Maximum //TODO:? these max/default numbers from config file
+		if(radius <= 0 ) { radius = 64;  }//default
+		
 		BlockPos found = SamsUtilities.findClosestBlock((EntityPlayer)sender, Blocks.mob_spawner, radius);
 		
-		String m = "None Found ";
+		String m = "None Found with radius "+radius;
 		
 		if(found != null)
+		{
 			m = "Found at : "+found.getX()+", "+found.getY()+", "+found.getZ();
+		}
 		
 		((EntityPlayer)sender).addChatMessage(new ChatComponentTranslation( m )); 
 	}
