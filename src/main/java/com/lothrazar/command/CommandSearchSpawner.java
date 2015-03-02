@@ -88,10 +88,5 @@ public class CommandSearchSpawner implements ICommand
 	public boolean isUsernameIndex(String[] args, int index) 
 	{ 
 		return false;
-	}
-
-	
-	
-	
- 
+	} 
 }

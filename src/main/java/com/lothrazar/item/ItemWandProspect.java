@@ -5,6 +5,7 @@ import com.lothrazar.event.HandlerWand;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -36,7 +37,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ItemWandProspect extends ItemTool
 {
-	private static int RADIUS = 128;
+	private static int RADIUS = 16;//TODO: CONFIG FILE
 	private static int DURABILITY = 80;
 	public static boolean drainsHunger = true;
 	public static boolean drainsDurability = true;
@@ -48,9 +49,7 @@ public class ItemWandProspect extends ItemTool
 		this.setMaxStackSize(1);
     	setCreativeTab(CreativeTabs.tabTools) ;   
 	}
-	 
-	private static int RADIUS_PROSPECT = 16;
-	
+	   
 	@Override
     public boolean hasEffect(ItemStack par1ItemStack)
     {
@@ -72,41 +71,17 @@ public class ItemWandProspect extends ItemTool
 		
 		//if player hits the EAST side of the block, then the blocks east side is facing them
 		//therefore, the player is facing west
-		String foundMessage = "No diamond ore found within "+ItemWandProspect.RADIUS_PROSPECT+" blocks";//at current y = "+y;//"No Spawner found within " + RADIUS + " blocks.";
-		
-		
-		int xMin = x - ItemWandProspect.RADIUS_PROSPECT;
-		int xMax = x + ItemWandProspect.RADIUS_PROSPECT;
+		String foundMessage = "No diamond ore found within "+ItemWandProspect.RADIUS+" blocks";
 
-		//int yMin = y - RADIUS;
-		//int yMax = y + RADIUS;
-
-		int zMin = z - ItemWandProspect.RADIUS_PROSPECT;
-		int zMax = z + ItemWandProspect.RADIUS_PROSPECT;
-		int xDistance,zDistance,distance , distanceClosest = ItemWandProspect.RADIUS_PROSPECT* ItemWandProspect.RADIUS_PROSPECT* ItemWandProspect.RADIUS_PROSPECT;
-		 
+		BlockPos found = SamsUtilities.findClosestBlock(entityPlayer, Blocks.diamond_ore, RADIUS);
 		
-		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
+		int distance = (int)SamsUtilities.distanceBetween(found, entityPlayer.getPosition());
+
+		if(found != null)
 		{
-			for (int zLoop = zMin; zLoop <= zMax; zLoop++)
-			{ 
-				
-				if(entityPlayer.worldObj.getBlockState(new BlockPos(xLoop, y, zLoop)).getBlock().equals(Blocks.diamond_ore))
-				{ 
-					xDistance = Math.abs(xLoop - x);
-					zDistance = Math.abs(zLoop - z);
-					
-					distance = (int)Math.sqrt(xDistance * xDistance + zDistance * zDistance);
-					
-					if(distance < distanceClosest)
-					{ 
-						distanceClosest = distance;
-						foundMessage =  "Diamond ore found at distance " + distance  ;
-					} 
-				} 
-			}
-		}
-
+			foundMessage =  "Diamond ore found at distance "+distance ;
+		} 
+	  
 		entityPlayer.addChatMessage(new ChatComponentTranslation( foundMessage));
 	 
 		onSuccess(entityPlayer);

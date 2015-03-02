@@ -24,7 +24,14 @@ public class SamsUtilities
 		//ye olde pythagoras
 		return Math.sqrt(xDistance * xDistance + zDistance * zDistance);
 	}
-	
+	public static double distanceBetween(BlockPos start, BlockPos end)
+	{
+		int xDistance =  Math.abs(start.getX() - end.getX() );
+		int yDistance =  Math.abs(start.getY() - end.getY() );
+		int zDistance =  Math.abs(start.getZ() - end.getZ() );
+		//ye olde pythagoras
+		return Math.sqrt(xDistance * xDistance + zDistance * zDistance + yDistance * yDistance);
+	}
 	public static BlockPos findClosestBlock(EntityPlayer player, Block blockHunt, int RADIUS )// Blocks.mob_spawner
 	{        
 		int xMin = (int) player.posX - RADIUS;
