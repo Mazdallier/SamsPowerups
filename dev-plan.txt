@@ -1,7 +1,6 @@
  //TODO: wand dungeon and porspect as SINGLE USE?? to solve lang
  //OR: actually better idea: Write search string result to NBT thats written !
  
- 
 //TODO: maybe: apple hearts and flying persist on death? perhaps minus 1
 //TODO: eat token that makes you keep inventory on eath but only ONE TIME, not like gamerule
 //TODO: ender pearl damage from apple power 

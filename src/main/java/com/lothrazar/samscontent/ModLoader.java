@@ -262,6 +262,7 @@ public class ModLoader
      		 new HandlerBonemealUse() 
       		,new HandlerPlayerHarvest()
      		,new HandlerEnderBookClick()
+      		,new HandlerEnderpearlTeleport()
      		,new HandlerEnderChestHit() 
      		,new HandlerKeyInput()
       		,new HandlerWand()
