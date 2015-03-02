@@ -112,6 +112,8 @@ public class ModLoader
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{    
+		//TODO: do we want this? affects all mods and everything
+		//Items.lava_bucket.setContainerItem(Items.bucket); 
 		ItemBucketStorage.initLava();
 		
 		CreativeTweaks.inventoryImprovements();
@@ -130,7 +132,7 @@ public class ModLoader
 		  
 		Recipes.mushroomBlocks(); 
 		   
-		Recipes.obsidianIceWater();
+		//Recipes.obsidianIceWater();
   
 		Recipes.bonemealWool();
 		

@@ -765,11 +765,11 @@ public class Recipes
  
     //TODO: obsidian from lava bucket and ice, but in a way that keeps the bucket alive
     //TODO: obsidian back into lava bucket by crafting Obs + bucket + <redstone or flint?>  
+	/*
 	public static void obsidianIceWater()
 	{
 		if(!ModLoader.settings.craftObsidian)  {return;}
 		
-		Items.lava_bucket.setContainerItem(Items.bucket); 
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.lava_bucket)
 			,new ItemStack(Blocks.obsidian)
@@ -777,10 +777,10 @@ public class Recipes
 			,new ItemStack(Items.bucket)  	);  
 		 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.obsidian)
-			,new ItemStack(Items.lava_bucket) 
+			,new ItemStack(Items.lava_bucket) //deletes the bucket, but thats okay
 			,new ItemStack(Blocks.ice)	);  
 	}
-	 
+	 */
 	
 	public static void bookNoLeather()
 	{ 

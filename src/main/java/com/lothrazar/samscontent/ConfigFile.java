@@ -86,8 +86,7 @@ public class ConfigFile
 	public boolean plantDespawningSaplings;
 	public boolean noDamageEnderPearl;
 	public boolean buildingWand;
-	public boolean simpleDispenser;
-	public boolean craftObsidian;
+	public boolean simpleDispenser; 
 	public boolean dropPlayerSkullOnDeath;
 	public boolean searchspawner;
 	public int chanceReturnEnderPearl;
@@ -335,10 +334,10 @@ public class ConfigFile
 	private void crafting() 
 	{
 		category = "morecrafting";
-		
+		/*
 		craftObsidian = ModLoader.config.getBoolean( "craftObsidian",category,true,
 				"Create obsidian with lava bucket and ice.  Create a lava bucket with obsidian, a fire charge, and an empty bucket.");
-	 
+	 */
 		simpleDispenser = ModLoader.config.getBoolean( "simpleDispenser",category,true,
 				"Craft a dispenser with string in the center instead of a bow.  (Since string is stackable, this makes crafting tons of them much faster and cheaper).");
 		 
