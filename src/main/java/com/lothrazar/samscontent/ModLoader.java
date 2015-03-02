@@ -187,6 +187,9 @@ public class ModLoader
 		if(ModLoader.settings.searchitem) 
 			event.registerServerCommand(new CommandSearchItem()); 
 		
+		if(ModLoader.settings.searchspawner) 
+			event.registerServerCommand(new CommandSearchItem()); 
+		
 		if(ModLoader.settings.killall) 
 			event.registerServerCommand(new CommandKillAll()); 
 		
@@ -212,7 +215,7 @@ public class ModLoader
 		 
 		ItemWandChest.onInit();
 
-		ItemWandDungeon.onInit();
+		//ItemWandDungeon.onInit();
 
 		ItemWandHarvest.onInit();
 		

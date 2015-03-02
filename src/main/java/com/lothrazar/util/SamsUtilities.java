@@ -4,20 +4,69 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.World; 
 import org.apache.logging.log4j.Level;
-import org.lwjgl.input.Keyboard;
-
-import com.lothrazar.item.ItemWandHarvest;
+import org.lwjgl.input.Keyboard; 
 import com.lothrazar.samscontent.ModLoader;
 
 public class SamsUtilities
-{ 
+{   
+	public static double distanceBetweenHorizontal(BlockPos start, BlockPos end)
+	{
+		int xDistance =  Math.abs(start.getX() - end.getX() );
+		int zDistance =  Math.abs(start.getZ() - end.getZ() );
+		//ye olde pythagoras
+		return Math.sqrt(xDistance * xDistance + zDistance * zDistance);
+	}
+	
+	public static BlockPos findClosestBlock(EntityPlayer player, Block blockHunt, int RADIUS )// Blocks.mob_spawner
+	{        
+		int xMin = (int) player.posX - RADIUS;
+		int xMax = (int) player.posX + RADIUS;
+
+		int yMin = (int) player.posY - RADIUS;
+		int yMax = (int) player.posY + RADIUS;
+
+		int zMin = (int) player.posZ - RADIUS;
+		int zMax = (int) player.posZ + RADIUS;
+		 
+		int xDistance, zDistance, distance , distanceClosest = RADIUS * RADIUS;
+		
+		BlockPos posCurrent = null;
+		BlockPos posFound = null;
+		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
+		{
+			for (int yLoop = yMin; yLoop <= yMax; yLoop++)
+			{
+				for (int zLoop = zMin; zLoop <= zMax; zLoop++)
+				{  
+					posCurrent = new BlockPos(xLoop, yLoop, zLoop);
+					if(player.worldObj.getBlockState(posCurrent).getBlock().equals(blockHunt))
+					{ 
+						xDistance = (int) Math.abs(xLoop - player.posX );
+						zDistance = (int) Math.abs(zLoop - player.posZ );
+						
+						distance = (int) distanceBetweenHorizontal(player.getPosition(), posCurrent);
+						 
+						if(posFound == null || distance < distanceClosest)
+						{ 
+							distanceClosest = distance;
+							posFound = new BlockPos(xLoop, yLoop, zLoop); 
+						} 
+					} 
+				}
+			}
+		}
+		
+		return posFound; 
+	}
+	 
 	private static void decrementPlayerHunger(EntityPlayer player)
 	{ 
 		if( player.getFoodStats().getFoodLevel() > 0)
@@ -146,5 +195,31 @@ public class SamsUtilities
 	{
 		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT); 
 	}
-
+/*//when an action is used
+	private void onSuccess(EntityPlayer player,ItemStack heldWand)
+	{
+		player.swingItem();
+		 
+		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
+		{
+			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
+		}
+		
+		//make it take damage, or get destroyed
+  
+		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandDungeon.DURABILITY - 1)//if about to die
+		{ 
+			player.getCurrentEquippedItem().damageItem(1, player); 
+		}
+		else
+		{ 
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+ 
+			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
+		} 
+		
+		player.worldObj.spawnParticle(EnumParticleTypes.FLAME, player.posX,player.posY,player.posZ,1,1,1,1); 
+		player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, player.posX,player.posY,player.posZ,1,1,1,1); 
+		player.worldObj.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
+	}*/
 }

@@ -10,6 +10,7 @@ import com.lothrazar.command.CommandHome;
 import com.lothrazar.command.CommandKillAll;
 import com.lothrazar.command.CommandKit;
 import com.lothrazar.command.CommandSearchItem;
+import com.lothrazar.command.CommandSearchSpawner;
 import com.lothrazar.command.CommandSearchTrades;
 import com.lothrazar.command.CommandSimpleWaypoints;
 import com.lothrazar.command.CommandTodoList;
@@ -97,7 +98,8 @@ public class ConfigFile
 	public boolean buildingWand;
 	public boolean simpleDispenser;
 	public boolean craftObsidian;
-	public boolean dropPlayerSkullOnDeath; 
+	public boolean dropPlayerSkullOnDeath;
+	public boolean searchspawner; 
 	
 	public ConfigFile()
 	{
@@ -372,6 +374,12 @@ public class ConfigFile
     			"Use /worldhome to go to the worlds global spawn point.");  
 		
 		CommandWorldHome.REQUIRES_OP = ModLoader.config.getBoolean("worldhomehome.needs_op",category, false,
+    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
+		
+		searchspawner = ModLoader.config.getBoolean("searchspawner",category, true,
+    			"Players can search for spawners placed in the world.  Result is only chat output.");
+		
+		CommandSearchSpawner.REQUIRES_OP = ModLoader.config.getBoolean("searchspawner.needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
 		
 		searchtrade = ModLoader.config.getBoolean("searchtrade",category, true,

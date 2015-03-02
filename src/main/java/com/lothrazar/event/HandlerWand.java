@@ -91,11 +91,11 @@ public class HandlerWand
 				} 
 			}
 		} 
-		else if(held.getItem() == ItemWandDungeon.itemWand && 
+		/*else if(held.getItem() == ItemWandDungeon.itemWand && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{  
 			ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
-		}
+		}*/
 		else if(held.getItem() == ItemWandChest.itemWand && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
@@ -132,7 +132,7 @@ public class HandlerWand
      
 		ItemWandLivestock.itemWand.entitySpawnEgg(event.entityPlayer, event.target); 
   	} 
-	 
+	/*
 	@SubscribeEvent
 	public void onItemTooltip(ItemTooltipEvent event)
 	{
@@ -141,6 +141,7 @@ public class HandlerWand
 		if (event.getResult() == Result.DENY) { return; }
 
  //TODO: fix this and put it back in, make it accurate to each item/wand/whatever
+		
 		Item item = event.itemStack.getItem();
 		if(item == ItemWandDungeon.itemWand)
 			if(SamsUtilities.isShiftKeyDown())  //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0 
@@ -155,8 +156,9 @@ public class HandlerWand
 			{
 				event.toolTip.add("[Hold Shift for details]");
 			} 
+			
 	}
-	
+	*/
 	
 	@SubscribeEvent
 	public void onItemToss(ItemTossEvent event)
