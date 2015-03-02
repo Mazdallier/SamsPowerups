@@ -93,8 +93,7 @@ public class HandlerWand
 		} 
 		else if(held.getItem() == ItemWandDungeon.itemWand && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
-		{ 
-			if(event.action == event.action.RIGHT_CLICK_BLOCK){return;}
+		{  
 			ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
 		}
 		else if(held.getItem() == ItemWandChest.itemWand && 
@@ -138,22 +137,24 @@ public class HandlerWand
 	public void onItemTooltip(ItemTooltipEvent event)
 	{
 		if (event.entityPlayer == null || event.itemStack == null || event.itemStack.getItem() == null) { return; }
-
+		
 		if (event.getResult() == Result.DENY) { return; }
 
  //TODO: fix this and put it back in, make it accurate to each item/wand/whatever
 		Item item = event.itemStack.getItem();
-		if(item == ItemWandHarvest.itemWand)
+		if(item == ItemWandDungeon.itemWand)
 			if(SamsUtilities.isShiftKeyDown())  //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0 
-			{  
-				event.toolTip.add("TODO: sam put text here for each wand");
+			{   
+				String s = SamsUtilities.getItemStackNBT(event.itemStack, "found");
+			//	System.out.println("GETfound="+s);
+				//System.out.println("r="+event.entity.worldObj.isRemote);//ALWAyS TRYE
+				if(s != "")
+					event.toolTip.add(s);
 			}
 			else
 			{
 				event.toolTip.add("[Hold Shift for details]");
-			}
-		  
-	 
+			} 
 	}
 	
 	

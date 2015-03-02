@@ -40,14 +40,25 @@ public class SamsUtilities
 			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
 		} 
 	}
-	
-	public static void incrementItemStackIntegerNBT(ItemStack heldWand,	String prop, int inc) 
+	public static String getItemStackNBT(ItemStack item, String prop) 
 	{
-		int prev = getItemStackIntegerNBT(heldWand,prop);
+		if(item.getTagCompound() == null) item.setTagCompound(new NBTTagCompound());
+		String s = item.getTagCompound().getString(prop);
+		if(s == null) { s = ""; }
+		return s;
+	} 
+	public static void setItemStackNBT(ItemStack item,	String prop, String value) 
+	{
+		if(item.getTagCompound() == null) item.setTagCompound(new NBTTagCompound());
+		item.getTagCompound().setString(prop, value);
+	} 
+	public static void incrementItemStackIntegerNBT(ItemStack item,	String prop, int inc) 
+	{
+		int prev = getItemStackIntegerNBT(item,prop);
 
 		prev += inc;//can be negative
 		if(prev < 0) {prev = 0;}
-		heldWand.getTagCompound().setInteger(prop, prev);
+		item.getTagCompound().setInteger(prop, prev);
 	} 
 	public static int getItemStackIntegerNBT(ItemStack heldWand, String prop) 
 	{

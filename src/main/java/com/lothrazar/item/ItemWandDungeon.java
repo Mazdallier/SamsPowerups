@@ -109,13 +109,13 @@ public class ItemWandDungeon extends ItemTool
 
 	public void searchSpawner(EntityPlayer player, ItemStack heldWand, BlockPos pos)
 	{     
+		System.out.println("searchSpawnersearchSpawnersearchSpawner=");
 	    //changed to only show ONE message, for closest spawner
 		String foundMessage = "No Spawner found in nearby chunks";//TODO: .lang file integration
-		int x = (int)player.posX;
-		int y = (int)player.posY;
-		int z = (int)player.posZ;
+		int x = (int) player.posX;
+		int y = (int) player.posY;
+		int z = (int) player.posZ;
  
-		onSuccess(player,heldWand);
 		 
 		int xMin = x - RADIUS;
 		int xMax = x + RADIUS;
@@ -126,7 +126,7 @@ public class ItemWandDungeon extends ItemTool
 		int zMin = z - RADIUS;
 		int zMax = z + RADIUS;
 		 
-		int xDistance,zDistance,distance , distanceClosest = RADIUS* RADIUS;
+		int xDistance, zDistance, distance , distanceClosest = RADIUS * RADIUS;
 	 
 		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
 		{
@@ -146,14 +146,20 @@ public class ItemWandDungeon extends ItemTool
 							distanceClosest = distance;
 							foundMessage =  "Spawner found "
 									 + distance +" blocks from you"
-									 + " at y="+MathHelper.floor_double(yLoop)
+									 + " at y = "+MathHelper.floor_double(yLoop)
 									 ;
 						} 
 					} 
 				}
 			}
 		}
-		  
+
+		System.out.println("ENDLOOOOOOOprsearchSpawner=");
+		System.out.println("setfound="+foundMessage);
+		SamsUtilities.setItemStackNBT(heldWand, "found", foundMessage);
+		System.out.println("r="+player.worldObj.isRemote);
 		player.addChatMessage(new ChatComponentTranslation(  foundMessage )); 
+		
+		onSuccess(player,heldWand);
 	}
 }
