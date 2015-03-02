@@ -28,10 +28,7 @@ public class HandlerAutoPlantSapling
 		 { 
 			 Block blockhere = event.entity.worldObj.getBlockState(event.entityItem.getPosition()).getBlock(); 
 			 Block blockdown = event.entity.worldObj.getBlockState(event.entityItem.getPosition().down()).getBlock();
-			  
-			System.out.println("plant the sapling now"+blockhere.getUnlocalizedName() );
-			System.out.println("blockdownblockdownw"+blockdown.getUnlocalizedName());
-			
+			   
 			if(blockhere == Blocks.air && 
 				blockdown == Blocks.dirt || //includes podzol and such
 				blockdown == Blocks.grass 

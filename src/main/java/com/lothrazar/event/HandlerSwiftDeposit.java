@@ -66,9 +66,7 @@ public class HandlerSwiftDeposit
   	{ 
   		int totalItemsMoved = 0; 
   		int totalSlotsFreed = 0;
-  		
-  		//boolean debug = false;
-  	  	
+  		 
 		ItemStack chestItem;
 		ItemStack invItem;
 		int room;
@@ -82,29 +80,23 @@ public class HandlerSwiftDeposit
 		
 		//inventory and chest has 9 rows by 3 columns, never changes. same as 64 max stack size
 		for(int islotChest = START_CHEST; islotChest < END_CHEST; islotChest++)
-		{
-			//if(debug)System.out.println("c "+islotChest);
-			
+		{ 
 			chestItem = chest.getStackInSlot(islotChest);
 		
 			if(chestItem == null)
-			{ 
-				//if(debug)System.out.println("c null");
+			{  
 				continue;
 			}//not an error; empty chest slot
 			 
 			for(int islotInv = Reference.PlayerInventory.START; islotInv < Reference.PlayerInventory.END; islotInv++)
-  			{
-				//if(debug)System.out.println("p "+islotInv);
+  			{ 
 				invItem = entityPlayer.inventory.getStackInSlot(islotInv);
 				
 				if(invItem == null) 
-				{
-					//if(debug)System.out.println(islotInv+" invItem : EMPTY");
+				{ 
 					continue;
 			    }//empty inventory slot
-				//if(debug)Relay.addChatMessage(event.entityPlayer,islotInv+"    invItem : "+invItem.getDisplayName());
-  	 
+		 
   				if( invItem.getItem().equals(chestItem.getItem()) && invItem.getItemDamage() ==  chestItem.getItemDamage() )
   				{  
   					//same item, including damage (block state)
@@ -113,16 +105,11 @@ public class HandlerSwiftDeposit
   					room = chestMax - chestItem.stackSize;
   					 
   					if(room <= 0) {continue;} // no room, check the next spot
-  					
-				   // if(debug)System.out.println(" chestSlot="+islotChest+   " stackSize / MAX = "+chestItem.stackSize+" / "+chestMax);
-				   // if(debug)System.out.println(" islotInv="+islotInv+"  wants to deposit invItem.stackSize =  "+invItem.stackSize);
-  	  				 
+  			 
   					//so if i have 30 room, and 28 items, i deposit 28.
   					//or if i have 30 room and 38 items, i deposit 30
   					toDeposit = Math.min(invItem.stackSize,room);
-
-  					//System.out.println(" chestSlot="+islotChest+" islotInv="+islotInv+" MATCH "+invItem.getDisplayName()+ " ROOM / MAX = "+room+" / "+chestMax);
-  					 
+ 
   					chestItem.stackSize += toDeposit;
   					chest.setInventorySlotContents(islotChest, chestItem);
 
@@ -142,14 +129,9 @@ public class HandlerSwiftDeposit
   					{
   						//set to new quantity
   	  					entityPlayer.inventory.setInventorySlotContents(islotInv, invItem); 
-  					}
-  					 
-  	  			//	if(debug)System.out.println("NEW chestItem.stackSize="+chestItem.stackSize + " Increased By toDeposit = "+toDeposit);
-	  	  			//if(debug)System.out.println("NEW invItem.stackSize="+invItem.stackSize + " Decreased By toDeposit = "+toDeposit);
-	  	  			 
+  					} 
   				}//end if items match   
-  			}//close loop on player inventory items
-			
+  			}//close loop on player inventory items 
 		}//close loop on chest items
 		
 		if( totalSlotsFreed > 0) 

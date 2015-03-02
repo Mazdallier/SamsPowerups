@@ -118,8 +118,7 @@ public class ItemChestSack extends Item
 				invItem = new ItemStack(Item.getItemById(item),qty,meta);
 		 
 				if(invItem == null) 
-				{
-					if(debug)System.out.println(i+" invItem : EMPTY");
+				{ 
 					continue;
 			    }//empty inventory slot
 	 
@@ -129,10 +128,7 @@ public class ItemChestSack extends Item
   					room = chestMax - chestItem.stackSize;
   					 
   					if(room <= 0) {continue;} // no room, check the next spot
-  					
-				    if(debug)System.out.println(" chestSlot="+islotChest+   " stackSize / MAX = "+chestItem.stackSize+" / "+chestMax);
-				    if(debug)System.out.println(" islotInv="+i+"  wants to deposit invItem.stackSize =  "+invItem.stackSize);
-  	  				 
+  					 
   					//so if i have 30 room, and 28 items, i deposit 28.
   					//or if i have 30 room and 38 items, i deposit 30
   					toDeposit = Math.min(invItem.stackSize,room);
@@ -160,10 +156,7 @@ public class ItemChestSack extends Item
   						//set to new quantity in sack 
   						itemqty[i] = invItem.stackSize; 
   					}
-  					 
-  	  				if(debug)System.out.println("NEW chestItem.stackSize="+chestItem.stackSize + " Increased By toDeposit = "+toDeposit);
-	  	  			if(debug)System.out.println("NEW invItem.stackSize="+invItem.stackSize + " Decreased By toDeposit = "+toDeposit);
-	  	  			 
+  					   
   				}//end if items match   
   			}//close loop on player inventory items
 			
@@ -172,9 +165,8 @@ public class ItemChestSack extends Item
 		if( totalSlotsFreed > 0 ) 
 		{
 			String msg = "Sack Sort deposited "+totalItemsMoved+" items."; 
-			//System.out.println(msg);
-	  			 
-			//do we want a sound here?
+		 
+			//TODO: do we want a sound here? or write to chest? or log file?
 			//event.entityPlayer.playSound("random.bowhit1",5, 5);
 		}
 	 

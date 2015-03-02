@@ -78,7 +78,7 @@ public class HandlerPlayerTickApplesEaten
 					)
 				{//
 				//then we are in either adventure or survival mode. and flying. 
-			//	System.out.println("SERVERSIDE   " + event.player.capabilities.isFlying);
+		 
 				//PlayerPowerups props = PlayerPowerups.get(event.player);
 			 
 				//int countAppleTicks = props.getCurrentFly();
@@ -86,8 +86,7 @@ public class HandlerPlayerTickApplesEaten
 				if(	event.player.capabilities.isFlying )//this never ever happens
 				{
 						//props.incrementCurrentFly(-1);//reduce it by 1 then eh
-
-				//	System.out.println("   -1?? " + countAppleTicks);
+ 
 				}
 				 
 				}
@@ -113,7 +112,7 @@ public class HandlerPlayerTickApplesEaten
 		
 		//whenever we eat a nether apple, we are given a bunch of 'flying  ticks' that add up
 		int countAppleTicks = props.getCurrentFly();
-		//System.out.println("client.tickFlying   " + countAppleTicks);
+ 
 		//SamsUtilities.getPlayerIntegerNBT(player, Reference.MODID + MagicType.Flying.toString());
  
 		
@@ -168,9 +167,7 @@ public class HandlerPlayerTickApplesEaten
 
 			} 
 			*/
-		} 
-		//System.out.println(player.getClass().getName()+".allowFlying = "+player.capabilities.allowFlying);
-		 
+		}   
 	}
 
 	private void tickHearts(EntityPlayer player) 

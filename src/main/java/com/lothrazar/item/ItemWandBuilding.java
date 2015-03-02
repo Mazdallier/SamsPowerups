@@ -172,7 +172,7 @@ public class ItemWandBuilding extends ItemTool
 		setCompoundIfNull(held);
 
 		String currentMode = held.getTagCompound().getString(KEY_MODE);
-		 System.out.println("left : "+currentMode);
+	 
   		if(currentMode.equals(MODE_REPLACE))
 		{ 
 			doReplace(event, held); 
@@ -209,8 +209,7 @@ public class ItemWandBuilding extends ItemTool
 		}
 		 
 		String currentMode = held.getTagCompound().getString(KEY_MODE);
-
-		 System.out.println("right : "+currentMode);
+ 
 		String newMode = toggleNextMode(held);
 		 //if the mode changed, send a message
 		

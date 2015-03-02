@@ -117,8 +117,7 @@ public class CommandSimpleWaypoints  implements ICommand
 		}
 		
 		if(args[0].equals(MODE_DISPLAY))
-		{
-			//System.out.println("DISPLAY "+index);
+		{ 
 			executeDisplay(p,index);
 			return;
 		} 
@@ -317,8 +316,7 @@ public class CommandSimpleWaypoints  implements ICommand
 	    		index = Integer.parseInt( saved.get(0) );
     		}
     		catch(NumberFormatException e) 
-    		{
-    			System.out.println("NAN"  );
+    		{ 
     			return;
     		}// do nothing, its allowed to be a string
     		

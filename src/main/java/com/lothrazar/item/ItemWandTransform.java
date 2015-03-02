@@ -55,8 +55,7 @@ public class ItemWandTransform extends ItemTool
     {
     	return true; //give it shimmer
     }
-	 
-	//when an action is used
+	  
 	private static void onSuccess(EntityPlayer player)
 	{
 		player.swingItem();
@@ -107,15 +106,14 @@ public class ItemWandTransform extends ItemTool
  
 	}
  
-	 
 	private static int INVALID = -1;
 	public static void transformBlock(EntityPlayer player, ItemStack heldWand, BlockPos pos)
 	{
-		
 		IBlockState blockState = player.worldObj.getBlockState(pos);
 		Block block = blockState.getBlock();
 		int metaCurrent, metaNew = INVALID;
 		IBlockState blockStateNew = null;
+		
 		if(block == Blocks.red_mushroom_block)
 		{
 			metaCurrent = Blocks.red_mushroom_block.getMetaFromState(blockState);
@@ -132,18 +130,12 @@ public class ItemWandTransform extends ItemTool
 			else if(metaCurrent == 15)
 				metaNew = 0;
 
-			
-
-			System.out.println(metaCurrent+" -> "+metaNew);
-			
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.red_mushroom_block.getStateFromMeta(metaNew);
-		 
 		}
 		else if(block == Blocks.brown_mushroom_block)
 		{
 			metaCurrent = Blocks.brown_mushroom_block.getMetaFromState(blockState);
-
 
 			if(0 <= metaCurrent && metaCurrent <= 9)
 				metaNew = metaCurrent+1;
@@ -154,7 +146,6 @@ public class ItemWandTransform extends ItemTool
 			else if(metaCurrent == 15)
 				metaNew = 0;
 			
-			System.out.println(metaCurrent+" -> "+metaNew);
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.brown_mushroom_block.getStateFromMeta(metaNew);
 		}
@@ -162,7 +153,6 @@ public class ItemWandTransform extends ItemTool
 		{
 			metaCurrent = Blocks.double_stone_slab.getMetaFromState(blockState);
 
-			System.out.println("double_stone_slab :: "+metaCurrent);
 			if(metaCurrent == 0)//smoothstone slabs
 				metaNew = 8;
 			else if(metaCurrent == 8)
@@ -173,7 +163,6 @@ public class ItemWandTransform extends ItemTool
 			else if(metaCurrent == 9)
 				metaNew = 1;
 
-			
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.double_stone_slab.getStateFromMeta(metaNew);
 		}
@@ -181,7 +170,6 @@ public class ItemWandTransform extends ItemTool
 		{ 
 			metaCurrent = Blocks.double_stone_slab2.getMetaFromState(blockState);
 
-			System.out.println("double_stone_slab2222 :: "+metaCurrent);
 			if(metaCurrent == 0)//RED sandstone slabs
 				metaNew = 8;
 			else if(metaCurrent == 8)
@@ -192,7 +180,6 @@ public class ItemWandTransform extends ItemTool
 		}
  
 		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
-		
 		
 		if(blockStateNew != null)
 		{

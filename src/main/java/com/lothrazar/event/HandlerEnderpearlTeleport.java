@@ -13,8 +13,7 @@ public class HandlerEnderpearlTeleport
 { 
 	@SubscribeEvent
 	public void onEnderTeleportEvent(EnderTeleportEvent event)
-	{ 
-		System.out.println("onEnderTeleportEventonEnderTeleportEvent");
+	{  
 		if(event.entity instanceof EntityPlayer)
 		{
 			if(ModLoader.settings.noDamageEnderPearl)

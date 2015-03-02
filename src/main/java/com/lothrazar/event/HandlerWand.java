@@ -88,7 +88,7 @@ public class HandlerWand
 			}
 			else
 			{
-				//System.out.println("CREATE");
+	 
 				//if the up one is air, then build a chest at this spot 
 				if(event.entityPlayer.worldObj.isAirBlock(event.pos.up()))
 				{
@@ -152,8 +152,7 @@ public class HandlerWand
 			if(SamsUtilities.isShiftKeyDown())  //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0 
 			{   
 				String s = SamsUtilities.getItemStackNBT(event.itemStack, "found");
-			//	System.out.println("GETfound="+s);
-				//System.out.println("r="+event.entity.worldObj.isRemote);//ALWAyS TRYE
+ 
 				if(s != "")
 					event.toolTip.add(s);
 			}

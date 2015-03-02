@@ -11,9 +11,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World; 
+
 import org.apache.logging.log4j.Level;
 import org.lwjgl.input.Keyboard; 
+
 import com.lothrazar.samscontent.ModLoader;
+import com.sun.istack.internal.logging.Logger;
 
 public class SamsUtilities
 {   
@@ -178,7 +181,7 @@ public class SamsUtilities
 			 
 			 if(b == null)
 			 {
-				 System.out.println("Block not found : "+id);
+				 ModLoader.logger.log(Level.WARN, "getBlockListFromCSV : Block not found : "+id);
 			 }
 			 else 
 			 {

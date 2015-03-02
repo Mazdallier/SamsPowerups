@@ -53,8 +53,7 @@ public class PlayerPowerups implements IExtendedEntityProperties
 
 		this.player.getDataWatcher().updateObject(FLY_WATCHER, properties.getInteger(NBT_FLY_CURRENT));
 
-		// Just so you know it's working, add this line:
-		//System.out.println("IEXTENDED T:currentFlyTicks " + this.player.getDataWatcher().getWatchableObjectInt(FLY_WATCHER)  );
+		// Just so you know it's working, add this line: 
 	}
 
 	@Override

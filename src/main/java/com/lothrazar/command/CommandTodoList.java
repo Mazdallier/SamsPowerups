@@ -59,9 +59,7 @@ public class CommandTodoList implements ICommand
 		//String fileName = "todo_"+ p.getDisplayName() +".dat";
 		String fileName = "todo_"+playerName +".dat";
    
-		String todoCurrent = "" ;//= c.getString(KEY_LIST);
-
-		//System.out.println("GetTodoForPlayerName");
+		String todoCurrent = "" ; 
 		try 
 	 	{
 			File myFile = new File(DimensionManager.getCurrentSaveRootDirectory(), fileName); 
