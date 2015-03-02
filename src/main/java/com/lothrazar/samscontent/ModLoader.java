@@ -115,6 +115,8 @@ public class ModLoader
 		//TODO: do we want this? affects all mods and everything
 		//Items.lava_bucket.setContainerItem(Items.bucket); 
 		ItemBucketStorage.initLava();
+		ItemBucketStorage.initWater();
+		ItemBucketStorage.initMilk();
 		
 		CreativeTweaks.inventoryImprovements();
 	

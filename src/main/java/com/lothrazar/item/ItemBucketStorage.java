@@ -29,11 +29,45 @@ public class ItemBucketStorage  extends Item
 		SamsRegistry.registerItem(itemLava, "bucket_storage_lava");
 
 		GameRegistry.addShapelessRecipe(new ItemStack(itemLava), 
-				Items.lava_bucket,Items.lava_bucket,Items.lava_bucket,
-				Items.lava_bucket,Items.lava_bucket,Items.lava_bucket,
-				Items.lava_bucket,Items.lava_bucket,Items.lava_bucket);
+				Items.lava_bucket, Items.lava_bucket, Items.lava_bucket,
+				Items.lava_bucket, Items.lava_bucket, Items.lava_bucket,
+				Items.lava_bucket, Items.lava_bucket, Items.lava_bucket);
  
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.lava_bucket,9), 
 				itemLava);
 	}
+	public static ItemBucketStorage itemWater;
+	public static void initWater()
+	{
+		//if(!ModLoader.settings.enderBook) {return;}//TODO: config
+		itemWater = new ItemBucketStorage();
+
+		SamsRegistry.registerItem(itemWater, "bucket_storage_water");
+
+		GameRegistry.addShapelessRecipe(new ItemStack(itemWater), 
+				Items.water_bucket, Items.water_bucket, Items.water_bucket,
+				Items.water_bucket, Items.water_bucket, Items.water_bucket,
+				Items.water_bucket, Items.water_bucket, Items.water_bucket);
+ 
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.water_bucket,9), 
+				itemWater);
+	}
+	public static ItemBucketStorage itemMilk;
+	public static void initMilk()
+	{
+		//if(!ModLoader.settings.enderBook) {return;}//TODO: config
+		itemWater = new ItemBucketStorage();
+
+		SamsRegistry.registerItem(itemMilk, "bucket_storage_milk");
+
+		GameRegistry.addShapelessRecipe(new ItemStack(itemMilk), 
+				Items.milk_bucket, Items.milk_bucket, Items.milk_bucket,
+				Items.milk_bucket, Items.milk_bucket, Items.milk_bucket,
+				Items.milk_bucket, Items.milk_bucket, Items.milk_bucket);
+ 
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.milk_bucket,9), 
+				itemMilk);
+	}
+ 
+	
 }
