@@ -107,11 +107,13 @@ public class ItemWandTransform extends ItemTool
 	}
  
 	 
+	private static int INVALID = -1;
 	public static void transformBlock(EntityPlayer player, ItemStack heldWand, BlockPos pos)
 	{
+		
 		IBlockState blockState = player.worldObj.getBlockState(pos);
 		Block block = blockState.getBlock();
-		int metaCurrent, metaNew = -1;
+		int metaCurrent, metaNew = INVALID;
 		IBlockState blockStateNew = null;
 		if(block == Blocks.red_mushroom_block)
 		{
@@ -132,7 +134,9 @@ public class ItemWandTransform extends ItemTool
 			
 
 			System.out.println(metaCurrent+" -> "+metaNew);
-			blockStateNew =  Blocks.red_mushroom_block.getStateFromMeta(metaNew);
+			
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.red_mushroom_block.getStateFromMeta(metaNew);
 		 
 		}
 		else if(block == Blocks.brown_mushroom_block)
@@ -150,12 +154,43 @@ public class ItemWandTransform extends ItemTool
 				metaNew = 0;
 			
 			System.out.println(metaCurrent+" -> "+metaNew);
-			blockStateNew =  Blocks.brown_mushroom_block.getStateFromMeta(metaNew);
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.brown_mushroom_block.getStateFromMeta(metaNew);
 		}
-//TODO: double stone slabs (Double Stone Slab,43) from meta 0 -> 8 -> 0
-//TODO: double red standstone: 0-8-0
-		//DOUBLE regular sandstone (SAME BLOCK AS STONE)  1-9-1
-		//MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
+		else if(block == Blocks.double_stone_slab)
+		{
+			metaCurrent = Blocks.double_stone_slab.getMetaFromState(blockState);
+
+			System.out.println("double_stone_slab :: "+metaCurrent);
+			if(metaCurrent == 0)//smoothstone slabs
+				metaNew = 8;
+			else if(metaCurrent == 8)
+				metaNew = 0;
+
+			if(metaCurrent == 1)//samdstpme slabs
+				metaNew = 9;
+			else if(metaCurrent == 9)
+				metaNew = 1;
+
+			
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.double_stone_slab.getStateFromMeta(metaNew);
+		}
+		else if(block == Blocks.double_stone_slab2)
+		{ 
+			metaCurrent = Blocks.double_stone_slab2.getMetaFromState(blockState);
+
+			System.out.println("double_stone_slab2222 :: "+metaCurrent);
+			if(metaCurrent == 0)//RED sandstone slabs
+				metaNew = 8;
+			else if(metaCurrent == 8)
+				metaNew = 0;
+  
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.double_stone_slab2.getStateFromMeta(metaNew);
+		}
+ 
+		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
 		
 		
 		if(blockStateNew != null)
