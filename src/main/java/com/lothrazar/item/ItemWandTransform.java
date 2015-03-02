@@ -1,5 +1,7 @@
 package com.lothrazar.item;
 
+import java.util.List;
+
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerWand;
 import com.lothrazar.samscontent.ModLoader;
@@ -31,6 +33,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper; 
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
@@ -188,4 +191,12 @@ public class ItemWandTransform extends ItemTool
 			onSuccess(player);
 		}
 	}
+	
+	@Override
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) 
+	{         
+        list.add("For use only on");   
+        list.add("Mushroom blocks");   
+        list.add("Double Slabs");          
+	}  
 }

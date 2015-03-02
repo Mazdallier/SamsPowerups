@@ -148,6 +148,11 @@ public class HandlerWand
  //TODO: fix this and put it back in, make it accurate to each item/wand/whatever
 		
 		Item item = event.itemStack.getItem();
+		if(item == ItemWandTransform.itemWand)
+		{
+			event.toolTip.add("For use only on Mushroom blocks and some Double Slabs.");
+		}
+		 
 		if(item == ItemWandDungeon.itemWand)
 			if(SamsUtilities.isShiftKeyDown())  //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0 
 			{   

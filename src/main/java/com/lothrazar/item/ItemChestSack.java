@@ -61,7 +61,7 @@ public class ItemChestSack extends Item
         if(stacks == null) {stacks=  "0";}
         	          
         list.add("Stacks: " + EnumChatFormatting.GREEN +stacks);          
-	 }   
+	}   
 	 
 	@SuppressWarnings("unused")
 	public void sortFromSackToChestEntity(TileEntityChest chest, ItemStack held, PlayerInteractEvent event)

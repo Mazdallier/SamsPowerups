@@ -112,7 +112,7 @@ public class ItemFoodAppleMagic extends ItemFood
 			 return EnumRarity.RARE;
 	} 
 	
-	static int I = 0;
+	static int I = 0;//TODO: REFERENCE POTION
 	static int II = 1;
 	static int III = 2;
 	static int IV = 3;
