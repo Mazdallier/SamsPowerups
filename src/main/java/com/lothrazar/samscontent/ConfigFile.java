@@ -90,7 +90,8 @@ public class ConfigFile
 	public boolean craftObsidian;
 	public boolean dropPlayerSkullOnDeath;
 	public boolean searchspawner;
-	public int chanceReturnEnderPearl; 
+	public int chanceReturnEnderPearl;
+	public boolean mushroomBlocksCreativeInventory; 
 	
 	public ConfigFile()
 	{
@@ -120,6 +121,10 @@ public class ConfigFile
 	private void convenience() 
 	{
 		category = "convenience"; 	
+		
+		
+		mushroomBlocksCreativeInventory = ModLoader.config.getBoolean("mushroomBlocksCreativeInventory",category, true,
+    			"Add the (missing) mushroom blocks into creative inventory where they should be.");
 		
 		dropPlayerSkullOnDeath = ModLoader.config.getBoolean("dropPlayerSkullOnDeath",category, true,
     			"Players will drop their skull when they die.");

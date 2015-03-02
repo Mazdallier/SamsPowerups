@@ -113,7 +113,9 @@ public class ModLoader
 	public void onInit(FMLInitializationEvent event)
 	{        
 		
+		creativeInventoryImprovements();
 		
+	
 		
 		
 		MobSpawningRegistry.registerSpawns();
@@ -173,6 +175,18 @@ public class ModLoader
   		*/ 
 	}
 	
+	private void creativeInventoryImprovements() 
+	{
+		//put this in own class IF it gets big enough?
+		
+		if(settings.mushroomBlocksCreativeInventory)
+		{
+			Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations);//TODO: OWN CONFIG FEATURE
+			Blocks.brown_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations);//TODO: OWN CONFIG FEATURE
+		}
+		
+	}
+
 	@EventHandler 
 	public void onPostInit(FMLPostInitializationEvent event)
 	{ 

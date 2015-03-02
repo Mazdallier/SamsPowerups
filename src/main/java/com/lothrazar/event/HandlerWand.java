@@ -95,12 +95,7 @@ public class HandlerWand
 					ItemWandChest.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.up());
 				} 
 			}
-		} 
-		/*else if(held.getItem() == ItemWandDungeon.itemWand && 
-				event.action.RIGHT_CLICK_BLOCK == event.action)
-		{  
-			ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
-		}*/
+		}  
 		else if(held.getItem() == ItemWandChest.itemWand && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
