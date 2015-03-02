@@ -3,18 +3,8 @@ package com.lothrazar.samscontent;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.config.Configuration;
-
-import com.lothrazar.command.CommandEnderChest;
-import com.lothrazar.command.CommandHome;
-import com.lothrazar.command.CommandKillAll;
-import com.lothrazar.command.CommandKit;
-import com.lothrazar.command.CommandSearchItem;
-import com.lothrazar.command.CommandSearchSpawner;
-import com.lothrazar.command.CommandSearchTrades;
-import com.lothrazar.command.CommandSimpleWaypoints;
-import com.lothrazar.command.CommandTodoList;
-import com.lothrazar.command.CommandWorldHome; 
+import net.minecraftforge.common.config.Configuration; 
+import com.lothrazar.command.*; 
 import com.lothrazar.event.HandlerPlayerHarvest;
 import com.lothrazar.item.ItemWandBuilding;
 import com.lothrazar.item.ItemWandHarvest;
@@ -393,12 +383,7 @@ public class ConfigFile
 		
 		CommandSearchItem.REQUIRES_OP = ModLoader.config.getBoolean("searchitem_needs_op",category, false,
     			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
-		
-		killall = ModLoader.config.getBoolean("killall",category, true,
-    			"Command that lets players kill nearby mobs of a certain type, such as /killall creeper."    		);
-		
-		CommandKillAll.REQUIRES_OP = ModLoader.config.getBoolean("killall.needs_op",category, true,
-    			"Command is restricted to players with OP (or single player worlds with cheats enabled).");
+ 
 		 
 		enderchest = ModLoader.config.getBoolean("enderchest",category, true,
     			"Players can open their enderchest with a command, no item needed."    		); 

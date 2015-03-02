@@ -18,6 +18,10 @@ import com.lothrazar.util.SamsUtilities;
 public class CommandSearchSpawner implements ICommand
 { 
 	public static boolean REQUIRES_OP;
+	public CommandSearchSpawner()
+	{
+		aliases.add("searchdungeon");
+	}
 
 	@Override
 	public int compareTo(Object arg0) 

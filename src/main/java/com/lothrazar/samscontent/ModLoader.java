@@ -189,10 +189,7 @@ public class ModLoader
 		
 		if(ModLoader.settings.searchspawner) 
 			event.registerServerCommand(new CommandSearchItem()); 
-		
-		if(ModLoader.settings.killall) 
-			event.registerServerCommand(new CommandKillAll()); 
-		
+		 
 		if(ModLoader.settings.simplewaypoint) 
 			event.registerServerCommand(new CommandSimpleWaypoints()); 
 		
