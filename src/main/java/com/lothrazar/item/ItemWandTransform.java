@@ -92,7 +92,8 @@ public class ItemWandTransform extends ItemTool
 //TODO: config/recipe
 	 
 		itemWand = new ItemWandTransform(); 
-		SamsRegistry.registerItem(itemWand, "wand_transform");/*
+		SamsRegistry.registerItem(itemWand, "wand_transform");
+		/*
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "
