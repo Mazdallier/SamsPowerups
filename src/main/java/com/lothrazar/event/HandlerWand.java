@@ -46,37 +46,17 @@ public class HandlerWand
 		if(event.world.isRemote){ return ;}//server side only!
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
-		 
-		//if it drains hunnger, we cant use it when food is empty
-		//if(ItemWandHarvest.drainsHunger)
-		//	if(event.entityPlayer.getFoodStats().getFoodLevel() <= 0){return;} 
-	
+		  
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
-		 
-		if(event.action.LEFT_CLICK_BLOCK == event.action) {return;}
-		 
-		//only right clicks
-			
-		if(held.getItem() == ItemWandChest.itemChestSack && event.action.RIGHT_CLICK_BLOCK == event.action)
-		{
-			System.out.println("right click of chestsack");
-			
-		 
-			
-			//if(container == null){return;}
-			 
-			//if((container instanceof TileEntityChest) == false){return;}
-			
-			//TileEntityChest chest = (TileEntityChest)container ;
- 
-			//if(chest == null){return;}
-			 
+		   
+		if(held.getItem() == ItemWandChest.itemChestSack && 
+				event.action.RIGHT_CLICK_BLOCK == event.action)
+		{ 
 			if(blockClicked == Blocks.chest)
-			{
-				System.out.println("DEPOSIT");
+			{ 
 				TileEntityChest chest = (TileEntityChest)event.entityPlayer.worldObj.getTileEntity(event.pos.up()); 
-					 
-				 
+					  
+				//TODO: make a shared Utility function that finds adjacent chest
 				TileEntityChest teAdjacent = null; 
 		  	  	if(chest.adjacentChestXNeg != null)
 		  	  	{
@@ -104,7 +84,7 @@ public class HandlerWand
 			}
 			else
 			{
-				System.out.println("CREATE");
+				//System.out.println("CREATE");
 				//if the up one is air, then build a chest at this spot 
 				if(event.entityPlayer.worldObj.isAirBlock(event.pos.up()))
 				{
@@ -112,12 +92,14 @@ public class HandlerWand
 				} 
 			}
 		} 
-		else if(held.getItem() == ItemWandDungeon.itemWand)
+		else if(held.getItem() == ItemWandDungeon.itemWand && 
+				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			if(event.action == event.action.RIGHT_CLICK_BLOCK){return;}
 			ItemWandDungeon.itemWand.searchSpawner(event.entityPlayer,held,event.pos); 
 		}
-		else if(held.getItem() == ItemWandChest.itemWand)
+		else if(held.getItem() == ItemWandChest.itemWand && 
+				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			if(blockClicked == null || blockClicked == Blocks.air ){return;}
 			
@@ -131,11 +113,13 @@ public class HandlerWand
 			} 
 		}
 		else if(held.getItem() == ItemWandHarvest.itemWand && 
+				event.action.RIGHT_CLICK_BLOCK == event.action && 
 		    (blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes))
 		{ 
 			 ItemWandHarvest.itemWand.replantField(event.entityPlayer,held,event.pos); 
 		}
-		else if(held.getItem() == ItemWandProspect.itemWand)
+		else if(held.getItem() == ItemWandProspect.itemWand && 
+				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			ItemWandProspect.itemWand.searchProspect(event.entityPlayer,held,event.pos);   
 		}
@@ -157,23 +141,19 @@ public class HandlerWand
 		if (event.entityPlayer == null || event.itemStack == null || event.itemStack.getItem() == null) { return; }
 
 		if (event.getResult() == Result.DENY) { return; }
-/*
+
  //TODO: fix this and put it back in, make it accurate to each item/wand/whatever
 		Item item = event.itemStack.getItem();
 		if(item == ItemWandHarvest.itemWand)
 			if(SamsUtilities.isShiftKeyDown())  //thanks to http://www.minecraftforge.net/forum/index.php?topic=24991.0 
 			{  
-				event.toolTip.add("Turn chest into a sack for transport");
-				event.toolTip.add("Attack crops to harvest the whole field");
-				event.toolTip.add("Livestock Transport");
-				event.toolTip.add("Attack Smoothstone");
-				event.toolTip.add("Attack Diamond Block"); 
+				event.toolTip.add("TODO: sam put text here for each wand");
 			}
 			else
 			{
 				event.toolTip.add("[Hold Shift for details]");
 			}
-		  */
+		  
 	 
 	}
 	
