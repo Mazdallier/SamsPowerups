@@ -48,7 +48,12 @@ public class HandlerWand
 		  
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 		   
-		if(held.getItem() == ItemWandChest.itemChestSack && 
+		if(held.getItem() == ItemWandTransform.itemWand && 
+				event.action.RIGHT_CLICK_BLOCK == event.action)
+		{
+			ItemWandTransform.transformBlock(event.entityPlayer, held, event.pos);
+		}
+		else if(held.getItem() == ItemWandChest.itemChestSack && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			if(blockClicked == Blocks.chest)

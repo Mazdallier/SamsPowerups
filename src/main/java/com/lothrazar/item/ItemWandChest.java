@@ -57,62 +57,7 @@ public class ItemWandChest extends ItemTool
     	return true; //give it shimmer
     }
 	
-	public void searchProspect(EntityPlayer entityPlayer, ItemStack heldWand, BlockPos pos)
-	{  
-		//0 bottom, 1 top
-		//5 east 3 south
-		//4 west 2 north
-		
-		//the x-axis indicates the player's distance east (positive) or west (negative) of the origin point—i.e., the longitude,
-	  //	the z-axis indicates the player's distance south (positive) or north (negative) of the origin point—i.e., the latitude,
-
-		int x = (int)entityPlayer.posX;
-		int y = (int)entityPlayer.posY;
-		int z = (int)entityPlayer.posZ;
-		
-		//if player hits the EAST side of the block, then the blocks east side is facing them
-		//therefore, the player is facing west
-		String foundMessage = "No diamond ore found within "+ItemWandChest.RADIUS_PROSPECT+" blocks";//at current y = "+y;//"No Spawner found within " + RADIUS + " blocks.";
-		
-		
-		int xMin = x - ItemWandChest.RADIUS_PROSPECT;
-		int xMax = x + ItemWandChest.RADIUS_PROSPECT;
-
-		//int yMin = y - RADIUS;
-		//int yMax = y + RADIUS;
-
-		int zMin = z - ItemWandChest.RADIUS_PROSPECT;
-		int zMax = z + ItemWandChest.RADIUS_PROSPECT;
-		int xDistance,zDistance,distance , distanceClosest = ItemWandChest.RADIUS_PROSPECT* ItemWandChest.RADIUS_PROSPECT* ItemWandChest.RADIUS_PROSPECT;
-		 
-		
-		for (int xLoop = xMin; xLoop <= xMax; xLoop++)
-		{
-			for (int zLoop = zMin; zLoop <= zMax; zLoop++)
-			{ 
-				
-				if(entityPlayer.worldObj.getBlockState(new BlockPos(xLoop, y, zLoop)).getBlock().equals(Blocks.diamond_ore))
-				{ 
-					xDistance = Math.abs(xLoop - x);
-					zDistance = Math.abs(zLoop - z);
-					
-					distance = (int)Math.sqrt(xDistance * xDistance + zDistance * zDistance);
-					
-					if(distance < distanceClosest)
-					{ 
-						distanceClosest = distance;
-						foundMessage =  "Diamond ore found at distance " + distance  ;
-					} 
-				} 
-			}
-		}
-
-		entityPlayer.addChatMessage(new ChatComponentTranslation( foundMessage));
-	 
-		onSuccess(entityPlayer);
-	}
-	
-	   
+    
 	//when an action is used
 	private void onSuccess(EntityPlayer player)
 	{

@@ -212,7 +212,7 @@ public class ModLoader
 		 
 		ItemWandChest.onInit();
 
-		//ItemWandDungeon.onInit();
+		ItemWandTransform.onInit();
 
 		ItemWandHarvest.onInit();
 		
