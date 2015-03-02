@@ -89,7 +89,8 @@ public class ConfigFile
 	public boolean simpleDispenser;
 	public boolean craftObsidian;
 	public boolean dropPlayerSkullOnDeath;
-	public boolean searchspawner; 
+	public boolean searchspawner;
+	public int chanceReturnEnderPearl; 
 	
 	public ConfigFile()
 	{
@@ -123,6 +124,11 @@ public class ConfigFile
 		dropPlayerSkullOnDeath = ModLoader.config.getBoolean("dropPlayerSkullOnDeath",category, true,
     			"Players will drop their skull when they die.");
  		
+		//numbers are Default, Min, Max
+		chanceReturnEnderPearl = ModLoader.config.getInt("noDamageEnderPearl",category, 50,0,100,
+    			"No damage taken from an ender pearl throw");
+				
+				
 		noDamageEnderPearl = ModLoader.config.getBoolean("noDamageEnderPearl",category, true,
     			"No damage taken from an ender pearl throw");
 
