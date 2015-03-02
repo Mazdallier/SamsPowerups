@@ -112,6 +112,8 @@ public class ModLoader
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{    
+		ItemBucketStorage.initLava();
+		
 		CreativeTweaks.inventoryImprovements();
 	
 		MobSpawningRegistry.registerSpawns();

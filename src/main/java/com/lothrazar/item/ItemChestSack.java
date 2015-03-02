@@ -62,8 +62,7 @@ public class ItemChestSack extends Item
         	          
         list.add("Stacks: " + EnumChatFormatting.GREEN +stacks);          
 	}   
-	 
-	@SuppressWarnings("unused")
+	  
 	public void sortFromSackToChestEntity(TileEntityChest chest, ItemStack held, PlayerInteractEvent event)
   	{
 		if(held.getTagCompound()==null){return;}
@@ -116,11 +115,7 @@ public class ItemChestSack extends Item
 				qty = itemqty[i];
 				
 				invItem = new ItemStack(Item.getItemById(item),qty,meta);
-		 
-				if(invItem == null) 
-				{ 
-					continue;
-			    }//empty inventory slot
+		  
 	 
   				if( invItem.getItem().equals(chestItem.getItem()) && invItem.getItemDamage() ==  chestItem.getItemDamage() )
   				{   
