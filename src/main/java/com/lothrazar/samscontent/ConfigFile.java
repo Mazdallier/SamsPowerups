@@ -91,7 +91,11 @@ public class ConfigFile
 	public boolean dropPlayerSkullOnDeath;
 	public boolean searchspawner;
 	public int chanceReturnEnderPearl;
-	public boolean mushroomBlocksCreativeInventory; 
+	public boolean mushroomBlocksCreativeInventory;
+	public boolean barrierCreativeInventory;
+	public boolean dragonEggCreativeInventory;
+	public boolean farmlandCreativeInventory;
+	public boolean spawnerCreativeInventory; 
 	
 	public ConfigFile()
 	{
@@ -121,11 +125,22 @@ public class ConfigFile
 	private void convenience() 
 	{
 		category = "convenience"; 	
-		
-		
+		 
 		mushroomBlocksCreativeInventory = ModLoader.config.getBoolean("mushroomBlocksCreativeInventory",category, true,
     			"Add the (missing) mushroom blocks into creative inventory where they should be.");
+
+		barrierCreativeInventory = ModLoader.config.getBoolean("barrierCreativeInventory",category, true,
+    			"Add barrier into creative inventory.");
 		
+		dragonEggCreativeInventory = ModLoader.config.getBoolean("dragonEggCreativeInventory",category, true,
+    			"Add dragon egg into creative inventory.");
+		
+		farmlandCreativeInventory = ModLoader.config.getBoolean("farmlandCreativeInventory",category, true,
+    			"Add farmland into creative inventory.");
+		
+		spawnerCreativeInventory = ModLoader.config.getBoolean("spawnerCreativeInventory",category, true,
+    			"Add spawner into creative inventory.");
+    			
 		dropPlayerSkullOnDeath = ModLoader.config.getBoolean("dropPlayerSkullOnDeath",category, true,
     			"Players will drop their skull when they die.");
  		

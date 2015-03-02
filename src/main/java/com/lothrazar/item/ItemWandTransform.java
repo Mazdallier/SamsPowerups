@@ -86,10 +86,6 @@ public class ItemWandTransform extends ItemTool
 	
 	public static void onInit() 
 	{  
-		
-		Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations);//TODO: OWN CONFIG FEATURE
-		Blocks.brown_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations);//TODO: OWN CONFIG FEATURE
-		 
 	//	if(!ModLoader.settings.masterWand){return;}
 //TODO: config/recipe
 	 

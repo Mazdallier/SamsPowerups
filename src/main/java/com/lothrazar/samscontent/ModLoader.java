@@ -177,14 +177,27 @@ public class ModLoader
 	
 	private void creativeInventoryImprovements() 
 	{
-		//put this in own class IF it gets big enough?
-		
+		//TODO: put this in own class IF it gets big enough?
+		//http://minecraft.gamepedia.com/Creative#Missing_blocks_and_items
 		if(settings.mushroomBlocksCreativeInventory)
 		{
-			Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations);//TODO: OWN CONFIG FEATURE
-			Blocks.brown_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations);//TODO: OWN CONFIG FEATURE
+			Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations); 
+			Blocks.brown_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations); 
 		}
 		
+		if(settings.barrierCreativeInventory)
+			Blocks.barrier.setCreativeTab(CreativeTabs.tabDecorations); 
+
+		if(settings.dragonEggCreativeInventory)
+			Blocks.dragon_egg.setCreativeTab(CreativeTabs.tabDecorations); 
+		
+		if(settings.farmlandCreativeInventory)
+			Blocks.farmland.setCreativeTab(CreativeTabs.tabDecorations); 
+		
+		if(settings.spawnerCreativeInventory)
+			Blocks.mob_spawner.setCreativeTab(CreativeTabs.tabDecorations); 
+		
+		 
 	}
 
 	@EventHandler 
