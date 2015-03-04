@@ -5,6 +5,7 @@ import com.lothrazar.util.SamsRegistry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,6 +18,8 @@ public class ItemBucketStorage  extends Item
 	{  
 		super();  
     	setCreativeTab(CreativeTabs.tabTransport) ; 
+    	this.setMaxDamage(9); 
+		this.setMaxStackSize(1);
 	}
 
 	
@@ -75,8 +78,28 @@ public class ItemBucketStorage  extends Item
 				itemMilk);
 				*/
 	}
-	public static void placeLiquid(EntityPlayer entityPlayer, ItemStack held,BlockPos pos) 
+	public static void placeLiquid(EntityPlayer player, ItemStack held,BlockPos pos) 
 	{
-//TODO: 	
+//TODO: 
+		player.swingItem();
+		
+		//TODO: SIDE!!! PLAYER FADCING: WHAT?
+		if(player.worldObj.isAirBlock(pos))
+		{
+			if(held.getItem() == itemLava)
+				player.worldObj.setBlockState(pos, Blocks.lava.getDefaultState());
+			else if(held.getItem() == itemWater)
+				player.worldObj.setBlockState(pos, Blocks.water.getDefaultState());
+			 
+			held.damageItem(1, player);
+			
+			if(held.getItemDamage() <= 0)
+			{  
+				player.playSound("random.break", 2F,2f);
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.bucket,9));
+			 
+			}
+		}
+		
 	} 
 }

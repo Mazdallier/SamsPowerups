@@ -266,6 +266,7 @@ public class ModLoader
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse() 
+     		,new HandlerBucketStorage()
       		,new HandlerPlayerHarvest()
      		,new HandlerEnderBookClick()
       		,new HandlerEnderpearlTeleport()
