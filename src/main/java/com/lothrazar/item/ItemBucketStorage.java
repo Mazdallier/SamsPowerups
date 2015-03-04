@@ -59,6 +59,7 @@ public class ItemBucketStorage  extends Item
 				itemWater);
 				*/
 	}
+	/*
 	public static ItemBucketStorage itemMilk;
 	public static void initMilk()
 	{
@@ -71,25 +72,30 @@ public class ItemBucketStorage  extends Item
 				Items.milk_bucket, Items.milk_bucket, Items.milk_bucket,
 				Items.milk_bucket, Items.milk_bucket, Items.milk_bucket,
 				Items.milk_bucket, Items.milk_bucket, Items.milk_bucket);
-		//TODO: using it will place one spot of water and use up one durability
-		//the 9x9 at once doesnt make sense
- /*
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.milk_bucket,9), 
-				itemMilk);
-				*/
-	}
-	public static void placeLiquid(EntityPlayer player, ItemStack held,BlockPos pos) 
-	{
-//TODO: 
-		player.swingItem();
+		 
+
+		GameRegistry.addRecipe(new ItemStack(Blocks.cake, 3), 
+				"sws",
+				"eee",
+				"sms",
+				's', Items.sugar,
+				'e', Items.egg,
+				'w', Blocks.wheat,
+				'm', itemMilk);
 		
-		//TODO: SIDE!!! PLAYER FADCING: WHAT?
+		
+	}*/
+	
+	public static void placeLiquid(EntityPlayer player, ItemStack held,BlockPos pos) 
+	{ 
+		player.swingItem();
+		 
 		if(player.worldObj.isAirBlock(pos))
 		{
 			if(held.getItem() == itemLava)
 				player.worldObj.setBlockState(pos, Blocks.lava.getDefaultState());
 			else if(held.getItem() == itemWater)
-				player.worldObj.setBlockState(pos, Blocks.water.getDefaultState());
+				player.worldObj.setBlockState(pos, Blocks.water.getDefaultState()); 
 			 
 			held.damageItem(1, player);
 			
@@ -99,7 +105,6 @@ public class ItemBucketStorage  extends Item
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.bucket,9));
 			 
 			}
-		}
-		
+		} 
 	} 
 }
