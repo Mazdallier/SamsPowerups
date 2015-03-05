@@ -81,6 +81,7 @@ public class HandlerScreenText
 		
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
   
+	
 		addDateTimeInfo(event, world);
 		 
 		//addFlyingAppleInfo(event, player);
