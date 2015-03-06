@@ -84,7 +84,7 @@ public class ModLoader
 	public static ConfigFile configSettings;
 	public static SimpleNetworkWrapper network; 
 	
-	 public static CreativeTabs tabSamsContent = new CreativeTabs("tabSamsContent") 
+	public static CreativeTabs tabSamsContent = new CreativeTabs("tabSamsContent") 
 	{
 
 		@Override
@@ -119,9 +119,12 @@ public class ModLoader
 		registerEventHandlers(); //IEXTENDED properties sasy this goes in init?
 
 		ItemRegistry.registerItems();
+		
+		BlockRegistry.registerBlocks();
+		
 		/*
 		 * Fluid flows in the world and gets placed but is invisible& transparent
-		BlockRegistry.registerBlocks();
+		
 		//http://www.minecraftforge.net/wiki/Create_a_Fluid
 		fluidMilk = new Fluid("fluid_milk");
 		FluidRegistry.registerFluid(fluidMilk);
@@ -132,8 +135,8 @@ public class ModLoader
 FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidMilk,1), new ItemStack(Items.milk_bucket), new ItemStack(Items.bucket));
 */
 	}
-	public static BlockFluidMilk blockMilk;
-	public Fluid fluidMilk;
+	//public static BlockFluidMilk blockMilk;
+	//public Fluid fluidMilk;
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     

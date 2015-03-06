@@ -19,6 +19,14 @@ public class HandlerKeyInput
         else if(ClientProxy.keyShiftDown.isPressed() )
         { 	      
         	 ModLoader.network.sendToServer( new MessageKeyPressed(ClientProxy.keyShiftDown.getKeyCode()));  
+        }      
+        else if(ClientProxy.keyBarDown.isPressed() )
+        { 	      
+        	 ModLoader.network.sendToServer( new MessageKeyPressed(ClientProxy.keyBarDown.getKeyCode()));  
+        }  
+        else if(ClientProxy.keyBarUp.isPressed() )
+        { 	      
+        	 ModLoader.network.sendToServer( new MessageKeyPressed(ClientProxy.keyBarUp.getKeyCode()));  
         }  
     } 
 }

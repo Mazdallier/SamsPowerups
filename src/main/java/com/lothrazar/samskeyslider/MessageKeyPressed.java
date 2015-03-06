@@ -41,68 +41,94 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 		EntityPlayer player = ctx.getServerHandler().playerEntity; 
 		//THANKS TO THIS
 		//www.minecraftforge.net/forum/index.php/topic,20135.0.html
-		int barNumber = player.inventory.currentItem;
+		int currentItem = player.inventory.currentItem;
  
 		if( message.keyPressed == ClientProxy.keyShiftUp.getKeyCode())
- 	    {   
-			ItemStack held = player.inventory.getCurrentItem();
-			 
-			//so we move each up by nine
-
-			int topNumber = barNumber + 9;
-			int midNumber = topNumber + 9;
-			int lowNumber = midNumber + 9;
-			//so if we had the final slot hit (8 for keyboard 9) we would go 8, 17, 26, 35
-			 
-			ItemStack bar = player.inventory.getStackInSlot(player.inventory.currentItem);
-			ItemStack top = player.inventory.getStackInSlot(topNumber);
-			ItemStack mid = player.inventory.getStackInSlot(midNumber);
-			ItemStack low = player.inventory.getStackInSlot(lowNumber);
-		  
-			player.inventory.setInventorySlotContents(barNumber, null);
-			player.inventory.setInventorySlotContents(barNumber, low);//lot so 0 gets what 9 had
-	 
-			player.inventory.setInventorySlotContents(lowNumber, null);
-			player.inventory.setInventorySlotContents(lowNumber, mid);
-	 
-			player.inventory.setInventorySlotContents(midNumber, null);
-			player.inventory.setInventorySlotContents(midNumber, top);
-	 
-			player.inventory.setInventorySlotContents(topNumber, null);
-			player.inventory.setInventorySlotContents(topNumber, bar);
-	  
+ 	    {    
+			shiftSlotUp(player, currentItem); 
 		} 
 		else if( message.keyPressed == ClientProxy.keyShiftDown.getKeyCode())
 	 	{  
-			ItemStack held = player.inventory.getCurrentItem();
-			 
-			//so we move each up by nine
- 
-			int topNumber = barNumber + 9;
-			int midNumber = topNumber + 9;
-			int lowNumber = midNumber + 9;
-			//so if we had the final slot hit (8 for keyboard 9) we would go 8, 17, 26, 35
-			 
-			ItemStack bar = player.inventory.getStackInSlot(player.inventory.currentItem);
-			ItemStack top = player.inventory.getStackInSlot(topNumber);
-			ItemStack mid = player.inventory.getStackInSlot(midNumber);
-			ItemStack low = player.inventory.getStackInSlot(lowNumber);
-		  
-			player.inventory.setInventorySlotContents(barNumber, null);
-			player.inventory.setInventorySlotContents(barNumber, top);//lot so 0 gets what 9 had
-
-			player.inventory.setInventorySlotContents(topNumber, null);
-			player.inventory.setInventorySlotContents(topNumber, mid);
-
-			player.inventory.setInventorySlotContents(midNumber, null);
-			player.inventory.setInventorySlotContents(midNumber, low);
-			
-			player.inventory.setInventorySlotContents(lowNumber, null);
-			player.inventory.setInventorySlotContents(lowNumber, bar);
-	   
+			shiftSlotDown(player, currentItem); 
 		} 
+		else if( message.keyPressed == ClientProxy.keyBarUp.getKeyCode())
+	 	{   
+			shiftSlotUp(player, 0); 
+			shiftSlotUp(player, 1); 
+			shiftSlotUp(player, 2); 
+			shiftSlotUp(player, 3); 
+			shiftSlotUp(player, 4); 
+			shiftSlotUp(player, 5); 
+			shiftSlotUp(player, 6); 
+			shiftSlotUp(player, 7); 
+			shiftSlotUp(player, 8); 
+	 	}
+		else if( message.keyPressed == ClientProxy.keyBarDown.getKeyCode())
+	 	{  
+			shiftSlotDown(player, 0); 
+			shiftSlotDown(player, 1); 
+			shiftSlotDown(player, 2); 
+			shiftSlotDown(player, 3); 
+			shiftSlotDown(player, 4); 
+			shiftSlotDown(player, 5); 
+			shiftSlotDown(player, 6); 
+			shiftSlotDown(player, 7); 
+			shiftSlotDown(player, 8); 
+	 	}
  
 		return null;
+	}
+
+	private void shiftSlotDown(EntityPlayer player, int currentItem) 
+	{
+		int topNumber = currentItem + 9;
+		int midNumber = topNumber + 9;
+		int lowNumber = midNumber + 9;
+		//so if we had the final slot hit (8 for keyboard 9) we would go 8, 17, 26, 35
+		 
+		ItemStack bar = player.inventory.getStackInSlot(currentItem);
+		ItemStack top = player.inventory.getStackInSlot(topNumber);
+		ItemStack mid = player.inventory.getStackInSlot(midNumber);
+		ItemStack low = player.inventory.getStackInSlot(lowNumber);
+  
+		player.inventory.setInventorySlotContents(currentItem, null);
+		player.inventory.setInventorySlotContents(currentItem, top);//lot so 0 gets what 9 had
+
+		player.inventory.setInventorySlotContents(topNumber, null);
+		player.inventory.setInventorySlotContents(topNumber, mid);
+
+		player.inventory.setInventorySlotContents(midNumber, null);
+		player.inventory.setInventorySlotContents(midNumber, low);
+		
+		player.inventory.setInventorySlotContents(lowNumber, null);
+		player.inventory.setInventorySlotContents(lowNumber, bar);
+	}
+
+	private void shiftSlotUp(EntityPlayer player, int currentItem) 
+	{
+		//so we move each up by nine
+
+		int topNumber = currentItem + 9;
+		int midNumber = topNumber + 9;
+		int lowNumber = midNumber + 9;
+		//so if we had the final slot hit (8 for keyboard 9) we would go 8, 17, 26, 35
+		 
+		ItemStack bar = player.inventory.getStackInSlot(currentItem);
+		ItemStack top = player.inventory.getStackInSlot(topNumber);
+		ItemStack mid = player.inventory.getStackInSlot(midNumber);
+		ItemStack low = player.inventory.getStackInSlot(lowNumber);
+  
+		player.inventory.setInventorySlotContents(currentItem, null);
+		player.inventory.setInventorySlotContents(currentItem, low);//lot so 0 gets what 9 had
+ 
+		player.inventory.setInventorySlotContents(lowNumber, null);
+		player.inventory.setInventorySlotContents(lowNumber, mid);
+ 
+		player.inventory.setInventorySlotContents(midNumber, null);
+		player.inventory.setInventorySlotContents(midNumber, top);
+ 
+		player.inventory.setInventorySlotContents(topNumber, null);
+		player.inventory.setInventorySlotContents(topNumber, bar);
 	}
 }
  

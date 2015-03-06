@@ -16,6 +16,8 @@ public class ClientProxy extends CommonProxy
 {  
 	public static KeyBinding keyShiftUp;
 	public static KeyBinding keyShiftDown; 
+	public static KeyBinding keyBarUp;
+	public static KeyBinding keyBarDown; 
 
     @Override
     public void registerRenderers() 
@@ -26,6 +28,12 @@ public class ClientProxy extends CommonProxy
 		keyShiftDown = new KeyBinding(Reference.keyDownName, Keyboard.KEY_V, Reference.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
 
+        keyBarUp = new KeyBinding(Reference.keyUpName, Keyboard.KEY_Z, Reference.keyCategory);
+        ClientRegistry.registerKeyBinding(ClientProxy.keyBarUp);
+         
+        keyBarDown = new KeyBinding(Reference.keyDownName, Keyboard.KEY_X, Reference.keyCategory); 
+        ClientRegistry.registerKeyBinding(ClientProxy.keyBarDown); 
+        
         String item;
         ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
    		for(int i = 0; i < SamsRegistry.delay.size(); i++)
