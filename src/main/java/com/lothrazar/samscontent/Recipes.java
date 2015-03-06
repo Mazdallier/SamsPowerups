@@ -69,7 +69,22 @@ public class Recipes
 	    }
 	}
 	
-	
+
+	public static void gravelToClay()
+	{
+		if(!ModLoader.configSettings.gravelToClay)  {return;}
+
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.clay, 4)
+				 ,Items.water_bucket
+				 ,Blocks.gravel
+				 ,Blocks.gravel
+				 ,Blocks.gravel
+				 ,Blocks.gravel
+				 ,Blocks.dirt
+				 ,Blocks.dirt
+				 ,Blocks.dirt
+				 ,Blocks.dirt);
+	}
 	
 	
 	public static void mushroomBlocks()

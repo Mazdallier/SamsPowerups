@@ -10,7 +10,7 @@
 //beetroots can be eaten to restore 1 (Half Heart.svg) health.//soup restores (8)?? seeds from tilling grass 1/15 chance
 //TODO: IF we get sign copy/paste working, try the same with noteblocks
 //six beetroot like a sign above a bowl -> one bt soup. fills 
-//TODO: mushrroms self plant same way we have saplings do
+//[march05]: mushrroms self plant same way we have saplings do
 //1 beetroot gives one rose red. it breeds pigs and gets follow like carrot
 //TODO: is it worthwhile/easy to turn the appleflying/nbt stuff into an actual potion effect?
 //TODO: a way to place signs quick by skipping interface (leaving them blank)

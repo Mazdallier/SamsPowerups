@@ -33,7 +33,7 @@ public class ConfigFile
 	//public boolean craftableMobHeads;
 	public boolean betterBonemeal;
 	public boolean decorativeBlocks; 
-	public boolean recipes; 
+ 
 	public boolean uncraftGeneral; 
 	public boolean fishingNetBlock;
 	public boolean xRayBlock;
@@ -99,7 +99,8 @@ public class ConfigFile
 	public boolean barrierCreativeInventory;
 	public boolean dragonEggCreativeInventory;
 	public boolean farmlandCreativeInventory;
-	public boolean spawnerCreativeInventory; 
+	public boolean spawnerCreativeInventory;
+	public boolean gravelToClay; 
 	
 	public ConfigFile(Configuration c)
 	{
@@ -341,6 +342,9 @@ public class ConfigFile
 	private void crafting() 
 	{
 		category = "morecrafting";
+		gravelToClay = instance.getBoolean( "gravelToClay",category,true,
+				"Since clay in oceans has been replaced by pure gravel, this recipe lets you turn 4 clay, 4 water, and one bucket worth of water into Clay Blocks");
+		 
 		/*
 		craftObsidian = instance.getBoolean( "craftObsidian",category,true,
 				"Create obsidian with lava bucket and ice.  Create a lava bucket with obsidian, a fire charge, and an empty bucket.");
