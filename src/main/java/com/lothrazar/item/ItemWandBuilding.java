@@ -3,9 +3,12 @@ package com.lothrazar.item;  //package com.lothrazar.buildersunity.item;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random; 
+
 import com.google.common.collect.Sets; 
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsRegistry;
+
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -40,7 +43,6 @@ public class ItemWandBuilding extends ItemTool
 	}
 
 	private static int DURABILITY = 200;
-	public static ItemWandBuilding itemWand;
 	public static boolean replaceBedrock = false;
 	public static boolean replaceObsidian = false;
 	public static boolean replaceTileEntities = false;
@@ -49,9 +51,9 @@ public class ItemWandBuilding extends ItemTool
 	{  
 		if(!ModLoader.configSettings.buildingWand){return;}
 		 
-		itemWand = new ItemWandBuilding(); 
-		SamsRegistry.registerItem(itemWand, "wand_building" );   
-		GameRegistry.addRecipe(new ItemStack(itemWand)
+		ItemRegistry.wandBuilding = new ItemWandBuilding(); 
+		SamsRegistry.registerItem(ItemRegistry.wandBuilding, "wand_building" );   
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.wandBuilding)
 			,"bdb"
 			," b "
 			," b "
@@ -59,7 +61,7 @@ public class ItemWandBuilding extends ItemTool
 			, 'b', Items.blaze_rod  );
 		
 		if(ModLoader.configSettings.uncraftGeneral)
-			GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.diamond_block,1,0),0);	//recycling	 
+			GameRegistry.addSmelting(ItemRegistry.wandBuilding, new ItemStack(Blocks.diamond_block,1,0),0);	//recycling	 
 	}
 	 
 	private static void setCompoundIfNull(ItemStack held)
@@ -155,7 +157,7 @@ public class ItemWandBuilding extends ItemTool
 	{	
 		if(event.player.worldObj.isRemote){ return ;}
 		ItemStack held = event.player.getCurrentEquippedItem(); 
-		if(held == null || Item.getIdFromItem(held.getItem()) != Item.getIdFromItem(itemWand) ) {return; } 
+		if(held == null || Item.getIdFromItem(held.getItem()) != Item.getIdFromItem(ItemRegistry.wandBuilding) ) {return; } 
 
 		setCompoundIfNull(held); 
 		

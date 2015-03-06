@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerWand;
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -48,9 +49,7 @@ public class ItemWandHarvest extends ItemTool
 		this.setMaxStackSize(1);
 		this.setCreativeTab(ModLoader.tabSamsContent);
 	}
-	 
-	private static int RADIUS_PROSPECT = 16;
-	
+	   
 	@Override
     public boolean hasEffect(ItemStack par1ItemStack)
     {
@@ -137,16 +136,15 @@ public class ItemWandHarvest extends ItemTool
 		} 
 	}
 	
-	public static ItemWandHarvest itemWand;
  
 	
 	public static void onInit() 
 	{  
 		//if(!ModLoader.settings.masterWand){return;}
 			
-		itemWand = new ItemWandHarvest();
+		ItemRegistry.wandHarvest = new ItemWandHarvest();
   
-		SamsRegistry.registerItem(itemWand, "wand_harvest");/*
+		SamsRegistry.registerItem(ItemRegistry.wandHarvest, "wand_harvest");/*
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "

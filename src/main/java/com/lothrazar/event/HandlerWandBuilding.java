@@ -1,6 +1,8 @@
 package com.lothrazar.event;
 
 import com.lothrazar.item.ItemWandBuilding; 
+import com.lothrazar.samscontent.ItemRegistry;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -18,7 +20,7 @@ public class HandlerWandBuilding
 	public void onPlayerClick(PlayerInteractEvent event)
   	{ 
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
-		if(held==null || held.getItem() != ItemWandBuilding.itemWand){return;}
+		if(held==null || held.getItem() != ItemRegistry.wandBuilding){return;}
 		 
 		if(event.action.LEFT_CLICK_BLOCK == event.action  )
 		{ 

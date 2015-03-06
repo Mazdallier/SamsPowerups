@@ -5,6 +5,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.lothrazar.item.ItemEnderBook;
+import com.lothrazar.samscontent.ItemRegistry;
 
 public class HandlerEnderBookClick 
 { 
@@ -15,13 +16,13 @@ public class HandlerEnderBookClick
 
 		if (itemStack == null || 
 			itemStack.getItem() == null || 
-			ItemEnderBook.itemEnderBook == null) 
+			ItemRegistry.itemEnderBook == null) 
 		{ 
 			return; 
 		}
 
 		//left or right click with the book does the corresponding action
-		if (itemStack.getItem() == ItemEnderBook.itemEnderBook)
+		if (itemStack.getItem() == ItemRegistry.itemEnderBook)
 		{
 			if (event.action.LEFT_CLICK_BLOCK == event.action)
 			{ 			 
@@ -29,7 +30,7 @@ public class HandlerEnderBookClick
 			} 
 			else
 			{ 
-				ItemEnderBook.itemEnderBook.saveCurrentLocation( event.entityPlayer, itemStack);
+				ItemRegistry.itemEnderBook.saveCurrentLocation( event.entityPlayer, itemStack);
 			}
 			
 			event.entityPlayer.swingItem();

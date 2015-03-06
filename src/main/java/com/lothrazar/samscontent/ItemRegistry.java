@@ -1,6 +1,7 @@
 package com.lothrazar.samscontent;
 
 import com.lothrazar.item.ItemBucketStorage;
+import com.lothrazar.item.ItemChestSack;
 import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
 import com.lothrazar.item.ItemWandBuilding;
@@ -12,10 +13,28 @@ import com.lothrazar.item.ItemWandTransform;
 
 public class ItemRegistry 
 {
+	public static ItemBucketStorage itemWater;
+	public static ItemBucketStorage itemLava;
+	public static ItemEnderBook itemEnderBook = null;
+	public static ItemWandBuilding wandBuilding;
+	public static ItemWandChest wandChest; 
+	public static ItemChestSack itemChestSack;
+	public static ItemWandHarvest wandHarvest;
+	public static ItemWandTransform wandTransform; 
+	public static ItemWandLivestock wandLivestock;
+	public static ItemWandProspect wandProspect; 
+	 
+	public static ItemFoodAppleMagic apple_emerald;
+	public static ItemFoodAppleMagic apple_emerald_rich;
+	public static ItemFoodAppleMagic apple_diamond; 
+	public static ItemFoodAppleMagic apple_lapis;
+	public static ItemFoodAppleMagic apple_lapis_rich;
+	public static ItemFoodAppleMagic apple_chocolate;
+	public static ItemFoodAppleMagic apple_chocolate_rich;
+	public static ItemFoodAppleMagic apple_nether_star;
+	 
 	public static void registerItems()
 	{
-		//TODO: put item static instances here
-		
 		ItemBucketStorage.initLava();
 		
 		ItemBucketStorage.initWater();

@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerWand;
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -86,8 +87,7 @@ public class ItemWandProspect extends ItemTool
 	 
 		onSuccess(entityPlayer);
 	}
-	
-	   
+	 
 	//when an action is used
 	private void onSuccess(EntityPlayer player)
 	{
@@ -111,16 +111,14 @@ public class ItemWandProspect extends ItemTool
 			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
 		} 
 	}
-	
-	public static ItemWandProspect itemWand; 
-	
+	 
 	public static void onInit() 
 	{  
 		//if(!ModLoader.settings.masterWand){return;}
 			
-		itemWand = new ItemWandProspect();
+		ItemRegistry.wandProspect = new ItemWandProspect();
   
-		SamsRegistry.registerItem(itemWand, "wand_prospect");/*
+		SamsRegistry.registerItem(ItemRegistry.wandProspect, "wand_prospect");/*
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "

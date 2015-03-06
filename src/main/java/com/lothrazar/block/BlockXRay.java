@@ -3,6 +3,7 @@ package com.lothrazar.block;
 import java.util.ArrayList;
 import java.util.Random; 
 
+import com.lothrazar.samscontent.BlockRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsRegistry;
 
@@ -27,9 +28,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class BlockXRay extends Block
-{
-	private static boolean isEnabled = true;
- 
+{ 
 	public BlockXRay()
 	{
 		super(Material.glass); 
@@ -61,15 +60,14 @@ public class BlockXRay extends Block
         return EnumWorldBlockLayer.CUTOUT; // transparency
     }
 	
-	public static BlockXRay block_xray ;
 	public static void initXray()
 	{
 		if(!ModLoader.configSettings.xRayBlock){return;}
 		
-		block_xray = new BlockXRay(); 
-		SamsRegistry.registerBlock(block_xray,"block_xray");
+		BlockRegistry.block_xray = new BlockXRay(); 
+		SamsRegistry.registerBlock(BlockRegistry.block_xray,"block_xray");
 
-		GameRegistry.addRecipe(new ItemStack(block_xray), 
+		GameRegistry.addRecipe(new ItemStack(BlockRegistry.block_xray), 
 				"owo", 
 				"wgw", 
 				"owo",
@@ -78,7 +76,7 @@ public class BlockXRay extends Block
 				'o', Blocks.obsidian);
 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(new ItemStack(block_xray)
+			GameRegistry.addSmelting(new ItemStack(BlockRegistry.block_xray)
 			, new ItemStack(Blocks.web, 4), 0);
 	}
 }

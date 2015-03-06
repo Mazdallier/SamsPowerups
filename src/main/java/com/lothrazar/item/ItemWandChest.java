@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerWand;
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -82,17 +83,16 @@ public class ItemWandChest extends ItemTool
 		} 
 	}
 	
-	public static ItemWandChest itemWand; 
 	
 	public static void onInit() 
 	{  
 	//	if(!ModLoader.settings.masterWand){return;}
 
-		itemChestSack = new ItemChestSack();   
-		SamsRegistry.registerItem(itemChestSack, "chest_sack");
+		ItemRegistry.itemChestSack = new ItemChestSack();   
+		SamsRegistry.registerItem(ItemRegistry.itemChestSack, "chest_sack");
 		
-		itemWand = new ItemWandChest(); 
-		SamsRegistry.registerItem(itemWand, "wand_chest");/*
+		ItemRegistry.wandChest = new ItemWandChest(); 
+		SamsRegistry.registerItem(ItemRegistry.wandChest, "wand_chest");/*
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "
@@ -105,7 +105,6 @@ public class ItemWandChest extends ItemTool
 */
  
 	}
-	public static ItemChestSack itemChestSack;
 
 	public void convertChestToSack(EntityPlayer entityPlayer, ItemStack heldWand, TileEntityChest chestTarget, BlockPos pos)
 	{
@@ -123,7 +122,7 @@ public class ItemWandChest extends ItemTool
 		int END_CHEST =  START_CHEST + ROWS * COLS;
 		int END_INV = START_INV + ROWS * COLS;
 
-		ItemStack drop = new ItemStack(itemChestSack ,1,0); 
+		ItemStack drop = new ItemStack(ItemRegistry.itemChestSack ,1,0); 
 		
 		if(drop.getTagCompound() == null)  drop.setTagCompound(new NBTTagCompound());
  

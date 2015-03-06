@@ -3,6 +3,7 @@ package com.lothrazar.event;
 import org.apache.logging.log4j.Logger;  
 
 import com.lothrazar.item.*;
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsUtilities; 
 
@@ -48,12 +49,12 @@ public class HandlerWand
 		  
 		Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 		   
-		if(held.getItem() == ItemWandTransform.itemWand && 
+		if(held.getItem() == ItemRegistry.wandTransform && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{
 			ItemWandTransform.transformBlock(event.entityPlayer, held, event.pos);
 		}
-		else if(held.getItem() == ItemWandChest.itemChestSack && 
+		else if(held.getItem() == ItemRegistry.itemChestSack && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			if(blockClicked == Blocks.chest)
@@ -79,11 +80,11 @@ public class HandlerWand
 		  	  		teAdjacent = chest.adjacentChestZPos; 
 		  	  	}
 		  		 
-		  		ItemWandChest.itemChestSack.sortFromSackToChestEntity(chest,held,event);
+		  		ItemRegistry.itemChestSack.sortFromSackToChestEntity(chest,held,event);
 		  		
 		  		if(teAdjacent != null)
 		  		{
-		  			ItemWandChest.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event); 
+		  			ItemRegistry.itemChestSack.sortFromSackToChestEntity(teAdjacent,held,event); 
 		  		} 	
 			}
 			else
@@ -92,11 +93,11 @@ public class HandlerWand
 				//if the up one is air, then build a chest at this spot 
 				if(event.entityPlayer.worldObj.isAirBlock(event.pos.up()))
 				{
-					ItemWandChest.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.up());
+					ItemRegistry.itemChestSack.createAndFillChest(event.entityPlayer,held,  event.pos.up());
 				} 
 			}
 		}  
-		else if(held.getItem() == ItemWandChest.itemWand && 
+		else if(held.getItem() == ItemRegistry.wandChest && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			if(blockClicked == null || blockClicked == Blocks.air ){return;}
@@ -106,20 +107,20 @@ public class HandlerWand
 				TileEntity container = event.world.getTileEntity(event.pos);
 				if(container instanceof TileEntityChest)
 				{
-					ItemWandChest.itemWand.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.pos);  
+					ItemRegistry.wandChest.convertChestToSack(event.entityPlayer,held,(TileEntityChest)container,event.pos);  
 				}
 			} 
 		}
-		else if(held.getItem() == ItemWandHarvest.itemWand && 
+		else if(held.getItem() == ItemRegistry.wandHarvest && 
 				event.action.RIGHT_CLICK_BLOCK == event.action && 
 		    (blockClicked == Blocks.wheat || blockClicked == Blocks.carrots || blockClicked == Blocks.potatoes))
 		{ 
-			 ItemWandHarvest.itemWand.replantField(event.entityPlayer,held,event.pos); 
+			ItemRegistry.wandHarvest.replantField(event.entityPlayer,held,event.pos); 
 		}
-		else if(held.getItem() == ItemWandProspect.itemWand && 
+		else if(held.getItem() == ItemRegistry.wandProspect && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
-			ItemWandProspect.itemWand.searchProspect(event.entityPlayer,held,event.pos);   
+			ItemRegistry.wandProspect.searchProspect(event.entityPlayer,held,event.pos);   
 		}
   	}
   
@@ -127,10 +128,10 @@ public class HandlerWand
 	public void onEntityInteractEvent(EntityInteractEvent event)
   	{
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem(); 
-		if(held == null || held.getItem() != ItemWandLivestock.itemWand ){ return;}
+		if(held == null || held.getItem() != ItemRegistry.wandLivestock ){ return;}
 		if(event.entityPlayer.worldObj.isRemote ){ return;}//so do nothing on client side
      
-		ItemWandLivestock.itemWand.entitySpawnEgg(event.entityPlayer, event.target); 
+		ItemRegistry.wandLivestock.entitySpawnEgg(event.entityPlayer, event.target); 
   	} 
 	/*
 	@SubscribeEvent

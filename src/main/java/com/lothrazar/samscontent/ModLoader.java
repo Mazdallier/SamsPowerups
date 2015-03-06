@@ -84,9 +84,8 @@ public class ModLoader
 	{
 
 		@Override
-		public Item getTabIconItem() {
-			//return ItemRegistry.cuttingboardItem;
-			return ItemFoodAppleMagic.apple_chocolate;
+		public Item getTabIconItem() { 
+			return ItemRegistry.apple_chocolate;
 		}
 	};
 		

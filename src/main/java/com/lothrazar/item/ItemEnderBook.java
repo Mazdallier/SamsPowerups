@@ -3,6 +3,7 @@ package com.lothrazar.item;
 import java.util.List; 
 
 import com.google.common.collect.Sets;   
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Location;
 import com.lothrazar.util.Reference;
@@ -31,7 +32,6 @@ import net.minecraft.util.MathHelper;
 public class ItemEnderBook extends ItemTool
 { 
 	public static String KEY_LOC = "location"; 
-	public static ItemEnderBook itemEnderBook = null;
 	private static int DURABILITY = 50;
 	
 	public ItemEnderBook( )
@@ -131,15 +131,15 @@ public class ItemEnderBook extends ItemTool
 	public static void initEnderbook()
 	{
 		if(!ModLoader.configSettings.enderBook) {return;}
-		itemEnderBook = new ItemEnderBook();
+		ItemRegistry.itemEnderBook = new ItemEnderBook();
 
-		SamsRegistry.registerItem(itemEnderBook, "book_ender");
+		SamsRegistry.registerItem(ItemRegistry.itemEnderBook, "book_ender");
 
-		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.itemEnderBook), "eee", "ebe",
 				"eee", 'e', Items.ender_pearl, 'b', Items.book);
 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(itemEnderBook, new ItemStack(
+			GameRegistry.addSmelting(ItemRegistry.itemEnderBook, new ItemStack(
 					Items.ender_pearl, 8), 0);
 	}
 }

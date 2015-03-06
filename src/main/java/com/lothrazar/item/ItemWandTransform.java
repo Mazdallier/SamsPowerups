@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerWand;
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -50,8 +51,7 @@ public class ItemWandTransform extends ItemTool
 		this.setMaxStackSize(1);
 		this.setCreativeTab(ModLoader.tabSamsContent);
 	}
-	 
-	private static int RADIUS_PROSPECT = 16;
+	  
 	
 	@Override
     public boolean hasEffect(ItemStack par1ItemStack)
@@ -82,15 +82,14 @@ public class ItemWandTransform extends ItemTool
 		} 
 	}
 	
-	public static ItemWandTransform itemWand; 
 	
 	public static void onInit() 
 	{  
 	//	if(!ModLoader.settings.masterWand){return;}
 //TODO: config/recipe
 	 
-		itemWand = new ItemWandTransform(); 
-		SamsRegistry.registerItem(itemWand, "wand_transform");
+		ItemRegistry.wandTransform = new ItemWandTransform(); 
+		SamsRegistry.registerItem(ItemRegistry.wandTransform, "wand_transform");
 		/*
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"

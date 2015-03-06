@@ -1,5 +1,6 @@
 package com.lothrazar.item;
 
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsRegistry;
 
@@ -25,15 +26,14 @@ public class ItemBucketStorage  extends Item
 	
 	//TODO: Place a 9x9 square of lava on click, IF we click on the top of a block only (CHeck face)
 	
-	public static ItemBucketStorage itemLava;
 	public static void initLava()
 	{
 		//if(!ModLoader.settings.enderBook) {return;}//TODO: config
-		itemLava = new ItemBucketStorage();
+		ItemRegistry.itemLava = new ItemBucketStorage();
 
-		SamsRegistry.registerItem(itemLava, "bucket_storage_lava");
+		SamsRegistry.registerItem(ItemRegistry.itemLava, "bucket_storage_lava");
 
-		GameRegistry.addShapelessRecipe(new ItemStack(itemLava), 
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.itemLava), 
 				Items.lava_bucket, Items.lava_bucket, Items.lava_bucket,
 				Items.lava_bucket, Items.lava_bucket, Items.lava_bucket,
 				Items.lava_bucket, Items.lava_bucket, Items.lava_bucket);
@@ -42,15 +42,15 @@ public class ItemBucketStorage  extends Item
 				itemLava);
 				*/
 	}
-	public static ItemBucketStorage itemWater;
+	
 	public static void initWater()
 	{
 		//if(!ModLoader.settings.enderBook) {return;}//TODO: config
-		itemWater = new ItemBucketStorage();
+		ItemRegistry.itemWater = new ItemBucketStorage();
 
-		SamsRegistry.registerItem(itemWater, "bucket_storage_water");
+		SamsRegistry.registerItem(ItemRegistry.itemWater, "bucket_storage_water");
 
-		GameRegistry.addShapelessRecipe(new ItemStack(itemWater), 
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.itemWater), 
 				Items.water_bucket, Items.water_bucket, Items.water_bucket,
 				Items.water_bucket, Items.water_bucket, Items.water_bucket,
 				Items.water_bucket, Items.water_bucket, Items.water_bucket);
@@ -92,9 +92,9 @@ public class ItemBucketStorage  extends Item
 		 
 		if(player.worldObj.isAirBlock(pos))
 		{
-			if(held.getItem() == itemLava)
+			if(held.getItem() == ItemRegistry.itemLava)
 				player.worldObj.setBlockState(pos, Blocks.lava.getDefaultState());
-			else if(held.getItem() == itemWater)
+			else if(held.getItem() == ItemRegistry.itemWater)
 				player.worldObj.setBlockState(pos, Blocks.water.getDefaultState()); 
 			 
 			held.damageItem(1, player);

@@ -2,6 +2,7 @@ package com.lothrazar.block;
 
 import java.util.Random; 
 
+import com.lothrazar.samscontent.BlockRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -167,45 +168,37 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static void initDaylight()
 	{ 
 		if(!ModLoader.configSettings.gameruleBlockDaylight){return;}
-		command_block_daycycle = _command(Reference.gamerule.doDaylightCycle, "command_block_daycycle",new ItemStack( Blocks.glowstone) );
+		BlockRegistry.command_block_daycycle = _command(Reference.gamerule.doDaylightCycle, "command_block_daycycle",new ItemStack( Blocks.glowstone) );
 	}
 
 	public static void initFiretick()
 	{
 		if(!ModLoader.configSettings.gameruleBlockFiretick){return;}
-		command_block_firetick = _command(Reference.gamerule.doFireTick, "command_block_firetick",new ItemStack( Items.lava_bucket) );
+		BlockRegistry.command_block_firetick = _command(Reference.gamerule.doFireTick, "command_block_firetick",new ItemStack( Items.lava_bucket) );
 	}
 
 	public static void initMobgrief()
 	{
 		if(!ModLoader.configSettings.gameruleBlockMobgrief){return;}
-		command_block_mobgrief = _command(Reference.gamerule.mobGriefing, "command_block_mobgrief",new ItemStack( Blocks.tnt) );
+		BlockRegistry.command_block_mobgrief = _command(Reference.gamerule.mobGriefing, "command_block_mobgrief",new ItemStack( Blocks.tnt) );
 	}
 
 	public static void initRegen()
 	{
 		if(!ModLoader.configSettings.gameruleBlockRegen){return;}
 		
-		command_block_regen = _command(Reference.gamerule.naturalRegeneration, "command_block_regen",new ItemStack(Items.golden_apple) );
+		BlockRegistry.command_block_regen = _command(Reference.gamerule.naturalRegeneration, "command_block_regen",new ItemStack(Items.golden_apple) );
 	}
-	
-	public static BlockCommandBlockCraftable command_block_regen;
-	public static BlockCommandBlockCraftable command_block_mobgrief;
-	public static BlockCommandBlockCraftable command_block_firetick;
-	public static BlockCommandBlockCraftable command_block_daycycle;
-	public static BlockCommandBlockCraftable command_block_weather ;
-	public static BlockCommandBlockCraftable command_block_tpspawn;
-	public static BlockCommandBlockCraftable command_block_tpbed;
 	
 	public static void initWeatherBlock()
 	{ 
 		if(!ModLoader.configSettings.weatherBlock) {return;}
-		command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
+		BlockRegistry.command_block_weather = new BlockCommandBlockCraftable(CommandType.Weather);
  
-		SamsRegistry.registerBlock(command_block_weather,"command_block_weather");
+		SamsRegistry.registerBlock(BlockRegistry.command_block_weather,"command_block_weather");
 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addRecipe(new ItemStack(command_block_weather), 
+			GameRegistry.addRecipe(new ItemStack(BlockRegistry.command_block_weather), 
 					"rcr", 
 					"tet",
 					"rcr", 
@@ -218,12 +211,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static void initTeleportBlock()
 	{ 
 		if(!ModLoader.configSettings.teleportSpawnBlock) {return;}
-		command_block_tpspawn = new BlockCommandBlockCraftable(CommandType.TeleportSpawn);
+		BlockRegistry.command_block_tpspawn = new BlockCommandBlockCraftable(CommandType.TeleportSpawn);
  
-		SamsRegistry.registerBlock(command_block_tpspawn,"command_block_tpspawn");
+		SamsRegistry.registerBlock(BlockRegistry.command_block_tpspawn,"command_block_tpspawn");
 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addRecipe(new ItemStack(command_block_tpspawn), 
+			GameRegistry.addRecipe(new ItemStack(BlockRegistry.command_block_tpspawn), 
 					"rcr", 
 					"tet",
 					"rcr", 
@@ -236,12 +229,12 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	public static void initTeleportBedBlock()
 	{ 
 		if(!ModLoader.configSettings.teleportBedBlock) {return;}
-		command_block_tpbed = new BlockCommandBlockCraftable(CommandType.TeleportBed);
+		BlockRegistry.command_block_tpbed = new BlockCommandBlockCraftable(CommandType.TeleportBed);
  
-		SamsRegistry.registerBlock(command_block_tpbed,"command_block_tpbed");
+		SamsRegistry.registerBlock(BlockRegistry.command_block_tpbed,"command_block_tpbed");
 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addRecipe(new ItemStack(command_block_tpbed), 
+			GameRegistry.addRecipe(new ItemStack(BlockRegistry.command_block_tpbed), 
 					"rcr", 
 					"tet",
 					"rcr", 

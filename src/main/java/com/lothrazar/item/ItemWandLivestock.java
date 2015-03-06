@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import com.google.common.collect.Sets; 
 import com.lothrazar.event.HandlerWand;
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
@@ -48,9 +49,7 @@ public class ItemWandLivestock extends ItemTool
 		this.setMaxStackSize(1);
 		this.setCreativeTab(ModLoader.tabSamsContent);
 	}
-	 
-	private static int RADIUS_PROSPECT = 16;
-	
+	  
 	@Override
     public boolean hasEffect(ItemStack par1ItemStack)
     {
@@ -82,17 +81,15 @@ public class ItemWandLivestock extends ItemTool
 			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
 		} 
 	}
-	
-	public static ItemWandLivestock itemWand;
  
 	
 	public static void onInit() 
 	{  
 		//if(!ModLoader.settings.masterWand){return;}
 			
-		itemWand = new ItemWandLivestock();
+		ItemRegistry.wandLivestock = new ItemWandLivestock();
   
-		SamsRegistry.registerItem(itemWand, "wand_livestock");/*
+		SamsRegistry.registerItem(ItemRegistry.wandLivestock, "wand_livestock");/*
 		GameRegistry.addRecipe(new ItemStack(itemWand)
 			,"bdb"
 			," b "

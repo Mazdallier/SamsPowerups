@@ -2,6 +2,7 @@ package com.lothrazar.block;
 
 import java.util.Random;  
 
+import com.lothrazar.samscontent.BlockRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsRegistry;
 
@@ -114,15 +115,14 @@ public class BlockFishing extends Block
         return EnumWorldBlockLayer.CUTOUT;
     }
 	
-	public static BlockFishing block_fishing ;
 	public static void initFishing()
 	{
 		if(!ModLoader.configSettings.fishingNetBlock){return;}
 		
-		block_fishing = new BlockFishing(); 
-		SamsRegistry.registerBlock(block_fishing,"block_fishing");
+		BlockRegistry.block_fishing = new BlockFishing(); 
+		SamsRegistry.registerBlock(BlockRegistry.block_fishing,"block_fishing");
 
-		GameRegistry.addRecipe(new ItemStack(block_fishing), 
+		GameRegistry.addRecipe(new ItemStack(BlockRegistry.block_fishing), 
 				"pwp", 
 				"wfw", 
 				"pwp", 
@@ -132,7 +132,7 @@ public class BlockFishing extends Block
 
 		if(ModLoader.configSettings.uncraftGeneral)
 		{
-			GameRegistry.addSmelting(new ItemStack(block_fishing)
+			GameRegistry.addSmelting(new ItemStack(BlockRegistry.block_fishing)
 			, new ItemStack(Blocks.web, 4), 0); 
 		}
 	} 

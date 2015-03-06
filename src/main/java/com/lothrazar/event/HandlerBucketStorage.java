@@ -22,7 +22,7 @@ public class HandlerBucketStorage
 		  
 		//Block blockClicked = event.entityPlayer.worldObj.getBlockState(event.pos).getBlock();
 		   
-		if(held.getItem() == ItemBucketStorage.itemLava && 
+		if(held.getItem() instanceof ItemBucketStorage && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{
 			ItemBucketStorage.placeLiquid(event.entityPlayer, held, event.pos.offset(event.face));

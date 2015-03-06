@@ -2,6 +2,7 @@ package com.lothrazar.item;
 
 import java.util.ArrayList; 
 
+import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.samscontent.PlayerPowerups;
 import com.lothrazar.util.Reference;
@@ -29,14 +30,6 @@ public class ItemFoodAppleMagic extends ItemFood
 	{
 		Potion, Flying, Hearts 
 	}
-	public static ItemFoodAppleMagic apple_emerald;
-	public static ItemFoodAppleMagic apple_emerald_rich;
-	public static ItemFoodAppleMagic apple_diamond; 
-	public static ItemFoodAppleMagic apple_lapis;
-	public static ItemFoodAppleMagic apple_lapis_rich;
-	public static ItemFoodAppleMagic apple_chocolate;
-	public static ItemFoodAppleMagic apple_chocolate_rich;
-	public static ItemFoodAppleMagic apple_nether_star;
 	private boolean hasEffect = false;
 	private static int FLYING_COUNT_PER_EAT = 1;//num of ticks
 	private ArrayList<Integer> potionIds;
@@ -131,18 +124,18 @@ public class ItemFoodAppleMagic extends ItemFood
 	{
 		if(!ModLoader.configSettings.appleChocolate){return;}
 
-		apple_chocolate = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, false); // 4 is the hunger 
-		apple_chocolate.addEffect(Reference.potion_HASTE, timeShort, II); 
-		SamsRegistry.registerItem(apple_chocolate, "apple_chocolate");
-		GameRegistry.addRecipe(new ItemStack(apple_chocolate)
+		ItemRegistry.apple_chocolate = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, false); // 4 is the hunger 
+		ItemRegistry.apple_chocolate.addEffect(Reference.potion_HASTE, timeShort, II); 
+		SamsRegistry.registerItem(ItemRegistry.apple_chocolate, "apple_chocolate");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_chocolate)
 				, "eee", "eae",	"eee"
 				, 'e', new ItemStack(Items.dye, 1, Reference.dye_cocoa)  
 				, 'a', Items.apple);
 		
-		apple_chocolate_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, true); // 4 is the hunger 
-		apple_chocolate_rich.addEffect(Reference.potion_HASTE, timeLong, I); 
-		SamsRegistry.registerItem(apple_chocolate_rich, "apple_chocolate_rich");
-		GameRegistry.addRecipe(new ItemStack(apple_chocolate_rich)
+		ItemRegistry.apple_chocolate_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, true); // 4 is the hunger 
+		ItemRegistry.apple_chocolate_rich.addEffect(Reference.potion_HASTE, timeLong, I); 
+		SamsRegistry.registerItem(ItemRegistry.apple_chocolate_rich, "apple_chocolate_rich");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_chocolate_rich)
 				, "eee", "eae",	"eee"
 				, 'e', new ItemStack(Items.cookie)  
 				, 'a', Items.apple);
@@ -151,79 +144,79 @@ public class ItemFoodAppleMagic extends ItemFood
 	public static void initLapis()
 	{  
 		if(!ModLoader.configSettings.appleLapis){return;}
-		apple_lapis = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
-		apple_lapis.addEffect(Reference.potion_RESISTANCE, timeShort, II); 
-		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
-		GameRegistry.addRecipe(new ItemStack(apple_lapis)
+		ItemRegistry.apple_lapis = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
+		ItemRegistry.apple_lapis.addEffect(Reference.potion_RESISTANCE, timeShort, II); 
+		SamsRegistry.registerItem(ItemRegistry.apple_lapis, "apple_lapis");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_lapis)
 				, "lll","lal","lll"  
 				,'l', new ItemStack(Items.dye, 1, Reference.dye_lapis)  
 				,'a', Items.apple); 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
+			GameRegistry.addSmelting(ItemRegistry.apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
 	
-		apple_lapis_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
-		apple_lapis_rich.addEffect(Reference.potion_RESISTANCE, timeLong, I); 
-		SamsRegistry.registerItem(apple_lapis_rich, "apple_lapis_rich");
-		GameRegistry.addRecipe(new ItemStack(apple_lapis_rich)
+		ItemRegistry.apple_lapis_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
+		ItemRegistry.apple_lapis_rich.addEffect(Reference.potion_RESISTANCE, timeLong, I); 
+		SamsRegistry.registerItem(ItemRegistry.apple_lapis_rich, "apple_lapis_rich");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_lapis_rich)
 				, "lll","lal","lll"  
 				,'l', Blocks.lapis_block
 				,'a', Items.apple); 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft 
+			GameRegistry.addSmelting(ItemRegistry.apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft 
 	}
  
 	public static void initEmerald()
 	{  
 		if(!ModLoader.configSettings.appleEmerald) {return;}
-		apple_emerald = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
-		apple_emerald.addEffect(Reference.potion_absorption, timeShort, V); 
-		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
-		GameRegistry.addRecipe(new ItemStack(apple_emerald)
+		ItemRegistry.apple_emerald = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
+		ItemRegistry.apple_emerald.addEffect(Reference.potion_absorption, timeShort, V); 
+		SamsRegistry.registerItem(ItemRegistry.apple_emerald, "apple_emerald");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_emerald)
 				, "lll","lal","lll"  
 				,'l', Items.emerald
 				,'a', Items.apple);
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),	0);
+			GameRegistry.addSmelting(ItemRegistry.apple_emerald, new ItemStack(Items.emerald, 8),	0);
 		 
-		apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
-		apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, V); 
-		SamsRegistry.registerItem(apple_emerald_rich, "apple_emerald_rich");
-		GameRegistry.addRecipe(new ItemStack(apple_emerald_rich)
+		ItemRegistry.apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
+		ItemRegistry.apple_emerald_rich.addEffect(Reference.potion_absorption, timeLong, V); 
+		SamsRegistry.registerItem(ItemRegistry.apple_emerald_rich, "apple_emerald_rich");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_emerald_rich)
 				, "lll","lal","lll"  
 				,'l', Blocks.emerald_block
 				,'a', Items.apple);
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_emerald_rich, new ItemStack(Blocks.emerald_block, 8),	0);
+			GameRegistry.addSmelting(ItemRegistry.apple_emerald_rich, new ItemStack(Blocks.emerald_block, 8),	0);
 	} 
 
 	public static void initDiamond()
 	{ 
 		if(!ModLoader.configSettings.appleDiamond) {return;}
-		apple_diamond = new ItemFoodAppleMagic(MagicType.Hearts,hungerSmall, true);  
+		ItemRegistry.apple_diamond = new ItemFoodAppleMagic(MagicType.Hearts,hungerSmall, true);  
 		//no potion effect, this just does heath boost + 1
-		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
-		GameRegistry.addRecipe(new ItemStack(apple_diamond)
+		SamsRegistry.registerItem(ItemRegistry.apple_diamond, "apple_diamond");
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_diamond)
 				, "lll","lal","lll"  
 				,'l', Items.diamond
 				,'a', Items.apple); 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),	0); 
+			GameRegistry.addSmelting(ItemRegistry.apple_diamond, new ItemStack(Items.diamond, 8),	0); 
 	}
 
 	public static void initNether()
 	{  
 		if(!ModLoader.configSettings.appleNetherStar) {return;}
-		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
+		ItemRegistry.apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
 		//no potion effect, this just gives flying
-		SamsRegistry.registerItem(apple_nether_star, "apple_nether_star");
+		SamsRegistry.registerItem(ItemRegistry.apple_nether_star, "apple_nether_star");
 		
-		GameRegistry.addRecipe(new ItemStack(apple_nether_star),
+		GameRegistry.addRecipe(new ItemStack(ItemRegistry.apple_nether_star),
 			"lll",
 			"lnl",
 			"lll", 
 			'l', Items.apple,
 			'n', Items.nether_star); 
 		if(ModLoader.configSettings.uncraftGeneral) 
-			GameRegistry.addSmelting(apple_nether_star, new ItemStack(Items.nether_star, 1),	0); 
+			GameRegistry.addSmelting(ItemRegistry.apple_nether_star, new ItemStack(Items.nether_star, 1),	0); 
 	} 
 }
