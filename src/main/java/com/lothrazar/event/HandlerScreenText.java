@@ -103,6 +103,7 @@ public class HandlerScreenText
 	  
 	 	if(SamsUtilities.isShiftKeyDown())//if(showGameRules)//todo config
 	 	{ 
+			event.left.add("");
 			addGameruleInfo(event, world); 
 		} 
 
@@ -138,14 +139,21 @@ public class HandlerScreenText
 		ruleNames.add(Reference.gamerule.keepInventory);
 		ruleNames.add(Reference.gamerule.mobGriefing);
 		ruleNames.add(Reference.gamerule.naturalRegeneration);
+		//TODO: more rules missing from 1.8 addition
 
+		String T = "[T]", F = "[F]";
+		
 		String name;
 		for(int i = 0; i < ruleNames.size(); i++)
 		{
 			name = ruleNames.get(i);
 			if(rules.getGameRuleBooleanValue(name))
 			{ 
-				event.right.add(name); 
+				event.right.add(T + " " + name); 
+			}
+			else
+			{ 
+				event.right.add(F + " " +name); 
 			}
 		}
 	}

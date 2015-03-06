@@ -43,7 +43,7 @@
  //TODO: for the home/worldhome. add consumable items that do this (ender cookie, ender apple, etc)
  //TODO: add achievements for my custom items and stuff
  //TODO: add achievements for existing ingame stuff (craft compass, killing 100 of a certain mob (use stats) clock, food, etc, etc)
- //TODO: f3 gamerules: add whitespace above, AND put in all rules with [t][f] instead of only showing TRUE ones
+ //[march05]: f3 gamerules: add whitespace above, AND put in all rules with [t][f] instead of only showing TRUE ones
  //TODO: sort gamerules in f3
  //TODO: it should have disabled making a furnace without coal. should require it
 //TODO: collission with bat causes blindness? maybe?
