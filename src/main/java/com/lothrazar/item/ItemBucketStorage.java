@@ -17,7 +17,7 @@ public class ItemBucketStorage  extends Item
 	public ItemBucketStorage()
 	{  
 		super();  
-    	setCreativeTab(CreativeTabs.tabTransport) ; 
+		this.setCreativeTab(ModLoader.tabSamsContent);
     	this.setMaxDamage(9); 
 		this.setMaxStackSize(1);
 	}

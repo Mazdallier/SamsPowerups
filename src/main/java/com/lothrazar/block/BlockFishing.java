@@ -30,7 +30,7 @@ public class BlockFishing extends Block
 	public BlockFishing()
 	{
 		super(Material.wood);  
-		this.setCreativeTab(CreativeTabs.tabRedstone);
+		this.setCreativeTab(ModLoader.tabSamsContent);
 		this.setHardness(3F);
 		this.setResistance(5F); 
 		this.setTickRandomly(true);

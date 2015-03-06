@@ -54,6 +54,7 @@ public class ItemFoodAppleMagic extends ItemFood
 		potionIds = new ArrayList<Integer>();
 		potionDurations = new ArrayList<Integer>();
 		potionAmplifiers = new ArrayList<Integer>();
+		this.setCreativeTab(ModLoader.tabSamsContent);
 	}
 	 
 	public ItemFoodAppleMagic addEffect(int potionId,int potionDuration,int potionAmplifier)

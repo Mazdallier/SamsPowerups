@@ -47,7 +47,7 @@ public class ItemWandProspect extends ItemTool
 		super(1.0F,Item.ToolMaterial.WOOD, Sets.newHashSet()); 
     	this.setMaxDamage(DURABILITY); 
 		this.setMaxStackSize(1);
-    	setCreativeTab(CreativeTabs.tabTools) ;   
+		this.setCreativeTab(ModLoader.tabSamsContent);
 	}
 	   
 	@Override

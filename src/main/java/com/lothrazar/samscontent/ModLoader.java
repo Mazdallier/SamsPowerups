@@ -80,6 +80,16 @@ public class ModLoader
 	public static ConfigFile settings;
 	public static SimpleNetworkWrapper network; 
 	
+	 public static CreativeTabs tabSamsContent = new CreativeTabs("tabSamsContent") 
+	{
+
+		@Override
+		public Item getTabIconItem() {
+			//return ItemRegistry.cuttingboardItem;
+			return ItemFoodAppleMagic.apple_chocolate;
+		}
+	};
+		
 	private void initModInfo(ModMetadata mcinfo)
 	{ 
 		mcinfo.modId = Reference.MODID;

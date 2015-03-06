@@ -47,7 +47,7 @@ public class BlockCommandBlockCraftable extends BlockCommandBlock
 	{ 
 		this.setHardness(3F);
 		this.setResistance(5F);
-		this.setCreativeTab(CreativeTabs.tabRedstone);
+		this.setCreativeTab(ModLoader.tabSamsContent);
 	}
 	
 	public BlockCommandBlockCraftable(CommandType t)

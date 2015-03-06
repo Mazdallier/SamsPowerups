@@ -33,8 +33,7 @@ public class BlockXRay extends Block
 	public BlockXRay()
 	{
 		super(Material.glass); 
-		
-		this.setCreativeTab(CreativeTabs.tabRedstone);
+		this.setCreativeTab(ModLoader.tabSamsContent);
 		this.setHardness(4F); 
 		this.setResistance(5F); 
 		this.setTickRandomly(true);
