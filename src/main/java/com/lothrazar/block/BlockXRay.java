@@ -64,7 +64,7 @@ public class BlockXRay extends Block
 	public static BlockXRay block_xray ;
 	public static void initXray()
 	{
-		if(!ModLoader.settings.xRayBlock){return;}
+		if(!ModLoader.configSettings.xRayBlock){return;}
 		
 		block_xray = new BlockXRay(); 
 		SamsRegistry.registerBlock(block_xray,"block_xray");
@@ -77,7 +77,7 @@ public class BlockXRay extends Block
 				'g', Blocks.glass, 
 				'o', Blocks.obsidian);
 
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(new ItemStack(block_xray)
 			, new ItemStack(Blocks.web, 4), 0);
 	}

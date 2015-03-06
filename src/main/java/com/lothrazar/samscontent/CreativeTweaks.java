@@ -9,22 +9,22 @@ public class CreativeTweaks
 	{ 
 		//http://minecraft.gamepedia.com/Creative#Missing_blocks_and_items
 		
-		if(ModLoader.settings.mushroomBlocksCreativeInventory)
+		if(ModLoader.configSettings.mushroomBlocksCreativeInventory)
 		{
 			Blocks.red_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations); 
 			Blocks.brown_mushroom_block.setCreativeTab(CreativeTabs.tabDecorations); 
 		}
 		
-		if(ModLoader.settings.barrierCreativeInventory)
+		if(ModLoader.configSettings.barrierCreativeInventory)
 			Blocks.barrier.setCreativeTab(CreativeTabs.tabDecorations); 
 
-		if(ModLoader.settings.dragonEggCreativeInventory)
+		if(ModLoader.configSettings.dragonEggCreativeInventory)
 			Blocks.dragon_egg.setCreativeTab(CreativeTabs.tabDecorations); 
 		
-		if(ModLoader.settings.farmlandCreativeInventory)
+		if(ModLoader.configSettings.farmlandCreativeInventory)
 			Blocks.farmland.setCreativeTab(CreativeTabs.tabDecorations); 
 		
-		if(ModLoader.settings.spawnerCreativeInventory)
+		if(ModLoader.configSettings.spawnerCreativeInventory)
 			Blocks.mob_spawner.setCreativeTab(CreativeTabs.tabDecorations);  
 	} 
 }

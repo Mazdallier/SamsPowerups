@@ -20,7 +20,7 @@ public class HandlerSwiftDeposit
   	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(ModLoader.settings.swiftDeposit == false){ return; }
+		if(ModLoader.configSettings.swiftDeposit == false){ return; }
 		
 		if(event.action != event.action.LEFT_CLICK_BLOCK) { return; }
 	 

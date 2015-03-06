@@ -47,7 +47,7 @@ public class ItemWandBuilding extends ItemTool
 	 
 	public static void Init()
 	{  
-		if(!ModLoader.settings.buildingWand){return;}
+		if(!ModLoader.configSettings.buildingWand){return;}
 		 
 		itemWand = new ItemWandBuilding(); 
 		SamsRegistry.registerItem(itemWand, "wand_building" );   
@@ -58,7 +58,7 @@ public class ItemWandBuilding extends ItemTool
 			, 'd', Blocks.diamond_block
 			, 'b', Items.blaze_rod  );
 		
-		if(ModLoader.settings.uncraftGeneral)
+		if(ModLoader.configSettings.uncraftGeneral)
 			GameRegistry.addSmelting(itemWand, new ItemStack(Blocks.diamond_block,1,0),0);	//recycling	 
 	}
 	 

@@ -16,13 +16,13 @@ public class HandlerEnderpearlTeleport
 	{  
 		if(event.entity instanceof EntityPlayer)
 		{
-			if(ModLoader.settings.noDamageEnderPearl)
+			if(ModLoader.configSettings.noDamageEnderPearl)
 			{
 				 //starts 5.0 which is 2.5hearts
 				event.attackDamage = 0;//TODO: from a powerup/maybe apple. 
 			}
 			 
-			int rawChance = ModLoader.settings.chanceReturnEnderPearl;
+			int rawChance = ModLoader.configSettings.chanceReturnEnderPearl;
 			double pct = ((double)rawChance)/100.0;//TODO: percent chance of dropping enddr pearl item from config file.
 			
 			//so event.entity.pos is their position BEFORE teleport

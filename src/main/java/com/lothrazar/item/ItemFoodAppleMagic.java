@@ -129,7 +129,7 @@ public class ItemFoodAppleMagic extends ItemFood
 	 
 	public static void initChocolate()
 	{
-		if(!ModLoader.settings.appleChocolate){return;}
+		if(!ModLoader.configSettings.appleChocolate){return;}
 
 		apple_chocolate = new ItemFoodAppleMagic(MagicType.Potion,hungerLarge, false); // 4 is the hunger 
 		apple_chocolate.addEffect(Reference.potion_HASTE, timeShort, II); 
@@ -150,7 +150,7 @@ public class ItemFoodAppleMagic extends ItemFood
 
 	public static void initLapis()
 	{  
-		if(!ModLoader.settings.appleLapis){return;}
+		if(!ModLoader.configSettings.appleLapis){return;}
 		apple_lapis = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
 		apple_lapis.addEffect(Reference.potion_RESISTANCE, timeShort, II); 
 		SamsRegistry.registerItem(apple_lapis, "apple_lapis");
@@ -158,7 +158,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', new ItemStack(Items.dye, 1, Reference.dye_lapis)  
 				,'a', Items.apple); 
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_lapis, new ItemStack(Items.dye, 8, Reference.dye_lapis), 0);// uncraft
 	
 		apple_lapis_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
@@ -168,13 +168,13 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Blocks.lapis_block
 				,'a', Items.apple); 
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_lapis_rich, new ItemStack(Blocks.lapis_block), 0);// uncraft 
 	}
  
 	public static void initEmerald()
 	{  
-		if(!ModLoader.settings.appleEmerald) {return;}
+		if(!ModLoader.configSettings.appleEmerald) {return;}
 		apple_emerald = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, false);
 		apple_emerald.addEffect(Reference.potion_absorption, timeShort, V); 
 		SamsRegistry.registerItem(apple_emerald, "apple_emerald");
@@ -182,7 +182,7 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Items.emerald
 				,'a', Items.apple);
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_emerald, new ItemStack(Items.emerald, 8),	0);
 		 
 		apple_emerald_rich = new ItemFoodAppleMagic(MagicType.Potion,hungerSmall, true);
@@ -192,13 +192,13 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Blocks.emerald_block
 				,'a', Items.apple);
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_emerald_rich, new ItemStack(Blocks.emerald_block, 8),	0);
 	} 
 
 	public static void initDiamond()
 	{ 
-		if(!ModLoader.settings.appleDiamond) {return;}
+		if(!ModLoader.configSettings.appleDiamond) {return;}
 		apple_diamond = new ItemFoodAppleMagic(MagicType.Hearts,hungerSmall, true);  
 		//no potion effect, this just does heath boost + 1
 		SamsRegistry.registerItem(apple_diamond, "apple_diamond");
@@ -206,13 +206,13 @@ public class ItemFoodAppleMagic extends ItemFood
 				, "lll","lal","lll"  
 				,'l', Items.diamond
 				,'a', Items.apple); 
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_diamond, new ItemStack(Items.diamond, 8),	0); 
 	}
 
 	public static void initNether()
 	{  
-		if(!ModLoader.settings.appleNetherStar) {return;}
+		if(!ModLoader.configSettings.appleNetherStar) {return;}
 		apple_nether_star = new ItemFoodAppleMagic(MagicType.Flying,hungerSmall, true);  
 		//no potion effect, this just gives flying
 		SamsRegistry.registerItem(apple_nether_star, "apple_nether_star");
@@ -223,7 +223,7 @@ public class ItemFoodAppleMagic extends ItemFood
 			"lll", 
 			'l', Items.apple,
 			'n', Items.nether_star); 
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(apple_nether_star, new ItemStack(Items.nether_star, 1),	0); 
 	} 
 }

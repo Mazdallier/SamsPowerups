@@ -13,7 +13,7 @@ public class HandlerEnderChestHit
  	{      
 		if(event.action == event.action.LEFT_CLICK_BLOCK)
 		{
-			if(ModLoader.settings.smartEnderchest && 
+			if(ModLoader.configSettings.smartEnderchest && 
 					event.entityPlayer.getCurrentEquippedItem() != null && 
 					event.entityPlayer.getCurrentEquippedItem().getItem() == Item.getItemFromBlock(Blocks.ender_chest) )
 			{

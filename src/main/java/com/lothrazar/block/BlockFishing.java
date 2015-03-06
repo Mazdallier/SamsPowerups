@@ -117,7 +117,7 @@ public class BlockFishing extends Block
 	public static BlockFishing block_fishing ;
 	public static void initFishing()
 	{
-		if(!ModLoader.settings.fishingNetBlock){return;}
+		if(!ModLoader.configSettings.fishingNetBlock){return;}
 		
 		block_fishing = new BlockFishing(); 
 		SamsRegistry.registerBlock(block_fishing,"block_fishing");
@@ -130,7 +130,7 @@ public class BlockFishing extends Block
 				'f', new ItemStack(Items.fishing_rod, 1, 0), 
 				'p', Blocks.planks);
 
-		if(ModLoader.settings.uncraftGeneral)
+		if(ModLoader.configSettings.uncraftGeneral)
 		{
 			GameRegistry.addSmelting(new ItemStack(block_fishing)
 			, new ItemStack(Blocks.web, 4), 0); 

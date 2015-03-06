@@ -76,8 +76,8 @@ public class ModLoader
 	public static CommonProxy proxy;  
 	
 	public static Logger logger;
-	public static Configuration config;
-	public static ConfigFile settings;
+	
+	public static ConfigFile configSettings;
 	public static SimpleNetworkWrapper network; 
 	
 	 public static CreativeTabs tabSamsContent = new CreativeTabs("tabSamsContent") 
@@ -108,8 +108,8 @@ public class ModLoader
 
 		initModInfo(event.getModMetadata());
 		
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		settings = new ConfigFile();
+		configSettings = new ConfigFile();
+		configSettings.load(new Configuration(event.getSuggestedConfigurationFile()));
 		
     	network = NetworkRegistry.INSTANCE.newSimpleChannel( Reference.MODID );     	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
@@ -134,7 +134,7 @@ public class ModLoader
 		 
 		StackSizeIncreaser.registerChanges(); 
  
-  		if(ModLoader.settings.moreFuel) 
+  		if(ModLoader.configSettings.moreFuel) 
   		{
   			GameRegistry.registerFuelHandler(new FurnaceFuel()); 
   		}
@@ -163,28 +163,28 @@ public class ModLoader
 	@EventHandler
 	public void onServerStarting(FMLServerStartingEvent event)
 	{
-		if(ModLoader.settings.searchtrade) 
+		if(ModLoader.configSettings.searchtrade) 
 			event.registerServerCommand(new CommandSearchTrades()); 
 		
-		if(ModLoader.settings.searchitem) 
+		if(ModLoader.configSettings.searchitem) 
 			event.registerServerCommand(new CommandSearchItem()); 
 		
-		if(ModLoader.settings.searchspawner) 
+		if(ModLoader.configSettings.searchspawner) 
 			event.registerServerCommand(new CommandSearchSpawner()); 
 		 
-		if(ModLoader.settings.simplewaypoint) 
+		if(ModLoader.configSettings.simplewaypoint) 
 			event.registerServerCommand(new CommandSimpleWaypoints()); 
 		
-		if(ModLoader.settings.todo) 
+		if(ModLoader.configSettings.todo) 
 			event.registerServerCommand(new CommandTodoList());  
 		 
-		if(ModLoader.settings.kit)  
+		if(ModLoader.configSettings.kit)  
 			event.registerServerCommand(new CommandKit()); 
   
-		if(ModLoader.settings.home) 
+		if(ModLoader.configSettings.home) 
 			event.registerServerCommand(new CommandWorldHome()); 
 		
-		if(ModLoader.settings.worldhome) 
+		if(ModLoader.configSettings.worldhome) 
 			event.registerServerCommand(new CommandHome());
 	}
   

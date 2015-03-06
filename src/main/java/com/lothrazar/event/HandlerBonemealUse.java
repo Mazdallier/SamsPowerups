@@ -30,7 +30,7 @@ public class HandlerBonemealUse
   	{    
   		if(event.world.isRemote){return;}//stop it from doing a secod ghost item drop
   		
-  		if(ModLoader.settings.betterBonemeal == false) { return; }
+  		if(ModLoader.configSettings.betterBonemeal == false) { return; }
   		
 		if(event.action == event.action.LEFT_CLICK_BLOCK) {return;}
 		 

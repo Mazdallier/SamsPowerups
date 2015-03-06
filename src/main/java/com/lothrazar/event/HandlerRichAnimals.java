@@ -24,7 +24,7 @@ public class HandlerRichAnimals
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDropsEvent event)
 	{ 
-		if(ModLoader.settings.petNametagDrops && 
+		if(ModLoader.configSettings.petNametagDrops && 
 				isPet(event.entity) )
 		{ 
 			if(event.entity.getCustomNameTag() != null && //'custom' is blank if no nametag

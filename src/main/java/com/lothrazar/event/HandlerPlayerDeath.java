@@ -17,7 +17,7 @@ public class HandlerPlayerDeath
 	@SubscribeEvent
 	public void onPlayerDeath(LivingDropsEvent event)
 	{ 
-		if(ModLoader.settings.dropPlayerSkullOnDeath == false){return;}
+		if(ModLoader.configSettings.dropPlayerSkullOnDeath == false){return;}
 		 
 		if(event.entity instanceof EntityPlayer == false){return;} 
 		

@@ -130,7 +130,7 @@ public class ItemEnderBook extends ItemTool
 	 
 	public static void initEnderbook()
 	{
-		if(!ModLoader.settings.enderBook) {return;}
+		if(!ModLoader.configSettings.enderBook) {return;}
 		itemEnderBook = new ItemEnderBook();
 
 		SamsRegistry.registerItem(itemEnderBook, "book_ender");
@@ -138,7 +138,7 @@ public class ItemEnderBook extends ItemTool
 		GameRegistry.addRecipe(new ItemStack(itemEnderBook), "eee", "ebe",
 				"eee", 'e', Items.ender_pearl, 'b', Items.book);
 
-		if(ModLoader.settings.uncraftGeneral) 
+		if(ModLoader.configSettings.uncraftGeneral) 
 			GameRegistry.addSmelting(itemEnderBook, new ItemStack(
 					Items.ender_pearl, 8), 0);
 	}

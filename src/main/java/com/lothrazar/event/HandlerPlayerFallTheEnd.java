@@ -14,7 +14,7 @@ public class HandlerPlayerFallTheEnd
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{    	 
-		if(!ModLoader.settings.theEndSafeFall){return;}
+		if(!ModLoader.configSettings.theEndSafeFall){return;}
 		if( event.player.capabilities.isCreativeMode){return;} 
 
 		EntityPlayer player = event.player;

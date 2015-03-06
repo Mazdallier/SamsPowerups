@@ -65,7 +65,7 @@ public class HandlerScreenText
 	{ 
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo == false){return;}
 
-		if(ModLoader.settings.debugClearRight )
+		if(ModLoader.configSettings.debugClearRight )
 		{ 
 			event.right.clear();
 		}
@@ -86,17 +86,17 @@ public class HandlerScreenText
 		 
 		//addFlyingAppleInfo(event, player);
  
-	 	if(ModLoader.settings.debugSlime && player.dimension == Reference.Dimension.overworld)
+	 	if(ModLoader.configSettings.debugSlime && player.dimension == Reference.Dimension.overworld)
 	 	{ 
 	    	addSlimeChunkInfo(event, player, world); 
 	 	}
 	 	
-	 	if(ModLoader.settings.debugVillageInfo && world.villageCollectionObj != null)
+	 	if(ModLoader.configSettings.debugVillageInfo && world.villageCollectionObj != null)
 	 	{   
 			 addVillageInfo(event, player, world);	 
 		 }
 	 	
-	 	if(ModLoader.settings.debugHorseInfo && player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
+	 	if(ModLoader.configSettings.debugHorseInfo && player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
 	 	{ 
 	 		addHorseInfo(event, player);   
 	 	} 

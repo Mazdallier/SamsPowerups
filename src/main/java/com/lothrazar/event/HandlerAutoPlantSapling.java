@@ -21,7 +21,7 @@ public class HandlerAutoPlantSapling
 	@SubscribeEvent
 	public void onItemExpireEvent(ItemExpireEvent event)
 	{ 
-		 if(ModLoader.settings.plantDespawningSaplings == false) {return;}
+		 if(ModLoader.configSettings.plantDespawningSaplings == false) {return;}
 		 
 		 ItemStack is = event.entityItem.getEntityItem();
 		 if(is != null && Block.getBlockFromItem(is.getItem()) == Blocks.sapling)
