@@ -45,6 +45,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -118,8 +120,12 @@ public class ModLoader
 		ItemRegistry.registerItems();
 		
 		BlockRegistry.registerBlocks();
+		//http://www.minecraftforge.net/wiki/Create_a_Fluid
+		fluidMilk = new Fluid("fluid_milk");
+		FluidRegistry.registerFluid(fluidMilk);
 	}
-	
+
+	public Fluid fluidMilk;
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{     
@@ -196,6 +202,7 @@ public class ModLoader
      	Object[] handlers = new Object[]
      	{
      		 new HandlerBonemealUse() 
+     		,new HandlerBucketFill()
      		,new HandlerBucketStorage()
       		,new HandlerPlayerHarvest()
      		,new HandlerEnderBookClick()
