@@ -28,10 +28,10 @@ public class ClientProxy extends CommonProxy
 		keyShiftDown = new KeyBinding(Reference.keyDownName, Keyboard.KEY_V, Reference.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyShiftDown); 
 
-        keyBarUp = new KeyBinding(Reference.keyUpName, Keyboard.KEY_Z, Reference.keyCategory);
+        keyBarUp = new KeyBinding(Reference.keyBarUpName, Keyboard.KEY_N, Reference.keyCategory);
         ClientRegistry.registerKeyBinding(ClientProxy.keyBarUp);
          
-        keyBarDown = new KeyBinding(Reference.keyDownName, Keyboard.KEY_X, Reference.keyCategory); 
+        keyBarDown = new KeyBinding(Reference.keyBarDownName, Keyboard.KEY_M, Reference.keyCategory); 
         ClientRegistry.registerKeyBinding(ClientProxy.keyBarDown); 
         
         String item;
