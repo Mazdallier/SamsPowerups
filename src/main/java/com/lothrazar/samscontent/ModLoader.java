@@ -115,67 +115,32 @@ public class ModLoader
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
      
 		registerEventHandlers(); //IEXTENDED properties sasy this goes in init?
- 
-		registerItemsBlocks(); 
+
+		ItemRegistry.registerItems();
+		
+		BlockRegistry.registerBlocks();
 	}
 	
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
-	{    
-		//TODO: do we want this? affects all mods and everything
-		//Items.lava_bucket.setContainerItem(Items.bucket); 
-		ItemBucketStorage.initLava();
-		
-		ItemBucketStorage.initWater();
-		//ItemBucketStorage.initMilk();
-		
-		CreativeTweaks.inventoryImprovements();
+	{     
+		CreativeTweaks.registerTabImprovements();
 	
 		MobSpawningRegistry.registerSpawns();
- 
-		ChestGen.lootAllRecords();
-		
-		ChestGen.lootObsidian(); 
-		
-		ChestGen.lootQuartz(); 
-		
-		ChestGen.lootGlowstone(); 
-		
-		Recipes.bookNoLeather(); 
-		  
-		Recipes.mushroomBlocks(); 
-		   
-		//Recipes.obsidianIceWater();
   
-		Recipes.bonemealWool();
-		
-		Recipes.simpleDispenser();
-		
-		Recipes.records();
+		ChestGen.regsiterLoot();
 		  
-		Recipes.doubleSlabsFlat();
+		Recipes.registerRecipes();
 		 
-   		Recipes.uncrafting();
- 
-   		Recipes.smoothstoneRequired();
-   		
-   		Recipes.tieredArmor();
-		  
-   		Recipes.woolDyeSavings();
-		  
-   		Recipes.repeaterSimple();
-		
-   		Recipes.minecartsSimple();
-
-		StackSizeIncreaser.init64(); 
+		StackSizeIncreaser.registerChanges(); 
  
   		if(ModLoader.settings.moreFuel) 
+  		{
   			GameRegistry.registerFuelHandler(new FurnaceFuel()); 
- 
+  		}
+  			
 		proxy.registerRenderers();
-		
-	 
-		
+		 
 		//this worked in 1.7, adding trades to villagers
 		/*
   		if(ModSamsContent.settings.moreFutureTrades)
@@ -222,52 +187,7 @@ public class ModLoader
 		if(ModLoader.settings.worldhome) 
 			event.registerServerCommand(new CommandHome());
 	}
- 
-	private void registerItemsBlocks() 
-	{ 
-		ItemWandBuilding.Init();
-		 
-		ItemWandChest.onInit();
-
-		ItemWandTransform.onInit();
-
-		ItemWandHarvest.onInit();
-		
-		ItemWandLivestock.onInit();
-
-		ItemWandProspect.onInit();
-		
-		ItemEnderBook.initEnderbook();
-		
-		ItemFoodAppleMagic.initEmerald();
-
-		ItemFoodAppleMagic.initDiamond();
-
-		ItemFoodAppleMagic.initLapis();
-
-		ItemFoodAppleMagic.initChocolate();
-
-		ItemFoodAppleMagic.initNether();
-		
-		BlockFishing.initFishing();
   
-		BlockCommandBlockCraftable.initWeatherBlock();
-		
-		BlockCommandBlockCraftable.initTeleportBlock();
-
-		BlockCommandBlockCraftable.initTeleportBedBlock();
-		
-		BlockCommandBlockCraftable.initRegen(); 
-		
-		BlockCommandBlockCraftable.initDaylight();
-		
-		BlockCommandBlockCraftable.initFiretick();
-		
-		BlockCommandBlockCraftable.initMobgrief();
- 
-		BlockXRay.initXray();
-	}
-
 	private void registerEventHandlers() 
 	{
 		//TODO: version checker

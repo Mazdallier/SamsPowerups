@@ -1,4 +1,5 @@
 //TODO: add creative tab for my stuff
+//For milk glass //Items.lava_bucket.setContainerItem(Items.bucket); 
 //TODO: is it posible to disable sleeping? maybe just remove from bed if in bed?
 //TODO: new keybindings that moves the whole rows up and down, not just columns
 //TODO: edit existing signs. copy and paste between signs, and also open plain existing editor

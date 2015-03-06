@@ -114,4 +114,16 @@ public class ChestGen
 			//ChestGenHooks.addItem(BONUS_CHEST, new WeightedRandomChestContent(items[i], min, max, weight));
 		}
 	}
+
+	public static void regsiterLoot() 
+	{
+		ChestGen.lootAllRecords();
+		
+		ChestGen.lootObsidian(); 
+		
+		ChestGen.lootQuartz(); 
+		
+		ChestGen.lootGlowstone(); 
+		
+	}
 }

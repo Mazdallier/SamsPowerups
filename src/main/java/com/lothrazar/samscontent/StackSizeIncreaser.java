@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 
 public class StackSizeIncreaser
 { 
-	public static void init64()
+	public static void registerChanges()
 	{ 
 		if(!ModLoader.settings.increasedStackSizes ) {return;}
 		

@@ -1013,4 +1013,32 @@ public class Recipes
 		
 		
 	}
+	public static void registerRecipes() 
+	{ 
+		Recipes.bookNoLeather(); 
+		  
+		Recipes.mushroomBlocks(); 
+		   
+		//Recipes.obsidianIceWater();
+  
+		Recipes.bonemealWool();
+		
+		Recipes.simpleDispenser();
+		
+		Recipes.records();
+		  
+		Recipes.doubleSlabsFlat();
+		 
+   		Recipes.uncrafting();
+ 
+   		Recipes.smoothstoneRequired();
+   		
+   		Recipes.tieredArmor();
+		  
+   		Recipes.woolDyeSavings();
+		  
+   		Recipes.repeaterSimple();
+		
+   		Recipes.minecartsSimple();
+	}
 }

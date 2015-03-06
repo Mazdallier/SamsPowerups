@@ -5,7 +5,7 @@ import net.minecraft.init.Blocks;
 
 public class CreativeTweaks 
 {
-	public static void inventoryImprovements() 
+	public static void registerTabImprovements() 
 	{ 
 		//http://minecraft.gamepedia.com/Creative#Missing_blocks_and_items
 		
