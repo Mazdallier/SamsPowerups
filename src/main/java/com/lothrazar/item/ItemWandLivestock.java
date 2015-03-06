@@ -6,6 +6,7 @@ import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -55,34 +56,7 @@ public class ItemWandLivestock extends ItemTool
     {
     	return true; //give it shimmer
     }
-	
-	 
-
-	//when an action is used
-	private void onSuccess(EntityPlayer player)
-	{
-		player.swingItem();
-		 
-		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
-		{
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
-		}
-		
-		//make it take damage, or get destroyed
-  
-		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandLivestock.DURABILITY - 1)//if about to die
-		{
-			player.getCurrentEquippedItem().damageItem(1, player);
-		}
-		else
-		{ 
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
  
-			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
-		} 
-	}
- 
-	
 	public static void onInit() 
 	{  
 		//if(!ModLoader.settings.masterWand){return;}
@@ -142,7 +116,14 @@ public class ItemWandLivestock extends ItemTool
 			entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.spawn_egg,1,entity_id),true);
 			entityPlayer.worldObj.removeEntity(target); 
 			
-			onSuccess(entityPlayer);
+			entityPlayer.swingItem();
+			 
+			if(drainsHunger)
+			{
+				SamsUtilities.drainHunger(entityPlayer);
+			}
+			
+			SamsUtilities.damageOrBreakHeld(entityPlayer);
 		} 
 	}
 }

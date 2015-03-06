@@ -8,6 +8,7 @@ import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -59,29 +60,7 @@ public class ItemWandTransform extends ItemTool
     	return true; //give it shimmer
     }
 	  
-	private static void onSuccess(EntityPlayer player)
-	{
-		player.swingItem();
-		 
-		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
-		{
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
-		}
-		
-		//make it take damage, or get destroyed
-  
-		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandTransform.DURABILITY - 1)//if about to die
-		{
-			player.getCurrentEquippedItem().damageItem(1, player);
-		}
-		else
-		{ 
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
- 
-			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
-		} 
-	}
-	
+	 
 	
 	public static void onInit() 
 	{  
@@ -183,7 +162,14 @@ public class ItemWandTransform extends ItemTool
 		{
 			player.worldObj.setBlockState(pos,blockStateNew);
 			 
-			onSuccess(player);
+			player.swingItem();
+			 
+			if(drainsHunger)
+			{
+				SamsUtilities.drainHunger(player);
+			}
+			
+			SamsUtilities.damageOrBreakHeld(player);
 		}
 	}
 	

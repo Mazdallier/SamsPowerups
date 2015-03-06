@@ -85,32 +85,17 @@ public class ItemWandProspect extends ItemTool
 	  
 		entityPlayer.addChatMessage(new ChatComponentTranslation( foundMessage));
 	 
-		onSuccess(entityPlayer);
-	}
-	 
-	//when an action is used
-	private void onSuccess(EntityPlayer player)
-	{
-		player.swingItem();
+		entityPlayer.swingItem();
 		 
-		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
+		if(drainsHunger)
 		{
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
+			SamsUtilities.drainHunger(entityPlayer);
 		}
 		
-		//make it take damage, or get destroyed
-  
-		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandProspect.DURABILITY - 1)//if about to die
-		{
-			player.getCurrentEquippedItem().damageItem(1, player);
-		}
-		else
-		{ 
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
- 
-			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
-		} 
+		SamsUtilities.damageOrBreakHeld(entityPlayer);
 	}
+	 
+	 
 	 
 	public static void onInit() 
 	{  

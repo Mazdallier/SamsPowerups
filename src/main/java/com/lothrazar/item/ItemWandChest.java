@@ -6,6 +6,7 @@ import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -57,32 +58,7 @@ public class ItemWandChest extends ItemTool
     {
     	return true; //give it shimmer
     }
-	
-    
-	//when an action is used
-	private void onSuccess(EntityPlayer player)
-	{
-		player.swingItem();
-		 
-		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
-		{
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
-		}
-		
-		//make it take damage, or get destroyed
-  
-		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandChest.DURABILITY - 1)//if about to die
-		{
-			player.getCurrentEquippedItem().damageItem(1, player);
-		}
-		else
-		{ 
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
- 
-			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
-		} 
-	}
-	
+	  
 	
 	public static void onInit() 
 	{  
@@ -107,11 +83,7 @@ public class ItemWandChest extends ItemTool
 	}
 
 	public void convertChestToSack(EntityPlayer entityPlayer, ItemStack heldWand, TileEntityChest chestTarget, BlockPos pos)
-	{
-		//private void convertChestToSack(PlayerInteractEvent event,TileEntityChest chest)
-		//{
-	 
-	  
+	{ 
 		ItemStack chestItem;  
 		int chestMax;
 		 
@@ -177,7 +149,14 @@ public class ItemWandChest extends ItemTool
 	
 		entityPlayer.worldObj.setBlockToAir(pos);//, Blocks.air, 0,2);	 
 
-		onSuccess(entityPlayer); 
+		entityPlayer.swingItem();
+		 
+		if(drainsHunger)
+		{
+			SamsUtilities.drainHunger(entityPlayer);
+		}
+		
+		SamsUtilities.damageOrBreakHeld(entityPlayer);
 	}
  
 }

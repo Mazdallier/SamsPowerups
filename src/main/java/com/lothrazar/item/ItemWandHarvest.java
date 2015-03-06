@@ -6,6 +6,7 @@ import com.lothrazar.samscontent.ItemRegistry;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.Reference;
 import com.lothrazar.util.SamsRegistry;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -112,32 +113,16 @@ public class ItemWandHarvest extends ItemTool
 			}  
 		} //end of the outer loop
 		
-		onSuccess(entityPlayer);
-	}
-
-	private void onSuccess(EntityPlayer player)
-	{
-		player.swingItem();
+		entityPlayer.swingItem();
 		 
-		if(drainsHunger && player.getFoodStats().getFoodLevel() > 0)
+		if(drainsHunger)
 		{
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
+			SamsUtilities.drainHunger(entityPlayer);
 		}
 		
-		if(player.getCurrentEquippedItem().getItemDamage() < ItemWandHarvest.DURABILITY - 1)//if about to die
-		{
-			player.getCurrentEquippedItem().damageItem(1, player);
-		}
-		else
-		{ 
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
- 
-			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
-		} 
+		SamsUtilities.damageOrBreakHeld(entityPlayer);
 	}
-	
  
-	
 	public static void onInit() 
 	{  
 		//if(!ModLoader.settings.masterWand){return;}

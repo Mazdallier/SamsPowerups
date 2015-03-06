@@ -20,6 +20,26 @@ import com.sun.istack.internal.logging.Logger;
 
 public class SamsUtilities
 {   
+	public static void drainHunger(EntityPlayer player)
+	{
+		if(player.getFoodStats().getFoodLevel() > 0)
+		{
+			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() - 1 );
+		}
+	}
+	public static void damageOrBreakHeld(EntityPlayer player)
+	{ 
+		if(player.getCurrentEquippedItem().getItemDamage() < player.getCurrentEquippedItem().getMaxDamage()) 
+		{
+			player.getCurrentEquippedItem().damageItem(1, player);
+		}
+		else
+		{ 
+			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+ 
+			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
+		} 
+	}
 	public static double distanceBetweenHorizontal(BlockPos start, BlockPos end)
 	{
 		int xDistance =  Math.abs(start.getX() - end.getX() );
