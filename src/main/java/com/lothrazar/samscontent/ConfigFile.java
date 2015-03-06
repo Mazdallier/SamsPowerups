@@ -182,7 +182,7 @@ public class ConfigFile
     			"Hit a sign with a player skull to make the skull take on the name (skin) of the first word/line on the sign");
 		 
 		betterBonemeal = instance.getBoolean("betterBonemeal",category, true,
-    			"Bonemeal grows more things: lilypads, all flowers ");
+    			"Bonemeal grows more things: lilypads, all flowers, and reeds. ");
 	}
 
 	private void toolChanges() 

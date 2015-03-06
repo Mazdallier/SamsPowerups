@@ -1,10 +1,10 @@
 //[march05]: add creative tab for my stuff 
 //TODO: is it posible to disable sleeping? maybe just remove from bed if in bed?
-//TODO: new keybindings that moves the whole rows up and down, not just columns
+//[march05]: new keybindings that moves the whole rows up and down, not just columns
 //TODO: edit existing signs. copy and paste between signs, and also open plain existing editor
 //TODO: idea: fossils: just like buttons but spawn on ground in caves. breaking it gives bones?
 //TODO: emerald armor just for fun?  same strength as gold and/or iron?
-//TODO: sugar cane grow from bonemeal (pocket edition does this)
+//[march05]: sugar cane grow from bonemeal (pocket edition does this)
 //TODO:quiver:simplestorage blockfor arrows?
 ///referencefood https://bitbucket.org/Zuxelus/usefulfood/src/f74eea7793c5a95e8ecf4d7344f3e5182884942c/main/java/mods/usefulfood/?at=master
 //beetroots can be eaten to restore 1 (Half Heart.svg) health.//soup restores (8)?? seeds from tilling grass 1/15 chance
