@@ -229,7 +229,7 @@ FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidMilk,1), new I
        		,new HandlerPlayerTickApplesEaten()
         	,new HandlerPlayerFallTheEnd()
       		,new HandlerSwiftDeposit()
-     		,new HandlerAutoPlantSapling()
+     		,new HandlerAutoPlantExpire()
      		,instance
      	};
      	

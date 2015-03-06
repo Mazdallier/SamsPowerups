@@ -16,7 +16,7 @@ import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class HandlerAutoPlantSapling
+public class HandlerAutoPlantExpire
 { 
 	@SubscribeEvent
 	public void onItemExpireEvent(ItemExpireEvent event)
@@ -24,7 +24,7 @@ public class HandlerAutoPlantSapling
 		 if(ModLoader.configSettings.plantDespawningSaplings == false) {return;}
 		 
 		 ItemStack is = event.entityItem.getEntityItem();
-		 if(is != null && Block.getBlockFromItem(is.getItem()) == Blocks.sapling)
+		 if(is != null )
 		 { 
 			 Block blockhere = event.entity.worldObj.getBlockState(event.entityItem.getPosition()).getBlock(); 
 			 Block blockdown = event.entity.worldObj.getBlockState(event.entityItem.getPosition().down()).getBlock();
@@ -36,7 +36,16 @@ public class HandlerAutoPlantSapling
 			{
 				//plant the sapling, replacing the air and on top of dirt/plantable
 				
-				event.entity.worldObj.setBlockState(event.entityItem.getPosition(), Blocks.sapling.getStateFromMeta(is.getItemDamage()));
+				if(Block.getBlockFromItem(is.getItem()) == Blocks.sapling)
+					event.entity.worldObj.setBlockState(event.entityItem.getPosition(), Blocks.sapling.getStateFromMeta(is.getItemDamage()));
+				else if(Block.getBlockFromItem(is.getItem()) == Blocks.red_mushroom)	
+					event.entity.worldObj.setBlockState(event.entityItem.getPosition(), Blocks.red_mushroom.getDefaultState());
+				else if(Block.getBlockFromItem(is.getItem()) == Blocks.brown_mushroom)	
+					event.entity.worldObj.setBlockState(event.entityItem.getPosition(), Blocks.brown_mushroom.getDefaultState());
+				
+					
+						
+			
 			}
 		 }
 	} 

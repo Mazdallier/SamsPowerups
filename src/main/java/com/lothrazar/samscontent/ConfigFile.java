@@ -159,7 +159,7 @@ public class ConfigFile
     			"No damage taken from an ender pearl throw");
 
 		plantDespawningSaplings = instance.getBoolean("plantDespawningSaplings",category, true,
-    			"When a sapling despawns while sitting on grass or dirt, it will instead attempt to plant itself.");
+    			"When a sapling (or mushroom) despawns while sitting on grass or dirt, it will instead attempt to plant itself.");
 
 		theEndSafeFall = instance.getBoolean("theEndSafeFall",category, true,
     			"Falling off the world in the end will instead teleport you to the top, making a falling loop.");
