@@ -46,7 +46,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -109,22 +111,28 @@ public class ModLoader
 
 		initModInfo(event.getModMetadata());
 		
-		configSettings = new ConfigFile();
-		configSettings.load(new Configuration(event.getSuggestedConfigurationFile()));
-		
+		configSettings = new ConfigFile(new Configuration(event.getSuggestedConfigurationFile()));
+	  
     	network = NetworkRegistry.INSTANCE.newSimpleChannel( Reference.MODID );     	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, 0, Side.SERVER);
      
 		registerEventHandlers(); //IEXTENDED properties sasy this goes in init?
 
 		ItemRegistry.registerItems();
-		
+		/*
+		 * Fluid flows in the world and gets placed but is invisible& transparent
 		BlockRegistry.registerBlocks();
 		//http://www.minecraftforge.net/wiki/Create_a_Fluid
 		fluidMilk = new Fluid("fluid_milk");
 		FluidRegistry.registerFluid(fluidMilk);
-	}
 
+		ModLoader.blockMilk = new BlockFluidMilk(fluidMilk,Material.water); 
+		SamsRegistry.registerBlock(ModLoader.blockMilk, "fluid_milk");
+		  
+FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidMilk,1), new ItemStack(Items.milk_bucket), new ItemStack(Items.bucket));
+*/
+	}
+	public static BlockFluidMilk blockMilk;
 	public Fluid fluidMilk;
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)

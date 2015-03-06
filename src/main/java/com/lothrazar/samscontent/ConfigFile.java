@@ -12,10 +12,6 @@ import com.lothrazar.item.ItemWandHarvest;
 public class ConfigFile
 { 
 	private Configuration instance;
-	public void load(Configuration c)
-	{
-		instance = c;
-	}
 	public Configuration instance()
 	{
 		return instance;
@@ -105,8 +101,10 @@ public class ConfigFile
 	public boolean farmlandCreativeInventory;
 	public boolean spawnerCreativeInventory; 
 	
-	public ConfigFile()
+	public ConfigFile(Configuration c)
 	{
+		instance = c; 
+
 		commands();
 		
 	    crafting();  
