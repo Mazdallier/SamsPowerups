@@ -44,6 +44,19 @@ public class SamsUtilities
 	{ 
 		player.worldObj.playSoundAtEntity(player, sound, 1.0F, 1.0F);
 	}
+	public static void spawnParticle(World world, EnumParticleTypes type, BlockPos pos)
+	{
+		spawnParticle(world,type,pos.getX(),pos.getY(),pos.getZ());
+    }
+	public static void spawnParticle(World world, EnumParticleTypes type, double x, double y, double z)
+	{
+		float f = (float)x + 0.5F;
+        float f1 = (float)y + 0.0F + 6.0F / 16.0F;
+        float f2 = (float)z + 0.5F;
+        float f3 = 0.52F;
+        float f4 = 0.6F - 0.3F;
+    	world.spawnParticle(type, (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+    }
 	public static double distanceBetweenHorizontal(BlockPos start, BlockPos end)
 	{
 		int xDistance =  Math.abs(start.getX() - end.getX() );
