@@ -37,8 +37,12 @@ public class SamsUtilities
 		{ 
 			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
  
-			player.worldObj.playSoundAtEntity(player, "random.break", 1.0F, 1.0F);
+			playSoundAt(player, "random.break");
 		} 
+	}
+	public static void playSoundAt(EntityPlayer player, String sound)
+	{ 
+		player.worldObj.playSoundAtEntity(player, sound, 1.0F, 1.0F);
 	}
 	public static double distanceBetweenHorizontal(BlockPos start, BlockPos end)
 	{

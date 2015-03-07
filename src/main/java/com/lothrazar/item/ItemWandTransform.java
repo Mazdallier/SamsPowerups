@@ -210,7 +210,7 @@ public class ItemWandTransform extends ItemTool
 			int oakMagic=12;
 			int spruceMagic=13;
 			int birchMagic=14;
-			int jungleMagic=15;
+			int jungleMagic=15;//http://minecraft.gamepedia.com/Data_values#Wood
 			
 			if(metaCurrent == oakVert)
 				metaNew = oakEast;
@@ -249,12 +249,16 @@ public class ItemWandTransform extends ItemTool
 				metaNew = jungleVert;
   
 			if(metaNew > INVALID)
+			{ 
 				blockStateNew =  Blocks.log.getStateFromMeta(metaNew);
+			}
 		}
 		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
 		
 		if(blockStateNew != null)
 		{
+			SamsUtilities.playSoundAt(player, "random.wood_click");
+			
 			player.worldObj.setBlockState(pos,blockStateNew);
 			 
 			player.swingItem();
@@ -265,6 +269,7 @@ public class ItemWandTransform extends ItemTool
 			}
 			
 			SamsUtilities.damageOrBreakHeld(player);
+			  
 		}
 	}
 	
