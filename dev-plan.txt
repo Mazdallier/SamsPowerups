@@ -1,4 +1,5 @@
 //[march05]: add creative tab for my stuff 
+//TREES ONLY GROLW && GET UN-PLANTED IF NOT IN THEIR HOME BIOMES!?!?!?
 //TODO: is it posible to disable sleeping? maybe just remove from bed if in bed?
 //[march05]: new keybindings that moves the whole rows up and down, not just columns
 //TODO: edit existing signs. copy and paste between signs, and also open plain existing editor
