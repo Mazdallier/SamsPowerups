@@ -99,7 +99,7 @@ public class ItemWandTransform extends ItemTool
 			//meta 14 is only vanilla used one 	//OLD one was meta 0, all pores
 			// http://minecraft.gamepedia.com/Data_values#Brown_and_red_mushroom_blocks
 			if(0 <= metaCurrent && metaCurrent <= 9)
-				metaNew = metaCurrent+1;
+				metaNew = metaCurrent + 1;
 			else if(metaCurrent == 10)
 				metaNew = 14;
 			else if(metaCurrent == 14)
@@ -155,7 +155,102 @@ public class ItemWandTransform extends ItemTool
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.double_stone_slab2.getStateFromMeta(metaNew);
 		}
- 
+		else if(block == Blocks.log2)
+		{ 
+			metaCurrent = Blocks.log2.getMetaFromState(blockState);
+
+
+			int acaciaVert = 0;
+			int darkVert=1;
+			int acaciaEast=4;
+			int darkEast=5;
+			int acaciaNorth=8;
+			int darkNorth=9;
+			int acaciaMagic=12;
+			int darkMagic=13;
+			
+
+			if(metaCurrent == acaciaVert)
+				metaNew = acaciaEast;
+			else if(metaCurrent == acaciaEast)
+				metaNew = acaciaNorth;
+			else if(metaCurrent == acaciaNorth)
+				metaNew = acaciaMagic;
+			else if(metaCurrent == acaciaMagic)
+				metaNew = acaciaVert;
+
+			if(metaCurrent == darkVert)
+				metaNew = darkEast;
+			else if(metaCurrent == darkEast)
+				metaNew = darkNorth;
+			else if(metaCurrent == darkNorth)
+				metaNew = darkMagic;
+			else if(metaCurrent == darkMagic)
+				metaNew = darkVert;
+  
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.log2.getStateFromMeta(metaNew);
+		}
+		else if(block == Blocks.log)
+		{
+			metaCurrent = Blocks.log.getMetaFromState(blockState);
+
+			int oakVert = 0;
+			int spruceVert=1;
+			int birchVert=2;
+			int jungleVert=3;
+			int oakEast=4;
+			int spruceEast=5;
+			int birchEast=6;
+			int jungleEast=7;
+			int oakNorth=8;
+			int spruceNorth=9;
+			int birchNorth=10;
+			int jungleNorth=11;
+			int oakMagic=12;
+			int spruceMagic=13;
+			int birchMagic=14;
+			int jungleMagic=15;
+			
+			if(metaCurrent == oakVert)
+				metaNew = oakEast;
+			else if(metaCurrent == oakEast)
+				metaNew = oakNorth;
+			else if(metaCurrent == oakNorth)
+				metaNew = oakMagic;
+			else if(metaCurrent == oakMagic)
+				metaNew = oakVert;
+			
+			else if(metaCurrent == birchVert)
+				metaNew = birchEast;
+			else if(metaCurrent == birchEast)
+				metaNew = birchNorth;
+			else if(metaCurrent == birchNorth)
+				metaNew = birchMagic;
+			else if(metaCurrent == birchMagic)
+				metaNew = birchVert;
+			
+			else if(metaCurrent == spruceVert)
+				metaNew = spruceEast;
+			else if(metaCurrent == spruceEast)
+				metaNew = spruceNorth;
+			else if(metaCurrent == spruceNorth)
+				metaNew = spruceMagic;
+			else if(metaCurrent == spruceMagic)
+				metaNew = spruceVert;
+			
+			else if(metaCurrent == jungleVert)
+				metaNew = jungleEast;
+			else if(metaCurrent == jungleEast)
+				metaNew = jungleNorth;
+			else if(metaCurrent == jungleNorth)
+				metaNew = jungleMagic;
+			else if(metaCurrent == jungleMagic)
+				metaNew = jungleVert;
+  
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.log.getStateFromMeta(metaNew);
+		}
 		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
 		
 		if(blockStateNew != null)

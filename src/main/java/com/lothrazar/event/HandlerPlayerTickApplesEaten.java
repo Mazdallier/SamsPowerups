@@ -67,8 +67,13 @@ public class HandlerPlayerTickApplesEaten
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event)
 	{    	      
+		
+		
 		if( event.player.worldObj.isRemote  == false )
 		{ 	 
+			
+		
+			
 			tickHearts(event.player); 
 			
 			if( Minecraft.getMinecraft().playerController.getCurrentGameType() != GameType.CREATIVE   && 

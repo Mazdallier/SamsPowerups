@@ -38,13 +38,19 @@
  //TODO: Split milk bucket into bottles,  get drinking/crafting working from that. add chocolate milk 
  //TODO: wand of chest transportaiton: make it also work with dispensers/droppers/trapped chests/ etc. set extra flag to identify
  //TODO: log/stone boat: exact copy of existing boat, but unbreakable.
+ //TODO: wand transform: rotate logs, pistons , hoppers droppers etc,  anything else  that has rotation
+ //TODO: either make obsidian softer OR make special tool that mines (only) obsidian but really fast?
+ //find a reason or interesting thing to make torchers more expensive.
+ //if so then add alternate for jackolantern that doesnt use a torch.
+ //TODO: walking through a torch has a chance to break it. like boats do to lily pads. make sure to have sound
+ //TODO: after that, using a flintnsteel on pumpkin makes it into jlantern
  //TODO: option to stop zombie/skel taking SUNLIGHT damage
  //TODO: option to stop enderman taking Water damage (but dont stop TP?)
  //TODO: for the home/worldhome. add consumable items that do this (ender cookie, ender apple, etc)
  //TODO: add achievements for my custom items and stuff
  //TODO: add achievements for existing ingame stuff (craft compass, killing 100 of a certain mob (use stats) clock, food, etc, etc)
  //[march05]: f3 gamerules: add whitespace above, AND put in all rules with [t][f] instead of only showing TRUE ones
- //TODO: sort gamerules in f3
+ //TODO: sort gamerules in f3.
  //TODO: it should have disabled making a furnace without coal. should require it
 //TODO: collission with bat causes blindness? maybe?
  //TODO: Terrarium : make a furnace type block that takes in saplings/bonemeal/dirt and creates LOGS 
