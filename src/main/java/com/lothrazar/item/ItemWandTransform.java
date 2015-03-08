@@ -332,6 +332,130 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.red_sandstone.getStateFromMeta(metaNew);
 			}
 		}
+		else if(block == Blocks.stone_stairs)
+		{
+			metaCurrent = Blocks.stone_stairs.getMetaFromState(blockState);
+			 
+			System.out.println("stairs  "+metaCurrent);
+			//TODO: this
+			/*all stairs:
+			 * 0x1
+	0x2	A two-bit field containing a value from 0 to 3 specifying the direction of the stairs' full-block side:
+	0: East
+	1: West
+	2: South
+	3: North
+	0x4	Set if stairs are upside-down*/
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.stone_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.quartz_block)
+		{
+			metaCurrent = Blocks.quartz_block.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 4) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate pillars, or change to pillared/smooth 
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.quartz_block.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.pumpkin)
+		{
+			metaCurrent = Blocks.pumpkin.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 4) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.pumpkin.getStateFromMeta(metaNew);
+			}
+		}
+ 
+
+		/*0x0	Pumpkin facing south
+0x1	Pumpkin facing west
+0x2	Pumpkin facing north
+0x3	Pumpkin facing east
+0x4 (bit flag)	Pumpkin without face
+Jack o'Lantern
+Bits	Values
+0x0	Jack o'lantern facing south
+0x1	Jack o'lantern facing west
+0x2	Jack o'lantern facing north
+0x3	Jack o'lantern facing east
+0x4 (bit flag)	Jack o'lantern without face*/
+		
+		
+		/*RAILS:
+		 * 0	Straight rail connecting to the north and south.
+1	Straight rail connecting to the east and west.
+2	Sloped rail ascending to the east.
+3	Sloped rail ascending to the west.
+4	Sloped rail ascending to the north.
+5	Sloped rail ascending to the south.
+6	Curved rail connecting to the south and east.
+7	Curved rail connecting to the south and west.
+8	Curved rail connecting to the north and west.
+9	Curved rail connecting to the north and east.*/
+		
+		
+		/*Dropper
+Bits	Values
+0x1
+0x2
+0x4	
+A three-bit field storing a value from 0 to 5 specifying which direction the dropper is facing:
+
+0: Dropper facing down
+1: Dropper facing up
+2: Dropper facing north
+3: Dropper facing south
+4: Dropper facing west
+5: Dropper facing east
+0x8	Set if dropper is activated.
+Dispenser
+Bits	Values
+0x1
+0x2
+0x4	
+Three bits storing a value from 0 to 5:
+
+0: Dispenser facing down
+1: Dispenser facing up
+2: Dispenser facing north
+3: Dispenser facing south
+4: Dispenser facing west
+5: Dispenser facing east
+0x8	If set, the dispenser is activated.
+Hopper[edit]
+Bits	Values
+0x1
+0x2
+0x4	
+A three-bit field storing a value from 0 to 5:
+
+0: Output facing down
+1: (unused)
+2: Output facing north
+3: Output facing south
+4: Output facing west
+5: Output facing east
+0x8	Set if activated/disabled.*/
+		
+		
+		
+		
+		
+		
 		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
 		
 		if(blockStateNew != null)
