@@ -3,6 +3,7 @@ package com.lothrazar.util;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -55,7 +56,7 @@ public class SamsUtilities
 			playSoundAt(player, "random.break");
 		} 
 	}
-	public static void playSoundAt(EntityPlayer player, String sound)
+	public static void playSoundAt(Entity player, String sound)
 	{ 
 		player.worldObj.playSoundAtEntity(player, sound, 1.0F, 1.0F);
 	}

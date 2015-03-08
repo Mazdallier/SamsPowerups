@@ -100,7 +100,8 @@ public class ConfigFile
 	public boolean dragonEggCreativeInventory;
 	public boolean farmlandCreativeInventory;
 	public boolean spawnerCreativeInventory;
-	public boolean gravelToClay; 
+	public boolean gravelToClay;
+	public boolean fragileTorches; 
 	
 	public ConfigFile(Configuration c)
 	{
@@ -189,6 +190,9 @@ public class ConfigFile
 	private void toolChanges() 
 	{
 		category = "tools_armor";
+		
+		fragileTorches = instance.getBoolean("fragileTorches",category, true,
+				"Torches have a chance to break when living entity colides with it (unless it is a sneaking player).");  
 		
 		furnaceNeedsCoal = instance.getBoolean("furnaceNeedsCoal",category, true,
 				"Crafting a furnace now requires one coal in the center.");  
