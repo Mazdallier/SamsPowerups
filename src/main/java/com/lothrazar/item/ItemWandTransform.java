@@ -257,6 +257,21 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.log.getStateFromMeta(metaNew);
 			}
 		}
+		else if(block == Blocks.stone_slab)
+		{
+			metaCurrent = Blocks.stone_slab.getMetaFromState(blockState);
+			 
+			if(metaCurrent <= 7) 
+				metaNew = metaCurrent + 8;
+			else
+				metaNew = metaCurrent - 8; 
+			 
+			
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.stone_slab.getStateFromMeta(metaNew);
+			}
+		}
 		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
 		
 		if(blockStateNew != null)
