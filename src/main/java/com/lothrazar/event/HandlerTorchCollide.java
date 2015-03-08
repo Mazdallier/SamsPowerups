@@ -31,12 +31,7 @@ public class HandlerTorchCollide
 				&& event.entityLiving.worldObj.isRemote == false)
 		{
   
-			event.entityLiving.worldObj.setBlockToAir(event.entityLiving.getPosition());
-			
-			SamsUtilities.dropItemStackInWorld(event.entityLiving.worldObj, event.entityLiving.getPosition(), Blocks.torch);
-
-			SamsUtilities.playSoundAt(event.entityLiving, "random.wood_click"); 
-		  
+			event.entityLiving.worldObj.destroyBlock(event.entityLiving.getPosition(), true);  
 		}
 	}
 }
