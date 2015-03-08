@@ -49,7 +49,7 @@ public class SamsUtilities
 		spawnParticle(world,type,pos.getX(),pos.getY(),pos.getZ());
     }
 	public static void spawnParticle(World world, EnumParticleTypes type, double x, double y, double z)
-	{
+	{ 
 		float f = (float)x + 0.5F;
         float f1 = (float)y + 0.0F + 6.0F / 16.0F;
         float f2 = (float)z + 0.5F;

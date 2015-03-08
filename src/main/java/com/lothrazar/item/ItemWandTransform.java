@@ -36,13 +36,15 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper; 
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ItemWandTransform extends ItemTool
 { 
 	private static int DURABILITY = 80;
-	public static boolean drainsHunger = true;
+	public static boolean drainsHunger = false;
 	public static boolean drainsDurability = true;
   
 	public ItemWandTransform( )
@@ -84,12 +86,14 @@ public class ItemWandTransform extends ItemTool
 	}
  
 	private static int INVALID = -1;
-	public static void transformBlock(EntityPlayer player, ItemStack heldWand, BlockPos pos)
+	public static void transformBlock(EntityPlayer player, World world, ItemStack heldWand, BlockPos pos)
 	{
 		IBlockState blockState = player.worldObj.getBlockState(pos);
 		Block block = blockState.getBlock();
 		int metaCurrent, metaNew = INVALID;
 		IBlockState blockStateNew = null;
+		
+		
 		
 		if(block == Blocks.red_mushroom_block)
 		{
@@ -257,19 +261,30 @@ public class ItemWandTransform extends ItemTool
 		
 		if(blockStateNew != null)
 		{
-			SamsUtilities.playSoundAt(player, "random.wood_click");
-			
-			player.worldObj.setBlockState(pos,blockStateNew);
 			 
-			player.swingItem();
-			 
-			if(drainsHunger)
+			if(world.isRemote == true)
 			{
-				SamsUtilities.drainHunger(player);
+				SamsUtilities.spawnParticle(world, EnumParticleTypes.CRIT_MAGIC, pos);
+				SamsUtilities.spawnParticle(world, EnumParticleTypes.CRIT_MAGIC, player.getPosition());
+
+
+				player.swingItem();
+			}
+			else
+			{
+				//server side stuff
+				SamsUtilities.playSoundAt(player, "random.wood_click");
+ 
+				player.worldObj.setBlockState(pos,blockStateNew);
+				 
+				if(drainsHunger)
+				{
+					SamsUtilities.drainHunger(player);
+				}
+				
+				SamsUtilities.damageOrBreakHeld(player);
 			}
 			
-			SamsUtilities.damageOrBreakHeld(player);
-			  
 		}
 	}
 	

@@ -21,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -43,7 +44,6 @@ public class HandlerWand
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent event)
   	{      
-		if(event.world.isRemote){ return ;}//server side only!
 		ItemStack held = event.entityPlayer.getCurrentEquippedItem();  
 		if(held == null) { return; }//empty hand so do nothing
 		  
@@ -52,9 +52,15 @@ public class HandlerWand
 		if(held.getItem() == ItemRegistry.wandTransform && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{
-			ItemWandTransform.transformBlock(event.entityPlayer, held, event.pos);
+
+			ItemWandTransform.transformBlock(event.entityPlayer, event.world, held, event.pos);
+			
 		}
-		else if(held.getItem() == ItemRegistry.itemChestSack && 
+
+		if(event.world.isRemote){ return ;}//server side only!
+
+		
+		if(held.getItem() == ItemRegistry.itemChestSack && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			if(blockClicked == Blocks.chest)
