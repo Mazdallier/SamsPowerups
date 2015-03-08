@@ -611,6 +611,34 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.sticky_piston.getStateFromMeta(metaNew);
 			}
 		}
+		else if(block == Blocks.wall_sign)
+		{ 
+			metaCurrent = Blocks.wall_sign.getMetaFromState(blockState);
+
+			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
+				metaNew = 2;
+			else
+				metaNew = metaCurrent + 1; //rotate 
+ 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.wall_sign.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.standing_sign)
+		{ 
+			metaCurrent = Blocks.standing_sign.getMetaFromState(blockState);
+
+			if(metaCurrent == 15)  
+				metaNew =0;
+			else
+				metaNew = metaCurrent + 1; //rotate 
+ 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.standing_sign.getStateFromMeta(metaNew);
+			}
+		}
    
 		if(blockStateNew != null)
 		{
