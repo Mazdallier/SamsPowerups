@@ -272,6 +272,66 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.stone_slab.getStateFromMeta(metaNew);
 			}
 		}
+		else if(block == Blocks.stone_slab2)
+		{
+			metaCurrent = Blocks.stone_slab2.getMetaFromState(blockState);
+			 
+			if(metaCurrent <= 7) 
+				metaNew = metaCurrent + 8;
+			else
+				metaNew = metaCurrent - 8; 
+			 
+			
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.stone_slab2.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.wooden_slab)
+		{
+			metaCurrent = Blocks.wooden_slab.getMetaFromState(blockState);
+			 
+			if(metaCurrent <= 7) 
+				metaNew = metaCurrent + 8;
+			else
+				metaNew = metaCurrent - 8; 
+			 
+			
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.wooden_slab.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.sandstone)
+		{
+			metaCurrent = Blocks.sandstone.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 2) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+			 
+			
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.sandstone.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.red_sandstone)
+		{
+			metaCurrent = Blocks.red_sandstone.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 2) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+			 
+			
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.red_sandstone.getStateFromMeta(metaNew);
+			}
+		}
 		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
 		
 		if(blockStateNew != null)
