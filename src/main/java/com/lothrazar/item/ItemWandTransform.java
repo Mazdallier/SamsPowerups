@@ -339,20 +339,137 @@ public class ItemWandTransform extends ItemTool
 			if(metaCurrent == 8) 
 				metaNew = 0;
 			else
-				metaNew = metaCurrent + 1; //rotate  
-			System.out.println("stairs  "+metaCurrent + "::"+metaNew);
-			//TODO: this
-			/*all stairs:
-			 * 0x1
-	0x2	A two-bit field containing a value from 0 to 3 specifying the direction of the stairs' full-block side:
-	0: East
-	1: West
-	2: South
-	3: North
-	0x4	Set if stairs are upside-down*/
+				metaNew = metaCurrent + 1; 
+		 
 			if(metaNew > INVALID)
 			{ 
 				blockStateNew =  Blocks.stone_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.stone_brick_stairs)
+		{
+			metaCurrent = Blocks.stone_brick_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.stone_brick_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.quartz_stairs)
+		{
+			metaCurrent = Blocks.quartz_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.quartz_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.brick_stairs)
+		{
+			metaCurrent = Blocks.brick_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.brick_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.spruce_stairs)
+		{
+			metaCurrent = Blocks.spruce_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.spruce_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.birch_stairs)
+		{
+			metaCurrent = Blocks.birch_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.birch_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.oak_stairs)
+		{
+			metaCurrent = Blocks.oak_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.oak_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.jungle_stairs)
+		{
+			metaCurrent = Blocks.jungle_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.jungle_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.acacia_stairs)
+		{
+			metaCurrent = Blocks.acacia_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.acacia_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.dark_oak_stairs)
+		{
+			metaCurrent = Blocks.dark_oak_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.dark_oak_stairs.getStateFromMeta(metaNew);
 			}
 		}
 		else if(block == Blocks.quartz_block)
