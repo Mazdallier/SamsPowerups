@@ -3,6 +3,7 @@ package com.lothrazar.util;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -19,7 +20,21 @@ import com.lothrazar.samscontent.ModLoader;
 import com.sun.istack.internal.logging.Logger;
 
 public class SamsUtilities
-{   
+{    
+	public static void dropItemStackInWorld(World worldObj, BlockPos pos, Block block)
+	{
+		dropItemStackInWorld(worldObj, pos, new ItemStack(block)); 
+ 
+	}
+	public static void dropItemStackInWorld(World worldObj, BlockPos pos, Item item)
+	{
+		dropItemStackInWorld(worldObj, pos, new ItemStack(item)); 
+	}
+	public static void dropItemStackInWorld(World worldObj, BlockPos pos, ItemStack stack)
+	{
+		EntityItem entityItem = new EntityItem(worldObj, pos.getX(),pos.getY(),pos.getZ(), stack); 
+    	worldObj.spawnEntityInWorld(entityItem);
+	}
 	public static void drainHunger(EntityPlayer player)
 	{
 		if(player.getFoodStats().getFoodLevel() > 0)

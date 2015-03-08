@@ -212,7 +212,8 @@ FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidMilk,1), new I
     	//they are just Objects, because i have not yet found a reason to add an interface/superclass 
      	Object[] handlers = new Object[]
      	{
-     		 new HandlerBonemealUse() 
+     		 new HandlerBonemealUse()
+     		,new HandlerTorchCollide()
      		,new HandlerBucketFill()
      		,new HandlerBucketStorage()
       		,new HandlerPlayerHarvest()

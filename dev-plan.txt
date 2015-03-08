@@ -39,7 +39,7 @@
  //TODO: Split milk bucket into bottles,  get drinking/crafting working from that. add chocolate milk 
  //TODO: wand of chest transportaiton: make it also work with dispensers/droppers/trapped chests/ etc. set extra flag to identify
  //TODO: log/stone boat: exact copy of existing boat, but unbreakable.
- //TODO: wand transform: rotate logs, pistons , hoppers droppers etc,  anything else  that has rotation
+ //[march08]: wand transform: rotate logs, pistons , hoppers droppers etc,  anything else  that has rotation
  //TODO: either make obsidian softer OR make special tool that mines (only) obsidian but really fast?
  //find a reason or interesting thing to make torchers more expensive.
  //if so then add alternate for jackolantern that doesnt use a torch.
