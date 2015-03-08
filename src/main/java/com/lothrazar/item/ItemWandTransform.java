@@ -335,8 +335,12 @@ public class ItemWandTransform extends ItemTool
 		else if(block == Blocks.stone_stairs)
 		{
 			metaCurrent = Blocks.stone_stairs.getMetaFromState(blockState);
-			 
-			System.out.println("stairs  "+metaCurrent);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			System.out.println("stairs  "+metaCurrent + "::"+metaNew);
 			//TODO: this
 			/*all stairs:
 			 * 0x1
@@ -366,7 +370,7 @@ public class ItemWandTransform extends ItemTool
 			}
 		}
 		else if(block == Blocks.pumpkin)
-		{
+		{ 
 			metaCurrent = Blocks.pumpkin.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 4) 
@@ -379,34 +383,75 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.pumpkin.getStateFromMeta(metaNew);
 			}
 		}
- 
+		else if(block == Blocks.lit_pumpkin)
+		{ 
+			metaCurrent = Blocks.lit_pumpkin.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 4) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.lit_pumpkin.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.rail)
+		{
+			metaCurrent = Blocks.rail.getMetaFromState(blockState);
 
-		/*0x0	Pumpkin facing south
-0x1	Pumpkin facing west
-0x2	Pumpkin facing north
-0x3	Pumpkin facing east
-0x4 (bit flag)	Pumpkin without face
-Jack o'Lantern
-Bits	Values
-0x0	Jack o'lantern facing south
-0x1	Jack o'lantern facing west
-0x2	Jack o'lantern facing north
-0x3	Jack o'lantern facing east
-0x4 (bit flag)	Jack o'lantern without face*/
-		
-		
-		/*RAILS:
-		 * 0	Straight rail connecting to the north and south.
-1	Straight rail connecting to the east and west.
-2	Sloped rail ascending to the east.
-3	Sloped rail ascending to the west.
-4	Sloped rail ascending to the north.
-5	Sloped rail ascending to the south.
-6	Curved rail connecting to the south and east.
-7	Curved rail connecting to the south and west.
-8	Curved rail connecting to the north and west.
-9	Curved rail connecting to the north and east.*/
-		
+			/*RAILS:
+			 * 0	Straight rail connecting to the north and south.
+	1	Straight rail connecting to the east and west.
+	2	Sloped rail ascending to the east.
+	3	Sloped rail ascending to the west.
+	4	Sloped rail ascending to the north.
+	5	Sloped rail ascending to the south.
+	6	Curved rail connecting to the south and east.
+	7	Curved rail connecting to the south and west.
+	8	Curved rail connecting to the north and west.
+	9	Curved rail connecting to the north and east.*/
+			if(metaCurrent == 9) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.rail.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.dropper)
+		{ 
+			metaCurrent = Blocks.dropper.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 5) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.dropper.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.dispenser)
+		{ 
+			metaCurrent = Blocks.dispenser.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 5) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.dispenser.getStateFromMeta(metaNew);
+			}
+		}
+  
+		 
 		
 		/*Dropper
 Bits	Values
