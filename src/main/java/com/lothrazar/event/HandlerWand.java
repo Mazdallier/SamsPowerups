@@ -1,5 +1,7 @@
 package com.lothrazar.event;
 
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.Logger;  
 
 import com.lothrazar.item.*;
@@ -21,6 +23,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -127,6 +131,23 @@ public class HandlerWand
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{ 
 			ItemRegistry.wandProspect.searchProspect(event.entityPlayer,held,event.pos);   
+		}
+		else if(held.getItem() == ItemRegistry.wandFire && 
+				event.action.RIGHT_CLICK_BLOCK == event.action)
+		{ 
+			//System.out.println("fire wand");
+			
+			//TODO: radius in config
+			ArrayList<BlockPos> fires = SamsUtilities.findBlocks(event.entityPlayer, Blocks.fire, 50);
+			
+			for(BlockPos p : fires)
+			{
+				//System.out.println("extinguishFire "+p.getX()+"    "+p.getZ());
+				//event.world.extinguishFire(event.entityPlayer, p, EnumFacing.DOWN);
+				event.world.extinguishFire(event.entityPlayer, p.down(), EnumFacing.UP);//from above
+			}
+			
+			
 		}
   	}
   
