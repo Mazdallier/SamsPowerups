@@ -128,6 +128,7 @@ public class ItemWandTransform extends ItemTool
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.stonebrick.getStateFromMeta(metaNew);
 		}
+		//TODO:furnace
 		else if(block == Blocks.stone)
 		{
 
@@ -708,11 +709,12 @@ public class ItemWandTransform extends ItemTool
 		}
 	}
 	
+	/*
 	@Override
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) 
 	{         
         list.add("For use only on");   
         list.add("Mushroom blocks");   
         list.add("Double Slabs");          
-	}  
+	} */ 
 }
