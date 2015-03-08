@@ -567,59 +567,23 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.dispenser.getStateFromMeta(metaNew);
 			}
 		}
-  
-		 
-		
-		/*Dropper
-Bits	Values
-0x1
-0x2
-0x4	
-A three-bit field storing a value from 0 to 5 specifying which direction the dropper is facing:
-
-0: Dropper facing down
-1: Dropper facing up
-2: Dropper facing north
-3: Dropper facing south
-4: Dropper facing west
-5: Dropper facing east
-0x8	Set if dropper is activated.
-Dispenser
-Bits	Values
-0x1
-0x2
-0x4	
-Three bits storing a value from 0 to 5:
-
-0: Dispenser facing down
-1: Dispenser facing up
-2: Dispenser facing north
-3: Dispenser facing south
-4: Dispenser facing west
-5: Dispenser facing east
-0x8	If set, the dispenser is activated.
-Hopper[edit]
-Bits	Values
-0x1
-0x2
-0x4	
-A three-bit field storing a value from 0 to 5:
-
-0: Output facing down
-1: (unused)
-2: Output facing north
-3: Output facing south
-4: Output facing west
-5: Output facing east
-0x8	Set if activated/disabled.*/
-		
-		
-		
-		
-		
-		
-		//..TODO: ..MAYBE??? the 4 sided log? http://minecraft.gamepedia.com/Data_values#Wood
-		
+		else if(block == Blocks.hopper)
+		{ 
+			metaCurrent = Blocks.hopper.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 5) 
+				metaNew = 0;
+			else if(metaCurrent == 0) //1 is unused (cant point Up)
+				metaNew = 2;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.hopper.getStateFromMeta(metaNew);
+			}
+		}
+   
 		if(blockStateNew != null)
 		{
 			 
