@@ -371,6 +371,34 @@ public class ItemWandTransform extends ItemTool
 				blockStateNew =  Blocks.red_sandstone.getStateFromMeta(metaNew);
 			}
 		}
+		else if(block == Blocks.sandstone_stairs)
+		{
+			metaCurrent = Blocks.sandstone_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.sandstone_stairs.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.red_sandstone_stairs)
+		{
+			metaCurrent = Blocks.red_sandstone_stairs.getMetaFromState(blockState);
+
+			if(metaCurrent == 8) 
+				metaNew = 0;
+			else
+				metaNew = metaCurrent + 1; 
+		 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.red_sandstone_stairs.getStateFromMeta(metaNew);
+			}
+		}
 		else if(block == Blocks.stone_stairs)
 		{
 			metaCurrent = Blocks.stone_stairs.getMetaFromState(blockState);
