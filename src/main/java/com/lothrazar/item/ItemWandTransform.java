@@ -127,8 +127,7 @@ public class ItemWandTransform extends ItemTool
 			
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.stonebrick.getStateFromMeta(metaNew);
-		}
-		//TODO:furnace
+		} 
 		else if(block == Blocks.stone)
 		{
 
@@ -621,6 +620,20 @@ public class ItemWandTransform extends ItemTool
 			if(metaNew > INVALID)
 			{ 
 				blockStateNew =  Blocks.hopper.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.furnace)
+		{ 
+			metaCurrent = Blocks.furnace.getMetaFromState(blockState);
+			  
+			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
+				metaNew = 2;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.furnace.getStateFromMeta(metaNew);
 			}
 		}
 		else if(block == Blocks.piston)
