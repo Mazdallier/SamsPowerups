@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,6 +37,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper; 
 import net.minecraft.world.World;
@@ -579,6 +581,22 @@ public class ItemWandTransform extends ItemTool
 			if(metaNew > INVALID)
 			{ 
 				blockStateNew =  Blocks.lit_pumpkin.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.hay_block)
+		{ 
+			metaCurrent = Blocks.hay_block.getMetaFromState(blockState);
+			 
+			if(metaCurrent == 0) 
+				metaNew = 4;
+			else if(metaCurrent == 4)
+				metaNew = 8;
+			else if(metaCurrent == 8)
+				metaNew = 0;
+			  
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.hay_block.getStateFromMeta(metaNew);
 			}
 		}
 		else if(block == Blocks.rail)
