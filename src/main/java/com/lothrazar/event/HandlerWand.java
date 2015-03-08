@@ -21,6 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.S42PacketCombatEvent.Event;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
@@ -134,20 +135,39 @@ public class HandlerWand
 		}
 		else if(held.getItem() == ItemRegistry.wandFire && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
-		{ 
-			//System.out.println("fire wand");
-			
-			//TODO: radius in config
-			ArrayList<BlockPos> fires = SamsUtilities.findBlocks(event.entityPlayer, Blocks.fire, 50);
-			
-			for(BlockPos p : fires)
+		{  
+			if(event.entityPlayer.isSneaking())
 			{
-				//System.out.println("extinguishFire "+p.getX()+"    "+p.getZ());
-				//event.world.extinguishFire(event.entityPlayer, p, EnumFacing.DOWN);
-				event.world.extinguishFire(event.entityPlayer, p.down(), EnumFacing.UP);//from above
+				
+				
+				int range = 9;
+				
+				for(int i = 0; i < range; i++)
+				{
+
+					BlockPos fr = event.entityPlayer.getPosition().offset(event.entityPlayer.getHorizontalFacing(), i);
+					
+					
+					if(event.world.isAirBlock(fr))
+						event.world.setBlockState(fr, Blocks.fire.getDefaultState());
+					 
+				}
+				
 			}
-			
-			
+			else
+			{
+
+				int radius = 8;
+				//TODO: radius in config?
+				ArrayList<BlockPos> fires = SamsUtilities.findBlocks(event.entityPlayer, Blocks.fire, radius);
+				
+				for(BlockPos p : fires)
+				{
+					//System.out.println("extinguishFire "+p.getX()+"    "+p.getZ());
+					//event.world.extinguishFire(event.entityPlayer, p, EnumFacing.DOWN);
+					event.world.extinguishFire(event.entityPlayer, p.down(), EnumFacing.UP);//from above
+				}
+			} 
 		}
   	}
   
