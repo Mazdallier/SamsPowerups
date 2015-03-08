@@ -114,6 +114,45 @@ public class ItemWandTransform extends ItemTool
 			if(metaNew > INVALID)
 				blockStateNew =  Blocks.red_mushroom_block.getStateFromMeta(metaNew);
 		}
+		else if(block == Blocks.stonebrick)
+		{
+
+			metaCurrent = Blocks.stonebrick.getMetaFromState(blockState);
+
+			if(metaCurrent == 0)//0 is regular, 3 is chiseled
+				metaNew = 3;
+			else if(metaCurrent == 3)
+				metaNew = 0; 
+			//Not doing mossy or cracked here is deliberate, it costs vines or smelting time to make those
+			
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.stonebrick.getStateFromMeta(metaNew);
+		}
+		else if(block == Blocks.stone)
+		{
+
+			metaCurrent = Blocks.stone.getMetaFromState(blockState);
+
+			//skip 0 which is regular stone
+			//granite regular/polish
+			if(metaCurrent == 1)
+				metaNew = 2;
+			else if(metaCurrent == 2)
+				metaNew = 1; 
+			//diorite regular/polish
+			if(metaCurrent == 3)
+				metaNew = 4;
+			else if(metaCurrent == 4)
+				metaNew = 3; 
+			//andesite regular/polish
+			if(metaCurrent == 5)
+				metaNew = 6;
+			else if(metaCurrent == 6)
+				metaNew = 5; 
+
+			if(metaNew > INVALID)
+				blockStateNew =  Blocks.stone.getStateFromMeta(metaNew);
+		}
 		else if(block == Blocks.brown_mushroom_block)
 		{
 			metaCurrent = Blocks.brown_mushroom_block.getMetaFromState(blockState);
