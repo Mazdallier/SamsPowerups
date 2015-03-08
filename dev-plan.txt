@@ -1,10 +1,7 @@
 //[march05]: add creative tab for my stuff 
 //TREES ONLY GROLW && GET UN-PLANTED IF NOT IN THEIR HOME BIOMES!?!?!?
-//TODO: is it posible to disable sleeping? maybe just remove from bed if in bed?
 //[march05]: new keybindings that moves the whole rows up and down, not just columns
 //TODO: edit existing signs. copy and paste between signs, and also open plain existing editor
-//TODO: idea: fossils: just like buttons but spawn on ground in caves. breaking it gives bones?
-//TODO: emerald armor just for fun?  same strength as gold and/or iron?
 //[march05]: sugar cane grow from bonemeal (pocket edition does this)
 //TODO:quiver:simplestorage blockfor arrows?
 ///referencefood https://bitbucket.org/Zuxelus/usefulfood/src/f74eea7793c5a95e8ecf4d7344f3e5182884942c/main/java/mods/usefulfood/?at=master
@@ -58,6 +55,9 @@
     //make it very slow. much slower than a mobfarm/golem farm would be.
  //Fork some open source stuff?  // https://github.com/PrinceOfAmber/OpenBlocks 
     
+//TODO: idea: fossils: just like buttons but spawn on ground in caves. breaking it gives bones?
+//TODO: emerald armor just for fun?  same strength as gold and/or iron?
+//TODO: is it posible to disable sleeping? maybe just remove from bed if in bed?
     //TODO: parachute item and/or slowfall ability
     //todo?? shape/conic/circle drawing in game//http://i.imgur.com/t3N1U8p.png
     

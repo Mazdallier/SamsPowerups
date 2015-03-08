@@ -9,8 +9,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerTorchCollide 
-{
-
+{ 
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event)
 	{

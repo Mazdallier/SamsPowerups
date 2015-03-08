@@ -347,7 +347,7 @@ public class ConfigFile
 	{
 		category = "morecrafting";
 		gravelToClay = instance.getBoolean( "gravelToClay",category,true,
-				"Since clay in oceans has been replaced by pure gravel, this recipe lets you turn 4 clay, 4 water, and one bucket worth of water into Clay Blocks");
+				"Since clay in oceans has been replaced by pure gravel, this recipe lets you turn 4 clay, 4 dirt, and one bucket worth of water into Clay Blocks");
 		 
 		/*
 		craftObsidian = instance.getBoolean( "craftObsidian",category,true,
