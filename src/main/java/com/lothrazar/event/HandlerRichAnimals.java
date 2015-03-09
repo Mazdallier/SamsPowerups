@@ -3,6 +3,8 @@ package com.lothrazar.event;
 import com.lothrazar.samscontent.ModLoader;
 import com.lothrazar.util.SamsUtilities;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -13,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -46,6 +49,17 @@ public class HandlerRichAnimals
 				nameTag.setTagCompound(nbt);//put the data into the item stack
 				 
 				SamsUtilities.dropItemStackInWorld(event.entity.worldObj, event.entity.getPosition(), nameTag); 
+			}
+		}
+		if(ModLoader.configSettings.petNametagChat && 
+				isPet(event.entity) )
+		{ 
+			if(event.entity.getCustomNameTag() != null && //'custom' is blank if no nametag
+			   event.entity.getCustomNameTag() != ""   
+			   ) 
+			{    
+				 SamsUtilities.printChatMessage(
+						 (event.source.getDeathMessage((EntityLiving)event.entity)));
 			}
 		}
 		

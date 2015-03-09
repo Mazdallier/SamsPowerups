@@ -108,7 +108,8 @@ public class ConfigFile
 	public boolean spawnerCreativeInventory;
 	public boolean gravelToClay;
 	public boolean fragileTorches;
-	public boolean removeZombieCarrotPotato; 
+	public boolean removeZombieCarrotPotato;
+	public boolean petNametagChat; 
 	
 	public ConfigFile(Configuration c)
 	{
@@ -138,6 +139,9 @@ public class ConfigFile
 		 petNametagDrops = instance.getBoolean("petNametagDrops",category, true,
 	    			"Pets (Wolf, ocelot, villager, bat, rabbit, horse) that are named drop a name tag when they die.");
  
+		 petNametagChat  = instance.getBoolean("petNametagChat",category, true,
+	    			"Pets (Wolf, ocelot, villager, bat, rabbit, horse) that are named send a chat message when they die.");
+		 
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		
 		if(instance.hasChanged()){ instance.save(); }

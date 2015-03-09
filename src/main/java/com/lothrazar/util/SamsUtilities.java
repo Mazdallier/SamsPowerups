@@ -3,6 +3,8 @@ package com.lothrazar.util;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World; 
 
 import org.apache.logging.log4j.Level;
@@ -324,4 +328,12 @@ public class SamsUtilities
 		player.worldObj.spawnParticle(EnumParticleTypes.REDSTONE, player.posX,player.posY,player.posZ,1,1,1,1); 
 		player.worldObj.playSoundAtEntity(player, "mob.endermen.portal", 1.0F, 1.0F);
 	}*/
+	public static void printChatMessage(String string) 
+	{ 
+		printChatMessage(new ChatComponentTranslation(string)); 
+	}
+	public static void printChatMessage(IChatComponent string) 
+	{ 
+		 Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(string); 
+	}
 }
