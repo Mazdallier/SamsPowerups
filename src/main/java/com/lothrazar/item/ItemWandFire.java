@@ -44,7 +44,7 @@ public class ItemWandFire  extends Item
 
 	public static void castFire(World world, EntityPlayer entityPlayer,	ItemStack held) 
 	{
-		int range = 9;
+		int range = 9;//TODO: range in config
 		
 		for(int i = 2; i < range; i++)
 		{
@@ -53,9 +53,9 @@ public class ItemWandFire  extends Item
 			
 			
 			if(world.isAirBlock(fr))
-				
+			{
 				world.setBlockState(fr, Blocks.fire.getDefaultState());
-			 
+			}
 		}
 		 
 		SamsUtilities.playSoundAt(entityPlayer, "fire.ignite");

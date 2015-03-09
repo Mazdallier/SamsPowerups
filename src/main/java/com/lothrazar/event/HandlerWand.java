@@ -145,6 +145,15 @@ public class HandlerWand
 				ItemWandFire.castExtinguish(event.world,event.entityPlayer,held); 
 			} 
 		}
+		else if(held.getItem() == ItemRegistry.wandCopy &&  
+				//(blockClicked == Blocks.wall_sign 
+			//	)
+				event.action.RIGHT_CLICK_BLOCK == event.action)
+		{   
+			//TODO: copy or paste if shift or not
+		//	ItemWandCopyPaste.castExtinguish(event.world,event.entityPlayer,held); 
+		 
+		}
   	}
   
 	@SubscribeEvent

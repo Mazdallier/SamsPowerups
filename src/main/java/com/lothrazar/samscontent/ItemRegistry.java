@@ -6,6 +6,7 @@ import com.lothrazar.item.ItemEnderBook;
 import com.lothrazar.item.ItemFoodAppleMagic;
 import com.lothrazar.item.ItemWandBuilding;
 import com.lothrazar.item.ItemWandChest;
+import com.lothrazar.item.ItemWandCopyPaste;
 import com.lothrazar.item.ItemWandFire;
 import com.lothrazar.item.ItemWandHarvest;
 import com.lothrazar.item.ItemWandLivestock;
@@ -34,10 +35,12 @@ public class ItemRegistry
 	public static ItemFoodAppleMagic apple_chocolate_rich;
 	public static ItemFoodAppleMagic apple_nether_star;
 	public static ItemWandFire wandFire;
+	public static ItemWandCopyPaste wandCopy;
 	 
 	public static void registerItems()
 	{
 		ItemWandFire.init();
+		ItemWandCopyPaste.init();
 		
 		ItemBucketStorage.initLava();
 		

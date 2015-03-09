@@ -26,8 +26,7 @@ public class ConfigFile
 	public boolean increasedStackSizes;
 	public boolean moreFuel;
 	public boolean skullSignNames; 
-	public boolean craftableTransmuteRecords;  
-	//public boolean craftableFlatDoubleSlab; 
+	public boolean craftableTransmuteRecords;    
 	public boolean craftableBonemealColouredWool;   
 	public boolean craftBooksWithoutLeather;
 	//public boolean craftableMobHeads;
@@ -36,8 +35,7 @@ public class ConfigFile
  
 	public boolean uncraftGeneral; 
 	public boolean fishingNetBlock;
-	public boolean xRayBlock;
-	//public boolean masterWand;
+	public boolean xRayBlock; 
 	public boolean enderBook;
 	public boolean weatherBlock; 
 	public boolean craftableMushroomBlocks;
@@ -252,8 +250,7 @@ public class ConfigFile
 		spawnCaveSpiderJungle = instance.getBoolean("spawn.CaveSpiderJungle",category, true,
     			"Cave Spiderspawn naturally in Jungle. "); 
 	}
-	
-	
+	 
 	private void debug_info() 
 	{
 		category = "debugScreen";
@@ -312,14 +309,7 @@ public class ConfigFile
 		 
 		xRayBlock = instance.getBoolean( "xRayBlock",category,true,
 				" Create an xray block to see through the world.  Intended for single player, not for cheating on servers."); 
-		/*
-		masterWand = instance.getBoolean( "masterWand",category,true, 
-				" Create a multi purpose wand that can help find diamonds and dungeons, harvest crops, turn passive mobs into spawn eggs, and pick up and move chests."); 
-		*/
-		ItemWandHarvest.drainsHunger = instance.getBoolean( "masterWand.DrainsHunger",category,true,
-				"Each use costs hunger."); 
-		
-		
+	  
 		enderBook = instance.getBoolean( "enderBook",category,true,
 				" Craft an ender book that lets you save waypoints, and then teleport to them later (only in the overworld)."); 
 		
@@ -343,6 +333,12 @@ public class ConfigFile
 		
 		gameruleBlockMobgrief = instance.getBoolean( "gameruleBlock.Mobgrief",category,true,
 				"Craft blocks that toggle '/gamerule doMobGriefing' on redstone signal.  (Can never be opened or edited like a regular command block).");
+	
+	
+		//TODO: config for each wand
+	
+	
+	
 	}
 	
 	private void crafting() 
