@@ -1,11 +1,19 @@
 package com.lothrazar.samscontent;
 
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntityRabbit;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration; 
+
 import com.lothrazar.command.*; 
 import com.lothrazar.event.HandlerPlayerHarvest;
+import com.lothrazar.event.HandlerRichAnimals;
 import com.lothrazar.item.ItemWandBuilding;
 import com.lothrazar.item.ItemWandHarvest;
 
@@ -123,7 +131,13 @@ public class ConfigFile
 		convenience();
 
 		 builderswand(); 
-		 
+		  
+		 HandlerRichAnimals.LivestockLootScaleFactor  = instance.getInt("LivestockLootScaleFactor",category, 5,0,32,
+	    			"Scale factor to multiply drops from livestock: including sheep, chicken, horse, cow, rabbit, and also pigs get double this factor again.");
+			 
+		 petNametagDrops = instance.getBoolean("petNametagDrops",category, true,
+	    			"Pets (Wolf, ocelot, villager, bat, rabbit, horse) that are named drop a name tag when they die.");
+ 
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		
 		if(instance.hasChanged()){ instance.save(); }

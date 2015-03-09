@@ -8,6 +8,8 @@
 ///referencefood https://bitbucket.org/Zuxelus/usefulfood/src/f74eea7793c5a95e8ecf4d7344f3e5182884942c/main/java/mods/usefulfood/?at=master
 //beetroots can be eaten to restore 1 (Half Heart.svg) health.//soup restores (8)?? seeds from tilling grass 1/15 chance
 //TODO: IF we get sign copy/paste working, try the same with noteblocks
+//TODO: find what food was nerfed in 1.8 such as carrot and restore it to previous
+//TODO: make pigs drop double loo\t from other animals
 //six beetroot like a sign above a bowl -> one bt soup. fills 
 //1 beetroot gives one rose red. it breeds pigs and gets follow like carrot
 //TODO: is it worthwhile/easy to turn the appleflying/nbt stuff into an actual potion effect?
