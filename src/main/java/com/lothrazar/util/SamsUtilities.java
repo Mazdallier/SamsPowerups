@@ -199,6 +199,8 @@ public class SamsUtilities
 	public static void setItemStackNBT(ItemStack item,	String prop, String value) 
 	{
 		if(item.getTagCompound() == null) item.setTagCompound(new NBTTagCompound());
+		
+		//display/Name
 		item.getTagCompound().setString(prop, value);
 	} 
 	public static void incrementItemStackIntegerNBT(ItemStack item,	String prop, int inc) 

@@ -1,6 +1,7 @@
 package com.lothrazar.event;
 
 import com.lothrazar.samscontent.ModLoader;
+import com.lothrazar.util.SamsUtilities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -24,20 +25,27 @@ public class HandlerRichAnimals
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDropsEvent event)
 	{ 
+		if(event.entity.worldObj.isRemote) {return;}
+		
 		if(ModLoader.configSettings.petNametagDrops && 
 				isPet(event.entity) )
 		{ 
 			if(event.entity.getCustomNameTag() != null && //'custom' is blank if no nametag
 			   event.entity.getCustomNameTag() != ""   
 			   ) 
-			{
-				//so it HAS a nametag applied
-				ItemStack nt = new ItemStack(Items.name_tag);
-				if(nt.getTagCompound()==null){nt.setTagCompound(new NBTTagCompound());}
+			{ 
+				ItemStack nameTag = new ItemStack(Items.name_tag, 1); 
 				 
-				EntityItem tag = new EntityItem(event.entity.worldObj, event.entity.posX, event.entity.posY, event.entity.posZ, nt);
+				//build multi-level NBT tag so it matches a freshly enchanted one
+				NBTTagCompound nbt = new NBTTagCompound(); 
+				NBTTagCompound display = new NBTTagCompound();
+				display.setString("Name", event.entity.getCustomNameTag());//NOT "CustomName" implied by commandblocks/google 
+				nbt.setTag("display",display);
+				nbt.setInteger("RepairCost", 1);
+				
+				nameTag.setTagCompound(nbt);//put the data into the item stack
 				 
-				event.drops.add(tag); //drop nametag along with the mobs current loot
+				SamsUtilities.dropItemStackInWorld(event.entity.worldObj, event.entity.getPosition(), nameTag); 
 			}
 		}
 		
