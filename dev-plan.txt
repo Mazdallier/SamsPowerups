@@ -4,7 +4,6 @@
 //[march05]: new keybindings that moves the whole rows up and down, not just columns
 //[march05]: sugar cane grow from bonemeal (pocket edition does this)
  //[march08]: wand transform: rotate logs, pistons , hoppers droppers etc,  anything else  that has rotation
-//TODO:quiver:simplestorage blockfor arrows?
 ///referencefood https://bitbucket.org/Zuxelus/usefulfood/src/f74eea7793c5a95e8ecf4d7344f3e5182884942c/main/java/mods/usefulfood/?at=master
 //beetroots can be eaten to restore 1 (Half Heart.svg) health.//soup restores (8)?? seeds from tilling grass 1/15 chance
 //TODO: IF we get sign copy/paste working, try the same with noteblocks
@@ -23,6 +22,7 @@
 //TODO: milk as liquid in the world just like water/lava. use forge . If so, we have to also do apple juice.//http://www.minecraftforge.net/wiki/Create_a_Fluid
 //TODO: worldgen clay in gravel in ocean AND/OR: mixing gravel/water/coarse dirt into Clay Balls. maybe 4 gravel, 4 coarse dirt, 1 water
  //TODO: wand dungeon and porspect as SINGLE USE?? to solve lang
+//TODO:quiver:simplestorage blockfor arrows?
  //OR: actually better idea: Write search string result to NBT thats written !
  //TODO: revisit/balance obsidian crafting//mass production methods/smelting stuff.
 //TODO: maybe: apple hearts and flying persist on death? perhaps minus 1

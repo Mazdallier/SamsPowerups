@@ -24,9 +24,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S42PacketCombatEvent.Event;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.IChatComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -146,13 +148,20 @@ public class HandlerWand
 			} 
 		}
 		else if(held.getItem() == ItemRegistry.wandCopy &&  
-				//(blockClicked == Blocks.wall_sign 
-			//	)
+				(blockClicked == Blocks.wall_sign || blockClicked == Blocks.standing_sign ) && 
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{   
 			//TODO: copy or paste if shift or not
 		//	ItemWandCopyPaste.castExtinguish(event.world,event.entityPlayer,held); 
-		 
+			TileEntitySign sign = (TileEntitySign)event.world.getTileEntity(event.pos);
+			
+			for(IChatComponent ic : sign.signText)
+			{
+				System.out.println(ic.getUnformattedText());
+			}
+			
+			
+			
 		}
   	}
   
