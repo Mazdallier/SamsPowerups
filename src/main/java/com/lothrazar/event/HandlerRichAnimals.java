@@ -52,7 +52,7 @@ public class HandlerRichAnimals
 			}
 		}
 		if(ModLoader.configSettings.petNametagChat && 
-				isPet(event.entity) )
+				event.entity instanceof EntityLiving )
 		{ 
 			if(event.entity.getCustomNameTag() != null && //'custom' is blank if no nametag
 			   event.entity.getCustomNameTag() != ""   

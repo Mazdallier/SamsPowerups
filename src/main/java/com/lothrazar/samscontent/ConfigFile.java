@@ -139,8 +139,8 @@ public class ConfigFile
 		 petNametagDrops = instance.getBoolean("petNametagDrops",category, true,
 	    			"Pets (Wolf, ocelot, villager, bat, rabbit, horse) that are named drop a name tag when they die.");
  
-		 petNametagChat  = instance.getBoolean("petNametagChat",category, true,
-	    			"Pets (Wolf, ocelot, villager, bat, rabbit, horse) that are named send a chat message when they die.");
+		 petNametagChat  = instance.getBoolean("nametagDeathMessages",category, true,
+	    			"Non player entities that are named with a Name Tag send a chat death message when they die.");
 		 
 		//category = "tweaks";//these are the misc. changes i made that have no clear category yet
 		
