@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -45,17 +46,19 @@ public class ItemWandFire  extends Item
 	{
 		int range = 9;
 		
-		for(int i = 0; i < range; i++)
+		for(int i = 2; i < range; i++)
 		{
 
 			BlockPos fr = entityPlayer.getPosition().offset(entityPlayer.getHorizontalFacing(), i);
 			
 			
 			if(world.isAirBlock(fr))
+				
 				world.setBlockState(fr, Blocks.fire.getDefaultState());
 			 
 		}
-		
+		 
+		SamsUtilities.playSoundAt(entityPlayer, "fire.ignite");
 	}
 
 	public static void castExtinguish(World world, EntityPlayer entityPlayer,	ItemStack held) 
@@ -68,7 +71,15 @@ public class ItemWandFire  extends Item
 		{
 			//System.out.println("extinguishFire "+p.getX()+"    "+p.getZ());
 			//event.world.extinguishFire(event.entityPlayer, p, EnumFacing.DOWN);
+			
+			
 			world.extinguishFire(entityPlayer, p.down(), EnumFacing.UP);//from above
+			SamsUtilities.spawnParticle(world, EnumParticleTypes.DRIP_WATER, p);
+		}
+		
+		if(fires.size() > 0)
+		{
+			SamsUtilities.playSoundAt(entityPlayer, "liquid.water");
 		}
 		
 	}
