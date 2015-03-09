@@ -1,20 +1,21 @@
 //[march05]: add creative tab for my stuff 
-//TREES ONLY GROLW && GET UN-PLANTED IF NOT IN THEIR HOME BIOMES!?!?!?
+//[march05]: mushrroms self plant same way we have saplings do
+//[march08]: configs to stop zombies from dropping goodies (carrot/iron/etc)--LivingDropsEvent
 //[march05]: new keybindings that moves the whole rows up and down, not just columns
-//TODO: edit existing signs. copy and paste between signs, and also open plain existing editor
 //[march05]: sugar cane grow from bonemeal (pocket edition does this)
+ //[march08]: wand transform: rotate logs, pistons , hoppers droppers etc,  anything else  that has rotation
 //TODO:quiver:simplestorage blockfor arrows?
 ///referencefood https://bitbucket.org/Zuxelus/usefulfood/src/f74eea7793c5a95e8ecf4d7344f3e5182884942c/main/java/mods/usefulfood/?at=master
 //beetroots can be eaten to restore 1 (Half Heart.svg) health.//soup restores (8)?? seeds from tilling grass 1/15 chance
 //TODO: IF we get sign copy/paste working, try the same with noteblocks
 //six beetroot like a sign above a bowl -> one bt soup. fills 
-//[march05]: mushrroms self plant same way we have saplings do
 //1 beetroot gives one rose red. it breeds pigs and gets follow like carrot
 //TODO: is it worthwhile/easy to turn the appleflying/nbt stuff into an actual potion effect?
 //TODO: a way to place signs quick by skipping interface (leaving them blank)
 //TODO: copy and paste between signs
+//TODO: edit existing signs. copy and paste between signs, and also open plain existing editor
+//TREES ONLY GROLW && GET UN-PLANTED IF NOT IN THEIR HOME BIOMES!?!?!?
 //TODO: mirror of rabit stew with other meats
-//TODO: configs to stop zombies from dropping goodies (carrot/iron/etc)
 //TODO: Wands of fire and (not ice but anit fire) on use will add or extinguish fire in large area around the player. and/or in a straight line.
 //TODO: do we want to add foodstuffs? i like idea of chocolate (milk bottle+sugar+cocoa), and berry bushes
 //TODO: milk as liquid in the world just like water/lava. use forge . If so, we have to also do apple juice.//http://www.minecraftforge.net/wiki/Create_a_Fluid
@@ -37,7 +38,6 @@
  //TODO: Split milk bucket into bottles,  get drinking/crafting working from that. add chocolate milk 
  //TODO: wand of chest transportaiton: make it also work with dispensers/droppers/trapped chests/ etc. set extra flag to identify
  //TODO: log/stone boat: exact copy of existing boat, but unbreakable.
- //[march08]: wand transform: rotate logs, pistons , hoppers droppers etc,  anything else  that has rotation
  //TODO: either make obsidian softer OR make special tool that mines (only) obsidian but really fast?
  //find a reason or interesting thing to make torchers more expensive.
  //if so then add alternate for jackolantern that doesnt use a torch.

@@ -101,7 +101,8 @@ public class ConfigFile
 	public boolean farmlandCreativeInventory;
 	public boolean spawnerCreativeInventory;
 	public boolean gravelToClay;
-	public boolean fragileTorches; 
+	public boolean fragileTorches;
+	public boolean removeZombieCarrotPotato; 
 	
 	public ConfigFile(Configuration c)
 	{
@@ -216,7 +217,8 @@ public class ConfigFile
 	private void spawning() 
 	{
 		category = "spawning";
-
+		removeZombieCarrotPotato = instance.getBoolean("removeZombieCarrotPotato",category, true,
+    			"Disable these zombie drops."); 
 		spawnBlazeDesertHills = instance.getBoolean("spawn.BlazeDesertHills",category, true,
     			"Blazes spawn naturally in Desert Hills."); 
     		
