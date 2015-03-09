@@ -137,36 +137,12 @@ public class HandlerWand
 				event.action.RIGHT_CLICK_BLOCK == event.action)
 		{  
 			if(event.entityPlayer.isSneaking())
-			{
-				
-				
-				int range = 9;
-				
-				for(int i = 0; i < range; i++)
-				{
-
-					BlockPos fr = event.entityPlayer.getPosition().offset(event.entityPlayer.getHorizontalFacing(), i);
-					
-					
-					if(event.world.isAirBlock(fr))
-						event.world.setBlockState(fr, Blocks.fire.getDefaultState());
-					 
-				}
-				
+			{ 
+				ItemWandFire.castFire(event.world,event.entityPlayer,held); 
 			}
 			else
 			{
-
-				int radius = 8;
-				//TODO: radius in config?
-				ArrayList<BlockPos> fires = SamsUtilities.findBlocks(event.entityPlayer, Blocks.fire, radius);
-				
-				for(BlockPos p : fires)
-				{
-					//System.out.println("extinguishFire "+p.getX()+"    "+p.getZ());
-					//event.world.extinguishFire(event.entityPlayer, p, EnumFacing.DOWN);
-					event.world.extinguishFire(event.entityPlayer, p.down(), EnumFacing.UP);//from above
-				}
+				ItemWandFire.castExtinguish(event.world,event.entityPlayer,held); 
 			} 
 		}
   	}

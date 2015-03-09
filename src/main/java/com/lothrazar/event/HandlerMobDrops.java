@@ -15,17 +15,14 @@ public class HandlerMobDrops
 	{
 		if(ModLoader.configSettings.removeZombieCarrotPotato)
 		if(event.entity instanceof EntityZombie)
-		{
-			System.out.println("zombiedeath");
+		{ 
 			
-			for(int i = 0; i < event.drops.size(); i++)
-		//	for(EntityItem i : event.drops)
+			for(int i = 0; i < event.drops.size(); i++) 
 			{
 				EntityItem item = event.drops.get(i);
 				
 				if(item.getEntityItem().getItem() == Items.carrot || item.getEntityItem().getItem() == Items.potato)
-				{
-					System.out.println("removeremove"+i);
+				{ 
 					event.drops.remove(i);
 				}
 			}
